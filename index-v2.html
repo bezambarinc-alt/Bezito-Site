@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bez Ambar — Inventor of the Princess Cut | Luxury Diamonds, Los Angeles</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ============== LV-STYLE HOMEPAGE ============== */
+
+        /* --- Full-Bleed Hero --- */
+        .hero-section {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+            background: #0a0a0a;
+        }
+        .hero-section .hero-bg-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        .hero-section .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.05) 100%);
+            z-index: 1;
+        }
+        .hero-section .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 40px;
+            max-width: 520px;
+            margin-left: clamp(40px, 28vw, 400px);
+            margin-top: clamp(-150px, -15vw, -250px);
+            text-align: center;
+        }
+        .hero-eyebrow {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.85;
+            margin-bottom: 16px;
+            color: #c5a258;
+        }
+        .hero-content h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(48px, 5.5vw, 72px);
+            font-weight: 700;
+            line-height: 1.05;
+            margin-bottom: 28px;
+            color: #fff;
+        }
+        .hero-cta {
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #fff;
+            border: 1.5px solid rgba(197,162,88,0.7);
+            padding: 14px 36px;
+            transition: all 0.3s;
+        }
+        .hero-cta:hover {
+            background: #c5a258;
+            color: #0d0d0d;
+            border-color: #c5a258;
+        }
+
+        /* --- Explore by Category (LV Grid) --- */
+        .cat-section {
+            padding: 50px 0 40px;
+            background: #f0eeeb;
+        }
+        .cat-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #111;
+            letter-spacing: 1px;
+        }
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+            max-width: 100%;
+            margin: 0;
+            padding: 0 200px;
+        }
+        .cat-card {
+            text-decoration: none;
+            color: #111;
+        }
+        .cat-card-img {
+            aspect-ratio: 3 / 4;
+            overflow: hidden;
+            background: #e2e0dc;
+            margin-bottom: 12px;
+        }
+        .cat-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .cat-card:hover .cat-card-img img {
+            transform: scale(1.04);
+        }
+        .cat-card-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 400;
+            text-align: center;
+            letter-spacing: 0.5px;
+            color: #333;
+            padding-bottom: 8px;
+        }
+
+        /* --- Full-Bleed Image Hero (between sections) --- */
+        .campaign-hero {
+            width: 100%;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+        }
+        .campaign-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+        }
+        .campaign-hero .vimeo-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 177.78vh;
+            height: 56.25vw;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: 0;
+            border: none;
+            pointer-events: none;
+        }
+        .campaign-hero .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 40%, transparent 70%);
+            z-index: 1;
+        }
+        .campaign-hero .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 40px;
+            max-width: 520px;
+            margin-left: clamp(40px, 28vw, 400px);
+        }
+
+        /* --- Product Showcase (4-col row with Discover) --- */
+        .product-section {
+            padding: 60px 40px 50px;
+            background: #0d0d0d;
+            text-align: center;
+        }
+        .product-section .section-eyebrow {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 10px;
+        }
+        .product-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 40px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto 35px;
+        }
+        .prod-card {
+            text-decoration: none;
+            color: #fff;
+            text-align: center;
+            position: relative;
+            display: block;
+        }
+        .prod-card-img {
+            aspect-ratio: 4/5;
+            overflow: hidden;
+            background: #141414;
+            position: relative;
+        }
+        .prod-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .prod-card:hover .prod-card-img img {
+            transform: scale(1.04);
+        }
+        .prod-card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 40px 16px 18px;
+            background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 60%, transparent 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+        .prod-card-wishlist {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 20px;
+            height: 20px;
+            color: rgba(255,255,255,0.7);
+            cursor: pointer;
+            transition: color 0.3s;
+            z-index: 2;
+            pointer-events: auto;
+        }
+        .prod-card-wishlist:hover {
+            color: #fff;
+        }
+        .prod-card-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            line-height: 1.4;
+            margin-bottom: 4px;
+            color: #fff;
+            text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+        }
+        .prod-card-price {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.85);
+            text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+        }
+        .section-cta {
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #fff;
+            border: 1px solid #fff;
+            padding: 12px 32px;
+            transition: all 0.3s;
+        }
+        .section-cta:hover {
+            background: #fff;
+            color: #0d0d0d;
+        }
+
+        /* --- Services Row --- */
+        .services-section {
+            padding: 70px 40px;
+            background: #0d0d0d;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .services-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .services-section > p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            color: #888;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .services-row {
+            display: flex;
+            justify-content: center;
+            gap: 70px;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .service-item {
+            text-align: center;
+            max-width: 200px;
+        }
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 14px;
+        }
+        .service-item h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .service-item p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.6;
+        }
+
+        /* --- Responsive --- */
+
+        /* Tablet */
+        @media (max-width: 1024px) {
+            .cat-grid, .product-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-section .hero-content,
+            .campaign-hero .hero-content {
+                margin-left: 60px !important;
+                margin-right: 60px !important;
+                padding: 0 20px;
+                max-width: 400px;
+            }
+            .hero-content h2 { font-size: 36px !important; }
+            .hero-eyebrow { font-size: 10px !important; }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            /* Image heroes: stack vertically — image on top, copy below */
+            .hero-section {
+                height: auto !important;
+                min-height: auto !important;
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .hero-section .hero-bg-img {
+                position: relative;
+                width: 100%;
+                height: 55vh;
+                object-fit: cover;
+            }
+            .hero-section .hero-overlay { display: block; background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.6) 100%); }
+            .hero-section .hero-content {
+                position: absolute !important;
+                z-index: 2;
+                bottom: 40px !important;
+                left: 0 !important;
+                right: 0 !important;
+                margin: 0 auto !important;
+                padding: 0 24px 0 !important;
+                max-width: 100% !important;
+                text-align: center !important;
+                background: transparent;
+            }
+            .hero-content h2 {
+                font-size: 26px !important;
+                line-height: 1.15 !important;
+                color: #fff !important;
+            }
+            .hero-content h2 span { white-space: normal !important; }
+            .hero-eyebrow {
+                font-size: 9px !important;
+                color: #c5a258 !important;
+                opacity: 1 !important;
+                margin-bottom: 10px !important;
+            }
+            .hero-cta {
+                font-size: 10px !important;
+                padding: 10px 28px !important;
+                color: #fff !important;
+                border-color: rgba(197,162,88,0.7) !important;
+            }
+
+            /* Video heroes: keep overlaid but smaller */
+            .campaign-hero { min-height: 40vh !important; }
+            .campaign-hero .hero-content {
+                margin-left: 20px !important;
+                margin-right: 20px !important;
+                margin-top: 0 !important;
+                padding: 0 20px 40px !important;
+                max-width: 100% !important;
+                text-align: center !important;
+            }
+            .campaign-hero .hero-content h2 { font-size: 24px !important; }
+
+            /* Grids */
+            .cat-section { padding: 30px 16px 24px; }
+            .cat-grid { padding: 0 16px !important; gap: 8px !important; }
+            .cat-card-img { aspect-ratio: 1 !important; }
+            .product-section { padding: 30px 16px 24px; }
+            .cat-grid, .product-grid { gap: 8px; }
+            .services-row { gap: 30px; }
+        }
+
+        /* Small phone */
+        @media (max-width: 480px) {
+            .cat-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 6px !important; }
+            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+            .hero-section .hero-bg-img { height: 45vh; }
+            .hero-content h2 { font-size: 22px !important; }
+            .campaign-hero { min-height: 35vh !important; }
+        }
+
+        /* --- Nested Dropdown (Earrings sub-menu) --- */
+        .dropdown-nested {
+            position: relative;
+        }
+        .dropdown-nested > a {
+            display: flex !important;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 24px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+            line-height: 1.4;
+        }
+        .dropdown-nested > a::after {
+            content: '›';
+            font-size: 16px;
+            margin-left: 8px;
+            transition: transform 0.2s;
+        }
+        .dropdown-nested:hover > a {
+            background: #141414;
+            color: #fff !important;
+        }
+        .dropdown-submenu {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            min-width: 180px;
+            background: #1a1a1a;
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 12px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-8px);
+            transition: all 0.25s ease;
+            z-index: 210;
+        }
+        .dropdown-nested:hover .dropdown-submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+        .dropdown-submenu a {
+            display: block;
+            padding: 8px 24px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: rgba(255,255,255,0.85);
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .dropdown-submenu a:hover {
+            background: #141414;
+            color: #fff;
+        }
+        .mobile-sub-link {
+            padding-left: 36px !important;
+            font-size: 13px !important;
+            opacity: 0.75;
+        }
+        @media (max-width: 900px) {
+            .dropdown-submenu {
+                position: static;
+                border: none;
+                padding: 0;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                background: rgba(255,255,255,0.03);
+                min-width: auto;
+            }
+            .dropdown-submenu a {
+                padding-left: 40px;
+                font-size: 11px;
+            }
+            .dropdown-nested > a::after {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-left-group">
+                <button class="mobile-nav-toggle" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+                <span class="menu-label" onclick="toggleMobileNav()">Menu</span>
+                <button class="header-icon-btn header-search-btn" aria-label="Search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+            </div>
+            <a href="index.html" class="logo">Bez Ambar</a>
+            <div class="header-right-group">
+                <a href="contact.html" class="header-contact-link">Contact Us</a>
+                <a href="#" class="header-icon-btn" aria-label="Wishlist">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </a>
+                <a href="#" class="header-icon-btn" aria-label="Account">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </a>
+            </div>
+            <div class="mobile-nav-overlay" id="mobileNav">
+                <a href="collection.html">Collection</a>
+                <span class="mobile-cat-label">Categories</span>
+                <a href="collection.html" class="mobile-cat-link">All Jewelry</a>
+                <a href="collection.html?cat=rings" class="mobile-cat-link">Rings</a>
+                <a href="collection.html?cat=engagement-rings" class="mobile-cat-link mobile-sub-link">Engagement Rings</a>
+                <a href="collection.html?cat=wedding-bands" class="mobile-cat-link mobile-sub-link">Wedding Bands</a>
+                <a href="collection.html?cat=mens-wedding-bands" class="mobile-cat-link mobile-sub-link">Men's Wedding Bands</a>
+                <a href="collection.html?cat=pendants" class="mobile-cat-link">Pendants</a>
+                <a href="collection.html?cat=necklaces" class="mobile-cat-link">Necklaces</a>
+                <a href="collection.html?cat=earrings" class="mobile-cat-link">Earrings</a>
+                <a href="collection.html?cat=stud-earrings" class="mobile-cat-link mobile-sub-link">Stud Earrings</a>
+                <a href="collection.html?cat=hug-earrings" class="mobile-cat-link mobile-sub-link">Hug Earrings</a>
+                <a href="collection.html?cat=hoop-earrings" class="mobile-cat-link mobile-sub-link">Hoop Earrings</a>
+                <a href="collection.html?cat=bracelets" class="mobile-cat-link">Bracelets</a>
+                <a href="video-gallery.html">Video Gallery</a>
+                <a href="our-story.html" class="mobile-cat-label" style="text-decoration:none;">Our Story</a>
+                <a href="about.html" class="mobile-cat-link">The Inventor</a>
+                <a href="the-bez-ambar-story.html" class="mobile-cat-link">The Bez Ambar Story</a>
+                <a href="journal.html" class="mobile-cat-link">Journal</a>
+                <a href="blog.html" class="mobile-cat-link">Blog</a>
+                <a href="diamond-education.html" class="mobile-cat-link">Diamond Education</a>
+                <a href="ring-size-chart.html" class="mobile-cat-link">Ring Size Chart</a>
+                <a href="catalogs.html" class="mobile-cat-link">Catalogs</a>
+                <a href="warranty.html" class="mobile-cat-link">Warranty</a>
+                <a href="press.html" class="mobile-cat-link">Press</a>
+            </div>
+        </div>
+    </header>
+    <div class="nav-backdrop" id="navBackdrop"></div>
+
+    <!-- ==================== SECTION 1: Full-Bleed Hero (Video) ==================== -->
+    <section class="hero-section">
+        <img class="hero-bg-img" style="object-position: right 30%;"
+            src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1775199953/Hero_Ruby_and_lady_in_a_galery_i0xns5.jpg"
+            alt="Bez Ambar — Luxury Diamond Jewelry">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">Since 1979 &middot; Los Angeles</p>
+            <h2><span style="white-space:nowrap">The Inventor of</span><br><span style="white-space:nowrap">the Princess Cut</span></h2>
+            <a href="collection.html" class="hero-cta">Explore the Collection</a>
+        </div>
+    </section>
+
+    <!-- ==================== CREDENTIALS BAR ==================== -->
+    <section style="background:#111; border-top:1px solid rgba(197,162,88,0.2); border-bottom:1px solid rgba(197,162,88,0.2); padding:2rem 2rem;">
+        <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:center; gap:4rem; flex-wrap:wrap; text-align:center;">
+            <div><span style="display:block; font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:#c5a258;">1982</span><span style="display:block; font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:#888; margin-top:4px;">Princess Cut Invented</span></div>
+            <div><span style="display:block; font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:#c5a258;">6</span><span style="display:block; font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:#888; margin-top:4px;">Patented Innovations</span></div>
+            <div><span style="display:block; font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:#c5a258;">40+</span><span style="display:block; font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:#888; margin-top:4px;">Years of Mastery</span></div>
+            <div><span style="display:block; font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:#c5a258;">1985</span><span style="display:block; font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:#888; margin-top:4px;">DeBeers Award</span></div>
+            <div><span style="display:block; font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:#c5a258;">&#8734;</span><span style="display:block; font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:#888; margin-top:4px;">Each Piece, One of One</span></div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 2: Explore by Category ==================== -->
+    <section class="cat-section">
+        <h2>Explore by Category</h2>
+        <div class="cat-grid">
+            <a href="collection.html?cat=engagement-rings" class="cat-card">
+                <div class="cat-card-img">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/v1775110725/Pargon_Ring_2_smllwa.jpg" alt="Engagement Rings">
+                </div>
+                <p class="cat-card-name">Engagement Rings</p>
+            </a>
+            <a href="collection.html?cat=wedding-bands" class="cat-card">
+                <div class="cat-card-img">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2017/05/White-Gold-Blaze-and-Baguette-Cut-Diamond-Eternity-Ring.jpg" alt="Wedding Bands">
+                </div>
+                <p class="cat-card-name">Wedding Bands</p>
+            </a>
+            <a href="collection.html?cat=earrings" class="cat-card">
+                <div class="cat-card-img">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2020/12/2-carat-diamond-rof-earrings-bez-ambar-desk-2.jpg" alt="Earrings">
+                </div>
+                <p class="cat-card-name">Earrings</p>
+            </a>
+            <a href="collection.html?cat=pendants" class="cat-card">
+                <div class="cat-card-img">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2018/02/marquise-diamond-pendant-elizabet-collection-4ESR10.jpg" alt="Pendants">
+                </div>
+                <p class="cat-card-name">Pendants</p>
+            </a>
+            <a href="collection.html?cat=necklaces" class="cat-card">
+                <div class="cat-card-img">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2018/04/emerald-cut-diamond-necklace-gemstone-eternity.jpg" alt="Necklaces">
+                </div>
+                <p class="cat-card-name">Necklaces</p>
+            </a>
+            <a href="collection.html?cat=bracelets" class="cat-card">
+                <div class="cat-card-img">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2014/05/Delice-Brascelet-and-Necklace.jpg" alt="Bracelets">
+                </div>
+                <p class="cat-card-name">Bracelets</p>
+            </a>
+            <a href="collection.html?cat=mens-wedding-bands" class="cat-card">
+                <div class="cat-card-img">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2014/09/18K-White-Gold-Mens-Wedding-Band-The-Helm.jpg" alt="Men's Wedding Bands">
+                </div>
+                <p class="cat-card-name">Men's Wedding Bands</p>
+            </a>
+            <a href="video-gallery.html" class="cat-card">
+                <div class="cat-card-img">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2020/11/Woman-Image-20-carat-emerald-cut-diamond.jpg" alt="Bespoke">
+                </div>
+                <p class="cat-card-name">Bespoke Design</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 3: Campaign Hero — Engagement Rings (Vimeo Video) ==================== -->
+    <section class="campaign-hero" style="background:#0d0d0d; color:#ccc;">
+        <iframe class="vimeo-bg"
+            src="https://player.vimeo.com/video/665421555?badge=0&autopause=0&background=1&autoplay=1&loop=1&muted=1&quality=1080p&player_id=0&app_id=58479"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            title="B2958 - PALFS">
+        </iframe>
+        <div class="hero-overlay"></div>
+        <div class="hero-content" style="color:#ccc;">
+            <p class="hero-eyebrow" style="color:#bbb;">Bespoke &middot; One of a Kind</p>
+            <h2 style="color:#ccc;">Engagement Rings</h2>
+            <a href="collection.html?cat=engagement-rings" class="hero-cta" style="color:#ccc; border-color:rgba(200,200,200,0.5);">Discover</a>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 4: Featured Rings (Product Row) ==================== -->
+    <section class="product-section">
+        <p class="section-eyebrow">New</p>
+        <h2>Signature Engagement Rings</h2>
+        <div class="product-grid">
+            <a href="product.html?id=5-carat-emerald-cut-engagement-ring" class="prod-card">
+                <div class="prod-card-img">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2019/08/5-carat-emerald-cut-engagement-ring-christina-ring.jpg" alt="Christina Emerald Cut Ring">
+                    <div class="prod-card-overlay">
+                        <p class="prod-card-name">Christina Emerald Cut Ring</p>
+                        <p class="prod-card-price">Price Upon Request</p>
+                    </div>
+                    <svg class="prod-card-wishlist" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+            </a>
+            <a href="product.html?id=1-carat-diamond-engagement-ring-french-paloma" class="prod-card">
+                <div class="prod-card-img">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2017/08/1-Carat-Diamond-Engagement-Ring-French-Paloma-white.jpg" alt="French Paloma">
+                    <div class="prod-card-overlay">
+                        <p class="prod-card-name">French Paloma</p>
+                        <p class="prod-card-price">$4,960</p>
+                    </div>
+                    <svg class="prod-card-wishlist" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+            </a>
+            <a href="product.html?id=coronado-split-shank-engagement-ring-rose-gold" class="prod-card">
+                <div class="prod-card-img">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2017/09/coronado-split-shank-engagement-ring-rose-gold-iso.jpg" alt="Coronado Split Shank">
+                    <div class="prod-card-overlay">
+                        <p class="prod-card-name">Coronado Split Shank</p>
+                        <p class="prod-card-price">$5,500</p>
+                    </div>
+                    <svg class="prod-card-wishlist" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+            </a>
+            <a href="product.html?id=bouquet-of-light-oval-diamond-engagement-ring" class="prod-card">
+                <div class="prod-card-img">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2014/12/bouquet-of-light-oval-diamond-center-engagement-ring-1bol-ov.jpg" alt="Bouquet of Light">
+                    <div class="prod-card-overlay">
+                        <p class="prod-card-name">Bouquet of Light</p>
+                        <p class="prod-card-price">$6,200</p>
+                    </div>
+                    <svg class="prod-card-wishlist" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+            </a>
+        </div>
+        <a href="collection.html?cat=engagement-rings" class="section-cta">Discover</a>
+    </section>
+
+    <!-- ==================== SECTION 5: Campaign Hero — Earrings ==================== -->
+    <section class="hero-section" style="height:80vh;">
+        <img class="hero-bg-img" style="object-position: center center;"
+            src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1775202736/Hero_Earrings_lu15zz.jpg"
+            alt="Bez Ambar — Diamond Earrings">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">Brilliance &middot; Redefined</p>
+            <h2><span style="white-space:nowrap">Diamond Earrings</span></h2>
+            <a href="collection.html?cat=earrings" class="hero-cta">Discover</a>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 6: Featured Earrings & Pendants ==================== -->
+    <section class="product-section">
+        <p class="section-eyebrow">Earrings &amp; Pendants</p>
+        <h2>Statement Pieces</h2>
+        <div class="product-grid">
+            <a href="product.html?id=blaze-and-baguette-cut-amethyst-eternity-hoop-earrings" class="prod-card">
+                <div class="prod-card-img">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2017/05/aquamarine-colored-hoop-earrings.jpg" alt="Aquamarine Hoop Earrings">
+                    <div class="prod-card-overlay">
+                        <p class="prod-card-name">Aquamarine Hoop Earrings</p>
+                        <p class="prod-card-price">$4,800</p>
+                    </div>
+                    <svg class="prod-card-wishlist" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+            </a>
+            <a href="product.html?id=5-carat-diamond-radiant-pendant" class="prod-card">
+                <div class="prod-card-img">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2018/03/5-carat-diamond-radiant-pendant.jpg" alt="Radiant Diamond Pendant">
+                    <div class="prod-card-overlay">
+                        <p class="prod-card-name">Radiant Diamond Pendant</p>
+                        <p class="prod-card-price">Price Upon Request</p>
+                    </div>
+                    <svg class="prod-card-wishlist" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+            </a>
+            <a href="product.html?id=jackets-of-fire-sapphire-stud-earrings" class="prod-card">
+                <div class="prod-card-img">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2017/06/Jackets-of-Fire-Sapphire-Stud-Earrings.jpg" alt="Jackets of Fire Sapphire Studs">
+                    <div class="prod-card-overlay">
+                        <p class="prod-card-name">Jackets of Fire Sapphire Studs</p>
+                        <p class="prod-card-price">$5,900</p>
+                    </div>
+                    <svg class="prod-card-wishlist" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+            </a>
+            <a href="product.html?id=baguettes-drop-earrings" class="prod-card">
+                <div class="prod-card-img">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2018/11/Baguettes-Drop-earrings.jpg" alt="Baguette Drop Earrings">
+                    <div class="prod-card-overlay">
+                        <p class="prod-card-name">Baguette Drop Earrings</p>
+                        <p class="prod-card-price">Price Upon Request</p>
+                    </div>
+                    <svg class="prod-card-wishlist" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+            </a>
+        </div>
+        <a href="collection.html?cat=earrings" class="section-cta">Discover Earrings</a>
+    </section>
+
+    <!-- ==================== SIGNATURE CUTS ==================== -->
+    <section style="background:#0d0d0d; padding:5rem 2rem; border-top:1px solid rgba(255,255,255,0.06);">
+        <div style="max-width:1200px; margin:0 auto; text-align:center;">
+            <p class="eyebrow">Patented Innovations</p>
+            <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,3rem); font-weight:300; color:#fff; margin-bottom:1rem;">Cuts that exist <em style="font-style:italic; color:#c5a258;">nowhere else</em> in the world.</h2>
+            <p style="font-family:'Montserrat',sans-serif; font-size:0.8rem; color:#888; margin-bottom:3.5rem; letter-spacing:0.05em;">Protected by patent. Made only in our Los Angeles atelier.</p>
+            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px;">
+                <div style="background:#111; padding:3rem 2rem;">
+                    <p style="font-family:'Montserrat',sans-serif; font-size:0.55rem; letter-spacing:0.25em; text-transform:uppercase; color:#c5a258; margin-bottom:0.75rem;">Patented &middot; 1982</p>
+                    <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:300; color:#fff; margin-bottom:1rem;">Quadrillion&reg;</h3>
+                    <p style="font-family:'Montserrat',sans-serif; font-size:0.78rem; line-height:1.8; color:#888;">The original Princess Cut. Bez Ambar's most celebrated innovation &mdash; a square brilliant cut whose geometry ignited a global revolution in diamond design.</p>
+                </div>
+                <div style="background:#111; padding:3rem 2rem;">
+                    <p style="font-family:'Montserrat',sans-serif; font-size:0.55rem; letter-spacing:0.25em; text-transform:uppercase; color:#c5a258; margin-bottom:0.75rem;">Patented &middot; 2003</p>
+                    <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:300; color:#fff; margin-bottom:1rem;">Blaze&reg; Cut</h3>
+                    <p style="font-family:'Montserrat',sans-serif; font-size:0.78rem; line-height:1.8; color:#888;">A proprietary diamond frame cut that expands the apparent size of a center stone while intensifying its fire. No other cutter in the world can produce this effect.</p>
+                </div>
+                <div style="background:#111; padding:3rem 2rem;">
+                    <p style="font-family:'Montserrat',sans-serif; font-size:0.55rem; letter-spacing:0.25em; text-transform:uppercase; color:#c5a258; margin-bottom:0.75rem;">Patented &middot; 2015</p>
+                    <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:300; color:#fff; margin-bottom:1rem;">Divine Cut&reg;</h3>
+                    <p style="font-family:'Montserrat',sans-serif; font-size:0.78rem; line-height:1.8; color:#888;">A round brilliant reimagined. Additional facets engineered for maximum dispersion &mdash; the diamond's fire visible from across a room. Bez Ambar's most recent patent.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 7: Campaign Hero — The Inventor (Video) ==================== -->
+    <section class="campaign-hero" style="min-height: 75vh; background:#0d0d0d;">
+        <iframe class="vimeo-bg"
+            src="https://player.vimeo.com/video/662815795?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&loop=1&background=1&muted=1"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            title="B7863 - 1C3S">
+        </iframe>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">Since 1979 &middot; Los Angeles</p>
+            <h2>The Inventor of the<br>Blaze Cut&reg;</h2>
+            <a href="about.html" class="hero-cta">Discover the Story</a>
+        </div>
+    </section>
+
+    <!-- ==================== COMMISSION JOURNEY ==================== -->
+    <section style="background:#0d0d0d; padding:6rem 2rem; border-top:1px solid rgba(255,255,255,0.06); text-align:center;">
+        <div style="max-width:1100px; margin:0 auto;">
+            <p class="eyebrow">The Atelier Experience</p>
+            <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,3rem); font-weight:300; color:#fff; margin-bottom:1rem;">You dream it. <em style="font-style:italic; color:#c5a258;">The master creates it.</em></h2>
+            <p style="font-family:'Montserrat',sans-serif; font-size:0.8rem; color:#888; max-width:600px; margin:0 auto 3.5rem; line-height:1.8;">Every Bez Ambar piece begins with a conversation. No two are alike. Your piece is made in our Los Angeles atelier &mdash; from mine to setting &mdash; by the hands of the master himself.</p>
+            <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:2.5rem; margin-bottom:3rem;">
+                <div><div style="font-family:'Cormorant Garamond',serif; font-size:3.5rem; font-weight:300; color:rgba(197,162,88,0.2); line-height:1; margin-bottom:0.75rem;">01</div><h4 style="font-family:'Montserrat',sans-serif; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:#fff; margin-bottom:0.6rem;">Consultation</h4><p style="font-family:'Montserrat',sans-serif; font-size:0.75rem; color:#888; line-height:1.7;">We learn your story &mdash; the occasion, the person, the vision. In person in Los Angeles, or by private appointment.</p></div>
+                <div><div style="font-family:'Cormorant Garamond',serif; font-size:3.5rem; font-weight:300; color:rgba(197,162,88,0.2); line-height:1; margin-bottom:0.75rem;">02</div><h4 style="font-family:'Montserrat',sans-serif; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:#fff; margin-bottom:0.6rem;">Stone Selection</h4><p style="font-family:'Montserrat',sans-serif; font-size:0.75rem; color:#888; line-height:1.7;">Bez selects candidate stones directly. You see them, understand them, choose the one that speaks to you.</p></div>
+                <div><div style="font-family:'Cormorant Garamond',serif; font-size:3.5rem; font-weight:300; color:rgba(197,162,88,0.2); line-height:1; margin-bottom:0.75rem;">03</div><h4 style="font-family:'Montserrat',sans-serif; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:#fff; margin-bottom:0.6rem;">Creation</h4><p style="font-family:'Montserrat',sans-serif; font-size:0.75rem; color:#888; line-height:1.7;">Your stone is cut, set, and finished by Bez. You receive photos and updates as it comes to life.</p></div>
+                <div><div style="font-family:'Cormorant Garamond',serif; font-size:3.5rem; font-weight:300; color:rgba(197,162,88,0.2); line-height:1; margin-bottom:0.75rem;">04</div><h4 style="font-family:'Montserrat',sans-serif; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:#fff; margin-bottom:0.6rem;">Yours Forever</h4><p style="font-family:'Montserrat',sans-serif; font-size:0.75rem; color:#888; line-height:1.7;">Your finished piece arrives with full documentation of its creation &mdash; made once, for you, by the master of the form.</p></div>
+            </div>
+            <a href="contact.html" class="btn btn-secondary">Begin Your Commission</a>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 8: Featured Men's Wedding Bands ==================== -->
+    <section class="product-section">
+        <p class="section-eyebrow">Men</p>
+        <h2>Wedding Bands</h2>
+        <div class="product-grid">
+            <a href="product.html?id=the-helm-18k-white-gold-mens-wedding-band" class="prod-card">
+                <div class="prod-card-img">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2014/09/18K-White-Gold-Mens-Wedding-Band-The-Helm.jpg" alt="The Helm White Gold">
+                    <div class="prod-card-overlay">
+                        <p class="prod-card-name">The Helm — White Gold</p>
+                        <p class="prod-card-price">$3,200</p>
+                    </div>
+                    <svg class="prod-card-wishlist" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+            </a>
+            <a href="product.html?id=the-harvard-gold-8mm-mens-band" class="prod-card">
+                <div class="prod-card-img">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2017/06/The-Havard-gold-8mm-Mens-Band.jpg" alt="The Harvard Gold">
+                    <div class="prod-card-overlay">
+                        <p class="prod-card-name">The Harvard — Gold</p>
+                        <p class="prod-card-price">$2,800</p>
+                    </div>
+                    <svg class="prod-card-wishlist" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+            </a>
+            <a href="product.html?id=two-tone-orbit-wedding-band" class="prod-card">
+                <div class="prod-card-img">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2016/03/Two-Tone-Orbit-Wedding-Band-AR.jpg" alt="Orbit Two-Tone Band">
+                    <div class="prod-card-overlay">
+                        <p class="prod-card-name">Orbit Two-Tone Band</p>
+                        <p class="prod-card-price">$3,500</p>
+                    </div>
+                    <svg class="prod-card-wishlist" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+            </a>
+            <a href="product.html?id=7-row-all-around-black-diamonds-mens-band" class="prod-card">
+                <div class="prod-card-img">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2020/03/7-Row-All-Around-Black-Diamonds-Mens-Band.jpg" alt="Black Diamond Band">
+                    <div class="prod-card-overlay">
+                        <p class="prod-card-name">Black Diamond Band</p>
+                        <p class="prod-card-price">$4,200</p>
+                    </div>
+                    <svg class="prod-card-wishlist" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+            </a>
+        </div>
+        <a href="collection.html?cat=mens-wedding-bands" class="section-cta">Discover Men's</a>
+    </section>
+
+    <!-- ==================== SECTION 8B: Campaign Hero — Earrings 2 ==================== -->
+    <section class="hero-section" style="height:80vh;">
+        <img class="hero-bg-img" style="object-position: right center;"
+            src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1775204072/hero_earrings_2_q9puab.jpg"
+            alt="Bez Ambar — Diamond Earrings">
+        <div class="hero-overlay"></div>
+        <div class="hero-content" style="margin-left:auto; margin-right:clamp(40px, 28vw, 400px); text-align:center; margin-top:clamp(40px, 8vw, 100px);">
+            <p class="hero-eyebrow">Your Signature &middot; Your Story</p>
+            <h2><span style="white-space:nowrap">Define Your</span><br><span style="white-space:nowrap">Own Brilliance</span></h2>
+            <a href="collection.html?cat=earrings" class="hero-cta">Discover</a>
+        </div>
+    </section>
+
+    <!-- ==================== MASTER QUOTE ==================== -->
+    <section style="background:#0a0a0a; padding:7rem 2rem; text-align:center; position:relative; overflow:hidden;">
+        <div style="position:absolute; inset:0; background:radial-gradient(ellipse at 50% 50%, rgba(197,162,88,0.05) 0%, transparent 70%);"></div>
+        <div style="position:relative; max-width:800px; margin:0 auto;">
+            <div style="font-family:'Cormorant Garamond',serif; font-size:7rem; font-weight:300; color:rgba(197,162,88,0.12); line-height:0.5; margin-bottom:1.5rem;">&ldquo;</div>
+            <blockquote style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.4rem,3vw,2.2rem); font-weight:300; font-style:italic; line-height:1.55; color:#fff; margin-bottom:2rem;">The great houses sell prestige. We offer something they cannot &mdash; the hands of the master, and a piece that could not exist anywhere else.</blockquote>
+            <p style="font-family:'Montserrat',sans-serif; font-size:0.6rem; letter-spacing:0.3em; text-transform:uppercase; color:#c5a258;">&mdash; Betzalel Ambar, Founder</p>
+        </div>
+    </section>
+
+    <!-- ==================== FIND A JEWELER ==================== -->
+    <section style="background:#111; padding:5rem 2rem; text-align:center; border-top:1px solid rgba(255,255,255,0.06);">
+        <div style="max-width:700px; margin:0 auto;">
+            <p class="eyebrow">Authorized Atelier Partners</p>
+            <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.8rem,3vw,2.8rem); font-weight:300; color:#fff; margin-bottom:1rem;">Find Bez Ambar <em style="font-style:italic; color:#c5a258;">near you.</em></h2>
+            <p style="font-family:'Montserrat',sans-serif; font-size:0.78rem; color:#888; line-height:1.8; margin-bottom:2.5rem;">Bez Ambar pieces are available through a select network of authorized jewelers who share our commitment to excellence. These partners can also facilitate your custom commission.</p>
+            <a href="contact.html" class="btn btn-secondary" style="margin-right:1rem; margin-bottom:1rem;">Find an Authorized Jeweler</a>
+            <a href="contact.html?subject=retailer" class="btn btn-secondary">Become a Partner</a>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 9: Services ==================== -->
+    <section class="services-section">
+        <h2>Bez Ambar Services</h2>
+        <p>Bespoke design, personal advisors, and signature presentation with every piece.</p>
+        <div class="services-row">
+            <div class="service-item">
+                <div class="service-icon">
+                    <svg viewBox="0 0 50 50" fill="none"><circle cx="25" cy="25" r="20" stroke="#1a1a1a" stroke-width="0.8"/><path d="M18 25 L23 30 L33 20" stroke="#1a1a1a" stroke-width="1.2" fill="none"/></svg>
+                </div>
+                <h4>Bespoke Design</h4>
+                <p>One-of-a-kind pieces created with you in our LA atelier</p>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">
+                    <svg viewBox="0 0 50 50" fill="none"><rect x="10" y="20" width="30" height="20" rx="2" stroke="#1a1a1a" stroke-width="0.8"/><path d="M10 27 L25 35 L40 27" stroke="#1a1a1a" stroke-width="0.8" fill="none"/><path d="M20 20 L20 14 L30 14 L30 20" stroke="#1a1a1a" stroke-width="0.8" fill="none"/></svg>
+                </div>
+                <h4>Gift Wrapping</h4>
+                <p>Complimentary signature Bez Ambar presentation box</p>
+            </div>
+            <div class="service-item">
+                <div class="service-icon">
+                    <svg viewBox="0 0 50 50" fill="none"><path d="M15 35 L25 15 L35 35" stroke="#1a1a1a" stroke-width="0.8" fill="none"/><line x1="19" y1="28" x2="31" y2="28" stroke="#1a1a1a" stroke-width="0.8"/><circle cx="25" cy="25" r="20" stroke="#1a1a1a" stroke-width="0.4" opacity="0.3"/></svg>
+                </div>
+                <h4>Provenance</h4>
+                <p>Signed certificate of authenticity with every piece</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <a href="collection.html">Collection</a>
+                    <a href="our-story.html">Our Story</a>
+                    <a href="about.html">The Inventor</a>
+                    <a href="journal.html">Journal</a>
+                    <a href="blog.html">Blog</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <a href="contact.html">Bespoke Design</a>
+                    <a href="contact.html">Repairs &amp; Cleaning</a>
+                    <a href="contact.html">Personalization</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Help</h4>
+                    <a href="contact.html">Contact Us</a>
+                    <a href="mailto:bez@bezambar.com">Email Us</a>
+                    <a href="ring-size-chart.html">Ring Size Chart</a>
+                    <a href="diamond-education.html">Diamond Education</a>
+                    <a href="warranty.html">Warranty</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Visit</h4>
+                    <p>611 Wilshire Blvd</p>
+                    <p>Los Angeles, CA 90017</p>
+                    <p style="margin-top:8px;"><a href="mailto:bez@bezambar.com">bez@bezambar.com</a></p>
+                    <p><a href="https://www.bezambar.com" target="_blank">www.bezambar.com</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-logo">BEZ AMBAR</div>
+                <div class="footer-legal">
+                    &copy; 2026 Bez Ambar Inc. All rights reserved.
+                    &nbsp;&middot;&nbsp;
+                    <a href="#">Privacy Policy</a>
+                    &nbsp;&middot;&nbsp;
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    function toggleMobileNav() {
+        var toggle = document.querySelector('.mobile-nav-toggle');
+        var nav = document.getElementById('mobileNav');
+        var backdrop = document.getElementById('navBackdrop');
+        toggle.classList.toggle('open');
+        nav.classList.toggle('open');
+        backdrop.classList.toggle('open');
+    }
+    function closeMobileNav() {
+        document.querySelector('.mobile-nav-toggle').classList.remove('open');
+        document.getElementById('mobileNav').classList.remove('open');
+        document.getElementById('navBackdrop').classList.remove('open');
+    }
+    document.getElementById('navBackdrop').addEventListener('click', closeMobileNav);
+    </script>
+</body>
+</html>
