@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact &amp; Consultation — Bez Ambar | Los Angeles</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-left-group">
+                <button class="mobile-nav-toggle" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+                <span class="menu-label" onclick="toggleMobileNav()">Menu</span>
+                <button class="header-icon-btn header-search-btn" aria-label="Search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+            </div>
+            <a href="index.html" class="logo">Bez Ambar</a>
+            <div class="header-right-group">
+                <a href="contact.html" class="header-contact-link">Contact Us</a>
+                <a href="#" class="header-icon-btn" aria-label="Wishlist">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </a>
+                <a href="#" class="header-icon-btn" aria-label="Account">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </a>
+            </div>
+            <div class="mobile-nav-overlay" id="mobileNav">
+                <a href="collection.html">Collection</a>
+                <span class="mobile-cat-label">Categories</span>
+                <a href="collection.html" class="mobile-cat-link">All Jewelry</a>
+                <a href="collection.html?cat=rings" class="mobile-cat-link">Rings</a>
+                <a href="collection.html?cat=engagement-rings" class="mobile-cat-link mobile-sub-link">Engagement Rings</a>
+                <a href="collection.html?cat=wedding-bands" class="mobile-cat-link mobile-sub-link">Wedding Bands</a>
+                <a href="collection.html?cat=mens-wedding-bands" class="mobile-cat-link mobile-sub-link">Men's Wedding Bands</a>
+                <a href="collection.html?cat=pendants" class="mobile-cat-link">Pendants</a>
+                <a href="collection.html?cat=necklaces" class="mobile-cat-link">Necklaces</a>
+                <a href="collection.html?cat=earrings" class="mobile-cat-link">Earrings</a>
+                <a href="collection.html?cat=stud-earrings" class="mobile-cat-link mobile-sub-link">Stud Earrings</a>
+                <a href="collection.html?cat=hug-earrings" class="mobile-cat-link mobile-sub-link">Hug Earrings</a>
+                <a href="collection.html?cat=hoop-earrings" class="mobile-cat-link mobile-sub-link">Hoop Earrings</a>
+                <a href="collection.html?cat=bracelets" class="mobile-cat-link">Bracelets</a>
+                <a href="video-gallery.html">Video Gallery</a>
+                <a href="our-story.html" class="mobile-cat-label" style="text-decoration:none;">Our Story</a>
+                <a href="about.html" class="mobile-cat-link">The Inventor</a>
+                <a href="the-bez-ambar-story.html" class="mobile-cat-link">The Bez Ambar Story</a>
+                <a href="journal.html" class="mobile-cat-link">Journal</a>
+                <a href="blog.html" class="mobile-cat-link">Blog</a>
+                <a href="diamond-education.html" class="mobile-cat-link">Diamond Education</a>
+                <a href="ring-size-chart.html" class="mobile-cat-link">Ring Size Chart</a>
+                <a href="catalogs.html" class="mobile-cat-link">Catalogs</a>
+                <a href="warranty.html" class="mobile-cat-link">Warranty</a>
+                <a href="press.html" class="mobile-cat-link">Press</a>
+            </div>
+        </div>
+    </header>
+    <div class="nav-backdrop" id="navBackdrop"></div>
+
+    <!-- Hero -->
+    <section class="page-hero">
+        <p class="eyebrow">Get in Touch</p>
+        <h1>Contact &amp; Consultation</h1>
+        <p>Whether you're beginning a bespoke design, inquiring about a piece, or booking an atelier visit — we're here for you.</p>
+    </section>
+
+    <!-- Contact Layout -->
+    <section class="contact-layout">
+
+        <!-- Form -->
+        <div class="contact-form">
+            <h2>Send Us a Message</h2>
+            <form action="https://formsubmit.co/bez@bezambar.com" method="POST">
+                <input type="hidden" name="_subject" value="Website Inquiry — Bez Ambar">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://hilarious-cuchufli-5e95ed.netlify.app/contact.html">
+
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" placeholder="First and Last Name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="you@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone (Optional)</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(xxx) xxx-xxxx">
+                </div>
+
+                <div class="form-group">
+                    <label for="interest">I'm Interested In</label>
+                    <select id="interest" name="interest">
+                        <option value="">Select an option...</option>
+                        <option value="Bespoke Design">Bespoke Design</option>
+                        <option value="Family Signature Pendant">Family Signature Pendant</option>
+                        <option value="The Heart Ruby">The Heart Ruby</option>
+                        <option value="Collection Piece">A Piece from the Collection</option>
+                        <option value="Engagement Ring">Engagement Ring</option>
+                        <option value="Atelier Visit">Visiting the Atelier</option>
+                        <option value="Repair or Cleaning">Repair or Cleaning</option>
+                        <option value="Other">Something Else</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell us about what you're looking for..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; border: none; cursor: pointer;">Send Message</button>
+            </form>
+        </div>
+
+        <!-- Details -->
+        <div class="contact-details">
+            <h2>Other Ways to Reach Us</h2>
+
+            <div class="contact-details-item">
+                <h4>Email</h4>
+                <p><a href="mailto:bez@bezambar.com">bez@bezambar.com</a></p>
+            </div>
+
+            <div class="contact-details-item">
+                <h4>Phone</h4>
+                <p><a href="tel:+12135551234">(213) 555-1234</a></p>
+                <p style="font-size: 13px; color: rgba(255,255,255,0.6);">Monday – Friday, 10am – 6pm PT</p>
+            </div>
+
+            <div class="contact-details-item">
+                <h4>Visit the Atelier</h4>
+                <p>611 Wilshire Blvd<br>Los Angeles, CA 90017</p>
+                <p style="font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 8px;">By appointment only</p>
+            </div>
+
+            <div class="contact-details-item">
+                <h4>Website</h4>
+                <p><a href="https://www.bezambar.com" target="_blank">www.bezambar.com</a></p>
+            </div>
+
+            <div class="contact-details-item" style="margin-top: 40px; padding: 30px; background: #111;">
+                <h4>Book a Private Consultation</h4>
+                <p>Meet with Bez or a senior advisor to discuss your vision. Available in person at our LA atelier or by video call.</p>
+                <p style="margin-top: 15px;">
+                    <a href="mailto:bez@bezambar.com?subject=Private%20Consultation%20Request" class="btn btn-primary" style="display: inline-block; padding: 12px 30px;">Request a Time</a>
+                </p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Services + Footer -->
+    <div class="services-strip">
+        <div class="services-inner">
+            <div class="service-item"><h4>Bespoke Design</h4><p>One-of-a-kind pieces<br>designed with you</p></div>
+            <div class="service-item"><h4>Complimentary Shipping</h4><p>Fully insured FedEx<br>Priority delivery</p></div>
+            <div class="service-item"><h4>Provenance Certificate</h4><p>Signed certificate<br>with every piece</p></div>
+            <div class="service-item"><h4>LA Atelier</h4><p>Visit us by appointment<br>611 Wilshire Blvd</p></div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-col"><h4>Explore</h4><a href="collection.html">Collection</a><a href="our-story.html">Our Story</a><a href="about.html">The Inventor</a><a href="journal.html">Journal</a><a href="blog.html">Blog</a></div>
+                <div class="footer-col"><h4>Services</h4><a href="contact.html">Bespoke Design</a><a href="contact.html">Repairs &amp; Cleaning</a><a href="contact.html">Personalization</a></div>
+                <div class="footer-col"><h4>Help</h4><a href="contact.html">Contact Us</a><a href="mailto:bez@bezambar.com">Email Us</a><a href="ring-size-chart.html">Ring Size Chart</a><a href="diamond-education.html">Diamond Education</a><a href="warranty.html">Warranty</a></div>
+                <div class="footer-col"><h4>Visit</h4><p>611 Wilshire Blvd</p><p>Los Angeles, CA 90017</p><p style="margin-top:8px;"><a href="mailto:bez@bezambar.com">bez@bezambar.com</a></p></div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-logo">BEZ AMBAR</div>
+                <div class="footer-legal">&copy; 2026 Bez Ambar Inc. All rights reserved. &middot; <a href="#">Privacy Policy</a> &middot; <a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+    function toggleMobileNav() {
+        var toggle = document.querySelector('.mobile-nav-toggle');
+        var nav = document.getElementById('mobileNav');
+        var backdrop = document.getElementById('navBackdrop');
+        toggle.classList.toggle('open');
+        nav.classList.toggle('open');
+        backdrop.classList.toggle('open');
+    }
+    function closeMobileNav() {
+        document.querySelector('.mobile-nav-toggle').classList.remove('open');
+        document.getElementById('mobileNav').classList.remove('open');
+        document.getElementById('navBackdrop').classList.remove('open');
+    }
+    document.getElementById('navBackdrop').addEventListener('click', closeMobileNav);
+    </script>
+</body>
+</html>

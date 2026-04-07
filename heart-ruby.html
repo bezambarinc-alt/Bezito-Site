@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Heart Ruby — Bez Ambar | A Gift She'll Never Forget</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            color: #1a1a1a;
+            background: #ffffff;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; height: auto; }
+
+        /* ===== HEADER — Logo only, no nav ===== */
+        .hr-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #ffffff;
+            border-bottom: 1px solid #e8e4de;
+            padding: 20px;
+            text-align: center;
+        }
+        .hr-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        /* ===== TWO-COLUMN PRODUCT LAYOUT ===== */
+        .hr-product {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 40px;
+            min-height: 100vh;
+        }
+        .hr-images {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 752px;
+            flex-shrink: 0;
+        }
+        .hr-img-slot {
+            width: 100%;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5f1eb, #ede8df);
+        }
+        .hr-img-slot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .hr-video-slot {
+            width: 100%;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            background: #0d0d0d;
+        }
+        .hr-video-slot video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .hr-details {
+            padding: 40px 0 60px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex: 1;
+            max-width: 500px;
+        }
+        .hr-details-inner {
+            max-width: 400px;
+            width: 100%;
+        }
+        .hr-sku {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            color: #999;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .hr-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+        .hr-cta-btn {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            background: #1a1a1a;
+            color: #c5a258;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+            margin-bottom: 12px;
+        }
+        .hr-cta-btn:hover { background: #333; }
+        .hr-cta-outline {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            background: transparent;
+            color: #1a1a1a;
+            border: 1.5px solid #1a1a1a;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            margin-bottom: 12px;
+        }
+        .hr-cta-outline:hover { background: #1a1a1a; color: #c5a258; }
+        .hr-phone-link {
+            display: block;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            color: #999;
+            margin-top: 6px;
+            margin-bottom: 30px;
+        }
+        .hr-phone-link a {
+            color: #1a1a1a;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        .hr-accordion { border-top: 1px solid #e8e4de; }
+        .hr-acc-item { border-bottom: 1px solid #e8e4de; }
+        .hr-acc-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: #1a1a1a;
+        }
+        .hr-acc-btn .plus {
+            font-size: 18px;
+            font-weight: 300;
+            transition: transform 0.3s;
+        }
+        .hr-acc-btn.open .plus { transform: rotate(45deg); }
+        .hr-acc-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+        }
+        .hr-acc-inner {
+            padding: 0 0 16px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            color: #666;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        /* ===== VIDEO ===== */
+        .hr-video-section {
+            width: 100%;
+            background: #0d0d0d;
+        }
+        .hr-video-section video {
+            width: 100%;
+            display: block;
+        }
+
+        /* ===== HERO IMAGE — Actual size, centered ===== */
+        .hr-full-img {
+            width: 100%;
+            text-align: center;
+            background: #ffffff;
+            padding: 40px 0;
+        }
+        .hr-full-img img {
+            display: inline-block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* ===== THREE STORIES ===== */
+        .hr-stories {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+        .hr-story {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .hr-story:last-child { margin-bottom: 0; }
+        .hr-story-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #c5a258;
+            margin-bottom: 12px;
+        }
+        .hr-story h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 500;
+            color: #1a1a1a;
+            margin-bottom: 14px;
+        }
+        .hr-story p {
+            font-size: 16px;
+            color: #777;
+            line-height: 1.8;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* ===== FINAL CTA ===== */
+        .hr-final-cta {
+            text-align: center;
+            padding: 20px 40px 80px;
+        }
+        .hr-final-cta .hr-cta-btn {
+            display: inline-block;
+            width: auto;
+            padding: 18px 60px;
+        }
+        .hr-final-cta .hr-cta-outline {
+            display: inline-block;
+            width: auto;
+            padding: 16px 50px;
+            margin-left: 10px;
+        }
+        .hr-final-cta p {
+            margin-top: 18px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            color: #999;
+        }
+        .hr-final-cta p a {
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+
+        /* ===== FOOTER — Simple, no navigation ===== */
+        .hr-footer {
+            background: #0d0d0d;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .hr-footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            color: #c5a258;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .hr-footer p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            color: #555;
+            line-height: 2;
+        }
+        .hr-footer a { color: #777; }
+        .hr-footer-tag {
+            margin-top: 14px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9px;
+            color: #333;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hr-product { flex-direction: column; align-items: center; gap: 30px; padding: 20px; }
+            .hr-images { width: 100%; max-width: 400px; }
+            .hr-details { position: static; height: auto; padding: 30px 20px; max-width: 100%; }
+        }
+        @media (max-width: 640px) {
+            .hr-details { padding: 30px 20px; }
+            .hr-images { max-width: 100%; }
+            .hr-stories { padding: 50px 20px; }
+            .hr-story h3 { font-size: 24px; }
+            .hr-final-cta { padding: 20px 20px 60px; }
+            .hr-final-cta .hr-cta-btn,
+            .hr-final-cta .hr-cta-outline {
+                display: block;
+                width: 100%;
+                margin: 0 0 12px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER — Logo only ===== -->
+    <header class="hr-header">
+        <span class="hr-logo">Bez Ambar</span>
+    </header>
+
+    <!-- ===== PRODUCT: Two-Column ===== -->
+    <div class="hr-product">
+
+        <!-- LEFT: Product, Video, Closeup, Model, Detail -->
+        <div class="hr-images">
+            <!-- 1. Product Shot -->
+            <div class="hr-img-slot">
+                <img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1774086282/4hrt-heart-ruby-6_tnizfe.jpg" alt="The Heart Ruby — Product Shot">
+            </div>
+            <!-- 2. Video -->
+            <div class="hr-video-slot">
+                <video autoplay muted loop playsinline>
+                    <source src="https://res.cloudinary.com/dlg2mou53/video/upload/v1774037922/B5062_wtindy.mp4" type="video/mp4">
+                </video>
+            </div>
+            <!-- 3. Closeup -->
+            <div class="hr-img-slot">
+                <img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1774059285/heart-pendant-4HRT4_ayb1hi.jpg" alt="The Heart Ruby — Closeup">
+            </div>
+            <!-- 4. On Model -->
+            <div class="hr-img-slot">
+                <img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1774059296/4hrt-heart-ruby-3_iwzfhk.jpg" alt="The Heart Ruby — On Model">
+            </div>
+            <!-- 5. Detail View -->
+            <div class="hr-img-slot">
+                <img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1774087696/4hrt-heart-ruby-5_smol2l.jpg" alt="The Heart Ruby — Detail">
+            </div>
+        </div>
+
+        <!-- RIGHT: Product Details (Sticky) -->
+        <div class="hr-details">
+            <div class="hr-details-inner">
+            <p class="hr-sku">BA-HR-001</p>
+            <h1 class="hr-title">The Heart Ruby</h1>
+            <p style="font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: #c5a258; margin-bottom: 20px;">Mother's Day 2026</p>
+
+            <a href="#inquiry-form" class="hr-cta-btn" onclick="document.getElementById('formType').value='I would like to inquire about The Heart Ruby'">Inquire Now</a>
+            <a href="#inquiry-form" class="hr-cta-outline" onclick="document.getElementById('formType').value='I would like to place an order for The Heart Ruby'">Place an Order</a>
+            <p class="hr-phone-link">or call us at <a href="tel:2136299191">(213) 629-9191</a></p>
+
+            <div style="font-size: 16px; line-height: 1.8; color: #555; margin-bottom: 24px; text-align: center;">
+                A rare, natural ruby cut in Bez Ambar's proprietary heart-shape configuration. Each ruby is selected for its depth of color and recut to fit invisibly, stone touching stone, forming a seamless continuum — a unity of color that expands far beyond the limitation of a single gem. Surrounded by a luminous halo of brilliant-cut white diamonds. Set in 18-karat white gold.
+            </div>
+
+            <div class="hr-accordion">
+                <!-- Price -->
+                <div class="hr-acc-item">
+                    <button class="hr-acc-btn" onclick="toggleAcc(this)">
+                        <span>Price</span>
+                        <span style="display: flex; align-items: center; gap: 10px;"><span style="font-size: 14px; font-weight: 600;">$11,200</span> <span class="plus">+</span></span>
+                    </button>
+                    <div class="hr-acc-content">
+                        <div class="hr-acc-inner">
+                            Pricing will vary based on the different shapes and sizes of the piece that can be put together.<br><br>
+                            The piece shown here features 3.15 total carat weight of rubies and diamonds and uses high-quality rubies.<br><br>
+                            Price for the piece shown: $11,200
+                        </div>
+                    </div>
+                </div>
+                <div class="hr-acc-item">
+                    <button class="hr-acc-btn" onclick="toggleAcc(this)">
+                        Materials &amp; Specifications <span class="plus">+</span>
+                    </button>
+                    <div class="hr-acc-content">
+                        <div class="hr-acc-inner">
+                            18-Karat White Gold<br>
+                            Natural rubies, invisibly set in proprietary heart-shape configuration<br>
+                            Brilliant-cut diamond halo<br>
+                            Handcrafted in Los Angeles<br>
+                            Signed by Bez Ambar
+                        </div>
+                    </div>
+                </div>
+                <div class="hr-acc-item">
+                    <button class="hr-acc-btn" onclick="toggleAcc(this)">
+                        Provenance &amp; Certification <span class="plus">+</span>
+                    </button>
+                    <div class="hr-acc-content">
+                        <div class="hr-acc-inner">
+                            Ships with a signed Certificate of Provenance from Bez Ambar, documenting the design, materials, and proprietary cuts used. All diamonds are certified by GIA or equivalent independent laboratory.
+                        </div>
+                    </div>
+                </div>
+                <div class="hr-acc-item">
+                    <button class="hr-acc-btn" onclick="toggleAcc(this)">
+                        Care Instructions <span class="plus">+</span>
+                    </button>
+                    <div class="hr-acc-content">
+                        <div class="hr-acc-inner">
+                            Store in the provided Bez Ambar presentation box when not worn. Clean gently with a soft, lint-free cloth. Avoid contact with perfumes, lotions, and chemicals. Professional cleaning available at our LA atelier — complimentary for life.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== HERO — Full Window Width ===== -->
+    <div class="hr-full-img">
+        <img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1774034036/rubydiamondheart-1200_n3luta.jpg" alt="The Heart Ruby — Mother and Daughter">
+    </div>
+
+    <!-- ===== THREE STORIES ===== -->
+    <div class="hr-stories">
+        <div class="hr-story">
+            <p class="hr-story-label">The Stone</p>
+            <h3>A Ruby Like No Other</h3>
+            <p>Each ruby is selected for its depth of color and recut to fit Bez Ambar's proprietary heart-shape configuration. Set invisibly, stone touching stone, the rubies form a seamless continuum — a unity of color that expands far beyond the limitation of a single gem.</p>
+        </div>
+        <div class="hr-story">
+            <p class="hr-story-label">The Craft</p>
+            <h3>Handmade in Los Angeles</h3>
+            <p>Every piece is handcrafted at the Bez Ambar family atelier on Wilshire Boulevard. Noga Ambar, inheriting her father's keen eye for beautiful gems and design direction, works alongside Christopher Johnson, master jeweler, to execute each piece to the standard Bez Ambar has set — leading the house into its second generation.</p>
+        </div>
+        <div class="hr-story">
+            <p class="hr-story-label">The Moment</p>
+            <h3>There Is No Better Way</h3>
+            <p>Some may call it sentimental. But a gift from her child is the one she keeps closest. A ruby heart, deep red and perfectly orchestrated, surrounded by a luminous halo of white diamonds — saying what words sometimes can't. Mom, I love you.</p>
+        </div>
+    </div>
+
+    <!-- ===== INQUIRY / ORDER FORM ===== -->
+    <div id="inquiry-form" style="max-width: 500px; margin: 0 auto; padding: 60px 30px 80px; text-align: center;">
+        <p style="font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: #c5a258; margin-bottom: 12px;">The Heart Ruby</p>
+        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 500; color: #1a1a1a; margin-bottom: 30px;">Get in Touch</h2>
+
+        <form action="https://formsubmit.co/bezambar@bezambar.com" method="POST" style="text-align: left;">
+            <input type="hidden" name="_subject" value="Heart Ruby Inquiry — bezambar-web.vercel.app">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://bezambar-web.vercel.app/heart-ruby">
+
+            <!-- Interest -->
+            <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #999; margin-bottom: 6px;">I'm interested in</label>
+            <select id="formType" name="interest" style="width: 100%; padding: 14px 16px; font-family: 'Cormorant Garamond', serif; font-size: 16px; border: 1px solid #ddd; background: #faf7f2; color: #1a1a1a; margin-bottom: 20px; outline: none; appearance: none; -webkit-appearance: none; cursor: pointer;">
+                <option>I would like to inquire about The Heart Ruby</option>
+                <option>I would like to place an order for The Heart Ruby</option>
+                <option>I'd like to schedule a consultation</option>
+            </select>
+
+            <!-- Name -->
+            <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #999; margin-bottom: 6px;">Name</label>
+            <input type="text" name="name" required placeholder="Your full name" style="width: 100%; padding: 14px 16px; font-family: 'Cormorant Garamond', serif; font-size: 16px; border: 1px solid #ddd; background: #faf7f2; color: #1a1a1a; margin-bottom: 20px; outline: none;">
+
+            <!-- Email -->
+            <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #999; margin-bottom: 6px;">Email</label>
+            <input type="email" name="email" required placeholder="your@email.com" style="width: 100%; padding: 14px 16px; font-family: 'Cormorant Garamond', serif; font-size: 16px; border: 1px solid #ddd; background: #faf7f2; color: #1a1a1a; margin-bottom: 20px; outline: none;">
+
+            <!-- Phone -->
+            <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #999; margin-bottom: 6px;">Phone</label>
+            <input type="tel" name="phone" placeholder="(optional)" style="width: 100%; padding: 14px 16px; font-family: 'Cormorant Garamond', serif; font-size: 16px; border: 1px solid #ddd; background: #faf7f2; color: #1a1a1a; margin-bottom: 20px; outline: none;">
+
+            <!-- Message -->
+            <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #999; margin-bottom: 6px;">Message</label>
+            <textarea name="message" rows="4" placeholder="Tell us anything — questions, preferences, timeline..." style="width: 100%; padding: 14px 16px; font-family: 'Cormorant Garamond', serif; font-size: 16px; border: 1px solid #ddd; background: #faf7f2; color: #1a1a1a; margin-bottom: 25px; outline: none; resize: vertical;"></textarea>
+
+            <!-- Submit -->
+            <button type="submit" style="display: block; width: 100%; padding: 18px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; background: #1a1a1a; color: #c5a258; border: none; cursor: pointer; transition: background 0.3s;">Submit</button>
+        </form>
+
+        <p style="margin-top: 20px; font-family: 'Montserrat', sans-serif; font-size: 12px; color: #999;">or call us at <a href="tel:2136299191" style="color: #1a1a1a; text-decoration: none;">(213) 629-9191</a></p>
+    </div>
+
+    <!-- ===== FOOTER — Simple ===== -->
+    <footer class="hr-footer">
+        <div class="hr-footer-logo">BEZ AMBAR</div>
+        <p>611 Wilshire Blvd, Los Angeles, CA 90017</p>
+        <p><a href="mailto:bezambar@bezambar.com">bezambar@bezambar.com</a> &nbsp;&middot;&nbsp; <a href="tel:2136299191">(213) 629-9191</a></p>
+        <p class="hr-footer-tag">Inventor of the Princess Cut &middot; Since 1979</p>
+    </footer>
+
+    <script>
+        function toggleAcc(btn) {
+            const content = btn.nextElementSibling;
+            const isOpen = btn.classList.contains('open');
+            document.querySelectorAll('.hr-acc-btn').forEach(b => {
+                b.classList.remove('open');
+                b.nextElementSibling.style.maxHeight = null;
+            });
+            if (!isOpen) {
+                btn.classList.add('open');
+                content.style.maxHeight = content.scrollHeight + 'px';
+            }
+        }
+    </script>
+
+</body>
+</html>

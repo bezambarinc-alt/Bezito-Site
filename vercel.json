@@ -1,0 +1,21 @@
+{
+  "rewrites": [
+    { "source": "/product/:slug", "destination": "/product.html?id=:slug" },
+    { "source": "/product-category/:cat", "destination": "/collection.html?cat=:cat" },
+    { "source": "/product-category/:cat/:subcat", "destination": "/collection.html?cat=:subcat" },
+    { "source": "/jewelry/men-wedding-bands", "destination": "/collection.html?cat=mens-wedding-bands" },
+    { "source": "/jewelry/:cat", "destination": "/collection.html?cat=:cat" },
+    { "source": "/shop", "destination": "/collection.html" },
+    { "source": "/shop/", "destination": "/collection.html" },
+    { "source": "/shop/page/:num", "destination": "/collection.html" },
+    { "source": "/about", "destination": "/about.html" },
+    { "source": "/contact", "destination": "/contact.html" },
+    { "source": "/journal", "destination": "/journal.html" },
+    { "source": "/collection", "destination": "/collection.html" },
+    { "source": "/blog", "destination": "/blog.html" },
+    { "source": "/blog/", "destination": "/blog.html" },
+    { "source": "/our-blog", "destination": "/blog.html" },
+    { "source": "/our-blog/", "destination": "/blog.html" },
+    { "source": "/blog/:slug", "destination": "/blog-post.html?slug=:slug" }
+  ]
+}

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Press & Media | Bez Ambar — Fine Diamond Jewelry</title>
+    <meta name="description" content="Press coverage and media features about Bez Ambar's innovative diamond cuts and bespoke jewelry designs.">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Press Page Specific Styles */
+        .press-hero {
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
+            color: #fff;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .press-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .press-hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .press-hero p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        /* Featured Press Section */
+        .press-featured-section {
+            padding: 80px 20px;
+            background-color: #141414;
+        }
+
+        .press-featured-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .press-featured-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 40px;
+            letter-spacing: 0.5px;
+        }
+
+        .featured-article-card {
+            background: #111;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .featured-article-card:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+
+        .featured-article-image {
+            overflow: hidden;
+            background-color: #222;
+        }
+
+        .featured-article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .featured-article-content {
+            padding: 50px 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-article-tag {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #999;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .featured-article-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .featured-article-desc {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            color: #ccc;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .featured-article-link {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            align-self: flex-start;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #fff;
+        }
+
+        .featured-article-link:hover {
+            color: #c5a258;
+            border-bottom-color: #c5a258;
+        }
+
+        /* Press Highlights Grid */
+        .press-highlights-section {
+            padding: 80px 20px;
+            background-color: #0d0d0d;
+        }
+
+        .press-highlights-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .press-highlights-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 50px;
+            letter-spacing: 0.5px;
+        }
+
+        .press-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .press-card {
+            background: #141414;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .press-card:hover {
+            border-color: #c5a258;
+            transform: translateY(-4px);
+        }
+
+        .press-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .press-card-year {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #999;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .press-card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .press-card-desc {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        /* Press Contact Section */
+        .press-contact-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            color: #fff;
+            text-align: center;
+        }
+
+        .press-contact-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .press-contact-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .press-contact-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: #ddd;
+            margin-bottom: 10px;
+        }
+
+        .press-contact-email {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 400;
+            border-bottom: 1px solid #fff;
+            transition: all 0.3s ease;
+            display: inline-block;
+            padding-bottom: 4px;
+        }
+
+        .press-contact-email:hover {
+            color: #c5a258;
+            border-bottom-color: #c5a258;
+        }
+
+        .press-kit-btn {
+            margin-top: 40px;
+            display: inline-block;
+        }
+
+        .press-kit-btn a {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #0d0d0d;
+            background-color: #fff;
+            padding: 14px 40px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: 2px solid #fff;
+        }
+
+        .press-kit-btn a:hover {
+            background-color: transparent;
+            color: #fff;
+            border-color: #fff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .press-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .featured-article-card {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-article-content {
+                padding: 40px 25px;
+            }
+
+            .featured-article-title {
+                font-size: 1.5rem;
+            }
+
+            .press-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .press-highlights-title,
+            .press-featured-title {
+                font-size: 1.5rem;
+            }
+
+            .press-hero {
+                padding: 50px 20px;
+            }
+
+            .press-featured-section,
+            .press-highlights-section,
+            .press-contact-section {
+                padding: 50px 20px;
+            }
+
+            .press-contact-title {
+                font-size: 1.8rem;
+            }
+
+            .press-card {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .press-hero {
+                padding: 40px 15px;
+            }
+
+            .press-hero h1 {
+                font-size: 2rem;
+            }
+
+            .press-hero p {
+                font-size: 0.95rem;
+            }
+
+            .featured-article-content {
+                padding: 30px 20px;
+            }
+
+            .featured-article-title {
+                font-size: 1.3rem;
+            }
+
+            .featured-article-desc {
+                font-size: 0.9rem;
+            }
+
+            .press-card {
+                padding: 25px 15px;
+            }
+
+            .press-card-title {
+                font-size: 1.1rem;
+            }
+
+            .press-featured-title,
+            .press-highlights-title {
+                font-size: 1.3rem;
+                margin-bottom: 30px;
+            }
+
+            .press-contact-section {
+                padding: 40px 15px;
+            }
+
+            .press-contact-title {
+                font-size: 1.5rem;
+            }
+
+            .press-contact-text {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-left-group">
+                <button class="mobile-nav-toggle" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+                <span class="menu-label" onclick="toggleMobileNav()">Menu</span>
+                <button class="header-icon-btn header-search-btn" aria-label="Search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+            </div>
+            <a href="index.html" class="logo">Bez Ambar</a>
+            <div class="header-right-group">
+                <a href="contact.html" class="header-contact-link">Contact Us</a>
+                <a href="#" class="header-icon-btn" aria-label="Wishlist">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </a>
+                <a href="#" class="header-icon-btn" aria-label="Account">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </a>
+            </div>
+            <div class="mobile-nav-overlay" id="mobileNav">
+                <a href="collection.html">Collection</a>
+                <span class="mobile-cat-label">Categories</span>
+                <a href="collection.html" class="mobile-cat-link">All Jewelry</a>
+                <a href="collection.html?cat=rings" class="mobile-cat-link">Rings</a>
+                <a href="collection.html?cat=engagement-rings" class="mobile-cat-link mobile-sub-link">Engagement Rings</a>
+                <a href="collection.html?cat=wedding-bands" class="mobile-cat-link mobile-sub-link">Wedding Bands</a>
+                <a href="collection.html?cat=mens-wedding-bands" class="mobile-cat-link mobile-sub-link">Men's Wedding Bands</a>
+                <a href="collection.html?cat=pendants" class="mobile-cat-link">Pendants</a>
+                <a href="collection.html?cat=necklaces" class="mobile-cat-link">Necklaces</a>
+                <a href="collection.html?cat=earrings" class="mobile-cat-link">Earrings</a>
+                <a href="collection.html?cat=stud-earrings" class="mobile-cat-link mobile-sub-link">Stud Earrings</a>
+                <a href="collection.html?cat=hug-earrings" class="mobile-cat-link mobile-sub-link">Hug Earrings</a>
+                <a href="collection.html?cat=hoop-earrings" class="mobile-cat-link mobile-sub-link">Hoop Earrings</a>
+                <a href="collection.html?cat=bracelets" class="mobile-cat-link">Bracelets</a>
+                <a href="video-gallery.html">Video Gallery</a>
+                <a href="our-story.html" class="mobile-cat-label" style="text-decoration:none;">Our Story</a>
+                <a href="about.html" class="mobile-cat-link">The Inventor</a>
+                <a href="the-bez-ambar-story.html" class="mobile-cat-link">The Bez Ambar Story</a>
+                <a href="journal.html" class="mobile-cat-link">Journal</a>
+                <a href="blog.html" class="mobile-cat-link">Blog</a>
+                <a href="diamond-education.html" class="mobile-cat-link">Diamond Education</a>
+                <a href="ring-size-chart.html" class="mobile-cat-link">Ring Size Chart</a>
+                <a href="catalogs.html" class="mobile-cat-link">Catalogs</a>
+                <a href="warranty.html" class="mobile-cat-link">Warranty</a>
+                <a href="press.html" class="mobile-cat-link">Press</a>
+            </div>
+        </div>
+    </header>
+    <div class="nav-backdrop" id="navBackdrop"></div>
+
+    <!-- Hero Section -->
+    <section class="press-hero">
+        <div class="press-hero-content">
+            <h1>Press & Media</h1>
+            <p>Discover how Bez Ambar's innovative diamond cuts and bespoke designs have captured the attention of the world's leading jewelry and luxury publications.</p>
+        </div>
+    </section>
+
+    <!-- Featured Press Section -->
+    <section class="press-featured-section">
+        <div class="press-featured-container">
+            <h2 class="press-featured-title">Featured Coverage</h2>
+            <div class="featured-article-card">
+                <div class="featured-article-image">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_800/BezAmbar-OldSite/2019/08/5-carat-emerald-cut-engagement-ring-christina-ring.jpg" alt="The Quadrillion Diamond Cut">
+                </div>
+                <div class="featured-article-content">
+                    <span class="featured-article-tag">Featured · JQ Magazine · 1992</span>
+                    <h3 class="featured-article-title">The Quadrillion: A New Cut for the Diamond Industry</h3>
+                    <p class="featured-article-desc">A landmark article in JQ Magazine covering Bez Ambar's revolutionary Quadrillion diamond cut, which went on to become the second most popular diamond shape in the world, now widely recognized as the Princess Cut.</p>
+                    <a href="#" class="featured-article-link">Read Article</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Press Highlights Grid -->
+    <section class="press-highlights-section">
+        <div class="press-highlights-container">
+            <h2 class="press-highlights-title">In the News</h2>
+            <div class="press-grid">
+                <div class="press-card">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2017/08/1-Carat-Diamond-Engagement-Ring-French-Paloma-white.jpg" alt="DeBeers Award" class="press-card-image">
+                    <span class="press-card-year">1985</span>
+                    <h3 class="press-card-title">DeBeers Diamonds Today Award</h3>
+                    <p class="press-card-desc">Recognition for the ATW ring design, highlighting innovation in diamond jewelry craftsmanship and design excellence.</p>
+                </div>
+                <div class="press-card">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2014/12/bouquet-of-light-oval-diamond-center-engagement-ring-1bol-ov.jpg" alt="Blaze Cut Introduction" class="press-card-image">
+                    <span class="press-card-year">2003</span>
+                    <h3 class="press-card-title">Diamond Industry Innovation</h3>
+                    <p class="press-card-desc">Coverage of the Blaze Cut introduction, showcasing Bez Ambar's continued commitment to revolutionary diamond cutting techniques.</p>
+                </div>
+                <div class="press-card">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2019/08/5-carat-emerald-cut-engagement-ring-christina-ring.jpg" alt="Los Angeles Luxury" class="press-card-image">
+                    <span class="press-card-year">2020</span>
+                    <h3 class="press-card-title">Los Angeles Luxury</h3>
+                    <p class="press-card-desc">Profile of Bez Ambar's LA atelier and the bespoke custom design process that has defined the brand for decades.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Press Contact Section -->
+    <section class="press-contact-section">
+        <div class="press-contact-container">
+            <h2 class="press-contact-title">Media Inquiries</h2>
+            <p class="press-contact-text">For press inquiries, interviews, or high-resolution images, please contact:</p>
+            <a href="mailto:bez@bezambar.com" class="press-contact-email">bez@bezambar.com</a>
+            <div class="press-kit-btn">
+                <a href="contact.html">Request Press Kit</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-col"><h4>Explore</h4><a href="collection.html">Collection</a><a href="our-story.html">Our Story</a><a href="about.html">The Inventor</a><a href="journal.html">Journal</a><a href="blog.html">Blog</a></div>
+                <div class="footer-col"><h4>Services</h4><a href="contact.html">Bespoke Design</a><a href="contact.html">Repairs &amp; Cleaning</a><a href="contact.html">Personalization</a></div>
+                <div class="footer-col"><h4>Help</h4><a href="contact.html">Contact Us</a><a href="mailto:bez@bezambar.com">Email Us</a><a href="ring-size-chart.html">Ring Size Chart</a><a href="diamond-education.html">Diamond Education</a><a href="warranty.html">Warranty</a></div>
+                <div class="footer-col"><h4>Visit</h4><p>611 Wilshire Blvd</p><p>Los Angeles, CA 90017</p><p style="margin-top:8px;"><a href="mailto:bez@bezambar.com">bez@bezambar.com</a></p></div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-logo">BEZ AMBAR</div>
+                <div class="footer-legal">&copy; 2026 Bez Ambar Inc. All rights reserved. &middot; <a href="#">Privacy Policy</a> &middot; <a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    function toggleMobileNav() {
+        var toggle = document.querySelector('.mobile-nav-toggle');
+        var nav = document.getElementById('mobileNav');
+        var backdrop = document.getElementById('navBackdrop');
+        toggle.classList.toggle('open');
+        nav.classList.toggle('open');
+        backdrop.classList.toggle('open');
+    }
+    function closeMobileNav() {
+        document.querySelector('.mobile-nav-toggle').classList.remove('open');
+        document.getElementById('mobileNav').classList.remove('open');
+        document.getElementById('navBackdrop').classList.remove('open');
+    }
+    document.getElementById('navBackdrop').addEventListener('click', closeMobileNav);
+    </script>
+</body>
+</html>
