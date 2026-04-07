@@ -36,6 +36,9 @@
             background: linear-gradient(to right, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.05) 100%);
             z-index: 1;
         }
+        .hero-section.light-hero .hero-overlay {
+            background: linear-gradient(to right, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.05) 60%, transparent 100%);
+        }
         .hero-section .hero-content {
             position: relative;
             z-index: 2;
@@ -609,6 +612,25 @@
         </div>
     </section>
 
+    <!-- ==================== THE MASTER STORY ==================== -->
+    <section style="background:#0d0d0d; padding:6rem 4rem; border-top:1px solid rgba(255,255,255,0.05);">
+        <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:center;">
+            <div>
+                <p class="eyebrow">The Master</p>
+                <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:300; line-height:1.15; color:#fff; margin-bottom:1.5rem;">The cut that changed<br><em style="font-style:italic; color:#c5a258;">diamond history</em><br>began in Los Angeles.</h2>
+                <p style="font-family:'Montserrat',sans-serif; font-size:0.8rem; line-height:1.9; color:#888; margin-bottom:1.5rem;">In 1982, Betzalel Ambar unveiled the Quadrillion&reg; &mdash; the square-cut diamond the world would come to know as the Princess Cut. Today it is the most popular diamond cut on earth, found on tens of millions of engagement rings worldwide.</p>
+                <p style="font-family:'Montserrat',sans-serif; font-size:0.8rem; line-height:1.9; color:#888; margin-bottom:2rem;">Bez never stopped innovating. The Blaze&reg; cut. The Divine Cut&reg;. The Micro-Pav&eacute; setting. Six patented innovations, each one changing the industry. He is still here &mdash; still cutting, still creating &mdash; one piece at a time, by hand, in his Los Angeles atelier.</p>
+                <a href="about.html" class="btn btn-secondary">Discover the Story</a>
+            </div>
+            <div style="position:relative; aspect-ratio:3/4; background:#111; overflow:hidden;">
+                <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1775199953/Hero_Ruby_and_lady_in_a_galery_i0xns5.jpg"
+                    style="width:100%; height:100%; object-fit:cover; object-position:center top;"
+                    alt="Bez Ambar Atelier Los Angeles">
+                <div style="position:absolute; bottom:1.5rem; left:1.5rem; font-family:'Montserrat',sans-serif; font-size:0.55rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.5);">Los Angeles Atelier &middot; Est. 1979</div>
+            </div>
+        </div>
+    </section>
+
     <!-- ==================== SECTION 2: Explore by Category ==================== -->
     <section class="cat-section">
         <h2>Explore by Category</h2>
@@ -730,7 +752,7 @@
     </section>
 
     <!-- ==================== SECTION 5: Campaign Hero — Earrings ==================== -->
-    <section class="hero-section" style="height:80vh;">
+    <section class="hero-section light-hero" style="height:80vh;">
         <img class="hero-bg-img" style="object-position: center center;"
             src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1775202736/Hero_Earrings_lu15zz.jpg"
             alt="Bez Ambar — Diamond Earrings">
@@ -899,7 +921,7 @@
     </section>
 
     <!-- ==================== SECTION 8B: Campaign Hero — Earrings 2 ==================== -->
-    <section class="hero-section" style="height:80vh;">
+    <section class="hero-section light-hero" style="height:80vh;">
         <img class="hero-bg-img" style="object-position: right center;"
             src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1775204072/hero_earrings_2_q9puab.jpg"
             alt="Bez Ambar — Diamond Earrings">
