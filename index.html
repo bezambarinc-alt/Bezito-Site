@@ -33,9 +33,16 @@
         .hero-section .hero-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to right, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.05) 100%);
+            background: transparent;
             z-index: 1;
         }
+        .hero-section.light-hero .hero-overlay {
+            background: linear-gradient(to right, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.05) 60%, transparent 100%);
+        }
+        .hero-section.light-hero .hero-eyebrow { color: #444 !important; }
+        .hero-section.light-hero .hero-content h2 { color: #222 !important; }
+        .hero-section.light-hero .hero-cta { color: #333 !important; border-color: rgba(0,0,0,0.45) !important; }
+        .hero-section.light-hero .hero-cta:hover { background: #333 !important; color: #fff !important; border-color: #333 !important; }
         .hero-section .hero-content {
             position: relative;
             z-index: 2;
@@ -598,6 +605,36 @@
         </div>
     </section>
 
+    <!-- ==================== CREDENTIALS BAR ==================== -->
+    <section style="background:#111; border-top:1px solid rgba(197,162,88,0.2); border-bottom:1px solid rgba(197,162,88,0.2); padding:2rem 2rem;">
+        <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:center; gap:4rem; flex-wrap:wrap; text-align:center;">
+            <div><span style="display:block; font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:#c5a258;">1982</span><span style="display:block; font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:#888; margin-top:4px;">Princess Cut Invented</span></div>
+            <div><span style="display:block; font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:#c5a258;">6</span><span style="display:block; font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:#888; margin-top:4px;">Patented Innovations</span></div>
+            <div><span style="display:block; font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:#c5a258;">40+</span><span style="display:block; font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:#888; margin-top:4px;">Years of Mastery</span></div>
+            <div><span style="display:block; font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:#c5a258;">1985</span><span style="display:block; font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:#888; margin-top:4px;">DeBeers Award</span></div>
+            <div><span style="display:block; font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:#c5a258;">&#8734;</span><span style="display:block; font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:#888; margin-top:4px;">Each Piece, One of One</span></div>
+        </div>
+    </section>
+
+    <!-- ==================== THE MASTER STORY ==================== -->
+    <section style="background:#0d0d0d; padding:6rem 4rem; border-top:1px solid rgba(255,255,255,0.05);">
+        <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:center;">
+            <div>
+                <p class="eyebrow">The Master</p>
+                <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:300; line-height:1.15; color:#fff; margin-bottom:1.5rem;">The cut that changed<br><em style="font-style:italic; color:#c5a258;">diamond history</em><br>began in Los Angeles.</h2>
+                <p style="font-family:'Montserrat',sans-serif; font-size:0.8rem; line-height:1.9; color:#888; margin-bottom:1.5rem;">In 1982, Betzalel Ambar unveiled the Quadrillion&reg; &mdash; the square-cut diamond the world would come to know as the Princess Cut. Today it is the most popular diamond cut on earth, found on tens of millions of engagement rings worldwide.</p>
+                <p style="font-family:'Montserrat',sans-serif; font-size:0.8rem; line-height:1.9; color:#888; margin-bottom:2rem;">Bez never stopped innovating. The Blaze&reg; cut. The Divine Cut&reg;. The Micro-Pav&eacute; setting. Six patented innovations, each one changing the industry. He is still here &mdash; still cutting, still creating &mdash; one piece at a time, by hand, in his Los Angeles atelier.</p>
+                <a href="about.html" class="btn btn-secondary">Discover the Story</a>
+            </div>
+            <div style="position:relative; aspect-ratio:3/4; background:#111; overflow:hidden;">
+                <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1775199953/Hero_Ruby_and_lady_in_a_galery_i0xns5.jpg"
+                    style="width:100%; height:100%; object-fit:cover; object-position:center top;"
+                    alt="Bez Ambar Atelier Los Angeles">
+                <div style="position:absolute; bottom:1.5rem; left:1.5rem; font-family:'Montserrat',sans-serif; font-size:0.55rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.5);">Los Angeles Atelier &middot; Est. 1979</div>
+            </div>
+        </div>
+    </section>
+
     <!-- ==================== SECTION 2: Explore by Category ==================== -->
     <section class="cat-section">
         <h2>Explore by Category</h2>
@@ -610,13 +647,13 @@
             </a>
             <a href="collection.html?cat=wedding-bands" class="cat-card">
                 <div class="cat-card-img">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2017/05/White-Gold-Blaze-and-Baguette-Cut-Diamond-Eternity-Ring.jpg" alt="Wedding Bands">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1775548403/C0723_Oval_Eternity_Band_awpedb.jpg" alt="Wedding Bands">
                 </div>
                 <p class="cat-card-name">Wedding Bands</p>
             </a>
             <a href="collection.html?cat=earrings" class="cat-card">
                 <div class="cat-card-img">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2020/12/2-carat-diamond-rof-earrings-bez-ambar-desk-2.jpg" alt="Earrings">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1775549202/C0625_Baguette_band_Master_e4azkj.jpg" alt="Earrings">
                 </div>
                 <p class="cat-card-name">Earrings</p>
             </a>
@@ -719,7 +756,7 @@
     </section>
 
     <!-- ==================== SECTION 5: Campaign Hero — Earrings ==================== -->
-    <section class="hero-section" style="height:80vh;">
+    <section class="hero-section light-hero" style="height:80vh;">
         <img class="hero-bg-img" style="object-position: center center;"
             src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1775202736/Hero_Earrings_lu15zz.jpg"
             alt="Bez Ambar — Diamond Earrings">
@@ -780,6 +817,32 @@
         <a href="collection.html?cat=earrings" class="section-cta">Discover Earrings</a>
     </section>
 
+    <!-- ==================== SIGNATURE CUTS ==================== -->
+    <section style="background:#0d0d0d; padding:5rem 2rem; border-top:1px solid rgba(255,255,255,0.06);">
+        <div style="max-width:1200px; margin:0 auto; text-align:center;">
+            <p class="eyebrow">Patented Innovations</p>
+            <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,3rem); font-weight:300; color:#fff; margin-bottom:1rem;">Cuts that exist <em style="font-style:italic; color:#c5a258;">nowhere else</em> in the world.</h2>
+            <p style="font-family:'Montserrat',sans-serif; font-size:0.8rem; color:#888; margin-bottom:3.5rem; letter-spacing:0.05em;">Protected by patent. Made only in our Los Angeles atelier.</p>
+            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px;">
+                <div style="background:#111; padding:3rem 2rem;">
+                    <p style="font-family:'Montserrat',sans-serif; font-size:0.55rem; letter-spacing:0.25em; text-transform:uppercase; color:#c5a258; margin-bottom:0.75rem;">Patented &middot; 1982</p>
+                    <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:300; color:#fff; margin-bottom:1rem;">Quadrillion&reg;</h3>
+                    <p style="font-family:'Montserrat',sans-serif; font-size:0.78rem; line-height:1.8; color:#888;">The original Princess Cut. Bez Ambar's most celebrated innovation &mdash; a square brilliant cut whose geometry ignited a global revolution in diamond design.</p>
+                </div>
+                <div style="background:#111; padding:3rem 2rem;">
+                    <p style="font-family:'Montserrat',sans-serif; font-size:0.55rem; letter-spacing:0.25em; text-transform:uppercase; color:#c5a258; margin-bottom:0.75rem;">Patented &middot; 2003</p>
+                    <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:300; color:#fff; margin-bottom:1rem;">Blaze&reg; Cut</h3>
+                    <p style="font-family:'Montserrat',sans-serif; font-size:0.78rem; line-height:1.8; color:#888;">A proprietary diamond frame cut that expands the apparent size of a center stone while intensifying its fire. No other cutter in the world can produce this effect.</p>
+                </div>
+                <div style="background:#111; padding:3rem 2rem;">
+                    <p style="font-family:'Montserrat',sans-serif; font-size:0.55rem; letter-spacing:0.25em; text-transform:uppercase; color:#c5a258; margin-bottom:0.75rem;">Patented &middot; 2015</p>
+                    <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:300; color:#fff; margin-bottom:1rem;">Divine Cut&reg;</h3>
+                    <p style="font-family:'Montserrat',sans-serif; font-size:0.78rem; line-height:1.8; color:#888;">A round brilliant reimagined. Additional facets engineered for maximum dispersion &mdash; the diamond's fire visible from across a room. Bez Ambar's most recent patent.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ==================== SECTION 7: Campaign Hero — The Inventor (Video) ==================== -->
     <section class="campaign-hero" style="min-height: 75vh; background:#0d0d0d;">
         <iframe class="vimeo-bg"
@@ -793,6 +856,22 @@
             <p class="hero-eyebrow">Since 1979 &middot; Los Angeles</p>
             <h2>The Inventor of the<br>Blaze Cut&reg;</h2>
             <a href="about.html" class="hero-cta">Discover the Story</a>
+        </div>
+    </section>
+
+    <!-- ==================== COMMISSION JOURNEY ==================== -->
+    <section style="background:#0d0d0d; padding:6rem 2rem; border-top:1px solid rgba(255,255,255,0.06); text-align:center;">
+        <div style="max-width:1100px; margin:0 auto;">
+            <p class="eyebrow">The Atelier Experience</p>
+            <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,3rem); font-weight:300; color:#fff; margin-bottom:1rem;">You dream it. <em style="font-style:italic; color:#c5a258;">The master creates it.</em></h2>
+            <p style="font-family:'Montserrat',sans-serif; font-size:0.8rem; color:#888; max-width:600px; margin:0 auto 3.5rem; line-height:1.8;">Every Bez Ambar piece begins with a conversation. No two are alike. Your piece is made in our Los Angeles atelier &mdash; from mine to setting &mdash; by the hands of the master himself.</p>
+            <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:2.5rem; margin-bottom:3rem;">
+                <div><div style="font-family:'Cormorant Garamond',serif; font-size:3.5rem; font-weight:300; color:rgba(197,162,88,0.2); line-height:1; margin-bottom:0.75rem;">01</div><h4 style="font-family:'Montserrat',sans-serif; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:#fff; margin-bottom:0.6rem;">Consultation</h4><p style="font-family:'Montserrat',sans-serif; font-size:0.75rem; color:#888; line-height:1.7;">We learn your story &mdash; the occasion, the person, the vision. In person in Los Angeles, or by private appointment.</p></div>
+                <div><div style="font-family:'Cormorant Garamond',serif; font-size:3.5rem; font-weight:300; color:rgba(197,162,88,0.2); line-height:1; margin-bottom:0.75rem;">02</div><h4 style="font-family:'Montserrat',sans-serif; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:#fff; margin-bottom:0.6rem;">Stone Selection</h4><p style="font-family:'Montserrat',sans-serif; font-size:0.75rem; color:#888; line-height:1.7;">Bez selects candidate stones directly. You see them, understand them, choose the one that speaks to you.</p></div>
+                <div><div style="font-family:'Cormorant Garamond',serif; font-size:3.5rem; font-weight:300; color:rgba(197,162,88,0.2); line-height:1; margin-bottom:0.75rem;">03</div><h4 style="font-family:'Montserrat',sans-serif; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:#fff; margin-bottom:0.6rem;">Creation</h4><p style="font-family:'Montserrat',sans-serif; font-size:0.75rem; color:#888; line-height:1.7;">Your stone is cut, set, and finished by Bez. You receive photos and updates as it comes to life.</p></div>
+                <div><div style="font-family:'Cormorant Garamond',serif; font-size:3.5rem; font-weight:300; color:rgba(197,162,88,0.2); line-height:1; margin-bottom:0.75rem;">04</div><h4 style="font-family:'Montserrat',sans-serif; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:#fff; margin-bottom:0.6rem;">Yours Forever</h4><p style="font-family:'Montserrat',sans-serif; font-size:0.75rem; color:#888; line-height:1.7;">Your finished piece arrives with full documentation of its creation &mdash; made once, for you, by the master of the form.</p></div>
+            </div>
+            <a href="contact.html" class="btn btn-secondary">Begin Your Commission</a>
         </div>
     </section>
 
@@ -842,11 +921,12 @@
                 </div>
             </a>
         </div>
+        </div>
         <a href="collection.html?cat=mens-wedding-bands" class="section-cta">Discover Men's</a>
     </section>
 
     <!-- ==================== SECTION 8B: Campaign Hero — Earrings 2 ==================== -->
-    <section class="hero-section" style="height:80vh;">
+    <section class="hero-section light-hero" style="height:80vh;">
         <img class="hero-bg-img" style="object-position: right center;"
             src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1775204072/hero_earrings_2_q9puab.jpg"
             alt="Bez Ambar — Diamond Earrings">
@@ -855,6 +935,27 @@
             <p class="hero-eyebrow">Your Signature &middot; Your Story</p>
             <h2><span style="white-space:nowrap">Define Your</span><br><span style="white-space:nowrap">Own Brilliance</span></h2>
             <a href="collection.html?cat=earrings" class="hero-cta">Discover</a>
+        </div>
+    </section>
+
+    <!-- ==================== MASTER QUOTE ==================== -->
+    <section style="background:#0a0a0a; padding:7rem 2rem; text-align:center; position:relative; overflow:hidden;">
+        <div style="position:absolute; inset:0; background:radial-gradient(ellipse at 50% 50%, rgba(197,162,88,0.05) 0%, transparent 70%);"></div>
+        <div style="position:relative; max-width:800px; margin:0 auto;">
+            <div style="font-family:'Cormorant Garamond',serif; font-size:7rem; font-weight:300; color:rgba(197,162,88,0.12); line-height:0.5; margin-bottom:1.5rem;">&ldquo;</div>
+            <blockquote style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.4rem,3vw,2.2rem); font-weight:300; font-style:italic; line-height:1.55; color:#fff; margin-bottom:2rem;">The great houses sell prestige. We offer something they cannot &mdash; the hands of the master, and a piece that could not exist anywhere else.</blockquote>
+            <p style="font-family:'Montserrat',sans-serif; font-size:0.6rem; letter-spacing:0.3em; text-transform:uppercase; color:#c5a258;">&mdash; Betzalel Ambar, Founder</p>
+        </div>
+    </section>
+
+    <!-- ==================== FIND A JEWELER ==================== -->
+    <section style="background:#111; padding:5rem 2rem; text-align:center; border-top:1px solid rgba(255,255,255,0.06);">
+        <div style="max-width:700px; margin:0 auto;">
+            <p class="eyebrow">Authorized Atelier Partners</p>
+            <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.8rem,3vw,2.8rem); font-weight:300; color:#fff; margin-bottom:1rem;">Find Bez Ambar <em style="font-style:italic; color:#c5a258;">near you.</em></h2>
+            <p style="font-family:'Montserrat',sans-serif; font-size:0.78rem; color:#888; line-height:1.8; margin-bottom:2.5rem;">Bez Ambar pieces are available through a select network of authorized jewelers who share our commitment to excellence. These partners can also facilitate your custom commission.</p>
+            <a href="contact.html" class="btn btn-secondary" style="margin-right:1rem; margin-bottom:1rem;">Find an Authorized Jeweler</a>
+            <a href="contact.html?subject=retailer" class="btn btn-secondary">Become a Partner</a>
         </div>
     </section>
 
