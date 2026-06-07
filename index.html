@@ -94,26 +94,25 @@
         }
         .site-header__right a:hover { color: var(--accent, #c5a258); }
 
-        /* ============ MENU OVERLAY ============ */
+        /* ============ MENU OVERLAY — Patek-style drill-down ============ */
         .menu-overlay {
             position: fixed;
             top: 0; left: 0;
             width: 320px;
-            max-width: 88vw;
             height: 100vh;
             background: #fff;
-            border-right: 1px solid var(--rule);
             z-index: 9999;
+            display: flex;
+            overflow: hidden;
             transform: translateX(-100%);
-            transition: transform .3s ease;
-            overflow-y: auto;
-            padding: 80px 0 40px;
+            transition: transform .35s ease, width .35s ease;
             box-shadow: 4px 0 24px rgba(0,0,0,.08);
         }
         .menu-overlay.is-open { transform: translateX(0); }
+        .menu-overlay.has-sub { width: 600px; max-width: 92vw; }
         .menu-overlay__close {
             position: absolute;
-            top: 18px; right: 20px;
+            top: 22px; left: 24px;
             background: none;
             border: 0;
             font-size: 24px;
@@ -121,55 +120,105 @@
             cursor: pointer;
             line-height: 1;
             padding: 4px 8px;
+            z-index: 5;
         }
-        .menu-overlay__group {
-            padding: 0 32px 18px;
-            margin-bottom: 12px;
-            border-bottom: 1px solid var(--rule);
-        }
-        .menu-overlay__group:last-child { border-bottom: 0; }
-        .menu-overlay__label {
+        .menu-overlay__logo {
+            position: absolute;
+            top: 28px;
+            left: 50%;
+            transform: translateX(-50%);
             font-family: var(--sans);
-            font-size: 9px;
-            font-weight: 600;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--accent, #c5a258);
-            margin: 18px 0 12px;
-            display: block;
-        }
-        .menu-overlay__link {
-            display: block;
-            font-family: var(--sans);
-            font-size: 14px;
-            font-weight: 400;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 5px;
             color: var(--ink);
+            text-transform: uppercase;
+            z-index: 4;
+            white-space: nowrap;
+        }
+        .menu-col {
+            flex: 0 0 300px;
+            width: 300px;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 96px 0 40px;
+            margin: 0;
+            list-style: none;
+            border-right: 1px solid var(--rule);
+        }
+        .menu-col:last-child { border-right: 0; }
+        .menu-col--sub { display: none; }
+        .menu-col--sub.is-active { display: block; }
+        .menu-col li { list-style: none; }
+        .menu-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 13px 36px 13px 40px;
+            font-family: var(--sans);
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 0.20em;
+            text-transform: uppercase;
+            color: #888;
+            background: none;
+            border: 0;
+            cursor: pointer;
+            text-align: left;
             text-decoration: none;
-            padding: 8px 0;
+            line-height: 1.4;
             transition: color .15s;
         }
-        .menu-overlay__link:hover { color: var(--accent, #c5a258); }
-        .menu-overlay__link--sub {
-            font-size: 13px;
-            color: #666;
-            padding-left: 12px;
+        .menu-item:hover { color: var(--ink); }
+        .menu-item.is-active {
+            color: var(--ink);
+            font-weight: 400;
+            text-decoration: underline;
+            text-underline-offset: 8px;
+            text-decoration-thickness: 1px;
         }
-        .menu-overlay__link--external::after {
+        .menu-item--home {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 16px;
+            letter-spacing: 0;
+            text-transform: none;
+            color: #aaa;
+            font-weight: 400;
+            padding-top: 6px;
+            padding-bottom: 22px;
+        }
+        .menu-item--has-sub::after {
+            content: '›';
+            font-size: 20px;
+            font-weight: 300;
+            color: inherit;
+            margin-left: 12px;
+            opacity: 0.7;
+            line-height: 1;
+        }
+        .menu-item--external::after {
             content: '↗';
-            margin-left: 6px;
             font-size: 11px;
-            opacity: .6;
+            margin-left: 12px;
+            opacity: 0.55;
         }
         .menu-backdrop {
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,.4);
+            background: rgba(0,0,0,.55);
             opacity: 0;
             visibility: hidden;
             transition: opacity .3s, visibility .3s;
             z-index: 9998;
         }
         .menu-backdrop.is-open { opacity: 1; visibility: visible; }
+        @media (max-width: 600px) {
+            .menu-overlay { width: 88vw; }
+            .menu-overlay.has-sub { width: 92vw; }
+            .menu-col { flex-basis: 50%; width: 50%; }
+        }
         .site-header__logo {
             font-family: var(--sans);
             font-size: 16px;
@@ -1140,62 +1189,65 @@
     <div class="menu-backdrop" id="menuBackdrop" onclick="toggleMenu()"></div>
     <nav class="menu-overlay" id="menuOverlay" aria-hidden="true">
         <button class="menu-overlay__close" onclick="toggleMenu()" aria-label="Close menu">&times;</button>
+        <div class="menu-overlay__logo">BEZ AMBAR</div>
 
-        <div class="menu-overlay__group">
-            <span class="menu-overlay__label">Shop</span>
-            <a class="menu-overlay__link" href="collection.html">All Jewelry</a>
-            <a class="menu-overlay__link" href="collection.html?cat=rings">Rings</a>
-            <a class="menu-overlay__link menu-overlay__link--sub" href="collection.html?cat=engagement-rings">Engagement Rings</a>
-            <a class="menu-overlay__link menu-overlay__link--sub" href="collection.html?cat=wedding-bands">Wedding Bands</a>
-            <a class="menu-overlay__link menu-overlay__link--sub" href="collection.html?cat=mens-wedding-bands">Men's Wedding Bands</a>
-            <a class="menu-overlay__link" href="collection.html?cat=earrings">Earrings</a>
-            <a class="menu-overlay__link menu-overlay__link--sub" href="collection.html?cat=stud-earrings">Stud</a>
-            <a class="menu-overlay__link menu-overlay__link--sub" href="collection.html?cat=hug-earrings">Hug</a>
-            <a class="menu-overlay__link menu-overlay__link--sub" href="collection.html?cat=hoop-earrings">Hoop</a>
-            <a class="menu-overlay__link" href="collection.html?cat=pendants">Pendants</a>
-            <a class="menu-overlay__link" href="collection.html?cat=necklaces">Necklaces</a>
-            <a class="menu-overlay__link" href="collection.html?cat=bracelets">Bracelets</a>
-        </div>
+        <ul class="menu-col menu-col--root">
+            <li><a class="menu-item menu-item--home" href="index.html">Home</a></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="collection" type="button">Collection</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="manufacture" type="button">Manufacture</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="service" type="button">Service</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="editorial" type="button">Editorial</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="resources" type="button">Resources</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="signature" type="button">Signature Pieces</button></li>
+            <li><a class="menu-item" href="index-2.html">Reference (preview)</a></li>
+        </ul>
 
-        <div class="menu-overlay__group">
-            <span class="menu-overlay__label">About</span>
-            <a class="menu-overlay__link" href="our-story.html">Our Story</a>
-            <a class="menu-overlay__link" href="about.html">The Inventor</a>
-            <a class="menu-overlay__link" href="the-bez-ambar-story.html">The Bez Ambar Story</a>
-            <a class="menu-overlay__link" href="press.html">Press</a>
-        </div>
+        <ul class="menu-col menu-col--sub" data-col="collection">
+            <li><a class="menu-item" href="collection.html">All Jewelry</a></li>
+            <li><a class="menu-item" href="collection.html?cat=engagement-rings">Engagement Rings</a></li>
+            <li><a class="menu-item" href="collection.html?cat=wedding-bands">Wedding Bands</a></li>
+            <li><a class="menu-item" href="collection.html?cat=mens-wedding-bands">Men's Wedding Bands</a></li>
+            <li><a class="menu-item" href="collection.html?cat=earrings">Earrings</a></li>
+            <li><a class="menu-item" href="collection.html?cat=pendants">Pendants</a></li>
+            <li><a class="menu-item" href="collection.html?cat=necklaces">Necklaces</a></li>
+            <li><a class="menu-item" href="collection.html?cat=bracelets">Bracelets</a></li>
+        </ul>
 
-        <div class="menu-overlay__group">
-            <span class="menu-overlay__label">Editorial</span>
-            <a class="menu-overlay__link" href="journal.html">Journal</a>
-            <a class="menu-overlay__link" href="blog.html">Blog</a>
-            <a class="menu-overlay__link" href="diamond-education.html">Diamond Education</a>
-            <a class="menu-overlay__link" href="video-gallery.html">Video Gallery</a>
-        </div>
+        <ul class="menu-col menu-col--sub" data-col="manufacture">
+            <li><a class="menu-item" href="about.html">The Inventor</a></li>
+            <li><a class="menu-item" href="the-bez-ambar-story.html">The Bez Ambar Story</a></li>
+            <li><a class="menu-item" href="our-story.html">Our Story</a></li>
+            <li><a class="menu-item" href="press.html">Press</a></li>
+        </ul>
 
-        <div class="menu-overlay__group">
-            <span class="menu-overlay__label">Resources</span>
-            <a class="menu-overlay__link" href="contact.html">Contact</a>
-            <a class="menu-overlay__link" href="ring-size-chart.html">Ring Size Chart</a>
-            <a class="menu-overlay__link" href="catalogs.html">Catalogs</a>
-            <a class="menu-overlay__link" href="warranty.html">Warranty</a>
-        </div>
+        <ul class="menu-col menu-col--sub" data-col="service">
+            <li><a class="menu-item" href="contact.html">Contact</a></li>
+            <li><a class="menu-item" href="contact.html?subject=bespoke">Bespoke Inquiry</a></li>
+            <li><a class="menu-item" href="contact.html?subject=repairs">Repairs &amp; Cleaning</a></li>
+            <li><a class="menu-item" href="warranty.html">Warranty</a></li>
+        </ul>
 
-        <div class="menu-overlay__group">
-            <span class="menu-overlay__label">Signature pieces (live on galleries)</span>
-            <a class="menu-overlay__link menu-overlay__link--external" href="https://galleries.bezambarinc.workers.dev/page/30-carat-flex" target="_blank">30-Carat Flex</a>
-            <a class="menu-overlay__link menu-overlay__link--external" href="https://galleries.bezambarinc.workers.dev/page/flex-bracelets" target="_blank">Flex Bracelets</a>
-            <a class="menu-overlay__link menu-overlay__link--external" href="https://galleries.bezambarinc.workers.dev/page/elysian-cut" target="_blank">Elysian Cut</a>
-            <a class="menu-overlay__link menu-overlay__link--external" href="https://galleries.bezambarinc.workers.dev/page/cascata" target="_blank">Cascata</a>
-            <a class="menu-overlay__link menu-overlay__link--external" href="https://galleries.bezambarinc.workers.dev/page/crossover-ashoka" target="_blank">Crossover Ashoka</a>
-            <a class="menu-overlay__link menu-overlay__link--external" href="https://galleries.bezambarinc.workers.dev/page/heart-ruby-v2" target="_blank">Heart Ruby v2</a>
-            <a class="menu-overlay__link menu-overlay__link--external" href="https://galleries.bezambarinc.workers.dev/page/saul-ring" target="_blank">Saul Ring</a>
-        </div>
+        <ul class="menu-col menu-col--sub" data-col="editorial">
+            <li><a class="menu-item" href="journal.html">Journal</a></li>
+            <li><a class="menu-item" href="blog.html">Blog</a></li>
+            <li><a class="menu-item" href="diamond-education.html">Diamond Education</a></li>
+            <li><a class="menu-item" href="video-gallery.html">Video Gallery</a></li>
+        </ul>
 
-        <div class="menu-overlay__group">
-            <span class="menu-overlay__label">Reference (preview)</span>
-            <a class="menu-overlay__link" href="index-2.html">Old homepage (index-2)</a>
-        </div>
+        <ul class="menu-col menu-col--sub" data-col="resources">
+            <li><a class="menu-item" href="ring-size-chart.html">Ring Size Chart</a></li>
+            <li><a class="menu-item" href="catalogs.html">Catalogs</a></li>
+        </ul>
+
+        <ul class="menu-col menu-col--sub" data-col="signature">
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/30-carat-flex" target="_blank">30-Carat Flex</a></li>
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/flex-bracelets" target="_blank">Flex Bracelets</a></li>
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/elysian-cut" target="_blank">Elysian Cut</a></li>
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/cascata" target="_blank">Cascata</a></li>
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/crossover-ashoka" target="_blank">Crossover Ashoka</a></li>
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/heart-ruby-v2" target="_blank">Heart Ruby v2</a></li>
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/saul-ring" target="_blank">Saul Ring</a></li>
+        </ul>
     </nav>
 
     <script>
@@ -1206,9 +1258,34 @@
             backdrop.classList.toggle('is-open', isOpen);
             overlay.setAttribute('aria-hidden', String(!isOpen));
             document.body.style.overflow = isOpen ? 'hidden' : '';
+            if (!isOpen) resetMenuSub();
+        }
+        function resetMenuSub() {
+            const overlay = document.getElementById('menuOverlay');
+            overlay.classList.remove('has-sub');
+            overlay.querySelectorAll('.menu-item.is-active').forEach(el => el.classList.remove('is-active'));
+            overlay.querySelectorAll('.menu-col--sub.is-active').forEach(el => el.classList.remove('is-active'));
         }
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && document.getElementById('menuOverlay').classList.contains('is-open')) toggleMenu();
+        });
+        // Drill-down: click a root item with a target to reveal its sub-column.
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.menu-item--has-sub');
+            if (!btn) return;
+            e.preventDefault();
+            const target = btn.dataset.target;
+            const overlay = document.getElementById('menuOverlay');
+            overlay.querySelectorAll('.menu-col--root .menu-item').forEach(el => el.classList.remove('is-active'));
+            overlay.querySelectorAll('.menu-col--sub').forEach(el => el.classList.remove('is-active'));
+            btn.classList.add('is-active');
+            const sub = overlay.querySelector('.menu-col--sub[data-col="' + target + '"]');
+            if (sub) {
+                sub.classList.add('is-active');
+                overlay.classList.add('has-sub');
+            } else {
+                overlay.classList.remove('has-sub');
+            }
         });
     </script>
 
