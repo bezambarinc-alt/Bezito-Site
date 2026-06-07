@@ -1142,6 +1142,20 @@
             font-size: 13px;
         }
         .site-footer__col a:hover { color: #fff; }
+        .site-footer__col--visit address {
+            font-style: normal;
+            color: #aaa;
+            font-size: 13px;
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+        .site-footer__hours {
+            color: #6a6a6a;
+            font-size: 11px;
+            font-style: italic;
+            letter-spacing: 0.05em;
+            margin-top: 14px;
+        }
         .site-footer__bottom {
             border-top: 1px solid #1f1f1f;
             padding-top: 30px;
@@ -1157,9 +1171,15 @@
             letter-spacing: 5px;
             color: var(--accent);
             text-transform: uppercase;
-            margin-bottom: 10px;
+            margin-bottom: 14px;
             display: block;
         }
+        .site-footer__tagline,
+        .site-footer__copy {
+            display: block;
+            line-height: 1.9;
+        }
+        .site-footer__copy { color: #444; margin-top: 4px; }
 
         /* ============ RESPONSIVE ============ */
         @media (max-width: 900px) {
@@ -1558,43 +1578,59 @@
     </section>
 
     <!-- ============================================================
-         FOOTER — four columns + brand line
+         FOOTER — Patek-style columns, mirrors the main menu
          ============================================================ -->
     <footer class="site-footer">
         <div class="site-footer__grid">
+
             <div class="site-footer__col">
-                <h4>Discover</h4>
-                <a href="#">The Atelier</a>
-                <a href="#">Heritage</a>
-                <a href="#">Journal</a>
-                <a href="#">Press</a>
+                <h4>Collection</h4>
+                <a href="/collection">All Jewelry</a>
+                <a href="/jewelry/engagement-rings">Engagement Rings</a>
+                <a href="/jewelry/wedding-bands">Wedding Bands</a>
+                <a href="/jewelry/men-wedding-bands">Men's Wedding Bands</a>
+                <a href="/jewelry/earrings">Earrings</a>
+                <a href="/jewelry/pendants">Pendants</a>
+                <a href="/jewelry/necklaces">Necklaces</a>
+                <a href="/jewelry/bracelets">Bracelets</a>
             </div>
+
             <div class="site-footer__col">
-                <h4>Collections</h4>
-                <a href="#">The Elysian Cut™</a>
-                <a href="#">Liquid Carat™</a>
-                <a href="#">Flex Bracelets</a>
-                <a href="#">Archive</a>
+                <h4>The Maison</h4>
+                <a href="/about">The Inventor</a>
+                <a href="/the-bez-ambar-story.html">The Bez Ambar Story</a>
+                <a href="/elysian-cut">The Elysian Cut&trade;</a>
+                <a href="/journal">Journal</a>
+                <a href="/press.html">Press</a>
             </div>
+
             <div class="site-footer__col">
-                <h4>Services</h4>
-                <a href="#">Bespoke Commissions</a>
-                <a href="#">Repairs &amp; Cleaning</a>
-                <a href="#">Ring Size Chart</a>
-                <a href="#">Warranty</a>
+                <h4>Service</h4>
+                <a href="/contact">Contact</a>
+                <a href="/contact.html?subject=bespoke">Bespoke Inquiry</a>
+                <a href="/contact.html?subject=repairs">Repairs &amp; Cleaning</a>
+                <a href="/warranty.html">Warranty</a>
+                <a href="/ring-size-chart.html">Ring Size Chart</a>
+                <a href="/catalogs.html">Catalogs</a>
             </div>
-            <div class="site-footer__col">
+
+            <div class="site-footer__col site-footer__col--visit">
                 <h4>Visit</h4>
-                <a href="#">611 Wilshire Blvd</a>
-                <a href="#">Los Angeles, CA 90017</a>
-                <a href="mailto:bezambar@bezambar.com">bezambar@bezambar.com</a>
+                <address>
+                    611 Wilshire Blvd<br>
+                    Los Angeles, CA 90017
+                </address>
                 <a href="tel:2136299191">(213) 629-9191</a>
+                <a href="mailto:bezambar@bezambar.com">bezambar@bezambar.com</a>
+                <p class="site-footer__hours">By appointment</p>
             </div>
+
         </div>
+
         <div class="site-footer__bottom">
             <span class="logo">BEZ AMBAR</span>
-            Inventor of the Princess Cut · Since 1979<br>
-            &copy; 2026 Bez Ambar Inc. All rights reserved.
+            <span class="site-footer__tagline">Inventor of the Princess Cut &middot; Since 1979</span>
+            <span class="site-footer__copy">&copy; 2026 Bez Ambar Inc. All rights reserved.</span>
         </div>
     </footer>
 
