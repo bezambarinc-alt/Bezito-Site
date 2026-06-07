@@ -410,6 +410,20 @@
             height: 100%;
             object-fit: cover;
         }
+        .segment__media--placeholder {
+            background: #f6f1ea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .segment__media--placeholder::before {
+            content: attr(data-label);
+            font-family: var(--sans, 'Montserrat', sans-serif);
+            font-size: 10px;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: rgba(0,0,0,0.28);
+        }
         .segment__content {
             max-width: 440px;
             justify-self: start;
@@ -1409,101 +1423,45 @@
     </script>
 
     <!-- ============================================================
-         ELYSIAN CUT — copy LEFT, image RIGHT (reverse) — position 1
+         #2 THE DESIGNER — placeholder (copy LEFT, image RIGHT)
          ============================================================ -->
-    <section class="segment segment--reverse" id="segment-elysian">
-        <div class="segment__media">
-            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1400/v1779074065/Elysian_cut_oval_qcdt5r.jpg"
-                 alt="The Elysian Cut™ — oval step cut" loading="lazy">
-        </div>
+    <section class="segment segment--reverse" id="segment-designer">
+        <div class="segment__media segment__media--placeholder" data-label="Designer portrait — placeholder"></div>
         <div class="segment__content">
-            <p class="segment__eyebrow">The Elysian Cut&trade;</p>
-            <h2 class="segment__title">An Old Idea, Brought to Life</h2>
-            <p class="segment__body">The Elysian Cut&trade; is not a new shape. It is an old idea &mdash; the step cut, centuries in the making &mdash; reborn in the oval and the pear. The art is in the angles: the relationship between crown and pavilion is a game of angles, and when those angles are right, the cut comes alive. The skill is in selecting the rough that can support them.</p>
-            <p class="segment__body">The goal is never a single stone. The goal is a line of brilliance &mdash; calibrated stone to stone, until light travels as one continuous line around the finger, the wrist, the neck.</p>
-            <a href="/page/elysian-cut" class="segment__cta">Explore the Elysian Cut&trade;</a>
+            <p class="segment__eyebrow">The Designer</p>
+            <h2 class="segment__title">Bez Ambar &mdash; Fifty Years Cutting Light</h2>
+            <p class="segment__body">[Placeholder copy] Bez Ambar is the designer and master cutter behind every piece. Five decades at the bench, one of the original architects of the modern princess cut, and the inventor of the Elysian and Alara cuts. Bez Ambar is not a label. It is a hand.</p>
+            <a href="#" class="segment__cta">Meet Bez</a>
         </div>
     </section>
 
     <!-- ============================================================
-         ATELIER LEGACY — Princess Cut — image LEFT, copy RIGHT — position 2
+         #3 THE CUTS — image LEFT, copy RIGHT
+         (was Princess Cut block — repurposed as the patented cuts section)
          ============================================================ -->
-    <section class="segment" id="segment-1">
+    <section class="segment" id="segment-cuts">
         <div class="segment__media">
             <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1400/v1775786208/Quadrillion_owciyv.jpg"
-                 alt="The Quadrillion — Bez Ambar Princess Cut" loading="lazy">
+                 alt="The Princess Cut by Bez Ambar — origin of the Bez Ambar cuts" loading="lazy">
         </div>
         <div class="segment__content">
-            <p class="segment__eyebrow">Atelier Legacy</p>
-            <h2 class="segment__title">From the Princess Cut to the Next Generation of Diamond Designs</h2>
-            <p class="segment__body">Betzalel Ambar is credited as one of the creators of the modern princess cut diamond — a cut that became part of the global language of fine jewelry. Today, that same spirit of invention continues through original diamond designs, sculptural settings, and one-of-one pieces made with precision and restraint. Bez Ambar jewelry is not assembled from fashion trends. It is drawn, engineered, and refined from the stone outward.</p>
-            <a href="/the-bez-ambar-story.html" class="segment__cta">Read the Story</a>
+            <p class="segment__eyebrow">The Cuts</p>
+            <h2 class="segment__title">From the Princess to the Elysian to the Alara</h2>
+            <p class="segment__body">Betzalel Ambar is one of the original architects of the modern princess cut &mdash; a cut now part of the global language of fine jewelry. The same instinct continues through the Elysian Cut&trade; and the Alara Cut&trade;: original diamond geometries engineered from the stone outward, each with its own patent and its own behavior of light.</p>
+            <a href="/elysian-cut" class="segment__cta">See the Cuts</a>
         </div>
     </section>
 
     <!-- ============================================================
-         COLLECTIONS GRID — Elysian Oval Band cards + pricing
-         (moved here to sit directly under the Elysian Cut segment)
+         #4 ATELIER PROCESS — placeholder (copy LEFT, image RIGHT)
          ============================================================ -->
-    <section class="collections">
-        <div class="collections__header">
-            <p class="collections__eyebrow">Featuring The Elysian Cut&trade; Oval Bands</p>
-            <h2 class="collections__title">The Elysian Oval Band</h2>
-            <p class="collections__lede">A continuous halo of Bez Ambar&rsquo;s signature Elysian Cut&trade; &mdash; an elongated oval-baguette hybrid that captures more light along the finger than any band before it. Handcrafted in Los Angeles.</p>
-        </div>
-        <div class="collections__grid">
-
-            <div class="collection-card">
-                <div class="collection-card__media">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1778099929/2ELS-70_dovft0.png" alt="Elysian Oval Band 2ELS-70" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
-                </div>
-                <p class="collection-card__sku">2ELS-70</p>
-                <h3 class="collection-card__name">Elysian Oval Band</h3>
-                <p class="collection-card__specs">11.9 ct total</p>
-            </div>
-
-            <div class="collection-card">
-                <div class="collection-card__media">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1778099931/2ELS-50_gydi1e.png" alt="Elysian Oval Band 2ELS-50" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
-                </div>
-                <p class="collection-card__sku">2ELS-50</p>
-                <h3 class="collection-card__name">Elysian Oval Band</h3>
-                <p class="collection-card__specs">9.9 ct total</p>
-            </div>
-
-            <div class="collection-card">
-                <div class="collection-card__media">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1778099929/2ELS-25_n7nkk4.png" alt="Elysian Oval Band 2ELS-25" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
-                </div>
-                <p class="collection-card__sku">2ELS-25</p>
-                <h3 class="collection-card__name">Elysian Oval Band</h3>
-                <p class="collection-card__specs">5.5 ct total</p>
-            </div>
-
-        </div>
-
-        <div class="pricing-block">
-            <p class="pricing-block__heading">Available in Eight Sizes &mdash; Full Eternity &amp; Halfway</p>
-            <p style="font-family: var(--serif); font-style: italic; font-size: clamp(1.05rem, 1.4vw, 1.25rem); color: var(--ink); text-align: center; max-width: 640px; margin: 0 auto 28px;">Each band is built to order from calibrated Elysian Cut&trade; ovals. Pricing and current availability on request.</p>
-            <p style="text-align: center; margin: 0;">
-                <a href="mailto:info@bezambar.com?subject=Elysian%20Oval%20Band%20%E2%80%94%20Pricing%20%26%20Availability" class="family__cta">Inquire for Pricing &amp; Availability</a>
-            </p>
-        </div>
-    </section>
-
-    <!-- ============================================================
-         DESIGN PHILOSOPHY — copy LEFT, image RIGHT (reverse) — position 4 (after bands, before cinematic)
-         ============================================================ -->
-    <section class="segment segment--reverse" id="segment-philosophy">
-        <div class="segment__media">
-            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1600/v1779133281/elysian-on-hand_sjn5ys.jpg"
-                 alt="Elysian Oval Band on hand" loading="lazy">
-        </div>
+    <section class="segment segment--reverse" id="segment-atelier">
+        <div class="segment__media segment__media--placeholder" data-label="Atelier / process image — placeholder"></div>
         <div class="segment__content">
-            <p class="segment__eyebrow">Design Philosophy</p>
-            <h2 class="segment__title">Built Like Architecture. Worn Like Emotion.</h2>
-            <p class="segment__body">Every Bez Ambar piece begins with balance: the line of the stone, the rhythm of the diamonds, the way light travels across the surface. The goal is not decoration for decoration&rsquo;s sake, but jewelry with structure, presence, and permanence. Each design is made to feel modern now and inevitable years from now.</p>
-            <a href="#" class="segment__cta">Explore the Atelier</a>
+            <p class="segment__eyebrow">The Atelier</p>
+            <h2 class="segment__title">Drawn, Engineered, Finished by Hand</h2>
+            <p class="segment__body">[Placeholder copy] Every piece is drawn at the bench, engineered to hold the geometry of the stone, and finished by hand in the Los Angeles atelier. No mass production. No outsourced finishing. The same hand that designs the piece signs the inside of the shank.</p>
+            <a href="#" class="segment__cta">Inside the Atelier</a>
         </div>
     </section>
 
@@ -1554,88 +1512,37 @@
     </div>
 
     <!-- ============================================================
-         HERITAGE QUOTE — centered, no image, brand statement (moved to after cinematic)
+         #6 WHERE TO SEE IT — placeholder (image LEFT, copy RIGHT)
+         ============================================================ -->
+    <section class="segment" id="segment-stockists">
+        <div class="segment__media segment__media--placeholder" data-label="Stockist / showroom image — placeholder"></div>
+        <div class="segment__content">
+            <p class="segment__eyebrow">Where to See It</p>
+            <h2 class="segment__title">Try the Pieces in Person</h2>
+            <p class="segment__body">[Placeholder copy] Bez Ambar pieces are carried by a small, hand-picked group of luxury retailers across the United States. Find the closest stockist, or come see the full collection at the Los Angeles atelier by appointment.</p>
+            <a href="#" class="segment__cta">Find a Stockist</a>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         #7 PRIVATE VIEWING — placeholder (copy LEFT, image RIGHT)
+         ============================================================ -->
+    <section class="segment segment--reverse" id="segment-private">
+        <div class="segment__media segment__media--placeholder" data-label="Private viewing / atelier image — placeholder"></div>
+        <div class="segment__content">
+            <p class="segment__eyebrow">Private Viewing</p>
+            <h2 class="segment__title">By Appointment, with the Designer</h2>
+            <p class="segment__body">[Placeholder copy] For a one-on-one viewing &mdash; an existing piece, a stone, or a commission &mdash; arrange a private session at the Los Angeles atelier. Each appointment is with Bez directly.</p>
+            <a href="#" class="segment__cta">Request an Appointment</a>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         HERITAGE QUOTE — closing brand statement
          ============================================================ -->
     <section class="heritage">
         <p class="heritage__quote">&ldquo;The cutter doesn&rsquo;t shape the stone. He sculpts the light inside it.&rdquo;</p>
         <p class="heritage__attribution">— Bez Ambar</p>
-    </section>
-
-    <!-- ============================================================
-         FAMILY CAROUSEL — horizontal-scroll product family (6 cards)
-         [PLACEHOLDER IMAGES — replace each .ph-box with <img> + filename label]
-         ============================================================ -->
-    <section class="family">
-        <div class="family__header">
-            <p class="family__eyebrow">Discover</p>
-            <h2 class="family__title">The Family of the Elysian Cuts</h2>
-        </div>
-        <div class="family__viewport">
-        <button class="family__nav family__nav--prev" id="family-prev" aria-label="Previous">&larr;</button>
-        <button class="family__nav family__nav--next" id="family-next" aria-label="Next">&rarr;</button>
-        <div class="family__scroll" id="family-scroll">
-
-            <article class="family-card">
-                <div class="family-card__media">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1779091383/Elysian_cut_pear_sng4kq.jpg" alt="Elysian Cut Pear">
-                </div>
-                <h3 class="family-card__name">Elysian Cut Pear</h3>
-                <p class="family-card__sub">Elysian&nbsp;Cut&nbsp;Pear</p>
-            </article>
-
-            <article class="family-card">
-                <div class="family-card__media">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1779091373/Elysian_cut_octagon_bucoa5.jpg" alt="Elysian Cut Octagon">
-                </div>
-                <h3 class="family-card__name">Elysian Cut Octagon</h3>
-                <p class="family-card__sub">Elysian&nbsp;Cut&nbsp;Octagon</p>
-            </article>
-
-            <article class="family-card">
-                <div class="family-card__media">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1779091372/Elysian_cut_marquise_boraiy.jpg" alt="Elysian Cut Marquise">
-                </div>
-                <h3 class="family-card__name">Elysian Cut Marquise</h3>
-                <p class="family-card__sub">Elysian&nbsp;Cut&nbsp;Marquise</p>
-            </article>
-
-            <article class="family-card">
-                <div class="family-card__media">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1779074065/Elysian_cut_oval_qcdt5r.jpg" alt="Elysian Cut Oval">
-                </div>
-                <h3 class="family-card__name">Elysian Cut Oval</h3>
-                <p class="family-card__sub">Elysian&nbsp;Cut&nbsp;Oval</p>
-            </article>
-
-            <article class="family-card">
-                <div class="family-card__media">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1779091374/Elysian_cut_Hex_ywlwno.jpg" alt="Elysian Cut Hex">
-                </div>
-                <h3 class="family-card__name">Elysian Cut Hex</h3>
-                <p class="family-card__sub">Elysian&nbsp;Cut&nbsp;Hex</p>
-            </article>
-
-            <article class="family-card">
-                <div class="family-card__media">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1779169849/Elysian_cut_triangle.282_w8c4ki.avif" alt="Elysian Cut Triangle">
-                </div>
-                <h3 class="family-card__name">Elysian Cut Triangle</h3>
-                <p class="family-card__sub">Elysian&nbsp;Cut&nbsp;Triangle</p>
-            </article>
-
-            <article class="family-card">
-                <div class="family-card__media">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1779091372/Elysian_cut_emerald_a1l5gv.jpg" alt="Elysian Cut Emerald">
-                </div>
-                <h3 class="family-card__name">Elysian Cut Emerald</h3>
-                <p class="family-card__sub">Elysian&nbsp;Cut&nbsp;Emerald</p>
-            </article>
-
-        </div>
-        </div>
-        <div class="family__cta-wrap">
-            <a href="#" class="family__cta">Explore More &rarr;</a>
-        </div>
     </section>
 
     <!-- ============================================================

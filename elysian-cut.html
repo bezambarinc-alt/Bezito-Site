@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Elysian Cut™ — The Family of Cuts · Bez Ambar</title>
+    <meta name="description" content="The Elysian Cut™ by Bez Ambar — a family of original step-cut geometries: Pear, Octagon, Marquise, Oval, Hex, Triangle, and Emerald. Patented and handcrafted in Los Angeles.">
+    <link rel="canonical" href="https://bezambar.com/elysian-cut">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="The Elysian Cut™ — The Family of Cuts · Bez Ambar">
+    <meta property="og:description" content="A family of original step-cut geometries — Pear, Octagon, Marquise, Oval, Hex, Triangle, Emerald. Patented by Bez Ambar.">
+    <meta property="og:image" content="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1200/v1779074065/Elysian_cut_oval_qcdt5r.jpg">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231a1a1a'/%3E%3Ctext x='16' y='22' font-family='serif' font-size='18' font-weight='700' fill='%23c5a258' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://webfonts.fontstand.com/WF-099839-d89c1d499f0c1f40d1e6d7330af17f97.css" type="text/css"/>
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-soft: #4a4a4a;
+            --ink-muted: #888;
+            --paper: #ffffff;
+            --paper-warm: #faf7f2;
+            --rule: #e8e4de;
+            --accent: #95826b;
+            --serif: 'Lyon Text Regular', 'EB Garamond', Georgia, serif;
+            --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--serif);
+            color: var(--ink);
+            background: var(--paper);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; height: auto; }
+        h1, h2, h3 { font-family: var(--serif); font-weight: 400; }
+
+        /* ============ HEADER ============ */
+        .site-header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--rule);
+            padding: 18px 40px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .site-header__brand {
+            font-family: var(--sans);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--ink);
+        }
+        .site-header__back {
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+        }
+        .site-header__back:hover { color: var(--accent); }
+
+        /* ============ HERO ============ */
+        .ec-hero {
+            padding: 180px 40px 100px;
+            max-width: 980px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .ec-hero__eyebrow {
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            margin-bottom: 24px;
+        }
+        .ec-hero__title {
+            font-size: clamp(2.4rem, 5vw, 4.2rem);
+            font-weight: 300;
+            line-height: 1.1;
+            letter-spacing: -0.01em;
+            margin-bottom: 32px;
+        }
+        .ec-hero__sub {
+            font-size: clamp(1.1rem, 1.4vw, 1.35rem);
+            font-style: italic;
+            color: var(--ink-soft);
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        /* ============ INTRO ============ */
+        .ec-intro {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 40px 120px;
+        }
+        .ec-intro p {
+            font-size: clamp(1.05rem, 1.2vw, 1.2rem);
+            color: var(--ink-soft);
+            margin-bottom: 22px;
+        }
+
+        /* ============ FAMILY GRID ============ */
+        .ec-family {
+            background: var(--paper-warm);
+            padding: 120px 40px;
+        }
+        .ec-family__header {
+            max-width: 980px;
+            margin: 0 auto 80px;
+            text-align: center;
+        }
+        .ec-family__eyebrow {
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            margin-bottom: 20px;
+        }
+        .ec-family__title {
+            font-size: clamp(1.8rem, 3.4vw, 2.8rem);
+            font-weight: 300;
+            line-height: 1.15;
+        }
+        .ec-family__grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 56px 40px;
+        }
+        .ec-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.4s ease;
+        }
+        .ec-card:hover { transform: translateY(-4px); }
+        .ec-card__media {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background: var(--paper);
+            margin-bottom: 28px;
+            overflow: hidden;
+        }
+        .ec-card__media img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .ec-card:hover .ec-card__media img { transform: scale(1.04); }
+        .ec-card__name {
+            font-size: clamp(1.3rem, 1.6vw, 1.55rem);
+            font-weight: 400;
+            letter-spacing: 0.01em;
+            margin-bottom: 6px;
+        }
+        .ec-card__sub {
+            font-family: var(--sans);
+            font-size: 10px;
+            letter-spacing: 0.26em;
+            text-transform: uppercase;
+            color: var(--ink-muted);
+            font-weight: 500;
+        }
+
+        /* ============ CTA ============ */
+        .ec-cta {
+            padding: 140px 40px;
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .ec-cta__title {
+            font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+        .ec-cta__body {
+            font-size: clamp(1rem, 1.15vw, 1.15rem);
+            color: var(--ink-soft);
+            margin-bottom: 40px;
+        }
+        .ec-cta__button {
+            display: inline-block;
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--ink);
+            padding: 16px 38px;
+            border: 1px solid var(--ink);
+            transition: background 0.25s ease, color 0.25s ease;
+        }
+        .ec-cta__button:hover { background: var(--ink); color: var(--paper); }
+
+        /* ============ FOOTER ============ */
+        .ec-footer {
+            border-top: 1px solid var(--rule);
+            padding: 40px;
+            text-align: center;
+            font-family: var(--sans);
+            font-size: 11px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--ink-muted);
+        }
+
+        @media (max-width: 720px) {
+            .site-header { padding: 14px 20px; }
+            .site-header__brand { font-size: 11px; letter-spacing: 0.24em; }
+            .ec-hero { padding: 140px 20px 80px; }
+            .ec-intro { padding: 0 20px 80px; }
+            .ec-family { padding: 80px 20px; }
+            .ec-family__grid { grid-template-columns: repeat(2, 1fr); gap: 32px 20px; }
+            .ec-cta { padding: 80px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <span class="site-header__brand">Bez Ambar</span>
+        <a href="/" class="site-header__back">&larr; Home</a>
+    </header>
+
+    <!-- ============ HERO ============ -->
+    <section class="ec-hero">
+        <p class="ec-hero__eyebrow">The Elysian Cut&trade;</p>
+        <h1 class="ec-hero__title">A Family of Cuts</h1>
+        <p class="ec-hero__sub">An old idea &mdash; the step cut, centuries in the making &mdash; reborn across seven geometries.</p>
+    </section>
+
+    <!-- ============ INTRO ============ -->
+    <section class="ec-intro">
+        <p>The Elysian Cut&trade; is not a single shape. It is a family of original step-cut geometries, each engineered from the stone outward: the line of the crown, the relationship of the pavilion, the angles that decide whether light becomes a flicker or a continuous line.</p>
+        <p>Each cut is patented. Each is made for calibration &mdash; the kind of stone-to-stone precision that lets a band or a necklace behave as one piece of light, not a row of independent stones.</p>
+    </section>
+
+    <!-- ============ FAMILY GRID ============ -->
+    <section class="ec-family">
+        <div class="ec-family__header">
+            <p class="ec-family__eyebrow">The Family</p>
+            <h2 class="ec-family__title">Seven Geometries. One Cut.</h2>
+        </div>
+        <div class="ec-family__grid">
+
+            <article class="ec-card">
+                <div class="ec-card__media">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1779091383/Elysian_cut_pear_sng4kq.jpg" alt="Elysian Cut Pear" loading="lazy">
+                </div>
+                <h3 class="ec-card__name">Pear</h3>
+                <p class="ec-card__sub">Elysian Cut Pear</p>
+            </article>
+
+            <article class="ec-card">
+                <div class="ec-card__media">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1779074065/Elysian_cut_oval_qcdt5r.jpg" alt="Elysian Cut Oval" loading="lazy">
+                </div>
+                <h3 class="ec-card__name">Oval</h3>
+                <p class="ec-card__sub">Elysian Cut Oval</p>
+            </article>
+
+            <article class="ec-card">
+                <div class="ec-card__media">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1779091372/Elysian_cut_marquise_boraiy.jpg" alt="Elysian Cut Marquise" loading="lazy">
+                </div>
+                <h3 class="ec-card__name">Marquise</h3>
+                <p class="ec-card__sub">Elysian Cut Marquise</p>
+            </article>
+
+            <article class="ec-card">
+                <div class="ec-card__media">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1779091372/Elysian_cut_emerald_a1l5gv.jpg" alt="Elysian Cut Emerald" loading="lazy">
+                </div>
+                <h3 class="ec-card__name">Emerald</h3>
+                <p class="ec-card__sub">Elysian Cut Emerald</p>
+            </article>
+
+            <article class="ec-card">
+                <div class="ec-card__media">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1779091373/Elysian_cut_octagon_bucoa5.jpg" alt="Elysian Cut Octagon" loading="lazy">
+                </div>
+                <h3 class="ec-card__name">Octagon</h3>
+                <p class="ec-card__sub">Elysian Cut Octagon</p>
+            </article>
+
+            <article class="ec-card">
+                <div class="ec-card__media">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1779091374/Elysian_cut_Hex_ywlwno.jpg" alt="Elysian Cut Hex" loading="lazy">
+                </div>
+                <h3 class="ec-card__name">Hex</h3>
+                <p class="ec-card__sub">Elysian Cut Hex</p>
+            </article>
+
+            <article class="ec-card">
+                <div class="ec-card__media">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1779169849/Elysian_cut_triangle.282_w8c4ki.avif" alt="Elysian Cut Triangle" loading="lazy">
+                </div>
+                <h3 class="ec-card__name">Triangle</h3>
+                <p class="ec-card__sub">Elysian Cut Triangle</p>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="ec-cta">
+        <h2 class="ec-cta__title">See the Elysian Cut&trade; in Person</h2>
+        <p class="ec-cta__body">Pricing and current availability on request. Each piece is built to order from calibrated Elysian Cut&trade; stones.</p>
+        <a href="mailto:info@bezambar.com?subject=The%20Elysian%20Cut%E2%84%A2%20%E2%80%94%20Inquiry" class="ec-cta__button">Inquire</a>
+    </section>
+
+    <footer class="ec-footer">
+        &copy; Bez Ambar &middot; Patented Cuts &middot; Handcrafted in Los Angeles
+    </footer>
+
+    <!-- D1 view logger -->
+    <img src="https://galleries.bezambarinc.workers.dev/t?p=elysian-cut" style="position:absolute;width:1px;height:1px;opacity:0;" alt="">
+
+</body>
+</html>
