@@ -4,139 +4,562 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Journal — Behind the Craft | Bez Ambar</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="The Bez Ambar journal — behind the atelier, the craft, the stones. Latest from @bezambar on Instagram.">
+    <link rel="canonical" href="https://bezambar.com/journal">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231a1a1a'/%3E%3Ctext x='16' y='22' font-family='serif' font-size='18' font-weight='700' fill='%23c5a258' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://webfonts.fontstand.com/WF-099839-d89c1d499f0c1f40d1e6d7330af17f97.css" type="text/css"/>
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-soft: #4a4a4a;
+            --ink-muted: #888;
+            --paper: #ffffff;
+            --paper-warm: #faf7f2;
+            --rule: #e8e4de;
+            --accent: #95826b;
+            --serif: 'Lyon Text Regular', 'EB Garamond', Georgia, serif;
+            --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--serif);
+            color: var(--ink);
+            background: var(--paper);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; height: auto; }
+
+        /* ============ HEADER ============ */
+        .site-header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--rule);
+            padding: 18px 40px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .site-header__menu, .site-header__right {
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--ink);
+            cursor: pointer;
+        }
+        .site-header__menu { user-select: none; }
+        .site-header__menu::before {
+            content: '☰';
+            margin-right: 8px;
+            font-size: 14px;
+            vertical-align: -1px;
+        }
+        .site-header__right a { color: var(--ink); text-decoration: none; font: inherit; }
+        .site-header__right a:hover { color: var(--accent); }
+        .site-header__logo {
+            font-family: var(--sans);
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 6px;
+            color: var(--ink);
+            text-transform: uppercase;
+        }
+
+        /* ============ MENU OVERLAY — Patek drill-down ============ */
+        .menu-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 320px;
+            height: 100vh;
+            background: #fff;
+            z-index: 9999;
+            display: flex;
+            overflow: hidden;
+            transform: translateX(-100%);
+            transition: transform .35s ease, width .35s ease;
+            box-shadow: 4px 0 24px rgba(0,0,0,.08);
+        }
+        .menu-overlay.is-open { transform: translateX(0); }
+        .menu-overlay.has-sub { width: 600px; max-width: 92vw; }
+        .menu-overlay__close {
+            position: absolute;
+            top: 22px; left: 24px;
+            background: none; border: 0;
+            font-size: 24px; color: var(--ink);
+            cursor: pointer; line-height: 1;
+            padding: 4px 8px; z-index: 5;
+        }
+        .menu-overlay__logo {
+            position: absolute;
+            top: 28px; left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--sans);
+            font-size: 13px; font-weight: 700;
+            letter-spacing: 5px;
+            color: var(--ink);
+            text-transform: uppercase;
+            z-index: 4; white-space: nowrap;
+        }
+        .menu-col {
+            flex: 0 0 300px;
+            width: 300px;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 96px 0 40px;
+            margin: 0;
+            list-style: none;
+            border-right: 1px solid var(--rule);
+        }
+        .menu-col:last-child { border-right: 0; }
+        .menu-col--sub { display: none; }
+        .menu-col--sub.is-active { display: block; }
+        .menu-col li { list-style: none; }
+        .menu-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 13px 36px 13px 40px;
+            font-family: var(--sans);
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 0.20em;
+            text-transform: uppercase;
+            color: #888;
+            background: none;
+            border: 0;
+            cursor: pointer;
+            text-align: left;
+            text-decoration: none;
+            line-height: 1.4;
+            transition: color .15s;
+        }
+        .menu-item:hover { color: var(--ink); }
+        .menu-item.is-active {
+            color: var(--ink);
+            font-weight: 400;
+            text-decoration: underline;
+            text-underline-offset: 8px;
+            text-decoration-thickness: 1px;
+        }
+        .menu-item--home {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 16px;
+            letter-spacing: 0;
+            text-transform: none;
+            color: #aaa;
+            font-weight: 400;
+            padding-top: 6px;
+            padding-bottom: 22px;
+        }
+        .menu-item--has-sub::after {
+            content: '›';
+            font-size: 20px;
+            font-weight: 300;
+            color: inherit;
+            margin-left: 12px;
+            opacity: 0.7;
+            line-height: 1;
+        }
+        .menu-item--external::after {
+            content: '↗';
+            font-size: 11px;
+            margin-left: 12px;
+            opacity: 0.55;
+        }
+        .menu-backdrop {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,.55);
+            opacity: 0; visibility: hidden;
+            transition: opacity .3s, visibility .3s;
+            z-index: 9998;
+        }
+        .menu-backdrop.is-open { opacity: 1; visibility: visible; }
+        @media (max-width: 600px) {
+            .menu-overlay { width: 88vw; }
+            .menu-overlay.has-sub { width: 92vw; }
+            .menu-col { flex-basis: 50%; width: 50%; }
+        }
+
+        /* ============ PAGE HERO ============ */
+        .page-hero {
+            padding: clamp(140px, 18vw, 200px) 40px clamp(60px, 8vw, 100px);
+            text-align: center;
+            background: var(--paper);
+            border-bottom: 1px solid var(--rule);
+        }
+        .page-hero__eyebrow {
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 18px;
+        }
+        .page-hero__title {
+            font-family: var(--sans);
+            font-size: clamp(1.8rem, 3.5vw, 3rem);
+            font-weight: 200;
+            letter-spacing: -0.01em;
+            text-transform: uppercase;
+            line-height: 1.15;
+            color: var(--accent);
+            margin-bottom: 22px;
+        }
+        .page-hero__sub {
+            font-family: var(--serif);
+            font-size: clamp(1rem, 1.3vw, 1.15rem);
+            line-height: 1.6;
+            color: var(--ink);
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        /* ============ FEED SECTION ============ */
+        .feed-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: clamp(40px, 6vw, 80px) 20px;
+        }
+        /* Tighten Curator's default look so it sits inside our Patek palette */
+        #curator-feed-default-feed-layout { background: transparent; }
+        #curator-feed-default-feed-layout .crt-feed { background: transparent !important; }
+        #curator-feed-default-feed-layout .crt-post,
+        #curator-feed-default-feed-layout .crt-grid-post { background: var(--paper) !important; }
+        #curator-feed-default-feed-layout a.crt-logo,
+        #curator-feed-default-feed-layout a.crt-logo:visited { color: var(--ink-muted) !important; }
+
+        /* ============ FOLLOW CTA ============ */
+        .follow-cta {
+            text-align: center;
+            padding: clamp(40px, 6vw, 80px) 40px clamp(80px, 10vw, 120px);
+            border-top: 1px solid var(--rule);
+        }
+        .follow-cta__handle {
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+        .follow-cta__link {
+            display: inline-block;
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--ink);
+            border-bottom: 1px solid var(--ink);
+            padding: 8px 0 4px;
+            transition: color .25s, border-color .25s;
+        }
+        .follow-cta__link:hover { color: var(--accent); border-color: var(--accent); }
+
+        /* ============ SERVICES STRIP ============ */
+        .services-strip {
+            background: var(--paper-warm);
+            border-top: 1px solid var(--rule);
+            padding: clamp(50px, 7vw, 80px) 40px;
+        }
+        .services-strip__inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+        .services-strip__item h4 {
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        .services-strip__item p {
+            font-family: var(--serif);
+            font-size: 15px;
+            color: var(--ink);
+            line-height: 1.6;
+        }
+        @media (max-width: 800px) {
+            .services-strip__inner { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+        }
+        @media (max-width: 480px) {
+            .services-strip__inner { grid-template-columns: 1fr; gap: 28px; text-align: center; }
+        }
+
+        /* ============ FOOTER ============ */
+        .site-footer {
+            background: #0d0d0d;
+            color: #777;
+            padding: 60px 40px 40px;
+            font-family: var(--sans);
+            font-size: 12px;
+        }
+        .site-footer__grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        .site-footer__col h4 {
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 18px;
+        }
+        .site-footer__col a {
+            display: block;
+            color: #aaa;
+            padding: 4px 0;
+            font-size: 13px;
+        }
+        .site-footer__col a:hover { color: #fff; }
+        .site-footer__bottom {
+            border-top: 1px solid #1f1f1f;
+            padding-top: 30px;
+            text-align: center;
+            color: #555;
+            font-size: 11px;
+            letter-spacing: 0.15em;
+        }
+        .site-footer__bottom .logo {
+            font-family: var(--sans);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+        }
+        @media (max-width: 900px) {
+            .site-footer__grid { grid-template-columns: repeat(2, 1fr); }
+            .site-header { padding: 14px 20px; }
+        }
+        @media (max-width: 520px) {
+            .site-footer__grid { grid-template-columns: 1fr; }
+            .site-header__menu, .site-header__right { display: none; }
+            .site-header { justify-content: center; }
+        }
+    </style>
 </head>
 <body>
 
-
+    <!-- ==================== HEADER ==================== -->
     <header class="site-header">
-        <div class="header-inner">
-            <div class="header-left-group">
-                <button class="mobile-nav-toggle" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
-                <span class="menu-label" onclick="toggleMobileNav()">Menu</span>
-                <button class="header-icon-btn header-search-btn" aria-label="Search">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                </button>
-            </div>
-            <a href="index.html" class="logo">Bez Ambar</a>
-            <div class="header-right-group">
-                <a href="contact.html" class="header-contact-link">Contact Us</a>
-                <a href="#" class="header-icon-btn" aria-label="Wishlist">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                </a>
-                <a href="#" class="header-icon-btn" aria-label="Account">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                </a>
-            </div>
-            <div class="mobile-nav-overlay" id="mobileNav">
-                <a href="collection.html">Collection</a>
-                <span class="mobile-cat-label">Categories</span>
-                <a href="collection.html" class="mobile-cat-link">All Jewelry</a>
-                <a href="collection.html?cat=rings" class="mobile-cat-link">Rings</a>
-                <a href="collection.html?cat=engagement-rings" class="mobile-cat-link mobile-sub-link">Engagement Rings</a>
-                <a href="collection.html?cat=wedding-bands" class="mobile-cat-link mobile-sub-link">Wedding Bands</a>
-                <a href="collection.html?cat=mens-wedding-bands" class="mobile-cat-link mobile-sub-link">Men's Wedding Bands</a>
-                <a href="collection.html?cat=pendants" class="mobile-cat-link">Pendants</a>
-                <a href="collection.html?cat=necklaces" class="mobile-cat-link">Necklaces</a>
-                <a href="collection.html?cat=earrings" class="mobile-cat-link">Earrings</a>
-                <a href="collection.html?cat=stud-earrings" class="mobile-cat-link mobile-sub-link">Stud Earrings</a>
-                <a href="collection.html?cat=hug-earrings" class="mobile-cat-link mobile-sub-link">Hug Earrings</a>
-                <a href="collection.html?cat=hoop-earrings" class="mobile-cat-link mobile-sub-link">Hoop Earrings</a>
-                <a href="collection.html?cat=bracelets" class="mobile-cat-link">Bracelets</a>
-                <a href="video-gallery.html">Video Gallery</a>
-                <a href="our-story.html" class="mobile-cat-label" style="text-decoration:none;">Our Story</a>
-                <a href="about.html" class="mobile-cat-link">The Inventor</a>
-                <a href="the-bez-ambar-story.html" class="mobile-cat-link">The Bez Ambar Story</a>
-                <a href="journal.html" class="mobile-cat-link">Journal</a>
-                <a href="blog.html" class="mobile-cat-link">Blog</a>
-                <a href="diamond-education.html" class="mobile-cat-link">Diamond Education</a>
-                <a href="ring-size-chart.html" class="mobile-cat-link">Ring Size Chart</a>
-                <a href="catalogs.html" class="mobile-cat-link">Catalogs</a>
-                <a href="warranty.html" class="mobile-cat-link">Warranty</a>
-                <a href="press.html" class="mobile-cat-link">Press</a>
-            </div>
-        </div>
+        <div class="site-header__menu" id="menuToggle" onclick="toggleMenu()" role="button" tabindex="0" aria-label="Open menu">Menu</div>
+        <div class="site-header__logo">Bez Ambar</div>
+        <div class="site-header__right"><a href="contact.html">Contact</a></div>
     </header>
-    <div class="nav-backdrop" id="navBackdrop"></div>
 
-    <style>
-        body.journal-page { background: #0d0d0d; color: #fff; }
-        body.journal-page .journal-cta a { color: #fff; border-bottom-color: rgba(255,255,255,0.4); }
-        body.journal-page .journal-cta a:hover { color: #c5a258; border-bottom-color: #c5a258; }
-        body.journal-page .services-strip { background: #111; border-top: 1px solid rgba(255,255,255,0.08); }
-        body.journal-page .services-strip h4 { color: #fff; }
-        body.journal-page .services-strip p { color: rgba(255,255,255,0.5); }
-        body.journal-page .site-footer { background: #0a0a0a; border-top: 1px solid rgba(255,255,255,0.06); }
-    </style>
-    <script>document.body.classList.add('journal-page');</script>
+    <!-- ==================== MENU OVERLAY ==================== -->
+    <div class="menu-backdrop" id="menuBackdrop" onclick="toggleMenu()"></div>
+    <nav class="menu-overlay" id="menuOverlay" aria-hidden="true">
+        <button class="menu-overlay__close" onclick="toggleMenu()" aria-label="Close menu">&times;</button>
+        <div class="menu-overlay__logo">BEZ AMBAR</div>
 
-    <!-- Hero -->
+        <ul class="menu-col menu-col--root">
+            <li><a class="menu-item menu-item--home" href="index.html">Home</a></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="collection" type="button">Collection</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="manufacture" type="button">Manufacture</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="service" type="button">Service</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="editorial" type="button">Editorial</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="resources" type="button">Resources</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="signature" type="button">Signature Pieces</button></li>
+            <li><a class="menu-item" href="index-2.html">Reference (preview)</a></li>
+        </ul>
+
+        <ul class="menu-col menu-col--sub" data-col="collection">
+            <li><a class="menu-item" href="collection.html">All Jewelry</a></li>
+            <li><a class="menu-item" href="collection.html?cat=engagement-rings">Engagement Rings</a></li>
+            <li><a class="menu-item" href="collection.html?cat=wedding-bands">Wedding Bands</a></li>
+            <li><a class="menu-item" href="collection.html?cat=mens-wedding-bands">Men's Wedding Bands</a></li>
+            <li><a class="menu-item" href="collection.html?cat=earrings">Earrings</a></li>
+            <li><a class="menu-item" href="collection.html?cat=pendants">Pendants</a></li>
+            <li><a class="menu-item" href="collection.html?cat=necklaces">Necklaces</a></li>
+            <li><a class="menu-item" href="collection.html?cat=bracelets">Bracelets</a></li>
+        </ul>
+
+        <ul class="menu-col menu-col--sub" data-col="manufacture">
+            <li><a class="menu-item" href="about.html">The Inventor</a></li>
+            <li><a class="menu-item" href="the-bez-ambar-story.html">The Bez Ambar Story</a></li>
+            <li><a class="menu-item" href="our-story.html">Our Story</a></li>
+            <li><a class="menu-item" href="press.html">Press</a></li>
+        </ul>
+
+        <ul class="menu-col menu-col--sub" data-col="service">
+            <li><a class="menu-item" href="contact.html">Contact</a></li>
+            <li><a class="menu-item" href="contact.html?subject=bespoke">Bespoke Inquiry</a></li>
+            <li><a class="menu-item" href="contact.html?subject=repairs">Repairs &amp; Cleaning</a></li>
+            <li><a class="menu-item" href="warranty.html">Warranty</a></li>
+        </ul>
+
+        <ul class="menu-col menu-col--sub" data-col="editorial">
+            <li><a class="menu-item" href="journal.html">Journal</a></li>
+            <li><a class="menu-item" href="blog.html">Blog</a></li>
+            <li><a class="menu-item" href="diamond-education.html">Diamond Education</a></li>
+            <li><a class="menu-item" href="video-gallery.html">Video Gallery</a></li>
+        </ul>
+
+        <ul class="menu-col menu-col--sub" data-col="resources">
+            <li><a class="menu-item" href="ring-size-chart.html">Ring Size Chart</a></li>
+            <li><a class="menu-item" href="catalogs.html">Catalogs</a></li>
+        </ul>
+
+        <ul class="menu-col menu-col--sub" data-col="signature">
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/30-carat-flex" target="_blank">30-Carat Flex</a></li>
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/flex-bracelets" target="_blank">Flex Bracelets</a></li>
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/elysian-cut" target="_blank">Elysian Cut</a></li>
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/cascata" target="_blank">Cascata</a></li>
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/crossover-ashoka" target="_blank">Crossover Ashoka</a></li>
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/heart-ruby-v2" target="_blank">Heart Ruby v2</a></li>
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/saul-ring" target="_blank">Saul Ring</a></li>
+        </ul>
+    </nav>
+
+    <!-- ==================== PAGE HERO ==================== -->
     <section class="page-hero">
-        <p class="eyebrow">@bezambarjewelry</p>
-        <h1>Journal</h1>
-        <p>Behind the craft. Inside the atelier. Follow along on Instagram.</p>
+        <p class="page-hero__eyebrow">@bezambar</p>
+        <h1 class="page-hero__title">Journal</h1>
+        <p class="page-hero__sub">Behind the craft. Inside the atelier. The latest from the workbench, shared as it happens.</p>
     </section>
 
-    <!-- Curator.io Instagram Feed -->
-    <div style="max-width: 1400px; margin: 0 auto; padding: 40px 20px 20px;">
+    <!-- ==================== INSTAGRAM FEED ==================== -->
+    <section class="feed-section">
         <div id="curator-feed-default-feed-layout"><a href="https://curator.io" target="_blank" class="crt-logo crt-tag">Powered by Curator.io</a></div>
-    </div>
+    </section>
     <script type="text/javascript">
     /* curator-feed-default-feed-layout */
     (function(){
-    var i,e,d=document,s="script";i=d.createElement("script");i.async=1;i.charset="UTF-8";
-    i.src="https://cdn.curator.io/published/8a90bee5-25c8-4b36-a23b-0db33a392762.js";
-    e=d.getElementsByTagName(s)[0];e.parentNode.insertBefore(i, e);
+        var i,e,d=document,s="script";
+        i=d.createElement("script"); i.async=1; i.charset="UTF-8";
+        i.src="https://cdn.curator.io/published/8a90bee5-25c8-4b36-a23b-0db33a392762.js";
+        e=d.getElementsByTagName(s)[0]; e.parentNode.insertBefore(i, e);
     })();
     </script>
 
-    <!-- Follow CTA -->
-    <div class="journal-cta">
-        <a href="https://www.instagram.com/bezambar/" target="_blank">Follow @bezambar on Instagram &rarr;</a>
-    </div>
+    <!-- ==================== FOLLOW CTA ==================== -->
+    <section class="follow-cta">
+        <p class="follow-cta__handle">@bezambar</p>
+        <a class="follow-cta__link" href="https://www.instagram.com/bezambar/" target="_blank" rel="noopener">Follow on Instagram &rarr;</a>
+    </section>
 
-    <!-- Services + Footer -->
-    <div class="services-strip">
-        <div class="services-inner">
-            <div class="service-item"><h4>Bespoke Design</h4><p>One-of-a-kind pieces<br>designed with you</p></div>
-            <div class="service-item"><h4>Complimentary Shipping</h4><p>Fully insured FedEx<br>Priority delivery</p></div>
-            <div class="service-item"><h4>Provenance Certificate</h4><p>Signed certificate<br>with every piece</p></div>
-            <div class="service-item"><h4>LA Atelier</h4><p>Visit us by appointment<br>611 Wilshire Blvd</p></div>
+    <!-- ==================== SERVICES STRIP ==================== -->
+    <section class="services-strip">
+        <div class="services-strip__inner">
+            <div class="services-strip__item">
+                <h4>Bespoke Design</h4>
+                <p>One-of-a-kind pieces designed with you in our LA atelier.</p>
+            </div>
+            <div class="services-strip__item">
+                <h4>Complimentary Shipping</h4>
+                <p>Fully insured FedEx Priority delivery worldwide.</p>
+            </div>
+            <div class="services-strip__item">
+                <h4>Provenance Certificate</h4>
+                <p>Signed certificate of authenticity with every piece.</p>
+            </div>
+            <div class="services-strip__item">
+                <h4>LA Atelier</h4>
+                <p>Visit us by appointment. 611 Wilshire Blvd, Los Angeles.</p>
+            </div>
         </div>
-    </div>
+    </section>
 
+    <!-- ==================== FOOTER ==================== -->
     <footer class="site-footer">
-        <div class="footer-inner">
-            <div class="footer-top">
-                <div class="footer-col"><h4>Explore</h4><a href="collection.html">Collection</a><a href="our-story.html">Our Story</a><a href="about.html">The Inventor</a><a href="journal.html">Journal</a><a href="blog.html">Blog</a></div>
-                <div class="footer-col"><h4>Services</h4><a href="contact.html">Bespoke Design</a><a href="contact.html">Repairs &amp; Cleaning</a><a href="contact.html">Personalization</a></div>
-                <div class="footer-col"><h4>Help</h4><a href="contact.html">Contact Us</a><a href="mailto:bez@bezambar.com">Email Us</a><a href="ring-size-chart.html">Ring Size Chart</a><a href="diamond-education.html">Diamond Education</a><a href="warranty.html">Warranty</a></div>
-                <div class="footer-col"><h4>Visit</h4><p>611 Wilshire Blvd</p><p>Los Angeles, CA 90017</p><p style="margin-top:8px;"><a href="mailto:bez@bezambar.com">bez@bezambar.com</a></p></div>
+        <div class="site-footer__grid">
+            <div class="site-footer__col">
+                <h4>Discover</h4>
+                <a href="about.html">The Atelier</a>
+                <a href="the-bez-ambar-story.html">Heritage</a>
+                <a href="journal.html">Journal</a>
+                <a href="press.html">Press</a>
             </div>
-            <div class="footer-bottom">
-                <div class="footer-logo">BEZ AMBAR</div>
-                <div class="footer-legal">&copy; 2026 Bez Ambar Inc. All rights reserved. &middot; <a href="#">Privacy Policy</a> &middot; <a href="#">Terms</a></div>
+            <div class="site-footer__col">
+                <h4>Collections</h4>
+                <a href="https://galleries.bezambarinc.workers.dev/page/elysian-cut" target="_blank">The Elysian Cut&trade;</a>
+                <a href="https://galleries.bezambarinc.workers.dev/page/flex-bracelets" target="_blank">Flex Bracelets</a>
+                <a href="https://galleries.bezambarinc.workers.dev/page/30-carat-flex" target="_blank">30-Carat Flex</a>
+                <a href="collection.html">Archive</a>
             </div>
+            <div class="site-footer__col">
+                <h4>Services</h4>
+                <a href="contact.html?subject=bespoke">Bespoke Commissions</a>
+                <a href="contact.html?subject=repairs">Repairs &amp; Cleaning</a>
+                <a href="ring-size-chart.html">Ring Size Chart</a>
+                <a href="warranty.html">Warranty</a>
+            </div>
+            <div class="site-footer__col">
+                <h4>Visit</h4>
+                <a href="#">611 Wilshire Blvd</a>
+                <a href="#">Los Angeles, CA 90017</a>
+                <a href="mailto:bezambar@bezambar.com">bezambar@bezambar.com</a>
+                <a href="tel:2136299191">(213) 629-9191</a>
+            </div>
+        </div>
+        <div class="site-footer__bottom">
+            <span class="logo">BEZ AMBAR</span>
+            Inventor of the Princess Cut &middot; Since 1979<br>
+            &copy; 2026 Bez Ambar Inc. All rights reserved.
         </div>
     </footer>
 
+    <!-- ==================== TRACKING ==================== -->
+    <img src="https://galleries.bezambarinc.workers.dev/t?p=bezito-site-journal" style="position:absolute;width:1px;height:1px;opacity:0;" alt="">
 
+    <!-- ==================== MENU JS ==================== -->
     <script>
-    function toggleMobileNav() {
-        var toggle = document.querySelector('.mobile-nav-toggle');
-        var nav = document.getElementById('mobileNav');
-        var backdrop = document.getElementById('navBackdrop');
-        toggle.classList.toggle('open');
-        nav.classList.toggle('open');
-        backdrop.classList.toggle('open');
-    }
-    function closeMobileNav() {
-        document.querySelector('.mobile-nav-toggle').classList.remove('open');
-        document.getElementById('mobileNav').classList.remove('open');
-        document.getElementById('navBackdrop').classList.remove('open');
-    }
-    document.getElementById('navBackdrop').addEventListener('click', closeMobileNav);
+        function toggleMenu() {
+            const overlay = document.getElementById('menuOverlay');
+            const backdrop = document.getElementById('menuBackdrop');
+            const isOpen = overlay.classList.toggle('is-open');
+            backdrop.classList.toggle('is-open', isOpen);
+            overlay.setAttribute('aria-hidden', String(!isOpen));
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+            if (!isOpen) resetMenuSub();
+        }
+        function resetMenuSub() {
+            const overlay = document.getElementById('menuOverlay');
+            overlay.classList.remove('has-sub');
+            overlay.querySelectorAll('.menu-item.is-active').forEach(el => el.classList.remove('is-active'));
+            overlay.querySelectorAll('.menu-col--sub.is-active').forEach(el => el.classList.remove('is-active'));
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && document.getElementById('menuOverlay').classList.contains('is-open')) toggleMenu();
+        });
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.menu-item--has-sub');
+            if (!btn) return;
+            e.preventDefault();
+            const target = btn.dataset.target;
+            const overlay = document.getElementById('menuOverlay');
+            overlay.querySelectorAll('.menu-col--root .menu-item').forEach(el => el.classList.remove('is-active'));
+            overlay.querySelectorAll('.menu-col--sub').forEach(el => el.classList.remove('is-active'));
+            btn.classList.add('is-active');
+            const sub = overlay.querySelector('.menu-col--sub[data-col="' + target + '"]');
+            if (sub) { sub.classList.add('is-active'); overlay.classList.add('has-sub'); }
+            else { overlay.classList.remove('has-sub'); }
+        });
     </script>
+
 </body>
 </html>
