@@ -179,10 +179,10 @@ img { display: block; max-width: 100%; height: auto; }
 
 /* Center logo */
 .logo {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: 6px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: 3px;
     color: #fff;
     text-transform: uppercase;
     text-align: center;

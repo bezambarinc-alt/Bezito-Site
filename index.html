@@ -3,1064 +3,1555 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bez Ambar — Inventor of the Princess Cut | Luxury Diamonds, Los Angeles</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <title>Bez Ambar — Inventor of the Princess Cut · Since 1979</title>
+    <meta name="description" content="Bez Ambar — inventor of the Princess Cut. Patented diamond cuts and high-jewelry pieces handcrafted in Los Angeles since 1979.">
+    <link rel="canonical" href="https://bezambar.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Bez Ambar — Since 1979">
+    <meta property="og:url" content="https://bezambar.com/">
+    <meta property="og:description" content="Inventor of the Princess Cut. Patented diamond cuts and high-jewelry, handcrafted in Los Angeles since 1979.">
+    <meta property="og:image" content="[PLACEHOLDER — OG image URL]">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231a1a1a'/%3E%3Ctext x='16' y='22' font-family='serif' font-size='18' font-weight='700' fill='%23c5a258' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
+    <!-- Preconnect to Vimeo so hero videos start loading faster (saves DNS + TLS handshake on first iframe fetch) -->
+    <link rel="preconnect" href="https://player.vimeo.com" crossorigin>
+    <link rel="preconnect" href="https://i.vimeocdn.com" crossorigin>
+    <link rel="preconnect" href="https://f.vimeocdn.com" crossorigin>
+    <link rel="dns-prefetch" href="https://player.vimeo.com">
+    <link rel="dns-prefetch" href="https://i.vimeocdn.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@200;300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lyon Text Regular (Fontstand web font rental, licensed to bezambar.com / bezambar-web2026.vercel.app / galleries.bezambarinc.workers.dev) -->
+    <link rel="stylesheet" href="https://webfonts.fontstand.com/WF-099839-d89c1d499f0c1f40d1e6d7330af17f97.css" type="text/css"/>
     <style>
-        /* ============== LV-STYLE HOMEPAGE ============== */
+        :root {
+            --ink: #1a1a1a;
+            --ink-soft: #4a4a4a;
+            --ink-muted: #888;
+            --paper: #ffffff;
+            --paper-warm: #faf7f2;
+            --rule: #e8e4de;
+            --accent: #95826b;
+            --serif: 'Lyon Text Regular', 'EB Garamond', 'Cormorant Garamond', Georgia, serif;
+            --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--serif);
+            color: var(--ink);
+            background: var(--paper);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; text-decoration: none; }
+        img, video { display: block; max-width: 100%; height: auto; }
+        h1, h2, h3 { font-family: var(--serif); font-weight: 400; }
 
-        /* --- Full-Bleed Hero --- */
-        .hero-section {
+        /* ============ Placeholder visual styling ============ */
+        .ph-box {
+            background: linear-gradient(135deg, #ede8df 0%, #d8d0c0 100%);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--ink-soft);
+            font-family: var(--sans);
+            font-size: 12px;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            font-weight: 600;
+            text-align: center;
+            padding: 20px;
+        }
+        .ph-box small { display: block; font-size: 10px; opacity: 0.7; margin-top: 6px; letter-spacing: 0.15em; }
+
+        /* ============ HEADER ============ */
+        .site-header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--rule);
+            padding: 18px 40px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .site-header__menu, .site-header__right {
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--ink);
+            cursor: pointer;
+        }
+        .site-header__logo {
+            font-family: var(--sans);
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 6px;
+            color: var(--ink);
+            text-transform: uppercase;
+        }
+
+        /* ============ HERO STACK — slide-up reveal, scroll-driven ============ */
+        .hero-stack {
+            position: relative;
+            background: #0d0d0d;
+            /* total scroll height = 2 viewports (one per hero) */
+            height: 200vh;
+        }
+        .hero-pin {
+            position: sticky;
+            top: 0;
             width: 100%;
             height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            text-align: center;
-            position: relative;
+            min-height: 600px;
             overflow: hidden;
-                        color: #999;
-            background: #0a0a0a;
-        }
-        .hero-section .hero-bg-img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
-        }
-        .hero-section .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: transparent;
             z-index: 1;
         }
-        .hero-section.light-hero .hero-overlay {
-            background: linear-gradient(to right, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.05) 60%, transparent 100%);
-        }
-        .hero-section.light-hero .hero-eyebrow { color: #444 !important; }
-        .hero-section.light-hero .hero-content h2 { color: #222 !important; }
-        .hero-section.light-hero .hero-cta { color: #333 !important; border-color: rgba(0,0,0,0.45) !important; }
-        .hero-section.light-hero .hero-cta:hover { background: #333 !important; color: #fff !important; border-color: #333 !important; }
-        .hero-section .hero-content {
-            position: relative;
-            z-index: 2;
-            padding: 0 40px;
-            max-width: 520px;
-            margin-left: clamp(40px, 28vw, 400px);
-            margin-top: clamp(-150px, -15vw, -250px);
-            text-align: center;
-        }
-        .hero-eyebrow {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            opacity: 0.85;
-            margin-bottom: 16px;
-            color: #c5a258;
-        }
-        .hero-content h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(48px, 5.5vw, 72px);
-            font-weight: 700;
-            line-height: 1.05;
-            margin-bottom: 28px;
-            color: #999;
-        }
-        .hero-cta {
-            display: inline-block;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: #000;
-                        border: 1.5px solid rgba(0,0,0,0.7);
-            padding: 14px 36px;
-            transition: all 0.3s;
-        }
-        .hero-cta:hover {
-            background: #c5a258;
-            color: #0d0d0d;
-            border-color: #c5a258;
-        }
-
-        /* --- Explore by Category (LV Grid) --- */
-        .cat-section {
-            padding: 50px 0 40px;
-            background: #f0eeeb;
-        }
-        .cat-section h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 24px;
-            font-weight: 400;
-            text-align: center;
-            margin-bottom: 30px;
-            color: #111;
-            letter-spacing: 1px;
-        }
-        .cat-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 5px;
-            max-width: 100%;
-            margin: 0;
-            padding: 0 200px;
-        }
-        .cat-card {
-            text-decoration: none;
-            color: #111;
-        }
-        .cat-card-img {
-            aspect-ratio: 3 / 4;
-            overflow: hidden;
-            background: #e2e0dc;
-            margin-bottom: 12px;
-        }
-        .cat-card-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        .cat-card:hover .cat-card-img img {
-            transform: scale(1.04);
-        }
-        .cat-card-name {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 11px;
-            font-weight: 400;
-            text-align: center;
-            letter-spacing: 0.5px;
-            color: #333;
-            padding-bottom: 8px;
-        }
-
-        /* --- Full-Bleed Image Hero (between sections) --- */
-        .campaign-hero {
-            width: 100%;
-            min-height: 70vh;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            text-align: left;
-            position: relative;
-            overflow: hidden;
-            color: #fff;
-        }
-        .campaign-hero-bg {
+        .hero {
             position: absolute;
             inset: 0;
-            background-size: cover;
-            background-position: center;
-            z-index: 0;
+            background: #0d0d0d;
+            transform: translateY(0);
+            will-change: transform;
         }
-        .campaign-hero .vimeo-bg {
+        /* Hero 1 stays at translateY(0); hero 2 starts below viewport */
+        .hero[data-i="1"] {
+            transform: translateY(100%);
+        }
+        .hero[data-i="0"] { z-index: 1; }
+        .hero[data-i="1"] { z-index: 2; }
+        .hero__media {
+            position: absolute; inset: 0;
+            display: flex; align-items: center; justify-content: center;
+        }
+        /* Cover-fit 16:9 video iframes to full viewport (default) */
+        .hero__media iframe {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 177.78vh;
-            height: 56.25vw;
-            min-width: 100%;
-            min-height: 100%;
-            z-index: 0;
-            border: none;
+            width: max(100vw, 177.78vh);   /* 100vh × 16/9 ensures full-width coverage */
+            height: max(100vh, 56.25vw);   /* 100vw × 9/16 ensures full-height coverage */
+            border: 0;
             pointer-events: none;
         }
-        .campaign-hero .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 40%, transparent 70%);
-            z-index: 1;
+        /* Cover-fit 9:16 (portrait) video iframes */
+        .hero--portrait .hero__media iframe {
+            width: max(100vw, 56.25vh);    /* 100vh × 9/16 */
+            height: max(100vh, 177.78vw);  /* 100vw × 16/9 */
         }
-        .campaign-hero .hero-content {
-            position: relative;
-            z-index: 2;
-            padding: 0 40px;
-            max-width: 520px;
-            margin-left: clamp(40px, 28vw, 400px);
+        /* Right-side dot navigator — Patek-style vertical pips */
+        .hero-dots {
+            position: fixed;
+            top: 50%;
+            right: 28px;
+            transform: translateY(-50%);
+            z-index: 30;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+        .hero-dots.is-visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .hero-dots__dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.35);
+            border: 0;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .hero-dots__dot.is-active {
+            background: #fff;
+            transform: scale(1.4);
+        }
+        .hero__media.ph-box {
+            font-size: 14px; color: #999; background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+        }
+        .hero__overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.5) 100%);
+        }
+        .hero__content {
+            position: absolute;
+            left: clamp(40px, 6vw, 80px);
+            bottom: clamp(60px, 8vw, 110px);
+            max-width: 560px;
+            text-align: left;
+            color: #fff;
+            padding: 0;
+        }
+        .hero__eyebrow {
+            font-family: var(--sans);
+            font-size: 15px;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 7px;
+        }
+        .hero__headline {
+            font-family: var(--sans);
+            font-size: clamp(1.8rem, 3.5vw, 3rem);
+            font-weight: 200;
+            letter-spacing: -0.01em;
+            line-height: 1.15;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 14px;
+        }
+        .hero__sub {
+            font-family: var(--serif);
+            font-style: normal;
+            font-size: clamp(1rem, 1.3vw, 1.15rem);
+            line-height: 1.6;
+            color: rgba(255,255,255,0.95);
+            max-width: 440px;
+            margin: 0 0 28px 0;
+        }
+        .hero__cta {
+            display: inline-block;
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--ink);
+            background: #fff;
+            padding: 14px 32px;
+            border: 1px solid #fff;
+            border-radius: 999px;
+            transition: all 0.3s;
+        }
+        .hero__cta:hover {
+            background: transparent;
+            color: #fff;
         }
 
-        /* --- Product Showcase (4-col row with Discover) --- */
-        .product-section {
-            padding: 60px 40px 50px;
-            background: #0d0d0d;
-            text-align: center;
-        }
-        .product-section .section-eyebrow {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 11px;
-            font-weight: 400;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #888;
-            margin-bottom: 10px;
-        }
-        .product-section h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 28px;
-            font-weight: 400;
-            color: #fff;
-            margin-bottom: 40px;
-        }
-        .product-grid {
+        /* ============ EDITORIAL SEGMENT (split image + text, Patek-style proportions) ============ */
+        .segment {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            max-width: 1400px;
-            margin: 0 auto 35px;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: clamp(40px, 6vw, 100px);
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: clamp(12px, 1.6vw, 24px) clamp(40px, 5vw, 80px);
         }
-        .prod-card {
-            text-decoration: none;
-            color: #fff;
-            text-align: center;
+        .segment--reverse .segment__media { order: 2; }
+        .segment__media {
             position: relative;
-            display: block;
-        }
-        .prod-card-img {
-            aspect-ratio: 4/5;
+            width: 100%;
+            max-width: 540px;
+            aspect-ratio: 4 / 5;
             overflow: hidden;
-            background: #141414;
-            position: relative;
+            justify-self: end;
         }
-        .prod-card-img img {
+        .segment--reverse .segment__media { justify-self: start; }
+        .segment__media .ph-box {
+            position: absolute; inset: 0;
+        }
+        /* Design Philosophy segment: image at 700px */
+        #segment-philosophy {
+            max-width: 1400px;
+            grid-template-columns: minmax(280px, 1fr) minmax(400px, 700px);
+        }
+        #segment-philosophy .segment__media {
+            max-width: 700px;
+            width: 100%;
+        }
+        .segment__media img {
+            position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
         }
-        .prod-card:hover .prod-card-img img {
-            transform: scale(1.04);
+        .segment__content {
+            max-width: 440px;
+            justify-self: start;
         }
-        .prod-card-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 40px 16px 18px;
-            background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 60%, transparent 100%);
-            z-index: 1;
-            pointer-events: none;
-        }
-        .prod-card-wishlist {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            width: 20px;
-            height: 20px;
-            color: rgba(255,255,255,0.7);
-            cursor: pointer;
-            transition: color 0.3s;
-            z-index: 2;
-            pointer-events: auto;
-        }
-        .prod-card-wishlist:hover {
-            color: #fff;
-        }
-        .prod-card-name {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 13px;
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            line-height: 1.4;
-            margin-bottom: 4px;
-            color: #fff;
-            text-shadow: 0 1px 6px rgba(0,0,0,0.5);
-        }
-        .prod-card-price {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 12px;
+        .segment--reverse .segment__content { justify-self: end; }
+        .segment__eyebrow {
+            font-family: var(--sans);
+            font-size: 15px;
             font-weight: 400;
-            color: rgba(255,255,255,0.85);
-            text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 7px;
         }
-        .section-cta {
+        .segment__title {
+            font-family: var(--sans);
+            font-size: clamp(1.8rem, 3.5vw, 3rem);
+            font-weight: 200;
+            letter-spacing: -0.01em;
+            text-transform: uppercase;
+            line-height: 1.15;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+        .segment__body {
+            font-family: var(--serif);
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 1.65;
+            color: var(--ink);
+            margin-bottom: 24px;
+        }
+        .segment__cta {
             display: inline-block;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: #fff;
-            border: 1px solid #fff;
-            padding: 12px 32px;
-            transition: all 0.3s;
-        }
-        .section-cta:hover {
-            background: #fff;
-            color: #0d0d0d;
-        }
-
-        /* --- Services Row --- */
-        .services-section {
-            padding: 70px 40px;
-            background: #0d0d0d;
-            border-top: 1px solid rgba(255,255,255,0.08);
-        }
-        .services-section h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 24px;
-            font-weight: 400;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        .services-section > p {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 13px;
-            color: #888;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .services-row {
-            display: flex;
-            justify-content: center;
-            gap: 70px;
-            flex-wrap: wrap;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .service-item {
-            text-align: center;
-            max-width: 200px;
-        }
-        .service-icon {
-            width: 48px;
-            height: 48px;
-            margin: 0 auto 14px;
-        }
-        .service-item h4 {
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--sans);
             font-size: 11px;
             font-weight: 600;
-            letter-spacing: 1.5px;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
-            margin-bottom: 6px;
+            color: var(--ink);
+            border-bottom: 1px solid var(--ink);
+            padding-bottom: 4px;
+            transition: all 0.3s;
         }
-        .service-item p {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 11px;
-            color: rgba(255,255,255,0.6);
-            line-height: 1.6;
-        }
+        .segment__cta:hover { color: var(--accent); border-color: var(--accent); }
 
-        /* --- Responsive --- */
-
-        /* Tablet */
-        @media (max-width: 1024px) {
-            .cat-grid, .product-grid { grid-template-columns: repeat(2, 1fr); }
-            .hero-section .hero-content,
-            .campaign-hero .hero-content {
-                margin-left: 60px !important;
-                margin-right: 60px !important;
-                padding: 0 20px;
-                max-width: 400px;
-            }
-            .hero-content h2 { font-size: 36px !important; }
-            .hero-eyebrow { font-size: 10px !important; }
-        }
-
-        /* Mobile */
-        @media (max-width: 768px) {
-            /* Image heroes: stack vertically — image on top, copy below */
-            .hero-section {
-                height: auto !important;
-                min-height: auto !important;
-                display: flex;
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .hero-section .hero-bg-img {
-                position: relative;
-                width: 100%;
-                height: 55vh;
-                object-fit: cover;
-            }
-            .hero-section .hero-overlay { display: block; background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.6) 100%); }
-            .hero-section .hero-content {
-                position: absolute !important;
-                z-index: 2;
-                bottom: 40px !important;
-                left: 0 !important;
-                right: 0 !important;
-                margin: 0 auto !important;
-                padding: 0 24px 0 !important;
-                max-width: 100% !important;
-                text-align: center !important;
-                background: transparent;
-            }
-            .hero-content h2 {
-                font-size: 26px !important;
-                line-height: 1.15 !important;
-                color: #fff !important;
-            }
-            .hero-content h2 span { white-space: normal !important; }
-            .hero-eyebrow {
-                font-size: 9px !important;
-                color: #c5a258 !important;
-                opacity: 1 !important;
-                margin-bottom: 10px !important;
-            }
-            .hero-cta {
-                font-size: 10px !important;
-                padding: 10px 28px !important;
-                color: #fff !important;
-                border-color: rgba(197,162,88,0.7) !important;
-            }
-
-            /* Video heroes: keep overlaid but smaller */
-            .campaign-hero { min-height: 40vh !important; }
-            .campaign-hero .hero-content {
-                margin-left: 20px !important;
-                margin-right: 20px !important;
-                margin-top: 0 !important;
-                padding: 0 20px 40px !important;
-                max-width: 100% !important;
-                text-align: center !important;
-            }
-            .campaign-hero .hero-content h2 { font-size: 24px !important; }
-
-            /* Grids */
-            .cat-section { padding: 30px 16px 24px; }
-            .cat-grid { padding: 0 16px !important; gap: 8px !important; }
-            .cat-card-img { aspect-ratio: 1 !important; }
-            .product-section { padding: 30px 16px 24px; }
-            .cat-grid, .product-grid { gap: 8px; }
-            .services-row { gap: 30px; }
-        }
-
-        /* Small phone */
-        @media (max-width: 480px) {
-            .cat-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 6px !important; }
-            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
-            .hero-section .hero-bg-img { height: 45vh; }
-            .hero-content h2 { font-size: 22px !important; }
-            .campaign-hero { min-height: 35vh !important; }
-        }
-
-        /* --- Nested Dropdown (Earrings sub-menu) --- */
-        .dropdown-nested {
+        /* ============ THREE-VIDEO CAROUSEL (Patek-style) ============ */
+        .films {
+            padding: clamp(60px, 10vw, 120px) 0 clamp(40px, 6vw, 70px);
+            background: #0d0d0d;
+            color: #fff;
+            overflow: hidden;
             position: relative;
         }
-        .dropdown-nested > a {
-            display: flex !important;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 24px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 12px;
+        .films__header {
+            text-align: center;
+            padding: 0 40px;
+            margin-bottom: clamp(40px, 6vw, 70px);
+        }
+        .films__eyebrow {
+            font-family: var(--sans);
+            font-size: 15px;
             font-weight: 400;
-            letter-spacing: 1px;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.2s;
-            line-height: 1.4;
+            color: var(--accent);
+            margin-bottom: 7px;
         }
-        .dropdown-nested > a::after {
-            content: '›';
-            font-size: 16px;
-            margin-left: 8px;
-            transition: transform 0.2s;
+        .films__title {
+            font-family: var(--sans);
+            font-size: clamp(1.8rem, 3.5vw, 3rem);
+            font-weight: 200;
+            letter-spacing: -0.01em;
+            line-height: 1.15;
+            text-transform: uppercase;
+            color: var(--accent);
         }
-        .dropdown-nested:hover > a {
-            background: #141414;
-            color: #fff !important;
+        .films__track {
+            display: flex;
+            gap: 32px;
+            padding: 0 calc((100vw - min(1280px, 88vw)) / 2);
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
-        .dropdown-submenu {
-            position: absolute;
-            left: 100%;
-            top: 0;
-            min-width: 180px;
+        .films__track::-webkit-scrollbar { display: none; }
+        .film-card {
+            flex: 0 0 min(1280px, 88vw);
+            scroll-snap-align: center;
+            position: relative;
+        }
+        .film-card__media {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
             background: #1a1a1a;
-            border: 1px solid rgba(255,255,255,0.08);
-            padding: 12px 0;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateX(-8px);
-            transition: all 0.25s ease;
-            z-index: 210;
+            margin-bottom: 24px;
         }
-        .dropdown-nested:hover .dropdown-submenu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(0);
+        .film-card__media .ph-box { position: absolute; inset: 0; }
+        .film-card__media .ph-box {
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            color: rgba(255,255,255,0.65);
         }
-        .dropdown-submenu a {
-            display: block;
-            padding: 8px 24px;
-            font-family: 'Montserrat', sans-serif;
+        .film-card__content {
+            padding: 0 4px;
+            max-width: 600px;
+        }
+        .film-card__number {
+            font-family: var(--sans);
             font-size: 11px;
-            font-weight: 400;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: rgba(255,255,255,0.85);
-            transition: all 0.2s;
-            white-space: nowrap;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            color: var(--accent);
+            margin-bottom: 12px;
         }
-        .dropdown-submenu a:hover {
-            background: #141414;
+        .film-card__title {
+            font-family: var(--serif);
+            font-size: clamp(1.4rem, 2.2vw, 2rem);
+            font-weight: 300;
+            color: #fff;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+        .film-card__caption {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 16px;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+        }
+        .films__controls {
+            display: flex; align-items: center; justify-content: center; gap: 24px;
+            padding: 40px 40px 0;
+        }
+        .films__btn {
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: transparent;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s;
+        }
+        .films__btn:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+        .films__btn:disabled { opacity: 0.25; cursor: default; }
+        .films__dots {
+            display: flex; gap: 10px;
+        }
+        .films__dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.25);
+            border: 0;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .films__dot.is-active { background: var(--accent); }
+
+        /* ============ FULL-WIDTH MEDIA SEGMENT ============ */
+        .full-media {
+            position: relative;
+            width: 100%;
+            height: 90vh;
+            min-height: 560px;
+            background: #0d0d0d;
+            overflow: hidden;
+        }
+
+        /* ============ CINEMATIC STACK — multi-pane slide-up reveal (same pattern as top hero) ============ */
+        .cinematic-stack {
+            position: relative;
+            background: #0d0d0d;
+            height: 200vh; /* one viewport per pane */
+        }
+        .cinematic-pin {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            min-height: 600px;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .cinematic {
+            position: absolute;
+            inset: 0;
+            background: #0d0d0d;
+            transform: translateY(0);
+            will-change: transform;
+        }
+        .cinematic[data-i="1"] { transform: translateY(100%); }
+        .cinematic[data-i="0"] { z-index: 1; }
+        .cinematic[data-i="1"] { z-index: 2; }
+        .cinematic-dots {
+            position: fixed;
+            top: 50%;
+            right: 28px;
+            transform: translateY(-50%);
+            z-index: 30;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+        .cinematic-dots.is-visible { opacity: 1; pointer-events: auto; }
+        .cinematic__media {
+            position: absolute; inset: 0;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .cinematic__media iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: max(100vw, 177.78vh);
+            height: max(100vh, 56.25vw);
+            border: 0;
+            pointer-events: none;
+        }
+        .cinematic__overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.6) 100%);
+        }
+        .cinematic__content {
+            position: absolute;
+            left: clamp(40px, 6vw, 80px);
+            bottom: clamp(60px, 8vw, 110px);
+            max-width: 560px;
+            text-align: left;
             color: #fff;
         }
-        .mobile-sub-link {
-            padding-left: 36px !important;
-            font-size: 13px !important;
-            opacity: 0.75;
+        .full-media__media, .full-media__media .ph-box {
+            position: absolute; inset: 0;
         }
+        .full-media__caption {
+            position: absolute; bottom: 60px; left: 0; right: 0;
+            text-align: center; color: #fff;
+            padding: 0 40px;
+        }
+        .full-media__caption h2 {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 300;
+            line-height: 1.15;
+            margin-bottom: 14px;
+        }
+        .full-media__caption p {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 18px;
+            color: rgba(255,255,255,0.85);
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        /* ============ COLLECTIONS GRID (3-column) ============ */
+        .collections {
+            padding: clamp(60px, 10vw, 140px) 40px;
+            background: var(--paper-warm);
+            text-align: center;
+        }
+        .collections__header {
+            margin-bottom: clamp(40px, 6vw, 80px);
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .collections__eyebrow {
+            font-family: var(--sans);
+            font-size: 15px;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 7px;
+        }
+        .collections__title {
+            font-family: var(--sans);
+            font-size: clamp(1.8rem, 3.5vw, 3rem);
+            font-weight: 200;
+            letter-spacing: -0.01em;
+            line-height: 1.15;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 22px;
+        }
+        .collections__lede {
+            font-family: var(--sans);
+            font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+            font-weight: 300;
+            line-height: 1.7;
+            color: var(--ink-muted);
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        .pricing-block {
+            max-width: 980px;
+            margin: clamp(50px, 7vw, 90px) auto 0;
+            padding: 0 20px;
+            text-align: left;
+        }
+        .pricing-block__heading {
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin: 0 0 18px 0;
+            text-align: center;
+        }
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+        .pricing-table th,
+        .pricing-table td {
+            padding: 14px 12px;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            font-family: var(--sans);
+            font-size: 13px;
+            color: var(--ink);
+            text-align: left;
+        }
+        .pricing-table th {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--ink-muted);
+        }
+        .pricing-table td.sku {
+            font-weight: 600;
+            letter-spacing: 0.06em;
+        }
+        .pricing-table td.price {
+            font-family: var(--serif);
+            font-size: 1rem;
+            text-align: right;
+            white-space: nowrap;
+        }
+        .pricing-table th.price-h { text-align: right; }
+        @media (max-width: 600px) {
+            .pricing-table th, .pricing-table td { padding: 12px 6px; font-size: 12px; }
+            .pricing-table td.price { font-size: 0.95rem; }
+        }
+        .collections__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .collection-card {
+            text-align: center;
+        }
+        .collection-card__media {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            background: #ede8df;
+            margin-bottom: 22px;
+        }
+        .collection-card__media .ph-box { position: absolute; inset: 0; }
+        .collection-card__name {
+            font-family: var(--sans);
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+        .collection-card__sku {
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+        .collection-card__specs {
+            font-family: var(--sans);
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--ink);
+            letter-spacing: 0.02em;
+            margin-bottom: 5px;
+        }
+        .collection-card__price {
+            font-family: var(--serif);
+            font-size: 1rem;
+            color: var(--ink);
+            margin-bottom: 14px;
+        }
+        .collection-card__cta {
+            font-family: var(--sans);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--ink-muted);
+            border-bottom: 1px solid currentColor;
+            padding-bottom: 3px;
+        }
+
+        /* ============ HERITAGE / QUOTE SEGMENT ============ */
+        .heritage {
+            padding: clamp(80px, 12vw, 160px) 40px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .heritage__quote {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+            line-height: 1.4;
+            color: var(--ink);
+            margin-bottom: 32px;
+        }
+        .heritage__attribution {
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        /* ============ JOURNAL / NEWS GRID ============ */
+        .journal {
+            padding: clamp(60px, 10vw, 120px) 40px;
+            border-top: 1px solid var(--rule);
+        }
+        .journal__header {
+            text-align: center;
+            margin-bottom: clamp(40px, 6vw, 70px);
+        }
+        .journal__header h2 {
+            font-family: var(--serif);
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            font-weight: 300;
+            color: var(--ink);
+        }
+        .journal__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .journal-card__media {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            margin-bottom: 20px;
+            background: #ede8df;
+        }
+        .journal-card__media .ph-box { position: absolute; inset: 0; }
+        .journal-card__date {
+            font-family: var(--sans);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--ink-muted);
+            margin-bottom: 10px;
+        }
+        .journal-card__title {
+            font-family: var(--serif);
+            font-size: 1.4rem;
+            font-weight: 400;
+            line-height: 1.3;
+            color: var(--ink);
+            margin-bottom: 12px;
+        }
+        .journal-card__excerpt {
+            font-family: var(--serif);
+            font-size: 15px;
+            color: var(--ink-soft);
+            line-height: 1.7;
+        }
+
+        /* ============ FAMILY CAROUSEL — horizontal-scroll product family ============ */
+        .family {
+            padding: clamp(60px, 10vw, 120px) 0;
+            background: #ffffff;
+            color: var(--ink);
+            overflow: hidden;
+        }
+        .family__header {
+            text-align: center;
+            margin-bottom: clamp(40px, 6vw, 70px);
+            padding: 0 40px;
+        }
+        .family__eyebrow {
+            font-family: var(--sans);
+            font-size: 15px;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 7px;
+        }
+        .family__title {
+            font-family: var(--sans);
+            font-size: clamp(1.8rem, 3.5vw, 3rem);
+            font-weight: 200;
+            letter-spacing: -0.01em;
+            line-height: 1.15;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+        .family__viewport {
+            position: relative;
+        }
+        .family__scroll {
+            display: flex;
+            gap: 2px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x proximity;
+            scroll-behavior: smooth;
+            padding: 10px clamp(20px, 6vw, 80px) 36px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(0,0,0,0.18) transparent;
+        }
+        .family__scroll::-webkit-scrollbar { height: 4px; }
+        .family__scroll::-webkit-scrollbar-track { background: transparent; }
+        .family__scroll::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.18); border-radius: 2px; }
+        /* One main card + clear peek of next — Patek pattern. Arrows live in the gap between them. */
+        .family-card {
+            flex: 0 0 700px;
+            scroll-snap-align: start;
+            text-align: center;
+            cursor: pointer;
+            transition: flex-basis 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .family-card.is-expanded { flex: 0 0 1000px; }
         @media (max-width: 900px) {
-            .dropdown-submenu {
-                position: static;
-                border: none;
-                padding: 0;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                background: rgba(255,255,255,0.03);
-                min-width: auto;
+            .family-card { flex: 0 0 100vw; }
+            .family-card.is-expanded { flex: 0 0 100vw; }
+            .family__scroll { padding-left: 0; padding-right: 0; }
+        }
+        .family__nav {
+            position: absolute;
+            top: calc(50% - 40px);
+            transform: translateY(-50%);
+            z-index: 5;
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.92);
+            border: 1px solid rgba(0,0,0,0.08);
+            box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+            color: var(--ink);
+            font-size: 22px;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s, transform 0.2s;
+            opacity: 0.92;
+        }
+        .family__nav:hover { opacity: 1; transform: translateY(-50%) scale(1.06); }
+        .family__nav:disabled { opacity: 0.25; cursor: default; }
+        /* Place arrows in the gap that appears between the main card and the peek card.
+           Right arrow sits roughly at the right edge of the main card. */
+        .family__nav--prev { left: clamp(8px, 2vw, 28px); }
+        .family__nav--next { right: clamp(8px, 2vw, 28px); }
+        @media (max-width: 640px) {
+            .family__nav { width: 42px; height: 42px; font-size: 18px; }
+        }
+        .family-card__media {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            background: #ffffff;
+            margin-bottom: 18px;
+        }
+        .family-card__media img,
+        .family-card__media .ph-box {
+            position: absolute;
+            inset: 3%;
+            width: 94%;
+            height: 94%;
+            object-fit: contain;
+        }
+        .family-card__name {
+            font-family: var(--serif);
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--ink);
+            margin-bottom: 6px;
+        }
+        .family-card__sub {
+            font-family: var(--sans);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--ink-muted);
+        }
+        .family__cta-wrap {
+            text-align: center;
+            margin-top: clamp(40px, 6vw, 60px);
+            padding: 0 40px;
+        }
+        .family__cta {
+            display: inline-block;
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--ink-muted);
+            border-bottom: 1px solid currentColor;
+            padding-bottom: 4px;
+            text-decoration: none;
+            transition: color 0.3s, border-color 0.3s;
+        }
+        .family__cta:hover { color: var(--accent); border-color: var(--accent); }
+
+        /* ============ NEWSLETTER ============ */
+        .newsletter {
+            padding: clamp(60px, 10vw, 120px) 40px;
+            background: #0d0d0d;
+            color: #fff;
+            text-align: center;
+        }
+        .newsletter h2 {
+            font-family: var(--serif);
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-weight: 300;
+            margin-bottom: 18px;
+        }
+        .newsletter p {
+            font-family: var(--serif);
+            font-size: 17px;
+            color: rgba(255,255,255,0.7);
+            max-width: 540px;
+            margin: 0 auto 32px;
+        }
+        .newsletter form {
+            display: flex;
+            max-width: 480px;
+            margin: 0 auto;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+        .newsletter input {
+            flex: 1;
+            background: transparent;
+            border: 0;
+            padding: 14px 0;
+            color: #fff;
+            font-family: var(--serif);
+            font-size: 17px;
+            outline: 0;
+        }
+        .newsletter input::placeholder { color: rgba(255,255,255,0.5); }
+        .newsletter button {
+            background: transparent;
+            border: 0;
+            color: #fff;
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            padding: 14px 8px;
+            cursor: pointer;
+        }
+
+        /* ============ FOOTER ============ */
+        .site-footer {
+            background: #0d0d0d;
+            color: #777;
+            padding: 60px 40px 40px;
+            font-family: var(--sans);
+            font-size: 12px;
+        }
+        .site-footer__grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        .site-footer__col h4 {
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 18px;
+        }
+        .site-footer__col a {
+            display: block;
+            color: #aaa;
+            padding: 4px 0;
+            font-size: 13px;
+        }
+        .site-footer__col a:hover { color: #fff; }
+        .site-footer__bottom {
+            border-top: 1px solid #1f1f1f;
+            padding-top: 30px;
+            text-align: center;
+            color: #555;
+            font-size: 11px;
+            letter-spacing: 0.15em;
+        }
+        .site-footer__bottom .logo {
+            font-family: var(--sans);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 900px) {
+            .segment { grid-template-columns: 1fr; gap: 32px; padding: 30px 20px; }
+            .segment--reverse .segment__media { order: 0; }
+            .segment__media, .segment--reverse .segment__media { justify-self: center; }
+            .segment__content, .segment--reverse .segment__content {
+                justify-self: center;
+                max-width: 560px;
+                text-align: center;
             }
-            .dropdown-submenu a {
-                padding-left: 40px;
-                font-size: 11px;
-            }
-            .dropdown-nested > a::after {
-                transform: rotate(90deg);
-            }
+            .segment__media { aspect-ratio: 4/5; max-width: 420px; }
+            /* Design Philosophy override is irrelevant once stacked — revert to default segment grid */
+            #segment-philosophy { max-width: 100%; grid-template-columns: 1fr; }
+            #segment-philosophy .segment__media { max-width: 420px; }
+            .collections__grid { grid-template-columns: 1fr; gap: 50px; }
+            .journal__grid { grid-template-columns: 1fr; gap: 50px; }
+            .site-footer__grid { grid-template-columns: repeat(2, 1fr); }
+            .site-header { padding: 14px 20px; }
+            .hero__content { bottom: 50px; }
+        }
+        @media (max-width: 520px) {
+            .site-footer__grid { grid-template-columns: 1fr; }
+            .site-header__menu, .site-header__right { display: none; }
+            .site-header { justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ==================== HEADER ==================== -->
+    <!-- ============================================================
+         HEADER — fixed, blurred, brand logo centered
+         ============================================================ -->
     <header class="site-header">
-        <div class="header-inner">
-            <div class="header-left-group">
-                <button class="mobile-nav-toggle" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
-                <span class="menu-label" onclick="toggleMobileNav()">Menu</span>
-                <button class="header-icon-btn header-search-btn" aria-label="Search">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                </button>
-            </div>
-            <a href="index.html" class="logo">Bez Ambar</a>
-            <div class="header-right-group">
-                <a href="contact.html" class="header-contact-link">Contact Us</a>
-                <a href="#" class="header-icon-btn" aria-label="Wishlist">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                </a>
-                <a href="#" class="header-icon-btn" aria-label="Account">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                </a>
-            </div>
-            <div class="mobile-nav-overlay" id="mobileNav">
-                <a href="collection.html">Collection</a>
-                <span class="mobile-cat-label">Categories</span>
-                <a href="collection.html" class="mobile-cat-link">All Jewelry</a>
-                <a href="collection.html?cat=rings" class="mobile-cat-link">Rings</a>
-                <a href="collection.html?cat=engagement-rings" class="mobile-cat-link mobile-sub-link">Engagement Rings</a>
-                <a href="collection.html?cat=wedding-bands" class="mobile-cat-link mobile-sub-link">Wedding Bands</a>
-                <a href="collection.html?cat=mens-wedding-bands" class="mobile-cat-link mobile-sub-link">Men's Wedding Bands</a>
-                <a href="collection.html?cat=pendants" class="mobile-cat-link">Pendants</a>
-                <a href="collection.html?cat=necklaces" class="mobile-cat-link">Necklaces</a>
-                <a href="collection.html?cat=earrings" class="mobile-cat-link">Earrings</a>
-                <a href="collection.html?cat=stud-earrings" class="mobile-cat-link mobile-sub-link">Stud Earrings</a>
-                <a href="collection.html?cat=hug-earrings" class="mobile-cat-link mobile-sub-link">Hug Earrings</a>
-                <a href="collection.html?cat=hoop-earrings" class="mobile-cat-link mobile-sub-link">Hoop Earrings</a>
-                <a href="collection.html?cat=bracelets" class="mobile-cat-link">Bracelets</a>
-                <a href="video-gallery.html">Video Gallery</a>
-                <a href="our-story.html" class="mobile-cat-label" style="text-decoration:none;">Our Story</a>
-                <a href="about.html" class="mobile-cat-link">The Inventor</a>
-                <a href="the-bez-ambar-story.html" class="mobile-cat-link">The Bez Ambar Story</a>
-                <a href="journal.html" class="mobile-cat-link">Journal</a>
-                <a href="blog.html" class="mobile-cat-link">Blog</a>
-                <a href="diamond-education.html" class="mobile-cat-link">Diamond Education</a>
-                <a href="ring-size-chart.html" class="mobile-cat-link">Ring Size Chart</a>
-                <a href="catalogs.html" class="mobile-cat-link">Catalogs</a>
-                <a href="warranty.html" class="mobile-cat-link">Warranty</a>
-                <a href="press.html" class="mobile-cat-link">Press</a>
-            </div>
-        </div>
+        <div class="site-header__menu">Menu</div>
+        <div class="site-header__logo">Bez Ambar</div>
+        <div class="site-header__right">Contact</div>
     </header>
-    <div class="nav-backdrop" id="navBackdrop"></div>
 
-    <!-- ==================== SECTION 1: Full-Bleed Hero (Video) ==================== -->
-    <section class="hero-section" style="height:70vh;">
-        <img class="hero-bg-img" style="object-position: right 30%;"
-            src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1775199953/Hero_Ruby_and_lady_in_a_galery_i0xns5.jpg"
-            alt="Bez Ambar — Luxury Diamond Jewelry">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <p class="hero-eyebrow">Since 1979 &middot; Los Angeles</p>
-            <h2 style="color:#999; font-size:clamp(32px, 3.5vw, 42px);"><span style="white-space:nowrap">What the Great Houses</span><br><span style="white-space:nowrap">Cannot Make.</span></h2>
-            <p style="font-family:'Montserrat',sans-serif; font-size:0.85rem; color:#888; line-height:1.8; margin-bottom:2rem;">She chose the stone. She chose the setting. We made it exist.</p>
-            <a href="collection.html" class="hero-cta">Explore the Collection</a>
+    <!-- ============================================================
+         HERO STACK — slide-up reveal driven by scroll position
+         The stack is 300vh tall; sticky pin holds the viewport.
+         Heroes 2 and 3 translate up from below as user scrolls.
+         ============================================================ -->
+    <div class="hero-stack" id="hero-stack">
+        <div class="hero-pin">
+            <section class="hero" data-i="0">
+                <div class="hero__media">
+                    <iframe src="https://player.vimeo.com/video/1192444919?background=1&autoplay=1&loop=1&muted=1&controls=0&autopause=0"
+                            allow="autoplay; fullscreen; picture-in-picture"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            title="The Elysian 4k"></iframe>
+                </div>
+                <div class="hero__overlay"></div>
+                <div class="hero__content">
+                    <p class="hero__eyebrow">The Elysian Cut&trade;</p>
+                    <h1 class="hero__headline">A Game of Angles</h1>
+                    <p class="hero__sub">Crown meets pavilion. Stone meets stone. Light becomes a line.</p>
+                </div>
+            </section>
+
+            <section class="hero" data-i="1">
+                <div class="hero__media">
+                    <iframe src="https://player.vimeo.com/video/1193154076?background=1&autoplay=1&loop=1&muted=1&controls=0&autopause=0&playsinline=1"
+                            allow="autoplay; fullscreen; picture-in-picture"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            title="4k OvalCut Band"></iframe>
+                </div>
+                <div class="hero__overlay"></div>
+                <div class="hero__content">
+                    <p class="hero__eyebrow">The Elysian Oval Band</p>
+                    <h1 class="hero__headline">Worn on the Finger, Worn as Light</h1>
+                    <p class="hero__sub">Every angle catches the next. The line never breaks.</p>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Hidden scroll anchors used by Discover buttons -->
+    <span id="hero-2-anchor" style="position:absolute;top:100vh;"></span>
+
+    <!-- Right-side dot navigator (fixed) -->
+    <div class="hero-dots is-visible" id="hero-dots-nav">
+        <button class="hero-dots__dot is-active" data-i="0" aria-label="Go to film 1" type="button"></button>
+        <button class="hero-dots__dot" data-i="1" aria-label="Go to film 2" type="button"></button>
+    </div>
+
+    <script>
+        (function () {
+            var stack = document.getElementById('hero-stack');
+            var heroes = document.querySelectorAll('.hero-pin .hero');
+            var dotsNav = document.getElementById('hero-dots-nav');
+            var dots = dotsNav.querySelectorAll('.hero-dots__dot');
+            if (!stack || !heroes.length) return;
+
+            var ticking = false;
+            function update() {
+                ticking = false;
+                var rect = stack.getBoundingClientRect();
+                var vh = window.innerHeight;
+                var stackTop = rect.top;       // negative when scrolled past top
+                var stackHeight = rect.height; // total scroll length (300vh)
+                // Progress: 0 when stack top hits viewport top, 1 when stack bottom hits viewport top
+                // The active scroll range is stackHeight - vh (because last vh is the sticky finish)
+                var progress = Math.max(0, Math.min(1, (-stackTop) / (stackHeight - vh)));
+
+                // 2 heroes → progress 0 to 1 drives hero 2 sliding up over hero 1
+                var p2 = Math.max(0, Math.min(1, progress));
+
+                heroes[1].style.transform = 'translateY(' + ((1 - p2) * 100) + '%)';
+
+                // Active dot: 0 for first half, 1 for second half
+                var activeI = progress < 0.5 ? 0 : 1;
+                dots.forEach(function (d, idx) { d.classList.toggle('is-active', idx === activeI); });
+            }
+
+            function onScroll() {
+                if (!ticking) {
+                    requestAnimationFrame(update);
+                    ticking = true;
+                }
+            }
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onScroll);
+            update();
+
+            // Dot click → jump scroll to that point in the stack
+            dots.forEach(function (d) {
+                d.addEventListener('click', function () {
+                    var i = +d.dataset.i;
+                    var rect = stack.getBoundingClientRect();
+                    var stackTopAbsolute = window.scrollY + rect.top;
+                    var stackScrollable = stack.offsetHeight - window.innerHeight;
+                    // 2 heroes: i=0 → progress 0; i=1 → progress 1.0
+                    var targetProgress = i;
+                    var targetY = stackTopAbsolute + (stackScrollable * targetProgress);
+                    window.scrollTo({ top: targetY, behavior: 'smooth' });
+                });
+            });
+
+            // Hide dots when user scrolls past the hero stack
+            var sentinel = document.createElement('div');
+            sentinel.style.position = 'absolute';
+            sentinel.style.bottom = '0';
+            sentinel.style.height = '1px';
+            sentinel.style.width = '100%';
+            stack.appendChild(sentinel);
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    // hide when sentinel goes ABOVE viewport (user scrolled past stack)
+                    dotsNav.classList.toggle('is-visible', e.boundingClientRect.top > 0);
+                });
+            }, { threshold: 0 });
+            io.observe(sentinel);
+        })();
+    </script>
+
+    <!-- ============================================================
+         ELYSIAN CUT — copy LEFT, image RIGHT (reverse) — position 1
+         ============================================================ -->
+    <section class="segment segment--reverse" id="segment-elysian">
+        <div class="segment__media">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1400/v1779074065/Elysian_cut_oval_qcdt5r.jpg"
+                 alt="The Elysian Cut™ — oval step cut" loading="lazy">
+        </div>
+        <div class="segment__content">
+            <p class="segment__eyebrow">The Elysian Cut&trade;</p>
+            <h2 class="segment__title">An Old Idea, Brought to Life</h2>
+            <p class="segment__body">The Elysian Cut&trade; is not a new shape. It is an old idea &mdash; the step cut, centuries in the making &mdash; reborn in the oval and the pear. The art is in the angles: the relationship between crown and pavilion is a game of angles, and when those angles are right, the cut comes alive. The skill is in selecting the rough that can support them.</p>
+            <p class="segment__body">The goal is never a single stone. The goal is a line of brilliance &mdash; calibrated stone to stone, until light travels as one continuous line around the finger, the wrist, the neck.</p>
+            <a href="/page/elysian-cut" class="segment__cta">Explore the Elysian Cut&trade;</a>
         </div>
     </section>
 
-    <!-- ==================== SECTION 2: Explore by Category ==================== -->
-    <section class="cat-section">
-        <h2>Explore by Category</h2>
-        <div class="cat-grid">
-            <a href="collection.html?cat=engagement-rings" class="cat-card">
-                <div class="cat-card-img">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/v1775110725/Pargon_Ring_2_smllwa.jpg" alt="Engagement Rings">
-                </div>
-                <p class="cat-card-name">Engagement Rings</p>
-            </a>
-            <a href="collection.html?cat=wedding-bands" class="cat-card">
-                <div class="cat-card-img">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1775548403/C0723_Oval_Eternity_Band_awpedb.jpg" alt="Wedding Bands">
-                </div>
-                <p class="cat-card-name">Wedding Bands</p>
-            </a>
-            <a href="collection.html?cat=earrings" class="cat-card">
-                <div class="cat-card-img">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1775549202/C0625_Baguette_band_Master_e4azkj.jpg" alt="Earrings">
-                </div>
-                <p class="cat-card-name">Earrings</p>
-            </a>
-            <a href="collection.html?cat=pendants" class="cat-card">
-                <div class="cat-card-img">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2018/02/marquise-diamond-pendant-elizabet-collection-4ESR10.jpg" alt="Pendants">
-                </div>
-                <p class="cat-card-name">Pendants</p>
-            </a>
-            <a href="collection.html?cat=necklaces" class="cat-card">
-                <div class="cat-card-img">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2018/04/emerald-cut-diamond-necklace-gemstone-eternity.jpg" alt="Necklaces">
-                </div>
-                <p class="cat-card-name">Necklaces</p>
-            </a>
-            <a href="collection.html?cat=bracelets" class="cat-card">
-                <div class="cat-card-img">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2014/05/Delice-Brascelet-and-Necklace.jpg" alt="Bracelets">
-                </div>
-                <p class="cat-card-name">Bracelets</p>
-            </a>
-            <a href="collection.html?cat=mens-wedding-bands" class="cat-card">
-                <div class="cat-card-img">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2014/09/18K-White-Gold-Mens-Wedding-Band-The-Helm.jpg" alt="Men's Wedding Bands">
-                </div>
-                <p class="cat-card-name">Men's Wedding Bands</p>
-            </a>
-            <a href="video-gallery.html" class="cat-card">
-                <div class="cat-card-img">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2020/11/Woman-Image-20-carat-emerald-cut-diamond.jpg" alt="Bespoke">
-                </div>
-                <p class="cat-card-name">Bespoke Design</p>
-            </a>
+    <!-- ============================================================
+         ATELIER LEGACY — Princess Cut — image LEFT, copy RIGHT — position 2
+         ============================================================ -->
+    <section class="segment" id="segment-1">
+        <div class="segment__media">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1400/v1775786208/Quadrillion_owciyv.jpg"
+                 alt="The Quadrillion — Bez Ambar Princess Cut" loading="lazy">
+        </div>
+        <div class="segment__content">
+            <p class="segment__eyebrow">Atelier Legacy</p>
+            <h2 class="segment__title">From the Princess Cut to the Next Generation of Diamond Designs</h2>
+            <p class="segment__body">Betzalel Ambar is credited as one of the creators of the modern princess cut diamond — a cut that became part of the global language of fine jewelry. Today, that same spirit of invention continues through original diamond designs, sculptural settings, and one-of-one pieces made with precision and restraint. Bez Ambar jewelry is not assembled from fashion trends. It is drawn, engineered, and refined from the stone outward.</p>
+            <a href="/the-bez-ambar-story.html" class="segment__cta">Read the Story</a>
         </div>
     </section>
 
-    <!-- ==================== SECTION 8B: Campaign Hero — Earrings 2 ==================== -->
-    <section class="hero-section light-hero" style="height:80vh;">
-        <img class="hero-bg-img" style="object-position: right center;"
-            src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1775204072/hero_earrings_2_q9puab.jpg"
-            alt="Bez Ambar — Diamond Earrings">
-        <div class="hero-overlay"></div>
-        <div class="hero-content" style="margin-left:auto; margin-right:clamp(40px, 28vw, 400px); text-align:center; margin-top:clamp(40px, 8vw, 100px);">
-            <p class="hero-eyebrow">Your Signature &middot; Your Story</p>
-            <h2><span style="white-space:nowrap">Define Your</span><br><span style="white-space:nowrap">Own Brilliance</span></h2>
-            <a href="collection.html?cat=earrings" class="hero-cta">Discover</a>
+    <!-- ============================================================
+         COLLECTIONS GRID — Elysian Oval Band cards + pricing
+         (moved here to sit directly under the Elysian Cut segment)
+         ============================================================ -->
+    <section class="collections">
+        <div class="collections__header">
+            <p class="collections__eyebrow">Featuring The Elysian Cut&trade; Oval Bands</p>
+            <h2 class="collections__title">The Elysian Oval Band</h2>
+            <p class="collections__lede">A continuous halo of Bez Ambar&rsquo;s signature Elysian Cut&trade; &mdash; an elongated oval-baguette hybrid that captures more light along the finger than any band before it. Handcrafted in Los Angeles.</p>
         </div>
-    </section>
+        <div class="collections__grid">
 
-    <!-- ==================== COMMISSION JOURNEY ==================== -->
-    <section style="background:#0d0d0d; padding:6rem 2rem; border-top:1px solid rgba(255,255,255,0.06); text-align:center;">
-        <div style="max-width:1100px; margin:0 auto;">
-            <p class="eyebrow">The Atelier Experience</p>
-            <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,3rem); font-weight:300; color:#fff; margin-bottom:1rem;">You dream it. <em style="font-style:italic; color:#c5a258;">The master creates it.</em></h2>
-            <p style="font-family:'Montserrat',sans-serif; font-size:0.8rem; color:#888; max-width:600px; margin:0 auto 3.5rem; line-height:1.8;">Every Bez Ambar piece begins with a conversation. No two are alike. Your piece is made in our Los Angeles atelier &mdash; from mine to setting &mdash; by the hands of the master himself.</p>
-            <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:2.5rem; margin-bottom:3rem;">
-                <div><div style="font-family:'Cormorant Garamond',serif; font-size:3.5rem; font-weight:300; color:rgba(197,162,88,0.2); line-height:1; margin-bottom:0.75rem;">01</div><h4 style="font-family:'Montserrat',sans-serif; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:#fff; margin-bottom:0.6rem;">Consultation</h4><p style="font-family:'Montserrat',sans-serif; font-size:0.75rem; color:#888; line-height:1.7;">We learn your story &mdash; the occasion, the person, the vision. In person in Los Angeles, or by private appointment.</p></div>
-                <div><div style="font-family:'Cormorant Garamond',serif; font-size:3.5rem; font-weight:300; color:rgba(197,162,88,0.2); line-height:1; margin-bottom:0.75rem;">02</div><h4 style="font-family:'Montserrat',sans-serif; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:#fff; margin-bottom:0.6rem;">Stone Selection</h4><p style="font-family:'Montserrat',sans-serif; font-size:0.75rem; color:#888; line-height:1.7;">Bez selects candidate stones directly. You see them, understand them, choose the one that speaks to you.</p></div>
-                <div><div style="font-family:'Cormorant Garamond',serif; font-size:3.5rem; font-weight:300; color:rgba(197,162,88,0.2); line-height:1; margin-bottom:0.75rem;">03</div><h4 style="font-family:'Montserrat',sans-serif; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:#fff; margin-bottom:0.6rem;">Creation</h4><p style="font-family:'Montserrat',sans-serif; font-size:0.75rem; color:#888; line-height:1.7;">Your stone is cut, set, and finished by Bez. You receive photos and updates as it comes to life.</p></div>
-                <div><div style="font-family:'Cormorant Garamond',serif; font-size:3.5rem; font-weight:300; color:rgba(197,162,88,0.2); line-height:1; margin-bottom:0.75rem;">04</div><h4 style="font-family:'Montserrat',sans-serif; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:#fff; margin-bottom:0.6rem;">Yours Forever</h4><p style="font-family:'Montserrat',sans-serif; font-size:0.75rem; color:#888; line-height:1.7;">Your finished piece arrives with full documentation of its creation &mdash; made once, for you, by the master of the form.</p></div>
+            <div class="collection-card">
+                <div class="collection-card__media">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1778099929/2ELS-70_dovft0.png" alt="Elysian Oval Band 2ELS-70" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+                </div>
+                <p class="collection-card__sku">2ELS-70</p>
+                <h3 class="collection-card__name">Elysian Oval Band</h3>
+                <p class="collection-card__specs">11.9 ct total</p>
             </div>
-            <a href="contact.html" class="btn btn-secondary">Begin Your Commission</a>
-        </div>
-    </section>
 
-    <!-- ==================== SECTION 3: Campaign Hero — Engagement Rings (Vimeo Video) ==================== -->
-    <section class="campaign-hero" style="background:#0d0d0d; color:#ccc; align-items:flex-start; padding-top:12vh;">
-        <iframe class="vimeo-bg"
-            src="https://player.vimeo.com/video/665421555?badge=0&autopause=0&background=1&autoplay=1&loop=1&muted=1&quality=1080p&player_id=0&app_id=58479"
-            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            title="B2958 - PALFS">
-        </iframe>
-        <div class="hero-overlay"></div>
-        <div class="hero-content" style="color:#ccc; margin-left:4rem; margin-right:auto; text-align:left;">
-            <p class="hero-eyebrow" style="color:#c5a258;">Her Vision &middot; Our Craft</p>
-            <h2 style="color:#ccc; font-size:clamp(32px, 3.5vw, 42px);">She Imagined It.<br>We Made It.</h2>
-            <a href="video-gallery.html" class="hero-cta" style="color:#fff; border-color:#c5a258;">Bespoke Gallery</a>
-        </div>
-    </section>
-
-    <!-- ==================== SECTION 5: Campaign Hero — Earrings ==================== -->
-    <section class="hero-section light-hero" style="height:80vh;">
-        <img class="hero-bg-img" style="object-position: center center;"
-            src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1775202736/Hero_Earrings_lu15zz.jpg"
-            alt="Bez Ambar — Diamond Earrings">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <p class="hero-eyebrow">Brilliance &middot; Redefined</p>
-            <h2><span style="white-space:nowrap">Diamond Earrings</span></h2>
-            <a href="collection.html?cat=earrings" class="hero-cta">Discover</a>
-        </div>
-    </section>
-
-    <!-- ==================== MASTER QUOTE ==================== -->
-    <section style="background:#0a0a0a; padding:7rem 2rem; text-align:center; position:relative; overflow:hidden;">
-        <div style="position:absolute; inset:0; background:radial-gradient(ellipse at 50% 50%, rgba(197,162,88,0.05) 0%, transparent 70%);"></div>
-        <div style="position:relative; max-width:800px; margin:0 auto;">
-            <div style="font-family:'Cormorant Garamond',serif; font-size:7rem; font-weight:300; color:rgba(197,162,88,0.12); line-height:0.5; margin-bottom:1.5rem;">&ldquo;</div>
-            <blockquote style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.4rem,3vw,2.2rem); font-weight:300; font-style:italic; line-height:1.55; color:#fff; margin-bottom:2rem;">The great houses sell prestige. We offer something they cannot &mdash; the hands of the master, and a piece that could not exist anywhere else.</blockquote>
-            <p style="font-family:'Montserrat',sans-serif; font-size:0.6rem; letter-spacing:0.3em; text-transform:uppercase; color:#c5a258;">&mdash; Betzalel Ambar, Founder</p>
-        </div>
-    </section>
-
-    <!-- ==================== CREDENTIALS BAR ==================== -->
-    <section style="background:#111; border-top:1px solid rgba(197,162,88,0.2); border-bottom:1px solid rgba(197,162,88,0.2); padding:2rem 2rem;">
-        <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:center; gap:4rem; flex-wrap:wrap; text-align:center;">
-            <div><span style="display:block; font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:#c5a258;">1982</span><span style="display:block; font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:#888; margin-top:4px;">Princess Cut Invented</span></div>
-            <div><span style="display:block; font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:#c5a258;">6</span><span style="display:block; font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:#888; margin-top:4px;">Patented Innovations</span></div>
-            <div><span style="display:block; font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:#c5a258;">40+</span><span style="display:block; font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:#888; margin-top:4px;">Years of Mastery</span></div>
-            <div><span style="display:block; font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:#c5a258;">1985</span><span style="display:block; font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:#888; margin-top:4px;">DeBeers Award</span></div>
-            <div><span style="display:block; font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:#c5a258;">&#8734;</span><span style="display:block; font-family:'Montserrat',sans-serif; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:#888; margin-top:4px;">Each Piece, One of One</span></div>
-        </div>
-    </section>
-
-    <!-- ==================== THE MASTER STORY ==================== -->
-    <section style="background:#0d0d0d; padding:6rem 4rem; border-top:1px solid rgba(255,255,255,0.05);">
-        <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:center;">
-            <div>
-                <p class="eyebrow">The Master</p>
-                <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:300; line-height:1.15; color:#fff; margin-bottom:1.5rem;">The cut that changed<br><em style="font-style:italic; color:#c5a258;">diamond history</em><br>began in Los Angeles.</h2>
-                <p style="font-family:'Montserrat',sans-serif; font-size:0.8rem; line-height:1.9; color:#888; margin-bottom:1.5rem;">In 1982, Betzalel Ambar unveiled the Quadrillion&reg; &mdash; the square-cut diamond the world would come to know as the Princess Cut. Today it is the most popular diamond cut on earth, found on tens of millions of engagement rings worldwide.</p>
-                <p style="font-family:'Montserrat',sans-serif; font-size:0.8rem; line-height:1.9; color:#888; margin-bottom:2rem;">Bez never stopped innovating. The Blaze&reg; cut. The Divine Cut&reg;. The Micro-Pav&eacute; setting. Six patented innovations, each one changing the industry. He is still here &mdash; still cutting, still creating &mdash; one piece at a time, by hand, in his Los Angeles atelier.</p>
-                <a href="about.html" class="btn btn-secondary">Discover the Story</a>
+            <div class="collection-card">
+                <div class="collection-card__media">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1778099931/2ELS-50_gydi1e.png" alt="Elysian Oval Band 2ELS-50" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+                </div>
+                <p class="collection-card__sku">2ELS-50</p>
+                <h3 class="collection-card__name">Elysian Oval Band</h3>
+                <p class="collection-card__specs">9.9 ct total</p>
             </div>
-            <div style="position:relative; aspect-ratio:3/4; background:#111; overflow:hidden;">
-                <div style="padding:125% 0 0 0;position:relative;">
-                    <iframe src="https://player.vimeo.com/video/1181407527?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="B3978 - ATW (Copy)"></iframe>
+
+            <div class="collection-card">
+                <div class="collection-card__media">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1778099929/2ELS-25_n7nkk4.png" alt="Elysian Oval Band 2ELS-25" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
                 </div>
-                <script src="https://player.vimeo.com/api/player.js"></script>
+                <p class="collection-card__sku">2ELS-25</p>
+                <h3 class="collection-card__name">Elysian Oval Band</h3>
+                <p class="collection-card__specs">5.5 ct total</p>
             </div>
+
+        </div>
+
+        <div class="pricing-block">
+            <p class="pricing-block__heading">Available in Eight Sizes &mdash; Full Eternity &amp; Halfway</p>
+            <p style="font-family: var(--serif); font-style: italic; font-size: clamp(1.05rem, 1.4vw, 1.25rem); color: var(--ink); text-align: center; max-width: 640px; margin: 0 auto 28px;">Each band is built to order from calibrated Elysian Cut&trade; ovals. Pricing and current availability on request.</p>
+            <p style="text-align: center; margin: 0;">
+                <a href="mailto:info@bezambar.com?subject=Elysian%20Oval%20Band%20%E2%80%94%20Pricing%20%26%20Availability" class="family__cta">Inquire for Pricing &amp; Availability</a>
+            </p>
         </div>
     </section>
 
-
-    
-
-    <!-- ==================== SECTION 4: Featured Rings (Product Row) ==================== -->
-    <section class="product-section">
-        <p class="section-eyebrow">New</p>
-        <h2>Signature Engagement Rings</h2>
-        <div class="product-grid">
-            <a href="product.html?id=5-carat-emerald-cut-engagement-ring" class="prod-card">
-                <div class="prod-card-img">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2019/08/5-carat-emerald-cut-engagement-ring-christina-ring.jpg" alt="Christina Emerald Cut Ring">
-                    <div class="prod-card-overlay">
-                        <p class="prod-card-name">Christina Emerald Cut Ring</p>
-                        <p class="prod-card-price">Price Upon Request</p>
-                    </div>
-                    <svg class="prod-card-wishlist" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/></svg>
-                </div>
-            </a>
-            <a href="product.html?id=1-carat-diamond-engagement-ring-french-paloma" class="prod-card">
-                <div class="prod-card-img">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2017/08/1-Carat-Diamond-Engagement-Ring-French-Paloma-white.jpg" alt="French Paloma">
-                    <div class="prod-card-overlay">
-                        <p class="prod-card-name">French Paloma</p>
-                        <p class="prod-card-price">$4,960</p>
-                    </div>
-                    <svg class="prod-card-wishlist" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/></svg>
-                </div>
-            </a>
-            <a href="product.html?id=coronado-split-shank-engagement-ring-rose-gold" class="prod-card">
-                <div class="prod-card-img">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2017/09/coronado-split-shank-engagement-ring-rose-gold-iso.jpg" alt="Coronado Split Shank">
-                    <div class="prod-card-overlay">
-                        <p class="prod-card-name">Coronado Split Shank</p>
-                        <p class="prod-card-price">$5,500</p>
-                    </div>
-                    <svg class="prod-card-wishlist" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/></svg>
-                </div>
-            </a>
-            <a href="product.html?id=bouquet-of-light-oval-diamond-engagement-ring" class="prod-card">
-                <div class="prod-card-img">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2014/12/bouquet-of-light-oval-diamond-center-engagement-ring-1bol-ov.jpg" alt="Bouquet of Light">
-                    <div class="prod-card-overlay">
-                        <p class="prod-card-name">Bouquet of Light</p>
-                        <p class="prod-card-price">$6,200</p>
-                    </div>
-                    <svg class="prod-card-wishlist" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/></svg>
-                </div>
-            </a>
+    <!-- ============================================================
+         DESIGN PHILOSOPHY — copy LEFT, image RIGHT (reverse) — position 4 (after bands, before cinematic)
+         ============================================================ -->
+    <section class="segment segment--reverse" id="segment-philosophy">
+        <div class="segment__media">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1600/v1779133281/elysian-on-hand_sjn5ys.jpg"
+                 alt="Elysian Oval Band on hand" loading="lazy">
         </div>
-        <a href="collection.html?cat=engagement-rings" class="section-cta">Discover</a>
-    </section>
-
-    
-
-    <!-- ==================== SECTION 6: Featured Earrings & Pendants ==================== -->
-    <section class="product-section">
-        <p class="section-eyebrow">Earrings &amp; Pendants</p>
-        <h2>Statement Pieces</h2>
-        <div class="product-grid">
-            <a href="product.html?id=blaze-and-baguette-cut-amethyst-eternity-hoop-earrings" class="prod-card">
-                <div class="prod-card-img">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2017/05/aquamarine-colored-hoop-earrings.jpg" alt="Aquamarine Hoop Earrings">
-                    <div class="prod-card-overlay">
-                        <p class="prod-card-name">Aquamarine Hoop Earrings</p>
-                        <p class="prod-card-price">$4,800</p>
-                    </div>
-                    <svg class="prod-card-wishlist" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/></svg>
-                </div>
-            </a>
-            <a href="product.html?id=5-carat-diamond-radiant-pendant" class="prod-card">
-                <div class="prod-card-img">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2018/03/5-carat-diamond-radiant-pendant.jpg" alt="Radiant Diamond Pendant">
-                    <div class="prod-card-overlay">
-                        <p class="prod-card-name">Radiant Diamond Pendant</p>
-                        <p class="prod-card-price">Price Upon Request</p>
-                    </div>
-                    <svg class="prod-card-wishlist" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/></svg>
-                </div>
-            </a>
-            <a href="product.html?id=jackets-of-fire-sapphire-stud-earrings" class="prod-card">
-                <div class="prod-card-img">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2017/06/Jackets-of-Fire-Sapphire-Stud-Earrings.jpg" alt="Jackets of Fire Sapphire Studs">
-                    <div class="prod-card-overlay">
-                        <p class="prod-card-name">Jackets of Fire Sapphire Studs</p>
-                        <p class="prod-card-price">$5,900</p>
-                    </div>
-                    <svg class="prod-card-wishlist" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/></svg>
-                </div>
-            </a>
-            <a href="product.html?id=baguettes-drop-earrings" class="prod-card">
-                <div class="prod-card-img">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2018/11/Baguettes-Drop-earrings.jpg" alt="Baguette Drop Earrings">
-                    <div class="prod-card-overlay">
-                        <p class="prod-card-name">Baguette Drop Earrings</p>
-                        <p class="prod-card-price">Price Upon Request</p>
-                    </div>
-                    <svg class="prod-card-wishlist" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/></svg>
-                </div>
-            </a>
-        </div>
-        <a href="collection.html?cat=earrings" class="section-cta">Discover Earrings</a>
-    </section>
-
-    <!-- ==================== SIGNATURE CUTS ==================== -->
-    <section style="background:#0d0d0d; padding:5rem 2rem; border-top:1px solid rgba(255,255,255,0.06);">
-        <div style="max-width:1200px; margin:0 auto; text-align:center;">
-            <p class="eyebrow">Patented Innovations</p>
-            <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,3rem); font-weight:300; color:#fff; margin-bottom:1rem;">Cuts that exist <em style="font-style:italic; color:#c5a258;">nowhere else</em> in the world.</h2>
-            <p style="font-family:'Montserrat',sans-serif; font-size:0.8rem; color:#888; margin-bottom:3.5rem; letter-spacing:0.05em;">Protected by patent. Made only in our Los Angeles atelier.</p>
-            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px;">
-                <div style="background:#111; padding:3rem 2rem;">
-                    <p style="font-family:'Montserrat',sans-serif; font-size:0.55rem; letter-spacing:0.25em; text-transform:uppercase; color:#c5a258; margin-bottom:0.75rem;">Patented &middot; 1982</p>
-                    <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:300; color:#fff; margin-bottom:1rem;">Quadrillion&reg;</h3>
-                    <p style="font-family:'Montserrat',sans-serif; font-size:0.78rem; line-height:1.8; color:#888;">The original Princess Cut. Bez Ambar's most celebrated innovation &mdash; a square brilliant cut whose geometry ignited a global revolution in diamond design.</p>
-                </div>
-                <div style="background:#111; padding:3rem 2rem;">
-                    <p style="font-family:'Montserrat',sans-serif; font-size:0.55rem; letter-spacing:0.25em; text-transform:uppercase; color:#c5a258; margin-bottom:0.75rem;">Patented &middot; 2003</p>
-                    <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:300; color:#fff; margin-bottom:1rem;">Blaze&reg; Cut</h3>
-                    <p style="font-family:'Montserrat',sans-serif; font-size:0.78rem; line-height:1.8; color:#888;">A proprietary diamond frame cut that expands the apparent size of a center stone while intensifying its fire. No other cutter in the world can produce this effect.</p>
-                </div>
-                <div style="background:#111; padding:3rem 2rem;">
-                    <p style="font-family:'Montserrat',sans-serif; font-size:0.55rem; letter-spacing:0.25em; text-transform:uppercase; color:#c5a258; margin-bottom:0.75rem;">Patented &middot; 2015</p>
-                    <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:300; color:#fff; margin-bottom:1rem;">Divine Cut&reg;</h3>
-                    <p style="font-family:'Montserrat',sans-serif; font-size:0.78rem; line-height:1.8; color:#888;">A round brilliant reimagined. Additional facets engineered for maximum dispersion &mdash; the diamond's fire visible from across a room. Bez Ambar's most recent patent.</p>
-                </div>
-            </div>
+        <div class="segment__content">
+            <p class="segment__eyebrow">Design Philosophy</p>
+            <h2 class="segment__title">Built Like Architecture. Worn Like Emotion.</h2>
+            <p class="segment__body">Every Bez Ambar piece begins with balance: the line of the stone, the rhythm of the diamonds, the way light travels across the surface. The goal is not decoration for decoration&rsquo;s sake, but jewelry with structure, presence, and permanence. Each design is made to feel modern now and inevitable years from now.</p>
+            <a href="#" class="segment__cta">Explore the Atelier</a>
         </div>
     </section>
 
-    <!-- ==================== SECTION 7: Campaign Hero — The Inventor (Video) ==================== -->
-    <section class="campaign-hero" style="min-height: 75vh; background:#0d0d0d;">
-        <iframe class="vimeo-bg"
-            src="https://player.vimeo.com/video/662815795?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&loop=1&background=1&muted=1"
-            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            title="B7863 - 1C3S">
-        </iframe>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <p class="hero-eyebrow">Since 1979 &middot; Los Angeles</p>
-            <h2>The Inventor of the<br>Blaze Cut&reg;</h2>
-            <a href="about.html" class="hero-cta">Discover the Story</a>
+    <!-- ============================================================
+         CINEMATIC STACK — 2-pane scroll-pinned slide-up reveal
+         (same pattern as the top hero stack)
+         ============================================================ -->
+    <div class="cinematic-stack" id="cinematic-stack">
+        <div class="cinematic-pin">
+
+            <section class="cinematic" data-i="0">
+                <div class="cinematic__media">
+                    <iframe src="https://player.vimeo.com/video/1193140625?background=1&autoplay=1&loop=1&muted=1&controls=0&autopause=0&playsinline=1"
+                            allow="autoplay; fullscreen; picture-in-picture"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            title="The Elysian Pear — Coming Soon"></iframe>
+                </div>
+                <div class="cinematic__overlay"></div>
+                <div class="cinematic__content">
+                    <p class="hero__eyebrow">Coming Soon</p>
+                    <h1 class="hero__headline">The Elysian Pear</h1>
+                    <p class="hero__sub">A teardrop, reborn &mdash; the next chapter in the line of brilliance.</p>
+                </div>
+            </section>
+
+            <section class="cinematic" data-i="1">
+                <div class="cinematic__media">
+                    <iframe src="https://player.vimeo.com/video/1193149437?background=1&autoplay=1&loop=1&muted=1&controls=0&autopause=0&playsinline=1"
+                            allow="autoplay; fullscreen; picture-in-picture"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            title="The Elysian Pear Band"></iframe>
+                </div>
+                <div class="cinematic__overlay"></div>
+                <div class="cinematic__content">
+                    <p class="hero__eyebrow">The Elysian Pear Band</p>
+                    <h1 class="hero__headline">Pear Cut. Continuous Line.</h1>
+                    <p class="hero__sub">Each teardrop calibrated to the next, until light becomes the band itself.</p>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Dot navigator for cinematic stack (visible only while in section) -->
+        <div class="cinematic-dots" id="cinematic-dots">
+            <button class="hero-dots__dot is-active" data-i="0" aria-label="Coming soon — Elysian Pear" type="button"></button>
+            <button class="hero-dots__dot" data-i="1" aria-label="The Elysian Pear Band" type="button"></button>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         HERITAGE QUOTE — centered, no image, brand statement (moved to after cinematic)
+         ============================================================ -->
+    <section class="heritage">
+        <p class="heritage__quote">&ldquo;The cutter doesn&rsquo;t shape the stone. He sculpts the light inside it.&rdquo;</p>
+        <p class="heritage__attribution">— Bez Ambar</p>
+    </section>
+
+    <!-- ============================================================
+         FAMILY CAROUSEL — horizontal-scroll product family (6 cards)
+         [PLACEHOLDER IMAGES — replace each .ph-box with <img> + filename label]
+         ============================================================ -->
+    <section class="family">
+        <div class="family__header">
+            <p class="family__eyebrow">Discover</p>
+            <h2 class="family__title">The Family of the Elysian Cuts</h2>
+        </div>
+        <div class="family__viewport">
+        <button class="family__nav family__nav--prev" id="family-prev" aria-label="Previous">&larr;</button>
+        <button class="family__nav family__nav--next" id="family-next" aria-label="Next">&rarr;</button>
+        <div class="family__scroll" id="family-scroll">
+
+            <article class="family-card">
+                <div class="family-card__media">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1779091383/Elysian_cut_pear_sng4kq.jpg" alt="Elysian Cut Pear">
+                </div>
+                <h3 class="family-card__name">Elysian Cut Pear</h3>
+                <p class="family-card__sub">Elysian&nbsp;Cut&nbsp;Pear</p>
+            </article>
+
+            <article class="family-card">
+                <div class="family-card__media">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1779091373/Elysian_cut_octagon_bucoa5.jpg" alt="Elysian Cut Octagon">
+                </div>
+                <h3 class="family-card__name">Elysian Cut Octagon</h3>
+                <p class="family-card__sub">Elysian&nbsp;Cut&nbsp;Octagon</p>
+            </article>
+
+            <article class="family-card">
+                <div class="family-card__media">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1779091372/Elysian_cut_marquise_boraiy.jpg" alt="Elysian Cut Marquise">
+                </div>
+                <h3 class="family-card__name">Elysian Cut Marquise</h3>
+                <p class="family-card__sub">Elysian&nbsp;Cut&nbsp;Marquise</p>
+            </article>
+
+            <article class="family-card">
+                <div class="family-card__media">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1779074065/Elysian_cut_oval_qcdt5r.jpg" alt="Elysian Cut Oval">
+                </div>
+                <h3 class="family-card__name">Elysian Cut Oval</h3>
+                <p class="family-card__sub">Elysian&nbsp;Cut&nbsp;Oval</p>
+            </article>
+
+            <article class="family-card">
+                <div class="family-card__media">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1779091374/Elysian_cut_Hex_ywlwno.jpg" alt="Elysian Cut Hex">
+                </div>
+                <h3 class="family-card__name">Elysian Cut Hex</h3>
+                <p class="family-card__sub">Elysian&nbsp;Cut&nbsp;Hex</p>
+            </article>
+
+            <article class="family-card">
+                <div class="family-card__media">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1779169849/Elysian_cut_triangle.282_w8c4ki.avif" alt="Elysian Cut Triangle">
+                </div>
+                <h3 class="family-card__name">Elysian Cut Triangle</h3>
+                <p class="family-card__sub">Elysian&nbsp;Cut&nbsp;Triangle</p>
+            </article>
+
+            <article class="family-card">
+                <div class="family-card__media">
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1779091372/Elysian_cut_emerald_a1l5gv.jpg" alt="Elysian Cut Emerald">
+                </div>
+                <h3 class="family-card__name">Elysian Cut Emerald</h3>
+                <p class="family-card__sub">Elysian&nbsp;Cut&nbsp;Emerald</p>
+            </article>
+
+        </div>
+        </div>
+        <div class="family__cta-wrap">
+            <a href="#" class="family__cta">Explore More &rarr;</a>
         </div>
     </section>
 
-    
-
-    <!-- ==================== SECTION 8: Featured Men's Wedding Bands ==================== -->
-    <section class="product-section">
-        <p class="section-eyebrow">Men</p>
-        <h2>Wedding Bands</h2>
-        <div class="product-grid">
-            <a href="product.html?id=the-helm-18k-white-gold-mens-wedding-band" class="prod-card">
-                <div class="prod-card-img">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2014/09/18K-White-Gold-Mens-Wedding-Band-The-Helm.jpg" alt="The Helm White Gold">
-                    <div class="prod-card-overlay">
-                        <p class="prod-card-name">The Helm — White Gold</p>
-                        <p class="prod-card-price">$3,200</p>
-                    </div>
-                    <svg class="prod-card-wishlist" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/></svg>
-                </div>
-            </a>
-            <a href="product.html?id=the-harvard-gold-8mm-mens-band" class="prod-card">
-                <div class="prod-card-img">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2017/06/The-Havard-gold-8mm-Mens-Band.jpg" alt="The Harvard Gold">
-                    <div class="prod-card-overlay">
-                        <p class="prod-card-name">The Harvard — Gold</p>
-                        <p class="prod-card-price">$2,800</p>
-                    </div>
-                    <svg class="prod-card-wishlist" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/></svg>
-                </div>
-            </a>
-            <a href="product.html?id=two-tone-orbit-wedding-band" class="prod-card">
-                <div class="prod-card-img">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2016/03/Two-Tone-Orbit-Wedding-Band-AR.jpg" alt="Orbit Two-Tone Band">
-                    <div class="prod-card-overlay">
-                        <p class="prod-card-name">Orbit Two-Tone Band</p>
-                        <p class="prod-card-price">$3,500</p>
-                    </div>
-                    <svg class="prod-card-wishlist" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/></svg>
-                </div>
-            </a>
-            <a href="product.html?id=7-row-all-around-black-diamonds-mens-band" class="prod-card">
-                <div class="prod-card-img">
-                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2020/03/7-Row-All-Around-Black-Diamonds-Mens-Band.jpg" alt="Black Diamond Band">
-                    <div class="prod-card-overlay">
-                        <p class="prod-card-name">Black Diamond Band</p>
-                        <p class="prod-card-price">$4,200</p>
-                    </div>
-                    <svg class="prod-card-wishlist" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/></svg>
-                </div>
-            </a>
-        </div>
-        </div>
-        <a href="collection.html?cat=mens-wedding-bands" class="section-cta">Discover Men's</a>
+    <!-- ============================================================
+         NEWSLETTER — single field, dark background
+         ============================================================ -->
+    <section class="newsletter">
+        <h2>Stay in Touch</h2>
+        <p>[One-line newsletter invitation — what subscribers receive.]</p>
+        <form onsubmit="event.preventDefault(); alert('Connect to your email provider');">
+            <input type="email" placeholder="Your email address" required>
+            <button type="submit">Subscribe →</button>
+        </form>
     </section>
 
-
-    
-
-    <!-- ==================== FIND A JEWELER ==================== -->
-    <section style="background:#111; padding:5rem 2rem; text-align:center; border-top:1px solid rgba(255,255,255,0.06);">
-        <div style="max-width:700px; margin:0 auto;">
-            <p class="eyebrow">Authorized Atelier Partners</p>
-            <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(1.8rem,3vw,2.8rem); font-weight:300; color:#fff; margin-bottom:1rem;">Find Bez Ambar <em style="font-style:italic; color:#c5a258;">near you.</em></h2>
-            <p style="font-family:'Montserrat',sans-serif; font-size:0.78rem; color:#888; line-height:1.8; margin-bottom:2.5rem;">Bez Ambar pieces are available through a select network of authorized jewelers who share our commitment to excellence. These partners can also facilitate your custom commission.</p>
-            <a href="contact.html" class="btn btn-secondary" style="margin-right:1rem; margin-bottom:1rem;">Find an Authorized Jeweler</a>
-            <a href="contact.html?subject=retailer" class="btn btn-secondary">Become a Partner</a>
-        </div>
-    </section>
-
-    <!-- ==================== SECTION 9: Services ==================== -->
-    <section class="services-section">
-        <h2>Bez Ambar Services</h2>
-        <p>Bespoke design, personal advisors, and signature presentation with every piece.</p>
-        <div class="services-row">
-            <div class="service-item">
-                <div class="service-icon">
-                    <svg viewBox="0 0 50 50" fill="none"><circle cx="25" cy="25" r="20" stroke="#1a1a1a" stroke-width="0.8"/><path d="M18 25 L23 30 L33 20" stroke="#1a1a1a" stroke-width="1.2" fill="none"/></svg>
-                </div>
-                <h4>Bespoke Design</h4>
-                <p>One-of-a-kind pieces created with you in our LA atelier</p>
-            </div>
-            <div class="service-item">
-                <div class="service-icon">
-                    <svg viewBox="0 0 50 50" fill="none"><rect x="10" y="20" width="30" height="20" rx="2" stroke="#1a1a1a" stroke-width="0.8"/><path d="M10 27 L25 35 L40 27" stroke="#1a1a1a" stroke-width="0.8" fill="none"/><path d="M20 20 L20 14 L30 14 L30 20" stroke="#1a1a1a" stroke-width="0.8" fill="none"/></svg>
-                </div>
-                <h4>Gift Wrapping</h4>
-                <p>Complimentary signature Bez Ambar presentation box</p>
-            </div>
-            <div class="service-item">
-                <div class="service-icon">
-                    <svg viewBox="0 0 50 50" fill="none"><path d="M15 35 L25 15 L35 35" stroke="#1a1a1a" stroke-width="0.8" fill="none"/><line x1="19" y1="28" x2="31" y2="28" stroke="#1a1a1a" stroke-width="0.8"/><circle cx="25" cy="25" r="20" stroke="#1a1a1a" stroke-width="0.4" opacity="0.3"/></svg>
-                </div>
-                <h4>Provenance</h4>
-                <p>Signed certificate of authenticity with every piece</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== FOOTER ==================== -->
+    <!-- ============================================================
+         FOOTER — four columns + brand line
+         ============================================================ -->
     <footer class="site-footer">
-        <div class="footer-inner">
-            <div class="footer-top">
-                <div class="footer-col">
-                    <h4>Explore</h4>
-                    <a href="collection.html">Collection</a>
-                    <a href="our-story.html">Our Story</a>
-                    <a href="about.html">The Inventor</a>
-                    <a href="journal.html">Journal</a>
-                    <a href="blog.html">Blog</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Services</h4>
-                    <a href="contact.html">Bespoke Design</a>
-                    <a href="contact.html">Repairs &amp; Cleaning</a>
-                    <a href="contact.html">Personalization</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Help</h4>
-                    <a href="contact.html">Contact Us</a>
-                    <a href="mailto:bez@bezambar.com">Email Us</a>
-                    <a href="ring-size-chart.html">Ring Size Chart</a>
-                    <a href="diamond-education.html">Diamond Education</a>
-                    <a href="warranty.html">Warranty</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Visit</h4>
-                    <p>611 Wilshire Blvd</p>
-                    <p>Los Angeles, CA 90017</p>
-                    <p style="margin-top:8px;"><a href="mailto:bez@bezambar.com">bez@bezambar.com</a></p>
-                    <p><a href="https://www.bezambar.com" target="_blank">www.bezambar.com</a></p>
-                </div>
+        <div class="site-footer__grid">
+            <div class="site-footer__col">
+                <h4>Discover</h4>
+                <a href="#">The Atelier</a>
+                <a href="#">Heritage</a>
+                <a href="#">Journal</a>
+                <a href="#">Press</a>
             </div>
-            <div class="footer-bottom">
-                <div class="footer-logo">BEZ AMBAR</div>
-                <div class="footer-legal">
-                    &copy; 2026 Bez Ambar Inc. All rights reserved.
-                    &nbsp;&middot;&nbsp;
-                    <a href="#">Privacy Policy</a>
-                    &nbsp;&middot;&nbsp;
-                    <a href="#">Terms</a>
-                </div>
+            <div class="site-footer__col">
+                <h4>Collections</h4>
+                <a href="#">The Elysian Cut™</a>
+                <a href="#">Liquid Carat™</a>
+                <a href="#">Flex Bracelets</a>
+                <a href="#">Archive</a>
             </div>
+            <div class="site-footer__col">
+                <h4>Services</h4>
+                <a href="#">Bespoke Commissions</a>
+                <a href="#">Repairs &amp; Cleaning</a>
+                <a href="#">Ring Size Chart</a>
+                <a href="#">Warranty</a>
+            </div>
+            <div class="site-footer__col">
+                <h4>Visit</h4>
+                <a href="#">611 Wilshire Blvd</a>
+                <a href="#">Los Angeles, CA 90017</a>
+                <a href="mailto:bezambar@bezambar.com">bezambar@bezambar.com</a>
+                <a href="tel:2136299191">(213) 629-9191</a>
+            </div>
+        </div>
+        <div class="site-footer__bottom">
+            <span class="logo">BEZ AMBAR</span>
+            Inventor of the Princess Cut · Since 1979<br>
+            &copy; 2026 Bez Ambar Inc. All rights reserved.
         </div>
     </footer>
 
+    <!-- ============================================================
+         TRACKING — D1 view logger
+         ============================================================ -->
+    <img src="https://galleries.bezambarinc.workers.dev/t?p=bez-ambar-home" style="position:absolute;width:1px;height:1px;opacity:0;" alt="">
+
+    <!-- Family carousel navigation arrows -->
     <script>
-    function toggleMobileNav() {
-        var toggle = document.querySelector('.mobile-nav-toggle');
-        var nav = document.getElementById('mobileNav');
-        var backdrop = document.getElementById('navBackdrop');
-        toggle.classList.toggle('open');
-        nav.classList.toggle('open');
-        backdrop.classList.toggle('open');
-    }
-    function closeMobileNav() {
-        document.querySelector('.mobile-nav-toggle').classList.remove('open');
-        document.getElementById('mobileNav').classList.remove('open');
-        document.getElementById('navBackdrop').classList.remove('open');
-    }
-    document.getElementById('navBackdrop').addEventListener('click', closeMobileNav);
+        (function () {
+            var track = document.getElementById('family-scroll');
+            var prev = document.getElementById('family-prev');
+            var next = document.getElementById('family-next');
+            if (!track || !prev || !next) return;
+            function cardStep() {
+                var card = track.querySelector('.family-card');
+                if (!card) return 320;
+                var gap = parseInt(getComputedStyle(track).columnGap || getComputedStyle(track).gap || 32, 10) || 32;
+                return card.getBoundingClientRect().width + gap;
+            }
+            function syncDisabled() {
+                prev.disabled = track.scrollLeft <= 2;
+                next.disabled = track.scrollLeft >= (track.scrollWidth - track.clientWidth - 2);
+            }
+            prev.addEventListener('click', function () {
+                track.scrollBy({ left: -cardStep(), behavior: 'smooth' });
+            });
+            next.addEventListener('click', function () {
+                track.scrollBy({ left: cardStep(), behavior: 'smooth' });
+            });
+            track.addEventListener('scroll', syncDisabled, { passive: true });
+            window.addEventListener('resize', syncDisabled);
+            // Start at left
+            track.scrollLeft = 0;
+            syncDisabled();
+
+            // Click a card → expand it to 1000px; click again or another card to collapse/swap
+            track.querySelectorAll('.family-card').forEach(function (card) {
+                card.addEventListener('click', function () {
+                    track.querySelectorAll('.family-card.is-expanded').forEach(function (c) {
+                        if (c !== card) c.classList.remove('is-expanded');
+                    });
+                    card.classList.toggle('is-expanded');
+                    if (card.classList.contains('is-expanded')) {
+                        setTimeout(function () {
+                            card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                        }, 50);
+                    }
+                });
+            });
+        })();
     </script>
+
+    <!-- Cinematic stack scroll behavior (must run AFTER cinematic-stack HTML is in DOM) -->
+    <script>
+        (function () {
+            var stack = document.getElementById('cinematic-stack');
+            if (!stack) return;
+            var panes = stack.querySelectorAll('.cinematic');
+            if (panes.length < 2) return;
+            var dotsNav = document.getElementById('cinematic-dots');
+            var dots = dotsNav ? dotsNav.querySelectorAll('.hero-dots__dot') : [];
+
+            var ticking = false;
+            function update() {
+                ticking = false;
+                var rect = stack.getBoundingClientRect();
+                var vh = window.innerHeight;
+                var stackHeight = rect.height;
+                var progress = Math.max(0, Math.min(1, (-rect.top) / (stackHeight - vh)));
+                panes[1].style.transform = 'translateY(' + ((1 - progress) * 100) + '%)';
+
+                // Active dot
+                var activeI = progress < 0.5 ? 0 : 1;
+                dots.forEach(function (d, idx) { d.classList.toggle('is-active', idx === activeI); });
+            }
+            function onScroll() {
+                if (!ticking) { requestAnimationFrame(update); ticking = true; }
+            }
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onScroll);
+            update();
+
+            // Dot click → jump to that pane
+            dots.forEach(function (d) {
+                d.addEventListener('click', function () {
+                    var i = +d.dataset.i;
+                    var rect = stack.getBoundingClientRect();
+                    var stackTopAbs = window.scrollY + rect.top;
+                    var scrollable = stack.offsetHeight - window.innerHeight;
+                    var targetY = stackTopAbs + (scrollable * i);
+                    window.scrollTo({ top: targetY, behavior: 'smooth' });
+                });
+            });
+
+            // Show dots only while cinematic-stack is in viewport
+            if (dotsNav) {
+                var io = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (e) {
+                        dotsNav.classList.toggle('is-visible', e.isIntersecting);
+                    });
+                }, { threshold: 0.05 });
+                io.observe(stack);
+            }
+        })();
+    </script>
+
 </body>
 </html>
