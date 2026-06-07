@@ -80,6 +80,96 @@
             color: var(--ink);
             cursor: pointer;
         }
+        .site-header__menu { user-select: none; }
+        .site-header__menu::before {
+            content: '☰';
+            margin-right: 8px;
+            font-size: 14px;
+            vertical-align: -1px;
+        }
+        .site-header__right a {
+            color: var(--ink);
+            text-decoration: none;
+            font: inherit;
+        }
+        .site-header__right a:hover { color: var(--accent, #c5a258); }
+
+        /* ============ MENU OVERLAY ============ */
+        .menu-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 320px;
+            max-width: 88vw;
+            height: 100vh;
+            background: #fff;
+            border-right: 1px solid var(--rule);
+            z-index: 9999;
+            transform: translateX(-100%);
+            transition: transform .3s ease;
+            overflow-y: auto;
+            padding: 80px 0 40px;
+            box-shadow: 4px 0 24px rgba(0,0,0,.08);
+        }
+        .menu-overlay.is-open { transform: translateX(0); }
+        .menu-overlay__close {
+            position: absolute;
+            top: 18px; right: 20px;
+            background: none;
+            border: 0;
+            font-size: 24px;
+            color: var(--ink);
+            cursor: pointer;
+            line-height: 1;
+            padding: 4px 8px;
+        }
+        .menu-overlay__group {
+            padding: 0 32px 18px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid var(--rule);
+        }
+        .menu-overlay__group:last-child { border-bottom: 0; }
+        .menu-overlay__label {
+            font-family: var(--sans);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--accent, #c5a258);
+            margin: 18px 0 12px;
+            display: block;
+        }
+        .menu-overlay__link {
+            display: block;
+            font-family: var(--sans);
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--ink);
+            text-decoration: none;
+            padding: 8px 0;
+            transition: color .15s;
+        }
+        .menu-overlay__link:hover { color: var(--accent, #c5a258); }
+        .menu-overlay__link--sub {
+            font-size: 13px;
+            color: #666;
+            padding-left: 12px;
+        }
+        .menu-overlay__link--external::after {
+            content: '↗';
+            margin-left: 6px;
+            font-size: 11px;
+            opacity: .6;
+        }
+        .menu-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.4);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .3s, visibility .3s;
+            z-index: 9998;
+        }
+        .menu-backdrop.is-open { opacity: 1; visibility: visible; }
         .site-header__logo {
             font-family: var(--sans);
             font-size: 16px;
@@ -1041,10 +1131,86 @@
          HEADER — fixed, blurred, brand logo centered
          ============================================================ -->
     <header class="site-header">
-        <div class="site-header__menu">Menu</div>
+        <div class="site-header__menu" id="menuToggle" onclick="toggleMenu()" role="button" tabindex="0" aria-label="Open menu">Menu</div>
         <div class="site-header__logo">Bez Ambar</div>
-        <div class="site-header__right">Contact</div>
+        <div class="site-header__right"><a href="contact.html">Contact</a></div>
     </header>
+
+    <!-- ============ MENU OVERLAY ============ -->
+    <div class="menu-backdrop" id="menuBackdrop" onclick="toggleMenu()"></div>
+    <nav class="menu-overlay" id="menuOverlay" aria-hidden="true">
+        <button class="menu-overlay__close" onclick="toggleMenu()" aria-label="Close menu">&times;</button>
+
+        <div class="menu-overlay__group">
+            <span class="menu-overlay__label">Shop</span>
+            <a class="menu-overlay__link" href="collection.html">All Jewelry</a>
+            <a class="menu-overlay__link" href="collection.html?cat=rings">Rings</a>
+            <a class="menu-overlay__link menu-overlay__link--sub" href="collection.html?cat=engagement-rings">Engagement Rings</a>
+            <a class="menu-overlay__link menu-overlay__link--sub" href="collection.html?cat=wedding-bands">Wedding Bands</a>
+            <a class="menu-overlay__link menu-overlay__link--sub" href="collection.html?cat=mens-wedding-bands">Men's Wedding Bands</a>
+            <a class="menu-overlay__link" href="collection.html?cat=earrings">Earrings</a>
+            <a class="menu-overlay__link menu-overlay__link--sub" href="collection.html?cat=stud-earrings">Stud</a>
+            <a class="menu-overlay__link menu-overlay__link--sub" href="collection.html?cat=hug-earrings">Hug</a>
+            <a class="menu-overlay__link menu-overlay__link--sub" href="collection.html?cat=hoop-earrings">Hoop</a>
+            <a class="menu-overlay__link" href="collection.html?cat=pendants">Pendants</a>
+            <a class="menu-overlay__link" href="collection.html?cat=necklaces">Necklaces</a>
+            <a class="menu-overlay__link" href="collection.html?cat=bracelets">Bracelets</a>
+        </div>
+
+        <div class="menu-overlay__group">
+            <span class="menu-overlay__label">About</span>
+            <a class="menu-overlay__link" href="our-story.html">Our Story</a>
+            <a class="menu-overlay__link" href="about.html">The Inventor</a>
+            <a class="menu-overlay__link" href="the-bez-ambar-story.html">The Bez Ambar Story</a>
+            <a class="menu-overlay__link" href="press.html">Press</a>
+        </div>
+
+        <div class="menu-overlay__group">
+            <span class="menu-overlay__label">Editorial</span>
+            <a class="menu-overlay__link" href="journal.html">Journal</a>
+            <a class="menu-overlay__link" href="blog.html">Blog</a>
+            <a class="menu-overlay__link" href="diamond-education.html">Diamond Education</a>
+            <a class="menu-overlay__link" href="video-gallery.html">Video Gallery</a>
+        </div>
+
+        <div class="menu-overlay__group">
+            <span class="menu-overlay__label">Resources</span>
+            <a class="menu-overlay__link" href="contact.html">Contact</a>
+            <a class="menu-overlay__link" href="ring-size-chart.html">Ring Size Chart</a>
+            <a class="menu-overlay__link" href="catalogs.html">Catalogs</a>
+            <a class="menu-overlay__link" href="warranty.html">Warranty</a>
+        </div>
+
+        <div class="menu-overlay__group">
+            <span class="menu-overlay__label">Signature pieces (live on galleries)</span>
+            <a class="menu-overlay__link menu-overlay__link--external" href="https://galleries.bezambarinc.workers.dev/page/30-carat-flex" target="_blank">30-Carat Flex</a>
+            <a class="menu-overlay__link menu-overlay__link--external" href="https://galleries.bezambarinc.workers.dev/page/flex-bracelets" target="_blank">Flex Bracelets</a>
+            <a class="menu-overlay__link menu-overlay__link--external" href="https://galleries.bezambarinc.workers.dev/page/elysian-cut" target="_blank">Elysian Cut</a>
+            <a class="menu-overlay__link menu-overlay__link--external" href="https://galleries.bezambarinc.workers.dev/page/cascata" target="_blank">Cascata</a>
+            <a class="menu-overlay__link menu-overlay__link--external" href="https://galleries.bezambarinc.workers.dev/page/crossover-ashoka" target="_blank">Crossover Ashoka</a>
+            <a class="menu-overlay__link menu-overlay__link--external" href="https://galleries.bezambarinc.workers.dev/page/heart-ruby-v2" target="_blank">Heart Ruby v2</a>
+            <a class="menu-overlay__link menu-overlay__link--external" href="https://galleries.bezambarinc.workers.dev/page/saul-ring" target="_blank">Saul Ring</a>
+        </div>
+
+        <div class="menu-overlay__group">
+            <span class="menu-overlay__label">Reference (preview)</span>
+            <a class="menu-overlay__link" href="index-2.html">Old homepage (index-2)</a>
+        </div>
+    </nav>
+
+    <script>
+        function toggleMenu() {
+            const overlay = document.getElementById('menuOverlay');
+            const backdrop = document.getElementById('menuBackdrop');
+            const isOpen = overlay.classList.toggle('is-open');
+            backdrop.classList.toggle('is-open', isOpen);
+            overlay.setAttribute('aria-hidden', String(!isOpen));
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && document.getElementById('menuOverlay').classList.contains('is-open')) toggleMenu();
+        });
+    </script>
 
     <!-- ============================================================
          HERO STACK — slide-up reveal driven by scroll position
