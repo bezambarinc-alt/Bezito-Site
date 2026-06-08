@@ -18,6 +18,8 @@
     { "source": "/our-blog/", "destination": "/blog.html" },
     { "source": "/blog/:slug", "destination": "/blog-post.html?slug=:slug" },
     { "source": "/product-template", "destination": "/product-template.html" },
-    { "source": "/elysian-cut", "destination": "/elysian-cut.html" }
+    { "source": "/elysian-cut", "destination": "/elysian-cut.html" },
+    { "source": "/product/c0728", "destination": "/product-c0728.html" },
+    { "source": "/calla", "destination": "/product-c0728.html" }
   ]
 }
