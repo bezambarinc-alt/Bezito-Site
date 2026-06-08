@@ -1063,10 +1063,11 @@
         /* ============ NEWSLETTER ============ */
         .newsletter {
             padding: clamp(60px, 10vw, 120px) 40px;
-            background: #0d0d0d;
-            color: #fff;
+            background: var(--paper);
+            color: var(--ink);
             text-align: center;
             font-family: var(--sans);
+            border-top: 1px solid var(--rule);
         }
         .newsletter h2 {
             font-family: var(--sans);
@@ -1074,14 +1075,14 @@
             font-weight: 500;
             letter-spacing: 0.32em;
             text-transform: uppercase;
-            color: #fff;
+            color: var(--ink-soft);
             margin-bottom: 22px;
         }
         .newsletter p {
             font-family: var(--sans);
             font-size: 13px;
             font-weight: 300;
-            color: rgba(255,255,255,0.6);
+            color: var(--ink-muted);
             max-width: 480px;
             margin: 0 auto 36px;
             letter-spacing: 0.02em;
@@ -1090,14 +1091,14 @@
             display: flex;
             max-width: 480px;
             margin: 0 auto;
-            border-bottom: 1px solid rgba(255,255,255,0.3);
+            border-bottom: 1px solid var(--rule);
         }
         .newsletter input {
             flex: 1;
             background: transparent;
             border: 0;
             padding: 14px 0;
-            color: #fff;
+            color: var(--ink);
             font-family: var(--sans);
             font-size: 13px;
             font-weight: 400;
@@ -1105,14 +1106,14 @@
             outline: 0;
         }
         .newsletter input::placeholder {
-            color: rgba(255,255,255,0.5);
+            color: var(--ink-muted);
             font-family: var(--sans);
             letter-spacing: 0.02em;
         }
         .newsletter button {
             background: transparent;
             border: 0;
-            color: #fff;
+            color: var(--ink);
             font-family: var(--sans);
             font-size: 11px;
             font-weight: 500;
@@ -1124,11 +1125,12 @@
 
         /* ============ FOOTER ============ */
         .site-footer {
-            background: #0d0d0d;
-            color: #777;
+            background: var(--paper);
+            color: var(--ink-muted);
             padding: 60px 40px 40px;
             font-family: var(--sans);
             font-size: 12px;
+            border-top: 1px solid var(--rule);
         }
         .site-footer__grid {
             max-width: 1400px;
@@ -1144,35 +1146,35 @@
             font-weight: 600;
             letter-spacing: 0.25em;
             text-transform: uppercase;
-            color: var(--accent);
+            color: var(--ink-muted);
             margin-bottom: 18px;
         }
         .site-footer__col a {
             display: block;
-            color: #aaa;
+            color: var(--ink-soft);
             padding: 4px 0;
             font-size: 13px;
         }
-        .site-footer__col a:hover { color: #fff; }
+        .site-footer__col a:hover { color: var(--ink); }
         .site-footer__col--visit address {
             font-style: normal;
-            color: #aaa;
+            color: var(--ink-soft);
             font-size: 13px;
             line-height: 1.7;
             margin-bottom: 14px;
         }
         .site-footer__hours {
-            color: #6a6a6a;
+            color: var(--ink-muted);
             font-size: 11px;
             font-style: italic;
             letter-spacing: 0.05em;
             margin-top: 14px;
         }
         .site-footer__bottom {
-            border-top: 1px solid #1f1f1f;
+            border-top: 1px solid var(--rule);
             padding-top: 30px;
             text-align: center;
-            color: #555;
+            color: var(--ink-muted);
             font-size: 11px;
             letter-spacing: 0.15em;
         }
@@ -1181,7 +1183,7 @@
             font-size: 14px;
             font-weight: 700;
             letter-spacing: 5px;
-            color: var(--accent);
+            color: var(--ink);
             text-transform: uppercase;
             margin-bottom: 14px;
             display: block;
@@ -1191,7 +1193,7 @@
             display: block;
             line-height: 1.9;
         }
-        .site-footer__copy { color: #444; margin-top: 4px; }
+        .site-footer__copy { color: var(--ink-muted); margin-top: 4px; }
 
         /* ============ RESPONSIVE ============ */
         @media (max-width: 900px) {
