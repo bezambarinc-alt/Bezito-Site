@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{Product Name}} ref. {{REF-000}} — Bez Ambar</title>
+  <meta name="description" content="{{Short product description — one line.}}">
+  <link rel="canonical" href="https://bezito-site.vercel.app/product/{{ref-000}}">
+  <meta property="og:type" content="product">
+  <meta property="og:title" content="{{Product Name}} ref. {{REF-000}} — Bez Ambar">
+  <meta property="og:description" content="{{Short product description.}}">
+  <meta property="og:image" content="{{HERO_IMAGE_URL_1200}}">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23c41e3a'/%3E%3Ctext x='16' y='22' font-family='Montserrat,sans-serif' font-size='18' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://webfonts.fontstand.com/WF-099839-d89c1d499f0c1f40d1e6d7330af17f97.css" type="text/css"/>
+  <style>
+    :root {
+      --serif: 'Lyon Text Regular', 'EB Garamond', Georgia, serif;
+      --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --ink: #1a1a1a;
+      --ink-soft: #4a4a4a;
+      --paper: #ffffff;
+      --paper-warm: #faf7f2;
+      --rule: rgba(0,0,0,.08);
+      --accent: #95826b;
+      --gutter: clamp(1.25rem, 5vw, 4rem);
+      --max-wide: 1200px;
+      --ease: cubic-bezier(.2,.7,.2,1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 17px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; height: auto; }
+
+    /* =================== HEADER (canonical) =================== */
+    .ba-header {
+      position: sticky; top: 0; z-index: 100;
+      background: #ffffff;
+      border-bottom: 1px solid var(--rule);
+      padding: 18px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .ba-header__back {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .ba-header__back:hover { color: var(--accent); }
+    .ba-header__logo {
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      color: var(--ink);
+      text-transform: uppercase;
+    }
+    .ba-header__cta {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* =================== BREADCRUMB =================== */
+    .crumb {
+      padding: 24px var(--gutter) 0;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      max-width: var(--max-wide);
+      margin: 0 auto;
+    }
+    .crumb a:hover { color: var(--accent); }
+    .crumb__sep { margin: 0 8px; color: rgba(0,0,0,0.25); }
+
+    /* =================== HERO =================== */
+    .hero {
+      padding: clamp(2rem, 4vw, 3.5rem) var(--gutter) clamp(1.5rem, 3vw, 2.5rem);
+      text-align: center;
+      max-width: var(--max-wide);
+      margin: 0 auto;
+    }
+    .hero__eyebrow {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .hero__collection {
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .hero__title {
+      font-family: var(--sans);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 200;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .hero__ref {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 1.5rem;
+    }
+    .hero__lede {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+      color: var(--ink-soft);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* =================== GALLERY (single big image + thumbs) =================== */
+    .gallery {
+      padding: 0 var(--gutter) clamp(3rem, 6vw, 5rem);
+      max-width: var(--max-wide);
+      margin: 0 auto;
+    }
+    .gallery__main {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: var(--paper-warm);
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .gallery__main--placeholder {
+      display: flex; align-items: center; justify-content: center;
+    }
+    .gallery__main--placeholder::before {
+      content: '[ HERO IMAGE — 1600 × 1200 ]';
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.28);
+    }
+    .gallery__thumbs {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+    .gallery__thumb {
+      aspect-ratio: 1 / 1;
+      background: var(--paper-warm);
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .gallery__thumb:hover { opacity: 0.7; }
+    .gallery__thumb::before {
+      content: attr(data-label);
+      font-family: var(--sans);
+      font-size: 9px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.28);
+    }
+
+    /* =================== DETAIL SEGMENT =================== */
+    .segment {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+      max-width: var(--max-wide);
+      margin: 0 auto;
+      padding: clamp(3rem, 6vw, 5rem) var(--gutter);
+      border-top: 1px solid var(--rule);
+    }
+    .segment--reverse .segment__media { order: 2; }
+    .segment__media {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background: var(--paper-warm);
+      overflow: hidden;
+    }
+    .segment__media--placeholder {
+      display: flex; align-items: center; justify-content: center;
+    }
+    .segment__media--placeholder::before {
+      content: attr(data-label);
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.28);
+    }
+    .segment__eyebrow {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .segment__title {
+      font-family: var(--sans);
+      font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+      font-weight: 200;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+    .segment__body p {
+      font-family: var(--serif);
+      font-size: 17px;
+      color: var(--ink);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    .segment__body p:last-child { margin-bottom: 0; }
+
+    /* =================== SPECS =================== */
+    .specs {
+      background: var(--paper-warm);
+      padding: clamp(3rem, 6vw, 5rem) var(--gutter);
+      border-top: 1px solid var(--rule);
+    }
+    .specs__inner {
+      max-width: var(--max-wide);
+      margin: 0 auto;
+    }
+    .specs__header { text-align: center; margin-bottom: clamp(2rem, 4vw, 3rem); }
+    .specs__eyebrow {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .specs__title {
+      font-family: var(--sans);
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 200;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .specs__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0;
+      border-top: 1px solid var(--rule);
+    }
+    .spec {
+      padding: 1.5rem 1.25rem;
+      border-bottom: 1px solid var(--rule);
+      border-right: 1px solid var(--rule);
+    }
+    .spec:nth-child(4n) { border-right: 0; }
+    .spec__label {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .spec__value {
+      font-family: var(--serif);
+      font-size: 16px;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    /* =================== CTA =================== */
+    .cta {
+      padding: clamp(4rem, 8vw, 7rem) var(--gutter);
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+      border-top: 1px solid var(--rule);
+    }
+    .cta__eyebrow {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .cta__title {
+      font-family: var(--sans);
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 200;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+    .cta__body {
+      font-family: var(--serif);
+      font-size: 17px;
+      color: var(--ink-soft);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .cta__button {
+      display: inline-block;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--ink);
+      padding: 16px 36px;
+      border: 1px solid var(--ink);
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .cta__button:hover { background: var(--ink); color: var(--paper); }
+
+    /* =================== RELATED (4-up grid) =================== */
+    .related {
+      padding: clamp(3rem, 6vw, 5rem) var(--gutter);
+      max-width: var(--max-wide);
+      margin: 0 auto;
+      border-top: 1px solid var(--rule);
+    }
+    .related__header { text-align: center; margin-bottom: clamp(2rem, 4vw, 3rem); }
+    .related__eyebrow {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .related__title {
+      font-family: var(--sans);
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 200;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .related__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 40px 24px;
+    }
+    .related-card { display: block; }
+    .related-card__media {
+      aspect-ratio: 1 / 1;
+      background: var(--paper-warm);
+      margin-bottom: 16px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .related-card__media::before {
+      content: attr(data-label);
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.28);
+    }
+    .related-card__name {
+      font-family: var(--serif);
+      font-size: 17px;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .related-card__ref {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    /* =================== FOOTER (canonical) =================== */
+    .ba-footer {
+      background: #ffffff;
+      border-top: 1px solid var(--rule);
+      padding: 40px 20px 30px;
+      text-align: center;
+    }
+    .ba-footer__logo {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .ba-footer p {
+      font-family: var(--sans);
+      font-size: 11px;
+      color: var(--ink-soft);
+      line-height: 1.85;
+      margin: 0;
+    }
+    .ba-footer a { color: var(--ink-soft); }
+    .ba-footer__tag {
+      margin-top: 14px;
+      font-size: 10px;
+      letter-spacing: 0.5px;
+      color: var(--ink-soft);
+    }
+
+    /* =================== RESPONSIVE =================== */
+    @media (max-width: 768px) {
+      .segment { grid-template-columns: 1fr; gap: 2rem; }
+      .segment--reverse .segment__media { order: 0; }
+      .segment__media { aspect-ratio: 4/5; max-width: 420px; margin: 0 auto; }
+      .gallery__thumbs { grid-template-columns: repeat(3, 1fr); }
+      .spec:nth-child(4n) { border-right: 1px solid var(--rule); }
+      .spec:nth-child(2n) { border-right: 0; }
+      .ba-header { padding: 14px 16px; }
+      .ba-header__logo { font-size: 13px; letter-spacing: 4px; }
+      .ba-header__back, .ba-header__cta { font-size: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ HEADER (canonical) ============ -->
+  <header class="ba-header">
+    <a href="/" class="ba-header__back">&larr; Back</a>
+    <a href="/" class="ba-header__logo">Bez Ambar</a>
+    <a href="#cta" class="ba-header__cta">Inquire</a>
+  </header>
+
+  <!-- ============ BREADCRUMB ============ -->
+  <nav class="crumb">
+    <a href="/">Home</a>
+    <span class="crumb__sep">/</span>
+    <a href="/jewelry/{{category-slug}}">{{Category Name}}</a>
+    <span class="crumb__sep">/</span>
+    <span>{{Product Name}}</span>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <p class="hero__collection">{{Collection Name}}</p>
+    <h1 class="hero__title">{{Product Name}}</h1>
+    <p class="hero__ref">ref. {{REF-000}}</p>
+    <p class="hero__lede">{{One-line poetic lede — sets the emotional tone for the piece. e.g. "A teardrop of light, calibrated to the line of the finger."}}</p>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section class="gallery">
+    <div class="gallery__main gallery__main--placeholder"></div>
+    <div class="gallery__thumbs">
+      <div class="gallery__thumb" data-label="Angle 1"></div>
+      <div class="gallery__thumb" data-label="Angle 2"></div>
+      <div class="gallery__thumb" data-label="Detail"></div>
+      <div class="gallery__thumb" data-label="On Hand"></div>
+      <div class="gallery__thumb" data-label="Scale"></div>
+    </div>
+  </section>
+
+  <!-- ============ DETAIL 1 — Design ============ -->
+  <section class="segment">
+    <div class="segment__media segment__media--placeholder" data-label="Design close-up — placeholder"></div>
+    <div class="segment__content">
+      <p class="segment__eyebrow">The Design</p>
+      <h2 class="segment__title">{{Title — design angle, e.g. The Geometry of Light}}</h2>
+      <div class="segment__body">
+        <p>{{Placeholder copy — describe the design intention, the cut, the geometric idea that drives the piece. 2-3 sentences.}}</p>
+        <p>{{Placeholder copy — second paragraph adding texture: how the cut behaves with light, how it sits on the hand/finger/wrist/neck.}}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DETAIL 2 — Atelier (reversed) ============ -->
+  <section class="segment segment--reverse">
+    <div class="segment__media segment__media--placeholder" data-label="Atelier / process image — placeholder"></div>
+    <div class="segment__content">
+      <p class="segment__eyebrow">The Atelier</p>
+      <h2 class="segment__title">{{Title — making angle, e.g. Drawn, Cut, Finished by Hand}}</h2>
+      <div class="segment__body">
+        <p>{{Placeholder copy — the craftsmanship story. How long it takes, who works on it, what hand-finishing is involved.}}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DETAIL 3 — The Stones ============ -->
+  <section class="segment">
+    <div class="segment__media segment__media--placeholder" data-label="Stone close-up — placeholder"></div>
+    <div class="segment__content">
+      <p class="segment__eyebrow">The Stones</p>
+      <h2 class="segment__title">{{Title — material angle, e.g. Calibrated Elysian Ovals}}</h2>
+      <div class="segment__body">
+        <p>{{Placeholder copy — what stones are used, sourcing, why these stones, color/clarity standards.}}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SPECS ============ -->
+  <section class="specs">
+    <div class="specs__inner">
+      <div class="specs__header">
+        <p class="specs__eyebrow">Details</p>
+        <h2 class="specs__title">Specifications</h2>
+      </div>
+      <div class="specs__grid">
+        <div class="spec">
+          <p class="spec__label">Reference</p>
+          <p class="spec__value">{{REF-000}}</p>
+        </div>
+        <div class="spec">
+          <p class="spec__label">Metal</p>
+          <p class="spec__value">{{18K Yellow Gold / Platinum / etc.}}</p>
+        </div>
+        <div class="spec">
+          <p class="spec__label">Stones</p>
+          <p class="spec__value">{{X ct total — describe cuts and count}}</p>
+        </div>
+        <div class="spec">
+          <p class="spec__label">Color &middot; Clarity</p>
+          <p class="spec__value">{{G&ndash;H &middot; VS}}</p>
+        </div>
+        <div class="spec">
+          <p class="spec__label">Dimensions</p>
+          <p class="spec__value">{{Width × Length / Diameter, in mm}}</p>
+        </div>
+        <div class="spec">
+          <p class="spec__label">Weight</p>
+          <p class="spec__value">{{Total weight in grams}}</p>
+        </div>
+        <div class="spec">
+          <p class="spec__label">Setting</p>
+          <p class="spec__value">{{Prong / Bezel / Channel / etc.}}</p>
+        </div>
+        <div class="spec">
+          <p class="spec__label">Finish</p>
+          <p class="spec__value">{{High polish / Brushed / Hand-finished}}</p>
+        </div>
+        <div class="spec">
+          <p class="spec__label">Engraving</p>
+          <p class="spec__value">BEZ &middot; interior shank</p>
+        </div>
+        <div class="spec">
+          <p class="spec__label">Production</p>
+          <p class="spec__value">{{Built to order / One of one / etc.}}</p>
+        </div>
+        <div class="spec">
+          <p class="spec__label">Hallmark</p>
+          <p class="spec__value">Bez Ambar &middot; Los Angeles</p>
+        </div>
+        <div class="spec">
+          <p class="spec__label">Patent</p>
+          <p class="spec__value">{{Cut name + patent reference if applicable}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="cta" id="cta">
+    <p class="cta__eyebrow">Inquire</p>
+    <h2 class="cta__title">See It in Person</h2>
+    <p class="cta__body">Pricing and current availability on request. Arrange a private viewing at the Los Angeles atelier, or inquire about a commission.</p>
+    <a href="mailto:bezambar@bezambar.com?subject={{Product%20Name}}%20ref.%20{{REF-000}}%20%E2%80%94%20Inquiry" class="cta__button">Inquire by Email</a>
+  </section>
+
+  <!-- ============ RELATED (4-up) ============ -->
+  <section class="related">
+    <div class="related__header">
+      <p class="related__eyebrow">The Collection</p>
+      <h2 class="related__title">From the Same Family</h2>
+    </div>
+    <div class="related__grid">
+      <a href="#" class="related-card">
+        <div class="related-card__media" data-label="Related 1"></div>
+        <p class="related-card__name">{{Related piece name 1}}</p>
+        <p class="related-card__ref">ref. {{REF-001}}</p>
+      </a>
+      <a href="#" class="related-card">
+        <div class="related-card__media" data-label="Related 2"></div>
+        <p class="related-card__name">{{Related piece name 2}}</p>
+        <p class="related-card__ref">ref. {{REF-002}}</p>
+      </a>
+      <a href="#" class="related-card">
+        <div class="related-card__media" data-label="Related 3"></div>
+        <p class="related-card__name">{{Related piece name 3}}</p>
+        <p class="related-card__ref">ref. {{REF-003}}</p>
+      </a>
+      <a href="#" class="related-card">
+        <div class="related-card__media" data-label="Related 4"></div>
+        <p class="related-card__name">{{Related piece name 4}}</p>
+        <p class="related-card__ref">ref. {{REF-004}}</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER (canonical) ============ -->
+  <footer class="ba-footer">
+    <p class="ba-footer__logo">Bez Ambar</p>
+    <p>611 Wilshire Blvd, Los Angeles, CA 90017</p>
+    <p>
+      <a href="mailto:bezambar@bezambar.com">bezambar@bezambar.com</a> &middot;
+      <a href="tel:2136299191">(213) 629-9191</a>
+    </p>
+    <p class="ba-footer__tag">Inventor of the Princess Cut · Since 1979</p>
+  </footer>
+
+  <!-- D1 view logger (galleries worker tracking) -->
+  <img src="https://galleries.bezambarinc.workers.dev/t?p=product-template" width="1" height="1" style="position:absolute;width:1px;height:1px;opacity:0;" alt="">
+
+</body>
+</html>
