@@ -16,6 +16,8 @@
     { "source": "/blog/", "destination": "/blog.html" },
     { "source": "/our-blog", "destination": "/blog.html" },
     { "source": "/our-blog/", "destination": "/blog.html" },
-    { "source": "/blog/:slug", "destination": "/blog-post.html?slug=:slug" }
+    { "source": "/blog/:slug", "destination": "/blog-post.html?slug=:slug" },
+    { "source": "/product-template", "destination": "/product-template.html" },
+    { "source": "/elysian-cut", "destination": "/elysian-cut.html" }
   ]
 }
