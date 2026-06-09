@@ -110,6 +110,7 @@
         }
         .menu-overlay.is-open { transform: translateX(0); }
         .menu-overlay.has-sub { width: 600px; max-width: 92vw; }
+        .menu-overlay.has-sub-sub { width: 900px; max-width: 96vw; }
         .menu-overlay__close {
             position: absolute;
             top: 22px; left: 24px;
@@ -1326,28 +1327,54 @@
         function resetMenuSub() {
             const overlay = document.getElementById('menuOverlay');
             overlay.classList.remove('has-sub');
+            overlay.classList.remove('has-sub-sub');
             overlay.querySelectorAll('.menu-item.is-active').forEach(el => el.classList.remove('is-active'));
             overlay.querySelectorAll('.menu-col--sub.is-active').forEach(el => el.classList.remove('is-active'));
         }
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && document.getElementById('menuOverlay').classList.contains('is-open')) toggleMenu();
         });
-        // Drill-down: click a root item with a target to reveal its sub-column.
+        // Drill-down: clicks in root reveal a 2nd column; clicks inside that 2nd
+        // column reveal a 3rd column (instead of replacing the 2nd).
         document.addEventListener('click', (e) => {
             const btn = e.target.closest('.menu-item--has-sub');
             if (!btn) return;
             e.preventDefault();
             const target = btn.dataset.target;
             const overlay = document.getElementById('menuOverlay');
-            overlay.querySelectorAll('.menu-col--root .menu-item').forEach(el => el.classList.remove('is-active'));
-            overlay.querySelectorAll('.menu-col--sub').forEach(el => el.classList.remove('is-active'));
-            btn.classList.add('is-active');
+            const inRoot = btn.closest('.menu-col--root') !== null;
+            const parentSub = btn.closest('.menu-col--sub');
             const sub = overlay.querySelector('.menu-col--sub[data-col="' + target + '"]');
-            if (sub) {
-                sub.classList.add('is-active');
-                overlay.classList.add('has-sub');
-            } else {
-                overlay.classList.remove('has-sub');
+
+            if (inRoot) {
+                // Root click → reset, open one 2nd-level column
+                overlay.querySelectorAll('.menu-col--root .menu-item').forEach(el => el.classList.remove('is-active'));
+                overlay.querySelectorAll('.menu-col--sub').forEach(el => el.classList.remove('is-active'));
+                overlay.querySelectorAll('.menu-col--sub .menu-item').forEach(el => el.classList.remove('is-active'));
+                btn.classList.add('is-active');
+                if (sub) {
+                    sub.classList.add('is-active');
+                    overlay.classList.add('has-sub');
+                    overlay.classList.remove('has-sub-sub');
+                } else {
+                    overlay.classList.remove('has-sub');
+                    overlay.classList.remove('has-sub-sub');
+                }
+            } else if (parentSub) {
+                // Sub-button click → keep parent column open, add a 3rd column.
+                // Close any other 3rd-level subs (siblings of the parent that are active).
+                overlay.querySelectorAll('.menu-col--sub.is-active').forEach(el => {
+                    if (el !== parentSub) el.classList.remove('is-active');
+                });
+                // Clear active state on sibling sub-buttons inside the parent column.
+                parentSub.querySelectorAll('.menu-item.is-active').forEach(el => el.classList.remove('is-active'));
+                btn.classList.add('is-active');
+                parentSub.classList.add('is-active');
+                if (sub) {
+                    sub.classList.add('is-active');
+                    overlay.classList.add('has-sub');
+                    overlay.classList.add('has-sub-sub');
+                }
             }
         });
     </script>
