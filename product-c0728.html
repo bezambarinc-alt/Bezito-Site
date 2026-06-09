@@ -181,56 +181,34 @@
     }
     .cinematic--light .cinematic__note { color: var(--ink-soft); }
 
-    /* ============ INTRO PANEL — matches homepage .segment look ============ */
+    /* ============ INTRO PANEL — Patek-style centered, smaller headline ============ */
     .intro {
       padding: clamp(4rem, 8vw, 7rem) var(--gutter);
       background: var(--paper);
+      text-align: center;
     }
     .intro__inner {
-      max-width: 760px;
+      max-width: 720px;
       margin: 0 auto;
-    }
-    .intro__eyebrow {
-      font-family: var(--sans);
-      font-size: 13px;
-      font-weight: 400;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      color: var(--ink-muted, #7a7a7a);
-      margin-bottom: 24px;
     }
     .intro__headline {
       font-family: var(--sans);
-      font-size: clamp(2rem, 4.5vw, 3.4rem);
-      font-weight: 200;
-      letter-spacing: -0.01em;
-      line-height: 1.05;
+      font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      line-height: 1.25;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
     .intro__body p {
       font-family: var(--serif);
-      font-size: 18px;
+      font-size: 17px;
       color: var(--ink);
-      line-height: 1.7;
+      line-height: 1.65;
       margin-bottom: 1rem;
     }
     .intro__body p:last-child { margin-bottom: 0; }
-    .intro__cta {
-      display: inline-block;
-      font-family: var(--sans);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink);
-      border-bottom: 1px solid var(--ink);
-      padding-bottom: 4px;
-      margin-top: 2rem;
-      transition: color 0.2s ease, border-color 0.2s ease;
-    }
-    .intro__cta:hover { color: var(--accent); border-color: var(--accent); }
 
     /* ============ TECHNICAL CHARACTERISTICS — Accordion ============ */
     .tech {
@@ -467,16 +445,13 @@
     </div>
   </section>
 
-  <!-- ============ INTRO PANEL #1 — homepage segment style (eyebrow + big headline + body) ============ -->
+  <!-- ============ INTRO PANEL #1 — Patek-style centered (small headline + centered body) ============ -->
   <section class="intro">
     <div class="intro__inner">
-      <p class="intro__eyebrow">The Calla Ring</p>
-      <h2 class="intro__headline">A Pear, Held by<br>Petals of Fire</h2>
+      <h2 class="intro__headline">A Pear Held by Petals of Fire</h2>
       <div class="intro__body">
-        <p>Thirteen carats. D flawless. Pear-cut, set in platinum. What sets the Calla apart sits beneath the center stone: a ring of marquise-cut diamonds opened like petals around the pavilion. Not a halo. Not a basket.</p>
-        <p>Each marquise carries its own fire &mdash; and passes it upward, into the pear from below. That is why it belongs to the Bloom Collection.</p>
+        <p>Thirteen carats. D flawless. Pear-cut, set in platinum. What sets the Calla apart sits beneath the center stone: a ring of marquise-cut diamonds opened like petals around the pavilion. Not a halo. Not a basket. Each marquise carries its own fire &mdash; and passes it upward, into the pear from below. That is why it belongs to the Bloom Collection.</p>
       </div>
-      <a href="#cta" class="intro__cta">Inquire</a>
     </div>
   </section>
 
