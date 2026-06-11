@@ -22,6 +22,8 @@
     { "source": "/elysian-cut", "destination": "/elysian-cut.html" },
     { "source": "/product/c0728", "destination": "/product-c0728.html" },
     { "source": "/calla", "destination": "/product-c0728.html" },
+    { "source": "/product/b9792", "destination": "/product-b9792.html" },
+    { "source": "/camelia", "destination": "/product-b9792.html" },
     { "source": "/collection/bloom", "destination": "/collection-bloom.html" },
     { "source": "/bloom", "destination": "/collection-bloom.html" }
   ]
