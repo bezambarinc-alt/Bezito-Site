@@ -1,13 +1,12 @@
 {
   "rewrites": [
-    { "source": "/product/:slug", "destination": "/product.html?id=:slug" },
-    { "source": "/product-category/:cat", "destination": "/collection.html?cat=:cat" },
-    { "source": "/product-category/:cat/:subcat", "destination": "/collection.html?cat=:subcat" },
-    { "source": "/jewelry/men-wedding-bands", "destination": "/collection.html?cat=mens-wedding-bands" },
-    { "source": "/jewelry/:cat", "destination": "/collection.html?cat=:cat" },
-    { "source": "/shop", "destination": "/collection.html" },
-    { "source": "/shop/", "destination": "/collection.html" },
-    { "source": "/shop/page/:num", "destination": "/collection.html" },
+    { "source": "/product/c0728", "destination": "/product-c0728.html" },
+    { "source": "/calla", "destination": "/product-c0728.html" },
+    { "source": "/product/b9792", "destination": "/product-b9792.html" },
+    { "source": "/camelia", "destination": "/product-b9792.html" },
+    { "source": "/collection/bloom", "destination": "/collection-bloom.html" },
+    { "source": "/bloom", "destination": "/collection-bloom.html" },
+    { "source": "/elysian-cut", "destination": "/elysian-cut.html" },
     { "source": "/about", "destination": "/about.html" },
     { "source": "/contact", "destination": "/contact.html" },
     { "source": "/journal", "destination": "/journal.html" },
@@ -19,12 +18,13 @@
     { "source": "/blog/:slug", "destination": "/blog-post.html?slug=:slug" },
     { "source": "/product-template", "destination": "/product-template.html" },
     { "source": "/category-template", "destination": "/category-template.html" },
-    { "source": "/elysian-cut", "destination": "/elysian-cut.html" },
-    { "source": "/product/c0728", "destination": "/product-c0728.html" },
-    { "source": "/calla", "destination": "/product-c0728.html" },
-    { "source": "/product/b9792", "destination": "/product-b9792.html" },
-    { "source": "/camelia", "destination": "/product-b9792.html" },
-    { "source": "/collection/bloom", "destination": "/collection-bloom.html" },
-    { "source": "/bloom", "destination": "/collection-bloom.html" }
+    { "source": "/product/:slug", "destination": "/product.html?id=:slug" },
+    { "source": "/product-category/:cat", "destination": "/collection.html?cat=:cat" },
+    { "source": "/product-category/:cat/:subcat", "destination": "/collection.html?cat=:subcat" },
+    { "source": "/jewelry/men-wedding-bands", "destination": "/collection.html?cat=mens-wedding-bands" },
+    { "source": "/jewelry/:cat", "destination": "/collection.html?cat=:cat" },
+    { "source": "/shop", "destination": "/collection.html" },
+    { "source": "/shop/", "destination": "/collection.html" },
+    { "source": "/shop/page/:num", "destination": "/collection.html" }
   ]
 }
