@@ -86,6 +86,7 @@
         }
         .menu-overlay.is-open { transform: translateX(0); }
         .menu-overlay.has-sub { width: 600px; max-width: 92vw; }
+        .menu-overlay.has-sub-sub { width: 900px; max-width: 96vw; }
         .menu-overlay__close {
             position: absolute;
             top: 22px; left: 24px;
@@ -158,6 +159,7 @@
             padding-top: 6px;
             padding-bottom: 22px;
         }
+        .menu-item--soon { opacity: .35; pointer-events: none; font-style: italic; }
         .menu-item--has-sub::after {
             content: '›';
             font-size: 20px;
@@ -184,6 +186,7 @@
         @media (max-width: 600px) {
             .menu-overlay { width: 88vw; }
             .menu-overlay.has-sub { width: 92vw; }
+            .menu-overlay.has-sub-sub { width: 96vw; }
             .menu-col { flex-basis: 50%; width: 50%; }
         }
 
@@ -388,14 +391,36 @@
         </ul>
 
         <ul class="menu-col menu-col--sub" data-col="collection">
-            <li><a class="menu-item" href="collection.html">All Jewelry</a></li>
-            <li><a class="menu-item" href="collection.html?cat=engagement-rings">Engagement Rings</a></li>
-            <li><a class="menu-item" href="collection.html?cat=wedding-bands">Wedding Bands</a></li>
-            <li><a class="menu-item" href="collection.html?cat=mens-wedding-bands">Men's Wedding Bands</a></li>
-            <li><a class="menu-item" href="collection.html?cat=earrings">Earrings</a></li>
-            <li><a class="menu-item" href="collection.html?cat=pendants">Pendants</a></li>
-            <li><a class="menu-item" href="collection.html?cat=necklaces">Necklaces</a></li>
-            <li><a class="menu-item" href="collection.html?cat=bracelets">Bracelets</a></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="bloom" type="button">Bloom Collection</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="engagement-rings" type="button">Engagement Rings</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="wedding-bands" type="button">Wedding Bands</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="earrings" type="button">Earrings</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="pendants" type="button">Pendants</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="necklaces" type="button">Necklaces</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="bracelets" type="button">Bracelets</button></li>
+        </ul>
+
+        <ul class="menu-col menu-col--sub" data-col="bloom">
+            <li><a class="menu-item" href="/calla">The Calla &middot; ref. C0728</a></li>
+            <li><a class="menu-item" href="/camelia">Camélia &middot; ref. B9792</a></li>
+        </ul>
+        <ul class="menu-col menu-col--sub" data-col="engagement-rings">
+            <li><span class="menu-item menu-item--soon">In production</span></li>
+        </ul>
+        <ul class="menu-col menu-col--sub" data-col="wedding-bands">
+            <li><span class="menu-item menu-item--soon">In production</span></li>
+        </ul>
+        <ul class="menu-col menu-col--sub" data-col="earrings">
+            <li><span class="menu-item menu-item--soon">In production</span></li>
+        </ul>
+        <ul class="menu-col menu-col--sub" data-col="pendants">
+            <li><span class="menu-item menu-item--soon">In production</span></li>
+        </ul>
+        <ul class="menu-col menu-col--sub" data-col="necklaces">
+            <li><span class="menu-item menu-item--soon">In production</span></li>
+        </ul>
+        <ul class="menu-col menu-col--sub" data-col="bracelets">
+            <li><span class="menu-item menu-item--soon">In production</span></li>
         </ul>
 
         <ul class="menu-col menu-col--sub" data-col="manufacture">
@@ -540,6 +565,7 @@
         function resetMenuSub() {
             const overlay = document.getElementById('menuOverlay');
             overlay.classList.remove('has-sub');
+            overlay.classList.remove('has-sub-sub');
             overlay.querySelectorAll('.menu-item.is-active').forEach(el => el.classList.remove('is-active'));
             overlay.querySelectorAll('.menu-col--sub.is-active').forEach(el => el.classList.remove('is-active'));
         }
@@ -552,12 +578,36 @@
             e.preventDefault();
             const target = btn.dataset.target;
             const overlay = document.getElementById('menuOverlay');
-            overlay.querySelectorAll('.menu-col--root .menu-item').forEach(el => el.classList.remove('is-active'));
-            overlay.querySelectorAll('.menu-col--sub').forEach(el => el.classList.remove('is-active'));
-            btn.classList.add('is-active');
+            const inRoot = btn.closest('.menu-col--root') !== null;
+            const parentSub = btn.closest('.menu-col--sub');
             const sub = overlay.querySelector('.menu-col--sub[data-col="' + target + '"]');
-            if (sub) { sub.classList.add('is-active'); overlay.classList.add('has-sub'); }
-            else { overlay.classList.remove('has-sub'); }
+
+            if (inRoot) {
+                overlay.querySelectorAll('.menu-col--root .menu-item').forEach(el => el.classList.remove('is-active'));
+                overlay.querySelectorAll('.menu-col--sub').forEach(el => el.classList.remove('is-active'));
+                overlay.querySelectorAll('.menu-col--sub .menu-item').forEach(el => el.classList.remove('is-active'));
+                btn.classList.add('is-active');
+                if (sub) {
+                    sub.classList.add('is-active');
+                    overlay.classList.add('has-sub');
+                    overlay.classList.remove('has-sub-sub');
+                } else {
+                    overlay.classList.remove('has-sub');
+                    overlay.classList.remove('has-sub-sub');
+                }
+            } else if (parentSub) {
+                overlay.querySelectorAll('.menu-col--sub.is-active').forEach(el => {
+                    if (el !== parentSub) el.classList.remove('is-active');
+                });
+                parentSub.querySelectorAll('.menu-item.is-active').forEach(el => el.classList.remove('is-active'));
+                btn.classList.add('is-active');
+                parentSub.classList.add('is-active');
+                if (sub) {
+                    sub.classList.add('is-active');
+                    overlay.classList.add('has-sub');
+                    overlay.classList.add('has-sub-sub');
+                }
+            }
         });
     </script>
 
