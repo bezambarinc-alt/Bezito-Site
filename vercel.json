@@ -1,5 +1,7 @@
 {
   "rewrites": [
+    { "source": "/product/in100", "destination": "/product-in100.html" },
+    { "source": "/single-row", "destination": "/product-in100.html" },
     { "source": "/product/c0728", "destination": "/product-c0728.html" },
     { "source": "/calla", "destination": "/product-c0728.html" },
     { "source": "/product/b9792", "destination": "/product-b9792.html" },
