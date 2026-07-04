@@ -917,7 +917,41 @@
                 max-width: 340px;
             }
         }
-    </style>
+    
+/* ============ CANONICAL BA-FOOTER (unified across site 2026-07-04) ============ */
+.ba-footer {
+  background: #ffffff;
+  border-top: 1px solid rgba(0,0,0,.08);
+  padding: 40px 20px 30px;
+  text-align: center;
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.ba-footer__logo {
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  color: #95826b;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: block;
+}
+.ba-footer p {
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  color: #4a4a4a;
+  line-height: 1.85;
+  margin: 0;
+}
+.ba-footer a { color: #4a4a4a; text-decoration: none; }
+.ba-footer a:hover { color: #95826b; }
+.ba-footer__tag {
+  font-size: 10px !important;
+  letter-spacing: 0.5px;
+  color: #4a4a4a;
+  margin-top: 14px !important;
+}
+</style>
 </head>
 <body>
 
@@ -1364,47 +1398,15 @@
     </section>
 
     <!-- ==================== FOOTER ==================== -->
-    <footer class="site-footer">
-        <div class="footer-inner">
-            <div class="footer-top">
-                <div class="footer-col">
-                    <h4>Help</h4>
-                    <a href="mailto:bez@bezambar.com">Email Us</a>
-                    <a href="https://www.bezambar.com" target="_blank">Visit Website</a>
-                    <a href="#">FAQ</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Services</h4>
-                    <a href="#">Bespoke Design</a>
-                    <a href="#">Repairs &amp; Cleaning</a>
-                    <a href="#">Personalization</a>
-                </div>
-                <div class="footer-col">
-                    <h4>About</h4>
-                    <a href="#">Our Story</a>
-                    <a href="#">The Inventor</a>
-                    <a href="#">Proprietary Cuts</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Visit</h4>
-                    <p>611 Wilshire Blvd</p>
-                    <p>Los Angeles, CA 90017</p>
-                    <p style="margin-top:8px;"><a href="mailto:bez@bezambar.com">bez@bezambar.com</a></p>
-                    <p><a href="https://www.bezambar.com" target="_blank">www.bezambar.com</a></p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="footer-logo">BEZ AMBAR</div>
-                <div class="footer-legal">
-                    &copy; 2026 Bez Ambar Inc. All rights reserved.
-                    &nbsp;&middot;&nbsp;
-                    <a href="#">Privacy Policy</a>
-                    &nbsp;&middot;&nbsp;
-                    <a href="#">Unsubscribe</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <footer class="ba-footer" id="inquire">
+    <p class="ba-footer__logo">Bez Ambar</p>
+    <p>611 Wilshire Blvd, Los Angeles, CA 90017</p>
+    <p>
+      <a href="mailto:bezambar@bezambar.com">bezambar@bezambar.com</a> &middot;
+      <a href="tel:2136299191">(213) 629-9191</a>
+    </p>
+    <p class="ba-footer__tag">Inventor of the Princess Cut &middot; Since 1979</p>
+  </footer>
 
     <!-- ==================== JAVASCRIPT ==================== -->
     <script>
