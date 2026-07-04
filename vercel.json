@@ -41,6 +41,14 @@
       "destination": "/product-1c36.html"
     },
     {
+      "source": "/product/c0747",
+      "destination": "/product-c0747.html"
+    },
+    {
+      "source": "/fancy-very-pink-oval",
+      "destination": "/product-c0747.html"
+    },
+    {
       "source": "/product/c0754",
       "destination": "/product-c0754.html"
     },
