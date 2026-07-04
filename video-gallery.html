@@ -1,314 +1,515 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Gallery — Bez Ambar</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        /* ── Dark theme base ── */
-        body { background: #0d0d0d; color: #fff; }
-        .site-footer { background: #0a0a0a; border-top: 1px solid rgba(255,255,255,0.06); }
-        .services-strip { background: #111; border-top: 1px solid rgba(255,255,255,0.08); }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Video Gallery — Bez Ambar</title>
+<meta name="description" content="Bez Ambar Video Gallery: over 500 films of rings, necklaces, bracelets, and earrings, filmed at the atelier in Los Angeles. Rings by cut and stone shape, necklaces, bracelets, and earrings. Watch every piece in motion before you inquire.">
+<meta property="og:title" content="Video Gallery — Bez Ambar">
+<meta property="og:description" content="Over 500 Bez Ambar pieces filmed in motion: rings by cut, necklaces, bracelets, earrings. Watch the light move.">
+<meta property="og:url" content="https://bezambar-web2026.vercel.app/video-gallery">
+<link rel="canonical" href="https://bezambar-web2026.vercel.app/video-gallery">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23c41e3a'/%3E%3Ctext x='16' y='22' font-family='Inter,sans-serif' font-size='18' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://webfonts.fontstand.com/WF-099839-d89c1d499f0c1f40d1e6d7330af17f97.css" type="text/css"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Bez Ambar Video Gallery",
+  "url": "https://bezambar-web2026.vercel.app/video-gallery",
+  "description": "Over 500 films of Bez Ambar rings, necklaces, bracelets, and earrings, filmed at the atelier in Los Angeles.",
+  "publisher": {"@type":"JewelryStore","name":"Bez Ambar","address":{"@type":"PostalAddress","streetAddress":"611 Wilshire Blvd","addressLocality":"Los Angeles","addressRegion":"CA","postalCode":"90017","addressCountry":"US"},"telephone":"+1-213-629-9191","email":"bezambar@bezambar.com","url":"https://bezambar.com"}
+}
+</script>
+<style>
+  :root {
+    --serif: 'Lyon Text Regular', 'EB Garamond', Georgia, serif;
+    --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-muted: #888;
+    --paper: #ffffff;
+    --paper-warm: #faf7f2;
+    --rule: rgba(0,0,0,.08);
+    --accent: #95826b;
+    --gutter: clamp(1.25rem, 5vw, 4rem);
+    --max-wide: 1400px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img, video { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; text-decoration: none; }
 
-        /* ── Header overrides for dark gallery ── */
-        .site-header { background: #0d0d0d; border-bottom: 1px solid rgba(255,255,255,0.06); }
-        .header-left a, .header-right a { color: #bbb; font-size: 12px; letter-spacing: 2px; }
-        .header-left a:hover, .header-right a:hover { color: #fff; }
-        .logo { font-size: 26px; letter-spacing: 6px; color: #fff; }
-        .header-contact-btn { color: #c5a258; border-color: #c5a258; }
+  /* ============ HEADER (canonical, transparent over hero, opaque on scroll) ============ */
+  .ba-header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
+    padding: 18px 24px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+  .ba-header__menu { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; color: var(--ink); justify-self: start; cursor: pointer; background: none; border: 0; padding: 0; transition: color 0.3s ease; }
+  .ba-header__menu::before { content: '☰  '; }
+  .ba-header__logo { font-family: var(--sans); font-size: 14px; font-weight: 700; letter-spacing: 5px; color: var(--ink); text-transform: uppercase; justify-self: center; transition: color 0.3s ease; }
+  .ba-header__icons { justify-self: end; display: flex; gap: 18px; font-family: var(--sans); font-size: 12px; color: var(--ink-soft); }
+  .ba-header__icons a { color: var(--ink-soft); transition: color 0.3s ease; }
+  .ba-header__icons a:hover { color: var(--accent); }
+  .ba-header.is-clear { background: transparent; border-bottom-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .ba-header.is-clear .ba-header__menu, .ba-header.is-clear .ba-header__logo, .ba-header.is-clear .ba-header__icons a { color: #ffffff; }
 
-        /* ── Compact hero ── */
-        .video-gallery-hero {
-            text-align: center;
-            padding: 78px 40px 20px;
-            background: #0d0d0d;
-        }
-        .video-gallery-hero h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.4rem;
-            font-weight: 400;
-            color: #fff;
-            margin: 0 0 8px;
-            letter-spacing: 0.06em;
-        }
-        .video-gallery-hero p {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.78rem;
-            color: #888;
-            letter-spacing: 0.06em;
-            max-width: 560px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
 
-        /* ── Grid — luxury spacing ── */
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 14px;
-            background: #0d0d0d;
-            padding: 0 40px;
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-
-        /* ── Video card — flex column: image area + label below ── */
-        .video-card {
-            position: relative;
-            background: #141414;
-            cursor: pointer;
-            text-decoration: none;
+        .menu-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 320px;
+            height: 100vh;
+            background: #fff;
+            z-index: 9999;
             display: flex;
-            flex-direction: column;
-            border-radius: 2px;
             overflow: hidden;
+            transform: translateX(-100%);
+            transition: transform .35s ease, width .35s ease;
+            box-shadow: 4px 0 24px rgba(0,0,0,.08);
         }
-        .video-card iframe,
-        .video-card video {
-            width: 100%;
-            aspect-ratio: 16/9;
+        .menu-overlay.is-open { transform: translateX(0); }
+        .menu-overlay.has-sub { width: 600px; max-width: 92vw; }
+        .menu-overlay.has-sub-sub { width: 900px; max-width: 96vw; }
+        .menu-overlay__close {
+            position: absolute;
+            top: 22px; left: 24px;
+            background: none;
             border: 0;
-            display: block;
-        }
-
-        /* ── Thumbnail (image area) ── */
-        .video-card .video-thumb {
-            width: 100%;
-            aspect-ratio: 16/9;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.4s ease;
-        }
-        .video-card:hover .video-thumb {
-            transform: scale(1.03);
-        }
-
-        /* ── Play button — bottom-right, small, subtle ── */
-        .video-card .play-btn {
-            position: absolute;
-            bottom: 44px;
-            right: 10px;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.10);
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255,255,255,0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            pointer-events: none;
-            opacity: 0.6;
-            transition: opacity 0.3s;
-        }
-        .video-card .play-btn svg {
-            width: 12px;
-            height: 12px;
-            fill: rgba(255,255,255,0.8);
-            margin-left: 2px;
-        }
-        .video-card:hover .play-btn {
-            opacity: 0.85;
-        }
-
-        /* ── Product label — below the image, centered ── */
-        .video-card .video-overlay {
-            position: relative;
-            background: #141414;
-            padding: 10px 12px 12px;
-            text-align: center;
-        }
-        .video-card .video-overlay h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.68rem;
-            font-weight: 400;
-            color: #999;
-            margin: 0;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        /* ── Category filter bar ── */
-        .vg-cat-bar {
-            display: flex;
-            justify-content: center;
-            gap: 36px;
-            padding: 0 40px 44px;
-            background: #0d0d0d;
-            position: relative;
-        }
-        .vg-cat-item {
-            position: relative;
-        }
-        .vg-cat-bar a.vg-cat-link {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.78rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: #888;
-            text-decoration: none;
-            padding-bottom: 6px;
-            border-bottom: 1px solid transparent;
-            transition: color 0.2s, border-color 0.2s;
+            font-size: 24px;
+            color: var(--ink);
             cursor: pointer;
-            display: inline-block;
+            line-height: 1;
+            padding: 4px 8px;
+            z-index: 5;
         }
-        .vg-cat-bar a.vg-cat-link:hover { color: #fff; }
-        .vg-cat-bar a.vg-cat-link.active {
-            color: #fff;
-            border-bottom-color: #c5a258;
-        }
-
-        /* ── Mega dropdown panel ── */
-        .vg-mega-dropdown {
-            display: none;
+        .menu-overlay__logo {
             position: absolute;
-            top: 100%;
+            top: 28px;
             left: 50%;
             transform: translateX(-50%);
-            background: #1a1a1a;
-            padding: 36px 48px;
-            z-index: 100;
-            margin-top: 16px;
-            min-width: 680px;
-            gap: 40px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-        }
-        .vg-mega-dropdown.open {
-            display: flex;
-        }
-        .vg-mega-col {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-        .vg-mega-col h4 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.68rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
+            font-family: var(--sans);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            color: var(--ink);
             text-transform: uppercase;
-            color: #fff;
-            margin: 0 0 14px;
+            z-index: 4;
+            white-space: nowrap;
         }
-        .vg-mega-col a {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.72rem;
-            color: #aaa;
+        .menu-col {
+            flex: 0 0 300px;
+            width: 300px;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 96px 0 40px;
+            margin: 0;
+            list-style: none;
+            border-right: 1px solid var(--rule);
+        }
+        .menu-col:last-child { border-right: 0; }
+        .menu-col--sub { display: none; }
+        .menu-col--sub.is-active { display: block; }
+        .menu-col li { list-style: none; }
+        .menu-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 13px 36px 13px 40px;
+            font-family: var(--sans);
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 0.20em;
+            text-transform: uppercase;
+            color: #888;
+            background: none;
+            border: 0;
+            cursor: pointer;
+            text-align: left;
             text-decoration: none;
-            padding: 5px 0;
-            transition: color 0.2s;
-            letter-spacing: 0.02em;
+            line-height: 1.4;
+            transition: color .15s;
         }
-        .vg-mega-col a:hover { color: #fff; }
-        .vg-mega-col a.active { color: #fff; font-weight: 600; }
+        .menu-item:hover { color: var(--ink); }
+        .menu-item.is-active {
+            color: var(--ink);
+            font-weight: 400;
+            text-decoration: underline;
+            text-underline-offset: 8px;
+            text-decoration-thickness: 1px;
+        }
+        .menu-item--home {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 16px;
+            letter-spacing: 0;
+            text-transform: none;
+            color: #aaa;
+            font-weight: 400;
+            padding-top: 6px;
+            padding-bottom: 22px;
+        }
+        .menu-item--soon { opacity: .35; pointer-events: none; font-style: italic; }
+        .menu-item--has-sub::after {
+            content: '›';
+            font-size: 20px;
+            font-weight: 300;
+            color: inherit;
+            margin-left: 12px;
+            opacity: 0.7;
+            line-height: 1;
+        }
+        .menu-item--external::after {
+            content: '↗';
+            font-size: 11px;
+            margin-left: 12px;
+            opacity: 0.55;
+        }
+        .menu-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.55);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .3s, visibility .3s;
+            z-index: 9998;
+        }
+        .menu-backdrop.is-open { opacity: 1; visibility: visible; }
+        @media (max-width: 600px) {
+            .menu-overlay { width: 88vw; }
+            .menu-overlay.has-sub { width: 92vw; }
+            .menu-col { flex-basis: 50%; width: 50%; }
+        }
 
-        /* ── Responsive ── */
-        @media (max-width: 1024px) {
-            .video-grid {
-                grid-template-columns: repeat(2, 1fr);
-                padding: 0 24px;
-                gap: 10px;
-            }
-        }
-        @media (max-width: 768px) {
-            .video-grid {
-                grid-template-columns: 1fr;
-                padding: 0 16px;
-                gap: 10px;
-            }
-            .video-gallery-hero {
-                padding: 120px 24px 40px;
-            }
-            .video-gallery-hero h1 {
-                font-size: 2.2rem;
-            }
-            .vg-cat-bar {
-                gap: 16px;
-                padding: 0 20px 28px;
-                flex-wrap: wrap;
-            }
-            .vg-cat-bar a.vg-cat-link {
-                font-size: 0.68rem;
-            }
-            .vg-mega-dropdown {
-                position: fixed;
-                top: auto;
-                left: 0;
-                right: 0;
-                transform: none;
-                min-width: 0;
-                width: 100%;
-                flex-wrap: wrap;
-                padding: 24px;
-                gap: 24px;
-                margin-top: 8px;
-            }
-            .vg-mega-col { min-width: 40%; }
-        }
-    </style>
+  /* ============ VIDEO GALLERY ============ */
+  main.vg-page {
+    padding-top: 72px;
+    max-width: var(--max-wide);
+    margin: 0 auto;
+  }
+  .vg-hero {
+    padding: clamp(4rem, 8vw, 7rem) var(--gutter) clamp(2rem, 4vw, 3rem);
+    text-align: center;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+  }
+  .vg-hero__eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .vg-hero__title {
+    font-family: var(--sans);
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 200;
+    letter-spacing: 0.06em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 auto 1rem;
+    max-width: 30ch;
+  }
+  .vg-hero__lede {
+    font-family: var(--serif);
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink);
+    margin: 0 auto;
+    max-width: 60ch;
+  }
+
+  /* ============ CATEGORY BAR ============ */
+  .vg-cat-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 32px;
+    padding: 24px var(--gutter);
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    position: sticky;
+    top: 60px;
+    z-index: 50;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: rgba(255,255,255,0.94);
+  }
+  .vg-cat-item { position: relative; }
+  .vg-cat-link {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding: 8px 4px;
+    transition: color 0.2s ease, border-bottom 0.2s ease;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+  }
+  .vg-cat-link:hover { color: var(--ink); }
+  .vg-cat-link.active { color: var(--accent); border-bottom: 1px solid var(--accent); }
+
+  .vg-mega-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 24px 32px;
+    margin-top: 8px;
+    box-shadow: 0 12px 32px rgba(0,0,0,.08);
+    z-index: 60;
+    display: grid;
+    grid-auto-flow: column;
+    gap: 32px;
+    min-width: 500px;
+  }
+  .vg-cat-item:hover .vg-mega-dropdown, .vg-cat-item:focus-within .vg-mega-dropdown { display: grid !important; }
+  .vg-mega-col h4 {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .vg-mega-col a {
+    display: block;
+    font-family: var(--serif);
+    font-size: 13px;
+    color: var(--ink-soft);
+    padding: 4px 0;
+    transition: color 0.2s ease;
+    cursor: pointer;
+  }
+  .vg-mega-col a:hover { color: var(--accent); }
+  .vg-mega-col a strong { color: var(--accent); }
+
+  /* ============ VIDEO GRID ============ */
+  .vg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 8px;
+    padding: 48px var(--gutter);
+    background: var(--paper);
+  }
+  .video-card {
+    position: relative;
+    display: block;
+    aspect-ratio: 1 / 1;
+    background: var(--paper-warm);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  .video-card.hidden { display: none !important; }
+  .video-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+  }
+  .video-card:hover .video-thumb { transform: scale(1.03); }
+  .play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+  }
+  .video-card:hover .play-btn { opacity: 1; }
+  .play-btn svg { width: 16px; height: 16px; fill: var(--accent); margin-left: 3px; }
+  .video-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px 14px 12px;
+    background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%);
+  }
+  .video-overlay h3 {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  /* ============ FOOTER (site canonical) — pulled in from styles.css if loaded; we have inline too ============ */
+  .ba-footer { background: #ffffff; border-top: 1px solid rgba(0,0,0,.08); padding: 64px 24px 32px; font-family: 'Inter', sans-serif; color: #4a4a4a; }
+  .ba-footer__inner { max-width: 1200px; margin: 0 auto; }
+  .ba-footer__cols { display: grid; grid-template-columns: repeat(5, 1fr); gap: 40px 32px; margin-bottom: 56px; }
+  .ba-footer__col h4 { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #1a1a1a; margin: 0 0 16px; }
+  .ba-footer__col h4.ba-footer__col-sub { margin-top: 28px; }
+  .ba-footer__col a { display: block; font-family: 'Lyon Text Regular', 'EB Garamond', Georgia, serif; font-size: 13px; font-weight: 400; color: #4a4a4a; line-height: 2.1; }
+  .ba-footer__col a:hover { color: #95826b; }
+  .ba-footer__bottom { border-top: 1px solid rgba(0,0,0,.08); padding-top: 32px; text-align: center; }
+  .ba-footer__logo { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 5px; color: #95826b; text-transform: uppercase; margin: 0 0 12px !important; }
+  .ba-footer__address { font-family: 'Inter', sans-serif; font-size: 12px; color: #4a4a4a; line-height: 1.85; margin: 0 0 14px !important; }
+  .ba-footer__tag { font-family: 'Inter', sans-serif; font-size: 10px !important; letter-spacing: 0.5px; color: #4a4a4a; margin: 0 !important; }
+  @media (max-width: 900px) { .ba-footer__cols { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .ba-footer__cols { grid-template-columns: 1fr; } }
+
+  @media (max-width: 768px) {
+    .ba-header { grid-template-columns: 1fr auto 1fr; padding: 14px 16px; }
+    .ba-header__logo { font-size: 12px; letter-spacing: 4px; }
+    .vg-mega-dropdown { min-width: auto; grid-auto-flow: row; }
+    .vg-cat-bar { padding: 16px 12px; gap: 4px 20px; }
+  }
+</style>
 </head>
 <body>
 
-    <header class="site-header">
-        <div class="header-inner">
-            <div class="header-left-group">
-                <button class="mobile-nav-toggle" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
-                <span class="menu-label" onclick="toggleMobileNav()">Menu</span>
-                <button class="header-icon-btn header-search-btn" aria-label="Search">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                </button>
-            </div>
-            <a href="index.html" class="logo">Bez Ambar</a>
-            <div class="header-right-group">
-                <a href="contact.html" class="header-contact-link">Contact Us</a>
-                <a href="#" class="header-icon-btn" aria-label="Wishlist">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                </a>
-                <a href="#" class="header-icon-btn" aria-label="Account">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                </a>
-            </div>
-            <div class="mobile-nav-overlay" id="mobileNav">
-                <a href="collection.html">Collection</a>
-                <span class="mobile-cat-label">Categories</span>
-                <a href="collection.html" class="mobile-cat-link">All Jewelry</a>
-                <a href="collection.html?cat=rings" class="mobile-cat-link">Rings</a>
-                <a href="collection.html?cat=engagement-rings" class="mobile-cat-link mobile-sub-link">Engagement Rings</a>
-                <a href="collection.html?cat=wedding-bands" class="mobile-cat-link mobile-sub-link">Wedding Bands</a>
-                <a href="collection.html?cat=mens-wedding-bands" class="mobile-cat-link mobile-sub-link">Men's Wedding Bands</a>
-                <a href="collection.html?cat=pendants" class="mobile-cat-link">Pendants</a>
-                <a href="collection.html?cat=necklaces" class="mobile-cat-link">Necklaces</a>
-                <a href="collection.html?cat=earrings" class="mobile-cat-link">Earrings</a>
-                <a href="collection.html?cat=stud-earrings" class="mobile-cat-link mobile-sub-link">Stud Earrings</a>
-                <a href="collection.html?cat=hug-earrings" class="mobile-cat-link mobile-sub-link">Hug Earrings</a>
-                <a href="collection.html?cat=hoop-earrings" class="mobile-cat-link mobile-sub-link">Hoop Earrings</a>
-                <a href="collection.html?cat=bracelets" class="mobile-cat-link">Bracelets</a>
-                <a href="video-gallery.html">Video Gallery</a>
-                <a href="our-story.html" class="mobile-cat-label" style="text-decoration:none;">Our Story</a>
-                <a href="about.html" class="mobile-cat-link">The Inventor</a>
-                <a href="the-bez-ambar-story.html" class="mobile-cat-link">The Bez Ambar Story</a>
-                <a href="journal.html" class="mobile-cat-link">Journal</a>
-                <a href="blog.html" class="mobile-cat-link">Blog</a>
-                <a href="diamond-education.html" class="mobile-cat-link">Diamond Education</a>
-                <a href="ring-size-chart.html" class="mobile-cat-link">Ring Size Chart</a>
-                <a href="catalogs.html" class="mobile-cat-link">Catalogs</a>
-                <a href="warranty.html" class="mobile-cat-link">Warranty</a>
-                <a href="press.html" class="mobile-cat-link">Press</a>
-            </div>
-        </div>
-    </header>
-    <div class="nav-backdrop" id="navBackdrop"></div>
-
-    <div class="video-gallery-hero">
-        <h1>Video Gallery</h1>
-        <p>Experience the brilliance of Bez Ambar's creations in motion</p>
+  <header class="ba-header is-clear" id="baHeader">
+    <button type="button" class="ba-header__menu" onclick="toggleMenu()">Menu</button>
+    <a href="/" class="ba-header__logo">Bez Ambar</a>
+    <div class="ba-header__icons">
+      <a href="#" aria-label="Search">⌕</a>
+      <a href="mailto:bezambar@bezambar.com" aria-label="Inquire">✉</a>
     </div>
+  </header>
+
+  <div class="menu-backdrop" id="menuBackdrop" onclick="toggleMenu()"></div>
+    <nav class="menu-overlay" id="menuOverlay" aria-hidden="true">
+        <button class="menu-overlay__close" onclick="toggleMenu()" aria-label="Close menu">&times;</button>
+        <div class="menu-overlay__logo">BEZ AMBAR</div>
+
+        <ul class="menu-col menu-col--root">
+            <li><a class="menu-item menu-item--home" href="index.html">Home</a></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="collection" type="button">Collection</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="manufacture" type="button">Manufacture</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="service" type="button">Service</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="editorial" type="button">Editorial</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="resources" type="button">Resources</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="signature" type="button">Signature Pieces</button></li>
+            <li><a class="menu-item" href="index-2.html">Reference (preview)</a></li>
+        </ul>
+
+        <ul class="menu-col menu-col--sub" data-col="collection">
+            <li><button class="menu-item menu-item--has-sub" data-target="bloom" type="button">Bloom Collection</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="rings" type="button">Rings</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="engagement-rings" type="button">Engagement Rings</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="wedding-bands" type="button">Wedding Bands</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="earrings" type="button">Earrings</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="pendants" type="button">Pendants</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="necklaces" type="button">Necklaces</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="bracelets" type="button">Bracelets</button></li>
+        </ul>
+
+        <ul class="menu-col menu-col--sub" data-col="rings">
+            <li><a class="menu-item" href="/fancy-yellow-three-stone">Fancy Yellow Three-Stone &middot; ref. C0536</a></li>
+            <li><a class="menu-item" href="/fancy-deep-brownish-yellow-cushion">Fancy Deep Brownish Yellow Cushion &middot; ref. 1C36</a></li>
+            <li><a class="menu-item" href="/fancy-very-pink-oval">Fancy Very Pink Oval &middot; ref. C0747</a></li>
+        </ul>
+        <ul class="menu-col menu-col--sub" data-col="engagement-rings">
+            <li><span class="menu-item menu-item--soon">In production</span></li>
+        </ul>
+        <ul class="menu-col menu-col--sub" data-col="wedding-bands">
+            <li><span class="menu-item menu-item--soon">In production</span></li>
+        </ul>
+        <ul class="menu-col menu-col--sub" data-col="earrings">
+            <li><span class="menu-item menu-item--soon">In production</span></li>
+        </ul>
+        <ul class="menu-col menu-col--sub" data-col="pendants">
+            <li><span class="menu-item menu-item--soon">In production</span></li>
+        </ul>
+        <ul class="menu-col menu-col--sub" data-col="necklaces">
+            <li><a class="menu-item" href="/single-row">The Single Row &middot; ref. IN100</a></li>
+            <li><a class="menu-item" href="/baguette-line">The Baguette Line &middot; ref. IN101</a></li>
+            <li><a class="menu-item" href="/pear-shaped-necklace">The Pear Shaped Necklace &middot; ref. C0508</a></li>
+        </ul>
+        <ul class="menu-col menu-col--sub" data-col="bracelets">
+            <li><a class="menu-item" href="/double-row-asscher-flex">The Double Row Asscher &middot; ref. 5FLX33ASCH2</a></li>
+            <li><a class="menu-item" href="/emerald-cut-stretch-bracelet">Emerald Cut Stretch Bracelet &middot; ref. 5FLX40ECNS</a></li>
+            <li><a class="menu-item" href="/single-row-asscher-cut">Single Row Asscher Cut &middot; ref. 5FLX33ASC</a></li>
+            <li><a class="menu-item" href="/blue-sapphire-single-row-flex">Blue Sapphire Single Row Flex &middot; ref. 5FLX30R</a></li>
+        </ul>
+
+        <ul class="menu-col menu-col--sub" data-col="bloom">
+            <li><a class="menu-item" href="/calla">The Calla &middot; ref. C0728</a></li>
+            <li><a class="menu-item" href="/camelia">Camélia &middot; ref. B9792</a></li>
+        </ul>
+
+        <ul class="menu-col menu-col--sub" data-col="manufacture">
+            <li><a class="menu-item" href="about.html">The Inventor</a></li>
+            <li><a class="menu-item" href="the-bez-ambar-story.html">The Bez Ambar Story</a></li>
+            <li><a class="menu-item" href="our-story.html">Our Story</a></li>
+            <li><a class="menu-item" href="press.html">Press</a></li>
+        </ul>
+
+        <ul class="menu-col menu-col--sub" data-col="service">
+            <li><a class="menu-item" href="contact.html">Contact</a></li>
+            <li><a class="menu-item" href="contact.html?subject=bespoke">Bespoke Inquiry</a></li>
+            <li><a class="menu-item" href="contact.html?subject=repairs">Repairs &amp; Cleaning</a></li>
+            <li><a class="menu-item" href="warranty.html">Warranty</a></li>
+        </ul>
+
+        <ul class="menu-col menu-col--sub" data-col="editorial">
+            <li><a class="menu-item" href="journal.html">Journal</a></li>
+            <li><a class="menu-item" href="blog.html">Blog</a></li>
+            <li><a class="menu-item" href="diamond-education.html">Diamond Education</a></li>
+            <li><a class="menu-item" href="video-gallery.html">Video Gallery</a></li>
+        </ul>
+
+        <ul class="menu-col menu-col--sub" data-col="resources">
+            <li><a class="menu-item" href="ring-size-chart.html">Ring Size Chart</a></li>
+            <li><a class="menu-item" href="catalogs.html">Catalogs</a></li>
+        </ul>
+
+        <ul class="menu-col menu-col--sub" data-col="signature">
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/30-carat-flex" target="_blank">30-Carat Flex</a></li>
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/flex-bracelets" target="_blank">Flex Bracelets</a></li>
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/elysian-cut" target="_blank">Elysian Cut</a></li>
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/cascata" target="_blank">Cascata</a></li>
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/crossover-ashoka" target="_blank">Crossover Ashoka</a></li>
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/heart-ruby-v2" target="_blank">Heart Ruby v2</a></li>
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/saul-ring" target="_blank">Saul Ring</a></li>
+        </ul>
+    </nav>
+
+  <main class="vg-page">
+    <section class="vg-hero">
+      <p class="vg-hero__eyebrow">Video Gallery</p>
+      <h1 class="vg-hero__title">Every Piece in Motion</h1>
+      <p class="vg-hero__lede">Over five hundred Bez Ambar pieces, filmed at the atelier in Los Angeles. Watch each stone under light before you inquire.</p>
+    </section>
 
     <div class="vg-cat-bar" id="vgCatBar">
         <a href="#" class="vg-cat-link" onclick="filterVG('all',this);return false;">All</a>
@@ -457,259 +658,217 @@
         <a href="#" class="vg-cat-link" onclick="filterVG('mens',this);return false;">Men's</a>
     </div>
 
-    <div class="video-grid" id="videoGrid">
-
-        <a class="video-card" href="video-product.html?id=b2958-palfs" data-category="rings" data-subcategory="round">
+    <div class="vg-grid" id="vgGrid">
+<a class="video-card" href="video-product.html?id=b2958-palfs" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B2958.gif?v=1649457984" alt="B2958 - PALFS">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B2958 — PALFS</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=b1394-rrpvsgl1-b1395-rrpvsgl1-g" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=b1394-rrpvsgl1-b1395-rrpvsgl1-g" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B1394better_21ea0b8f-d671-4c85-8f31-72b517ad1488.gif?v=1680293104" alt="B1394 - RRPVSGL1">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B1394 — RRPVSGL1</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=a3254-1lif9wd7" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=a3254-1lif9wd7" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/files/A3254-1LIF9WD7gowd.gif?v=1686149363" alt="A3254 - 1LIF9WD7">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>A3254 - 1LIF9WD7</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=a3418-palsqnc" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=a3418-palsqnc" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/A3418better.gif?v=1680292384" alt="A3418 - PALSQNC">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>A3418 - PALSQNC</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=a3486-customsil" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=a3486-customsil" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/A3486better.gif?v=1680292474" alt="A3486 - CUSTOMSIL">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>A3486 - CUSTOMSIL</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=a3829-daizy2" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=a3829-daizy2" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/A3829better.gif?v=1680292763" alt="A3829 - DAIZY2">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>A3829 - DAIZY2</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=b1432-pal2l-1" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=b1432-pal2l-1" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B1432better.gif?v=1680295186" alt="B1432 - PAL2L">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B1432 - PAL2L</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=b1935-1unt34z" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=b1935-1unt34z" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B1935better.gif?v=1680295377" alt="B1935 - 1UNT34Z">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B1935 - 1UNT34Z</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=b2345-356bg-2lz" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=b2345-356bg-2lz" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B2345better.gif?v=1680295647" alt="Sublime Ring">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>Sublime Ring</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=b3924-1unt34z-1" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=b3924-1unt34z-1" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B3924better.gif?v=1680295922" alt="B3924 - 1UNT34Z">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B3924 - 1UNT34Z</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=b4410-shrines" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=b4410-shrines" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B4410better.gif?v=1680298605" alt="B4410 - SHRINES">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B4410 - SHRINES</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=b5266-customtrio" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=b5266-customtrio" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B5266better.gif?v=1680298871" alt="B5266 - CUSTOMTRIO">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B5266 - CUSTOMTRIO</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=b5287-trio3" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=b5287-trio3" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B5287better.gif?v=1680299266" alt="B5287 - TRIO3">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B5287 - TRIO3</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=m05327-sandra2rbx" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=m05327-sandra2rbx" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/files/M05327-SANDRA2RBXgowd.gif?v=1686150361" alt="M05327 - SANDRA2RBX">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>M05327 - SANDRA2RBX</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=b8626-1mon-1" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=b8626-1mon-1" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B8626better.gif?v=1680300412" alt="B8626 1MON">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B8626 1MON</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=tlp29pves" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=tlp29pves" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/TLP29PVESbetter.gif?v=1680300733" alt="Tulip Ring">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>Tulip Ring</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=b5899-1krn76l" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=b5899-1krn76l" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B5899better.gif?v=1680301047" alt="B5899 - 1KRN76L">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B5899 - 1KRN76L</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=rene-ring" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=rene-ring" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/files/ReneRinggwod.gif?v=1686150618" alt="Rene Ring">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>Rene Ring</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=b7668-palfs" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=b7668-palfs" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B7668better.gif?v=1680349839" alt="B7668 - PALFS">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B7668 - PALFS</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=b3917-customrpv" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=b3917-customrpv" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B3917better.gif?v=1680350065" alt="B3917 - CUSTOMRPV">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B3917 - CUSTOMRPV</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=b3575-customlz" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=b3575-customlz" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B3575beter.gif?v=1680350272" alt="B3575 - CUSTOMLZ">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B3575 - CUSTOMLZ</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=b3687-custompal" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=b3687-custompal" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B3687better.gif?v=1680350506" alt="B3687 - CUSTOMPAL">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B3687 - CUSTOMPAL</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=b7404-rbc21s12" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=b7404-rbc21s12" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B7404better.gif?v=1680364861" alt="B7404 - RBC21S12">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B7404 - RBC21S12</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=b7413-customrpv" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=b7413-customrpv" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B7413better.gif?v=1680365692" alt="B7413 - CUSTOMRPV">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B7413 - CUSTOMRPV</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=b0646-1tlp33es" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=b0646-1tlp33es" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/files/B0646-1TLP33ESbetter.gif?v=1680365982" alt="Blaze Tulip Ring | B0646">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>Blaze Tulip Ring | B0646</h3>
             </div>
         </a>
-
-
-
-
-
-
-        <a class="video-card" href="video-product.html?id=a2745-1sil97" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=a2745-1sil97" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/A2745-1SIL97.gif?v=1648689434" alt="A2745 - 1SIL97">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>A2745 - 1SIL97</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=b6221-customring" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=b6221-customring" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B6221-CUSTOMRING.gif?v=1648758104" alt="B6221 - CUSTOMRING">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B6221 - CUSTOMRING</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=1hvn23xbdqd-b0376" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=1hvn23xbdqd-b0376" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/files/1HVN23XBDQD-B0376gwod.gif?v=1686154229" alt="1HVN23XBDQD - B0376">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>1HVN23XBDQD - B0376</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=b6284-custom" data-category="rings" data-subcategory="round">
+<a class="video-card" href="video-product.html?id=b6284-custom" data-category="rings" data-subcategory="round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B6284.gif?v=1648758558" alt="B6284 - CUSTOM">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B6284 - CUSTOM</h3>
             </div>
         </a>
-
-
-
-
-
-
-
-        <a class="video-card" href="video-product.html?id=b6224-customref" data-category="rings" data-subcategory="pink">
+<a class="video-card" href="video-product.html?id=b6224-customref" data-category="rings" data-subcategory="pink">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B6224better.gif?v=1675603312" alt="B6224 - Fancy Pink Diamond Ring">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B6224 — Fancy Pink Diamond Ring</h3>
             </div>
         </a>
-
 <a class="video-card" href="video-product.html?id=oval-cluster-diamond-ring" data-category="rings" data-subcategory="oval">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/files/Gifs-ezgif.com-reverse.gif?v=1768976150" alt="Oval Cluster Diamond Ring">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
@@ -717,505 +876,504 @@
                 <h3>Oval Cluster Diamond Ring</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=oval-diamond-ring-with-fancy-yellow-side-stones" data-category="rings" data-subcategory="oval">
+<a class="video-card" href="video-product.html?id=oval-diamond-ring-with-fancy-yellow-side-stones" data-category="rings" data-subcategory="oval">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/files/Gif_2-ezgif.com-reverse.gif?v=1768956455" alt="Oval Diamond Ring with Fancy Yellow Side Stones">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>Oval Diamond Ring with Fancy Yellow Side Stones</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=a2354-customlz" data-category="rings" data-subcategory="oval">
+<a class="video-card" href="video-product.html?id=a2354-customlz" data-category="rings" data-subcategory="oval">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/files/A2354quitegoud.gif?v=1686159455" alt="A2354 — CUSTOMLZ">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>A2354 — CUSTOMLZ</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b0790-1rol2410" data-category="rings" data-subcategory="oval">
+<a class="video-card" href="video-product.html?id=b0790-1rol2410" data-category="rings" data-subcategory="oval">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/files/B0790-1ROL2410goud.gif?v=1686159682" alt="B0790 — 1ROL2410">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B0790 — 1ROL2410</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b4132-rene2" data-category="rings" data-subcategory="oval">
+<a class="video-card" href="video-product.html?id=b4132-rene2" data-category="rings" data-subcategory="oval">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B4132.gif?v=1649276806" alt="B4132 — RENE2">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B4132 — RENE2</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b4289-custompal" data-category="rings" data-subcategory="oval">
+<a class="video-card" href="video-product.html?id=b4289-custompal" data-category="rings" data-subcategory="oval">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/files/B4289-CUSTOMPALgowd.gif?v=1686159941" alt="B4289 — CUSTOMPAL">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B4289 — CUSTOMPAL</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b5033-customroff" data-category="rings" data-subcategory="oval">
+<a class="video-card" href="video-product.html?id=b5033-customroff" data-category="rings" data-subcategory="oval">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/files/B5033-CUSTOMROFFgoawd.gif?v=1686160077" alt="B5033 — CUSTOMROFF">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B5033 — CUSTOMROFF</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b5115-custom" data-category="rings" data-subcategory="oval">
+<a class="video-card" href="video-product.html?id=b5115-custom" data-category="rings" data-subcategory="oval">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/files/B5115-CUSTOMyes.gif?v=1686160312" alt="B5115 — CUSTOM">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B5115 — CUSTOM</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b5205-1crc30" data-category="rings" data-subcategory="oval">
+<a class="video-card" href="video-product.html?id=b5205-1crc30" data-category="rings" data-subcategory="oval">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/files/B5205-1CRC30gawd.gif?v=1686160565" alt="B5205 — 1CRC30">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B5205 — 1CRC30</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b5599-1c3s" data-category="rings" data-subcategory="oval">
+<a class="video-card" href="video-product.html?id=b5599-1c3s" data-category="rings" data-subcategory="oval">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/files/B5599-1C3Sgownd.gif?v=1686160942" alt="B5599 — 1C3S">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B5599 — 1C3S</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b5823-customrof" data-category="rings" data-subcategory="oval">
+<a class="video-card" href="video-product.html?id=b5823-customrof" data-category="rings" data-subcategory="oval">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/files/B5823-CUSTOMROFgaaaaaaaaaa.gif?v=1686161458" alt="B5823 — CUSTOMROF">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B5823 — CUSTOMROF</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b5845-customrol" data-category="rings" data-subcategory="oval">
+<a class="video-card" href="video-product.html?id=b5845-customrol" data-category="rings" data-subcategory="oval">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B5845.gif?v=1649286626" alt="B5845 — CUSTOMROL">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B5845 — CUSTOMROL</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b6223-customrof" data-category="rings" data-subcategory="oval">
+<a class="video-card" href="video-product.html?id=b6223-customrof" data-category="rings" data-subcategory="oval">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B6223.gif?v=1649288427" alt="B6223 — CUSTOMROF">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B6223 — CUSTOMROF</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b7056-customrof" data-category="rings" data-subcategory="oval">
+<a class="video-card" href="video-product.html?id=b7056-customrof" data-category="rings" data-subcategory="oval">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B7056.gif?v=1649291409" alt="B7056 — CUSTOMROF">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B7056 — CUSTOMROF</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b7248-customtrio" data-category="rings" data-subcategory="oval">
+<a class="video-card" href="video-product.html?id=b7248-customtrio" data-category="rings" data-subcategory="oval">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B7248.gif?v=1649292439" alt="B7248 — CUSTOMTRIO">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B7248 — CUSTOMTRIO</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b7319-customrof" data-category="rings" data-subcategory="oval">
+<a class="video-card" href="video-product.html?id=b7319-customrof" data-category="rings" data-subcategory="oval">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B7319.gif?v=1649292597" alt="B7319 — CUSTOMROF">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B7319 — CUSTOMROF</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=maryanne-ring" data-category="rings" data-subcategory="oval">
+<a class="video-card" href="video-product.html?id=maryanne-ring" data-category="rings" data-subcategory="oval">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/MaryanneRing.gif?v=1649356198" alt="Maryanne Ring">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>Maryanne Ring</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=r07897-customtrio" data-category="rings" data-subcategory="oval">
+<a class="video-card" href="video-product.html?id=r07897-customtrio" data-category="rings" data-subcategory="oval">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/R07897.gif?v=1649358385" alt="R07897 — CUSTOMTRIO">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>R07897 — CUSTOMTRIO</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b8823-1lbd13u" data-category="rings" data-subcategory="oval">
+<a class="video-card" href="video-product.html?id=b8823-1lbd13u" data-category="rings" data-subcategory="oval">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B88231LBD13U_2.gif?v=1651538887" alt="B8823 — 1LBD13U">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B8823 — 1LBD13U</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b5225-1rof24-ov" data-category="rings" data-subcategory="oval">
+<a class="video-card" href="video-product.html?id=b5225-1rof24-ov" data-category="rings" data-subcategory="oval">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B5225.gif?v=1649278734" alt="B5225 — 1ROF24-OV">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B5225 — 1ROF24-OV</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b5433-customrof" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b5433-customrof" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B5433.gif?v=1648858371" alt="B5433 — CUSTOMROF">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B5433 — CUSTOMROF</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b4533-rreq20" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b4533-rreq20" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B4533.gif?v=1648857721" alt="B4533 — RREQ20">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B4533 — RREQ20</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=r07610-b7573-customrof" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=r07610-b7573-customrof" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/R07610.gif?v=1649196515" alt="R07610 - B7573 - CUSTOMROF">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>R07610 - B7573 - CUSTOMROF</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=r07223-94757-ltvna20fb4" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=r07223-94757-ltvna20fb4" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/R07223.gif?v=1649197304" alt="R07223 - 94757 - LTVNA20FB4">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>R07223 - 94757 - LTVNA20FB4</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=r06418-b3622-1rof24l" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=r06418-b3622-1rof24l" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/R06418.gif?v=1649197476" alt="R06418 - B3622 - 1ROF24L">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>R06418 - B3622 - 1ROF24L</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b8348-customrof" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b8348-customrof" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B8348.gif?v=1648861650" alt="Custom Ring Of Fire - B8348">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>Custom Ring Of Fire - B8348</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b7941-customrof" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b7941-customrof" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B7941.gif?v=1648860772" alt="B7941 — CUSTOMROF">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B7941 — CUSTOMROF</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b7869-customrof" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b7869-customrof" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B7869.gif?v=1648860505" alt="B7869 — CUSTOMROF">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B7869 — CUSTOMROF</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b7371-customring" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b7371-customring" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B7371.gif?v=1648860041" alt="B7371 — CUSTOMRING">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B7371 — CUSTOMRING</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b3068-customrof" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b3068-customrof" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B3068.gif?v=1648853937" alt="B3068 — CUSTOMROF">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B3068 — CUSTOMROF</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b2443-b2444-1ecllze-2cmr15zx" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b2443-b2444-1ecllze-2cmr15zx" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B2443.gif?v=1648850647" alt="B2443 — B2444-1ECLLZE-2CMR15ZX">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B2443 — B2444-1ECLLZE-2CMR15ZX</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b0219-b0220-1ecllze-and-matching-band" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b0219-b0220-1ecllze-and-matching-band" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B0219.gif?v=1648839818" alt="B0219 - B0220 - 1ECLLZE and Matching Band">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B0219 - B0220 - 1ECLLZE and Matching Band</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b6304-customrof" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b6304-customrof" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B6304.gif?v=1648758684" alt="B6304 — CUSTOMROF">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B6304 — CUSTOMROF</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b6810-1jstlz" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b6810-1jstlz" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B6810.gif?v=1648758951" alt="B6810 — 1JSTLZ">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B6810 — 1JSTLZ</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b4827-1flare" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b4827-1flare" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B4827-1FLARE.gif?v=1648749345" alt="Flare Ring - B4827">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>Flare Ring - B4827</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=2rol-ring-of-light-with-a-4-carat-round-diamond" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=2rol-ring-of-light-with-a-4-carat-round-diamond" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/2ROLRingofLightwitha4CaratRoundDiamond.gif?v=1648681026" alt="Ring Of Light - 4 Carat Round Diamond">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>Ring Of Light - 4 Carat Round Diamond</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b7898-customring" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b7898-customring" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B7898.gif?v=1648860638" alt="B7898 — CUSTOMRING">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B7898 — CUSTOMRING</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=rrflsgl-flower-of-light" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=rrflsgl-flower-of-light" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/RRFLSG.gif?v=1649191433" alt="Flower Of Light">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>Flower Of Light</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=r06356-b3157-1rof24m" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=r06356-b3157-1rof24m" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/R06356.gif?v=1649197076" alt="R06356 - B3157 - 1ROF24M">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>R06356 - B3157 - 1ROF24M</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b8493-1fol24-2" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b8493-1fol24-2" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B8493.gif?v=1649187978" alt="Flower Of Light - B8493">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>Flower Of Light - B8493</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b8058-flower" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b8058-flower" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B8058.gif?v=1648860947" alt="Flower Ring - B8058">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>Flower Ring - B8058</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b4429-1rofp05r" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b4429-1rofp05r" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B4429.gif?v=1648857461" alt="B4429 — 1ROFP05R">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B4429 — 1ROFP05R</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b5142-1ecllze" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b5142-1ecllze" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B5142.gif?v=1648858085" alt="B5142 — 1ECLLZE">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B5142 — 1ECLLZE</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b4578-customrof" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b4578-customrof" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B4578.gif?v=1648857598" alt="B4578 — CUSTOMROF">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B4578 — CUSTOMROF</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b4376-rrfslg" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b4376-rrfslg" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B4376.gif?v=1648857222" alt="B4376 — RRFSLG">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B4376 — RRFSLG</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b7131-1rof24vs" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b7131-1rof24vs" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B7131.gif?v=1648767039" alt="Ring Of Fire - Small">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>Ring Of Fire - Small</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b5195-1crc30" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b5195-1crc30" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B5195-1CRC30.gif?v=1648749564" alt="B5195 — 1CRC30">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B5195 — 1CRC30</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b6767-1sfol2rpv" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b6767-1sfol2rpv" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B6767.gif?v=1648758834" alt="B6767 — 1SFOL2RPV">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B6767 — 1SFOL2RPV</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b2827-customrof" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b2827-customrof" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B2827.gif?v=1648853164" alt="B2827 — CUSTOMROF">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B2827 — CUSTOMROF</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b0641-1rol248-b0642-customband" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b0641-1rol248-b0642-customband" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B0641-1ROL248_B0642-CUSTOMBAND.gif?v=1648684161" alt="Ring Of Light Wedding Set - B0641">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>Ring Of Light Wedding Set - B0641</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=a3888-1rol2490" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=a3888-1rol2490" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/A3888.gif?v=1648835585" alt="A3888 — 1ROL2490">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>A3888 — 1ROL2490</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=a3694-1fol24" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=a3694-1fol24" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/A3694.gif?v=1648767387" alt="A3694 — 1FOL24">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>A3694 — 1FOL24</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b6893-1rof24xlu" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b6893-1rof24xlu" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B6893.gif?v=1648759315" alt="B6893 — 1ROF24XLU">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B6893 — 1ROF24XLU</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b5301-1rof24xl-13" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b5301-1rof24xl-13" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B5301-1ROF24XL-13.gif?v=1648750502" alt="B5301 — 1ROF24XL-13">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B5301 — 1ROF24XL-13</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b5912-1sfol2rpv" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b5912-1sfol2rpv" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B5912-1SFOL2RPV.gif?v=1648751309" alt="B5912 — 1SFOL2RPV">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B5912 — 1SFOL2RPV</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b7122-customlz" data-category="rings" data-subcategory="framed-round">
+<a class="video-card" href="video-product.html?id=b7122-customlz" data-category="rings" data-subcategory="framed-round">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B7122.gif?v=1648766844" alt="B7122 — CUSTOMLZ">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B7122 — CUSTOMLZ</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=pear-cluster-diamond-ring" data-category="rings" data-subcategory="pear">
+<a class="video-card" href="video-product.html?id=pear-cluster-diamond-ring" data-category="rings" data-subcategory="pear">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/files/Gif-ezgif.com-reverse_3_6c54de08-efc3-4ffe-8dff-57d45d16037b.gif?v=1769379148" alt="Pear Cluster Diamond Ring">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>Pear Cluster Diamond Ring</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=pear-cut-diamond-ring-with-split-pave-band" data-category="rings" data-subcategory="pear">
+<a class="video-card" href="video-product.html?id=pear-cut-diamond-ring-with-split-pave-band" data-category="rings" data-subcategory="pear">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/files/Gif-ezgif.com-reverse_4.gif?v=1769128443" alt="Pear Cut Diamond Ring with Split Pavé Band">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>Pear Cut Diamond Ring with Split Pavé Band</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=asymmetric-pear-cut-ring" data-category="rings" data-subcategory="pear">
+<a class="video-card" href="video-product.html?id=asymmetric-pear-cut-ring" data-category="rings" data-subcategory="pear">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/files/ezgif.com-reverse.gif?v=1768890552" alt="Asymmetric Pear Cut Ring">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>Asymmetric Pear Cut Ring</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b0151-customlz" data-category="rings" data-subcategory="pear">
+<a class="video-card" href="video-product.html?id=b0151-customlz" data-category="rings" data-subcategory="pear">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B0151_2.gif?v=1649787623" alt="B0151 — CUSTOMLZ">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B0151 — CUSTOMLZ</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b0442-palfr" data-category="rings" data-subcategory="pear">
+<a class="video-card" href="video-product.html?id=b0442-palfr" data-category="rings" data-subcategory="pear">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B0442.gif?v=1649269025" alt="B0442 — PALFR">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B0442 — PALFR</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b1976-1rof24xlu" data-category="rings" data-subcategory="pear">
+<a class="video-card" href="video-product.html?id=b1976-1rof24xlu" data-category="rings" data-subcategory="pear">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B1976.gif?v=1649271921" alt="B1976 — 1ROF24XLU">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B1976 — 1ROF24XLU</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b1067-cleo3" data-category="rings" data-subcategory="pear">
+<a class="video-card" href="video-product.html?id=b1067-cleo3" data-category="rings" data-subcategory="pear">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B1067.gif?v=1649270111" alt="B1067 — CLEO3">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B1067 — CLEO3</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b3608-1alc" data-category="rings" data-subcategory="pear">
+<a class="video-card" href="video-product.html?id=b3608-1alc" data-category="rings" data-subcategory="pear">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B3608.gif?v=1649275741" alt="B3608 — 1ALC">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B3608 — 1ALC</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b3674-customtrio" data-category="rings" data-subcategory="pear">
+<a class="video-card" href="video-product.html?id=b3674-customtrio" data-category="rings" data-subcategory="pear">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B3674.gif?v=1649275971" alt="B3674 — CUSTOMTRIO">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B3674 — CUSTOMTRIO</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b6787-1mcl4cu" data-category="rings" data-subcategory="pear">
+<a class="video-card" href="video-product.html?id=b6787-1mcl4cu" data-category="rings" data-subcategory="pear">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B6787.gif?v=1649290382" alt="B6787 — 1MCL4CU">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B6787 — 1MCL4CU</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b7114-1rof24ps" data-category="rings" data-subcategory="pear">
+<a class="video-card" href="video-product.html?id=b7114-1rof24ps" data-category="rings" data-subcategory="pear">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B7114_2.gif?v=1649291820" alt="B7114 — 1ROF24PS">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B7114 — 1ROF24PS</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b7798-customring" data-category="rings" data-subcategory="pear">
+<a class="video-card" href="video-product.html?id=b7798-customring" data-category="rings" data-subcategory="pear">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B7798.gif?v=1649293014" alt="B7798 — CUSTOMRING">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B7798 — CUSTOMRING</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b2147-1rof1ps" data-category="rings" data-subcategory="pear">
+<a class="video-card" href="video-product.html?id=b2147-1rof1ps" data-category="rings" data-subcategory="pear">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B2147.gif?v=1649272264" alt="B2147 — 1ROF1PS">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>B2147 — 1ROF1PS</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b8119-customlz" data-category="rings" data-subcategory="pear">
+<a class="video-card" href="video-product.html?id=b8119-customlz" data-category="rings" data-subcategory="pear">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B8119.gif?v=1649293115" alt="Custom Ring - B8119">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>Custom Ring - B8119</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=b5561-customlz" data-category="rings" data-subcategory="pear">
+<a class="video-card" href="video-product.html?id=b5561-customlz" data-category="rings" data-subcategory="pear">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B5561.gif?v=1649284374" alt="Custom Ring - B5561">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>Custom Ring - B5561</h3>
             </div>
         </a>
-        <a class="video-card" href="video-product.html?id=r07854-rrflsgl-easy-fit" data-category="rings" data-subcategory="pear">
+<a class="video-card" href="video-product.html?id=r07854-rrflsgl-easy-fit" data-category="rings" data-subcategory="pear">
             <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/R07854.gif?v=1649358182" alt="R07854 — RRFLSGL Easy Fit">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
             <div class="video-overlay">
                 <h3>R07854 — RRFLSGL Easy Fit</h3>
             </div>
         </a>
-
-        <a class="video-card" href="video-product.html?id=b8165-customlz" data-category="rings" data-subcategory="marquise">
+<a class="video-card" href="video-product.html?id=b8165-customlz" data-category="rings" data-subcategory="marquise">
     <img class="video-thumb" src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B8165.gif?v=1649293236" alt="Custom Ring - B8165">
     <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
     <div class="video-overlay"><h3>Custom Ring - B8165</h3></div>
@@ -3577,57 +3735,17 @@
                 <h3>Bez Ambar</h3>
             </div>
         </a>
-
     </div>
+  </main>
 
-    <footer class="ba-footer" id="inquire">
+  <footer class="ba-footer" id="inquire">
     <div class="ba-footer__inner">
       <div class="ba-footer__cols">
-        <div class="ba-footer__col">
-          <h4>Collection</h4>
-          <a href="/bloom">Bloom Collection</a>
-          <a href="/collection?cat=rings">Rings</a>
-          <a href="/collection?cat=engagement-rings">Engagement Rings</a>
-          <a href="/collection?cat=wedding-bands">Wedding Bands</a>
-          <a href="/collection?cat=earrings">Earrings</a>
-          <a href="/collection?cat=pendants">Pendants</a>
-          <a href="/collection?cat=necklaces">Necklaces</a>
-          <a href="/collection?cat=bracelets">Bracelets</a>
-        </div>
-        <div class="ba-footer__col">
-          <h4>Manufacture</h4>
-          <a href="/about">The Inventor</a>
-          <a href="/the-bez-ambar-story">The Bez Ambar Story</a>
-          <a href="/our-story">Our Story</a>
-          <a href="/press">Press</a>
-        </div>
-        <div class="ba-footer__col">
-          <h4>Service</h4>
-          <a href="/contact">Contact</a>
-          <a href="/contact?subject=bespoke">Bespoke Inquiry</a>
-          <a href="/contact?subject=repairs">Repairs &amp; Cleaning</a>
-          <a href="/warranty">Warranty</a>
-        </div>
-        <div class="ba-footer__col">
-          <h4>Signature Pieces</h4>
-          <a href="https://galleries.bezambarinc.workers.dev/page/30-carat-flex" target="_blank" rel="noopener">30-Carat Flex</a>
-          <a href="https://galleries.bezambarinc.workers.dev/page/flex-bracelets" target="_blank" rel="noopener">Flex Bracelets</a>
-          <a href="https://galleries.bezambarinc.workers.dev/page/elysian-cut" target="_blank" rel="noopener">Elysian Cut</a>
-          <a href="https://galleries.bezambarinc.workers.dev/page/cascata" target="_blank" rel="noopener">Cascata</a>
-          <a href="https://galleries.bezambarinc.workers.dev/page/crossover-ashoka" target="_blank" rel="noopener">Crossover Ashoka</a>
-          <a href="/heart-ruby">Heart Ruby</a>
-          <a href="https://galleries.bezambarinc.workers.dev/page/saul-ring" target="_blank" rel="noopener">Saul Ring</a>
-        </div>
-        <div class="ba-footer__col">
-          <h4>Editorial</h4>
-          <a href="/journal">Journal</a>
-          <a href="/blog">Blog</a>
-          <a href="/diamond-education">Diamond Education</a>
-          <a href="/video-gallery">Video Gallery</a>
-          <h4 class="ba-footer__col-sub">Resources</h4>
-          <a href="/ring-size-chart">Ring Size Chart</a>
-          <a href="/catalogs">Catalogs</a>
-        </div>
+        <div class="ba-footer__col"><h4>Collection</h4><a href="/bloom">Bloom Collection</a><a href="/collection?cat=rings">Rings</a><a href="/collection?cat=engagement-rings">Engagement Rings</a><a href="/collection?cat=wedding-bands">Wedding Bands</a><a href="/collection?cat=earrings">Earrings</a><a href="/collection?cat=pendants">Pendants</a><a href="/collection?cat=necklaces">Necklaces</a><a href="/collection?cat=bracelets">Bracelets</a></div>
+        <div class="ba-footer__col"><h4>Manufacture</h4><a href="/about">The Inventor</a><a href="/the-bez-ambar-story">The Bez Ambar Story</a><a href="/our-story">Our Story</a><a href="/press">Press</a></div>
+        <div class="ba-footer__col"><h4>Service</h4><a href="/contact">Contact</a><a href="/contact?subject=bespoke">Bespoke Inquiry</a><a href="/contact?subject=repairs">Repairs &amp; Cleaning</a><a href="/warranty">Warranty</a></div>
+        <div class="ba-footer__col"><h4>Signature Pieces</h4><a href="https://galleries.bezambarinc.workers.dev/page/30-carat-flex" target="_blank" rel="noopener">30-Carat Flex</a><a href="https://galleries.bezambarinc.workers.dev/page/flex-bracelets" target="_blank" rel="noopener">Flex Bracelets</a><a href="https://galleries.bezambarinc.workers.dev/page/elysian-cut" target="_blank" rel="noopener">Elysian Cut</a><a href="https://galleries.bezambarinc.workers.dev/page/cascata" target="_blank" rel="noopener">Cascata</a><a href="https://galleries.bezambarinc.workers.dev/page/crossover-ashoka" target="_blank" rel="noopener">Crossover Ashoka</a><a href="/heart-ruby">Heart Ruby</a><a href="https://galleries.bezambarinc.workers.dev/page/saul-ring" target="_blank" rel="noopener">Saul Ring</a></div>
+        <div class="ba-footer__col"><h4>Editorial</h4><a href="/journal">Journal</a><a href="/blog">Blog</a><a href="/diamond-education">Diamond Education</a><a href="/video-gallery">Video Gallery</a><h4 class="ba-footer__col-sub">Resources</h4><a href="/ring-size-chart">Ring Size Chart</a><a href="/catalogs">Catalogs</a></div>
       </div>
       <div class="ba-footer__bottom">
         <p class="ba-footer__logo">Bez Ambar</p>
@@ -3637,15 +3755,69 @@
     </div>
   </footer>
 
-    <script>
-        // Mega dropdown mapping
-        var megaDropdowns = { rings: 'megaRings', bands: 'megaBands', necklaces: 'megaNecklaces', earrings: 'megaEarrings' };
+  <script>
+    // Header scroll toggle
+    (function () {
+      var header = document.getElementById('baHeader');
+      function onScroll() { header.classList.toggle('is-clear', window.scrollY < 40); }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
 
-        function closeAllDropdowns() {
-            document.querySelectorAll('.vg-mega-dropdown').forEach(function(d) { d.classList.remove('open'); });
+    function toggleMenu() {
+            const overlay = document.getElementById('menuOverlay');
+            const backdrop = document.getElementById('menuBackdrop');
+            const isOpen = overlay.classList.toggle('is-open');
+            backdrop.classList.toggle('is-open', isOpen);
+            overlay.setAttribute('aria-hidden', String(!isOpen));
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+            if (!isOpen) resetMenuSub();
         }
+        function resetMenuSub() {
+            const overlay = document.getElementById('menuOverlay');
+            overlay.classList.remove('has-sub');
+            overlay.classList.remove('has-sub-sub');
+            overlay.querySelectorAll('.menu-item.is-active').forEach(el => el.classList.remove('is-active'));
+            overlay.querySelectorAll('.menu-col--sub.is-active').forEach(el => el.classList.remove('is-active'));
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && document.getElementById('menuOverlay').classList.contains('is-open')) toggleMenu();
+        });
+        // Drill-down: clicks in root reveal a 2nd column; clicks inside that 2nd
+        // column reveal a 3rd column (instead of replacing the 2nd).
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.menu-item--has-sub');
+            if (!btn) return;
+            e.preventDefault();
+            const target = btn.dataset.target;
+            const overlay = document.getElementById('menuOverlay');
+            const inRoot = btn.closest('.menu-col--root') !== null;
+            const parentSub = btn.closest('.menu-col--sub');
+            const sub = overlay.querySelector('.menu-col--sub[data-col="' + target + '"]');
 
-        function filterVG(cat, el) {
+            if (inRoot) {
+                // Root click → reset, open one 2nd-level column
+                overlay.querySelectorAll('.menu-col--root .menu-item').forEach(el => el.classList.remove('is-active'));
+                overlay.querySelectorAll('.menu-col--sub').forEach(el => el.classList.remove('is-active'));
+                overlay.querySelectorAll('.menu-col--sub .menu-item').forEach(el => el.classList.remove('is-active'));
+                btn.classList.add('is-active');
+                if (sub) {
+                    sub.classList.add('is-active');
+                    overlay.classList.add('has-sub');
+                    overlay.classList.remove('has-sub-sub');
+                } else {
+                    overlay.classList.remove('has-sub');
+                    overlay.classList.remove('has-sub-sub');
+                }
+            } else if (parentSub) {
+                // Sub-button click → keep parent column open, add a 3rd column.
+                // Close any other 3rd-level subs (siblings of the parent that are active).
+                overlay.querySelectorAll('.menu-col--sub.is-active').forEach(el => {
+                    if (el !== parentSub) el.classList.remove('is-active');
+                });
+
+    // Video gallery filter (preserved from legacy)
+    function filterVG(cat, el) {
             // Update main bar active state
             document.querySelectorAll('.vg-cat-link').forEach(function(a) { a.classList.remove('active'); });
             el.classList.add('active');
@@ -3731,7 +3903,20 @@
             document.getElementById('navBackdrop').classList.remove('open');
         }
         document.getElementById('navBackdrop').addEventListener('click', closeMobileNav);
-    </script>
+    
+function filterSub(sub, el) {
+            // Update active state in dropdown
+            var dropdown = el.closest('.vg-mega-dropdown');
+            dropdown.querySelectorAll('a').forEach(function(a) { a.classList.remove('active'); });
+            el.classList.add('active');
 
+            // Get the active main category
+            var mainCat = '';
+            document.querySelectorAll('.vg-cat-link.active').forEach(function(a) {
+                var onclick = a.getAttribute('onclick') || '';
+                var match = onclick.match(/filterVG\('([^']+)'/);
+                if (match) mainCat = match[1];
+            }
+  </script>
 </body>
 </html>
