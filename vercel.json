@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/video-gallery",
+      "destination": "/video-gallery.html"
+    },
+    {
       "source": "/product/in100",
       "destination": "/product-in100.html"
     },
