@@ -522,6 +522,44 @@
 @media (max-width: 480px) {
   .ba-footer__cols { grid-template-columns: 1fr; gap: 24px; }
 }
+
+  /* ============ PRODUCT PREV/NEXT ARROWS ============ */
+  .product-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 90;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 50%;
+    color: #95826b;
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1;
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.25s ease, background 0.25s ease;
+    cursor: pointer;
+    user-select: none;
+  }
+  .product-nav:hover { opacity: 1; background: #fff; }
+  .product-nav--prev { left: 24px; }
+  .product-nav--next { right: 24px; }
+  .product-nav.is-hidden { display: none; }
+  body.menu-open .product-nav { opacity: 0; pointer-events: none; }
+  @media (max-width: 768px) {
+    .product-nav { width: 40px; height: 40px; font-size: 20px; }
+    .product-nav--prev { left: 12px; }
+    .product-nav--next { right: 12px; }
+  }
 </style>
 </head>
 <body>
@@ -535,6 +573,9 @@
       <a href="#inquire" aria-label="Inquire">✉</a>
     </div>
   </header>
+  <!-- Product prev/next arrows — auto-populated from menu drawer -->
+  <a class="product-nav product-nav--prev" href="#" aria-label="Previous piece">&#8249;</a>
+  <a class="product-nav product-nav--next" href="#" aria-label="Next piece">&#8250;</a>
 
   <div class="menu-backdrop" id="menuBackdrop" onclick="toggleMenu()"></div>
     <nav class="menu-overlay" id="menuOverlay" aria-hidden="true">
@@ -846,6 +887,56 @@ function toggleMenu() {
       window.addEventListener('resize', update, { passive: true });
       update();
     })();
+  
+        // Product prev/next arrows — auto-populated from menu drawer
+        (function () {
+            var prevBtn = document.querySelector('.product-nav--prev');
+            var nextBtn = document.querySelector('.product-nav--next');
+            if (!prevBtn || !nextBtn) return;
+            var overlay = document.getElementById('menuOverlay');
+            if (!overlay) { prevBtn.classList.add('is-hidden'); nextBtn.classList.add('is-hidden'); return; }
+            var path = window.location.pathname.replace(/\/$/, '') || '/';
+            // Find the category submenu containing the current path
+            var subs = overlay.querySelectorAll('.menu-col--sub');
+            var items = null;
+            for (var i = 0; i < subs.length; i++) {
+                var links = subs[i].querySelectorAll('a.menu-item');
+                var hrefs = [];
+                var hasCurrent = false;
+                for (var j = 0; j < links.length; j++) {
+                    var href = links[j].getAttribute('href') || '';
+                    // Skip external links
+                    if (/^https?:/.test(href)) continue;
+                    hrefs.push(href);
+                    if (href.replace(/\/$/, '') === path) hasCurrent = true;
+                }
+                if (hasCurrent && hrefs.length >= 2) { items = hrefs; break; }
+            }
+            if (!items) {
+                prevBtn.classList.add('is-hidden');
+                nextBtn.classList.add('is-hidden');
+                return;
+            }
+            var idx = -1;
+            for (var k = 0; k < items.length; k++) {
+                if (items[k].replace(/\/$/, '') === path) { idx = k; break; }
+            }
+            if (idx < 0) { prevBtn.classList.add('is-hidden'); nextBtn.classList.add('is-hidden'); return; }
+            var prev = items[(idx - 1 + items.length) % items.length];
+            var next = items[(idx + 1) % items.length];
+            prevBtn.setAttribute('href', prev);
+            nextBtn.setAttribute('href', next);
+        })();
+
+        // Toggle body.menu-open for prev/next arrow visibility
+        (function () {
+            var overlay = document.getElementById('menuOverlay');
+            if (!overlay) return;
+            var mo = new MutationObserver(function () {
+                document.body.classList.toggle('menu-open', overlay.classList.contains('is-open'));
+            });
+            mo.observe(overlay, { attributes: true, attributeFilter: ['class'] });
+        })();
   </script>
 
 </body>
