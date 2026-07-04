@@ -306,37 +306,6 @@
   .tech-item__body p + p { margin-top: 0.75rem; }
 
   /* ============ FOOTER ============ */
-  .ba-footer {
-    background: var(--paper);
-    border-top: 1px solid var(--rule);
-    padding: 40px 20px 30px;
-    text-align: center;
-  }
-  .ba-footer__logo {
-    font-family: var(--sans);
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 5px;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  .ba-footer p {
-    font-family: var(--sans);
-    font-size: 11px;
-    color: var(--ink-soft);
-    line-height: 1.85;
-    margin: 0;
-  }
-  .ba-footer a { color: var(--ink-soft); text-decoration: none; }
-  .ba-footer a:hover { color: var(--accent); }
-  .ba-footer__tag {
-    font-size: 10px !important;
-    letter-spacing: 0.5px;
-    color: var(--ink-soft);
-    margin-top: 14px !important;
-  }
-
   /* ============ RESPONSIVE ============ */
   @media (max-width: 768px) {
     .ba-header { grid-template-columns: 1fr auto 1fr; padding: 14px 16px; }
@@ -476,6 +445,83 @@
             .menu-overlay.has-sub { width: 92vw; }
             .menu-col { flex-basis: 50%; width: 50%; }
         }
+
+/* ============ CANONICAL BA-FOOTER — Patek-style multi-column ============ */
+.ba-footer {
+  background: #ffffff;
+  border-top: 1px solid rgba(0,0,0,.08);
+  padding: 64px 24px 32px;
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #4a4a4a;
+}
+.ba-footer__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.ba-footer__cols {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 40px 32px;
+  margin-bottom: 56px;
+}
+.ba-footer__col h4 {
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  margin: 0 0 16px;
+}
+.ba-footer__col h4.ba-footer__col-sub { margin-top: 28px; }
+.ba-footer__col a {
+  display: block;
+  font-family: 'Lyon Text Regular', 'EB Garamond', Georgia, serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #4a4a4a;
+  text-decoration: none;
+  line-height: 2.1;
+  transition: color .2s ease;
+}
+.ba-footer__col a:hover { color: #95826b; }
+.ba-footer__bottom {
+  border-top: 1px solid rgba(0,0,0,.08);
+  padding-top: 32px;
+  text-align: center;
+}
+.ba-footer__logo {
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  color: #95826b;
+  text-transform: uppercase;
+  margin: 0 0 12px !important;
+}
+.ba-footer__address {
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  color: #4a4a4a;
+  line-height: 1.85;
+  margin: 0 0 14px !important;
+}
+.ba-footer__address a { color: #4a4a4a; text-decoration: none; }
+.ba-footer__address a:hover { color: #95826b; }
+.ba-footer__tag {
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 10px !important;
+  letter-spacing: 0.5px;
+  color: #4a4a4a;
+  margin: 0 !important;
+}
+@media (max-width: 900px) {
+  .ba-footer__cols { grid-template-columns: repeat(2, 1fr); gap: 32px 24px; }
+  .ba-footer { padding: 48px 20px 24px; }
+}
+@media (max-width: 480px) {
+  .ba-footer__cols { grid-template-columns: 1fr; gap: 24px; }
+}
 </style>
 </head>
 <body>
@@ -664,13 +710,60 @@
 
   <!-- ============ FOOTER (site canonical) ============ -->
   <footer class="ba-footer" id="inquire">
-    <p class="ba-footer__logo">Bez Ambar</p>
-    <p>611 Wilshire Blvd, Los Angeles, CA 90017</p>
-    <p>
-      <a href="mailto:bezambar@bezambar.com">bezambar@bezambar.com</a> &middot;
-      <a href="tel:2136299191">(213) 629-9191</a>
-    </p>
-    <p class="ba-footer__tag">Inventor of the Princess Cut · Since 1979</p>
+    <div class="ba-footer__inner">
+      <div class="ba-footer__cols">
+        <div class="ba-footer__col">
+          <h4>Collection</h4>
+          <a href="/bloom">Bloom Collection</a>
+          <a href="/collection?cat=rings">Rings</a>
+          <a href="/collection?cat=engagement-rings">Engagement Rings</a>
+          <a href="/collection?cat=wedding-bands">Wedding Bands</a>
+          <a href="/collection?cat=earrings">Earrings</a>
+          <a href="/collection?cat=pendants">Pendants</a>
+          <a href="/collection?cat=necklaces">Necklaces</a>
+          <a href="/collection?cat=bracelets">Bracelets</a>
+        </div>
+        <div class="ba-footer__col">
+          <h4>Manufacture</h4>
+          <a href="/about">The Inventor</a>
+          <a href="/the-bez-ambar-story">The Bez Ambar Story</a>
+          <a href="/our-story">Our Story</a>
+          <a href="/press">Press</a>
+        </div>
+        <div class="ba-footer__col">
+          <h4>Service</h4>
+          <a href="/contact">Contact</a>
+          <a href="/contact?subject=bespoke">Bespoke Inquiry</a>
+          <a href="/contact?subject=repairs">Repairs &amp; Cleaning</a>
+          <a href="/warranty">Warranty</a>
+        </div>
+        <div class="ba-footer__col">
+          <h4>Signature Pieces</h4>
+          <a href="https://galleries.bezambarinc.workers.dev/page/30-carat-flex" target="_blank" rel="noopener">30-Carat Flex</a>
+          <a href="https://galleries.bezambarinc.workers.dev/page/flex-bracelets" target="_blank" rel="noopener">Flex Bracelets</a>
+          <a href="https://galleries.bezambarinc.workers.dev/page/elysian-cut" target="_blank" rel="noopener">Elysian Cut</a>
+          <a href="https://galleries.bezambarinc.workers.dev/page/cascata" target="_blank" rel="noopener">Cascata</a>
+          <a href="https://galleries.bezambarinc.workers.dev/page/crossover-ashoka" target="_blank" rel="noopener">Crossover Ashoka</a>
+          <a href="/heart-ruby">Heart Ruby</a>
+          <a href="https://galleries.bezambarinc.workers.dev/page/saul-ring" target="_blank" rel="noopener">Saul Ring</a>
+        </div>
+        <div class="ba-footer__col">
+          <h4>Editorial</h4>
+          <a href="/journal">Journal</a>
+          <a href="/blog">Blog</a>
+          <a href="/diamond-education">Diamond Education</a>
+          <a href="/video-gallery">Video Gallery</a>
+          <h4 class="ba-footer__col-sub">Resources</h4>
+          <a href="/ring-size-chart">Ring Size Chart</a>
+          <a href="/catalogs">Catalogs</a>
+        </div>
+      </div>
+      <div class="ba-footer__bottom">
+        <p class="ba-footer__logo">Bez Ambar</p>
+        <p class="ba-footer__address">611 Wilshire Blvd, Los Angeles, CA 90017 &middot; <a href="mailto:bezambar@bezambar.com">bezambar@bezambar.com</a> &middot; <a href="tel:2136299191">(213) 629-9191</a></p>
+        <p class="ba-footer__tag">Inventor of the Princess Cut &middot; Since 1979</p>
+      </div>
+    </div>
   </footer>
 
   <!-- D1 view logger -->

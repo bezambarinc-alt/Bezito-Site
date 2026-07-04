@@ -1510,12 +1510,50 @@ img { display: block; max-width: 100%; height: auto; }
     .announcement-bar { font-size: 10px; padding: 8px 15px; }
 }
 /* ============ CANONICAL BA-FOOTER (unified across site 2026-07-04) ============ */
+
+/* ============ CANONICAL BA-FOOTER — Patek-style multi-column ============ */
 .ba-footer {
   background: #ffffff;
   border-top: 1px solid rgba(0,0,0,.08);
-  padding: 40px 20px 30px;
-  text-align: center;
+  padding: 64px 24px 32px;
   font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #4a4a4a;
+}
+.ba-footer__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.ba-footer__cols {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 40px 32px;
+  margin-bottom: 56px;
+}
+.ba-footer__col h4 {
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  margin: 0 0 16px;
+}
+.ba-footer__col h4.ba-footer__col-sub { margin-top: 28px; }
+.ba-footer__col a {
+  display: block;
+  font-family: 'Lyon Text Regular', 'EB Garamond', Georgia, serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #4a4a4a;
+  text-decoration: none;
+  line-height: 2.1;
+  transition: color .2s ease;
+}
+.ba-footer__col a:hover { color: #95826b; }
+.ba-footer__bottom {
+  border-top: 1px solid rgba(0,0,0,.08);
+  padding-top: 32px;
+  text-align: center;
 }
 .ba-footer__logo {
   font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -1524,21 +1562,29 @@ img { display: block; max-width: 100%; height: auto; }
   letter-spacing: 5px;
   color: #95826b;
   text-transform: uppercase;
-  margin-bottom: 12px;
-  display: block;
+  margin: 0 0 12px !important;
 }
-.ba-footer p {
+.ba-footer__address {
   font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 11px;
+  font-size: 12px;
   color: #4a4a4a;
   line-height: 1.85;
-  margin: 0;
+  margin: 0 0 14px !important;
 }
-.ba-footer a { color: #4a4a4a; text-decoration: none; }
-.ba-footer a:hover { color: #95826b; }
+.ba-footer__address a { color: #4a4a4a; text-decoration: none; }
+.ba-footer__address a:hover { color: #95826b; }
 .ba-footer__tag {
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 10px !important;
   letter-spacing: 0.5px;
   color: #4a4a4a;
-  margin-top: 14px !important;
+  margin: 0 !important;
 }
+@media (max-width: 900px) {
+  .ba-footer__cols { grid-template-columns: repeat(2, 1fr); gap: 32px 24px; }
+  .ba-footer { padding: 48px 20px 24px; }
+}
+@media (max-width: 480px) {
+  .ba-footer__cols { grid-template-columns: 1fr; gap: 24px; }
+}
+
