@@ -17,6 +17,14 @@
       "destination": "/product-in101.html"
     },
     {
+      "source": "/product/c0536",
+      "destination": "/product-c0536.html"
+    },
+    {
+      "source": "/fancy-yellow-three-stone",
+      "destination": "/product-c0536.html"
+    },
+    {
       "source": "/product/c0728",
       "destination": "/product-c0728.html"
     },
