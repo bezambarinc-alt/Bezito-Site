@@ -1540,6 +1540,24 @@
     .hero-image__overlay { padding-bottom: 15vh; }
     .hero-image__title { font-size: clamp(22px, 5vw, 32px); }
   }
+
+  /* Centered single-column segment variant (used by The Designer) */
+  .segment.segment--centered {
+    display: block;
+    padding: clamp(4rem, 8vw, 8rem) var(--gutter);
+    text-align: center;
+  }
+  .segment__content.segment__content--wide {
+    max-width: 62ch;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .segment__content--wide .segment__body {
+    text-align: left;
+    margin-bottom: 1.25rem;
+  }
+  .segment__content--wide .segment__body:last-of-type { margin-bottom: 2rem; }
+  .segment__content--wide .segment__cta { margin-top: 0.5rem; }
 </style>
 </head>
 <body>
@@ -1851,12 +1869,13 @@
     <!-- ============================================================
          #2 THE DESIGNER — placeholder (copy LEFT, image RIGHT)
          ============================================================ -->
-    <section class="segment segment--reverse" id="segment-designer">
-        <div class="segment__media"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1200/v1783243349/atelier/fifty-years-portrait-2026.jpg" alt="Bez Ambar atelier — the wall of cuts (portrait)" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-        <div class="segment__content">
+    <section class="segment segment--centered" id="segment-designer">
+        <div class="segment__content segment__content--wide">
             <p class="segment__eyebrow">The Designer</p>
             <h2 class="segment__title">Bez Ambar &mdash; Fifty Years Cutting Light</h2>
-            <p class="segment__body">One man, one bench, since 1979. Bez Ambar helped shape the modern princess cut, then kept going &mdash; the Blaze&reg;, the Elysian&trade;,  each an original geometry drawn from the stone outward. Bez Ambar is not a label. It is a hand, and the hand still signs every piece.</p>
+            <p class="segment__body">To cut a diamond is to sculpt with light. Every facet is a decision &mdash; where the light will land, where it will bend, where it will return to the eye. The material being carved is not the stone. The material is light itself, curved into the shapes the cutter intends.</p>
+            <p class="segment__body">Bez Ambar has stood at the bench for fifty years doing exactly that. Drawing geometries where none existed. The modern Princess. The Blaze&reg;. The Elysian&trade;. Each cut is an original argument about how a stone should behave under a lamp &mdash; where it should hold colour, where it should flash, where it should keep quiet. Faceting is not decoration. It is sculpture. And the material is always light.</p>
+            <p class="segment__body">One man. One bench. One hand. And the hand still signs every piece.</p>
             <a href="#" class="segment__cta">Meet Bez</a>
         </div>
     </section>
