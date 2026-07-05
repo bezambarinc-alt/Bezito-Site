@@ -1475,6 +1475,71 @@
     .ba-faq__title { font-size: 18px; }
     .ba-about { padding: 24px 24px 64px; font-size: 13px; }
 }
+
+  /* ============ FULL-VIEWPORT HERO IMAGE (new home hero) ============ */
+  .hero-image {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: #0d0d0d;
+  }
+  .hero-image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .hero-image__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+    padding: 0 24px 12vh;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 65%, rgba(0,0,0,0.5) 100%);
+    color: #ffffff;
+    pointer-events: none;
+  }
+  .hero-image__eyebrow {
+    font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #f4efe5;
+    margin-bottom: 20px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  }
+  .hero-image__title {
+    font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 200;
+    letter-spacing: 0.08em;
+    line-height: 1.15;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin: 0 auto 18px;
+    max-width: 24ch;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  }
+  .hero-image__sub {
+    font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #c9b896;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  }
+  @media (max-width: 768px) {
+    .hero-image__overlay { padding-bottom: 15vh; }
+    .hero-image__title { font-size: clamp(22px, 5vw, 32px); }
+  }
 </style>
 </head>
 <body>
@@ -1657,118 +1722,15 @@
          The stack is 300vh tall; sticky pin holds the viewport.
          Heroes 2 and 3 translate up from below as user scrolls.
          ============================================================ -->
-    <div class="hero-stack" id="hero-stack">
-        <div class="hero-pin">
-            <section class="hero" data-i="0">
-                <div class="hero__media">
-                    <iframe src="https://player.vimeo.com/video/1192444919?background=1&autoplay=1&loop=1&muted=1&controls=0&autopause=0"
-                            allow="autoplay; fullscreen; picture-in-picture"
-                            referrerpolicy="strict-origin-when-cross-origin"
-                            title="The Elysian 4k"></iframe>
-                </div>
-                <div class="hero__overlay"></div>
-                <div class="hero__content">
-                    <p class="hero__eyebrow">The Elysian Cut&trade;</p>
-                    <h1 class="hero__headline">A Game of Angles</h1>
-                    <p class="hero__sub">Crown meets pavilion. Stone meets stone. Light becomes a line.</p>
-                </div>
-            </section>
+        <section class="hero-image">
+      <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_2400/v1783241034/atelier/designer-portrait-2026.jpg" alt="Bez Ambar atelier — a wall of the cuts" fetchpriority="high">
+      <div class="hero-image__overlay">
+        <p class="hero-image__eyebrow">Bez Ambar</p>
+        <h1 class="hero-image__title">Fifty Years Cutting Light</h1>
+        <p class="hero-image__sub">Los Angeles &middot; Since 1979</p>
+      </div>
+    </section>
 
-            <section class="hero" data-i="1">
-                <div class="hero__media">
-                    <iframe src="https://player.vimeo.com/video/1193154076?background=1&autoplay=1&loop=1&muted=1&controls=0&autopause=0&playsinline=1"
-                            allow="autoplay; fullscreen; picture-in-picture"
-                            referrerpolicy="strict-origin-when-cross-origin"
-                            title="4k OvalCut Band"></iframe>
-                </div>
-                <div class="hero__overlay"></div>
-                <div class="hero__content">
-                    <p class="hero__eyebrow">The Elysian Oval Band</p>
-                    <h1 class="hero__headline">Worn on the Finger, Worn as Light</h1>
-                    <p class="hero__sub">Every angle catches the next. The line never breaks.</p>
-                </div>
-            </section>
-
-        </div>
-    </div>
-
-    <!-- Hidden scroll anchors used by Discover buttons -->
-    <span id="hero-2-anchor" style="position:absolute;top:100vh;"></span>
-
-    <!-- Right-side dot navigator (fixed) -->
-    <div class="hero-dots is-visible" id="hero-dots-nav">
-        <button class="hero-dots__dot is-active" data-i="0" aria-label="Go to film 1" type="button"></button>
-        <button class="hero-dots__dot" data-i="1" aria-label="Go to film 2" type="button"></button>
-    </div>
-
-    <script>
-        (function () {
-            var stack = document.getElementById('hero-stack');
-            var heroes = document.querySelectorAll('.hero-pin .hero');
-            var dotsNav = document.getElementById('hero-dots-nav');
-            var dots = dotsNav.querySelectorAll('.hero-dots__dot');
-            if (!stack || !heroes.length) return;
-
-            var ticking = false;
-            function update() {
-                ticking = false;
-                var rect = stack.getBoundingClientRect();
-                var vh = window.innerHeight;
-                var stackTop = rect.top;       // negative when scrolled past top
-                var stackHeight = rect.height; // total scroll length (300vh)
-                // Progress: 0 when stack top hits viewport top, 1 when stack bottom hits viewport top
-                // The active scroll range is stackHeight - vh (because last vh is the sticky finish)
-                var progress = Math.max(0, Math.min(1, (-stackTop) / (stackHeight - vh)));
-
-                // 2 heroes → progress 0 to 1 drives hero 2 sliding up over hero 1
-                var p2 = Math.max(0, Math.min(1, progress));
-
-                heroes[1].style.transform = 'translateY(' + ((1 - p2) * 100) + '%)';
-
-                // Active dot: 0 for first half, 1 for second half
-                var activeI = progress < 0.5 ? 0 : 1;
-                dots.forEach(function (d, idx) { d.classList.toggle('is-active', idx === activeI); });
-            }
-
-            function onScroll() {
-                if (!ticking) {
-                    requestAnimationFrame(update);
-                    ticking = true;
-                }
-            }
-            window.addEventListener('scroll', onScroll, { passive: true });
-            window.addEventListener('resize', onScroll);
-            update();
-
-            // Dot click → jump scroll to that point in the stack
-            dots.forEach(function (d) {
-                d.addEventListener('click', function () {
-                    var i = +d.dataset.i;
-                    var rect = stack.getBoundingClientRect();
-                    var stackTopAbsolute = window.scrollY + rect.top;
-                    var stackScrollable = stack.offsetHeight - window.innerHeight;
-                    // 2 heroes: i=0 → progress 0; i=1 → progress 1.0
-                    var targetProgress = i;
-                    var targetY = stackTopAbsolute + (stackScrollable * targetProgress);
-                    window.scrollTo({ top: targetY, behavior: 'smooth' });
-                });
-            });
-
-            // Hide dots when user scrolls past the hero stack
-            var sentinel = document.createElement('div');
-            sentinel.style.position = 'absolute';
-            sentinel.style.bottom = '0';
-            sentinel.style.height = '1px';
-            sentinel.style.width = '100%';
-            stack.appendChild(sentinel);
-            var io = new IntersectionObserver(function (entries) {
-                entries.forEach(function (e) {
-                    // hide when sentinel goes ABOVE viewport (user scrolled past stack)
-                    dotsNav.classList.toggle('is-visible', e.boundingClientRect.top > 0);
-                });
-            }, { threshold: 0 });
-            io.observe(sentinel);
-        })();
     </script>
 
     <!-- ============================================================
