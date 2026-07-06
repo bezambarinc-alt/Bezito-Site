@@ -1,0 +1,700 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const wishlistSvg = `<svg class="lv-card-wishlist" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5"/></svg>`;
+---
+
+<Layout
+  title="Collection — Luxury Diamond Jewelry | Bez Ambar"
+  description="Browse the complete Bez Ambar collection — flex bracelets, engagement rings, wedding bands, necklaces, earrings and pendants. Made in Los Angeles."
+  canonical="https://bezambar.com/collection"
+>
+
+<style is:global>
+  body { background: #0d0d0d; color: #fff; }
+  .ba-header { background: #1a1a1a !important; color: #fff !important; box-shadow: none !important; }
+  .ba-header.is-solid { background: #1a1a1a !important; color: #fff !important; }
+  .ba-footer { background: #111 !important; }
+</style>
+
+<!-- Category Bar -->
+<div class="lv-collection-bar" style="padding-top:84px;">
+  <div class="lv-cat-dropdown" id="catDropdown">
+    <button onclick="document.getElementById('catDropdown').classList.toggle('open')">
+      <span id="catLabel">All Jewelry</span>
+      <svg viewBox="0 0 10 6" fill="none"><path d="M1 1 L5 5 L9 1" stroke="currentColor" stroke-width="1.2"/></svg>
+    </button>
+    <div class="lv-cat-menu">
+      <span class="cat-label">Categories</span>
+      <a href="#" class="active-cat" onclick="filterLV('all', 'All Jewelry', event)">All Jewelry</a>
+      <a href="#" onclick="filterLV('rings', 'Rings', event)">Rings</a>
+      <a href="#" onclick="filterLV('engagement-rings', 'Engagement Rings', event)" style="padding-left:28px;font-size:11px;">Engagement Rings</a>
+      <a href="#" onclick="filterLV('wedding-bands', 'Wedding Bands', event)" style="padding-left:28px;font-size:11px;">Wedding Bands</a>
+      <a href="#" onclick="filterLV('mens-wedding-bands', 'Men\'s Wedding Bands', event)" style="padding-left:28px;font-size:11px;">Men's Wedding Bands</a>
+      <a href="#" onclick="filterLV('pendants', 'Pendants', event)">Pendants</a>
+      <a href="#" onclick="filterLV('necklaces', 'Necklaces', event)">Necklaces</a>
+      <a href="#" onclick="filterLV('earrings', 'Earrings', event)">Earrings</a>
+      <a href="#" onclick="filterLV('stud-earrings', 'Stud Earrings', event)" style="padding-left:28px;font-size:11px;">Stud Earrings</a>
+      <a href="#" onclick="filterLV('hug-earrings', 'Hug Earrings', event)" style="padding-left:28px;font-size:11px;">Hug Earrings</a>
+      <a href="#" onclick="filterLV('hoop-earrings', 'Hoop Earrings', event)" style="padding-left:28px;font-size:11px;">Hoop Earrings</a>
+      <a href="#" onclick="filterLV('bracelets', 'Bracelets', event)">Bracelets</a>
+    </div>
+  </div>
+</div>
+
+<!-- Product Grid -->
+<div class="lv-collection-grid" id="productGrid">
+
+  <!-- ===== BRACELETS ===== -->
+  <a href="/blue-sapphire-single-row-flex" class="lv-product-card" data-category="bracelets">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/video/upload/so_2.0,f_jpg,w_900/v1782941822/videos/bracelets/blue-sapphire-single-row-flex-c0825-2026.jpg" alt="Blue Sapphire Single Row Flex" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Blue Sapphire Single Row Flex</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="/single-row-asscher-cut" class="lv-product-card" data-category="bracelets">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/video/upload/so_2.0,f_jpg,w_900/v1782855177/videos/bracelets/asscher-cut-single-row-bracelet-c0755-2026.jpg" alt="Single Row Asscher Cut" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Single Row Asscher Cut</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="/emerald-cut-stretch-bracelet" class="lv-product-card" data-category="bracelets">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/video/upload/so_2.0,f_jpg,w_900/v1782855871/videos/bracelets/emerald-cut-flex-bracelet-c0834-2026.jpg" alt="Emerald Cut Stretch Bracelet" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Emerald Cut Stretch Bracelet</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="/double-row-asscher-flex" class="lv-product-card" data-category="bracelets">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/video/upload/so_2.0,f_jpg,w_900/v1782858243/videos/bracelets/asscher-cut-double-row-bracelet-c0754-2026.jpg" alt="The Double Row Asscher Flex" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>The Double Row Asscher</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="product.html?id=arc-en-ciel-sapphire-18k-gold-bracelet" class="lv-product-card" data-category="bracelets">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1775014142/DSC_8182_0_00_07_04__1_sesgyw.jpg" alt="Arc-en-Ciel Sapphire Bracelet" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Arc-en-Ciel Sapphire Bracelet</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="product.html?id=3-row-princess-cut-diamond-stretchable-bracelet" class="lv-product-card" data-category="bracelets">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2020/03/3-Row-Princess-Cut-Diamond-Stretchable-Bracelet.jpg" alt="3 Row Princess Cut Diamond Stretchable Bracelet" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>3 Row Princess Cut Diamond Stretchable Bracelet</h3><p class="lv-card-price">$76,300</p></div>
+  </a>
+
+  <a href="product.html?id=3-row-princess-cut-ruby-stretchable-bracelet" class="lv-product-card" data-category="bracelets">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2020/03/3-Row-Princess-Cut-Ruby-Stretchable-Bracelet.jpg" alt="3 Row Princess Cut Ruby Stretchable Bracelet" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>3 Row Princess Cut Ruby Stretchable Bracelet</h3><p class="lv-card-price">$38,500</p></div>
+  </a>
+
+  <a href="product.html?id=3-row-princess-cut-sapphire-stretchable-bracelet" class="lv-product-card" data-category="bracelets">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2020/03/3-Row-Princess-Cut-Sapphire-Stretchable-Bracelet.jpg" alt="3 Row Princess Cut Sapphire Stretchable Bracelet" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>3 Row Princess Cut Sapphire Stretchable Bracelet</h3><p class="lv-card-price">$38,975</p></div>
+  </a>
+
+  <a href="product.html?id=round-brilliant-diamond-stretch-bracelet" class="lv-product-card" data-category="bracelets">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2020/03/5FLX45R-37STONES_0001.jpg" alt="Round Brilliant Diamond Stretch Bracelet" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Round Brilliant Diamond Stretch Bracelet</h3><p class="lv-card-price">$77,425</p></div>
+  </a>
+
+  <a href="product.html?id=stretchable-baguette-diamond-eternity-bracelet" class="lv-product-card" data-category="bracelets">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2020/01/5FLXBG42-Baguette-Stretchable-Blacelet.jpg" alt="Stretchable Baguette Diamond Eternity Bracelet" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Stretchable Baguette Diamond Eternity Bracelet</h3><p class="lv-card-price">$62,000</p></div>
+  </a>
+
+  <!-- ===== RINGS — FEATURED ===== -->
+  <a href="product.html?id=paragon-ring" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1775110725/Pargon_Ring_2_smllwa.jpg" alt="Paragon Ring — 6 Carat" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Paragon Ring — 6 Carat</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="product.html?id=paragon-ring-2-5" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1775195809/Pargon_ring_2.5_carat_center_1_b8zl0o.jpg" alt="Paragon Ring — 2.5 Carat" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Paragon Ring — 2.5 Carat</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="product.html?id=lindys-ring-1" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1774866094/Lindiy_Ring_Ruby_Mustard_4000x4000_Radial_siywbu.png" alt="Lindy's Ring 1" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Lindy's Ring 1</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="product.html?id=lindys-ring-2" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1774866112/Lindiy_Ring_Sapphire_Mustard_4000x4000_Radial_qdidm7.png" alt="Lindy's Ring 2" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Lindy's Ring 2</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="product.html?id=lindys-ring-3" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1774866078/Lindiy_Ring_Emerald_Mustard_4000x4000_Radial_hx3dx8.png" alt="Lindy's Ring 3" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Lindy's Ring 3</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="product.html?id=6-carat-oval-ring-the-lindy-ring" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1774692280/Lindy_baguettes_saphires_e4xac6.png" alt="The Lindy Ring — Sapphire" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>The Lindy Ring — Sapphire</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="product.html?id=6-carat-oval-ring-the-lindy-ring-emerald" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1774692269/Lindy_baguettes_emeralds_csbw4o.png" alt="The Lindy Ring — Emerald" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>The Lindy Ring — Emerald</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <!-- Fancy / New Collection Rings -->
+  <a href="/fancy-very-pink-oval" class="lv-product-card" data-category="rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/video/upload/so_2.0,f_jpg,w_900/v1783061546/videos/rings/c0747-hd-2026.jpg" alt="Fancy Very Pink Oval Ring" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Fancy Very Pink Oval</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="/fancy-deep-brownish-yellow-cushion" class="lv-product-card" data-category="rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/video/upload/so_2.0,f_jpg,w_900/v1783121539/videos/rings/c0752-2026.jpg" alt="Fancy Deep Brownish Yellow Cushion Ring" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Fancy Deep Brownish Yellow Cushion</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="/fancy-yellow-three-stone" class="lv-product-card" data-category="rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/video/upload/so_2.0,f_jpg,w_900/v1783061899/videos/rings/c0536-2026.jpg" alt="Fancy Yellow Three-Stone Ring" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Fancy Yellow Three-Stone</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <!-- Engagement Rings -->
+  <a href="product.html?id=5-carat-asscher-cut-engagement-ring" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2020/02/5-carat-assher-cut-engagement-ring.jpg" alt="5 Carat Asscher Cut Engagement Ring" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>5 Carat Asscher Cut Engagement Ring</h3><p class="lv-card-price">$9,700</p></div>
+  </a>
+
+  <a href="product.html?id=diamond-and-ruby-heart-engagement-ring-set" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2020/02/Diamond-and-Ruby-Heart-Engagement-Ring-Set-white-1.jpg" alt="Diamond and Ruby Heart Engagement Ring Set" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Diamond and Ruby Heart Engagement Ring Set</h3><p class="lv-card-price">$4,710</p></div>
+  </a>
+
+  <a href="product.html?id=east-west-emerald-cut-engagement-ring" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2020/02/blaze-and-baguette-diamond-engagement-ring.jpg" alt="East West Emerald Cut Engagement Ring" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>East West Emerald Cut Engagement Ring</h3><p class="lv-card-price">$7,317</p></div>
+  </a>
+
+  <a href="product.html?id=euro-shank-princess-cut-diamond-engagement-ring" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2020/03/1B3669-euro-shank-princess-cut-engagement-ring.jpg" alt="Euro Shank Princess Cut Diamond Engagement Ring" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Euro Shank Princess Cut Diamond Engagement Ring</h3><p class="lv-card-price">$14,090</p></div>
+  </a>
+
+  <a href="product.html?id=oval-diamond-engagement-ring-set" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2018/02/diamon-oval-shape-diamond-engagement-ring-white.jpg" alt="Oval Diamond Engagement Ring" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Oval Diamond Engagement Ring</h3><p class="lv-card-price">$4,000</p></div>
+  </a>
+
+  <a href="product.html?id=pave-baguette-engagement-ring" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2016/09/diane-emerald-cut-diamond-engagement-ring-white.jpg" alt="Pave Baguette Engagement Ring" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Pave Baguette Engagement Ring</h3><p class="lv-card-price">$12,500</p></div>
+  </a>
+
+  <a href="product.html?id=delicate-emerald-cut-diamond-engagement-ring" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2020/02/delicate-emerald-cut-diamond-engagement-ring-paloma.jpg" alt="Delicate Emerald Cut Diamond Engagement Ring" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Delicate Emerald Cut Diamond Engagement Ring</h3><p class="lv-card-price">$2,992</p></div>
+  </a>
+
+  <a href="product.html?id=oval-diamond-solitaire-engagement-ring" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2020/02/Oval-Diamond-Solitaire-Engagement-Ring-Orbit-1.jpg" alt="Oval Diamond Solitaire Engagement Ring" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Oval Diamond Solitaire Engagement Ring</h3><p class="lv-card-price">$1,675</p></div>
+  </a>
+
+  <a href="product.html?id=pink-and-blue-diamond-engagement-ring-karen" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2019/04/pink-and-blue-diamond-engagement-ring-from-bez-ambar.jpg" alt="Pink and Blue Diamond Engagement Ring" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Pink and Blue Diamond Engagement Ring</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="product.html?id=cushion-cut-diamond-engagement-ring" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2015/04/Three-stone-chushion-diamond-engagement-rings-with-three-cushion-center.jpg" alt="Cushion Cut Diamond Engagement Ring" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Cushion Cut Diamond Engagement Ring</h3><p class="lv-card-price">$10,900</p></div>
+  </a>
+
+  <a href="product.html?id=princess-cut-diamond-and-baguette-engagement-ring" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2020/03/Princess-Cut-Diamond-and-Baguette-Engagement-Ring.jpg" alt="Princess Cut Diamond and Baguette Engagement Ring" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Princess Cut Diamond and Baguette Engagement Ring</h3><p class="lv-card-price">$11,500</p></div>
+  </a>
+
+  <a href="product.html?id=oval-emerald-contemporary-engagement-ring" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2020/02/Oval-Emerald-Engagement-Ring-7-Row-Space.jpg" alt="Oval Emerald Contemporary Engagement Ring" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Oval Emerald Contemporary Engagement Ring</h3><p class="lv-card-price">$6,175</p></div>
+  </a>
+
+  <a href="product.html?id=oval-sapphire-contemporary-engagement-ring" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2020/02/Oval-sapphire-contemporary-Engagement-Ring-7-Row-Space.jpg" alt="Oval Sapphire Contemporary Engagement Ring" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Oval Sapphire Contemporary Engagement Ring</h3><p class="lv-card-price">$6,842</p></div>
+  </a>
+
+  <a href="product.html?id=emerald-cut-and-ruby-three-stone-diamond-ring" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2019/03/Ruby-Emerald-Cut-Three-Stone-Diamond-Engagement-Ring-Throne.jpg" alt="Emerald Cut and Ruby Three Stone Diamond Ring" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Emerald Cut and Ruby Three Stone Diamond Ring</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="product.html?id=emerald-cut-diamond-and-baguettes-three-stone-engagement-ring" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2018/04/emerald-cut-diamond-and-baguettes-three-stone-engagement-ring-iso-B4603-1C3S.jpg" alt="Emerald Cut Diamond and Baguettes Three Stone Engagement Ring" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Emerald Cut Diamond and Baguettes Three Stone Engagement Ring</h3><p class="lv-card-price">$10,600</p></div>
+  </a>
+
+  <a href="product.html?id=three-stone-emerald-cut-diamond-and-sapphire-engagement-ring" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2018/04/Three-Stone-Emerald-Cut-Diamond-and-Sapphire-Engagement-Ring-B4603-1C3S-edit.jpg" alt="Three Stone Emerald Cut Diamond and Sapphire Engagement Ring" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Three Stone Emerald Cut Diamond and Sapphire Engagement Ring</h3><p class="lv-card-price">$2,545</p></div>
+  </a>
+
+  <a href="product.html?id=10-carat-emerald-cut-engagement-ring-with-blaze" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2018/10/10-carat-emerald-cut-diamond-ring-with-blaze.jpg" alt="10 Carat Emerald Cut Engagement Ring with Blaze" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>10 Carat Emerald Cut Engagement Ring with Blaze</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="product.html?id=the-brilliant-engagement-ring" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2019/02/1cs3-seven-stones-round-center-ring-4-carats.jpg" alt="The Brilliant Engagement Ring" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>The Brilliant Engagement Ring</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="product.html?id=5-carat-oval-diamond-and-blaze-engagement-ring" class="lv-product-card" data-category="rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2018/10/10-carat-diamond-oval-Mariana.jpg" alt="5 Carat Oval Diamond and Blaze Engagement Ring" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>5 Carat Oval Diamond and Blaze® Engagement Ring</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="product.html?id=a-diamond-halo-three-stone-engagement-ring" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2018/07/Three-Stone-Halo-Diamond-Engagement-Rings.jpg" alt="A Diamond Halo Three Stone Engagement Ring" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>A Diamond Halo Three Stone Engagement Ring</h3><p class="lv-card-price">$3,825</p></div>
+  </a>
+
+  <!-- Wedding Bands -->
+  <a href="/baguette-band" class="lv-product-card" data-category="rings wedding-bands">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1775549202/C0625_Baguette_band_Master_e4azkj.jpg" alt="C0625 Baguette Band — Oval Eternity Ring" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>C0625 Baguette Band — Oval Eternity Ring</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="product.html?id=3-row-stretchable-pink-sapphire-diamond-eternity-band" class="lv-product-card" data-category="rings wedding-bands">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2020/03/3-row-stretchable-pink-sapphire-round-diamond-eternity-band.jpg" alt="3 Row Stretchable Pink Sapphire Diamond Eternity Band" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>3 Row Stretchable Pink Sapphire Diamond Eternity Band</h3><p class="lv-card-price">$33,550</p></div>
+  </a>
+
+  <a href="product.html?id=3-row-stretchable-round-diamond-eternity-band" class="lv-product-card" data-category="rings wedding-bands">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1775590422/3rows_round_Flex_ring_mucrzv.jpg" alt="3 Row Stretchable Round Diamond Eternity Band" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>3 Row Stretchable Round Diamond Eternity Band</h3><p class="lv-card-price">$52,780</p></div>
+  </a>
+
+  <a href="product.html?id=5-row-blaze-and-baguette-diamond-band" class="lv-product-card" data-category="rings wedding-bands">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2019/08/blaze-and-baguette-diamond-band.jpg" alt="5 Row Blaze and Baguette Diamond Band" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>5 Row Blaze and Baguette Diamond Band</h3><p class="lv-card-price">$10,875</p></div>
+  </a>
+
+  <a href="product.html?id=diamond-heart-eternity-band" class="lv-product-card" data-category="rings wedding-bands">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2021/02/Valentine-diamond-heart-eternity-band-2LEVH6024.jpg" alt="Diamond Heart Eternity Band" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Diamond Heart Eternity Band</h3><p class="lv-card-price">$130,000</p></div>
+  </a>
+
+  <a href="product.html?id=3-row-stretchable-pink-sapphire-emerald-cut-eternity-band" class="lv-product-card" data-category="rings wedding-bands">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2020/01/FLX55X39-ERPS_0135.jpg" alt="3 Row Stretchable Pink Sapphire Emerald Cut Eternity Band" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>3 Row Stretchable Pink Sapphire Emerald Cut Eternity Band</h3><p class="lv-card-price">$21,450</p></div>
+  </a>
+
+  <a href="product.html?id=stretchable-baguette-diamond-eternity-band" class="lv-product-card" data-category="rings wedding-bands">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2020/01/2FLX4020-BG-PV-FLEX-4x2MM-b.jpg" alt="Stretchable Baguette Diamond Eternity Band" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Stretchable Baguette Diamond Eternity Band</h3><p class="lv-card-price">$23,400</p></div>
+  </a>
+
+  <a href="product.html?id=emerald-cut-diamond-eternity-band" class="lv-product-card" data-category="rings wedding-bands">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2017/09/gemstone-emerald-cut-diamond-eternity-band.jpg" alt="Emerald Cut Diamond Eternity Band" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Emerald Cut Diamond Eternity Band</h3><p class="lv-card-price">$2,800</p></div>
+  </a>
+
+  <a href="product.html?id=5mm-emerald-cut-diamond-eternity-band" class="lv-product-card" data-category="rings wedding-bands">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2020/01/2ETE7515-emerald-band-5x3-1.jpg" alt="5mm Emerald Cut Diamond Eternity Band" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>5mm Emerald Cut Diamond Eternity Band</h3><p class="lv-card-price">$7,500</p></div>
+  </a>
+
+  <a href="product.html?id=windows-collection-diamond" class="lv-product-card" data-category="rings wedding-bands">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2018/08/square-diamond-wedding-band-windows.jpg" alt="Windows Collection — Diamond" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Windows Collection — Diamond</h3><p class="lv-card-price">$17,015</p></div>
+  </a>
+
+  <a href="product.html?id=blaze-and-baguette-diamond-eternity-band" class="lv-product-card" data-category="rings wedding-bands">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2019/08/blaze-and-baguette-diamond-band.jpg" alt="Blaze and Baguette Diamond Eternity Band" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Blaze and Baguette Diamond Eternity Band</h3><p class="lv-card-price">$3,000</p></div>
+  </a>
+
+  <a href="product.html?id=aquamarine-eternity-band" class="lv-product-card" data-category="rings wedding-bands">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2017/09/aquamarine-eternity-band-iso.jpg" alt="18K Gold Aquamarine Eternity Band" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>18K Gold Aquamarine Eternity Band</h3><p class="lv-card-price">$2,800</p></div>
+  </a>
+
+  <a href="product.html?id=confetti-crosswalk-baguette-diamond-band" class="lv-product-card" data-category="rings wedding-bands">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2017/08/2CON-confetti-baguettes-diamond-band-Bez-Ambar-Los-Angeles-2.38-8200.jpg" alt="Confetti Crosswalk – Baguette Diamond Band" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Confetti Crosswalk – Baguette Diamond Band</h3><p class="lv-card-price">$10,447</p></div>
+  </a>
+
+  <!-- Misc Rings -->
+  <a href="product.html?id=emerald-and-diamond-crossover-ring" class="lv-product-card" data-category="rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2021/01/NIKOLPVLEMW-2.8mm-emerald-and-diamond-crossover-ring-1-1.jpg" alt="Emerald and Diamond Crossover Ring" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Emerald and Diamond Crossover Ring</h3><p class="lv-card-price">$15,750</p></div>
+  </a>
+
+  <a href="product.html?id=pave-diamond-band-black-white-crossover" class="lv-product-card" data-category="rings wedding-bands">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2014/05/black-and-White-Pave-Fashion-Diamond-Band-nikol.jpg" alt="Black and White Diamond Crossover Ring" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Black and White Diamond Crossover Ring</h3><p class="lv-card-price">$13,500</p></div>
+  </a>
+
+  <a href="product.html?id=ring-of-light-with-black-diamond-band" class="lv-product-card" data-category="rings engagement-rings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2015/09/1ROLF-C6-2CHBBZ18-1.jpg" alt="Ring of Light with Black Diamond Band" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Ring of Light with Black Diamond Band</h3><p class="lv-card-price">$24,420</p></div>
+  </a>
+
+  <!-- Men's Wedding Bands -->
+  <a href="product.html?id=7-row-all-around-black-diamonds-mens-band" class="lv-product-card" data-category="rings mens-wedding-bands">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2020/03/7-Row-All-Around-Black-Diamonds-Mens-Band.jpg" alt="7 Row All Around Black Diamonds Men's Band" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>7 Row All Around Black Diamonds Men's Band</h3><p class="lv-card-price">$8,118</p></div>
+  </a>
+
+  <!-- ===== NECKLACES ===== -->
+  <a href="/pear-shaped-necklace" class="lv-product-card" data-category="necklaces">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/video/upload/so_2.0,f_jpg,w_900/v1779254420/C0508_4k_noykv3.jpg" alt="The Pear Shaped Necklace" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>The Pear Shaped Necklace</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="/single-row" class="lv-product-card" data-category="necklaces">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1782876014/necklaces/single-row-lifestyle.jpg" alt="The Single Row Necklace" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>The Single Row</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="/baguette-line" class="lv-product-card" data-category="necklaces">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1782884502/necklaces/baguette-line-lifestyle.jpg" alt="The Baguette Line Necklace" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>The Baguette Line</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="product.html?id=blaze-and-radiant-diamond-necklace" class="lv-product-card" data-category="necklaces">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2018/03/5-carat-diamond-radiant-pendant.jpg" alt="Blaze and Radiant Diamond Necklace" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Blaze and Radiant Diamond Necklace</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <!-- ===== PENDANTS ===== -->
+  <a href="product.html?id=lumiere-radiant-pendant" class="lv-product-card" data-category="pendants">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1775028502/C0691_l3z6h3.jpg" alt="Lumière Radiant Pendant" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Lumière Radiant Pendant</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="product.html?id=the-big-heart-20ct-diamond-pendant" class="lv-product-card" data-category="pendants">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1775031410/20_crt_Heart_Shaped_Diamond_eq7pwp.jpg" alt="The Big Heart — 20 Carat Heart Shaped Diamond" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>The Big Heart</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="product.html?id=blaze-windows-heart-pendant" class="lv-product-card" data-category="pendants">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1775027150/B2112_heart_zueaaw.jpg" alt="Blaze Windows Heart Pendant" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Blaze Windows Heart Pendant</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="product.html?id=blaze-marquise-diamond-pendant" class="lv-product-card" data-category="pendants">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2018/02/marquise-diamond-pendant-elizabet-collection-4ESR10.jpg" alt="Blaze and Marquise Diamond Pendant" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Blaze and Marquise Diamond Pendant</h3><p class="lv-card-price">$2,530</p></div>
+  </a>
+
+  <a href="product.html?id=blue-sapphire-heart-pendant" class="lv-product-card" data-category="pendants">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2018/02/heart-ruby-princess-21-stones-4HSR20-5-sapphire.jpg" alt="Blue Sapphire Heart Pendant" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Blue Sapphire Heart Pendant</h3><p class="lv-card-price">$3,165</p></div>
+  </a>
+
+  <a href="product.html?id=18k-yellow-gold-quadrillion-heart-pendant" class="lv-product-card" data-category="pendants">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2017/11/quad-heart-yg-newsletter.jpg" alt="18k Yellow Gold Quadrillion Heart Shaped Pendant" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>18k Yellow Gold Quadrillion Heart Pendant</h3><p class="lv-card-price">$3,630</p></div>
+  </a>
+
+  <!-- ===== EARRINGS ===== -->
+  <a href="product.html?id=4-point-diamond-star-earrings" class="lv-product-card" data-category="earrings stud-earrings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2020/12/4-Point-Diamond-Star-Earrings-750sq-EFLASH3-3450-.35ct.jpg" alt="4 Point Diamond Star Earrings" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>4 Point Diamond Star Earrings</h3><p class="lv-card-price">$3,450</p></div>
+  </a>
+
+  <a href="product.html?id=baguette-and-emerald-cut-diamond-drop-earrings" class="lv-product-card" data-category="earrings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2018/11/Baguettes-Drop-earrings.jpg" alt="Baguette and Emerald Cut Diamond Drop Earrings" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Baguette and Emerald Cut Diamond Drop Earrings</h3><p class="lv-card-price">$7,500</p></div>
+  </a>
+
+  <a href="product.html?id=fancy-yellow-diamond-drop-earrings-navona" class="lv-product-card" data-category="earrings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2019/04/fancy-yellow-diamond-Nirvana-earrings.jpg" alt="Fancy Yellow Diamond Drop Earrings" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Fancy Yellow Diamond Drop Earrings</h3><p class="lv-card-price">Price Upon Request</p></div>
+  </a>
+
+  <a href="product.html?id=blaze-and-yellow-heart-shape-diamond-drop-earrings" class="lv-product-card" data-category="earrings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2019/02/diamond-drop-hearts-for-valentines-day.jpg" alt="Blaze and Yellow Heart Shape Diamond Drop Earrings" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Blaze® and Yellow Heart Shape Diamond Drop Earrings</h3><p class="lv-card-price">$4,175</p></div>
+  </a>
+
+  <a href="product.html?id=amethyst-and-citrine-gem-on-a-wire" class="lv-product-card" data-category="earrings">
+    <div class="lv-card-img"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2018/07/Citrine-and-Amethyst-Gem-on-a-Wire.jpg" alt="Amethyst and Citrine Gem on a Wire" loading="lazy"></div>
+    <Fragment set:html={wishlistSvg} />
+    <div class="lv-card-info"><h3>Amethyst and Citrine Gem on a Wire</h3><p class="lv-card-price">$2,665</p></div>
+  </a>
+
+</div>
+
+<style is:global>
+  /* ===== LV COLLECTION BAR ===== */
+  .lv-collection-bar {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 40px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .lv-cat-dropdown { position: relative; }
+  .lv-cat-dropdown > button {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    padding: 8px 0;
+  }
+  .lv-cat-dropdown > button svg { width: 10px; height: 10px; transition: transform 0.3s; }
+  .lv-cat-dropdown.open > button svg { transform: rotate(180deg); }
+  .lv-cat-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    background: #1a1a1a;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    min-width: 240px;
+    padding: 16px 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: all 0.25s ease;
+    z-index: 50;
+  }
+  .lv-cat-dropdown.open .lv-cat-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+  .lv-cat-menu .cat-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #bbb;
+    padding: 0 24px 10px;
+    display: block;
+  }
+  .lv-cat-menu a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #555;
+    padding: 9px 24px;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .lv-cat-menu a:hover { background: #222; color: #fff; }
+  .lv-cat-menu a.active-cat { font-weight: 600; color: #fff; }
+  .lv-cat-menu a.active-cat::after { content: '✓'; font-size: 12px; }
+
+  /* ===== PRODUCT GRID ===== */
+  .lv-collection-grid {
+    width: 100%;
+    margin: 20px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: #0d0d0d;
+  }
+  .lv-product-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: #141414;
+    transition: opacity 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .lv-product-card:hover { opacity: 0.92; }
+  .lv-product-card .lv-card-img {
+    aspect-ratio: 3/4.2;
+    overflow: hidden;
+    background: #141414;
+  }
+  .lv-product-card .lv-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .lv-product-card:hover .lv-card-img img { transform: scale(1.04); }
+  .lv-product-card .lv-card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 16px 18px;
+    background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 60%, transparent 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .lv-product-card .lv-card-info h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    margin-bottom: 4px;
+    color: #fff;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+  }
+  .lv-product-card .lv-card-info .lv-card-price {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.85);
+    text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+  }
+  .lv-product-card .lv-card-wishlist {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 22px;
+    height: 22px;
+    color: rgba(255,255,255,0.7);
+    cursor: pointer;
+    transition: color 0.3s;
+    z-index: 2;
+  }
+  .lv-product-card .lv-card-wishlist:hover { color: #fff; }
+
+  /* Responsive */
+  @media (max-width: 1200px) { .lv-collection-grid { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 900px) { .lv-collection-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 600px) {
+    .lv-collection-grid { grid-template-columns: repeat(2, 1fr); gap: 1px; }
+    .lv-collection-bar { padding: 15px 20px 5px; }
+  }
+</style>
+
+<script>
+  function filterLV(category, label, e) {
+    e.preventDefault();
+    document.getElementById('catLabel').textContent = label;
+    document.getElementById('catDropdown').classList.remove('open');
+    document.querySelectorAll('.lv-cat-menu a').forEach(a => a.classList.remove('active-cat'));
+    if (e && e.target) e.target.classList.add('active-cat');
+    document.querySelectorAll('.lv-product-card').forEach(card => {
+      const cats = (card.dataset.category || '').split(' ');
+      if (category === 'all') {
+        card.style.display = '';
+      } else if (category === 'earrings') {
+        card.style.display = cats.includes('earrings') ? '' : 'none';
+      } else if (category === 'rings') {
+        card.style.display = cats.includes('rings') ? '' : 'none';
+      } else {
+        card.style.display = cats.includes(category) ? '' : 'none';
+      }
+    });
+  }
+
+  document.addEventListener('click', function(e) {
+    const dd = document.getElementById('catDropdown');
+    if (dd && !dd.contains(e.target)) dd.classList.remove('open');
+  });
+
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    const cat = params.get('cat');
+    if (!cat) return;
+    const labels = {
+      rings: 'Rings', pendants: 'Pendants', necklaces: 'Necklaces',
+      earrings: 'Earrings', bracelets: 'Bracelets',
+      'stud-earrings': 'Stud Earrings', 'hug-earrings': 'Hug Earrings',
+      'hoop-earrings': 'Hoop Earrings', 'engagement-rings': 'Engagement Rings',
+      'wedding-bands': 'Wedding Bands', 'mens-wedding-bands': "Men's Wedding Bands"
+    };
+    if (!labels[cat]) return;
+    document.getElementById('catLabel').textContent = labels[cat];
+    document.querySelectorAll('.lv-product-card').forEach(card => {
+      const cats = (card.dataset.category || '').split(' ');
+      if (cat === 'earrings') {
+        card.style.display = cats.includes('earrings') ? '' : 'none';
+      } else {
+        card.style.display = cats.includes(cat) ? '' : 'none';
+      }
+    });
+    document.querySelectorAll('.lv-cat-menu a').forEach(a => {
+      if (a.textContent.trim() === labels[cat]) a.classList.add('active-cat');
+    });
+  })();
+</script>
+
+</Layout>
