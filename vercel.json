@@ -21,6 +21,14 @@
       "destination": "/product-in101.html"
     },
     {
+      "source": "/product/c0625",
+      "destination": "/product-c0625-baguette-band.html"
+    },
+    {
+      "source": "/baguette-band",
+      "destination": "/product-c0625-baguette-band.html"
+    },
+    {
       "source": "/product/c0508",
       "destination": "/product-c0508.html"
     },
