@@ -1544,19 +1544,20 @@
   /* Centered single-column segment variant (used by The Designer) */
   .segment.segment--centered {
     display: block;
-    padding: clamp(4rem, 8vw, 8rem) var(--gutter);
+    padding: clamp(8rem, 14vw, 12rem) var(--gutter);
     text-align: center;
   }
   .segment__content.segment__content--wide {
-    max-width: 62ch;
+    max-width: 56ch;
     margin: 0 auto;
     text-align: center;
   }
   .segment__content--wide .segment__body {
-    text-align: left;
-    margin-bottom: 1.25rem;
+    text-align: center;
+    margin-bottom: 2.25rem;
+    line-height: 1.9;
   }
-  .segment__content--wide .segment__body:last-of-type { margin-bottom: 2rem; }
+  .segment__content--wide .segment__body:last-of-type { margin-bottom: 3rem; }
   .segment__content--wide .segment__cta { margin-top: 0.5rem; }
 </style>
 </head>
