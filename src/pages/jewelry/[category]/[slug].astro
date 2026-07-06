@@ -1,45 +1,60 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
+import Layout from '../../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
   const products = await getCollection('products', ({ data }) => data.status === 'live');
   return products.map(entry => ({
-    params: { slug: entry.data.slug },
+    params: { category: entry.data.category, slug: entry.data.slug },
     props: { product: entry.data },
   }));
 }
 
 const { product } = Astro.props;
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": product.title,
-  "sku": product.sku,
-  "productID": product.refCode,
-  "description": product.description,
-  "image": product.heroImage || undefined,
-  "url": `https://bezambar.com${product.prettyUrl}`,
-  "brand": {
-    "@type": "Brand",
-    "name": "Bez Ambar",
-    "url": "https://bezambar.com"
+const categoryLabel = product.category
+  .replace(/-/g, ' ')
+  .replace(/\b\w/g, (l: string) => l.toUpperCase());
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Jewelry", "item": "https://bezambar.com/collection" },
+      { "@type": "ListItem", "position": 2, "name": categoryLabel, "item": `https://bezambar.com/collection?cat=${product.category}` },
+      { "@type": "ListItem", "position": 3, "name": product.title, "item": `https://bezambar.com${product.prettyUrl}` }
+    ]
   },
-  "manufacturer": {
-    "@type": "Person",
-    "name": "Bez Ambar",
-    "jobTitle": "Master Diamond Cutter and Jewelry Designer",
-    "description": "One of the original architects of the modern Princess Cut (1979); inventor of the Blaze® and the Elysian Cut™."
-  },
-  "offers": {
-    "@type": "Offer",
-    "url": `https://bezambar.com/contact?subject=${encodeURIComponent(product.inquirySubject)}`,
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock",
-    "seller": { "@type": "Organization", "name": "Bez Ambar" }
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": product.title,
+    "sku": product.sku,
+    "productID": product.refCode,
+    "description": product.description,
+    "image": product.heroImage || undefined,
+    "url": `https://bezambar.com${product.prettyUrl}`,
+    "brand": {
+      "@type": "Brand",
+      "name": "Bez Ambar",
+      "url": "https://bezambar.com"
+    },
+    "manufacturer": {
+      "@type": "Person",
+      "name": "Bez Ambar",
+      "jobTitle": "Master Diamond Cutter and Jewelry Designer",
+      "description": "One of the original architects of the modern Princess Cut (1979); inventor of the Blaze® and the Elysian Cut™."
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": `https://bezambar.com/contact?subject=${encodeURIComponent(product.inquirySubject)}`,
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "seller": { "@type": "Organization", "name": "Bez Ambar" }
+    }
   }
-};
+];
 
 const ogImage = product.heroImage
   || `https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,w_1200,h_630,g_auto,f_auto,q_auto/v1775786208/Quadrillion_owciyv.jpg`;
@@ -73,7 +88,14 @@ const ogImage = product.heroImage
   ) : null}
 
   <section class="hero">
-    <p class="hero__eyebrow">{product.collection ? `${product.collection.charAt(0).toUpperCase()}${product.collection.slice(1)} Collection` : product.category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</p>
+    <nav class="breadcrumb" aria-label="breadcrumb">
+      <a href="/collection">Jewelry</a>
+      <span aria-hidden="true">/</span>
+      <a href={`/collection?cat=${product.category}`}>{categoryLabel}</a>
+      <span aria-hidden="true">/</span>
+      <span>{product.title}</span>
+    </nav>
+    <p class="hero__eyebrow">{product.collection ? `${product.collection.charAt(0).toUpperCase()}${product.collection.slice(1)} Collection` : categoryLabel}</p>
     <h1 class="hero__title">
       {product.title}
       {product.subtitle && <span class="hero__subtitle">{product.subtitle}</span>}
@@ -152,6 +174,26 @@ const ogImage = product.heroImage
 </script>
 
 <style>
+  /* Breadcrumb */
+  .breadcrumb {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft, #888);
+    margin-bottom: 24px;
+  }
+  .breadcrumb a {
+    color: var(--ink-soft, #888);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .breadcrumb a:hover { color: var(--accent, #95826b); }
+  .breadcrumb span[aria-hidden] { opacity: 0.4; }
+
   /* Hero video */
   .hero-video {
     position: relative;
@@ -254,9 +296,7 @@ const ogImage = product.heroImage
     padding-bottom: 3px;
     transition: color 0.2s, border-color 0.2s;
   }
-  .hero__cta:hover {
-    color: var(--accent, #95826b);
-  }
+  .hero__cta:hover { color: var(--accent, #95826b); }
 
   /* Technical section */
   .technical {
@@ -339,10 +379,7 @@ const ogImage = product.heroImage
     max-width: 540px;
     margin: 0 auto 36px;
   }
-  .product-cta__body a {
-    color: #c9b896;
-    text-decoration: none;
-  }
+  .product-cta__body a { color: #c9b896; text-decoration: none; }
   .product-cta__btn {
     display: inline-block;
     font-family: 'Inter', sans-serif;
