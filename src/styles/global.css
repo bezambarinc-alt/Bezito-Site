@@ -1,16 +1,27 @@
 /* ============================================================
    BEZ AMBAR — Global Styles
-   Color Palette: Black #1a1a1a / Gold #c5a258 / Cream #faf7f2
-   Fonts: Cormorant Garamond (serif) + Montserrat (sans)
+   Design system: Patek-style light luxury
+   Ink #1a1a1a / Accent #95826b / Paper #faf7f2
+   Fonts: Inter (sans) + Cormorant Garamond / EB Garamond (serif)
    ============================================================ */
+
+/* --- CSS CUSTOM PROPERTIES --- */
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #4a4a4a;
+  --accent: #95826b;
+  --paper: #faf7f2;
+  --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+}
 
 /* --- RESET --- */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    color: #fff;
-    background: #0d0d0d;
+    font-family: var(--serif);
+    color: var(--ink);
+    background: #fff;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
 }

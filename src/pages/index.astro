@@ -27,18 +27,396 @@ const structuredData = {
     "https://www.pinterest.com/bezambarinc/"
   ]
 };
+
+const featuredPieces = [
+  {
+    href: '/calla',
+    video: 'https://res.cloudinary.com/dlg2mou53/video/upload/v1780982217/C0728_4K_1_smndkz.mp4',
+    poster: 'https://res.cloudinary.com/dlg2mou53/video/upload/v1780982217/C0728_4K_1_smndkz.jpg',
+    eyebrow: 'Bloom Collection',
+    title: 'The Calla',
+    sub: '13 ct D Flawless pear · ref. C0728',
+  },
+  {
+    href: '/emerald-cut-stretch-bracelet',
+    video: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1782855871/videos/bracelets/emerald-cut-flex-bracelet-c0834-2026.mp4',
+    poster: 'https://res.cloudinary.com/dlg2mou53/video/upload/so_2.0,f_jpg,w_1200,c_fit/v1782855871/videos/bracelets/emerald-cut-flex-bracelet-c0834-2026.jpg',
+    eyebrow: 'Flex Bracelet',
+    title: 'Emerald Cut Stretch',
+    sub: '31.29 ct · ref. 5FLX40ECNS',
+  },
+  {
+    href: '/fancy-very-pink-oval',
+    video: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1783061546/videos/rings/c0747-hd-2026.mp4',
+    poster: 'https://res.cloudinary.com/dlg2mou53/video/upload/so_2.0,f_jpg,w_1200,c_fit/v1783061546/videos/rings/c0747-hd-2026.jpg',
+    eyebrow: 'Ring',
+    title: 'Fancy Very Pink Oval',
+    sub: '4.98 ct lab-grown · ref. C0747',
+  },
+];
 ---
 
 <Layout
   title="Bez Ambar — Inventor of the Princess Cut · Since 1979"
   description="Bez Ambar — inventor of the Princess Cut. Patented diamond cuts and high-jewelry pieces handcrafted in Los Angeles since 1979."
   canonical="https://bezambar.com/"
+  ogImage="https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,w_1200,h_630,g_auto,f_auto,q_auto/v1775786208/Quadrillion_owciyv.jpg"
   structuredData={structuredData}
 >
-  <!-- Homepage content migrated from index.html — Phase 2 -->
-  <main style="padding-top: 64px; min-height: 100vh; display: flex; align-items: center; justify-content: center;">
-    <p style="font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink, #1a1a1a); opacity: 0.4;">
-      Astro scaffold — homepage migration in progress
-    </p>
-  </main>
+  <!-- Hero — full-viewport image with centered overlay -->
+  <div class="hp-hero" id="hp-hero">
+    <img
+      class="hp-hero__img"
+      src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1600/v1775786208/Quadrillion_owciyv.jpg"
+      alt="Bez Ambar — Inventor of the Princess Cut"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="hp-hero__overlay">
+      <p class="hp-hero__eyebrow">Bez Ambar</p>
+      <h1 class="hp-hero__title">Fifty Years<br>Cutting Light</h1>
+      <p class="hp-hero__sub">Los Angeles · Since 1979</p>
+    </div>
+  </div>
+
+  <!-- Founder line -->
+  <section class="hp-founder">
+    <p class="hp-founder__eyebrow">The Inventor</p>
+    <p class="hp-founder__body">Betzalel Ambar is one of the original architects of the modern Princess Cut — a cut now part of the global language of fine jewelry. The same instinct continues through the Blaze<sup>®</sup>, the Elysian Cut™, and every piece made in Los Angeles.</p>
+    <a class="hp-founder__cta" href="/about-bez-ambar">The Story</a>
+  </section>
+
+  <!-- Featured pieces grid -->
+  <section class="hp-pieces">
+    <p class="hp-pieces__eyebrow">From the Collection</p>
+    <div class="hp-pieces__grid">
+      {featuredPieces.map(piece => (
+        <a class="hp-piece" href={piece.href}>
+          <div class="hp-piece__media">
+            <video src={piece.video} poster={piece.poster} autoplay loop muted playsinline preload="none"></video>
+          </div>
+          <div class="hp-piece__info">
+            <p class="hp-piece__eyebrow">{piece.eyebrow}</p>
+            <h3 class="hp-piece__title">{piece.title}</h3>
+            <p class="hp-piece__sub">{piece.sub}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+    <div class="hp-pieces__footer">
+      <a class="hp-pieces__all" href="/collection">View All Pieces</a>
+    </div>
+  </section>
+
+  <!-- Signature strip -->
+  <section class="hp-strip">
+    <div class="hp-strip__inner">
+      <p class="hp-strip__eyebrow">Patented Cuts</p>
+      <h2 class="hp-strip__title">The Blaze<sup>®</sup> · The Elysian Cut™</h2>
+      <p class="hp-strip__body">Two proprietary cut geometries — one registered patent, one trademark — developed at the Los Angeles atelier. Each engineered for a specific kind of light.</p>
+      <a class="hp-strip__cta" href="/elysian-cut">Explore the Cuts</a>
+    </div>
+  </section>
+
+  <!-- CTA bar -->
+  <section class="hp-cta">
+    <h2 class="hp-cta__title">See a Piece in Person</h2>
+    <p class="hp-cta__body">Every piece is available to view by appointment at the Los Angeles atelier. Call <a href="tel:2136299191">(213) 629-9191</a> or send an inquiry.</p>
+    <a class="hp-cta__btn" href="/contact">Contact Us</a>
+  </section>
 </Layout>
+
+<script>
+  // Transparent header over hero, solid after
+  const hero = document.getElementById('hp-hero');
+  const header = document.querySelector('.ba-header');
+  if (hero && header) {
+    const obs = new IntersectionObserver(
+      ([e]) => header.classList.toggle('is-clear', e.isIntersecting),
+      { threshold: 0.05 }
+    );
+    obs.observe(hero);
+  }
+</script>
+
+<style>
+  /* ---- Hero ---- */
+  .hp-hero {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    overflow: hidden;
+    background: #0d0d0d;
+  }
+  .hp-hero__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .hp-hero__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+    padding: 0 24px clamp(48px, 10vh, 96px);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.5) 100%);
+    color: #fff;
+  }
+  .hp-hero__eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #f0e8d8;
+    margin-bottom: 16px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  }
+  .hp-hero__title {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(28px, 4.5vw, 52px);
+    font-weight: 200;
+    letter-spacing: 0.08em;
+    line-height: 1.12;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  }
+  .hp-hero__sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #c9b896;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  }
+
+  /* ---- Founder ---- */
+  .hp-founder {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 96px 2rem 80px;
+    text-align: center;
+  }
+  .hp-founder__eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent, #95826b);
+    margin-bottom: 24px;
+  }
+  .hp-founder__body {
+    font-family: 'EB Garamond', serif;
+    font-size: 19px;
+    line-height: 1.7;
+    color: var(--ink, #1a1a1a);
+    opacity: 0.8;
+    margin-bottom: 36px;
+  }
+  .hp-founder__cta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink, #1a1a1a);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent, #95826b);
+    padding-bottom: 3px;
+    transition: color 0.2s;
+  }
+  .hp-founder__cta:hover { color: var(--accent, #95826b); }
+
+  /* ---- Featured pieces grid ---- */
+  .hp-pieces {
+    padding: 0 0 80px;
+  }
+  .hp-pieces__eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent, #95826b);
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .hp-pieces__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .hp-piece {
+    display: block;
+    text-decoration: none;
+    color: var(--ink, #1a1a1a);
+    overflow: hidden;
+    position: relative;
+  }
+  .hp-piece__media {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: #0d0d0d;
+  }
+  .hp-piece__media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    display: block;
+  }
+  .hp-piece:hover .hp-piece__media video {
+    transform: scale(1.03);
+  }
+  .hp-piece__info {
+    padding: 20px 4px 4px;
+  }
+  .hp-piece__eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent, #95826b);
+    margin-bottom: 6px;
+  }
+  .hp-piece__title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: 0.03em;
+    margin-bottom: 4px;
+  }
+  .hp-piece__sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: #888;
+  }
+  .hp-pieces__footer {
+    text-align: center;
+    padding-top: 48px;
+  }
+  .hp-pieces__all {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink, #1a1a1a);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent, #95826b);
+    padding-bottom: 3px;
+    transition: color 0.2s;
+  }
+  .hp-pieces__all:hover { color: var(--accent, #95826b); }
+
+  /* ---- Signature strip ---- */
+  .hp-strip {
+    background: var(--ink, #1a1a1a);
+    color: #fff;
+    padding: 80px 2rem;
+    text-align: center;
+  }
+  .hp-strip__inner {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .hp-strip__eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #c9b896;
+    margin-bottom: 20px;
+  }
+  .hp-strip__title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(26px, 4vw, 40px);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+  .hp-strip__body {
+    font-family: 'EB Garamond', serif;
+    font-size: 17px;
+    line-height: 1.7;
+    opacity: 0.65;
+    margin-bottom: 36px;
+  }
+  .hp-strip__cta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid #c9b896;
+    padding-bottom: 3px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .hp-strip__cta:hover { color: #c9b896; }
+
+  /* ---- CTA bar ---- */
+  .hp-cta {
+    padding: 80px 2rem;
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .hp-cta__title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 300;
+    letter-spacing: 0.03em;
+    margin-bottom: 20px;
+    color: var(--ink, #1a1a1a);
+  }
+  .hp-cta__body {
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    line-height: 1.7;
+    opacity: 0.75;
+    margin-bottom: 36px;
+    color: var(--ink, #1a1a1a);
+  }
+  .hp-cta__body a {
+    color: var(--accent, #95826b);
+    text-decoration: none;
+  }
+  .hp-cta__btn {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink, #1a1a1a);
+    text-decoration: none;
+    border: 1px solid var(--ink, #1a1a1a);
+    padding: 16px 40px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .hp-cta__btn:hover {
+    background: var(--ink, #1a1a1a);
+    color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    .hp-pieces__grid { grid-template-columns: 1fr; }
+    .hp-piece__media { aspect-ratio: 4/3; }
+  }
+</style>
