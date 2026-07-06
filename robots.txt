@@ -12,8 +12,21 @@ Disallow: /sheets-index.html
 Disallow: /shoshana-status.html
 Disallow: /suppliers.html
 Disallow: /bez-kevin-encrypted.html
+Disallow: /bez-kevin.html
 Disallow: /prompt-creations-encrypted.html
 Disallow: /inspirations-encrypted.html
+Disallow: /mailing-lists.html
+Disallow: /social-action-plan.html
+Disallow: /knicks-championship-ring-proposals.html
+Disallow: /new-website.html
+Disallow: /metushelach.html
+Disallow: /bez-diet.html
+Disallow: /bez-food-rules.html
+Disallow: /bez-shopping-list.html
+Disallow: /bez-shopping-list-esselstyn.html
+Disallow: /bez-sleep-tools.html
+Disallow: /index-2.html
+Disallow: /index-v2.html
 
 # ---------- AI answer-engine / LLM crawlers ----------
 # All explicitly allowed. Trained content directly cites bezambar.com.
