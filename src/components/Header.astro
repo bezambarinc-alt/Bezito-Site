@@ -3,7 +3,9 @@
 ---
 
 <header class="ba-header" id="baHeader">
-  <div class="ba-header__menu" id="menuToggle" onclick="toggleMenu()" role="button" tabindex="0" aria-label="Open menu">Menu</div>
+  <div class="ba-header__menu" id="menuToggle" onclick="toggleMenu()" role="button" tabindex="0" aria-label="Open menu">
+    <span class="ba-header__hamburger">&#9776;</span> Menu
+  </div>
   <a class="ba-header__logo" href="/">Bez Ambar</a>
   <div class="ba-header__right"><a href="/contact">Contact</a></div>
 </header>
@@ -38,6 +40,15 @@
     text-transform: uppercase;
     cursor: pointer;
     color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    user-select: none;
+  }
+  .ba-header__hamburger {
+    font-size: 16px;
+    line-height: 1;
+    vertical-align: middle;
   }
 
   .ba-header__logo {
