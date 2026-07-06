@@ -158,6 +158,37 @@
     width: 100%; height: 100%; object-fit: cover; object-position: center;
   }
 
+  /* ============ CRAFT PORTRAIT (two-col: prose + image) ============ */
+  .craft-section {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0; border-top: 1px solid var(--rule);
+  }
+  .craft-section__prose {
+    padding: clamp(4rem, 8vw, 8rem) var(--gutter);
+    display: flex; flex-direction: column; justify-content: center;
+    max-width: 640px;
+  }
+  .craft-section__prose h2 {
+    font-family: var(--sans); font-size: clamp(18px, 2vw, 24px); font-weight: 200;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem;
+  }
+  .craft-section__prose p {
+    font-family: var(--serif); font-size: 15px; line-height: 1.85; color: var(--ink); margin-bottom: 1.4rem;
+  }
+  .craft-section__prose p:last-child { margin-bottom: 0; }
+  .craft-section__media {
+    position: relative; overflow: hidden; background: #0d0d0d;
+    min-height: clamp(360px, 45vw, 680px);
+  }
+  .craft-section__media img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center;
+  }
+  @media (max-width: 800px) {
+    .craft-section { grid-template-columns: 1fr; }
+    .craft-section__media { min-height: 300px; order: -1; }
+    .craft-section__prose { max-width: 100%; }
+  }
+
   /* ============ TIMELINE ============ */
   .timeline-section {
     padding: clamp(4rem, 8vw, 8rem) var(--gutter);
@@ -417,7 +448,7 @@
     <div class="page-hero__content">
       <p class="page-hero__overline">The Inventor</p>
       <h1 class="page-hero__title">Bez Ambar</h1>
-      <p class="page-hero__lede">He cut the Princess cut in 1982. It became the most popular diamond shape in the world. That was forty-four years ago, and he has not stopped cutting since.</p>
+      <p class="page-hero__lede">He has spent forty-five years learning what light wants to do inside a stone. The world calls the result the Princess cut. He calls it the beginning.</p>
     </div>
   </section>
 
@@ -443,10 +474,10 @@
         </div>
       </div>
       <div class="intro__prose">
-        <h2>Who Is Bez Ambar</h2>
-        <p>Bez Ambar is an Israeli-American diamond cutter and jewelry designer who founded Bez Ambar Inc. in Los Angeles in 1979. He is credited as one of the original architects of the modern Princess cut, the square brilliant he introduced in 1982 under the name Quadrillion&reg;. Today, the Princess cut is the most widely sold diamond shape in the world.</p>
-        <p>In the decades that followed, Bez created the Laserset&reg; (a prongless, rimless setting that lets the stone float in the hand), the technique now known as Micro-Pave, the Blaze&reg; cut diamond, and the Elysian Cut&trade;. Each of those innovations changed how the industry thinks about light, setting, and the relationship between stone and metal.</p>
-        <p>He still works out of the same city. The cutting, the setting, and the finishing all happen in one place: his atelier at 611 Wilshire Blvd, Los Angeles. Every piece that leaves is signed by him.</p>
+        <h2>The Craftsman</h2>
+        <p>Bez Ambar is an Israeli-American diamond cutter and jewelry designer who has worked from a single atelier in Los Angeles since 1979. His training began with the stone, not the setting. That sequence still shows in everything he makes.</p>
+        <p>In 1982 he introduced the Quadrillion&reg;, a square brilliant that the trade adopted and the world renamed the Princess cut. It is now the most widely sold diamond shape on Earth. The credential is real, but it is also a footnote to the larger story: he kept going. The Laserset&reg;, Micro-Pave, the Blaze&reg; cut, the Elysian Cut&trade; each arrived because a problem in the workshop needed solving, not because the market asked for it.</p>
+        <p>The atelier at 611 Wilshire is where the cutting, setting, and finishing all happen under the same roof. Every piece leaves with his signature in the metal. That is not a marketing detail. It means the same eye that selected the stone was present at every stage of making it.</p>
       </div>
     </div>
   </div>
@@ -457,11 +488,25 @@
       autoplay loop muted playsinline></video>
   </div>
 
+  <!-- ============ CRAFT PORTRAIT ============ -->
+  <div class="craft-section">
+    <div class="craft-section__prose">
+      <h2>How He Works</h2>
+      <p>A stone comes into the atelier. Bez picks it up, turns it under the light, tilts it slowly. He is reading the pavilion, watching how the facets distribute what enters through the table. This is not inspection. It is a conversation with the crystal.</p>
+      <p>What he is looking for is a specific quality of movement inside the stone. A liveness. A willingness to scatter. He has spent four decades developing the vocabulary for it, and the instinct to act on it in a single pass of the wheel. The geometry follows from the stone, not from a template. Every cut he has ever invented started here, with a particular stone that would not cooperate with the existing options.</p>
+      <p>The work does not leave the atelier until every stage has been done by the same hands that started it. This is a practical constraint, not a philosophical one. A cut made to a tolerance of a fraction of a millimeter requires continuity. You cannot hand it off and get it back right.</p>
+    </div>
+    <div class="craft-section__media">
+      <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1782876014/necklaces/single-row-lifestyle.jpg"
+        alt="Bez Ambar fine jewelry, Los Angeles atelier" loading="lazy">
+    </div>
+  </div>
+
   <!-- ============ TIMELINE ============ -->
   <section class="timeline-section">
     <div class="timeline-section__header">
-      <h2>A Record of Firsts</h2>
-      <p>Every invention on this list entered the industry's vocabulary. Several are now so common they have lost their origin story. Here it is.</p>
+      <h2>The Work, In Order</h2>
+      <p>Every milestone on this list began as a problem in the workshop. Several of the solutions are now so common they have lost their origin. Here is where they came from.</p>
     </div>
     <div class="timeline-list">
 
@@ -469,7 +514,7 @@
         <div class="tl-year">1979</div>
         <div class="tl-content">
           <div class="tl-title">Los Angeles. The Beginning.</div>
-          <div class="tl-body">Bez Ambar arrives in Los Angeles and founds <strong>Ambar Diamonds Inc.</strong> His background is in diamond cutting. His conviction is that the industry has not yet found the shape it is looking for.</div>
+          <div class="tl-body">Bez Ambar arrives in Los Angeles and founds <strong>Ambar Diamonds Inc.</strong> He comes as a cutter, not a retailer. From the first day, the studio is where the work begins, not where the finished pieces arrive from somewhere else. His working premise: the industry has not yet found the shape it is looking for.</div>
         </div>
       </div>
 
@@ -477,7 +522,7 @@
         <div class="tl-year">1982</div>
         <div class="tl-content">
           <div class="tl-title">The Princess Cut</div>
-          <div class="tl-body">The <strong>Quadrillion&reg; cut</strong> is introduced: a square brilliant that delivers the fire of a round diamond inside a clean, modern silhouette. The trade adopts it. The world calls it the Princess cut. It becomes the most popular diamond shape on Earth.</div>
+          <div class="tl-body">The <strong>Quadrillion&reg; cut</strong> is introduced: a square brilliant that delivers the fire of a round diamond inside a clean, modern geometry. Bez has been working toward this shape for three years. The cutting angle is precise to a fraction of a degree. The trade adopts it immediately. The world eventually calls it the Princess cut. It becomes the most popular diamond shape on Earth.</div>
           <div class="tl-img">
             <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1775786208/Quadrillion_owciyv.jpg"
               alt="The Quadrillion cut by Bez Ambar, inventor of the Princess cut" loading="lazy">
@@ -497,7 +542,7 @@
         <div class="tl-year">1988</div>
         <div class="tl-content">
           <div class="tl-title">The Laserset Setting</div>
-          <div class="tl-body">The <strong>Laserset&reg;</strong> is a rimless, prongless setting for square-cut diamonds. There is no metal at the edge of the stone. The diamond appears to float. It is the first setting of its kind.</div>
+          <div class="tl-body">The <strong>Laserset&reg;</strong> is a rimless, prongless setting for square-cut diamonds. There is no metal at the edge of the stone. The diamond appears to float in the hand. It is the first setting of its kind, and it comes from a simple dissatisfaction: every existing setting interrupted the stone. Bez wanted the stone to be the only thing you saw.</div>
         </div>
       </div>
 
@@ -549,8 +594,8 @@
   <!-- ============ PROPRIETARY CUTS ============ -->
   <section class="cuts-section">
     <div class="cuts-section__header">
-      <h2>The Three Cuts</h2>
-      <p>Each one patented. Each one producing an optical effect that exists nowhere else in fine jewelry.</p>
+      <h2>Three Cuts. Three Solutions.</h2>
+      <p>Each one begins with a problem that the existing options could not answer. Each one is still exclusive to this atelier.</p>
     </div>
     <div class="cuts-grid">
 
@@ -581,7 +626,7 @@
         </div>
         <div class="cut-card__since">Elysian Cut&trade;</div>
         <div class="cut-card__name">Elysian&trade;</div>
-        <div class="cut-card__body">An elongated geometry that intensifies the interplay of facets along the stone's principal axis. Every Elysian is assessed individually for the quality of light it produces. The name is a Bez Ambar trademark.</div>
+        <div class="cut-card__body">An elongated geometry that concentrates the interplay of facets along the stone's principal axis. Not every stone qualifies. Each Elysian is selected and assessed for a specific quality of light before the name is used. The cut is Bez Ambar's. The name is a registered trademark.</div>
       </div>
 
     </div>
@@ -592,8 +637,8 @@
     <div class="atelier">
       <div>
         <h2>The Atelier</h2>
-        <p>Everything happens at one address. The cutting, the setting, the finishing, the signing. Bez Ambar has worked out of Los Angeles since 1979 and every piece that leaves his atelier carries his name on the metal for a reason: he made it.</p>
-        <p>Private consultations are available by appointment. If you want to see how a diamond is cut, or how a setting is engineered, come in. The work is not hidden.</p>
+        <p>The atelier at 611 Wilshire has been the same address since 1979. The stone comes in, the cutter evaluates it, the setting is built around what the stone can do. Every stage happens here. Every piece that leaves carries Bez Ambar's name on the metal because he was present at each of those stages, not because his name is a brand applied afterward.</p>
+        <p>Private consultations are available by appointment. If you want to see how a stone is evaluated, or how a setting is built to its geometry, come in. The work is not hidden.</p>
         <div class="atelier__details">
           <a href="tel:+12136299191">213 629 9191</a><br>
           <a href="tel:+13232172778">323 217 2778</a><br>
