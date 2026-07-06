@@ -1,0 +1,26 @@
+{
+  "slug": "baguette-line",
+  "sku": "IN101",
+  "title": "The Baguette Line",
+  "subtitle": "Step-cut diamonds, set flat and forward",
+  "category": "necklaces",
+  "collection": null,
+  "status": "live",
+  "refCode": "IN101",
+  "stone": {
+    "shape": "Baguette",
+    "carats": "Custom — made to fit",
+    "color": "G",
+    "clarity": "VS",
+    "origin": "Natural. Step-cut diamonds matched edge-to-edge around the neck."
+  },
+  "metal": "18K gold or platinum",
+  "description": "Baguette-cut diamond line necklace by Bez Ambar. Step-cut diamonds set flat and forward around the neck, matched edge-to-edge. Made to fit. G colour, VS clarity, 18K gold or platinum. Ref IN101.",
+  "heroVideo": "https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1782853658/videos/necklaces/baguette-by-the-yard-2026.mp4",
+  "heroImage": "https://res.cloudinary.com/dlg2mou53/video/upload/so_2.0,f_jpg,w_1200,c_fit/v1782853658/videos/necklaces/baguette-by-the-yard-2026.jpg",
+  "images": [
+    "https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1782884502/necklaces/baguette-line-lifestyle.jpg"
+  ],
+  "inquirySubject": "The Baguette Line ref. IN101",
+  "prettyUrl": "/baguette-line"
+}

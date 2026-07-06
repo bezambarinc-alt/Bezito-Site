@@ -1,0 +1,26 @@
+{
+  "slug": "camelia",
+  "sku": "B9792",
+  "title": "Camélia",
+  "subtitle": "25 ct D oval, framed in fancy intense pink — Bloom Collection",
+  "category": "rings",
+  "collection": "bloom",
+  "status": "live",
+  "refCode": "B9792",
+  "stone": {
+    "shape": "Oval",
+    "carats": 25,
+    "color": "D",
+    "clarity": "VS2",
+    "origin": "Natural. GIA certified. No bowtie. Fancy intense pink diamond halo and split-shank pave. Set in 18K rose gold."
+  },
+  "metal": "18K rose gold",
+  "description": "Camelia — a 25-carat D VS2 colorless oval, cut without bowtie, framed in fancy intense pink diamonds with matching pave down the split shank. Set in rose gold. GIA certified. From the Bloom Collection by Bez Ambar. Ref B9792.",
+  "heroVideo": "https://res.cloudinary.com/dlg2mou53/video/upload/v1781138949/B9792_cmjh7t.mp4",
+  "heroImage": "https://res.cloudinary.com/dlg2mou53/video/upload/v1781138949/B9792_cmjh7t.jpg",
+  "images": [
+    "https://res.cloudinary.com/dlg2mou53/image/upload/v1781160001/25_carat_oval_ring_atelier_drawing_arqxa6.avif"
+  ],
+  "inquirySubject": "Camélia ref. B9792",
+  "prettyUrl": "/camelia"
+}

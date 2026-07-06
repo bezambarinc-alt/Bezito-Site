@@ -1,0 +1,26 @@
+{
+  "slug": "baguette-band",
+  "sku": "C0625",
+  "title": "The Baguette Band",
+  "subtitle": "Baguette-cut diamond eternity, made to order",
+  "category": "wedding-bands",
+  "collection": null,
+  "status": "live",
+  "refCode": "C0625",
+  "stone": {
+    "shape": "Baguette",
+    "carats": "Custom — ring size, grade, and carat weight fully configurable",
+    "color": "G-H",
+    "clarity": "VS",
+    "origin": "Natural. Channel-set in a seamless line."
+  },
+  "metal": "18K white gold, 18K yellow gold, or platinum",
+  "description": "An oval eternity ring composed entirely of baguette-cut diamonds, channel-set in a seamless line, encircling the finger in cool architectural light. Made to exact specification in Los Angeles. Ref C0625. Price upon request.",
+  "heroVideo": null,
+  "heroImage": "https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1600/v1775549202/C0625_Baguette_band_Master_e4azkj.jpg",
+  "images": [
+    "https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1200,c_crop,g_center,ar_16:9/v1775549202/C0625_Baguette_band_Master_e4azkj.jpg"
+  ],
+  "inquirySubject": "Baguette Band ref. C0625",
+  "prettyUrl": "/baguette-band"
+}

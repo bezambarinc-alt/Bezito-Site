@@ -1,0 +1,26 @@
+{
+  "slug": "single-row",
+  "sku": "IN100",
+  "title": "The Single Row",
+  "subtitle": "9 to 15 ct — engineered against the flip",
+  "category": "necklaces",
+  "collection": null,
+  "status": "live",
+  "refCode": "IN100",
+  "stone": {
+    "shape": "Quadrillion (Princess Cut)",
+    "carats": "9 to 15",
+    "color": "G",
+    "clarity": "VS",
+    "origin": "Natural. Diamonds set in one continuous line, each stone calibrated to stay facing forward."
+  },
+  "metal": "18K gold or platinum",
+  "description": "9-15 ct single-row diamond necklace by Bez Ambar. Diamonds set in one continuous line, engineered against the flip so every stone stays facing forward. Made to fit the neck. Quadrillion (Princess) cut, G colour, VS clarity. 18K gold or platinum. Ref IN100.",
+  "heroVideo": "https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1782852834/videos/necklaces/r09073-necklace-2026.mp4",
+  "heroImage": "https://res.cloudinary.com/dlg2mou53/video/upload/so_2.0,f_jpg,w_1200,c_fit/v1782852834/videos/necklaces/r09073-necklace-2026.jpg",
+  "images": [
+    "https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1782876014/necklaces/single-row-lifestyle.jpg"
+  ],
+  "inquirySubject": "The Single Row ref. IN100",
+  "prettyUrl": "/single-row"
+}
