@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/about-bez-ambar",
+      "destination": "/about.html"
+    },
+    {
+      "source": "/about",
+      "destination": "/about.html"
+    },
+    {
       "source": "/video-gallery",
       "destination": "/video-gallery.html"
     },
