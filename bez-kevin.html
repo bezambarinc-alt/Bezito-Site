@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bez × Kevin — Working Page</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://galleries.bezambarinc.workers.dev/page/bez-kevin">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --serif: 'EB Garamond', Georgia, serif;
+    --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-muted: #8a8a8a;
+    --paper: #ffffff;
+    --paper-warm: #faf7f2;
+    --rule: rgba(0,0,0,.08);
+    --accent: #95826b;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); color: var(--ink); font-family: var(--serif); -webkit-font-smoothing: antialiased; }
+
+  header {
+    padding: 40px 8vw 24px;
+    border-bottom: 1px solid var(--rule);
+    text-align: center;
+  }
+  header .brand {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  header .eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 34px 0 14px;
+  }
+  header h1 {
+    font-family: var(--sans);
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 200;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  header .lede {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 620px;
+    margin: 22px auto 0;
+    line-height: 1.55;
+  }
+
+  main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 60px 6vw 100px;
+  }
+
+  section {
+    margin-bottom: 72px;
+  }
+  section .sec-eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  section h2 {
+    font-family: var(--sans);
+    font-size: clamp(20px, 2.4vw, 26px);
+    font-weight: 200;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+  section .sec-sub {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--ink-soft);
+    max-width: 560px;
+    margin-bottom: 28px;
+    line-height: 1.55;
+  }
+  section .divider {
+    width: 42px;
+    height: 1px;
+    background: var(--accent);
+    margin-bottom: 30px;
+  }
+
+  .card {
+    border: 1px solid var(--rule);
+    padding: 26px 28px;
+    margin-bottom: 14px;
+    background: var(--paper);
+    transition: border-color .2s;
+  }
+  .card:hover { border-color: rgba(0,0,0,.18); }
+  .card .card-title {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .card .card-body {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .card a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(149,130,107,.35);
+    transition: border-color .2s;
+  }
+  .card a:hover { border-bottom-color: var(--accent); }
+  .card .card-meta {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-top: 12px;
+  }
+
+  .empty {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-muted);
+    border: 1px dashed var(--rule);
+    padding: 30px 28px;
+    text-align: center;
+  }
+
+  .card.todo {
+    border-left: 3px solid var(--accent);
+  }
+  .card.done {
+    border-left: 3px solid #4a7a4a;
+    background: #fafaf7;
+  }
+  .card .card-date {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 6px;
+  }
+  .card .owner {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-top: 8px;
+    text-transform: uppercase;
+  }
+
+  footer {
+    padding: 40px 8vw;
+    border-top: 1px solid var(--rule);
+    text-align: center;
+    background: var(--paper-warm);
+  }
+  footer .brand {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  footer .contact {
+    font-family: var(--serif);
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+  footer .contact a { color: var(--ink-soft); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Bez Ambar</div>
+  <div class="eyebrow">Internal · Working Document</div>
+  <h1>Bez × Kevin</h1>
+  <p class="lede">A shared workspace for links, ideas, and directions as we build. Everything on this page evolves — add, edit, cross out as we go.</p>
+</header>
+
+<main>
+
+  <section id="reports">
+    <div class="sec-eyebrow">Section One</div>
+    <h2>Reports by Day</h2>
+    <div class="divider"></div>
+    <p class="sec-sub">One dated report per day — To Do + Accomplished at the time of publish. Click through for the full day's picture.</p>
+
+    <div class="card">
+      <div class="card-date">2026 · 07 · 04</div>
+      <div class="card-title">Report — 2026 · 07 · 04</div>
+      <div class="card-body">Bez Ambar sites — AI/SEO optimization pass, bezambar.com cutover plan, and rollup of 2026-07-03 shipped work (Single Row, Baguette Line, C0536, Brownish-Yellow Cushion, Publish Gallery + Summarize Work workflows). <a href="https://galleries.bezambarinc.workers.dev/page/bez-kevin-report-2026-07-04" target="_blank" rel="noopener">Open report →</a></div>
+      <div class="card-meta">To Do + Accomplished</div>
+    </div>
+
+    <div class="empty">— tomorrow's report will land here —</div>
+  </section>
+
+  <section id="ideas">
+    <div class="sec-eyebrow">Section Two</div>
+    <h2>Ideas</h2>
+    <div class="divider"></div>
+    <p class="sec-sub">Concepts to explore, threads to pull, things worth building later.</p>
+
+    <div class="empty">— nothing yet — first idea goes here —</div>
+  </section>
+
+  <section id="directions">
+    <div class="sec-eyebrow">Section Three</div>
+    <h2>Directions</h2>
+    <div class="divider"></div>
+    <p class="sec-sub">Next steps, who owns what, deadlines, dependencies.</p>
+
+    <div class="card todo">
+      <div class="card-date">2026 · 07 · 06</div>
+      <div class="card-title">C0625 Baguette Band — Page Incomplete, Needs Input Before It Can Ship</div>
+      <div class="card-body">
+        Page is live at <a href="https://bezambar-web2026.vercel.app/baguette-band" target="_blank" rel="noopener">/baguette-band</a> but flagged as draft. Three things needed before this page is real:<br><br>
+        <strong>1. Official product name</strong> — "Baguette Band" is a stopgap. Bez needs to name it (a proper brand name like The Single Row, The Staircase, etc.).<br><br>
+        <strong>2. Lifestyle visuals</strong> — Hero and secondary hero are the same master shot cropped two ways. Needs a ring-on-finger shot and/or video. Darryl to shoot.<br><br>
+        <strong>3. Stone specs from memo</strong> — Carat weight, color grade, clarity for the actual piece. Bez to pull from the memo.
+      </div>
+      <div class="owner">@bez (name + specs) · @darryl (visuals)</div>
+    </div>
+  </section>
+
+  <section id="links">
+    <div class="sec-eyebrow">Section Four</div>
+    <h2>Links</h2>
+    <div class="divider"></div>
+    <p class="sec-sub">Live pages, references, tools, and anything worth keeping one click away.</p>
+
+    <div class="card">
+      <div class="card-title">Cloudinary — Media Library</div>
+      <div class="card-body">Full image + video library for Bez Ambar. Sign in with <strong>bezambarinc@gmail.com</strong>. <a href="https://console.cloudinary.com/" target="_blank" rel="noopener">Open Cloudinary Console →</a></div>
+      <div class="card-meta">Cloud · dlg2mou53</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Dashboard — Client Analytics</div>
+      <div class="card-body">Live view of every offer page: KPIs, Offer Pages grid, recent activity, auto-refresh. See what's working and where. <a href="https://galleries.bezambarinc.workers.dev/dashboard" target="_blank" rel="noopener">Open Dashboard →</a></div>
+      <div class="card-meta">Galleries · Cloudflare Workers</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Galleries — Live Site</div>
+      <div class="card-body">The active pages hub at galleries.bezambarinc.workers.dev. Every <code>/page/&lt;slug&gt;</code> route lives here. <a href="https://galleries.bezambarinc.workers.dev/" target="_blank" rel="noopener">Open Galleries →</a></div>
+      <div class="card-meta">Cloudflare Workers</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">bezambar.com — Brand Site</div>
+      <div class="card-body">The main Bez Ambar brand site. <a href="https://bezambar.com/" target="_blank" rel="noopener">Open bezambar.com →</a></div>
+      <div class="card-meta">Vercel</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Shopify — shop.bezambar.com</div>
+      <div class="card-body">The Bez Ambar Shopify storefront. <a href="https://shop.bezambar.com/" target="_blank" rel="noopener">Open Shopify Store →</a></div>
+      <div class="card-meta">Shopify</div>
+    </div>
+
+    <div class="empty">— add more links as we go —</div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="brand">Bez Ambar</div>
+  <div class="contact">
+    Office <a href="tel:+12136299191">213 · 629 · 9191</a> &nbsp;·&nbsp; Cell <a href="tel:+13232172778">323 · 217 · 2778</a><br>
+    <a href="mailto:ambarinccom@gmail.com">ambarinccom@gmail.com</a>
+  </div>
+</footer>
+
+</body>
+</html>
