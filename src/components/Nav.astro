@@ -1,0 +1,148 @@
+---
+// Nav.astro — full-screen menu overlay
+// Rendered once in Layout.astro, works across all pages
+const currentPath = Astro.url.pathname;
+---
+
+<div class="menu-backdrop" id="menuBackdrop" onclick="toggleMenu()"></div>
+
+<nav class="menu-overlay" id="menuOverlay" aria-hidden="true">
+  <button class="menu-overlay__close" onclick="toggleMenu()" aria-label="Close menu">&times;</button>
+  <div class="menu-overlay__logo">BEZ AMBAR</div>
+
+  <ul class="menu-col menu-col--root">
+    <li><a class="menu-item menu-item--home" href="/">Home</a></li>
+    <li><button class="menu-item menu-item--has-sub" data-target="collection" type="button">Collection</button></li>
+    <li><button class="menu-item menu-item--has-sub" data-target="atelier" type="button">Atelier</button></li>
+    <li><button class="menu-item menu-item--has-sub" data-target="service" type="button">Service</button></li>
+    <li><button class="menu-item menu-item--has-sub" data-target="resources" type="button">Resources</button></li>
+    <li><button class="menu-item menu-item--has-sub" data-target="signature" type="button">Signature Pieces</button></li>
+  </ul>
+
+  <!-- Collection -->
+  <ul class="menu-col menu-col--sub" data-col="collection">
+    <li><button class="menu-item menu-item--has-sub" data-target="bloom" type="button">Bloom Collection</button></li>
+    <li><button class="menu-item menu-item--has-sub" data-target="rings" type="button">Rings</button></li>
+    <li><button class="menu-item menu-item--has-sub" data-target="engagement-rings" type="button">Engagement Rings</button></li>
+    <li><button class="menu-item menu-item--has-sub" data-target="wedding-bands" type="button">Wedding Bands</button></li>
+    <li><button class="menu-item menu-item--has-sub" data-target="earrings" type="button">Earrings</button></li>
+    <li><button class="menu-item menu-item--has-sub" data-target="pendants" type="button">Pendants</button></li>
+    <li><button class="menu-item menu-item--has-sub" data-target="necklaces" type="button">Necklaces</button></li>
+    <li><button class="menu-item menu-item--has-sub" data-target="bracelets" type="button">Bracelets</button></li>
+  </ul>
+
+  <ul class="menu-col menu-col--sub" data-col="bloom">
+    <li><a class="menu-item" href="/calla">The Calla &middot; ref. C0728</a></li>
+    <li><a class="menu-item" href="/camelia">Cam&eacute;lia &middot; ref. B9792</a></li>
+  </ul>
+
+  <ul class="menu-col menu-col--sub" data-col="rings">
+    <li><a class="menu-item" href="/fancy-yellow-three-stone">Fancy Yellow Three-Stone &middot; ref. C0536</a></li>
+    <li><a class="menu-item" href="/fancy-deep-brownish-yellow-cushion">Fancy Deep Brownish Yellow Cushion &middot; ref. 1C36</a></li>
+    <li><a class="menu-item" href="/fancy-very-pink-oval">Fancy Very Pink Oval &middot; ref. C0747</a></li>
+  </ul>
+
+  <ul class="menu-col menu-col--sub" data-col="engagement-rings">
+    <li><span class="menu-item menu-item--soon">In production</span></li>
+  </ul>
+
+  <ul class="menu-col menu-col--sub" data-col="wedding-bands">
+    <li><span class="menu-item menu-item--soon">In production</span></li>
+  </ul>
+
+  <ul class="menu-col menu-col--sub" data-col="earrings">
+    <li><span class="menu-item menu-item--soon">In production</span></li>
+  </ul>
+
+  <ul class="menu-col menu-col--sub" data-col="pendants">
+    <li><span class="menu-item menu-item--soon">In production</span></li>
+  </ul>
+
+  <ul class="menu-col menu-col--sub" data-col="necklaces">
+    <li><a class="menu-item" href="/single-row">The Single Row &middot; ref. IN100</a></li>
+    <li><a class="menu-item" href="/baguette-line">The Baguette Line &middot; ref. IN101</a></li>
+    <li><a class="menu-item" href="/pear-shaped-necklace">The Pear Shaped Necklace &middot; ref. C0508</a></li>
+  </ul>
+
+  <ul class="menu-col menu-col--sub" data-col="bracelets">
+    <li><a class="menu-item" href="/double-row-asscher-flex">The Double Row Asscher &middot; ref. 5FLX33ASCH2</a></li>
+    <li><a class="menu-item" href="/emerald-cut-stretch-bracelet">Emerald Cut Stretch Bracelet &middot; ref. 5FLX40ECNS</a></li>
+    <li><a class="menu-item" href="/single-row-asscher-cut">Single Row Asscher Cut &middot; ref. 5FLX33ASC</a></li>
+    <li><a class="menu-item" href="/blue-sapphire-single-row-flex">Blue Sapphire Single Row Flex &middot; ref. 5FLX30R</a></li>
+  </ul>
+
+  <!-- Atelier (replaces Manufacture + Editorial) -->
+  <ul class="menu-col menu-col--sub" data-col="atelier">
+    <li><a class="menu-item" href="/about-bez-ambar">About Bez Ambar</a></li>
+    <li><a class="menu-item" href="/press">Press</a></li>
+    <li><a class="menu-item" href="/diamond-education">Diamond Education</a></li>
+    <li><a class="menu-item" href="/video-gallery">Video Gallery</a></li>
+    <li><a class="menu-item" href="/blog">Blog</a></li>
+    <li><a class="menu-item" href="/journal">Journal</a></li>
+  </ul>
+
+  <!-- Service -->
+  <ul class="menu-col menu-col--sub" data-col="service">
+    <li><a class="menu-item" href="/contact">Contact</a></li>
+    <li><a class="menu-item" href="/contact?subject=bespoke">Bespoke Inquiry</a></li>
+    <li><a class="menu-item" href="/contact?subject=repairs">Repairs &amp; Cleaning</a></li>
+    <li><a class="menu-item" href="/warranty">Warranty</a></li>
+  </ul>
+
+  <!-- Resources -->
+  <ul class="menu-col menu-col--sub" data-col="resources">
+    <li><a class="menu-item" href="/ring-size-chart">Ring Size Chart</a></li>
+    <li><a class="menu-item" href="/catalogs">Catalogs</a></li>
+    <li><a class="menu-item" href="/privacy-policy">Privacy Policy</a></li>
+    <li><a class="menu-item" href="/terms">Terms of Service</a></li>
+  </ul>
+
+  <!-- Signature Pieces -->
+  <ul class="menu-col menu-col--sub" data-col="signature">
+    <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/30-carat-flex" target="_blank" rel="noopener">30-Carat Flex</a></li>
+    <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/flex-bracelets" target="_blank" rel="noopener">Flex Bracelets</a></li>
+    <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/elysian-cut" target="_blank" rel="noopener">Elysian Cut</a></li>
+    <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/cascata" target="_blank" rel="noopener">Cascata</a></li>
+    <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/crossover-ashoka" target="_blank" rel="noopener">Crossover Ashoka</a></li>
+    <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/heart-ruby-v2" target="_blank" rel="noopener">Heart Ruby v2</a></li>
+    <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/saul-ring" target="_blank" rel="noopener">Saul Ring</a></li>
+  </ul>
+</nav>
+
+<script>
+  function toggleMenu() {
+    const overlay = document.getElementById('menuOverlay');
+    const backdrop = document.getElementById('menuBackdrop');
+    const isOpen = overlay.getAttribute('aria-hidden') === 'false';
+    overlay.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
+    backdrop.classList.toggle('active', !isOpen);
+    document.body.classList.toggle('menu-open', !isOpen);
+    if (isOpen) {
+      resetMenuCols();
+    }
+  }
+
+  function resetMenuCols() {
+    document.querySelectorAll('.menu-col--sub').forEach(col => col.classList.remove('active'));
+    document.querySelectorAll('.menu-col--root').forEach(col => col.classList.remove('sub-open'));
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.menu-item--has-sub').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.target;
+        resetMenuCols();
+        const sub = document.querySelector(`.menu-col--sub[data-col="${target}"]`);
+        if (sub) {
+          sub.classList.add('active');
+          document.querySelector('.menu-col--root')?.classList.add('sub-open');
+        }
+      });
+    });
+
+    document.querySelector('.menu-overlay__close')?.addEventListener('click', toggleMenu);
+  });
+
+  // Expose globally for inline onclick handlers
+  window.toggleMenu = toggleMenu;
+</script>

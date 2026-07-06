@@ -1,0 +1,44 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Jeweler",
+  "@id": "https://bezambar.com/#organization",
+  "name": "Bez Ambar",
+  "legalName": "Bez Ambar Inc.",
+  "url": "https://bezambar.com/",
+  "description": "American fine-jewelry atelier founded 1979 in Los Angeles by Betzalel \"Bez\" Ambar. Credited as one of the original architects of the modern princess cut. Creator of the patented Blaze® and Elysian™ diamond cuts.",
+  "foundingDate": "1979",
+  "telephone": "+12136299191",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "611 Wilshire Blvd",
+    "addressLocality": "Los Angeles",
+    "addressRegion": "CA",
+    "postalCode": "90017",
+    "addressCountry": "US"
+  },
+  "sameAs": [
+    "https://www.instagram.com/bezambar/",
+    "https://www.linkedin.com/in/bez-ambar-869936a/",
+    "https://www.youtube.com/@BezAmbarInc/",
+    "https://www.tiktok.com/@bezambar",
+    "https://www.pinterest.com/bezambarinc/"
+  ]
+};
+---
+
+<Layout
+  title="Bez Ambar — Inventor of the Princess Cut · Since 1979"
+  description="Bez Ambar — inventor of the Princess Cut. Patented diamond cuts and high-jewelry pieces handcrafted in Los Angeles since 1979."
+  canonical="https://bezambar.com/"
+  structuredData={structuredData}
+>
+  <!-- Homepage content migrated from index.html — Phase 2 -->
+  <main style="padding-top: 64px; min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+    <p style="font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink, #1a1a1a); opacity: 0.4;">
+      Astro scaffold — homepage migration in progress
+    </p>
+  </main>
+</Layout>
