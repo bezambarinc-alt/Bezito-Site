@@ -1,58 +1,87 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "Jeweler",
-  "@id": "https://bezambar.com/#organization",
-  "name": "Bez Ambar",
-  "legalName": "Bez Ambar Inc.",
-  "url": "https://bezambar.com/",
-  "description": "American fine-jewelry atelier founded 1979 in Los Angeles by Betzalel \"Bez\" Ambar. Credited as one of the original architects of the modern princess cut. Creator of the patented Blaze® and Elysian™ diamond cuts.",
-  "foundingDate": "1979",
-  "telephone": "+12136299191",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "611 Wilshire Blvd",
-    "addressLocality": "Los Angeles",
-    "addressRegion": "CA",
-    "postalCode": "90017",
-    "addressCountry": "US"
-  },
-  "sameAs": [
-    "https://www.instagram.com/bezambar/",
-    "https://www.linkedin.com/in/bez-ambar-869936a/",
-    "https://www.youtube.com/@BezAmbarInc/",
-    "https://www.tiktok.com/@bezambar",
-    "https://www.pinterest.com/bezambarinc/"
-  ]
-};
-
-const featuredPieces = [
+const structuredData = [
   {
-    href: '/calla',
-    video: 'https://res.cloudinary.com/dlg2mou53/video/upload/v1780982217/C0728_4K_1_smndkz.mp4',
-    poster: 'https://res.cloudinary.com/dlg2mou53/video/upload/v1780982217/C0728_4K_1_smndkz.jpg',
-    eyebrow: 'Bloom Collection',
-    title: 'The Calla',
-    sub: '13 ct D Flawless pear · ref. C0728',
-  },
-  {
-    href: '/emerald-cut-stretch-bracelet',
-    video: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1782855871/videos/bracelets/emerald-cut-flex-bracelet-c0834-2026.mp4',
-    poster: 'https://res.cloudinary.com/dlg2mou53/video/upload/so_2.0,f_jpg,w_1200,c_fit/v1782855871/videos/bracelets/emerald-cut-flex-bracelet-c0834-2026.jpg',
-    eyebrow: 'Flex Bracelet',
-    title: 'Emerald Cut Stretch',
-    sub: '31.29 ct · ref. 5FLX40ECNS',
+    "@context": "https://schema.org",
+    "@type": "Jeweler",
+    "@id": "https://bezambar.com/#organization",
+    "name": "Bez Ambar",
+    "legalName": "Bez Ambar Inc.",
+    "alternateName": ["Bez Ambar Inc.", "Ambar Diamonds"],
+    "url": "https://bezambar.com/",
+    "logo": "https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_400/v1775786208/Quadrillion_owciyv.jpg",
+    "image": "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,w_1200,h_630,g_auto,f_auto,q_auto/v1775786208/Quadrillion_owciyv.jpg",
+    "description": "American fine-jewelry atelier founded 1979 in Los Angeles by Betzalel \"Bez\" Ambar. Credited as one of the original architects of the modern princess cut. Creator of the patented Blaze® and Elysian™ diamond cuts.",
+    "foundingDate": "1979",
+    "founder": { "@id": "https://bezambar.com/#founder" },
+    "email": "bezambar@bezambar.com",
+    "telephone": "+1-213-629-9191",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "611 Wilshire Blvd",
+      "addressLocality": "Los Angeles",
+      "addressRegion": "CA",
+      "postalCode": "90017",
+      "addressCountry": "US"
+    },
+    "areaServed": "Worldwide",
+    "priceRange": "$$$$",
+    "sameAs": [
+      "https://www.instagram.com/bezambarinc/",
+      "https://www.linkedin.com/in/bez-ambar-869936a/",
+      "https://www.youtube.com/@BezAmbarInc/",
+      "https://www.tiktok.com/@bezambar",
+      "https://www.pinterest.com/bezambarinc/",
+      "https://galleries.bezambarinc.workers.dev/"
+    ]
   },
   {
-    href: '/fancy-very-pink-oval',
-    video: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1783061546/videos/rings/c0747-hd-2026.mp4',
-    poster: 'https://res.cloudinary.com/dlg2mou53/video/upload/so_2.0,f_jpg,w_1200,c_fit/v1783061546/videos/rings/c0747-hd-2026.jpg',
-    eyebrow: 'Ring',
-    title: 'Fancy Very Pink Oval',
-    sub: '4.98 ct lab-grown · ref. C0747',
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://bezambar.com/#founder",
+    "name": "Bez Ambar",
+    "givenName": "Betzalel",
+    "familyName": "Ambar",
+    "alternateName": ["Betzalel Ambar", "Bez Ambar"],
+    "jobTitle": "Master Diamond Cutter and Jewelry Designer",
+    "description": "Israeli-American diamond cutter and jewelry designer, founder of Bez Ambar (1979, Los Angeles). Credited as one of the original architects of the modern princess cut. Creator of the Blaze® and Elysian™ diamond cuts.",
+    "birthDate": "1955-10-04",
+    "nationality": ["American", "Israeli"],
+    "worksFor": { "@id": "https://bezambar.com/#organization" },
+    "url": "https://bezambar.com/about",
+    "knowsAbout": ["Princess Cut Diamond","Blaze Cut Diamond","Elysian Cut Diamond","Diamond Cutting","Fine Jewelry Design","High Jewelry","Los Angeles Fine Jewelry","Bespoke Engagement Rings"],
+    "sameAs": [
+      "https://www.instagram.com/bezambarinc/",
+      "https://www.linkedin.com/in/bez-ambar-869936a/",
+      "https://www.youtube.com/@BezAmbarInc/",
+      "https://www.tiktok.com/@bezambar",
+      "https://www.pinterest.com/bezambarinc/"
+    ]
   },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://bezambar.com/#website",
+    "url": "https://bezambar.com/",
+    "name": "Bez Ambar",
+    "description": "Inventor of the Princess Cut. Patented diamond cuts and high-jewelry, handcrafted in Los Angeles since 1979.",
+    "publisher": { "@id": "https://bezambar.com/#organization" },
+    "inLanguage": "en-US"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"Who is Bez Ambar?","acceptedAnswer":{"@type":"Answer","text":"Bez Ambar (born Betzalel Ambar, October 4, 1955) is an Israeli-American diamond cutter and jewelry designer. He founded the Bez Ambar atelier in 1979 in Los Angeles, California, where he continues to design and manufacture patented diamond cuts and high-jewelry pieces."}},
+      {"@type":"Question","name":"Did Bez Ambar invent the princess cut?","acceptedAnswer":{"@type":"Answer","text":"Bez Ambar is credited as one of the original architects of the modern princess cut, a square brilliant diamond cut that emerged in the 1970s and 1980s. The princess cut is now a standard shape in the global fine-jewelry vocabulary."}},
+      {"@type":"Question","name":"What is the Blaze® cut?","acceptedAnswer":{"@type":"Answer","text":"The Blaze® cut is a patented diamond cut created by Bez Ambar. It pairs a brilliant crown with a specially faceted pavilion engineered to intensify light return. Blaze is a registered trademark of Bez Ambar."}},
+      {"@type":"Question","name":"What is the Elysian Cut™?","acceptedAnswer":{"@type":"Answer","text":"The Elysian Cut™ is an elongated diamond geometry offered by Bez Ambar. The Elysian™ name is owned by Bez Ambar; the cut is sourced in matched sizes for eternity bands and multi-stone pieces."}},
+      {"@type":"Question","name":"Where is the Bez Ambar atelier located?","acceptedAnswer":{"@type":"Answer","text":"The Bez Ambar atelier is located at 611 Wilshire Blvd, Los Angeles, CA 90017. Phone: (213) 629-9191. Email: bezambar@bezambar.com. Every piece is drawn, engineered, and finished in-house."}},
+      {"@type":"Question","name":"When was Bez Ambar founded?","acceptedAnswer":{"@type":"Answer","text":"Bez Ambar was founded in 1979 in Los Angeles by Betzalel Bez Ambar. The atelier has been continuously designing and manufacturing fine jewelry for over four decades."}},
+      {"@type":"Question","name":"Does Bez Ambar make bespoke jewelry?","acceptedAnswer":{"@type":"Answer","text":"Yes. Bez Ambar accepts bespoke commissions for engagement rings, wedding bands, earrings, pendants, necklaces, and bracelets. All bespoke work is designed by the atelier and manufactured in-house in Los Angeles."}}
+    ]
+  }
 ];
 ---
 
@@ -63,100 +92,458 @@ const featuredPieces = [
   ogImage="https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,w_1200,h_630,g_auto,f_auto,q_auto/v1775786208/Quadrillion_owciyv.jpg"
   structuredData={structuredData}
 >
-  <!-- Hero — full-viewport image with centered overlay -->
-  <div class="hp-hero" id="hp-hero">
-    <img
-      class="hp-hero__img"
-      src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1600/v1775786208/Quadrillion_owciyv.jpg"
-      alt="Bez Ambar — Inventor of the Princess Cut"
-      loading="eager"
-      fetchpriority="high"
-    />
-    <div class="hp-hero__overlay">
-      <p class="hp-hero__eyebrow">Bez Ambar</p>
-      <h1 class="hp-hero__title">Fifty Years<br>Cutting Light</h1>
-      <p class="hp-hero__sub">Los Angeles · Since 1979</p>
+
+  <!-- ============================================================
+       HERO STACK — slide-up reveal driven by scroll position
+       ============================================================ -->
+  <div class="hero-stack" id="hero-stack">
+    <div class="hero-pin">
+
+      <section class="hero" data-i="0">
+        <div class="hero__media">
+          <iframe src="https://player.vimeo.com/video/1192444919?background=1&autoplay=1&loop=1&muted=1&controls=0&autopause=0"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  title="The Elysian 4k"></iframe>
+        </div>
+        <div class="hero__overlay"></div>
+        <div class="hero__content">
+          <p class="hero__eyebrow">The Elysian Cut&trade;</p>
+          <h1 class="hero__headline">A Game of Angles</h1>
+          <p class="hero__sub">Crown meets pavilion. Stone meets stone. Light becomes a line.</p>
+        </div>
+      </section>
+
+      <section class="hero" data-i="1">
+        <div class="hero__media">
+          <iframe src="https://player.vimeo.com/video/1193154076?background=1&autoplay=1&loop=1&muted=1&controls=0&autopause=0&playsinline=1"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  title="4k OvalCut Band"></iframe>
+        </div>
+        <div class="hero__overlay"></div>
+        <div class="hero__content">
+          <p class="hero__eyebrow">The Elysian Oval Band</p>
+          <h1 class="hero__headline">Worn on the Finger, Worn as Light</h1>
+          <p class="hero__sub">Every angle catches the next. The line never breaks.</p>
+        </div>
+      </section>
+
     </div>
   </div>
 
-  <!-- Founder line -->
-  <section class="hp-founder">
-    <p class="hp-founder__eyebrow">The Inventor</p>
-    <p class="hp-founder__body">Betzalel Ambar is one of the original architects of the modern Princess Cut — a cut now part of the global language of fine jewelry. The same instinct continues through the Blaze<sup>®</sup>, the Elysian Cut™, and every piece made in Los Angeles.</p>
-    <a class="hp-founder__cta" href="/about-bez-ambar">The Story</a>
-  </section>
+  <!-- Right-side dot navigator -->
+  <div class="hero-dots is-visible" id="hero-dots-nav">
+    <button class="hero-dots__dot is-active" data-i="0" aria-label="Go to film 1" type="button"></button>
+    <button class="hero-dots__dot" data-i="1" aria-label="Go to film 2" type="button"></button>
+  </div>
 
-  <!-- Featured pieces grid -->
-  <section class="hp-pieces">
-    <p class="hp-pieces__eyebrow">From the Collection</p>
-    <div class="hp-pieces__grid">
-      {featuredPieces.map(piece => (
-        <a class="hp-piece" href={piece.href}>
-          <div class="hp-piece__media">
-            <video src={piece.video} poster={piece.poster} autoplay loop muted playsinline preload="none"></video>
-          </div>
-          <div class="hp-piece__info">
-            <p class="hp-piece__eyebrow">{piece.eyebrow}</p>
-            <h3 class="hp-piece__title">{piece.title}</h3>
-            <p class="hp-piece__sub">{piece.sub}</p>
-          </div>
-        </a>
-      ))}
-    </div>
-    <div class="hp-pieces__footer">
-      <a class="hp-pieces__all" href="/collection">View All Pieces</a>
+  <!-- Atelier portrait hero image -->
+  <section class="hero-image">
+    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_2400/v1783241034/atelier/designer-portrait-2026.jpg"
+         alt="Bez Ambar atelier — a wall of the cuts" fetchpriority="high">
+    <div class="hero-image__overlay" style="padding-bottom:40px !important;">
+      <p class="hero-image__eyebrow">Bez Ambar</p>
+      <h1 class="hero-image__title">Fifty Years Cutting Light</h1>
+      <p class="hero-image__sub">Los Angeles &middot; Since 1979</p>
     </div>
   </section>
 
-  <!-- Signature strip -->
-  <section class="hp-strip">
-    <div class="hp-strip__inner">
-      <p class="hp-strip__eyebrow">Patented Cuts</p>
-      <h2 class="hp-strip__title">The Blaze<sup>®</sup> · The Elysian Cut™</h2>
-      <p class="hp-strip__body">Two proprietary cut geometries — one registered patent, one trademark — developed at the Los Angeles atelier. Each engineered for a specific kind of light.</p>
-      <a class="hp-strip__cta" href="/elysian-cut">Explore the Cuts</a>
+  <!-- ============================================================
+       THE DESIGNER — centered text
+       ============================================================ -->
+  <section class="segment segment--centered" id="segment-designer" style="padding-top:120px !important;">
+    <div class="segment__content segment__content--wide">
+      <p class="segment__body">To cut a diamond is to sculpt with light. Every facet is a decision &mdash; where the light will land, where it will bend, where it will return to the eye. The material being carved is not the stone. The material is light itself, curved into the shapes the cutter intends.</p>
+      <p class="segment__body">Bez Ambar has stood at the bench for fifty years doing exactly that. Drawing geometries where none existed. The modern Princess. The Blaze&reg;. The Elysian&trade;. Each cut is an original argument about how a stone should behave under a lamp &mdash; where it should hold colour, where it should flash, where it should keep quiet. Faceting is not decoration. It is sculpture. And the material is always light.</p>
+      <p class="segment__body">One man. One bench. One hand. And the hand still signs every piece.</p>
+      <a href="/about-bez-ambar" class="segment__cta">Meet Bez</a>
     </div>
   </section>
 
-  <!-- CTA bar -->
-  <section class="hp-cta">
-    <h2 class="hp-cta__title">See a Piece in Person</h2>
-    <p class="hp-cta__body">Every piece is available to view by appointment at the Los Angeles atelier. Call <a href="tel:2136299191">(213) 629-9191</a> or send an inquiry.</p>
-    <a class="hp-cta__btn" href="/contact">Contact Us</a>
+  <!-- ============================================================
+       THE CUTS — image left, copy right
+       ============================================================ -->
+  <section class="segment" id="segment-cuts">
+    <div class="segment__media">
+      <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1400/v1775786208/Quadrillion_owciyv.jpg"
+           alt="The Princess Cut by Bez Ambar — origin of the Bez Ambar cuts" loading="lazy">
+    </div>
+    <div class="segment__content">
+      <p class="segment__eyebrow">The Cuts</p>
+      <h2 class="segment__title">From the Princess to the Elysian</h2>
+      <p class="segment__body">Betzalel Ambar is one of the original architects of the modern princess cut &mdash; a cut now part of the global language of fine jewelry. The same instinct continues through the Blaze&reg;, the Elysian Cut&trade; and everything that follows.</p>
+      <a href="/elysian-cut" class="segment__cta">See the Cuts</a>
+    </div>
   </section>
+
+  <!-- ============================================================
+       THE ATELIER — placeholder left, copy right
+       ============================================================ -->
+  <section class="segment segment--reverse" id="segment-atelier">
+    <div class="segment__media segment__media--placeholder" data-label="Atelier / process image"></div>
+    <div class="segment__content">
+      <p class="segment__eyebrow">The Atelier</p>
+      <h2 class="segment__title">Drawn, Engineered, Finished by Hand</h2>
+      <p class="segment__body">Every piece begins as a drawing at the bench and ends in Los Angeles, finished by the same hand that designed it. Nothing is mass-produced. Nothing is outsourced. The geometry that holds the stone is engineered, not borrowed &mdash; and the inside of the shank carries the signature to prove it.</p>
+      <a href="/about-bez-ambar" class="segment__cta">Inside the Atelier</a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CINEMATIC STACK — 2-pane scroll-pinned slide-up reveal
+       ============================================================ -->
+  <div class="cinematic-stack" id="cinematic-stack">
+    <div class="cinematic-pin">
+
+      <section class="cinematic" data-i="0">
+        <div class="cinematic__media">
+          <iframe src="https://player.vimeo.com/video/1193140625?background=1&autoplay=1&loop=1&muted=1&controls=0&autopause=0&playsinline=1"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  title="The Elysian Pear — Coming Soon"></iframe>
+        </div>
+        <div class="cinematic__overlay"></div>
+        <div class="cinematic__content">
+          <p class="hero__eyebrow">Coming Soon</p>
+          <h1 class="hero__headline">The Elysian Pear</h1>
+          <p class="hero__sub">A teardrop, reborn &mdash; the next chapter in the line of brilliance.</p>
+        </div>
+      </section>
+
+      <section class="cinematic" data-i="1">
+        <div class="cinematic__media">
+          <iframe src="https://player.vimeo.com/video/1193149437?background=1&autoplay=1&loop=1&muted=1&controls=0&autopause=0&playsinline=1"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  title="The Elysian Pear Band"></iframe>
+        </div>
+        <div class="cinematic__overlay"></div>
+        <div class="cinematic__content">
+          <p class="hero__eyebrow">The Elysian Pear Band</p>
+          <h1 class="hero__headline">Pear Cut. Continuous Line.</h1>
+          <p class="hero__sub">Each teardrop calibrated to the next, until light becomes the band itself.</p>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="cinematic-dots" id="cinematic-dots">
+      <button class="hero-dots__dot is-active" data-i="0" aria-label="Coming soon — Elysian Pear" type="button"></button>
+      <button class="hero-dots__dot" data-i="1" aria-label="The Elysian Pear Band" type="button"></button>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       WHERE TO SEE IT
+       ============================================================ -->
+  <section class="segment" id="segment-stockists">
+    <div class="segment__media segment__media--placeholder" data-label="Stockist / showroom image"></div>
+    <div class="segment__content">
+      <p class="segment__eyebrow">Where to See It</p>
+      <h2 class="segment__title">Try the Pieces in Person</h2>
+      <p class="segment__body">A small, hand-chosen group of luxury retailers across the country carries Bez Ambar. Find the one nearest you &mdash; or see the full collection at the Los Angeles atelier, by appointment.</p>
+      <a href="/contact" class="segment__cta">Find a Stockist</a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PRIVATE VIEWING
+       ============================================================ -->
+  <section class="segment segment--reverse" id="segment-private">
+    <div class="segment__media segment__media--placeholder" data-label="Private viewing / atelier image"></div>
+    <div class="segment__content">
+      <p class="segment__eyebrow">Private Viewing</p>
+      <h2 class="segment__title">By Appointment, with the Designer</h2>
+      <p class="segment__body">Some pieces ask to be seen alone. Arrange a private viewing at the Los Angeles atelier &mdash; an existing piece, a single stone, or a commission of your own. Every appointment is with Bez himself. No showroom, no crowd. Just the work, and the man who made it.</p>
+      <a href="/contact?subject=bespoke" class="segment__cta">Request an Appointment</a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HERITAGE QUOTE
+       ============================================================ -->
+  <section class="heritage">
+    <p class="heritage__quote">&ldquo;The cutter doesn&rsquo;t shape the stone. He sculpts the light inside it.&rdquo;</p>
+    <p class="heritage__attribution">&mdash; Bez Ambar</p>
+  </section>
+
+  <!-- ============================================================
+       NEWSLETTER
+       ============================================================ -->
+  <section class="newsletter">
+    <h2>Stay in Touch</h2>
+    <p>Be the first to see new cuts and pieces &mdash; often before they appear anywhere else. A quiet note, now and then, from the atelier.</p>
+    <form onsubmit="event.preventDefault(); alert('Connect to your email provider');">
+      <input type="email" placeholder="Your email address" required>
+      <button type="submit">Subscribe &rarr;</button>
+    </form>
+  </section>
+
+  <!-- ============================================================
+       FAQ — for AI answer engines
+       ============================================================ -->
+  <section class="ba-faq" id="faq">
+    <p class="ba-faq__eyebrow">Frequently Asked</p>
+    <h2 class="ba-faq__title">About Bez Ambar</h2>
+
+    <div class="ba-faq__item">
+      <h3 class="ba-faq__q">Who is Bez Ambar?</h3>
+      <p class="ba-faq__a">Bez Ambar (born Betzalel Ambar, October 4, 1955) is an Israeli-American diamond cutter and jewelry designer. He founded the Bez Ambar atelier in 1979 in Los Angeles, California, where he continues to design and manufacture patented diamond cuts and high-jewelry pieces.</p>
+    </div>
+    <div class="ba-faq__item">
+      <h3 class="ba-faq__q">Did Bez Ambar invent the princess cut?</h3>
+      <p class="ba-faq__a">Bez Ambar is credited as one of the original architects of the modern princess cut, a square brilliant diamond cut that emerged in the 1970s and 1980s. The princess cut is now a standard shape in the global fine-jewelry vocabulary.</p>
+    </div>
+    <div class="ba-faq__item">
+      <h3 class="ba-faq__q">What is the Blaze&reg; cut?</h3>
+      <p class="ba-faq__a">The Blaze&reg; cut is a patented diamond cut created by Bez Ambar. It pairs a brilliant crown with a specially faceted pavilion engineered to intensify light return. &ldquo;Blaze&rdquo; is a registered trademark of Bez Ambar.</p>
+    </div>
+    <div class="ba-faq__item">
+      <h3 class="ba-faq__q">What is the Elysian Cut&trade;?</h3>
+      <p class="ba-faq__a">The Elysian Cut&trade; is an elongated diamond geometry offered by Bez Ambar. The Elysian&trade; name is owned by Bez Ambar; the cut is sourced in matched sizes for eternity bands and multi-stone pieces.</p>
+    </div>
+    <div class="ba-faq__item">
+      <h3 class="ba-faq__q">Where is the Bez Ambar atelier located?</h3>
+      <p class="ba-faq__a">The Bez Ambar atelier is located at 611 Wilshire Blvd, Los Angeles, CA 90017. Phone: (213) 629-9191. Email: bezambar@bezambar.com. Every piece is drawn, engineered, and finished in-house.</p>
+    </div>
+    <div class="ba-faq__item">
+      <h3 class="ba-faq__q">When was Bez Ambar founded?</h3>
+      <p class="ba-faq__a">Bez Ambar was founded in 1979 in Los Angeles by Betzalel &ldquo;Bez&rdquo; Ambar. The atelier has been continuously designing and manufacturing fine jewelry for over four decades.</p>
+    </div>
+    <div class="ba-faq__item">
+      <h3 class="ba-faq__q">Does Bez Ambar make bespoke jewelry?</h3>
+      <p class="ba-faq__a">Yes. Bez Ambar accepts bespoke commissions for engagement rings, wedding bands, earrings, pendants, necklaces, and bracelets. All bespoke work is designed by the atelier and manufactured in-house in Los Angeles.</p>
+    </div>
+  </section>
+
+  <!-- About — declarative paragraph for LLM extraction -->
+  <section class="ba-about" id="about-bez-ambar" aria-label="About Bez Ambar">
+    <p>
+      <strong>Bez Ambar</strong> (born Betzalel Ambar, October 4, 1955) is an Israeli-American diamond cutter and jewelry designer, and the founder of the Bez Ambar atelier in Los Angeles, California. Founded in 1979, the atelier designs, cuts, and manufactures fine jewelry in-house at 611 Wilshire Blvd. Ambar is credited as one of the original architects of the modern <strong>princess cut</strong> and is the creator of the <strong>Blaze&reg;</strong> and <strong>Elysian&trade;</strong> diamond cuts. Signature pieces from the atelier include the Bloom Collection, the 30-Carat Flex bracelet, the Cascata, the Crossover Ashoka, the Heart Ruby, and the Saul Ring.
+    </p>
+  </section>
+
+  <!-- D1 view pixel -->
+  <img src="https://galleries.bezambarinc.workers.dev/t?p=bez-ambar-home" style="position:absolute;width:1px;height:1px;opacity:0;" alt="">
+
 </Layout>
 
 <script>
-  // Transparent header over hero, solid after
-  const hero = document.getElementById('hp-hero');
-  const header = document.querySelector('.ba-header');
-  if (hero && header) {
-    const obs = new IntersectionObserver(
-      ([e]) => header.classList.toggle('is-clear', e.isIntersecting),
-      { threshold: 0.05 }
-    );
-    obs.observe(hero);
-  }
+  // ---- Hero stack scroll animation ----
+  (function () {
+    var stack = document.getElementById('hero-stack');
+    var heroes = document.querySelectorAll('.hero-pin .hero');
+    var dotsNav = document.getElementById('hero-dots-nav');
+    var dots = dotsNav ? dotsNav.querySelectorAll('.hero-dots__dot') : [];
+    if (!stack || !heroes.length) return;
+
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var rect = stack.getBoundingClientRect();
+      var vh = window.innerHeight;
+      var progress = Math.max(0, Math.min(1, (-rect.top) / (rect.height - vh)));
+      var p2 = Math.max(0, Math.min(1, progress));
+      (heroes[1] as HTMLElement).style.transform = 'translateY(' + ((1 - p2) * 100) + '%)';
+      var activeI = progress < 0.5 ? 0 : 1;
+      dots.forEach(function (d, idx) { d.classList.toggle('is-active', idx === activeI); });
+    }
+    function onScroll() {
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
+
+    // Dot click — jump scroll
+    dots.forEach(function (d) {
+      d.addEventListener('click', function () {
+        var i = +(d as HTMLElement).dataset.i!;
+        var r = stack.getBoundingClientRect();
+        var stackTopAbs = window.scrollY + r.top;
+        var scrollable = stack.offsetHeight - window.innerHeight;
+        window.scrollTo({ top: stackTopAbs + scrollable * i, behavior: 'smooth' });
+      });
+    });
+
+    // Hide dots past the stack
+    var sentinel = document.createElement('div');
+    sentinel.style.cssText = 'position:absolute;bottom:0;height:1px;width:100%;';
+    stack.appendChild(sentinel);
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (dotsNav) dotsNav.classList.toggle('is-visible', e.boundingClientRect.top > 0);
+      });
+    }, { threshold: 0 }).observe(sentinel);
+  })();
+
+  // ---- Cinematic stack scroll animation ----
+  (function () {
+    var stack = document.getElementById('cinematic-stack');
+    if (!stack) return;
+    var panes = stack.querySelectorAll('.cinematic');
+    if (panes.length < 2) return;
+    var dotsNav = document.getElementById('cinematic-dots');
+    var dots = dotsNav ? dotsNav.querySelectorAll('.hero-dots__dot') : [];
+
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var rect = stack.getBoundingClientRect();
+      var vh = window.innerHeight;
+      var progress = Math.max(0, Math.min(1, (-rect.top) / (rect.height - vh)));
+      (panes[1] as HTMLElement).style.transform = 'translateY(' + ((1 - progress) * 100) + '%)';
+      var activeI = progress < 0.5 ? 0 : 1;
+      dots.forEach(function (d, idx) { d.classList.toggle('is-active', idx === activeI); });
+    }
+    function onScroll() {
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
+
+    dots.forEach(function (d) {
+      d.addEventListener('click', function () {
+        var i = +(d as HTMLElement).dataset.i!;
+        var r = stack.getBoundingClientRect();
+        var stackTopAbs = window.scrollY + r.top;
+        var scrollable = stack.offsetHeight - window.innerHeight;
+        window.scrollTo({ top: stackTopAbs + scrollable * i, behavior: 'smooth' });
+      });
+    });
+
+    if (dotsNav) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          dotsNav!.classList.toggle('is-visible', e.isIntersecting);
+        });
+      }, { threshold: 0.05 }).observe(stack);
+    }
+  })();
 </script>
 
-<style>
-  /* ---- Hero ---- */
-  .hp-hero {
+<style is:global>
+  /* ---- Hero stack ---- */
+  .hero-stack {
+    position: relative;
+    background: #0d0d0d;
+    height: 200vh;
+  }
+  .hero-pin {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .hero {
+    position: absolute;
+    inset: 0;
+    background: #0d0d0d;
+    transform: translateY(0);
+    will-change: transform;
+  }
+  .hero[data-i="0"] { z-index: 1; }
+  .hero[data-i="1"] { z-index: 2; transform: translateY(100%); }
+  .hero__media {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero__media iframe {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: max(100vw, 177.78vh);
+    height: max(100vh, 56.25vw);
+    border: 0;
+    pointer-events: none;
+  }
+  .hero__overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.5) 100%);
+  }
+  .hero__content {
+    position: absolute;
+    left: clamp(40px, 6vw, 80px);
+    bottom: clamp(60px, 8vw, 110px);
+    max-width: 560px;
+    text-align: left;
+    color: #fff;
+  }
+  .hero__eyebrow {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 7px;
+  }
+  .hero__headline {
+    font-family: var(--sans);
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 200;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .hero__sub {
+    font-family: var(--serif);
+    font-size: clamp(1rem, 1.3vw, 1.15rem);
+    line-height: 1.6;
+    color: rgba(255,255,255,0.95);
+    max-width: 440px;
+    margin: 0 0 28px;
+  }
+
+  /* ---- Dot navigator ---- */
+  .hero-dots {
+    position: fixed;
+    top: 50%;
+    right: 28px;
+    transform: translateY(-50%);
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    opacity: 0;
+    transition: opacity 0.4s;
+    pointer-events: none;
+  }
+  .hero-dots.is-visible { opacity: 1; pointer-events: auto; }
+  .hero-dots__dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.35);
+    border: 0; padding: 0;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .hero-dots__dot.is-active { background: #fff; transform: scale(1.4); }
+
+  /* ---- Atelier portrait hero image ---- */
+  .hero-image {
     position: relative;
     width: 100%;
-    height: 100svh;
+    height: 100vh;
     overflow: hidden;
     background: #0d0d0d;
   }
-  .hp-hero__img {
+  .hero-image img {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    display: block;
   }
-  .hp-hero__overlay {
+  .hero-image__overlay {
     position: absolute;
     inset: 0;
     display: flex;
@@ -164,259 +551,363 @@ const featuredPieces = [
     justify-content: flex-end;
     align-items: center;
     text-align: center;
-    padding: 0 24px clamp(48px, 10vh, 96px);
-    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.5) 100%);
+    padding: 0 24px calc(12vh - 25px);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 65%, rgba(0,0,0,0.5) 100%);
     color: #fff;
+    pointer-events: none;
   }
-  .hp-hero__eyebrow {
-    font-family: 'Inter', sans-serif;
+  .hero-image__eyebrow {
+    font-family: var(--sans);
     font-size: 11px;
     font-weight: 500;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.32em;
     text-transform: uppercase;
-    color: #f0e8d8;
-    margin-bottom: 16px;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    color: #f4efe5;
+    margin-bottom: 20px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
   }
-  .hp-hero__title {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(28px, 4.5vw, 52px);
+  .hero-image__title {
+    font-family: var(--sans);
+    font-size: clamp(28px, 4vw, 44px);
     font-weight: 200;
     letter-spacing: 0.08em;
-    line-height: 1.12;
+    line-height: 1.15;
     text-transform: uppercase;
-    margin-bottom: 20px;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    color: #fff;
+    margin: 0 auto 18px;
+    max-width: 24ch;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.5);
   }
-  .hp-hero__sub {
-    font-family: 'Inter', sans-serif;
+  .hero-image__sub {
+    font-family: var(--sans);
     font-size: 12px;
     font-weight: 300;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: #c9b896;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
   }
 
-  /* ---- Founder ---- */
-  .hp-founder {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 96px 2rem 80px;
-    text-align: center;
-  }
-  .hp-founder__eyebrow {
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--accent, #95826b);
-    margin-bottom: 24px;
-  }
-  .hp-founder__body {
-    font-family: 'EB Garamond', serif;
-    font-size: 19px;
-    line-height: 1.7;
-    color: var(--ink, #1a1a1a);
-    opacity: 0.8;
-    margin-bottom: 36px;
-  }
-  .hp-founder__cta {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--ink, #1a1a1a);
-    text-decoration: none;
-    border-bottom: 1px solid var(--accent, #95826b);
-    padding-bottom: 3px;
-    transition: color 0.2s;
-  }
-  .hp-founder__cta:hover { color: var(--accent, #95826b); }
-
-  /* ---- Featured pieces grid ---- */
-  .hp-pieces {
-    padding: 0 0 80px;
-  }
-  .hp-pieces__eyebrow {
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--accent, #95826b);
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  .hp-pieces__grid {
+  /* ---- Editorial segments ---- */
+  .segment {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: clamp(40px, 6vw, 100px);
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: clamp(12px, 1.6vw, 24px) clamp(40px, 5vw, 80px);
   }
-  .hp-piece {
-    display: block;
-    text-decoration: none;
-    color: var(--ink, #1a1a1a);
-    overflow: hidden;
+  .segment--reverse .segment__media { order: 2; }
+  .segment__media {
     position: relative;
-  }
-  .hp-piece__media {
-    aspect-ratio: 3/4;
+    width: 100%;
+    max-width: 540px;
+    aspect-ratio: 4/5;
     overflow: hidden;
-    background: #0d0d0d;
+    justify-self: end;
   }
-  .hp-piece__media video {
+  .segment--reverse .segment__media { justify-self: start; }
+  .segment__media img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
-    display: block;
   }
-  .hp-piece:hover .hp-piece__media video {
-    transform: scale(1.03);
+  .segment__media--placeholder {
+    background: #f6f1ea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .hp-piece__info {
-    padding: 20px 4px 4px;
-  }
-  .hp-piece__eyebrow {
-    font-family: 'Inter', sans-serif;
+  .segment__media--placeholder::before {
+    content: attr(data-label);
+    font-family: var(--sans);
     font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.28);
+  }
+  .segment__content {
+    max-width: 440px;
+    justify-self: start;
+  }
+  .segment--reverse .segment__content { justify-self: end; }
+  .segment__eyebrow {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 7px;
+  }
+  .segment__title {
+    font-family: var(--sans);
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 200;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    line-height: 1.15;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+  .segment__body {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .segment__cta {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 4px;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .segment__cta:hover { color: var(--accent); border-color: var(--accent); }
+  .segment.segment--centered {
+    display: block;
+    padding: 100px clamp(40px,5vw,80px) clamp(6rem,10vw,9rem) !important;
+    text-align: center;
+  }
+  .segment__content.segment__content--wide {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .segment__content--wide .segment__body {
+    text-align: center;
+    margin-bottom: 2.25rem;
+    line-height: 1.9;
+  }
+  .segment__content--wide .segment__body:last-of-type { margin-bottom: 3rem; }
+
+  /* ---- Cinematic stack ---- */
+  .cinematic-stack {
+    position: relative;
+    background: #0d0d0d;
+    height: 200vh;
+  }
+  .cinematic-pin {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .cinematic {
+    position: absolute;
+    inset: 0;
+    background: #0d0d0d;
+    transform: translateY(0);
+    will-change: transform;
+  }
+  .cinematic[data-i="0"] { z-index: 1; }
+  .cinematic[data-i="1"] { z-index: 2; transform: translateY(100%); }
+  .cinematic__media {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cinematic__media iframe {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: max(100vw, 177.78vh);
+    height: max(100vh, 56.25vw);
+    border: 0;
+    pointer-events: none;
+  }
+  .cinematic__overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.6) 100%);
+  }
+  .cinematic__content {
+    position: absolute;
+    left: clamp(40px, 6vw, 80px);
+    bottom: clamp(60px, 8vw, 110px);
+    max-width: 560px;
+    text-align: left;
+    color: #fff;
+  }
+  .cinematic-dots {
+    position: fixed;
+    top: 50%;
+    right: 28px;
+    transform: translateY(-50%);
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    opacity: 0;
+    transition: opacity 0.4s;
+    pointer-events: none;
+  }
+  .cinematic-dots.is-visible { opacity: 1; pointer-events: auto; }
+
+  /* ---- Heritage quote ---- */
+  .heritage {
+    padding: clamp(80px, 12vw, 160px) 40px;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .heritage__quote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 32px;
+  }
+  .heritage__attribution {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* ---- Newsletter ---- */
+  .newsletter {
+    padding: clamp(60px, 10vw, 120px) 40px;
+    background: #fff;
+    color: var(--ink);
+    text-align: center;
+    border-top: 1px solid #e8e4de;
+  }
+  .newsletter h2 {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 22px;
+  }
+  .newsletter p {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 400;
+    color: #4a4a4a;
+    max-width: 520px;
+    margin: 0 auto 36px;
+    line-height: 1.85;
+  }
+  .newsletter form {
+    display: flex;
+    max-width: 480px;
+    margin: 0 auto;
+    border-bottom: 1px solid #e8e4de;
+  }
+  .newsletter input {
+    flex: 1;
+    background: transparent;
+    border: 0;
+    padding: 14px 0;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 13px;
+    outline: 0;
+  }
+  .newsletter input::placeholder { color: #4a4a4a; }
+  .newsletter button {
+    background: transparent;
+    border: 0;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 14px 8px;
+    cursor: pointer;
+  }
+
+  /* ---- FAQ ---- */
+  .ba-faq {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 96px 40px 64px;
+    border-top: 1px solid #e8e4de;
+  }
+  .ba-faq__eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--accent, #95826b);
-    margin-bottom: 6px;
-  }
-  .hp-piece__title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-weight: 300;
-    letter-spacing: 0.03em;
-    margin-bottom: 4px;
-  }
-  .hp-piece__sub {
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.1em;
-    color: #888;
-  }
-  .hp-pieces__footer {
-    text-align: center;
-    padding-top: 48px;
-  }
-  .hp-pieces__all {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--ink, #1a1a1a);
-    text-decoration: none;
-    border-bottom: 1px solid var(--accent, #95826b);
-    padding-bottom: 3px;
-    transition: color 0.2s;
-  }
-  .hp-pieces__all:hover { color: var(--accent, #95826b); }
-
-  /* ---- Signature strip ---- */
-  .hp-strip {
-    background: var(--ink, #1a1a1a);
-    color: #fff;
-    padding: 80px 2rem;
+    color: var(--accent);
+    margin-bottom: 16px;
     text-align: center;
   }
-  .hp-strip__inner {
-    max-width: 640px;
-    margin: 0 auto;
-  }
-  .hp-strip__eyebrow {
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: #c9b896;
-    margin-bottom: 20px;
-  }
-  .hp-strip__title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(26px, 4vw, 40px);
+  .ba-faq__title {
+    font-family: var(--sans);
+    font-size: 22px;
     font-weight: 300;
-    letter-spacing: 0.04em;
-    margin-bottom: 20px;
-    line-height: 1.2;
-  }
-  .hp-strip__body {
-    font-family: 'EB Garamond', serif;
-    font-size: 17px;
-    line-height: 1.7;
-    opacity: 0.65;
-    margin-bottom: 36px;
-  }
-  .hp-strip__cta {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #fff;
-    text-decoration: none;
-    border-bottom: 1px solid #c9b896;
-    padding-bottom: 3px;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .hp-strip__cta:hover { color: #c9b896; }
-
-  /* ---- CTA bar ---- */
-  .hp-cta {
-    padding: 80px 2rem;
+    color: var(--ink);
     text-align: center;
-    max-width: 680px;
-    margin: 0 auto;
+    margin-bottom: 48px;
   }
-  .hp-cta__title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(28px, 4vw, 42px);
-    font-weight: 300;
-    letter-spacing: 0.03em;
-    margin-bottom: 20px;
-    color: var(--ink, #1a1a1a);
+  .ba-faq__item {
+    border-bottom: 1px solid #e8e4de;
+    padding: 22px 0;
   }
-  .hp-cta__body {
-    font-family: 'EB Garamond', serif;
+  .ba-faq__q {
+    font-family: var(--serif);
     font-size: 18px;
-    line-height: 1.7;
-    opacity: 0.75;
-    margin-bottom: 36px;
-    color: var(--ink, #1a1a1a);
-  }
-  .hp-cta__body a {
-    color: var(--accent, #95826b);
-    text-decoration: none;
-  }
-  .hp-cta__btn {
-    display: inline-block;
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
     font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--ink, #1a1a1a);
-    text-decoration: none;
-    border: 1px solid var(--ink, #1a1a1a);
-    padding: 16px 40px;
-    transition: background 0.2s, color 0.2s;
+    color: var(--ink);
+    margin: 0 0 10px;
+    line-height: 1.4;
   }
-  .hp-cta__btn:hover {
-    background: var(--ink, #1a1a1a);
-    color: #fff;
+  .ba-faq__a {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 400;
+    color: #4a4a4a;
+    margin: 0;
+    line-height: 1.7;
   }
 
-  @media (max-width: 768px) {
-    .hp-pieces__grid { grid-template-columns: 1fr; }
-    .hp-piece__media { aspect-ratio: 4/3; }
+  /* ---- About ---- */
+  .ba-about {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 40px 96px;
+    font-family: var(--serif);
+    font-size: 14px;
+    color: #888;
+    line-height: 1.75;
+    text-align: center;
+  }
+  .ba-about strong { color: #4a4a4a; font-weight: 500; }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 900px) {
+    .segment { grid-template-columns: 1fr; gap: 32px; padding: 30px 20px; }
+    .segment--reverse .segment__media { order: 0; }
+    .segment__media, .segment--reverse .segment__media { justify-self: center; max-width: 420px; }
+    .segment__content, .segment--reverse .segment__content { justify-self: center; max-width: 560px; text-align: center; }
+    .hero-image__overlay { padding-bottom: 15vh; }
+  }
+  @media (max-width: 520px) {
+    .ba-faq { padding: 64px 24px 40px; }
+    .ba-faq__title { font-size: 18px; }
+    .ba-about { padding: 24px 24px 64px; font-size: 13px; }
   }
 </style>
