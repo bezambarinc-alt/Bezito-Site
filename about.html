@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Inventor — Bez Ambar</title>
-<meta name="description" content="Betzalel Bez Ambar — Israeli-American diamond cutter and jewelry designer, founder of Bez Ambar Inc., and one of the original architects of the modern Princess cut. Los Angeles, since 1979.">
+<title>Bez Ambar — Inventor of the Princess Cut | Los Angeles</title>
+<meta name="description" content="Bez Ambar invented the Princess cut in 1982 and has spent four decades redefining what a diamond can do. Three patented cuts. One atelier in Los Angeles, since 1979.">
 <link rel="canonical" href="https://bezambar.com/about">
 <meta property="og:title" content="The Inventor — Bez Ambar">
-<meta property="og:description" content="Israeli-American diamond cutter and jewelry designer. Inventor of the Princess cut. Three patented cuts. One atelier in Los Angeles, since 1979.">
+<meta property="og:description" content="He invented the Princess cut in 1982. Three patented cuts later, he still cuts every stone by hand in Los Angeles.">
 <meta property="og:url" content="https://bezambar.com/about">
+<meta property="og:image" content="https://res.cloudinary.com/dlg2mou53/image/upload/f_jpg,w_1200,c_fit/v1775786208/Quadrillion_owciyv.jpg">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23c41e3a'/%3E%3Ctext x='16' y='22' font-family='Inter,sans-serif' font-size='18' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://webfonts.fontstand.com/WF-099839-d89c1d499f0c1f40d1e6d7330af17f97.css" type="text/css"/>
@@ -28,260 +29,272 @@
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--serif);
-    font-size: 20px;
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
-  img { display: block; max-width: 100%; height: auto; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: 20px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  img, video { display: block; max-width: 100%; height: auto; }
   a { color: inherit; }
 
   /* ============ HEADER ============ */
   .ba-header {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(255,255,255,0.96);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--rule);
-    padding: 18px 24px;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule); padding: 18px 24px;
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
     transition: background 0.3s ease, border-color 0.3s ease;
   }
-  .ba-header__menu {
-    font-family: var(--sans); font-size: 11px; font-weight: 500;
-    letter-spacing: 0.10em; text-transform: uppercase; color: var(--ink);
-    justify-self: start; text-decoration: none; transition: color 0.3s ease;
-  }
+  .ba-header.is-clear { background: transparent; border-bottom-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .ba-header.is-clear .ba-header__menu,
+  .ba-header.is-clear .ba-header__logo,
+  .ba-header.is-clear .ba-header__icons a { color: #fff; }
+  .ba-header__menu { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; color: var(--ink); justify-self: start; text-decoration: none; transition: color 0.3s ease; }
   .ba-header__menu::before { content: '☰  '; }
-  .ba-header__logo {
-    font-family: var(--sans); font-size: 14px; font-weight: 700;
-    letter-spacing: 5px; color: var(--ink); text-transform: uppercase;
-    justify-self: center; text-decoration: none; transition: color 0.3s ease;
-  }
-  .ba-header__icons {
-    justify-self: end; display: flex; gap: 18px;
-    font-family: var(--sans); font-size: 12px; color: var(--ink-soft);
-  }
+  .ba-header__logo { font-family: var(--sans); font-size: 14px; font-weight: 700; letter-spacing: 5px; color: var(--ink); text-transform: uppercase; justify-self: center; text-decoration: none; transition: color 0.3s ease; }
+  .ba-header__icons { justify-self: end; display: flex; gap: 18px; font-family: var(--sans); font-size: 12px; color: var(--ink-soft); }
   .ba-header__icons a { color: var(--ink-soft); text-decoration: none; transition: color 0.3s ease; }
   .ba-header__icons a:hover { color: var(--accent); }
-  @media (max-width: 768px) {
-    .ba-header { padding: 14px 16px; }
-    .ba-header__menu { font-size: 10px; }
-    .ba-header__menu::before { content: '☰'; }
-    .ba-header__logo { font-size: 12px; letter-spacing: 4px; }
-    .ba-header__icons { font-size: 11px; gap: 12px; }
-  }
+  @media (max-width: 768px) { .ba-header { padding: 14px 16px; } .ba-header__menu { font-size: 10px; } .ba-header__menu::before { content: '☰'; } .ba-header__logo { font-size: 12px; letter-spacing: 4px; } .ba-header__icons { font-size: 11px; gap: 12px; } }
 
   /* ============ MENU OVERLAY ============ */
-  .menu-overlay {
-    position: fixed; top: 0; left: 0; width: 320px; height: 100vh;
-    background: #fff; z-index: 9999; display: flex; overflow: hidden;
-    transform: translateX(-100%); transition: transform .35s ease, width .35s ease;
-    box-shadow: 4px 0 24px rgba(0,0,0,.08);
-  }
+  .menu-overlay { position: fixed; top: 0; left: 0; width: 320px; height: 100vh; background: #fff; z-index: 9999; display: flex; overflow: hidden; transform: translateX(-100%); transition: transform .35s ease, width .35s ease; box-shadow: 4px 0 24px rgba(0,0,0,.08); }
   .menu-overlay.is-open { transform: translateX(0); }
   .menu-overlay.has-sub { width: 600px; max-width: 92vw; }
   .menu-overlay.has-sub-sub { width: 900px; max-width: 96vw; }
-  .menu-overlay__close {
-    position: absolute; top: 22px; left: 24px; background: none; border: 0;
-    font-size: 24px; color: var(--ink); cursor: pointer; line-height: 1; padding: 4px 8px; z-index: 5;
-  }
-  .menu-overlay__logo {
-    position: absolute; top: 28px; left: 50%; transform: translateX(-50%);
-    font-family: var(--sans); font-size: 13px; font-weight: 700; letter-spacing: 5px;
-    color: var(--ink); text-transform: uppercase; z-index: 4; white-space: nowrap;
-  }
-  .menu-col {
-    flex: 0 0 300px; width: 300px; height: 100vh; overflow-y: auto;
-    padding: 96px 0 40px; margin: 0; list-style: none; border-right: 1px solid var(--rule);
-  }
+  .menu-overlay__close { position: absolute; top: 22px; left: 24px; background: none; border: 0; font-size: 24px; color: var(--ink); cursor: pointer; line-height: 1; padding: 4px 8px; z-index: 5; }
+  .menu-overlay__logo { position: absolute; top: 28px; left: 50%; transform: translateX(-50%); font-family: var(--sans); font-size: 13px; font-weight: 700; letter-spacing: 5px; color: var(--ink); text-transform: uppercase; z-index: 4; white-space: nowrap; }
+  .menu-col { flex: 0 0 300px; width: 300px; height: 100vh; overflow-y: auto; padding: 96px 0 40px; margin: 0; list-style: none; border-right: 1px solid var(--rule); }
   .menu-col:last-child { border-right: 0; }
   .menu-col--sub { display: none; }
   .menu-col--sub.is-active { display: block; }
   .menu-col li { list-style: none; }
-  .menu-item {
-    display: flex; align-items: center; justify-content: space-between; width: 100%;
-    padding: 13px 36px 13px 40px; font-family: var(--sans); font-size: 12px; font-weight: 300;
-    letter-spacing: 0.20em; text-transform: uppercase; color: #888; background: none; border: 0;
-    cursor: pointer; text-align: left; text-decoration: none; line-height: 1.4; transition: color .15s;
-  }
+  .menu-item { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 13px 36px 13px 40px; font-family: var(--sans); font-size: 12px; font-weight: 300; letter-spacing: 0.20em; text-transform: uppercase; color: #888; background: none; border: 0; cursor: pointer; text-align: left; text-decoration: none; line-height: 1.4; transition: color .15s; }
   .menu-item:hover { color: var(--ink); }
   .menu-item.is-active { color: var(--ink); font-weight: 400; text-decoration: underline; text-underline-offset: 8px; text-decoration-thickness: 1px; }
   .menu-item--home { font-family: var(--serif); font-style: italic; font-size: 16px; letter-spacing: 0; text-transform: none; color: #aaa; font-weight: 400; padding-top: 6px; padding-bottom: 22px; }
   .menu-item--soon { opacity: .35; pointer-events: none; font-style: italic; }
   .menu-item--has-sub::after { content: '›'; font-size: 20px; font-weight: 300; color: inherit; margin-left: 12px; opacity: 0.7; line-height: 1; }
   .menu-item--external::after { content: '↗'; font-size: 11px; margin-left: 12px; opacity: 0.55; }
-  .menu-backdrop {
-    position: fixed; inset: 0; background: rgba(0,0,0,.55);
-    opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s; z-index: 9998;
-  }
+  .menu-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.55); opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s; z-index: 9998; }
   .menu-backdrop.is-open { opacity: 1; visibility: visible; }
   @media (max-width: 600px) { .menu-overlay { width: 88vw; } .menu-overlay.has-sub { width: 92vw; } .menu-col { flex-basis: 50%; width: 50%; } }
 
-  /* ============ HERO ============ */
+  /* ============ HERO (full bleed, dark, text over image) ============ */
   .page-hero {
-    padding-top: clamp(100px, 14vw, 160px);
-    padding-bottom: clamp(3rem, 6vw, 5rem);
-    padding-left: var(--gutter);
-    padding-right: var(--gutter);
-    text-align: center;
-    background: var(--paper);
-    border-bottom: 1px solid var(--rule);
+    position: relative;
+    height: clamp(460px, 65vw, 780px);
+    background: #111;
+    overflow: hidden;
+    display: flex; align-items: flex-end;
+  }
+  .page-hero__media {
+    position: absolute; inset: 0;
+  }
+  .page-hero__media img, .page-hero__media video {
+    width: 100%; height: 100%; object-fit: cover; object-position: center;
+  }
+  .page-hero__overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.18) 55%, rgba(0,0,0,0.06) 100%);
+  }
+  .page-hero__content {
+    position: relative; z-index: 2;
+    padding: clamp(2rem, 5vw, 4rem) var(--gutter);
+    padding-bottom: clamp(2.5rem, 5vw, 4.5rem);
+    max-width: 760px;
   }
   .page-hero__overline {
-    font-family: var(--sans); font-size: 11px; font-weight: 500;
-    letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent);
-    margin-bottom: 20px;
+    font-family: var(--sans); font-size: 11px; font-weight: 400;
+    letter-spacing: 0.28em; text-transform: uppercase;
+    color: #c9b896; margin-bottom: 14px;
   }
   .page-hero__title {
-    font-family: var(--sans); font-size: clamp(28px, 4vw, 52px); font-weight: 200;
-    letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink);
-    line-height: 1.1; margin-bottom: 1.5rem;
+    font-family: var(--sans); font-size: clamp(34px, 5.5vw, 68px);
+    font-weight: 200; letter-spacing: 0.04em; text-transform: uppercase;
+    color: #fff; line-height: 1.05; margin-bottom: 1.25rem;
   }
   .page-hero__lede {
-    font-family: var(--serif); font-size: 17px; line-height: 1.65;
-    color: var(--ink-soft); max-width: 60ch; margin: 0 auto;
+    font-family: var(--serif); font-size: clamp(15px, 1.5vw, 17px);
+    line-height: 1.65; color: rgba(255,255,255,0.8); max-width: 54ch;
   }
 
-  /* ============ PORTRAIT BAND ============ */
-  /* Replace .portrait-placeholder with an <img> when portrait is available */
-  .portrait-band {
-    width: 100%; height: clamp(400px, 55vw, 680px);
-    background: #111;
-    position: relative;
-    overflow: hidden;
-  }
-  .portrait-band img {
-    width: 100%; height: 100%; object-fit: cover; object-position: center top;
-    display: block;
-  }
-  .portrait-band__caption {
-    position: absolute; bottom: clamp(20px, 3vw, 40px); left: clamp(20px, 3vw, 48px);
-    color: rgba(255,255,255,0.55); font-family: var(--sans); font-size: 11px;
-    font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase;
-  }
-  /* Placeholder until portrait is shot / sourced */
-  .portrait-placeholder {
-    width: 100%; height: 100%;
-    display: flex; align-items: center; justify-content: center;
-    background: #111;
-    font-family: var(--sans); font-size: 11px; font-weight: 300;
-    letter-spacing: 0.28em; text-transform: uppercase;
-    color: rgba(255,255,255,0.18);
-  }
-
-  /* ============ BODY SECTIONS ============ */
-  .section {
-    padding: clamp(3.5rem, 8vw, 7rem) var(--gutter);
-    border-top: 1px solid var(--rule);
-  }
-  .section--warm { background: var(--paper-warm); }
-  .section__inner {
-    max-width: 760px; margin: 0 auto;
-  }
-  .section__inner--wide {
+  /* ============ INTRO (two-col split: stat block left, prose right) ============ */
+  .intro {
+    display: grid; grid-template-columns: 1fr 2fr;
+    gap: clamp(2rem, 5vw, 5rem); align-items: start;
+    padding: clamp(3.5rem, 7vw, 6rem) var(--gutter);
     max-width: var(--max-wide); margin: 0 auto;
   }
-  .section__title {
-    font-family: var(--sans); font-size: clamp(18px, 2vw, 24px); font-weight: 200;
-    letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent);
-    margin-bottom: 1.5rem;
+  .intro__stats { padding-top: 0.25rem; }
+  .stat {
+    border-top: 1px solid var(--rule);
+    padding: 20px 0;
   }
-  .section__rule { width: 36px; height: 1px; background: var(--accent); margin-bottom: 28px; }
-  .section p {
+  .stat:last-child { border-bottom: 1px solid var(--rule); }
+  .stat__number {
+    font-family: var(--sans); font-size: clamp(28px, 3.5vw, 44px); font-weight: 200;
+    letter-spacing: -0.01em; color: var(--accent); line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat__label {
+    font-family: var(--sans); font-size: 11px; font-weight: 400;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-muted);
+  }
+  .intro__prose {}
+  .intro__prose h2 {
+    font-family: var(--sans); font-size: clamp(20px, 2.2vw, 26px); font-weight: 200;
+    letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink);
+    margin-bottom: 1.5rem; line-height: 1.2;
+  }
+  .intro__prose p {
     font-family: var(--serif); font-size: 15px; line-height: 1.75;
     color: var(--ink); margin-bottom: 1.2rem;
   }
-  .section p:last-child { margin-bottom: 0; }
+  .intro__prose p:last-child { margin-bottom: 0; }
+  @media (max-width: 720px) { .intro { grid-template-columns: 1fr; } }
+
+  /* ============ FULL-WIDTH IMAGE BREAK ============ */
+  .image-break {
+    width: 100%; height: clamp(280px, 40vw, 560px); overflow: hidden; background: #0d0d0d;
+  }
+  .image-break img, .image-break video {
+    width: 100%; height: 100%; object-fit: cover; object-position: center;
+  }
 
   /* ============ TIMELINE ============ */
-  .timeline {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
+  .timeline-section {
+    padding: clamp(4rem, 8vw, 8rem) var(--gutter);
+    background: var(--paper-warm);
     border-top: 1px solid var(--rule);
   }
-  .timeline-entry {
-    padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 4vw, 3.5rem);
-    border-bottom: 1px solid var(--rule);
-    border-right: 1px solid var(--rule);
+  .timeline-section__header {
+    max-width: var(--max-wide); margin: 0 auto 4rem;
   }
-  .timeline-entry:nth-child(even) { border-right: 0; }
-  .timeline-entry__year {
-    font-family: var(--sans); font-size: clamp(26px, 3vw, 40px); font-weight: 200;
-    letter-spacing: -0.01em; color: var(--accent); line-height: 1; margin-bottom: 10px;
+  .timeline-section__header h2 {
+    font-family: var(--sans); font-size: clamp(20px, 2.2vw, 26px); font-weight: 200;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 0.75rem;
   }
-  .timeline-entry__text {
-    font-family: var(--serif); font-size: 15px; line-height: 1.65; color: var(--ink-soft);
+  .timeline-section__header p {
+    font-family: var(--serif); font-size: 15px; color: var(--ink-soft); max-width: 52ch;
   }
-  .timeline-entry__text strong { color: var(--ink); font-weight: 500; }
-  @media (max-width: 640px) {
-    .timeline { grid-template-columns: 1fr; }
-    .timeline-entry { border-right: 0; }
-    .timeline-entry:nth-child(even) { border-right: 0; }
+  .timeline-list { max-width: var(--max-wide); margin: 0 auto; }
+  .tl-entry {
+    display: grid; grid-template-columns: 120px 1fr;
+    gap: 0 clamp(2rem, 4vw, 4rem);
+    border-top: 1px solid var(--rule);
+    padding: clamp(2rem, 4vw, 3.5rem) 0;
+  }
+  .tl-entry:last-child { border-bottom: 1px solid var(--rule); }
+  .tl-year {
+    font-family: var(--sans); font-size: clamp(36px, 4.5vw, 58px); font-weight: 200;
+    color: var(--accent); line-height: 1; letter-spacing: -0.02em;
+    padding-top: 3px;
+  }
+  .tl-content {}
+  .tl-title {
+    font-family: var(--sans); font-size: 13px; font-weight: 600;
+    letter-spacing: 0.10em; text-transform: uppercase; color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .tl-body {
+    font-family: var(--serif); font-size: 15px; line-height: 1.7; color: var(--ink-soft);
+  }
+  .tl-body strong { color: var(--ink); font-weight: 500; }
+  .tl-img {
+    margin-top: 20px; border-radius: 0;
+    height: clamp(180px, 22vw, 280px); overflow: hidden; background: #0d0d0d;
+  }
+  .tl-img img, .tl-img video {
+    width: 100%; height: 100%; object-fit: cover; object-position: center;
+  }
+  @media (max-width: 600px) {
+    .tl-entry { grid-template-columns: 1fr; gap: 0.5rem 0; }
+    .tl-year { font-size: 42px; padding-bottom: 4px; }
   }
 
-  /* ============ CUTS GRID ============ */
+  /* ============ CUTS (three cards with images) ============ */
+  .cuts-section {
+    padding: clamp(4rem, 8vw, 8rem) var(--gutter);
+    border-top: 1px solid var(--rule);
+  }
+  .cuts-section__header {
+    max-width: var(--max-wide); margin: 0 auto 3rem;
+  }
+  .cuts-section__header h2 {
+    font-family: var(--sans); font-size: clamp(20px, 2.2vw, 26px); font-weight: 200;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem;
+  }
+  .cuts-section__header p {
+    font-family: var(--serif); font-size: 15px; color: var(--ink-soft); max-width: 52ch;
+  }
   .cuts-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-    margin-top: 3rem;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    max-width: var(--max-wide); margin: 0 auto;
   }
-  .cut-card {
-    background: var(--paper-warm);
-    padding: clamp(2rem, 4vw, 3.5rem) clamp(1.5rem, 3vw, 2.5rem);
+  .cut-card {}
+  .cut-card__media {
+    width: 100%; height: clamp(200px, 22vw, 320px); background: #0d0d0d; overflow: hidden; margin-bottom: 1.5rem;
   }
-  .cut-card__year {
-    font-family: var(--sans); font-size: 11px; font-weight: 500;
-    letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-muted);
-    margin-bottom: 16px;
+  .cut-card__media img, .cut-card__media video {
+    width: 100%; height: 100%; object-fit: cover; object-position: center;
+  }
+  .cut-card__since {
+    font-family: var(--sans); font-size: 10px; font-weight: 500;
+    letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 10px;
   }
   .cut-card__name {
-    font-family: var(--sans); font-size: clamp(17px, 1.8vw, 22px); font-weight: 300;
-    letter-spacing: 0.03em; color: var(--ink); line-height: 1.2; margin-bottom: 16px;
+    font-family: var(--sans); font-size: clamp(16px, 1.8vw, 20px); font-weight: 300;
+    letter-spacing: 0.02em; color: var(--ink); line-height: 1.2; margin-bottom: 14px;
   }
   .cut-card__body {
     font-family: var(--serif); font-size: 14px; line-height: 1.7; color: var(--ink-soft);
   }
-  @media (max-width: 720px) {
-    .cuts-grid { grid-template-columns: 1fr; }
+  @media (max-width: 720px) { .cuts-grid { grid-template-columns: 1fr; } }
+
+  /* ============ PULL QUOTE ============ */
+  .pull-quote {
+    padding: clamp(4rem, 8vw, 7rem) var(--gutter);
+    background: #1a1a1a; text-align: center;
+  }
+  .pull-quote__text {
+    font-family: var(--serif); font-style: italic;
+    font-size: clamp(20px, 2.8vw, 32px); line-height: 1.5;
+    color: rgba(255,255,255,0.88); max-width: 22ch;
+    margin: 0 auto 2rem;
+  }
+  .pull-quote__attr {
+    font-family: var(--sans); font-size: 11px; font-weight: 400;
+    letter-spacing: 0.28em; text-transform: uppercase; color: #c9b896;
   }
 
-  /* ============ ATELIER BAND ============ */
-  .atelier-band {
-    background: #1a1a1a; color: #ffffff;
+  /* ============ ATELIER CONTACT ============ */
+  .atelier {
     padding: clamp(4rem, 8vw, 7rem) var(--gutter);
-    text-align: center;
+    border-top: 1px solid var(--rule);
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 5rem); align-items: center;
+    max-width: var(--max-wide); margin: 0 auto;
   }
-  .atelier-band__title {
-    font-family: var(--sans); font-size: clamp(18px, 2vw, 24px); font-weight: 200;
-    letter-spacing: 0.06em; text-transform: uppercase; color: #c9b896; margin-bottom: 1.5rem;
+  .atelier h2 {
+    font-family: var(--sans); font-size: clamp(20px, 2.2vw, 26px); font-weight: 200;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem;
   }
-  .atelier-band__body {
-    font-family: var(--serif); font-size: 16px; line-height: 1.75; color: rgba(255,255,255,0.72);
-    max-width: 56ch; margin: 0 auto 2.5rem;
+  .atelier p {
+    font-family: var(--serif); font-size: 15px; line-height: 1.75; color: var(--ink); margin-bottom: 1.2rem;
   }
-  .atelier-band__contact {
+  .atelier p:last-child { margin-bottom: 0; }
+  .atelier__details {
     font-family: var(--sans); font-size: 12px; font-weight: 300;
-    letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.45);
-    line-height: 2.2;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink-muted); line-height: 2.6;
   }
-  .atelier-band__contact a { color: rgba(255,255,255,0.45); text-decoration: none; transition: color .2s; }
-  .atelier-band__contact a:hover { color: #c9b896; }
+  .atelier__details a { color: var(--ink-muted); text-decoration: none; transition: color .2s; }
+  .atelier__details a:hover { color: var(--accent); }
+  .atelier__media { height: clamp(260px, 36vw, 480px); background: #0d0d0d; overflow: hidden; }
+  .atelier__media video { width: 100%; height: 100%; object-fit: cover; }
+  @media (max-width: 720px) { .atelier { grid-template-columns: 1fr; } }
 
   /* ============ FOOTER ============ */
-  .ba-footer {
-    background: #ffffff; border-top: 1px solid rgba(0,0,0,.08);
-    padding: 64px 24px 32px; font-family: var(--sans); color: #4a4a4a;
-  }
+  .ba-footer { background: #ffffff; border-top: 1px solid rgba(0,0,0,.08); padding: 64px 24px 32px; font-family: var(--sans); color: #4a4a4a; }
   .ba-footer__inner { max-width: 1200px; margin: 0 auto; }
   .ba-footer__cols { display: grid; grid-template-columns: repeat(5, 1fr); gap: 40px 32px; margin-bottom: 56px; }
   .ba-footer__col h4 { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #1a1a1a; margin: 0 0 16px; }
@@ -300,7 +313,7 @@
 </head>
 <body>
 
-  <header class="ba-header" id="baHeader">
+  <header class="ba-header is-clear" id="baHeader">
     <a href="#" class="ba-header__menu" onclick="toggleMenu(); return false;">Menu</a>
     <a href="/" class="ba-header__logo">Bez Ambar</a>
     <div class="ba-header__icons">
@@ -392,107 +405,206 @@
   </nav>
 
   <!-- ============ HERO ============ -->
-  <section class="page-hero">
-    <p class="page-hero__overline">The Inventor</p>
-    <h1 class="page-hero__title">Bez Ambar</h1>
-    <p class="page-hero__lede">Israeli-American diamond cutter and jewelry designer. He arrived in Los Angeles in 1979 with a belief that diamonds could be cut differently. In 1982, he proved it. The cut he invented became the Princess cut — now the most widely sold diamond shape in the world. He has spent forty-six years proving that point was not a beginning. It was a method.</p>
-  </section>
-
-  <!-- ============ PORTRAIT ============ -->
-  <!-- TODO: Replace .portrait-placeholder with <img src="[BEZ_PORTRAIT_URL]" alt="Bez Ambar in his atelier, Los Angeles"> -->
-  <div class="portrait-band">
-    <div class="portrait-placeholder">Portrait — To Be Added</div>
-    <div class="portrait-band__caption">Bez Ambar &mdash; Los Angeles Atelier</div>
-  </div>
-
-  <!-- ============ BIOGRAPHY ============ -->
-  <section class="section">
-    <div class="section__inner">
-      <h2 class="section__title">The Work</h2>
-      <div class="section__rule"></div>
-      <p>Bez Ambar founded Ambar Diamonds Inc. in Los Angeles in 1979, trained in the discipline of diamond cutting and with a clear conviction about what brilliance could look like. Three years after founding, he introduced the Quadrillion® cut — a square brilliant that captured the fire of a round diamond within a modern, architectural silhouette. The trade called it the Princess cut. The name stuck. The cut spread across the industry and is now the most recognizable shape in contemporary fine jewelry.</p>
-      <p>In 1985, the Quadrillion® received the DeBeers Award — an industry recognition for its contribution to diamond design. Bez did not stop there. In 1988, he introduced the Laserset®, a rimless and prongless setting for square-cut diamonds that allowed the stone to appear suspended in the hand, uninterrupted. In 1992, the Boundless setting brought the same logic to round diamonds. In 1999, what became known as the Micro-Pavé setting was introduced — a technique that has since entered the standard vocabulary of fine jewelry.</p>
-      <p>In 2003, the Blaze® cut was patented. Thirteen precisely aligned facets produce a starburst of light visible to the naked eye under white light. The effect is specific to the Blaze® geometry — it cannot be replicated in another cut. The Elysian Cut™ followed: an elongated diamond geometry engineered to intensify the interplay of facets along its axis. Each proprietary cut represents not a departure from the tradition of diamond cutting but a deeper application of its principles.</p>
+  <section class="page-hero" id="hero-video">
+    <div class="page-hero__media">
+      <!-- TODO: Replace with Bez Ambar portrait photo when available -->
+      <img
+        src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1600,c_fill,g_center/v1775786208/Quadrillion_owciyv.jpg"
+        alt="The Quadrillion cut by Bez Ambar, Los Angeles"
+        fetchpriority="high">
+    </div>
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <p class="page-hero__overline">The Inventor</p>
+      <h1 class="page-hero__title">Bez Ambar</h1>
+      <p class="page-hero__lede">He cut the Princess cut in 1982. It became the most popular diamond shape in the world. That was forty-four years ago, and he has not stopped cutting since.</p>
     </div>
   </section>
+
+  <!-- ============ INTRO ============ -->
+  <div style="border-top: 1px solid var(--rule);">
+    <div class="intro">
+      <div class="intro__stats">
+        <div class="stat">
+          <div class="stat__number">1979</div>
+          <div class="stat__label">Founded in Los Angeles</div>
+        </div>
+        <div class="stat">
+          <div class="stat__number">3</div>
+          <div class="stat__label">Patented Diamond Cuts</div>
+        </div>
+        <div class="stat">
+          <div class="stat__number">45+</div>
+          <div class="stat__label">Years of Innovation</div>
+        </div>
+        <div class="stat">
+          <div class="stat__number">#1</div>
+          <div class="stat__label">Most Sold Diamond Shape</div>
+        </div>
+      </div>
+      <div class="intro__prose">
+        <h2>Who Is Bez Ambar</h2>
+        <p>Bez Ambar is an Israeli-American diamond cutter and jewelry designer who founded Bez Ambar Inc. in Los Angeles in 1979. He is credited as one of the original architects of the modern Princess cut, the square brilliant he introduced in 1982 under the name Quadrillion&reg;. Today, the Princess cut is the most widely sold diamond shape in the world.</p>
+        <p>In the decades that followed, Bez created the Laserset&reg; (a prongless, rimless setting that lets the stone float in the hand), the technique now known as Micro-Pave, the Blaze&reg; cut diamond, and the Elysian Cut&trade;. Each of those innovations changed how the industry thinks about light, setting, and the relationship between stone and metal.</p>
+        <p>He still works out of the same city. The cutting, the setting, and the finishing all happen in one place: his atelier at 611 Wilshire Blvd, Los Angeles. Every piece that leaves is signed by him.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ IMAGE BREAK ============ -->
+  <div class="image-break">
+    <video src="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1783061546/videos/rings/c0747-hd-2026.mp4"
+      autoplay loop muted playsinline></video>
+  </div>
 
   <!-- ============ TIMELINE ============ -->
-  <section class="section section--warm" style="padding-bottom: 0;">
-    <div class="section__inner--wide">
-      <h2 class="section__title" style="text-align:center; margin-bottom: 3rem;">A Record</h2>
+  <section class="timeline-section">
+    <div class="timeline-section__header">
+      <h2>A Record of Firsts</h2>
+      <p>Every invention on this list entered the industry's vocabulary. Several are now so common they have lost their origin story. Here it is.</p>
     </div>
-  </section>
-  <div class="timeline">
-    <div class="timeline-entry">
-      <div class="timeline-entry__year">1979</div>
-      <div class="timeline-entry__text">Bez Ambar arrives in Los Angeles and founds <strong>Ambar Diamonds Inc.</strong> His background is in diamond cutting. His intention is to work differently.</div>
-    </div>
-    <div class="timeline-entry">
-      <div class="timeline-entry__year">1982</div>
-      <div class="timeline-entry__text">The <strong>Quadrillion® cut</strong> is introduced — a square brilliant that combines round-diamond fire with a modern square silhouette. The trade adopts it as the Princess cut. It becomes the world's most popular diamond shape.</div>
-    </div>
-    <div class="timeline-entry">
-      <div class="timeline-entry__year">1985</div>
-      <div class="timeline-entry__text"><strong>DeBeers Award</strong> — the ATW Quadrillion® ring receives recognition from DeBeers, one of the industry's most authoritative honors.</div>
-    </div>
-    <div class="timeline-entry">
-      <div class="timeline-entry__year">1988</div>
-      <div class="timeline-entry__text">The <strong>Laserset®</strong> — a rimless, prongless setting for square-cut diamonds. The stone appears to float in the hand, uninterrupted by any metal at its edges.</div>
-    </div>
-    <div class="timeline-entry">
-      <div class="timeline-entry__year">1992</div>
-      <div class="timeline-entry__text">The <strong>Boundless setting</strong> — the same suspended logic as the Laserset®, adapted for round diamonds. No rim. No prong. Only stone.</div>
-    </div>
-    <div class="timeline-entry">
-      <div class="timeline-entry__year">1999</div>
-      <div class="timeline-entry__text">A new pavé technique enters the atelier. The industry eventually names it <strong>Micro-Pavé</strong> — a word now in common use, originating in this workshop.</div>
-    </div>
-    <div class="timeline-entry">
-      <div class="timeline-entry__year">2003</div>
-      <div class="timeline-entry__text">The <strong>Blaze® cut</strong> is patented. Thirteen aligned facets produce a visible starburst of light — an optical effect specific to this geometry and reproducible nowhere else.</div>
-    </div>
-    <div class="timeline-entry">
-      <div class="timeline-entry__year">2015</div>
-      <div class="timeline-entry__text">The <strong>Divine Cut®</strong> — a round brilliant engineered for a specific quality of dispersion, continuing the atelier's work on light behavior within the cut stone.</div>
-    </div>
-  </div>
-  <div style="background: var(--paper-warm); padding-bottom: clamp(3.5rem, 8vw, 7rem);"></div>
+    <div class="timeline-list">
 
-  <!-- ============ CUTS ============ -->
-  <section class="section" style="border-top: 1px solid var(--rule); padding-bottom: 0;">
-    <div class="section__inner--wide">
-      <h2 class="section__title">Proprietary Cuts</h2>
-      <div class="section__rule"></div>
-    </div>
-    <div class="cuts-grid" style="max-width: var(--max-wide); margin: 0 auto;">
-      <div class="cut-card">
-        <div class="cut-card__year">Since 1982</div>
-        <div class="cut-card__name">Quadrillion® &mdash; The Princess Cut</div>
-        <div class="cut-card__body">The square brilliant that changed the industry. Quadrillion® is the original name; Princess cut is what the world calls it now. The fire of a round diamond, locked in a geometric square. Still the most widely sold diamond shape globally.</div>
+      <div class="tl-entry">
+        <div class="tl-year">1979</div>
+        <div class="tl-content">
+          <div class="tl-title">Los Angeles. The Beginning.</div>
+          <div class="tl-body">Bez Ambar arrives in Los Angeles and founds <strong>Ambar Diamonds Inc.</strong> His background is in diamond cutting. His conviction is that the industry has not yet found the shape it is looking for.</div>
+        </div>
       </div>
-      <div class="cut-card">
-        <div class="cut-card__year">Patented 2003</div>
-        <div class="cut-card__name">Blaze®</div>
-        <div class="cut-card__body">Thirteen precisely aligned facets produce a starburst of light visible to the naked eye under white light. The effect is a function of the Blaze® geometry specifically — it does not occur in any other cut. A registered trademark and active patent.</div>
+
+      <div class="tl-entry">
+        <div class="tl-year">1982</div>
+        <div class="tl-content">
+          <div class="tl-title">The Princess Cut</div>
+          <div class="tl-body">The <strong>Quadrillion&reg; cut</strong> is introduced: a square brilliant that delivers the fire of a round diamond inside a clean, modern silhouette. The trade adopts it. The world calls it the Princess cut. It becomes the most popular diamond shape on Earth.</div>
+          <div class="tl-img">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1775786208/Quadrillion_owciyv.jpg"
+              alt="The Quadrillion cut by Bez Ambar, inventor of the Princess cut" loading="lazy">
+          </div>
+        </div>
       </div>
-      <div class="cut-card">
-        <div class="cut-card__year">Elysian Cut&trade;</div>
-        <div class="cut-card__name">Elysian&trade;</div>
-        <div class="cut-card__body">An elongated diamond geometry that intensifies facet interplay along the stone's principal axis. Each Elysian stone is individually assessed for the particular quality of light it produces. The name is a Bez Ambar trademark.</div>
+
+      <div class="tl-entry">
+        <div class="tl-year">1985</div>
+        <div class="tl-content">
+          <div class="tl-title">The DeBeers Award</div>
+          <div class="tl-body">The ATW Quadrillion&reg; ring receives the <strong>DeBeers Award</strong>, one of the diamond industry's most recognized honors. The cut is now an industry standard.</div>
+        </div>
       </div>
+
+      <div class="tl-entry">
+        <div class="tl-year">1988</div>
+        <div class="tl-content">
+          <div class="tl-title">The Laserset Setting</div>
+          <div class="tl-body">The <strong>Laserset&reg;</strong> is a rimless, prongless setting for square-cut diamonds. There is no metal at the edge of the stone. The diamond appears to float. It is the first setting of its kind.</div>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <div class="tl-year">1992</div>
+        <div class="tl-content">
+          <div class="tl-title">The Boundless Setting</div>
+          <div class="tl-body">The same logic, applied to round diamonds. The <strong>Boundless setting</strong> removes the prong from the round brilliant, letting the stone sit clean in the hand without the visual interruption of metal at its edge.</div>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <div class="tl-year">1999</div>
+        <div class="tl-content">
+          <div class="tl-title">Micro-Pave</div>
+          <div class="tl-body">A new pave technique enters the Bez Ambar atelier. The industry eventually names it <strong>Micro-Pave</strong>. It is now one of the most widely used setting styles in fine jewelry. The term is common. Its origin is here.</div>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <div class="tl-year">2003</div>
+        <div class="tl-content">
+          <div class="tl-title">The Blaze Cut</div>
+          <div class="tl-body">The <strong>Blaze&reg; cut</strong> is patented. Thirteen precisely aligned facets produce a starburst of light visible to the naked eye under white light. This effect is specific to the Blaze&reg; geometry. It cannot be replicated in any other cut. No other house in the world produces it.</div>
+          <div class="tl-img">
+            <video src="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1782855871/videos/bracelets/emerald-cut-flex-bracelet-c0834-2026.mp4"
+              autoplay loop muted playsinline></video>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <div class="tl-year">2015</div>
+        <div class="tl-content">
+          <div class="tl-title">The Divine Cut</div>
+          <div class="tl-body">The <strong>Divine Cut&reg;</strong> is introduced: a round brilliant engineered for a specific quality of dispersion, continuing the atelier's forty-year study of how light moves inside a cut stone.</div>
+        </div>
+      </div>
+
     </div>
   </section>
-  <div style="padding-bottom: clamp(3.5rem, 8vw, 7rem); border-top: 0;"></div>
+
+  <!-- ============ PULL QUOTE ============ -->
+  <div class="pull-quote">
+    <p class="pull-quote__text">"The cut is not a style. It is a solution."</p>
+    <p class="pull-quote__attr">Bez Ambar &mdash; Los Angeles</p>
+  </div>
+
+  <!-- ============ PROPRIETARY CUTS ============ -->
+  <section class="cuts-section">
+    <div class="cuts-section__header">
+      <h2>The Three Cuts</h2>
+      <p>Each one patented. Each one producing an optical effect that exists nowhere else in fine jewelry.</p>
+    </div>
+    <div class="cuts-grid">
+
+      <div class="cut-card">
+        <div class="cut-card__media">
+          <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_800/v1775786208/Quadrillion_owciyv.jpg"
+            alt="The Quadrillion Princess cut diamond by Bez Ambar" loading="lazy">
+        </div>
+        <div class="cut-card__since">Since 1982</div>
+        <div class="cut-card__name">Quadrillion&reg; — The Princess Cut</div>
+        <div class="cut-card__body">The original. A square brilliant that changed the industry and became the world's most popular diamond shape. Quadrillion&reg; is what Bez named it. Princess cut is what the world calls it now.</div>
+      </div>
+
+      <div class="cut-card">
+        <div class="cut-card__media">
+          <video src="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1782855177/videos/bracelets/asscher-cut-single-row-bracelet-c0755-2026.mp4"
+            autoplay loop muted playsinline></video>
+        </div>
+        <div class="cut-card__since">Patented 2003</div>
+        <div class="cut-card__name">Blaze&reg;</div>
+        <div class="cut-card__body">Thirteen aligned facets. One visible starburst of light, naked to the eye. The Blaze&reg; is a patented geometry and a registered trademark. The optical effect it creates is exclusive to this cut.</div>
+      </div>
+
+      <div class="cut-card">
+        <div class="cut-card__media">
+          <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_800/v1775549202/C0625_Baguette_band_Master_e4azkj.jpg"
+            alt="Bez Ambar baguette diamond band craftsmanship" loading="lazy">
+        </div>
+        <div class="cut-card__since">Elysian Cut&trade;</div>
+        <div class="cut-card__name">Elysian&trade;</div>
+        <div class="cut-card__body">An elongated geometry that intensifies the interplay of facets along the stone's principal axis. Every Elysian is assessed individually for the quality of light it produces. The name is a Bez Ambar trademark.</div>
+      </div>
+
+    </div>
+  </section>
 
   <!-- ============ ATELIER ============ -->
-  <div class="atelier-band">
-    <h2 class="atelier-band__title">The Atelier</h2>
-    <p class="atelier-band__body">Every piece leaves one address: 611 Wilshire Blvd, Los Angeles. The cutting, the setting, the finishing — all in-house, all under the same roof where the work began in 1979. Private consultations are available by appointment.</p>
-    <div class="atelier-band__contact">
-      Office &nbsp;<a href="tel:+12136299191">213 · 629 · 9191</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-      Cell &nbsp;<a href="tel:+13232172778">323 · 217 · 2778</a><br>
-      <a href="mailto:bezambar@bezambar.com">bezambar@bezambar.com</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;
-      611 Wilshire Blvd, Los Angeles, CA 90017
+  <div style="border-top: 1px solid var(--rule);">
+    <div class="atelier">
+      <div>
+        <h2>The Atelier</h2>
+        <p>Everything happens at one address. The cutting, the setting, the finishing, the signing. Bez Ambar has worked out of Los Angeles since 1979 and every piece that leaves his atelier carries his name on the metal for a reason: he made it.</p>
+        <p>Private consultations are available by appointment. If you want to see how a diamond is cut, or how a setting is engineered, come in. The work is not hidden.</p>
+        <div class="atelier__details">
+          <a href="tel:+12136299191">213 629 9191</a><br>
+          <a href="tel:+13232172778">323 217 2778</a><br>
+          <a href="mailto:bezambar@bezambar.com">bezambar@bezambar.com</a><br>
+          611 Wilshire Blvd, Los Angeles CA 90017
+        </div>
+      </div>
+      <div class="atelier__media">
+        <video src="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1782855871/videos/bracelets/emerald-cut-flex-bracelet-c0834-2026.mp4"
+          autoplay loop muted playsinline></video>
+      </div>
     </div>
   </div>
 
@@ -599,6 +711,16 @@
         if (sub) { sub.classList.add('is-active'); overlay.classList.add('has-sub', 'has-sub-sub'); }
       }
     });
+
+    (function () {
+      var header = document.getElementById('baHeader');
+      var hero = document.getElementById('hero-video');
+      if (!header || !hero) return;
+      function update() { header.classList.toggle('is-clear', hero.getBoundingClientRect().bottom > 60); }
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update, { passive: true });
+      update();
+    })();
   </script>
 
 </body>
