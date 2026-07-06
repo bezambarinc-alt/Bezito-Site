@@ -281,6 +281,23 @@
   }
   @media (max-width: 720px) { .cuts-grid { grid-template-columns: 1fr; } }
 
+  /* ============ CTAs ============ */
+  .cta-row { display: flex; gap: 28px; flex-wrap: wrap; margin-top: 2.25rem; align-items: baseline; }
+  .cta-primary {
+    font-family: var(--sans); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink);
+    text-decoration: none; border-bottom: 1px solid var(--ink); padding-bottom: 3px;
+    transition: color .2s, border-color .2s;
+  }
+  .cta-primary:hover { color: var(--accent); border-color: var(--accent); }
+  .cta-secondary {
+    font-family: var(--sans); font-size: 11px; font-weight: 400;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-muted);
+    text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 3px;
+    transition: color .2s, border-color .2s;
+  }
+  .cta-secondary:hover { color: var(--accent); border-color: rgba(149,130,107,.5); }
+
   /* ============ PULL QUOTE ============ */
   .pull-quote {
     padding: clamp(4rem, 8vw, 7rem) var(--gutter);
@@ -478,6 +495,10 @@
         <p>Bez Ambar is an Israeli-American diamond cutter, jewelry designer, and artist who has worked from a single atelier in Los Angeles since 1979. He is one of the rare figures in fine jewelry who does all three things: he cuts the stone, designs the piece, and builds it himself. That sequence is not incidental. It shapes every object that leaves his studio.</p>
         <p>Most jewelry begins with a setting and finds a stone to fit it. Bez works the other way. The stone comes first. He reads its specific geometry of light, then designs the piece to express exactly that, and nothing else. The Quadrillion&reg; was not a commercial instinct. It was an artistic one: a shape that did something existing cuts could not. So was the Laserset&reg;, which stripped the metal away so the stone could finally be the only thing a hand touched. So was the Blaze&reg;, which solved for a quality of fire that no existing facet arrangement produced.</p>
         <p>The atelier at 611 Wilshire is where every stage of that process happens under one roof. Every piece leaves with his signature in the metal because the same artist who chose the stone designed the piece it lives in.</p>
+        <div class="cta-row">
+          <a class="cta-primary" href="/contact?subject=bespoke">Schedule a Private Consultation</a>
+          <a class="cta-secondary" href="/collection">Explore the Collection</a>
+        </div>
       </div>
     </div>
   </div>
@@ -583,6 +604,12 @@
       </div>
 
     </div>
+    <div style="max-width: var(--max-wide); margin: 0 auto; padding: 0 var(--gutter) clamp(3rem,6vw,5rem);">
+      <div class="cta-row">
+        <a class="cta-primary" href="/collection">View the Full Collection</a>
+        <a class="cta-secondary" href="/contact?subject=bespoke">Inquire About a Bespoke Piece</a>
+      </div>
+    </div>
   </section>
 
   <!-- ============ PULL QUOTE ============ -->
@@ -639,9 +666,12 @@
         <h2>The Atelier</h2>
         <p>The atelier at 611 Wilshire has been the same address since 1979. The stone comes in, the artist reads it, the piece is designed around what the stone offers. Every stage happens here. Bez Ambar's name is on the metal because he made every decision that put it there — from the first tilt of the stone under the light to the last pass of the setting wheel.</p>
         <p>Private consultations are by appointment. If you want to understand how a stone is read, or how a piece is designed around its specific character, come in. The process is not hidden.</p>
+        <div class="cta-row" style="margin-top: 1.75rem; margin-bottom: 2rem;">
+          <a class="cta-primary" href="/contact?subject=consultation">Book a Consultation</a>
+          <a class="cta-secondary" href="/contact?subject=bespoke">Commission a Piece</a>
+        </div>
         <div class="atelier__details">
           <a href="tel:+12136299191">213 629 9191</a><br>
-          <a href="tel:+13232172778">323 217 2778</a><br>
           <a href="mailto:bezambar@bezambar.com">bezambar@bezambar.com</a><br>
           611 Wilshire Blvd, Los Angeles CA 90017
         </div>
