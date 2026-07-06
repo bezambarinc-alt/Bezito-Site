@@ -1,0 +1,437 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "The Heart Ruby",
+  "description": "A rare, natural ruby cut in Bez Ambar's proprietary heart-shape configuration. Invisibly set rubies forming a seamless continuum of color, surrounded by a luminous diamond halo. Set in 18-karat white gold.",
+  "brand": { "@type": "Brand", "name": "Bez Ambar" },
+  "sku": "BA-HR-001",
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "USD",
+    "price": "11200",
+    "availability": "https://schema.org/InStock",
+    "seller": { "@type": "Organization", "name": "Bez Ambar Inc." }
+  }
+};
+---
+
+<Layout
+  title="The Heart Ruby — Natural Ruby Pendant | Bez Ambar"
+  description="A rare, natural ruby cut in Bez Ambar's proprietary heart-shape configuration. Invisibly set, stone touching stone. Brilliant-cut diamond halo. 18-karat white gold. Handcrafted in Los Angeles."
+  canonical="https://bezambar.com/heart-ruby"
+  structuredData={structuredData}
+>
+  <div class="hr-product">
+    <!-- LEFT: Media column -->
+    <div class="hr-images">
+      <div class="hr-img-slot">
+        <img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1774086282/4hrt-heart-ruby-6_tnizfe.jpg" alt="The Heart Ruby — Product Shot" loading="eager" />
+      </div>
+      <div class="hr-video-slot">
+        <video autoplay muted loop playsinline>
+          <source src="https://res.cloudinary.com/dlg2mou53/video/upload/v1774037922/B5062_wtindy.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="hr-img-slot">
+        <img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1774059285/heart-pendant-4HRT4_ayb1hi.jpg" alt="The Heart Ruby — Closeup" loading="lazy" />
+      </div>
+      <div class="hr-img-slot">
+        <img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1774059296/4hrt-heart-ruby-3_iwzfhk.jpg" alt="The Heart Ruby — On Model" loading="lazy" />
+      </div>
+      <div class="hr-img-slot">
+        <img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1774087696/4hrt-heart-ruby-5_smol2l.jpg" alt="The Heart Ruby — Detail" loading="lazy" />
+      </div>
+    </div>
+
+    <!-- RIGHT: Details column -->
+    <div class="hr-details">
+      <div class="hr-details-inner">
+        <p class="hr-sku">BA-HR-001</p>
+        <h1 class="hr-title">The Heart Ruby</h1>
+
+        <a href="#inquiry-form" class="hr-cta-btn">Inquire Now</a>
+        <a href="#inquiry-form" class="hr-cta-outline">Place an Order</a>
+        <p class="hr-phone-link">or call us at <a href="tel:2136299191">(213) 629-9191</a></p>
+
+        <p class="hr-description">A rare, natural ruby cut in Bez Ambar's proprietary heart-shape configuration. Each ruby is selected for its depth of color and recut to fit invisibly, stone touching stone, forming a seamless continuum. A unity of color that expands far beyond the limitation of a single gem. Surrounded by a luminous halo of brilliant-cut white diamonds. Set in 18-karat white gold.</p>
+
+        <div class="hr-accordion">
+          <div class="hr-acc-item">
+            <button class="hr-acc-btn" data-acc>
+              <span>Price</span>
+              <span class="hr-acc-price-label"><span>$11,200</span><span class="hr-acc-plus">+</span></span>
+            </button>
+            <div class="hr-acc-content" hidden>
+              <div class="hr-acc-inner">
+                Pricing varies based on shapes and sizes. The piece shown features 3.15 total carat weight of rubies and diamonds. Price for the piece shown: $11,200.
+              </div>
+            </div>
+          </div>
+
+          <div class="hr-acc-item">
+            <button class="hr-acc-btn" data-acc>
+              <span>Materials &amp; Specifications</span>
+              <span class="hr-acc-plus">+</span>
+            </button>
+            <div class="hr-acc-content" hidden>
+              <div class="hr-acc-inner">
+                18-Karat White Gold<br />
+                Natural rubies, invisibly set in proprietary heart-shape configuration<br />
+                Brilliant-cut diamond halo<br />
+                Handcrafted in Los Angeles<br />
+                Signed by Bez Ambar
+              </div>
+            </div>
+          </div>
+
+          <div class="hr-acc-item">
+            <button class="hr-acc-btn" data-acc>
+              <span>Provenance &amp; Certification</span>
+              <span class="hr-acc-plus">+</span>
+            </button>
+            <div class="hr-acc-content" hidden>
+              <div class="hr-acc-inner">
+                Ships with a signed Certificate of Provenance documenting the design, materials, and proprietary cuts used. All diamonds certified by GIA or equivalent independent laboratory.
+              </div>
+            </div>
+          </div>
+
+          <div class="hr-acc-item">
+            <button class="hr-acc-btn" data-acc>
+              <span>Care Instructions</span>
+              <span class="hr-acc-plus">+</span>
+            </button>
+            <div class="hr-acc-content" hidden>
+              <div class="hr-acc-inner">
+                Store in the provided Bez Ambar presentation box when not worn. Clean gently with a soft, lint-free cloth. Avoid contact with perfumes, lotions, and chemicals. Professional cleaning available at our LA atelier, complimentary for life.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Full-width hero image -->
+  <div class="hr-full-img">
+    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1774034036/rubydiamondheart-1200_n3luta.jpg" alt="The Heart Ruby — Mother and Daughter" loading="lazy" />
+  </div>
+
+  <!-- Three stories -->
+  <div class="hr-stories">
+    <div class="hr-story">
+      <p class="hr-story-label">The Stone</p>
+      <h3>A Ruby Like No Other</h3>
+      <p>Each ruby is selected for its depth of color and recut to fit Bez Ambar's proprietary heart-shape configuration. Set invisibly, stone touching stone, the rubies form a seamless continuum. A unity of color that expands far beyond the limitation of a single gem.</p>
+    </div>
+    <div class="hr-story">
+      <p class="hr-story-label">The Craft</p>
+      <h3>Handmade in Los Angeles</h3>
+      <p>Every piece is handcrafted at the Bez Ambar family atelier on Wilshire Boulevard. Noga Ambar, inheriting her father's keen eye for beautiful gems and design direction, works alongside Christopher Johnson, master jeweler, to execute each piece to the standard Bez Ambar has set.</p>
+    </div>
+    <div class="hr-story">
+      <p class="hr-story-label">The Moment</p>
+      <h3>There Is No Better Way</h3>
+      <p>Some may call it sentimental. But a gift from her child is the one she keeps closest. A ruby heart, deep red and perfectly orchestrated, surrounded by a luminous halo of white diamonds. Saying what words sometimes can't.</p>
+    </div>
+  </div>
+
+  <!-- Inquiry form -->
+  <div id="inquiry-form" class="hr-form-wrap">
+    <p class="hr-form-eyebrow">The Heart Ruby</p>
+    <h2 class="hr-form-title">Get in Touch</h2>
+
+    <form action="https://formsubmit.co/bez@bezambar.com" method="POST" class="hr-form">
+      <input type="hidden" name="_subject" value="Heart Ruby Inquiry — bezambar.com" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_next" value="https://bezambar.com/heart-ruby" />
+
+      <label>I'm interested in
+        <select id="formType" name="interest">
+          <option>I would like to inquire about The Heart Ruby</option>
+          <option>I would like to place an order for The Heart Ruby</option>
+          <option>I'd like to schedule a consultation</option>
+        </select>
+      </label>
+
+      <label>Name
+        <input type="text" name="name" required placeholder="Your full name" />
+      </label>
+      <label>Email
+        <input type="email" name="email" required placeholder="your@email.com" />
+      </label>
+      <label>Phone
+        <input type="tel" name="phone" placeholder="Optional" />
+      </label>
+      <label>Message
+        <textarea name="message" rows="4" placeholder="Questions, preferences, timeline..."></textarea>
+      </label>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <p class="hr-form-phone">or call us at <a href="tel:2136299191">(213) 629-9191</a></p>
+  </div>
+</Layout>
+
+<script>
+  document.querySelectorAll('[data-acc]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const content = btn.nextElementSibling;
+      const isOpen = !content.hidden;
+      content.hidden = isOpen;
+      const plus = btn.querySelector('.hr-acc-plus');
+      if (plus) plus.textContent = isOpen ? '+' : '−';
+    });
+  });
+</script>
+
+<style>
+  .hr-product {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100svh;
+    padding-top: 64px;
+  }
+  @media (max-width: 768px) {
+    .hr-product { grid-template-columns: 1fr; }
+  }
+
+  .hr-images {
+    display: flex;
+    flex-direction: column;
+  }
+  .hr-img-slot img,
+  .hr-video-slot video {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+  }
+  .hr-video-slot video { aspect-ratio: 4/3; }
+
+  .hr-details {
+    position: sticky;
+    top: 64px;
+    height: calc(100svh - 64px);
+    overflow-y: auto;
+    background: #fff;
+    padding: 56px 48px;
+  }
+  @media (max-width: 768px) {
+    .hr-details { position: static; height: auto; padding: 40px 24px; }
+  }
+
+  .hr-sku {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink, #1a1a1a);
+    opacity: 0.4;
+    margin-bottom: 12px;
+  }
+  .hr-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 3vw, 44px);
+    font-weight: 400;
+    color: var(--ink, #1a1a1a);
+    margin-bottom: 32px;
+    line-height: 1.1;
+  }
+  .hr-cta-btn,
+  .hr-cta-outline {
+    display: block;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 16px;
+    margin-bottom: 12px;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .hr-cta-btn {
+    background: var(--ink, #1a1a1a);
+    color: var(--accent, #95826b);
+  }
+  .hr-cta-btn:hover { background: #333; }
+  .hr-cta-outline {
+    border: 1px solid var(--ink, #1a1a1a);
+    color: var(--ink, #1a1a1a);
+  }
+  .hr-cta-outline:hover { background: var(--ink, #1a1a1a); color: #fff; }
+  .hr-phone-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    text-align: center;
+    color: var(--ink, #1a1a1a);
+    opacity: 0.55;
+    margin-bottom: 32px;
+  }
+  .hr-phone-link a { color: inherit; }
+  .hr-description {
+    font-family: 'EB Garamond', 'Cormorant Garamond', serif;
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--ink, #1a1a1a);
+    opacity: 0.75;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .hr-accordion { border-top: 1px solid #e8e4de; }
+  .hr-acc-item { border-bottom: 1px solid #e8e4de; }
+  .hr-acc-btn {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 16px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink, #1a1a1a);
+    cursor: pointer;
+    text-align: left;
+  }
+  .hr-acc-price-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .hr-acc-plus { font-size: 18px; font-weight: 300; }
+  .hr-acc-inner {
+    font-family: 'EB Garamond', 'Cormorant Garamond', serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink, #1a1a1a);
+    opacity: 0.75;
+    padding: 0 0 20px;
+  }
+
+  .hr-full-img img {
+    width: 100%;
+    display: block;
+    max-height: 80svh;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hr-stories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    padding: 80px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  @media (max-width: 768px) {
+    .hr-stories { grid-template-columns: 1fr; gap: 40px; padding: 56px 24px; }
+  }
+  .hr-story-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent, #95826b);
+    margin-bottom: 12px;
+  }
+  .hr-story h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--ink, #1a1a1a);
+    margin-bottom: 16px;
+  }
+  .hr-story p {
+    font-family: 'EB Garamond', 'Cormorant Garamond', serif;
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--ink, #1a1a1a);
+    opacity: 0.75;
+  }
+
+  .hr-form-wrap {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 72px 2rem 96px;
+    text-align: center;
+  }
+  .hr-form-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent, #95826b);
+    margin-bottom: 12px;
+  }
+  .hr-form-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--ink, #1a1a1a);
+    margin-bottom: 40px;
+  }
+  .hr-form { text-align: left; }
+  .hr-form label {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 20px;
+  }
+  .hr-form input,
+  .hr-form select,
+  .hr-form textarea {
+    display: block;
+    width: 100%;
+    margin-top: 6px;
+    padding: 14px 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    background: #faf7f2;
+    color: var(--ink, #1a1a1a);
+    outline: none;
+    appearance: none;
+    resize: vertical;
+  }
+  .hr-form button {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: var(--ink, #1a1a1a);
+    color: var(--accent, #95826b);
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .hr-form button:hover { background: #333; }
+  .hr-form-phone {
+    margin-top: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #999;
+  }
+  .hr-form-phone a { color: var(--ink, #1a1a1a); text-decoration: none; }
+</style>

@@ -1,0 +1,505 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Bez Ambar",
+    "alternateName": "Betzalel Ambar",
+    "jobTitle": "Diamond Artist, Designer, and Jeweler",
+    "description": "Israeli-American diamond artist, designer, and inventor of the Princess cut diamond. Founder of Bez Ambar Inc. in Los Angeles since 1979.",
+    "nationality": "Israeli-American",
+    "url": "https://bezambar.com/about-bez-ambar",
+    "image": "https://res.cloudinary.com/dlg2mou53/image/upload/f_jpg,w_1200/v1775786208/Quadrillion_owciyv.jpg",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Bez Ambar Inc.",
+      "url": "https://bezambar.com"
+    },
+    "hasOccupation": {
+      "@type": "Occupation",
+      "name": "Fine Jewelry Designer and Diamond Cutter"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Who invented the Princess cut diamond?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Princess cut was invented by Bez Ambar (Betzalel Ambar) in Los Angeles in 1982 under the name Quadrillion®. The patented square brilliant cut became the world's most popular diamond shape and the name Princess cut entered common use across the diamond trade."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where is the Bez Ambar atelier located?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Bez Ambar atelier is located at 611 Wilshire Blvd, Los Angeles, CA 90017. All cutting, setting, and finishing takes place at this single address. Private consultations are available by appointment. Contact: (213) 629-9191."
+        }
+      }
+    ]
+  }
+];
+
+const timeline = [
+  {
+    year: '1979',
+    title: 'Los Angeles. The Beginning.',
+    body: 'Bez Ambar arrives in Los Angeles and founds Ambar Diamonds Inc. He comes as a cutter, not a retailer. From the first day, the studio is where the work begins, not where finished pieces arrive from somewhere else.',
+  },
+  {
+    year: '1982',
+    title: 'The Princess Cut',
+    body: 'The Quadrillion® cut is introduced: a square brilliant that delivers the fire of a round diamond inside a clean, modern geometry. The trade adopts it immediately. The world eventually calls it the Princess cut. It becomes the most popular diamond shape on Earth.',
+    img: { src: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1775786208/Quadrillion_owciyv.jpg', alt: 'The Quadrillion cut by Bez Ambar, inventor of the Princess cut' },
+  },
+  {
+    year: '1985',
+    title: 'The DeBeers Award',
+    body: 'The ATW Quadrillion® ring receives the DeBeers Award, one of the diamond industry\'s most recognized honors. The cut is now an industry standard.',
+  },
+  {
+    year: '1988',
+    title: 'The Laserset Setting',
+    body: 'The Laserset® is a rimless, prongless setting for square-cut diamonds. There is no metal at the edge of the stone. The diamond appears to float in the hand. It is the first setting of its kind.',
+  },
+  {
+    year: '1992',
+    title: 'The Boundless Setting',
+    body: 'The same logic, applied to round diamonds. The Boundless setting removes the prong from the round brilliant, letting the stone sit clean in the hand without the visual interruption of metal at its edge.',
+  },
+  {
+    year: '1999',
+    title: 'Micro-Pave',
+    body: 'A new pave technique enters the Bez Ambar atelier. The industry eventually names it Micro-Pave. It is now one of the most widely used setting styles in fine jewelry.',
+  },
+  {
+    year: '2003',
+    title: 'The Blaze® Cut',
+    body: 'The Blaze® cut is patented. Thirteen precisely aligned facets produce a starburst of light visible to the naked eye under white light. This effect is specific to the Blaze® geometry. No other house in the world produces it.',
+    video: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1782855871/videos/bracelets/emerald-cut-flex-bracelet-c0834-2026.mp4',
+  },
+  {
+    year: '2015',
+    title: 'The Divine Cut',
+    body: 'The Divine Cut® is introduced: a round brilliant engineered for a specific quality of dispersion, continuing the atelier\'s forty-year study of how light moves inside a cut stone.',
+  },
+];
+---
+
+<Layout
+  title="About Bez Ambar — Artist, Designer &amp; Inventor of the Princess Cut | Los Angeles"
+  description="About Bez Ambar: Israeli-American diamond artist, designer, and inventor of the Princess cut. Three patented cuts. One atelier in Los Angeles, since 1979."
+  canonical="https://bezambar.com/about-bez-ambar"
+  ogImage="https://res.cloudinary.com/dlg2mou53/image/upload/f_jpg,w_1200,c_fit/v1775786208/Quadrillion_owciyv.jpg"
+  structuredData={structuredData}
+>
+  <!-- Hero -->
+  <section class="page-hero" id="about-hero">
+    <div class="page-hero__media">
+      <img
+        src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1600,c_fill,g_center/v1775786208/Quadrillion_owciyv.jpg"
+        alt="The Quadrillion® Princess cut diamond, invented by Bez Ambar in Los Angeles in 1982"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <p class="page-hero__overline">The Inventor</p>
+      <h1 class="page-hero__title">Bez Ambar</h1>
+      <p class="page-hero__lede">He cuts the diamond. Then he designs the piece around it. For forty-five years, those two acts have been inseparable — the artist and the craftsman working from the same hands.</p>
+    </div>
+  </section>
+
+  <!-- Intro stats + prose -->
+  <div class="intro-rule">
+    <div class="intro">
+      <div class="intro__stats">
+        <div class="stat">
+          <div class="stat__number">1979</div>
+          <div class="stat__label">Founded in Los Angeles</div>
+        </div>
+        <div class="stat">
+          <div class="stat__number">3</div>
+          <div class="stat__label">Patented Diamond Cuts</div>
+        </div>
+        <div class="stat">
+          <div class="stat__number">45+</div>
+          <div class="stat__label">Years of Innovation</div>
+        </div>
+        <div class="stat">
+          <div class="stat__number">#1</div>
+          <div class="stat__label">Most Sold Diamond Shape</div>
+        </div>
+      </div>
+      <div class="intro__prose">
+        <h2>Artist. Designer. Craftsman.</h2>
+        <p>Bez Ambar is an Israeli-American diamond cutter, jewelry designer, and artist who has worked from a single atelier in Los Angeles since 1979. He is one of the rare figures in fine jewelry who does all three things: he cuts the stone, designs the piece, and builds it himself. That sequence is not incidental. It shapes every object that leaves his studio.</p>
+        <p>Most jewelry begins with a setting and finds a stone to fit it. Bez works the other way. The stone comes first. He reads its specific geometry of light, then designs the piece to express exactly that, and nothing else. The Quadrillion® was not a commercial instinct. It was an artistic one: a shape that did something existing cuts could not. So was the Laserset®, which stripped the metal away so the stone could finally be the only thing a hand touched. So was the Blaze®, which solved for a quality of fire that no existing facet arrangement produced.</p>
+        <p>The atelier at 611 Wilshire is where every stage of that process happens under one roof. Every piece leaves with his signature in the metal because the same artist who chose the stone designed the piece it lives in.</p>
+        <div class="cta-row">
+          <a class="cta-primary" href="/contact?subject=bespoke">Schedule a Private Consultation</a>
+          <a class="cta-secondary" href="/collection">Explore the Collection</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image break -->
+  <div class="image-break">
+    <video
+      src="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1783061546/videos/rings/c0747-hd-2026.mp4"
+      autoplay loop muted playsinline preload="none"
+    ></video>
+  </div>
+
+  <!-- Craft portrait -->
+  <div class="craft-section">
+    <div class="craft-section__prose">
+      <h2>How He Works</h2>
+      <p>A stone comes into the atelier. Bez picks it up, turns it under the light, tilts it slowly. He is reading the pavilion, watching how the facets distribute what enters through the table. This is not inspection. It is a conversation with the crystal, and the question he is asking is always the same: what does this particular stone want to say?</p>
+      <p>The answer determines everything that follows. Not just the cut, but the piece itself. The setting is designed around the stone's specific quality of light, not the other way around. A stone with a particular warmth gets a piece that holds that warmth. A stone that scatters gets a setting that gives it room to move. The artistic decision and the technical decision are the same decision, made by the same person in the same moment.</p>
+      <p>The work does not leave the atelier until every stage has been done by the same hands that started it. An artist's vision does not survive a handoff intact. The cutter, the designer, the setter are one person here. That is the only way to guarantee that what the stone offered at the beginning is still present in the finished piece.</p>
+    </div>
+    <div class="craft-section__media">
+      <img
+        src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1782876014/necklaces/single-row-lifestyle.jpg"
+        alt="Single row diamond necklace by Bez Ambar"
+        loading="lazy"
+      />
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <section class="timeline-section">
+    <div class="timeline-section__header">
+      <h2>The Work, In Order</h2>
+      <p>Every milestone on this list began as a problem in the workshop. Several of the solutions are now so common they have lost their origin. Here is where they came from.</p>
+    </div>
+    <div class="timeline-list">
+      {timeline.map(entry => (
+        <div class="tl-entry">
+          <div class="tl-year">{entry.year}</div>
+          <div class="tl-content">
+            <div class="tl-title">{entry.title}</div>
+            <div class="tl-body" set:html={entry.body}></div>
+            {entry.img && (
+              <div class="tl-img">
+                <img src={entry.img.src} alt={entry.img.alt} loading="lazy" />
+              </div>
+            )}
+            {entry.video && (
+              <div class="tl-img">
+                <video src={entry.video} autoplay loop muted playsinline preload="none"></video>
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="timeline-ctas">
+      <a class="cta-primary" href="/collection">View the Full Collection</a>
+      <a class="cta-secondary" href="/contact?subject=bespoke">Inquire About a Bespoke Piece</a>
+    </div>
+  </section>
+
+  <!-- Pull quote -->
+  <div class="pull-quote">
+    <p class="pull-quote__text">"The cut is not a style. It is a solution."</p>
+    <p class="pull-quote__attr">Bez Ambar &mdash; Los Angeles</p>
+  </div>
+
+  <!-- Proprietary cuts -->
+  <section class="cuts-section">
+    <div class="cuts-section__header">
+      <h2>Three Cuts. Three Solutions.</h2>
+      <p>Each one begins with a problem that the existing options could not answer. Each one is still exclusive to this atelier.</p>
+    </div>
+    <div class="cuts-grid">
+      <div class="cut-card">
+        <div class="cut-card__media">
+          <img
+            src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_800/v1775786208/Quadrillion_owciyv.jpg"
+            alt="The Quadrillion Princess cut diamond by Bez Ambar"
+            loading="lazy"
+          />
+        </div>
+        <div class="cut-card__since">Since 1982</div>
+        <div class="cut-card__name">Quadrillion® — The Princess Cut</div>
+        <div class="cut-card__body">The original. A square brilliant that changed the industry and became the world's most popular diamond shape. Quadrillion® is what Bez named it. Princess cut is what the world calls it now.</div>
+      </div>
+      <div class="cut-card">
+        <div class="cut-card__media">
+          <video
+            src="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1782855177/videos/bracelets/asscher-cut-single-row-bracelet-c0755-2026.mp4"
+            autoplay loop muted playsinline preload="none"
+          ></video>
+        </div>
+        <div class="cut-card__since">Patented 2003</div>
+        <div class="cut-card__name">Blaze®</div>
+        <div class="cut-card__body">Thirteen aligned facets. One visible starburst of light, naked to the eye. The Blaze® is a patented geometry and a registered trademark. The optical effect it creates is exclusive to this cut.</div>
+      </div>
+      <div class="cut-card">
+        <div class="cut-card__media">
+          <img
+            src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_800/v1775549202/C0625_Baguette_band_Master_e4azkj.jpg"
+            alt="Elysian Cut diamond jewelry by Bez Ambar"
+            loading="lazy"
+          />
+        </div>
+        <div class="cut-card__since">Elysian Cut&trade;</div>
+        <div class="cut-card__name">Elysian&trade;</div>
+        <div class="cut-card__body">An elongated geometry that concentrates the interplay of facets along the stone's principal axis. Not every stone qualifies. Each Elysian is selected and assessed for a specific quality of light before the name is used.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Atelier contact -->
+  <div class="atelier-rule">
+    <div class="atelier">
+      <div>
+        <h2>The Atelier</h2>
+        <p>The atelier at 611 Wilshire has been the same address since 1979. The stone comes in, the artist reads it, the piece is designed around what the stone offers. Every stage happens here. Bez Ambar's name is on the metal because he made every decision that put it there — from the first tilt of the stone under the light to the last pass of the setting wheel.</p>
+        <p>Private consultations are by appointment. If you want to understand how a stone is read, or how a piece is designed around its specific character, come in. The process is not hidden.</p>
+        <div class="cta-row" style="margin-top:1.75rem;margin-bottom:2rem;">
+          <a class="cta-primary" href="/contact?subject=consultation">Book a Consultation</a>
+          <a class="cta-secondary" href="/contact?subject=bespoke">Commission a Piece</a>
+        </div>
+        <div class="atelier__details">
+          <a href="tel:+12136299191">213 629 9191</a><br />
+          <a href="mailto:bez@bezambar.com">bez@bezambar.com</a><br />
+          611 Wilshire Blvd, Los Angeles CA 90017
+        </div>
+      </div>
+      <div class="atelier__media">
+        <video
+          src="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1782855871/videos/bracelets/emerald-cut-flex-bracelet-c0834-2026.mp4"
+          autoplay loop muted playsinline preload="none"
+        ></video>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  /* Hero */
+  .page-hero {
+    position: relative;
+    height: clamp(460px, 65vw, 780px);
+    background: #111;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+  }
+  .page-hero__media { position: absolute; inset: 0; }
+  .page-hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .page-hero__overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.18) 55%, rgba(0,0,0,0.06) 100%);
+  }
+  .page-hero__content {
+    position: relative; z-index: 2;
+    padding: clamp(2rem, 5vw, 4rem) clamp(1.25rem, 5vw, 4rem);
+    padding-bottom: clamp(2.5rem, 5vw, 4.5rem);
+    max-width: 760px;
+  }
+  .page-hero__overline {
+    font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400;
+    letter-spacing: 0.28em; text-transform: uppercase;
+    color: #c9b896; margin-bottom: 14px;
+  }
+  .page-hero__title {
+    font-family: 'Inter', sans-serif; font-size: clamp(34px, 5.5vw, 68px);
+    font-weight: 200; letter-spacing: 0.04em; text-transform: uppercase;
+    color: #fff; line-height: 1.05; margin-bottom: 1.25rem;
+  }
+  .page-hero__lede {
+    font-family: 'EB Garamond', serif; font-size: clamp(15px, 1.5vw, 17px);
+    line-height: 1.65; color: rgba(255,255,255,0.8); max-width: 54ch;
+  }
+
+  /* Intro */
+  .intro-rule { border-top: 1px solid rgba(0,0,0,.08); }
+  .intro {
+    display: grid; grid-template-columns: 1fr 2fr;
+    gap: clamp(2rem, 5vw, 5rem); align-items: start;
+    padding: clamp(3.5rem, 7vw, 6rem) clamp(1.25rem, 5vw, 4rem);
+    max-width: 1200px; margin: 0 auto;
+  }
+  @media (max-width: 720px) { .intro { grid-template-columns: 1fr; } }
+  .stat { border-top: 1px solid rgba(0,0,0,.08); padding: 20px 0; }
+  .stat:last-child { border-bottom: 1px solid rgba(0,0,0,.08); }
+  .stat__number {
+    font-family: 'Inter', sans-serif; font-size: clamp(28px, 3.5vw, 44px); font-weight: 200;
+    color: var(--accent, #95826b); line-height: 1; margin-bottom: 6px;
+  }
+  .stat__label {
+    font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400;
+    letter-spacing: 0.22em; text-transform: uppercase; color: #8a8a8a;
+  }
+  .intro__prose h2 {
+    font-family: 'Inter', sans-serif; font-size: clamp(20px, 2.2vw, 26px); font-weight: 200;
+    letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink, #1a1a1a);
+    margin-bottom: 1.5rem; line-height: 1.2;
+  }
+  .intro__prose p {
+    font-family: 'EB Garamond', serif; font-size: 15px; line-height: 1.75;
+    color: var(--ink, #1a1a1a); margin-bottom: 1.2rem;
+  }
+  .cta-row { display: flex; gap: 28px; flex-wrap: wrap; margin-top: 2.25rem; align-items: baseline; }
+  .cta-primary {
+    font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink, #1a1a1a);
+    text-decoration: none; border-bottom: 1px solid var(--ink, #1a1a1a); padding-bottom: 3px;
+    transition: color .2s, border-color .2s;
+  }
+  .cta-primary:hover { color: var(--accent, #95826b); border-color: var(--accent, #95826b); }
+  .cta-secondary {
+    font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400;
+    letter-spacing: 0.22em; text-transform: uppercase; color: #8a8a8a;
+    text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 3px;
+    transition: color .2s, border-color .2s;
+  }
+  .cta-secondary:hover { color: var(--accent, #95826b); border-color: rgba(149,130,107,.5); }
+
+  /* Image break */
+  .image-break { width: 100%; height: clamp(280px, 40vw, 560px); overflow: hidden; background: #0d0d0d; }
+  .image-break img, .image-break video { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+
+  /* Craft section */
+  .craft-section { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid rgba(0,0,0,.08); }
+  @media (max-width: 800px) {
+    .craft-section { grid-template-columns: 1fr; }
+    .craft-section__media { min-height: 300px; order: -1; }
+  }
+  .craft-section__prose {
+    padding: clamp(4rem, 8vw, 8rem) clamp(1.25rem, 5vw, 4rem);
+    display: flex; flex-direction: column; justify-content: center; max-width: 640px;
+  }
+  .craft-section__prose h2 {
+    font-family: 'Inter', sans-serif; font-size: clamp(18px, 2vw, 24px); font-weight: 200;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent, #95826b); margin-bottom: 2rem;
+  }
+  .craft-section__prose p {
+    font-family: 'EB Garamond', serif; font-size: 15px; line-height: 1.85;
+    color: var(--ink, #1a1a1a); margin-bottom: 1.4rem;
+  }
+  .craft-section__media {
+    position: relative; overflow: hidden; background: #0d0d0d;
+    min-height: clamp(360px, 45vw, 680px);
+  }
+  .craft-section__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+  /* Timeline */
+  .timeline-section {
+    padding: clamp(4rem, 8vw, 8rem) clamp(1.25rem, 5vw, 4rem);
+    background: #faf7f2; border-top: 1px solid rgba(0,0,0,.08);
+  }
+  .timeline-section__header { max-width: 1200px; margin: 0 auto 4rem; }
+  .timeline-section__header h2 {
+    font-family: 'Inter', sans-serif; font-size: clamp(20px, 2.2vw, 26px); font-weight: 200;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent, #95826b); margin-bottom: 0.75rem;
+  }
+  .timeline-section__header p {
+    font-family: 'EB Garamond', serif; font-size: 15px; color: #4a4a4a; max-width: 52ch;
+  }
+  .timeline-list { max-width: 1200px; margin: 0 auto; }
+  .tl-entry {
+    display: grid; grid-template-columns: 120px 1fr;
+    gap: 0 clamp(2rem, 4vw, 4rem);
+    border-top: 1px solid rgba(0,0,0,.08);
+    padding: clamp(2rem, 4vw, 3.5rem) 0;
+  }
+  .tl-entry:last-child { border-bottom: 1px solid rgba(0,0,0,.08); }
+  @media (max-width: 600px) { .tl-entry { grid-template-columns: 1fr; gap: 0.5rem 0; } }
+  .tl-year {
+    font-family: 'Inter', sans-serif; font-size: clamp(36px, 4.5vw, 58px); font-weight: 200;
+    color: var(--accent, #95826b); line-height: 1; letter-spacing: -0.02em; padding-top: 3px;
+  }
+  .tl-title {
+    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+    letter-spacing: 0.10em; text-transform: uppercase; color: var(--ink, #1a1a1a); margin-bottom: 10px;
+  }
+  .tl-body {
+    font-family: 'EB Garamond', serif; font-size: 15px; line-height: 1.7; color: #4a4a4a;
+  }
+  .tl-img {
+    margin-top: 20px;
+    height: clamp(180px, 22vw, 280px); overflow: hidden; background: #0d0d0d;
+  }
+  .tl-img img, .tl-img video { width: 100%; height: 100%; object-fit: cover; }
+  .timeline-ctas {
+    display: flex; gap: 28px; flex-wrap: wrap; max-width: 1200px; margin: 0 auto;
+    padding: clamp(2rem, 4vw, 3rem) 0;
+  }
+
+  /* Pull quote */
+  .pull-quote { padding: clamp(4rem, 8vw, 7rem) 2rem; background: #1a1a1a; text-align: center; }
+  .pull-quote__text {
+    font-family: 'EB Garamond', serif; font-style: italic;
+    font-size: clamp(20px, 2.8vw, 32px); line-height: 1.5;
+    color: rgba(255,255,255,0.88); max-width: 22ch; margin: 0 auto 2rem;
+  }
+  .pull-quote__attr {
+    font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400;
+    letter-spacing: 0.28em; text-transform: uppercase; color: #c9b896;
+  }
+
+  /* Cuts grid */
+  .cuts-section { padding: clamp(4rem, 8vw, 8rem) clamp(1.25rem, 5vw, 4rem); border-top: 1px solid rgba(0,0,0,.08); }
+  .cuts-section__header { max-width: 1200px; margin: 0 auto 3rem; }
+  .cuts-section__header h2 {
+    font-family: 'Inter', sans-serif; font-size: clamp(20px, 2.2vw, 26px); font-weight: 200;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent, #95826b); margin-bottom: 0.75rem;
+  }
+  .cuts-section__header p { font-family: 'EB Garamond', serif; font-size: 15px; color: #4a4a4a; max-width: 52ch; }
+  .cuts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 3vw, 2.5rem); max-width: 1200px; margin: 0 auto; }
+  @media (max-width: 720px) { .cuts-grid { grid-template-columns: 1fr; } }
+  .cut-card__media { width: 100%; height: clamp(200px, 22vw, 320px); background: #0d0d0d; overflow: hidden; margin-bottom: 1.5rem; }
+  .cut-card__media img, .cut-card__media video { width: 100%; height: 100%; object-fit: cover; }
+  .cut-card__since { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: #8a8a8a; margin-bottom: 10px; }
+  .cut-card__name { font-family: 'Inter', sans-serif; font-size: clamp(16px, 1.8vw, 20px); font-weight: 300; letter-spacing: 0.02em; color: var(--ink, #1a1a1a); margin-bottom: 14px; }
+  .cut-card__body { font-family: 'EB Garamond', serif; font-size: 14px; line-height: 1.7; color: #4a4a4a; }
+
+  /* Atelier */
+  .atelier-rule { border-top: 1px solid rgba(0,0,0,.08); }
+  .atelier {
+    padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 4rem);
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 5rem); align-items: center;
+    max-width: 1200px; margin: 0 auto;
+  }
+  @media (max-width: 720px) { .atelier { grid-template-columns: 1fr; } }
+  .atelier h2 {
+    font-family: 'Inter', sans-serif; font-size: clamp(20px, 2.2vw, 26px); font-weight: 200;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent, #95826b); margin-bottom: 1.5rem;
+  }
+  .atelier p { font-family: 'EB Garamond', serif; font-size: 15px; line-height: 1.75; color: var(--ink, #1a1a1a); margin-bottom: 1.2rem; }
+  .atelier__details {
+    font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 300;
+    letter-spacing: 0.2em; text-transform: uppercase; color: #8a8a8a; line-height: 2.6;
+  }
+  .atelier__details a { color: #8a8a8a; text-decoration: none; transition: color .2s; }
+  .atelier__details a:hover { color: var(--accent, #95826b); }
+  .atelier__media { height: clamp(260px, 36vw, 480px); background: #0d0d0d; overflow: hidden; }
+  .atelier__media video { width: 100%; height: 100%; object-fit: cover; }
+</style>
+
+<script>
+  (function () {
+    const header = document.getElementById('baHeader');
+    const hero = document.getElementById('about-hero');
+    if (!header || !hero) return;
+    function update() {
+      header.classList.toggle('is-solid', hero.getBoundingClientRect().bottom <= 60);
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    update();
+  })();
+</script>

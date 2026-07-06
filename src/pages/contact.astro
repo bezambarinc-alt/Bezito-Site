@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Contact & Consultation — Bez Ambar"
+  description="Schedule a private consultation, inquire about a bespoke piece, or visit our Los Angeles atelier. We're here for you."
+  canonical="https://bezambar.com/contact"
+>
+  <section class="page-hero">
+    <h1>Contact &amp; Consultation</h1>
+    <p>Whether you're beginning a bespoke design, inquiring about a piece, or booking an atelier visit — we're here for you.</p>
+  </section>
+
+  <section class="contact-layout">
+    <div class="contact-form">
+      <h2>Send Us a Message</h2>
+      <form action="https://formsubmit.co/bez@bezambar.com" method="POST">
+        <input type="hidden" name="_subject" value="Website Inquiry — Bez Ambar">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://bezambar.com/contact">
+
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="First and Last Name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@email.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone (Optional)</label>
+          <input type="tel" id="phone" name="phone" placeholder="(xxx) xxx-xxxx">
+        </div>
+
+        <div class="form-group">
+          <label for="interest">I'm Interested In</label>
+          <select id="interest" name="interest">
+            <option value="">Select an option...</option>
+            <option value="Bespoke Design">Bespoke Design</option>
+            <option value="Family Signature Pendant">Family Signature Pendant</option>
+            <option value="The Heart Ruby">The Heart Ruby</option>
+            <option value="Collection Piece">A Piece from the Collection</option>
+            <option value="Engagement Ring">Engagement Ring</option>
+            <option value="Atelier Visit">Visiting the Atelier</option>
+            <option value="Repair or Cleaning">Repair or Cleaning</option>
+            <option value="Other">Something Else</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us about what you're looking for..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; border: none; cursor: pointer;">Send Message</button>
+      </form>
+    </div>
+
+    <div class="contact-details">
+      <h2>Other Ways to Reach Us</h2>
+
+      <div class="contact-details-item">
+        <h4>Email</h4>
+        <p><a href="mailto:bez@bezambar.com">bez@bezambar.com</a></p>
+      </div>
+
+      <div class="contact-details-item">
+        <h4>Phone</h4>
+        <p><a href="tel:2136299191">(213) 629-9191</a></p>
+        <p style="font-size: 13px; opacity: 0.6;">Monday – Friday, 10am – 6pm PT</p>
+      </div>
+
+      <div class="contact-details-item">
+        <h4>Visit the Atelier</h4>
+        <p>611 Wilshire Blvd<br>Los Angeles, CA 90017</p>
+        <p style="font-size: 13px; opacity: 0.6; margin-top: 8px;">By appointment only</p>
+      </div>
+
+      <div class="contact-details-item" style="margin-top: 40px; padding: 30px; background: rgba(0,0,0,0.04);">
+        <h4>Book a Private Consultation</h4>
+        <p>Meet with Bez or a senior advisor to discuss your vision. Available in person at our LA atelier or by video call.</p>
+        <p style="margin-top: 15px;">
+          <a href="mailto:bez@bezambar.com?subject=Private%20Consultation%20Request" class="btn btn-primary" style="display: inline-block; padding: 12px 30px;">Request a Time</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="services-strip">
+    <div class="services-inner">
+      <div class="service-item"><h4>Bespoke Design</h4><p>One-of-a-kind pieces<br>designed with you</p></div>
+      <div class="service-item"><h4>Complimentary Shipping</h4><p>Fully insured FedEx<br>Priority delivery</p></div>
+      <div class="service-item"><h4>Provenance Certificate</h4><p>Signed certificate<br>with every piece</p></div>
+      <div class="service-item"><h4>LA Atelier</h4><p>Visit us by appointment<br>611 Wilshire Blvd</p></div>
+    </div>
+  </div>
+</Layout>
