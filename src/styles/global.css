@@ -286,10 +286,9 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
   min-height: 44px;
   min-width: 44px;
 }
-.ba-header__hamburger {
-  font-size: 16px;
-  line-height: 1;
-  vertical-align: middle;
+.ba-header__hamburger-icon {
+  display: block;
+  flex-shrink: 0;
 }
 .ba-header__logo {
   font-family: var(--sans);
@@ -304,14 +303,25 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
   transform: translateX(-50%);
 }
 .ba-header__right {
-  font-family: var(--sans);
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
-.ba-header__right a { color: inherit; text-decoration: none; }
-.ba-header__right a:hover { opacity: 0.6; }
+.ba-header__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+}
+.ba-header__icon:hover { opacity: 0.5; }
 
 /* ── 8. PAGE HERO — dark gradient (journal, contact, about override) ── */
 .page-hero {
@@ -1162,8 +1172,6 @@ body.menu-open { overflow: hidden; }
 }
 
 @media (max-width: 480px) {
-  /* Header — hide Contact link; accessible via nav menu CTA */
-  .ba-header__right { display: none; }
   /* Footer — single column */
   .ba-footer { padding: 40px 16px 0; }
   .ba-footer__cols { grid-template-columns: 1fr; gap: 24px; }
