@@ -1758,12 +1758,12 @@ img { display: block; max-width: 100%; height: auto; }
 }
 .legal-section h2 {
   font-family: var(--sans);
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 14px;
+  color: var(--ink);
+  margin-bottom: 16px;
 }
 .legal-section p,
 .legal-section li {
