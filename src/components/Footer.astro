@@ -1,72 +1,86 @@
 ---
-// Footer.astro — updated with Atelier structure + legal links
+// Footer.astro
 ---
 
 <footer class="ba-footer" id="inquire">
   <div class="ba-footer__inner">
     <div class="ba-footer__cols">
 
-      <div class="ba-footer__col">
-        <h4>Collection</h4>
-        <a href="/bloom">Bloom Collection</a>
-        <a href="/collection?cat=rings">Rings</a>
-        <a href="/collection?cat=engagement-rings">Engagement Rings</a>
-        <a href="/collection?cat=wedding-bands">Wedding Bands</a>
-        <a href="/collection?cat=earrings">Earrings</a>
-        <a href="/collection?cat=pendants">Pendants</a>
-        <a href="/collection?cat=necklaces">Necklaces</a>
-        <a href="/collection?cat=bracelets">Bracelets</a>
+      <!-- Brand identity -->
+      <div class="ba-footer__brand">
+        <p class="ba-footer__wordmark">Bez Ambar</p>
+        <p class="ba-footer__tagline">Inventor of the Princess Cut</p>
+        <p class="ba-footer__estab">Los Angeles &middot; Est. 1979</p>
+        <div class="ba-footer__social">
+          <a href="https://www.instagram.com/bezambar/" target="_blank" rel="noopener" aria-label="Bez Ambar on Instagram" class="ba-footer__social-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" stroke="none"/>
+            </svg>
+            <span>@bezambar</span>
+          </a>
+        </div>
+        <p class="ba-footer__featuring">Featuring the Blaze&reg; Cut</p>
       </div>
 
+      <!-- Shop -->
       <div class="ba-footer__col">
-        <h4>Atelier</h4>
+        <h4>Shop</h4>
+        <a href="/collection/bloom">Bloom Collection</a>
+        <a href="/jewelry/rings">Rings</a>
+        <a href="/jewelry/engagement-rings">Engagement Rings</a>
+        <a href="/jewelry/wedding-bands">Wedding Bands</a>
+        <a href="/jewelry/bracelets">Bracelets</a>
+        <a href="/jewelry/earrings">Earrings</a>
+        <a href="/jewelry/necklaces">Necklaces</a>
+        <a href="/jewelry/pendants">Pendants</a>
+      </div>
+
+      <!-- Discover -->
+      <div class="ba-footer__col">
+        <h4>Discover</h4>
         <a href="/about-bez-ambar">About Bez Ambar</a>
-        <a href="/press">Press</a>
         <a href="/diamond-education">Diamond Education</a>
-        <a href="/video-gallery">Video Gallery</a>
-        <a href="/blog">Blog</a>
+        <a href="/elysian-cut">Elysian Cut&trade;</a>
+        <a href="/press">Press</a>
         <a href="/journal">Journal</a>
+        <a href="/catalogs">Catalogs</a>
+        <a href="/ring-size-chart">Ring Size Guide</a>
       </div>
 
+      <!-- Service -->
       <div class="ba-footer__col">
         <h4>Service</h4>
-        <a href="/contact">Contact</a>
-        <a href="/contact?subject=bespoke">Bespoke Inquiry</a>
+        <a href="/contact">Contact Us</a>
+        <a href="/contact?subject=bespoke">Bespoke Design</a>
         <a href="/contact?subject=repairs">Repairs &amp; Cleaning</a>
+        <a href="/contact?subject=resize">Ring Resizing</a>
         <a href="/warranty">Warranty</a>
       </div>
 
-      <div class="ba-footer__col">
-        <h4>Signature Pieces</h4>
-        <a href="https://galleries.bezambarinc.workers.dev/page/30-carat-flex" target="_blank" rel="noopener">30-Carat Flex</a>
-        <a href="https://galleries.bezambarinc.workers.dev/page/flex-bracelets" target="_blank" rel="noopener">Flex Bracelets</a>
-        <a href="https://galleries.bezambarinc.workers.dev/page/elysian-cut" target="_blank" rel="noopener">Elysian Cut</a>
-        <a href="https://galleries.bezambarinc.workers.dev/page/cascata" target="_blank" rel="noopener">Cascata</a>
-        <a href="https://galleries.bezambarinc.workers.dev/page/crossover-ashoka" target="_blank" rel="noopener">Crossover Ashoka</a>
-        <a href="/heart-ruby">Heart Ruby</a>
-        <a href="https://galleries.bezambarinc.workers.dev/page/saul-ring" target="_blank" rel="noopener">Saul Ring</a>
-      </div>
-
-      <div class="ba-footer__col">
-        <h4>Resources</h4>
-        <a href="/ring-size-chart">Ring Size Chart</a>
-        <a href="/catalogs">Catalogs</a>
-        <h4 class="ba-footer__col-sub">Legal</h4>
-        <a href="/privacy-policy">Privacy Policy</a>
-        <a href="/terms">Terms of Service</a>
-        <a href="/warranty">Warranty</a>
+      <!-- Visit -->
+      <div class="ba-footer__col ba-footer__col--visit">
+        <h4>Visit the Atelier</h4>
+        <address class="ba-footer__address-block">
+          611 Wilshire Blvd<br>
+          Los Angeles, CA 90017
+        </address>
+        <a href="tel:2136299191" class="ba-footer__contact-link">(213) 629-9191</a>
+        <a href="mailto:bez@bezambar.com" class="ba-footer__contact-link">bez@bezambar.com</a>
+        <p class="ba-footer__hours">Mon &ndash; Fri, 10am &ndash; 6pm PT</p>
+        <p class="ba-footer__appt">By appointment only</p>
       </div>
 
     </div>
 
     <div class="ba-footer__bottom">
-      <p class="ba-footer__logo">Bez Ambar</p>
-      <p class="ba-footer__address">
-        611 Wilshire Blvd, Los Angeles, CA 90017
-        &middot; <a href="mailto:bezambar@bezambar.com">bezambar@bezambar.com</a>
-        &middot; <a href="tel:2136299191">(213) 629-9191</a>
-      </p>
-      <p class="ba-footer__tag">Inventor of the Princess Cut &middot; Since 1979</p>
+      <p class="ba-footer__copy">&copy; 2026 Bez Ambar Inc. All rights reserved.</p>
+      <nav class="ba-footer__legal" aria-label="Legal">
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+        <a href="/warranty">Warranty</a>
+      </nav>
     </div>
   </div>
 </footer>
