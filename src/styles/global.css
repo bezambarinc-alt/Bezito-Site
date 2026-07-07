@@ -1722,3 +1722,67 @@ img { display: block; max-width: 100%; height: auto; }
   .ba-footer__cols { grid-template-columns: 1fr; }
 }
 
+/* ============================================================
+   LEGAL PAGES — terms, privacy-policy
+   White background, editorial typography
+   ============================================================ */
+.legal-page {
+  padding: 120px 0 80px;
+}
+.legal-page__inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.legal-page h1 {
+  font-family: var(--sans);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.legal-page__meta {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  opacity: 0.45;
+  text-transform: uppercase;
+  margin-bottom: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+}
+.legal-section {
+  margin-bottom: 40px;
+}
+.legal-section h2 {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.legal-section p,
+.legal-section li {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--ink);
+  opacity: 0.82;
+}
+.legal-section ul {
+  padding-left: 1.5rem;
+  margin: 12px 0;
+}
+.legal-section li {
+  margin-bottom: 6px;
+}
+.legal-section a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+

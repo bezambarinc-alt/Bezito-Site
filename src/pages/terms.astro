@@ -93,62 +93,7 @@ const updated = '2026-07-06';
   </main>
 </Layout>
 
-<style>
-  .legal-page {
-    padding: 120px 0 80px;
-  }
-  .legal-page__inner {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-  .legal-page h1 {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(28px, 4vw, 40px);
-    font-weight: 300;
-    letter-spacing: 0.04em;
-    color: var(--ink, #1a1a1a);
-    margin-bottom: 8px;
-  }
-  .legal-page__meta {
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    color: var(--ink, #1a1a1a);
-    opacity: 0.45;
-    text-transform: uppercase;
-    margin-bottom: 56px;
-  }
-  .legal-section {
-    margin-bottom: 40px;
-  }
-  .legal-section h2 {
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink, #1a1a1a);
-    margin-bottom: 16px;
-  }
-  .legal-section p,
-  .legal-section li {
-    font-family: 'EB Garamond', 'Cormorant Garamond', serif;
-    font-size: 17px;
-    line-height: 1.75;
-    color: var(--ink, #1a1a1a);
-    opacity: 0.85;
-  }
-  .legal-section ul {
-    padding-left: 1.5rem;
-    margin: 12px 0;
-  }
-  .legal-section li {
-    margin-bottom: 6px;
-  }
-  .legal-section a {
-    color: var(--accent, #95826b);
-    text-decoration: none;
-    border-bottom: 1px solid currentColor;
-  }
+<style is:global>
+  .ba-header { color: var(--ink, #1a1a1a) !important; }
+  .ba-header.is-solid { background: rgba(255,255,255,0.96) !important; color: var(--ink, #1a1a1a) !important; }
 </style>
