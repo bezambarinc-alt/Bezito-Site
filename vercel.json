@@ -18,6 +18,7 @@
     { "source": "/ring-size-chart/", "destination": "/ring-size-chart", "permanent": true },
     { "source": "/pdf_lv_category/bez-betzalel-ambar-press", "destination": "/press", "permanent": true },
     { "source": "/pdf_lv_category/bez-betzalel-ambar-press/", "destination": "/press", "permanent": true },
+    { "source": "/bloom", "destination": "/collection/bloom", "permanent": true },
     { "source": "/our-blog", "destination": "/blog", "permanent": true },
     { "source": "/our-blog/", "destination": "/blog", "permanent": true },
     { "source": "/shop", "destination": "/collection", "permanent": true },
@@ -40,9 +41,7 @@
     { "source": "/product-category/:cat/:subcat", "destination": "/collection?cat=:subcat", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/bloom", "destination": "/collection-bloom.html" },
-    { "source": "/collection/bloom", "destination": "/collection-bloom.html" },
-    { "source": "/product-template", "destination": "/product-template.html" },
+{ "source": "/product-template", "destination": "/product-template.html" },
     { "source": "/category-template", "destination": "/category-template.html" },
     { "source": "/product/:slug", "destination": "/product.html?id=:slug" }
   ]

@@ -1,0 +1,314 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const allProducts = await getCollection('products', ({ data }) => data.status === 'live');
+const bloomProducts = allProducts.filter(p => p.data.collection === 'bloom');
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Jewelry", "item": "https://bezambar.com/collection" },
+      { "@type": "ListItem", "position": 2, "name": "The Bloom Collection", "item": "https://bezambar.com/collection/bloom" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "The Bloom Collection",
+    "description": "One-stone pieces. Each ring built around a single diamond — the bloom rendered in a single petal of light.",
+    "url": "https://bezambar.com/collection/bloom",
+    "numberOfItems": bloomProducts.length,
+    "brand": { "@type": "Brand", "name": "Bez Ambar" }
+  }
+];
+---
+
+<Layout
+  title="The Bloom Collection — Bez Ambar"
+  description="One-stone pieces. Each ring built around a single diamond — the bloom rendered in a single petal of light. By Bez Ambar, Los Angeles."
+  canonical="https://bezambar.com/collection/bloom"
+  structuredData={structuredData}
+>
+
+<style is:global>
+  .bloom-hero {
+    padding: 120px 20px 56px;
+    text-align: center;
+    background: #fff;
+  }
+  .bloom-hero__eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 20px;
+  }
+  .bloom-hero__title {
+    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    color: #1a1a1a;
+    margin: 0 0 20px;
+    line-height: 1.1;
+  }
+  .bloom-hero__lede {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    font-style: italic;
+    color: #4a4a4a;
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+
+  .bloom-filters {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 20px 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-bottom: 1px solid rgba(0,0,0,.06);
+    padding-bottom: 0;
+  }
+  .bloom-filter {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888;
+    background: none;
+    border: none;
+    padding: 18px 16px;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s;
+  }
+  .bloom-filter.is-active {
+    color: #1a1a1a;
+  }
+  .bloom-filter.is-active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent, #95826b);
+  }
+  .bloom-filter__count {
+    color: #aaa;
+    font-weight: 400;
+  }
+  .bloom-filter__caret {
+    font-size: 9px;
+    margin-left: 3px;
+    opacity: 0.6;
+  }
+
+  .bloom-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: #999;
+    text-align: center;
+    padding: 20px 20px 0;
+  }
+
+  .bloom-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(12px, 2vw, 24px);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: clamp(20px, 3vw, 40px);
+  }
+
+  .pcard {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: #faf7f2;
+    position: relative;
+    overflow: hidden;
+  }
+  .pcard:hover .pcard__media video,
+  .pcard:hover .pcard__media img {
+    transform: scale(1.03);
+  }
+  .pcard__media {
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background: #f0ede8;
+    position: relative;
+  }
+  .pcard__media video,
+  .pcard__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s ease;
+  }
+  .pcard--placeholder .pcard__media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pcard--placeholder .pcard__media::after {
+    content: attr(data-label);
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #bbb;
+  }
+  .pcard__info {
+    padding: 18px 20px 22px;
+  }
+  .pcard__collection {
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent, #95826b);
+    margin-bottom: 6px;
+  }
+  .pcard__name {
+    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
+    font-size: 22px;
+    font-weight: 400;
+    color: #1a1a1a;
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+  .pcard__ref {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: #999;
+  }
+  .pcard--placeholder .pcard__name { color: #bbb; }
+  .pcard--placeholder .pcard__ref { color: #ccc; }
+
+  .bloom-cta {
+    text-align: center;
+    padding: 80px 20px;
+    background: #fff;
+    border-top: 1px solid rgba(0,0,0,.06);
+    margin-top: 40px;
+  }
+  .bloom-cta__eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 16px;
+  }
+  .bloom-cta__title {
+    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 300;
+    color: #1a1a1a;
+    margin: 0 0 16px;
+    line-height: 1.15;
+  }
+  .bloom-cta__body {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 17px;
+    color: #4a4a4a;
+    max-width: 480px;
+    margin: 0 auto 32px;
+    line-height: 1.65;
+  }
+  .bloom-cta__btn {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent, #95826b);
+    padding-bottom: 3px;
+    transition: color 0.2s;
+  }
+  .bloom-cta__btn:hover { color: var(--accent, #95826b); }
+
+  @media (max-width: 700px) {
+    .bloom-grid { grid-template-columns: 1fr; }
+    .bloom-hero { padding: 100px 20px 40px; }
+    .bloom-filters { overflow-x: auto; white-space: nowrap; }
+  }
+</style>
+
+<section class="bloom-hero">
+  <p class="bloom-hero__eyebrow">The Collection</p>
+  <h1 class="bloom-hero__title">The Bloom Collection</h1>
+  <p class="bloom-hero__lede">One-stone pieces. Each ring built around a single diamond &mdash; the bloom rendered in a single petal of light.</p>
+</section>
+
+<nav class="bloom-filters" aria-label="Filter collection">
+  <button class="bloom-filter is-active" type="button">All <span class="bloom-filter__count">({bloomProducts.length})</span></button>
+  <button class="bloom-filter" type="button">Cut <span class="bloom-filter__caret">&#x25BE;</span></button>
+  <button class="bloom-filter" type="button">Metal <span class="bloom-filter__caret">&#x25BE;</span></button>
+  <button class="bloom-filter" type="button">Stone <span class="bloom-filter__caret">&#x25BE;</span></button>
+</nav>
+
+<p class="bloom-meta">{bloomProducts.length} {bloomProducts.length === 1 ? 'piece' : 'pieces'} &middot; more coming</p>
+
+<section class="bloom-grid">
+  {bloomProducts.map(p => (
+    <a class="pcard" href={p.data.prettyUrl}>
+      <div class="pcard__media">
+        {p.data.heroVideo ? (
+          <video src={p.data.heroVideo} autoplay loop muted playsinline></video>
+        ) : p.data.heroImage ? (
+          <img src={p.data.heroImage} alt={p.data.title} loading="lazy" />
+        ) : null}
+      </div>
+      <div class="pcard__info">
+        <p class="pcard__collection">Bloom Collection</p>
+        <p class="pcard__name">{p.data.title}</p>
+        <p class="pcard__ref">ref. {p.data.refCode}</p>
+      </div>
+    </a>
+  ))}
+
+  <a class="pcard pcard--placeholder" href="#" aria-hidden="true" tabindex="-1">
+    <div class="pcard__media" data-label="Slot 3"></div>
+    <div class="pcard__info">
+      <p class="pcard__collection">Bloom Collection</p>
+      <p class="pcard__name">Coming Soon</p>
+      <p class="pcard__ref">ref. &mdash;</p>
+    </div>
+  </a>
+
+  <a class="pcard pcard--placeholder" href="#" aria-hidden="true" tabindex="-1">
+    <div class="pcard__media" data-label="Slot 4"></div>
+    <div class="pcard__info">
+      <p class="pcard__collection">Bloom Collection</p>
+      <p class="pcard__name">Coming Soon</p>
+      <p class="pcard__ref">ref. &mdash;</p>
+    </div>
+  </a>
+</section>
+
+<section class="bloom-cta">
+  <p class="bloom-cta__eyebrow">Don't See It</p>
+  <h2 class="bloom-cta__title">Commission a Piece</h2>
+  <p class="bloom-cta__body">If the piece you're looking for isn't here, it can be made. Every Bez Ambar piece begins with one stone and one drawing.</p>
+  <a href="/contact?subject=Bespoke%20Commission%20%E2%80%94%20Inquiry" class="bloom-cta__btn">Inquire</a>
+</section>
+
+</Layout>
