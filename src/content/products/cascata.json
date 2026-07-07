@@ -1,0 +1,26 @@
+{
+  "slug": "cascata",
+  "sku": "BA-NC-001",
+  "title": "Cascata",
+  "subtitle": "9 ct F/VVS round brilliant pendant necklace — platinum, three-strand cascade",
+  "category": "necklaces",
+  "collection": "signature",
+  "status": "draft",
+  "refCode": "BA-NC-001",
+  "stone": {
+    "shape": "Round brilliant",
+    "carats": 9,
+    "color": "F",
+    "clarity": "VVS",
+    "origin": "Natural. Single 9 ct F/VVS center; strand diamonds G-H/VS, graduated 0.15 ct (near clasp) to 0.45 ct (center crossing). GIA certified."
+  },
+  "metal": "Platinum, polished",
+  "description": "Cascata — three platinum strands of graduated round brilliant diamonds that weave and cross at the throat, terminating in a 9-carat F/VVS center stone at the sternum. One of a kind. 16 inches. Ref BA-NC-001. [NOTE: hero image needs Cloudinary upload — sourced from page as embedded base64. Update before going live.]",
+  "heroVideo": null,
+  "heroImage": "https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1782590629/pages-extracted/cascata.jpg",
+  "images": [
+    "https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1782590629/pages-extracted/cascata.jpg"
+  ],
+  "inquirySubject": "Cascata Necklace — Ref BA-NC-001",
+  "prettyUrl": "/jewelry/necklaces/cascata"
+}
