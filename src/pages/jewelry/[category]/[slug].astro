@@ -16,6 +16,15 @@ const categoryLabel = product.category
   .replace(/-/g, ' ')
   .replace(/\b\w/g, (l: string) => l.toUpperCase());
 
+const COLLECTION_LABELS: Record<string, string> = {
+  signature: 'Signature Pieces',
+  bloom: 'Bloom Collection',
+  dentelle: 'Dentelle Collection',
+};
+const eyebrow = product.collection
+  ? (COLLECTION_LABELS[product.collection] ?? `${product.collection.charAt(0).toUpperCase()}${product.collection.slice(1)} Collection`)
+  : categoryLabel;
+
 const structuredData = [
   {
     "@context": "https://schema.org",
@@ -95,7 +104,7 @@ const ogImage = product.heroImage
       <span aria-hidden="true">/</span>
       <span>{product.title}</span>
     </nav>
-    <p class="hero__eyebrow">{product.collection ? `${product.collection.charAt(0).toUpperCase()}${product.collection.slice(1)} Collection` : categoryLabel}</p>
+    <p class="hero__eyebrow">{eyebrow}</p>
     <h1 class="hero__title">
       {product.title}
       {product.subtitle && <span class="hero__subtitle">{product.subtitle}</span>}
