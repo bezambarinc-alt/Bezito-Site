@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import '../../styles/templates/blog.css';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -34,214 +35,14 @@ function fmtCat(c: string) {
   theme="dark"
 >
 
-<style is:global>
-
-  .post-back {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 100px 20px 0;
-  }
-  .post-back a {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: #888;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  .post-back a:hover { color: #fff; }
-
-  .post-hero {
-    text-align: center;
-    padding: 40px 20px 40px;
-  }
-  .post-hero .post-cat {
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: #b8860b;
-    margin-bottom: 16px;
-  }
-  .post-hero h1 {
-    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
-    font-size: 44px;
-    font-weight: 400;
-    color: #fff;
-    margin: 0 0 16px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.2;
-  }
-  .post-hero .post-meta {
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    color: #888;
-  }
-  .post-hero .post-meta span { margin: 0 8px; color: #666; }
-
-  .post-featured-img {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  .post-featured-img img {
-    width: 100%;
-    aspect-ratio: 16/9;
-    object-fit: cover;
-    background: #141414;
-    display: block;
-  }
-
-  .post-content {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 50px 20px 80px;
-  }
-  .post-content p {
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    line-height: 1.9;
-    color: #ccc;
-    margin-bottom: 24px;
-  }
-  .post-content h2 {
-    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
-    font-size: 32px;
-    font-weight: 400;
-    color: #fff;
-    margin: 48px 0 20px;
-  }
-  .post-content h3 {
-    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
-    font-size: 24px;
-    font-weight: 500;
-    color: #fff;
-    margin: 36px 0 16px;
-  }
-  .post-content img { width: 100%; margin: 30px 0; }
-  .post-content blockquote {
-    border-left: 3px solid #b8860b;
-    padding: 16px 24px;
-    margin: 30px 0;
-    background: #111;
-  }
-  .post-content blockquote p { font-style: italic; color: #aaa; margin: 0; }
-  .post-content ul, .post-content ol {
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    line-height: 1.9;
-    color: #ccc;
-    padding-left: 24px;
-    margin-bottom: 24px;
-  }
-  .post-content li { margin-bottom: 8px; }
-  .post-content a { color: #b8860b; text-decoration: underline; }
-
-  .post-cta {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 0 20px 60px;
-    text-align: center;
-  }
-  .post-cta-box {
-    background: #111;
-    padding: 50px 40px;
-    border: 1px solid rgba(255,255,255,0.08);
-  }
-  .post-cta-box h3 {
-    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
-    font-size: 28px;
-    font-weight: 400;
-    color: #fff;
-    margin: 0 0 12px;
-  }
-  .post-cta-box p {
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    color: #aaa;
-    margin: 0 0 24px;
-    line-height: 1.6;
-  }
-  .post-cta-box a {
-    display: inline-block;
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #0d0d0d;
-    background: #fff;
-    padding: 14px 40px;
-    text-decoration: none;
-    transition: background 0.3s ease;
-  }
-  .post-cta-box a:hover { background: #ddd; }
-
-  .related-section {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 60px 20px 80px;
-  }
-  .related-section h2 {
-    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
-    font-size: 32px;
-    font-weight: 400;
-    text-align: center;
-    margin: 0 0 40px;
-    color: #fff;
-  }
-  .related-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-  }
-  .related-card { text-decoration: none; color: inherit; }
-  .related-card:hover .related-img img { transform: scale(1.05); }
-  .related-img {
-    aspect-ratio: 4/3;
-    overflow: hidden;
-    background: #141414;
-    margin-bottom: 14px;
-  }
-  .related-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-  .related-card h4 {
-    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
-    font-size: 20px;
-    font-weight: 500;
-    color: #fff;
-    margin: 0 0 6px;
-    line-height: 1.3;
-  }
-  .related-card .related-date {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    color: #888;
-  }
-
-  @media (max-width: 768px) {
-    .post-hero h1 { font-size: 32px; }
-    .related-grid { grid-template-columns: 1fr; gap: 30px; }
-    .post-hero { padding: 30px 20px 30px; }
-  }
-</style>
-
-<!-- Back -->
-<div class="post-back">
+<div class="ba-post-back">
   <a href="/blog">&larr; Back to Blog</a>
 </div>
 
-<!-- Hero -->
-<section class="post-hero">
-  <p class="post-cat">{fmtCat(post.data.category)}</p>
+<section class="ba-post-hero">
+  <p class="ba-post-hero__cat">{fmtCat(post.data.category)}</p>
   <h1>{post.data.title}</h1>
-  <p class="post-meta">
+  <p class="ba-post-hero__meta">
     {post.data.author}
     <span>&middot;</span>
     {fmtDate(post.data.date)}
@@ -249,19 +50,17 @@ function fmtCat(c: string) {
 </section>
 
 {post.data.heroImage && (
-  <div class="post-featured-img">
+  <div class="ba-post-img">
     <img src={post.data.heroImage} alt={post.data.title} loading="eager">
   </div>
 )}
 
-<!-- Content -->
-<div class="post-content">
+<div class="ba-post-content">
   <Content />
 </div>
 
-<!-- CTA -->
-<div class="post-cta">
-  <div class="post-cta-box">
+<div class="ba-post-cta">
+  <div class="ba-post-cta__box">
     <h3>Interested in a Custom Piece?</h3>
     <p>Every Bez Ambar creation is made to order in our Los Angeles atelier. Schedule a private consultation to begin your bespoke jewelry journey.</p>
     <a href="/contact?subject=bespoke">Begin Your Commission</a>
@@ -269,16 +68,16 @@ function fmtCat(c: string) {
 </div>
 
 {related.length > 0 && (
-  <section class="related-section">
+  <section class="ba-related">
     <h2>Related Articles</h2>
-    <div class="related-grid">
+    <div class="ba-related__grid">
       {related.map(p => (
-        <a href={`/blog/${p.slug}`} class="related-card">
-          <div class="related-img">
+        <a href={`/blog/${p.slug}`} class="ba-related__card">
+          <div class="ba-related__img">
             <img src={p.data.heroImage} alt={p.data.title} loading="lazy">
           </div>
           <h4>{p.data.title}</h4>
-          <p class="related-date">{fmtDate(p.data.date)}</p>
+          <p class="ba-related__date">{fmtDate(p.data.date)}</p>
         </a>
       ))}
     </div>
