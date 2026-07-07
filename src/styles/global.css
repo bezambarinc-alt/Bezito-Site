@@ -1786,3 +1786,58 @@ img { display: block; max-width: 100%; height: auto; }
   border-bottom: 1px solid currentColor;
 }
 
+/* Warranty-specific extensions (still within legal-page system) */
+.warranty-highlight {
+  border-left: 2px solid var(--accent);
+  padding: 18px 24px;
+  margin-bottom: 32px;
+  background: rgba(149,130,107,0.05);
+}
+.warranty-highlight p {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--ink);
+  opacity: 0.82;
+  margin: 0;
+}
+.warranty-sub {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.5;
+  margin: 28px 0 12px;
+}
+.warranty-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+.warranty-list li {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--ink);
+  opacity: 0.82;
+  padding: 5px 0 5px 20px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  position: relative;
+}
+.warranty-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 14px;
+  line-height: 1.75;
+}
+.warranty-list li strong {
+  font-weight: 600;
+  font-style: normal;
+  color: var(--ink);
+  opacity: 1;
+}
+

@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+const updated = '2026-07-07';
 ---
 
 <Layout
@@ -9,235 +10,36 @@ import Layout from '../layouts/Layout.astro';
 >
 
 <style is:global>
-  body { background: #0d0d0d; color: #fff; }
-  .ba-header { background: #1a1a1a !important; color: #fff !important; box-shadow: none !important; }
-  .ba-header.is-solid { background: #1a1a1a !important; color: #fff !important; }
-
-  .warranty-hero {
-    padding: 140px 20px 72px;
-    text-align: center;
-    background: #141414;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
-  .warranty-hero__eyebrow {
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--accent, #95826b);
-    display: block;
-    margin-bottom: 20px;
-  }
-  .warranty-hero h1 {
-    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
-    font-size: clamp(32px, 5vw, 52px);
-    font-weight: 300;
-    color: #fff;
-    margin: 0 0 16px;
-    letter-spacing: 0.03em;
-    line-height: 1.1;
-  }
-  .warranty-hero p {
-    font-family: 'EB Garamond', Georgia, serif;
-    font-size: 18px;
-    font-style: italic;
-    color: #888;
-    margin: 0;
-    line-height: 1.6;
-  }
-
-  .warranty-content {
-    max-width: 840px;
-    margin: 0 auto;
-    padding: 72px 24px 96px;
-  }
-
-  .warranty-section {
-    margin-bottom: 64px;
-    padding-bottom: 64px;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-  }
-  .warranty-section:last-of-type {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
-
-  .warranty-section-header {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    margin-bottom: 28px;
-  }
-  .warranty-section-icon {
-    width: 44px;
-    height: 44px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .warranty-section-icon svg {
-    width: 36px;
-    height: 36px;
-    stroke: var(--accent, #95826b);
-    stroke-width: 1.2;
-  }
-  .warranty-section-title {
-    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
-    font-size: 28px;
-    font-weight: 400;
-    color: #fff;
-    margin: 0;
-    letter-spacing: 0.02em;
-  }
-
-  .warranty-highlight {
-    background: rgba(149,130,107,0.08);
-    border-left: 2px solid var(--accent, #95826b);
-    padding: 24px 28px;
-    margin-bottom: 28px;
-  }
-  .warranty-highlight h3 {
-    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
-    font-size: 20px;
-    font-weight: 400;
-    color: #fff;
-    margin: 0 0 8px;
-  }
-  .warranty-highlight p {
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    line-height: 1.7;
-    color: #aaa;
-    margin: 0;
-  }
-
-  .warranty-section-body p {
-    font-family: 'EB Garamond', Georgia, serif;
-    font-size: 17px;
-    line-height: 1.75;
-    color: #aaa;
-    margin-bottom: 20px;
-  }
-  .warranty-section-body h4 {
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #fff;
-    margin: 32px 0 12px;
-  }
-  .warranty-section-body a {
-    color: var(--accent, #95826b);
-    text-decoration: none;
-    border-bottom: 1px solid currentColor;
-  }
-
-  .warranty-list {
-    list-style: none;
-    margin: 0 0 20px;
-    padding: 0;
-  }
-  .warranty-list li {
-    font-family: 'EB Garamond', Georgia, serif;
-    font-size: 17px;
-    line-height: 1.7;
-    color: #aaa;
-    padding: 6px 0 6px 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    position: relative;
-  }
-  .warranty-list li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--accent, #95826b);
-    opacity: 0.6;
-    font-size: 14px;
-  }
-  .warranty-list li strong { color: #ddd; font-weight: 500; font-style: normal; }
-
-  .warranty-cta {
-    text-align: center;
-    background: #141414;
-    padding: 72px 24px;
-    border-top: 1px solid rgba(255,255,255,0.06);
-  }
-  .warranty-cta h3 {
-    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
-    font-size: clamp(24px, 3.5vw, 36px);
-    font-weight: 300;
-    color: #fff;
-    margin: 0 0 12px;
-  }
-  .warranty-cta p {
-    font-family: 'EB Garamond', Georgia, serif;
-    font-size: 17px;
-    color: #888;
-    margin: 0 0 28px;
-    line-height: 1.6;
-  }
-  .warranty-cta-btn {
-    display: inline-block;
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: #fff;
-    text-decoration: none;
-    border: 1px solid rgba(255,255,255,0.3);
-    padding: 14px 36px;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .warranty-cta-btn:hover {
-    border-color: var(--accent, #95826b);
-    color: var(--accent, #95826b);
-  }
+  .ba-header { color: var(--ink, #1a1a1a) !important; }
+  .ba-header.is-solid { background: rgba(255,255,255,0.96) !important; color: var(--ink, #1a1a1a) !important; }
 </style>
 
-<section class="warranty-hero">
-  <span class="warranty-hero__eyebrow">Service</span>
-  <h1>Warranty &amp; Policies</h1>
-  <p>Quality craftsmanship backed by our commitment to excellence since 1979.</p>
-</section>
+<main class="legal-page">
+  <div class="legal-page__inner">
+    <h1>Warranty &amp; Policies</h1>
+    <p class="legal-page__meta">Bez Ambar Inc. &middot; Last updated: {updated}</p>
 
-<div class="warranty-content">
-  <section class="warranty-section">
-    <div class="warranty-section-header">
-      <div class="warranty-section-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-        </svg>
+    <section class="legal-section">
+      <h2>1. Lifetime Warranty</h2>
+
+      <div class="warranty-highlight">
+        <p>Every piece of Bez Ambar jewelry is protected by a comprehensive lifetime warranty on craftsmanship and materials.</p>
       </div>
-      <h2 class="warranty-section-title">Lifetime Warranty</h2>
-    </div>
 
-    <div class="warranty-highlight">
-      <h3>We Stand Behind Every Piece</h3>
-      <p>Bez Ambar jewelry comes with a comprehensive lifetime warranty on craftsmanship and materials.</p>
-    </div>
-
-    <div class="warranty-section-body">
-      <p>Every piece of Bez Ambar jewelry is protected by our lifetime warranty, reflecting our commitment to exceptional craftsmanship and quality materials.</p>
-
-      <h4>Coverage Period</h4>
+      <h3 class="warranty-sub">Coverage Period</h3>
       <ul class="warranty-list">
-        <li><strong>12 Months Full Coverage:</strong> Covers all defects in materials and craftsmanship from the purchase date.</li>
-        <li><strong>Ongoing Coverage:</strong> After the initial 12 months, warranty continues for the lifetime of the original owner with annual inspection at an authorized Bez Ambar service center.</li>
+        <li><strong>12 Months Full Coverage</strong> — All defects in materials and craftsmanship from the purchase date.</li>
+        <li><strong>Ongoing Coverage</strong> — After the initial 12 months, warranty continues for the lifetime of the original owner with annual inspection at an authorized Bez Ambar service center.</li>
       </ul>
 
-      <h4>What Is Covered</h4>
+      <h3 class="warranty-sub">What Is Covered</h3>
       <ul class="warranty-list">
         <li>Defects in materials and craftsmanship</li>
         <li>Breakage of stones or prongs due to manufacturing defects</li>
         <li>Repairs and restoration to original condition</li>
       </ul>
 
-      <h4>What Is Not Covered</h4>
+      <h3 class="warranty-sub">What Is Not Covered</h3>
       <ul class="warranty-list">
         <li>Damage from accidents, misuse, or negligence</li>
         <li>Unauthorized repairs or modifications</li>
@@ -247,76 +49,51 @@ import Layout from '../layouts/Layout.astro';
         <li>Chemical or environmental damage</li>
       </ul>
 
-      <h4>Warranty Terms</h4>
-      <p>This warranty applies exclusively to the original purchaser and is non-transferable. To maintain warranty coverage after 12 months, your jewelry must be inspected annually at an authorized Bez Ambar service center. We recommend professional cleaning and inspection at least once per year.</p>
-    </div>
-  </section>
+      <p>This warranty applies exclusively to the original purchaser and is non-transferable. Annual inspection at an authorized Bez Ambar service center is required to maintain coverage after the initial 12 months.</p>
+    </section>
 
-  <section class="warranty-section">
-    <div class="warranty-section-header">
-      <div class="warranty-section-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-        </svg>
-      </div>
-      <h2 class="warranty-section-title">Security &amp; Privacy</h2>
-    </div>
-    <div class="warranty-section-body">
-      <p>Your privacy and security are our highest priorities. We are committed to protecting your personal information and ensuring safe transactions.</p>
+    <section class="legal-section">
+      <h2>2. Security &amp; Privacy</h2>
+      <p>Your privacy and security are paramount. All personal information you share with us is kept strictly confidential and never sold to third parties.</p>
 
-      <h4>Secure Transactions</h4>
+      <h3 class="warranty-sub">Secure Transactions</h3>
       <ul class="warranty-list">
         <li>All transactions are protected with industry-standard SSL encryption</li>
-        <li>Your payment information is processed securely through trusted gateways</li>
-        <li>We never store full credit card details on our servers</li>
+        <li>Payment information is processed securely through trusted gateways</li>
+        <li>We never store full payment card details on our servers</li>
       </ul>
 
-      <h4>Data Protection</h4>
+      <h3 class="warranty-sub">Data Protection</h3>
       <ul class="warranty-list">
-        <li>Personal information is never sold or shared with third parties without your explicit consent</li>
-        <li>Your data is used solely for order fulfillment, customer service, and communication</li>
-        <li>We maintain strict confidentiality of all customer information</li>
+        <li>Personal information is used solely for consultation, order fulfillment, and customer service</li>
+        <li>Your data is never shared with third parties without your explicit consent</li>
+        <li>We maintain strict confidentiality of all client information</li>
       </ul>
 
-      <h4>Your Privacy Rights</h4>
-      <p>We comply with all applicable privacy laws. For full details on how we collect, use, and protect your data, see our <a href="/privacy-policy">Privacy Policy</a>.</p>
-    </div>
-  </section>
+      <p>For full details, see our <a href="/privacy-policy">Privacy Policy</a>.</p>
+    </section>
 
-  <section class="warranty-section">
-    <div class="warranty-section-header">
-      <div class="warranty-section-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-          <polyline points="14 2 14 8 20 8"/>
-        </svg>
-      </div>
-      <h2 class="warranty-section-title">Conditions of Use &amp; Copyright</h2>
-    </div>
-    <div class="warranty-section-body">
-      <p>All content, design, and intellectual property on bezambar.com are the exclusive property of Bez Ambar Inc. and are protected by international copyright and trademark laws.</p>
+    <section class="legal-section">
+      <h2>3. Intellectual Property</h2>
+      <p>All content on bezambar.com — including text, photography, video, jewelry designs, and proprietary cut names — is the exclusive property of Bez Ambar Inc. and is protected by copyright, trademark, and applicable intellectual property laws.</p>
 
-      <h4>Intellectual Property Rights</h4>
+      <h3 class="warranty-sub">Proprietary Designs</h3>
       <ul class="warranty-list">
-        <li>All designs, images, text, and multimedia content are copyrighted by Bez Ambar Inc.</li>
-        <li>Reproduction, distribution, or transmission without written consent is strictly prohibited</li>
+        <li>The Blaze&reg; cut and Elysian Cut&trade; are proprietary designs protected by intellectual property law</li>
+        <li>Reproduction, distribution, or use without written consent is strictly prohibited</li>
         <li>You may view and print content for personal, non-commercial use only</li>
       </ul>
+    </section>
 
-      <h4>Proprietary Designs</h4>
-      <p>Bez Ambar's signature diamond cuts are proprietary designs protected by intellectual property law, including the Blaze&reg; cut and Elysian Cut&trade;.</p>
-
-      <h4>Website Terms</h4>
-      <p>By using bezambar.com, you agree to comply with all applicable laws and regulations. Bez Ambar reserves the right to modify content and policies at any time without notice.</p>
-    </div>
-  </section>
-</div>
-
-<section class="warranty-cta">
-  <h3>Have Questions About Your Warranty?</h3>
-  <p>Our customer service team is here to assist you with any warranty claims or inquiries.</p>
-  <a href="/contact" class="warranty-cta-btn">Contact Us</a>
-</section>
+    <section class="legal-section">
+      <h2>4. Contact</h2>
+      <p>Questions about your warranty or our policies:<br>
+      Bez Ambar Inc.<br>
+      611 Wilshire Blvd, Los Angeles, CA 90017<br>
+      <a href="mailto:bez@bezambar.com">bez@bezambar.com</a><br>
+      <a href="tel:2136299191">(213) 629-9191</a></p>
+    </section>
+  </div>
+</main>
 
 </Layout>
