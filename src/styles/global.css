@@ -1473,115 +1473,6 @@ body.menu-open { overflow: hidden; }
 .ba-prose-section li { margin-bottom: 8px; }
 .ba-prose-section a { color: var(--accent); border-bottom: 1px solid currentColor; }
 
-/* ── 23. HOMEPAGE EDITORIAL FEATURE ROW ──────────────────── */
-/* Contained 2-col row with gap — distinct from ba-segment   */
-/* (ba-segment = full-bleed 50/50; ba-feature = padded rows) */
-.ba-feature-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: clamp(40px, 6vw, 100px);
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: clamp(12px, 1.6vw, 24px) clamp(40px, 5vw, 80px);
-}
-.ba-feature-row--reverse .ba-feature-row__media { order: 2; }
-.ba-feature-row__media {
-  position: relative;
-  width: 100%;
-  max-width: 540px;
-  aspect-ratio: 4/5;
-  overflow: hidden;
-  justify-self: end;
-}
-.ba-feature-row--reverse .ba-feature-row__media { justify-self: start; }
-.ba-feature-row__media img,
-.ba-feature-row__media video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.ba-feature-row__media--placeholder {
-  background: var(--paper);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.ba-feature-row__media--placeholder::before {
-  content: attr(data-label);
-  font-family: var(--sans);
-  font-size: 10px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: rgba(0,0,0,0.28);
-}
-.ba-feature-row__content {
-  max-width: 440px;
-  justify-self: start;
-}
-.ba-feature-row--reverse .ba-feature-row__content { justify-self: end; }
-.ba-feature-row__eyebrow {
-  font-family: var(--sans);
-  font-size: 15px;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 7px;
-}
-.ba-feature-row__title {
-  font-family: var(--sans);
-  font-size: clamp(1.8rem, 3.5vw, 3rem);
-  font-weight: 200;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-  line-height: 1.15;
-  color: var(--accent);
-  margin-bottom: 24px;
-}
-.ba-feature-row__body {
-  font-family: var(--serif);
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 1.65;
-  color: var(--ink);
-  margin-bottom: 24px;
-}
-.ba-feature-row__link {
-  display: inline-block;
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--ink);
-  border-bottom: 1px solid var(--ink);
-  padding-bottom: 4px;
-  text-decoration: none;
-  transition: all 0.3s;
-}
-.ba-feature-row__link:hover { color: var(--accent); border-color: var(--accent); }
-
-/* Centered feature — single-col wide text */
-.ba-feature-row--centered {
-  display: block;
-  padding: 100px clamp(40px,5vw,80px) clamp(6rem,10vw,9rem);
-  text-align: center;
-}
-.ba-feature-row--centered .ba-feature-row__content {
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: center;
-  justify-self: unset;
-}
-.ba-feature-row--centered .ba-feature-row__body {
-  text-align: center;
-  margin-bottom: 2.25rem;
-  line-height: 1.9;
-}
-
 /* ── 24. NEWSLETTER ───────────────────────────────────────── */
 .ba-newsletter {
   padding: clamp(60px, 10vw, 120px) 40px;
@@ -1685,107 +1576,312 @@ body.menu-open { overflow: hidden; }
   line-height: 1.7;
 }
 
-/* ── 26. CINEMATIC VIDEO HERO (homepage only) ─────────────── */
-.ba-cinematic {
-  position: relative;
-  background: var(--dark-bg);
-  height: 200vh;
+/* ── 27. RESPONSIVE ADDITIONS ─────────────────────────────── */
+/* ── 28. PAPER CTA (light background variant) ─────────────── */
+.ba-cta--paper {
+  background: var(--paper);
+  color: var(--ink);
+  text-align: center;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.25rem, 5vw, 4rem);
 }
-.ba-cinematic__pin {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  height: 100vh;
-  min-height: 600px;
-  overflow: hidden;
-  z-index: 1;
+.ba-cta--paper .ba-cta__eyebrow { color: var(--accent); }
+.ba-cta--paper .ba-cta__title { color: var(--ink); }
+.ba-cta--paper .ba-cta__body { color: var(--ink-soft); }
+.ba-cta--paper .ba-cta__btn {
+  border-color: var(--ink);
+  color: var(--ink);
+  background: transparent;
 }
-.ba-cinematic__slide {
-  position: absolute;
-  inset: 0;
-  background: var(--dark-bg);
-  transform: translateY(0);
-  will-change: transform;
+.ba-cta--paper .ba-cta__btn:hover { background: var(--ink); color: var(--white); }
+
+
+/* ── 29. LIGHT-PAGE COMPONENTS ───────────────────────────────
+   Shared across elysian-cut, ring-size-chart, catalogs,
+   collection pages, and any other light-background editorial page.
+   ─────────────────────────────────────────────────────────── */
+/* Utility: push page content below fixed header */
+.ba-below-header { padding-top: 84px !important; }
+
+/* Sub-category items in category dropdown */
+.lv-cat-sub { padding-left: 28px !important; font-size: 11px !important; }
+
+
+
+/* Light hero — standalone class for non-dark editorial pages */
+.ba-light-hero {
+  padding: 140px 24px 72px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  background: var(--white);
 }
-.ba-cinematic__slide[data-i="0"] { z-index: 1; }
-.ba-cinematic__slide[data-i="1"] { z-index: 2; transform: translateY(100%); }
-.ba-cinematic__media {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
+.ba-light-hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 300;
+  color: var(--ink);
+  margin: 0 0 16px;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  text-transform: none;
 }
-.ba-cinematic__media iframe {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: max(100vw, 177.78vh);
-  height: max(100vh, 56.25vw);
-  border: 0;
-  pointer-events: none;
+.ba-light-hero p, .ba-light-hero__intro {
+  font-family: var(--prose);
+  font-size: 18px;
+  color: var(--ink-soft);
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.65;
 }
-.ba-cinematic__overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.6) 100%);
-}
-.ba-cinematic__content {
-  position: absolute;
-  left: clamp(40px, 6vw, 80px);
-  bottom: clamp(60px, 8vw, 110px);
-  max-width: 560px;
-  text-align: left;
-  color: var(--white);
-}
-.ba-cinematic__eyebrow {
+.ba-light-hero__eyebrow {
+  display: block;
   font-family: var(--sans);
-  font-size: 15px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+/* XL modifier — bigger h1, narrower container, no bottom border (bleeds into prose intro) */
+.ba-light-hero--xl {
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: none;
+}
+.ba-light-hero--xl h1 { font-size: clamp(40px, 6vw, 64px); letter-spacing: 0.03em; }
+.ba-light-hero--xl p, .ba-light-hero--xl .ba-light-hero__intro {
+  font-size: 19px;
+  color: var(--ink);
+  opacity: 0.7;
+  max-width: none;
+}
+
+/* Prose intro — narrow centered editorial column */
+.ba-prose-intro {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 24px 72px;
+}
+.ba-prose-intro p {
+  font-family: var(--prose);
+  font-size: 19px;
+  line-height: 1.75;
+  color: var(--ink);
+  opacity: 0.82;
+  margin-bottom: 24px;
+}
+
+/* Light cards (Elysian Cut family grid, other light-page product grids) */
+.ba-light-card { text-decoration: none; color: inherit; }
+.ba-light-card__media {
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--paper);
+  margin-bottom: 20px;
+}
+.ba-light-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.ba-light-card:hover .ba-light-card__media img { transform: scale(1.04); }
+.ba-light-card__name {
+  font-family: var(--serif);
+  font-size: 22px;
   font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.ba-light-card__sub {
+  font-family: var(--sans);
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 7px;
+  color: var(--ink);
+  opacity: 0.45;
 }
-.ba-cinematic__headline {
-  font-family: var(--sans);
-  font-size: clamp(1.8rem, 3.5vw, 3rem);
-  font-weight: 200;
-  letter-spacing: -0.01em;
-  line-height: 1.15;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 14px;
+
+/* Content section (light pages — max-width 900, prose h2) */
+.ba-page-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 24px;
+  border-bottom: 1px solid rgba(0,0,0,.06);
 }
-.ba-cinematic__sub {
+.ba-page-section h2 {
   font-family: var(--serif);
-  font-size: clamp(1rem, 1.3vw, 1.15rem);
-  line-height: 1.6;
-  color: rgba(255,255,255,0.95);
-  max-width: 440px;
-  margin: 0 0 28px;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 0 0 8px;
+  letter-spacing: 0.02em;
 }
-.ba-cinematic-dots {
-  position: fixed;
-  top: 50%;
-  right: 28px;
-  transform: translateY(-50%);
-  z-index: 30;
+.ba-page-section > p {
+  font-family: var(--prose);
+  font-size: 17px;
+  color: var(--ink-soft);
+  line-height: 1.65;
+  margin-bottom: 32px;
+}
+.ba-page-section--wide { max-width: 1100px; }
+
+/* Info grid (2-col cards on light pages) */
+.ba-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 40px;
+}
+.ba-info-card {
+  background: var(--paper);
+  padding: 28px;
+}
+.ba-info-card h3 {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0 0 16px;
+}
+.ba-info-card ol,
+.ba-info-card ul {
+  font-family: var(--prose);
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--ink-soft);
+  padding-left: 20px;
+  margin: 0;
+}
+
+/* Contact note / footnote */
+.ba-contact-note {
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  color: var(--ink-muted);
+  padding: 20px;
+}
+.ba-contact-note a { color: var(--accent); text-decoration: none; }
+
+/* Data table (ring size chart, comparison tables) */
+.ba-table-wrap { overflow-x: auto; margin: 24px 0; }
+.ba-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--sans);
+  font-size: 12px;
+}
+.ba-table th {
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  padding: 12px 16px;
+  border-bottom: 2px solid rgba(0,0,0,.1);
+  text-align: left;
+  white-space: nowrap;
+}
+.ba-table td {
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(0,0,0,.05);
+  color: var(--ink-soft);
+}
+.ba-table .ba-table__highlight td { background: var(--paper); color: var(--ink); font-weight: 500; }
+
+/* Catalog card (visual panel + text panel) */
+.ba-catalog-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+.ba-catalog-card {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  opacity: 0;
-  transition: opacity 0.4s;
-  pointer-events: none;
+  border: 1px solid rgba(0,0,0,.08);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.25s;
+  overflow: hidden;
 }
-.ba-cinematic-dots.is-visible { opacity: 1; pointer-events: auto; }
-.ba-cinematic-dots__dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.35);
-  border: 0; padding: 0;
-  cursor: pointer;
-  transition: all 0.3s;
+.ba-catalog-card:hover { border-color: var(--accent); }
+.ba-catalog-card__visual {
+  background: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 32px;
 }
-.ba-cinematic-dots__dot.is-active { background: var(--white); transform: scale(1.4); }
+.ba-catalog-card__icon { width: 80px; height: 80px; }
+.ba-catalog-card__content {
+  padding: 32px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.ba-catalog-card__content h2 {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 0 0 12px;
+  letter-spacing: 0.02em;
+}
+.ba-catalog-card__content p {
+  font-family: var(--prose);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin: 0 0 24px;
+  flex: 1;
+}
+.ba-catalog-card__link {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 3px;
+  transition: color 0.2s;
+}
+.ba-catalog-card:hover .ba-catalog-card__link { color: var(--accent); }
 
-/* Portrait image/video hero (about, atelier, collection pages) */
+/* Auto-fill card grid (Elysian Cut family grid) */
+.ba-card-grid--auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 40px 32px;
+}
+.ba-card--square .ba-card__media { aspect-ratio: 1; }
+
+/* Wide content section (Elysian Cut editorial) */
+.ba-editorial-section {
+  padding: 0 2rem 96px;
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.ba-editorial-section__header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+.ba-editorial-section__header h2 {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+
+/* Portrait hero + product grid + section divider (shared across collection, jewelry pages) */
 .ba-portrait-hero {
   position: relative;
   width: 100%;
@@ -1919,22 +2015,3 @@ body.menu-open { overflow: hidden; }
   color: var(--ink);
   margin: 0;
 }
-
-/* ── 27. RESPONSIVE ADDITIONS ─────────────────────────────── */
-/* ── 28. PAPER CTA (light background variant) ─────────────── */
-.ba-cta--paper {
-  background: var(--paper);
-  color: var(--ink);
-  text-align: center;
-  padding: clamp(3rem, 6vw, 6rem) clamp(1.25rem, 5vw, 4rem);
-}
-.ba-cta--paper .ba-cta__eyebrow { color: var(--accent); }
-.ba-cta--paper .ba-cta__title { color: var(--ink); }
-.ba-cta--paper .ba-cta__body { color: var(--ink-soft); }
-.ba-cta--paper .ba-cta__btn {
-  border-color: var(--ink);
-  color: var(--ink);
-  background: transparent;
-}
-.ba-cta--paper .ba-cta__btn:hover { background: var(--ink); color: var(--white); }
-

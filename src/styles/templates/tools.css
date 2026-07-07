@@ -1,0 +1,188 @@
+/* ============================================================
+   BEZ AMBAR — Tools/Utility Pages Template
+   Pages: /video-gallery, /ring-size-chart, /catalogs
+   ============================================================ */
+
+.vg-hero {
+  padding: 140px 2rem 72px;
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto;
+}
+.vg-hero__eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent, #95826b);
+  margin-bottom: 20px;
+}
+.vg-hero__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 6vw, 60px);
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  color: var(--ink, #1a1a1a);
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+.vg-hero__lede {
+  font-family: 'EB Garamond', serif;
+  font-size: 19px;
+  line-height: 1.65;
+  color: var(--ink, #1a1a1a);
+  opacity: 0.7;
+}
+
+.vg-cat-bar {
+  position: sticky;
+  top: 64px;
+  z-index: 40;
+  background: #fff;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 clamp(1rem, 4vw, 3rem);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.vg-cat-bar::-webkit-scrollbar { display: none; }
+
+.vg-cat-link {
+  flex-shrink: 0;
+  display: block;
+  padding: 16px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color .2s, border-color .2s;
+  white-space: nowrap;
+}
+.vg-cat-link.active,
+.vg-cat-link:hover { color: var(--ink, #1a1a1a); border-bottom-color: var(--accent, #95826b); }
+
+.vg-cat-item { position: relative; }
+.vg-mega-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 640px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 8px 32px rgba(0,0,0,.08);
+  padding: 32px;
+  grid-auto-flow: column;
+  gap: 32px;
+  z-index: 200;
+}
+.vg-cat-item:hover .vg-mega-dropdown,
+.vg-cat-item:focus-within .vg-mega-dropdown { display: grid; }
+.vg-mega-col h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  margin-bottom: 12px;
+}
+.vg-mega-col a {
+  display: block;
+  font-family: 'EB Garamond', serif;
+  font-size: 16px;
+  color: var(--ink, #1a1a1a);
+  text-decoration: none;
+  line-height: 2;
+  opacity: 0.7;
+  transition: opacity .15s;
+}
+.vg-mega-col a:hover { opacity: 1; }
+
+.vg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 2px;
+  padding: 2px;
+}
+
+.video-card {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1;
+  background: #0d0d0d;
+  display: block;
+  text-decoration: none;
+}
+.video-card[hidden] { display: none; }
+.video-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+.video-card:hover .video-thumb { transform: scale(1.03); }
+.play-btn {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity .2s;
+}
+.play-btn svg {
+  width: 40px; height: 40px;
+  fill: rgba(255,255,255,0.9);
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,.5));
+}
+.video-card:hover .play-btn { opacity: 1; }
+.video-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 24px 16px 16px;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  opacity: 0;
+  transition: opacity .2s;
+}
+.video-card:hover .video-overlay { opacity: 1; }
+.video-overlay h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0;
+}
+
+/* Phase 3 placeholder */
+.vg-placeholder {
+  grid-column: 1 / -1;
+  padding: 80px 2rem;
+  text-align: center;
+}
+.vg-placeholder p {
+  font-family: 'EB Garamond', serif;
+  font-size: 18px;
+  opacity: 0.5;
+  margin-bottom: 20px;
+}
+.vg-placeholder a {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink, #1a1a1a);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent, #95826b);
+  padding-bottom: 2px;
+}
