@@ -105,7 +105,7 @@ const structuredData = [
           {p.data.heroImage ? (
             <img src={p.data.heroImage} alt={p.data.title} class="ba-jewelry-card__img" loading="lazy" />
           ) : (
-            <div class="ba-jewelry-card__img" style="background:var(--paper);" />
+            <div class="ba-jewelry-card__img" />
           )}
           <div class="ba-jewelry-card__overlay">
             <p class="ba-jewelry-card__ref">{p.data.refCode}</p>

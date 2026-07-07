@@ -14,6 +14,7 @@ interface Props {
   pageType?: 'website' | 'product' | 'article';
   structuredData?: object | object[];
   theme?: 'light' | 'dark';
+  headerLight?: boolean;
 }
 
 const {
@@ -25,6 +26,7 @@ const {
   pageType = 'website',
   structuredData,
   theme = 'light',
+  headerLight = false,
 } = Astro.props;
 
 const sdArray = structuredData
@@ -89,7 +91,7 @@ const sdArray = structuredData
 
   <!-- Global styles bundled by Astro via frontmatter import -->
 </head>
-<body class={theme === 'dark' ? 'page-dark' : ''}>
+<body class={[theme === 'dark' ? 'page-dark' : '', headerLight ? 'page-header-light' : ''].filter(Boolean).join(' ')}>
   <!-- GTM noscript — placeholder -->
   <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
 

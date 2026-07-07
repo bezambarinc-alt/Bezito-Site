@@ -79,6 +79,10 @@ body.page-dark .ba-footer__copy,
 body.page-dark .ba-footer__legal a { color: var(--white); }
 body.page-dark .ba-footer__brand { border-right-color: var(--dark-border); }
 
+/* Pages with no dark hero — header starts in ink color */
+body.page-header-light .ba-header { color: var(--ink); }
+body.page-header-light .ba-header.is-solid { background: var(--white); color: var(--ink); }
+
 /* ── 4. UTILITY ───────────────────────────────────────────── */
 .center { text-align: center; }
 
@@ -1189,6 +1193,12 @@ body.menu-open { overflow: hidden; }
 }
 .ba-inner-hero--light .ba-inner-hero__back:hover { color: var(--ink); }
 .ba-inner-hero--light .ba-inner-hero__count { color: var(--ink-muted); }
+.ba-inner-hero--narrow {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 140px 2rem 64px;
+  background: var(--white);
+}
 
 /* ── 21. JEWELRY 3-COL GRID (category pages) ─────────────── */
 /* lv-collection-grid stays for the 5-col collection index    */
@@ -1219,6 +1229,7 @@ body.menu-open { overflow: hidden; }
   object-fit: cover;
   transition: transform 0.6s ease;
   display: block;
+  background: var(--paper);
 }
 .ba-jewelry-card__overlay {
   position: absolute;
@@ -1597,6 +1608,7 @@ body.menu-open { overflow: hidden; }
   background: var(--paper);
   padding: 28px;
 }
+.ba-info-card--solo { margin-bottom: 24px; }
 .ba-info-card h3 {
   font-family: var(--sans);
   font-size: 15px;
@@ -1777,7 +1789,7 @@ body.menu-open { overflow: hidden; }
   font-weight: 500;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: #f4efe5;
+  color: var(--accent-warm);
   margin-bottom: 20px;
   text-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }

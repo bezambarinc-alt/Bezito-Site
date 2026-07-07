@@ -129,7 +129,7 @@
   justify-content: flex-end;
   align-items: center;
   text-align: center;
-  padding: 0 24px calc(12vh - 25px);
+  padding: 0 24px 40px;
   background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 65%, rgba(0,0,0,0.5) 100%);
   color: var(--white);
   pointer-events: none;
@@ -255,7 +255,7 @@
 .segment__cta:hover { color: var(--accent); border-color: var(--accent); }
 .segment.segment--centered {
   display: block;
-  padding: 100px clamp(40px,5vw,80px) clamp(6rem,10vw,9rem) !important;
+  padding: 120px clamp(40px,5vw,80px) clamp(6rem,10vw,9rem);
   text-align: center;
 }
 .segment__content.segment__content--wide {

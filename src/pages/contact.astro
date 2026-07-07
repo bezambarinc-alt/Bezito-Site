@@ -7,6 +7,7 @@ import '../styles/templates/contact.css';
   title="Contact & Consultation — Bez Ambar"
   description="Schedule a private consultation, inquire about a bespoke piece, or visit our Los Angeles atelier. We're here for you."
   canonical="https://bezambar.com/contact"
+  headerLight={true}
 >
   <section class="page-hero">
     <h1>Contact &amp; Consultation</h1>
@@ -42,7 +43,6 @@ import '../styles/templates/contact.css';
             <option value="">Select an option...</option>
             <option value="Bespoke Design">Bespoke Design</option>
             <option value="Family Signature Pendant">Family Signature Pendant</option>
-            <option value="The Heart Ruby">The Heart Ruby</option>
             <option value="Collection Piece">A Piece from the Collection</option>
             <option value="Engagement Ring">Engagement Ring</option>
             <option value="Atelier Visit">Visiting the Atelier</option>
@@ -56,7 +56,7 @@ import '../styles/templates/contact.css';
           <textarea id="message" name="message" placeholder="Tell us about what you're looking for..."></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary" style="width: 100%; border: none; cursor: pointer;">Send Message</button>
+        <button type="submit" class="btn btn-primary form-submit">Send Message</button>
       </form>
     </div>
 
@@ -71,21 +71,19 @@ import '../styles/templates/contact.css';
       <div class="contact-details-item">
         <h4>Phone</h4>
         <p><a href="tel:2136299191">(213) 629-9191</a></p>
-        <p style="font-size: 15px;">Monday – Friday, 10am – 6pm PT</p>
+        <p class="contact-meta">Monday – Friday, 10am – 6pm PT</p>
       </div>
 
       <div class="contact-details-item">
         <h4>Visit the Atelier</h4>
         <p>611 Wilshire Blvd<br>Los Angeles, CA 90017</p>
-        <p style="font-size: 15px; margin-top: 8px;">By appointment only</p>
+        <p class="contact-meta">By appointment only</p>
       </div>
 
-      <div class="contact-details-item" style="margin-top: 40px; padding: 30px; background: rgba(0,0,0,0.04);">
+      <div class="contact-details-item contact-consultation">
         <h4>Book a Private Consultation</h4>
         <p>Meet with Bez or a senior advisor to discuss your vision. Available in person at our LA atelier or by video call.</p>
-        <p style="margin-top: 15px;">
-          <a href="#contact-form" class="btn btn-primary" style="display: inline-block; padding: 12px 30px;">Send an Inquiry</a>
-        </p>
+        <p><a href="#contact-form" class="btn btn-primary">Send an Inquiry</a></p>
       </div>
     </div>
   </section>
