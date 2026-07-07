@@ -8,12 +8,11 @@ const wishlistSvg = `<svg class="lv-card-wishlist" viewBox="0 0 24 24" fill="non
   title="Collection — Luxury Diamond Jewelry | Bez Ambar"
   description="Browse the complete Bez Ambar collection — flex bracelets, engagement rings, wedding bands, necklaces, earrings and pendants. Made in Los Angeles."
   canonical="https://bezambar.com/collection"
-  theme="dark"
 >
 
 
 <!-- Category Bar -->
-<div class="lv-collection-bar" style="padding-top:84px;">
+<div class="lv-collection-bar ba-below-header">
   <div class="lv-cat-dropdown" id="catDropdown">
     <button onclick="document.getElementById('catDropdown').classList.toggle('open')">
       <span id="catLabel">All Jewelry</span>
@@ -23,15 +22,15 @@ const wishlistSvg = `<svg class="lv-card-wishlist" viewBox="0 0 24 24" fill="non
       <span class="cat-label">Categories</span>
       <a href="#" class="active-cat" onclick="filterLV('all', 'All Jewelry', event)">All Jewelry</a>
       <a href="#" onclick="filterLV('rings', 'Rings', event)">Rings</a>
-      <a href="#" onclick="filterLV('engagement-rings', 'Engagement Rings', event)" style="padding-left:28px;font-size:11px;">Engagement Rings</a>
-      <a href="#" onclick="filterLV('wedding-bands', 'Wedding Bands', event)" style="padding-left:28px;font-size:11px;">Wedding Bands</a>
-      <a href="#" onclick="filterLV('mens-wedding-bands', 'Men\'s Wedding Bands', event)" style="padding-left:28px;font-size:11px;">Men's Wedding Bands</a>
+      <a href="#" onclick="filterLV('engagement-rings', 'Engagement Rings', event)" class="lv-cat-sub">Engagement Rings</a>
+      <a href="#" onclick="filterLV('wedding-bands', 'Wedding Bands', event)" class="lv-cat-sub">Wedding Bands</a>
+      <a href="#" onclick="filterLV('mens-wedding-bands', 'Men\'s Wedding Bands', event)" class="lv-cat-sub">Men's Wedding Bands</a>
       <a href="#" onclick="filterLV('pendants', 'Pendants', event)">Pendants</a>
       <a href="#" onclick="filterLV('necklaces', 'Necklaces', event)">Necklaces</a>
       <a href="#" onclick="filterLV('earrings', 'Earrings', event)">Earrings</a>
-      <a href="#" onclick="filterLV('stud-earrings', 'Stud Earrings', event)" style="padding-left:28px;font-size:11px;">Stud Earrings</a>
-      <a href="#" onclick="filterLV('hug-earrings', 'Hug Earrings', event)" style="padding-left:28px;font-size:11px;">Hug Earrings</a>
-      <a href="#" onclick="filterLV('hoop-earrings', 'Hoop Earrings', event)" style="padding-left:28px;font-size:11px;">Hoop Earrings</a>
+      <a href="#" onclick="filterLV('stud-earrings', 'Stud Earrings', event)" class="lv-cat-sub">Stud Earrings</a>
+      <a href="#" onclick="filterLV('hug-earrings', 'Hug Earrings', event)" class="lv-cat-sub">Hug Earrings</a>
+      <a href="#" onclick="filterLV('hoop-earrings', 'Hoop Earrings', event)" class="lv-cat-sub">Hoop Earrings</a>
       <a href="#" onclick="filterLV('bracelets', 'Bracelets', event)">Bracelets</a>
     </div>
   </div>
@@ -484,160 +483,8 @@ const wishlistSvg = `<svg class="lv-card-wishlist" viewBox="0 0 24 24" fill="non
 
 </div>
 
-<style is:global>
-  /* ===== LV COLLECTION BAR ===== */
-  .lv-collection-bar {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 20px 40px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .lv-cat-dropdown { position: relative; }
-  .lv-cat-dropdown > button {
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #fff;
-    padding: 8px 0;
-  }
-  .lv-cat-dropdown > button svg { width: 10px; height: 10px; transition: transform 0.3s; }
-  .lv-cat-dropdown.open > button svg { transform: rotate(180deg); }
-  .lv-cat-menu {
-    position: absolute;
-    top: calc(100% + 6px);
-    left: 0;
-    background: #1a1a1a;
-    border: 1px solid rgba(255,255,255,0.08);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-    min-width: 240px;
-    padding: 16px 0;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(6px);
-    transition: all 0.25s ease;
-    z-index: 50;
-  }
-  .lv-cat-dropdown.open .lv-cat-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-  .lv-cat-menu .cat-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #bbb;
-    padding: 0 24px 10px;
-    display: block;
-  }
-  .lv-cat-menu a {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    color: #555;
-    padding: 9px 24px;
-    transition: all 0.2s;
-    text-decoration: none;
-  }
-  .lv-cat-menu a:hover { background: #222; color: #fff; }
-  .lv-cat-menu a.active-cat { font-weight: 600; color: #fff; }
-  .lv-cat-menu a.active-cat::after { content: '✓'; font-size: 12px; }
+<!-- All lv-* styles are in global.css §15, §18, §19 — no page-level styles needed -->
 
-  /* ===== PRODUCT GRID ===== */
-  .lv-collection-grid {
-    width: 100%;
-    margin: 20px 0 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1px;
-    background: #0d0d0d;
-  }
-  .lv-product-card {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    background: #141414;
-    transition: opacity 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-  .lv-product-card:hover { opacity: 0.92; }
-  .lv-product-card .lv-card-img {
-    aspect-ratio: 3/4.2;
-    overflow: hidden;
-    background: #141414;
-  }
-  .lv-product-card .lv-card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-  .lv-product-card:hover .lv-card-img img { transform: scale(1.04); }
-  .lv-product-card .lv-card-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 40px 16px 18px;
-    background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 60%, transparent 100%);
-    z-index: 1;
-    pointer-events: none;
-  }
-  .lv-product-card .lv-card-info h3 {
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    line-height: 1.4;
-    margin-bottom: 4px;
-    color: #fff;
-    text-shadow: 0 1px 6px rgba(0,0,0,0.5);
-  }
-  .lv-product-card .lv-card-info .lv-card-price {
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    color: rgba(255,255,255,0.85);
-    text-shadow: 0 1px 6px rgba(0,0,0,0.5);
-  }
-  .lv-product-card .lv-card-wishlist {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    width: 22px;
-    height: 22px;
-    color: rgba(255,255,255,0.7);
-    cursor: pointer;
-    transition: color 0.3s;
-    z-index: 2;
-  }
-  .lv-product-card .lv-card-wishlist:hover { color: #fff; }
-
-  /* Responsive */
-  @media (max-width: 1200px) { .lv-collection-grid { grid-template-columns: repeat(4, 1fr); } }
-  @media (max-width: 900px) { .lv-collection-grid { grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 600px) {
-    .lv-collection-grid { grid-template-columns: repeat(2, 1fr); gap: 1px; }
-    .lv-collection-bar { padding: 15px 20px 5px; }
-  }
-</style>
 
 <script>
   function filterLV(category, label, e) {

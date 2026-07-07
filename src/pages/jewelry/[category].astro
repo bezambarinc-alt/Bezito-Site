@@ -87,10 +87,9 @@ const structuredData = [
   description={page.description}
   canonical={`https://bezambar.com/jewelry/${category}`}
   structuredData={structuredData}
-  theme="dark"
 >
 
-<section class="ba-inner-hero">
+<section class="ba-inner-hero--light">
   <a href="/collection" class="ba-inner-hero__back">&larr; All Jewelry</a>
   <span class="ba-inner-hero__eyebrow">Bez Ambar</span>
   <h1>{page.label}</h1>
@@ -98,26 +97,26 @@ const structuredData = [
   <p class="ba-inner-hero__count">{products.length} {products.length === 1 ? 'piece' : 'pieces'}</p>
 </section>
 
-<div class="ba-dark-grid-wrap">
+<div class="ba-jewelry-grid-wrap">
   {products.length > 0 ? (
-    <div class="ba-dark-grid">
+    <div class="ba-jewelry-grid">
       {products.map(p => (
-        <a href={p.data.prettyUrl} class="ba-dark-card">
+        <a href={p.data.prettyUrl} class="ba-jewelry-card">
           {p.data.heroImage ? (
-            <img src={p.data.heroImage} alt={p.data.title} class="ba-dark-card__img" loading="lazy" />
+            <img src={p.data.heroImage} alt={p.data.title} class="ba-jewelry-card__img" loading="lazy" />
           ) : (
-            <div class="ba-dark-card__img" style="background:var(--dark-raised);" />
+            <div class="ba-jewelry-card__img" style="background:var(--paper);" />
           )}
-          <div class="ba-dark-card__overlay">
-            <p class="ba-dark-card__ref">{p.data.refCode}</p>
-            <p class="ba-dark-card__name">{p.data.title}</p>
-            {p.data.subtitle && <p class="ba-dark-card__sub">{p.data.subtitle}</p>}
+          <div class="ba-jewelry-card__overlay">
+            <p class="ba-jewelry-card__ref">{p.data.refCode}</p>
+            <p class="ba-jewelry-card__name">{p.data.title}</p>
+            {p.data.subtitle && <p class="ba-jewelry-card__sub">{p.data.subtitle}</p>}
           </div>
         </a>
       ))}
     </div>
   ) : (
-    <p class="ba-dark-empty">No pieces currently available in this category.</p>
+    <p class="ba-jewelry-empty">No pieces currently available in this category.</p>
   )}
 </div>
 

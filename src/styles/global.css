@@ -149,7 +149,7 @@ body.page-dark .ba-footer__brand { border-right-color: var(--dark-border); }
   width: 100%;
   height: 100%;
   min-height: 300px;
-  background: linear-gradient(135deg, var(--dark-raised) 0%, var(--dark-surface) 100%);
+  background: linear-gradient(135deg, var(--paper) 0%, #e8e4de 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -178,7 +178,7 @@ body.page-dark .ba-footer__brand { border-right-color: var(--dark-border); }
   transition: all 0.3s;
 }
 .btn-primary { background: var(--ink); color: var(--accent); }
-.btn-primary:hover { background: var(--dark-raised); }
+.btn-primary:hover { background: #2a2a2a; }
 .btn-secondary {
   background: transparent;
   color: var(--accent);
@@ -204,7 +204,7 @@ body.page-dark .ba-footer__brand { border-right-color: var(--dark-border); }
   cursor: pointer;
   transition: background 0.3s;
 }
-.btn-ink:hover { background: var(--dark-raised); }
+.btn-ink:hover { background: #2a2a2a; }
 
 /* Ghost border button — works on both light and dark */
 .btn-ghost {
@@ -384,7 +384,7 @@ body.page-dark .ba-footer__brand { border-right-color: var(--dark-border); }
 .ba-segment--reverse > * { direction: ltr; }
 .ba-segment__media {
   overflow: hidden;
-  background: var(--dark-bg);
+  background: var(--paper);
   position: relative;
 }
 .ba-segment__media video,
@@ -518,7 +518,7 @@ body.page-dark .ba-footer__brand { border-right-color: var(--dark-border); }
 /* journal.astro, contact.astro */
 .services-strip {
   background: var(--ink);
-  border-top: 1px solid var(--dark-border);
+  border-top: 1px solid rgba(255,255,255,0.1);
   padding: 48px 40px;
 }
 .services-inner {
@@ -545,8 +545,8 @@ body.page-dark .ba-footer__brand { border-right-color: var(--dark-border); }
   line-height: 1.6;
 }
 
-/* ── 15. LV COLLECTION GRID (dark catalog pages) ──────────── */
-/* /collection/index.astro — 5-col dark product grid */
+/* ── 15. LV COLLECTION GRID (collection/index.astro) ─────── */
+/* /collection/index.astro — 5-col product grid               */
 .lv-collection-bar {
   max-width: var(--max-w-xl);
   margin: 0 auto;
@@ -567,7 +567,7 @@ body.page-dark .ba-footer__brand { border-right-color: var(--dark-border); }
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--white);
+  color: var(--ink);
   padding: 8px 0;
 }
 .lv-cat-dropdown > button svg { width: 10px; height: 10px; transition: transform 0.3s; }
@@ -576,9 +576,9 @@ body.page-dark .ba-footer__brand { border-right-color: var(--dark-border); }
   position: absolute;
   top: calc(100% + 6px);
   left: 0;
-  background: var(--dark-raised);
-  border: 1px solid var(--dark-border);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  background: var(--white);
+  border: 1px solid var(--border-warm);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
   min-width: 240px;
   padding: 16px 0;
   opacity: 0;
@@ -608,9 +608,10 @@ body.page-dark .ba-footer__brand { border-right-color: var(--dark-border); }
   color: var(--ink-soft);
   padding: 9px 24px;
   transition: all 0.2s;
+  text-decoration: none;
 }
-.lv-cat-menu a:hover { background: #222; color: var(--white); }
-.lv-cat-menu a.active-cat { font-weight: 600; color: var(--white); }
+.lv-cat-menu a:hover { background: var(--paper); color: var(--ink); }
+.lv-cat-menu a.active-cat { font-weight: 600; color: var(--ink); }
 .lv-cat-menu a.active-cat::after { content: '✓'; font-size: 12px; }
 .lv-filter-btn {
   font-family: var(--sans);
@@ -619,7 +620,7 @@ body.page-dark .ba-footer__brand { border-right-color: var(--dark-border); }
   letter-spacing: 0.08em;
   text-transform: uppercase;
   background: none;
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid var(--border-warm);
   padding: 8px 18px;
   cursor: pointer;
   display: flex;
@@ -628,7 +629,7 @@ body.page-dark .ba-footer__brand { border-right-color: var(--dark-border); }
   color: var(--ink-muted);
   transition: all 0.3s;
 }
-.lv-filter-btn:hover { border-color: var(--white); color: var(--white); }
+.lv-filter-btn:hover { border-color: var(--ink); color: var(--ink); }
 
 .lv-subcat-bar {
   max-width: var(--max-w-xl);
@@ -648,7 +649,7 @@ body.page-dark .ba-footer__brand { border-right-color: var(--dark-border); }
   align-items: center;
   gap: 10px;
   text-decoration: none;
-  color: var(--white);
+  color: var(--ink);
   min-width: 80px;
   cursor: pointer;
   transition: opacity 0.3s;
@@ -663,7 +664,7 @@ body.page-dark .ba-footer__brand { border-right-color: var(--dark-border); }
   width: 64px; height: 64px;
   border-radius: 50%;
   overflow: hidden;
-  background: var(--dark-raised);
+  background: var(--paper);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -676,29 +677,29 @@ body.page-dark .ba-footer__brand { border-right-color: var(--dark-border); }
   letter-spacing: 0.02em;
   text-align: center;
   white-space: nowrap;
-  color: var(--white);
+  color: var(--ink-soft);
 }
 .lv-collection-grid {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 1px;
-  background: var(--dark-bg);
+  background: var(--border-warm);
 }
 .lv-product-card {
   display: block;
   text-decoration: none;
   color: inherit;
-  background: var(--dark-surface);
+  background: var(--paper);
   transition: opacity 0.3s;
   position: relative;
   overflow: hidden;
 }
-.lv-product-card:hover { opacity: 0.92; }
+.lv-product-card:hover { opacity: 0.9; }
 .lv-product-card .lv-card-img {
   aspect-ratio: 3/4.2;
   overflow: hidden;
-  background: var(--dark-surface);
+  background: var(--paper);
 }
 .lv-product-card .lv-card-img img {
   width: 100%; height: 100%;
@@ -714,7 +715,7 @@ body.page-dark .ba-footer__brand { border-right-color: var(--dark-border); }
   align-items: center;
   text-align: center;
   padding: 40px 16px 18px;
-  background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 60%, transparent 100%);
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
   z-index: 1;
   pointer-events: none;
 }
@@ -733,14 +734,14 @@ body.page-dark .ba-footer__brand { border-right-color: var(--dark-border); }
   font-family: var(--sans);
   font-size: 12px;
   font-weight: 400;
-  color: rgba(255,255,255,0.85);
+  color: rgba(255,255,255,0.9);
   text-shadow: 0 1px 6px rgba(0,0,0,0.5);
 }
 .lv-product-card .lv-card-wishlist {
   position: absolute;
   top: 12px; right: 12px;
   width: 22px; height: 22px;
-  color: rgba(255,255,255,0.7);
+  color: rgba(255,255,255,0.8);
   cursor: pointer;
   transition: color 0.3s;
   z-index: 2;
@@ -1188,55 +1189,57 @@ body.menu-open { overflow: hidden; }
 .ba-inner-hero--light .ba-inner-hero__eyebrow {
   color: var(--accent);
 }
+.ba-inner-hero--light .ba-inner-hero__back:hover { color: var(--ink); }
+.ba-inner-hero--light .ba-inner-hero__count { color: var(--ink-muted); }
 
-/* ── 21. DARK 3-COL GRID (category / blog / press pages) ──── */
+/* ── 21. JEWELRY 3-COL GRID (category pages) ─────────────── */
 /* lv-collection-grid stays for the 5-col collection index    */
-.ba-dark-grid-wrap {
+.ba-jewelry-grid-wrap {
   max-width: var(--max-w-xl);
   margin: 0 auto;
   padding: 0 0 80px;
 }
-.ba-dark-grid {
+.ba-jewelry-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
-  background: var(--dark-bg);
+  background: var(--border-warm);
 }
-.ba-dark-card {
+.ba-jewelry-card {
   position: relative;
-  background: var(--dark-surface);
+  background: var(--paper);
   text-decoration: none;
   display: block;
   aspect-ratio: 3/4;
   overflow: hidden;
   color: inherit;
 }
-.ba-dark-card:hover .ba-dark-card__img { transform: scale(1.04); }
-.ba-dark-card__img {
+.ba-jewelry-card:hover .ba-jewelry-card__img { transform: scale(1.04); }
+.ba-jewelry-card__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.6s ease;
   display: block;
 }
-.ba-dark-card__overlay {
+.ba-jewelry-card__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 55%);
+  background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 55%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   padding: 24px 20px;
 }
-.ba-dark-card__ref {
+.ba-jewelry-card__ref {
   font-family: var(--sans);
   font-size: 9px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
+  color: rgba(255,255,255,0.5);
   margin-bottom: 6px;
 }
-.ba-dark-card__name {
+.ba-jewelry-card__name {
   font-family: var(--serif);
   font-size: 22px;
   font-weight: 400;
@@ -1244,13 +1247,13 @@ body.menu-open { overflow: hidden; }
   line-height: 1.2;
   margin-bottom: 4px;
 }
-.ba-dark-card__sub {
+.ba-jewelry-card__sub {
   font-family: var(--sans);
   font-size: 10px;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.55);
   letter-spacing: 0.05em;
 }
-.ba-dark-empty {
+.ba-jewelry-empty {
   text-align: center;
   padding: 80px 20px;
   color: var(--ink-muted);
@@ -1749,7 +1752,7 @@ body.menu-open { overflow: hidden; }
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background: var(--dark-bg);
+  background: var(--ink);
 }
 .ba-portrait-hero img,
 .ba-portrait-hero video {
