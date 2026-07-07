@@ -17,7 +17,45 @@ import Layout from '../layouts/Layout.astro';
     <div id="curator-feed-default-feed-layout">
       <a href="https://curator.io" target="_blank" class="crt-logo crt-tag">Powered by Curator.io</a>
     </div>
+    <div id="journal-fallback" class="journal-fallback" style="display:none">
+      <p class="journal-fallback__msg">Instagram feed is loading&hellip; if it doesn't appear, <a href="https://www.instagram.com/bezambar/" target="_blank" rel="noopener">follow us on Instagram</a>.</p>
+      <div class="journal-fallback__grid">
+        <a href="https://www.instagram.com/bezambar/" target="_blank" rel="noopener" class="journal-fallback__card">
+          <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2019/08/5-carat-emerald-cut-engagement-ring-christina-ring.jpg" alt="Bez Ambar — @bezambar on Instagram" loading="lazy">
+        </a>
+        <a href="https://www.instagram.com/bezambar/" target="_blank" rel="noopener" class="journal-fallback__card">
+          <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2017/08/1-Carat-Diamond-Engagement-Ring-French-Paloma-white.jpg" alt="Bez Ambar — @bezambar on Instagram" loading="lazy">
+        </a>
+        <a href="https://www.instagram.com/bezambar/" target="_blank" rel="noopener" class="journal-fallback__card">
+          <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2014/12/bouquet-of-light-oval-diamond-center-engagement-ring-1bol-ov.jpg" alt="Bez Ambar — @bezambar on Instagram" loading="lazy">
+        </a>
+        <a href="https://www.instagram.com/bezambar/" target="_blank" rel="noopener" class="journal-fallback__card">
+          <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_600/BezAmbar-OldSite/2019/08/5-carat-emerald-cut-engagement-ring-christina-ring.jpg" alt="Bez Ambar — @bezambar on Instagram" loading="lazy">
+        </a>
+      </div>
+    </div>
   </section>
+
+<style is:global>
+  .journal-fallback { padding: 0 24px 60px; max-width: 1100px; margin: 0 auto; }
+  .journal-fallback__msg {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 16px;
+    color: #888;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .journal-fallback__msg a { color: var(--accent, #95826b); }
+  .journal-fallback__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .journal-fallback__card { display: block; overflow: hidden; aspect-ratio: 1; }
+  .journal-fallback__card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
+  .journal-fallback__card:hover img { transform: scale(1.04); }
+  @media (max-width: 700px) { .journal-fallback__grid { grid-template-columns: repeat(2, 1fr); } }
+</style>
 
   <section class="follow-cta">
     <p class="follow-cta__handle">@bezambar</p>
@@ -52,5 +90,14 @@ import Layout from '../layouts/Layout.astro';
     i = d.createElement(s); i.async = 1; i.charset = 'UTF-8';
     i.src = 'https://cdn.curator.io/published/8a90bee5-25c8-4b36-a23b-0db33a392762.js';
     e = d.getElementsByTagName(s)[0]; e.parentNode.insertBefore(i, e);
+
+    // Fallback: if curator hasn't injected feed items within 6s, show static grid
+    setTimeout(function () {
+      var feed = d.getElementById('curator-feed-default-feed-layout');
+      var fallback = d.getElementById('journal-fallback');
+      if (!feed || !fallback) return;
+      var hasItems = feed.querySelectorAll('.crt-post').length > 0;
+      if (!hasItems) fallback.style.display = 'block';
+    }, 6000);
   })();
 </script>

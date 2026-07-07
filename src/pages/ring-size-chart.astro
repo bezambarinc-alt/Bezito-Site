@@ -7,6 +7,157 @@ import Layout from '../layouts/Layout.astro';
   description="Find your perfect ring size with our US and international ring size chart, measurement guide, and professional fitting tips."
   canonical="https://bezambar.com/ring-size-chart"
 >
+
+<style is:global>
+  .rsc-hero {
+    padding: 140px 20px 60px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0,0,0,.06);
+  }
+  .rsc-hero h1 {
+    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 300;
+    color: var(--ink, #1a1a1a);
+    margin: 0 0 16px;
+    letter-spacing: 0.02em;
+  }
+  .rsc-hero p {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    color: #666;
+    max-width: 580px;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+  .rsc-contact-note {
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    color: #999;
+    padding: 20px;
+  }
+  .rsc-contact-note a { color: var(--accent, #95826b); text-decoration: none; }
+  .rsc-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 24px;
+    border-bottom: 1px solid rgba(0,0,0,.06);
+  }
+  .rsc-section h2 {
+    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--ink, #1a1a1a);
+    margin: 0 0 8px;
+    letter-spacing: 0.02em;
+  }
+  .rsc-section > p { font-family: 'EB Garamond', Georgia, serif; font-size: 17px; color: #666; line-height: 1.65; margin-bottom: 32px; }
+  .rsc-methods {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 40px;
+  }
+  .rsc-method {
+    background: #faf7f2;
+    padding: 28px;
+  }
+  .rsc-method h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink, #1a1a1a);
+    margin: 0 0 16px;
+  }
+  .rsc-method ol {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.75;
+    color: #555;
+    padding-left: 20px;
+    margin: 0;
+  }
+  .rsc-tips {
+    background: #faf7f2;
+    padding: 28px;
+    margin-bottom: 24px;
+  }
+  .rsc-tips h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink, #1a1a1a);
+    margin: 0 0 16px;
+  }
+  .rsc-tips ul {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.75;
+    color: #555;
+    padding-left: 20px;
+    margin: 0;
+  }
+  .rsc-table-wrap { overflow-x: auto; margin: 24px 0; }
+  .rsc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+  }
+  .rsc-table th {
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink, #1a1a1a);
+    padding: 12px 16px;
+    border-bottom: 2px solid rgba(0,0,0,.1);
+    text-align: left;
+    white-space: nowrap;
+  }
+  .rsc-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+    color: #555;
+  }
+  .rsc-table .rsc-highlight td { background: #faf7f2; color: var(--ink, #1a1a1a); font-weight: 500; }
+  .rsc-section strong { color: var(--ink, #1a1a1a); }
+  .rsc-cta-section {
+    text-align: center;
+    padding: 72px 20px;
+    background: var(--ink, #1a1a1a);
+    color: #fff;
+  }
+  .rsc-cta-section h2 {
+    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
+    font-size: clamp(24px, 3.5vw, 36px);
+    font-weight: 300;
+    color: #fff;
+    margin: 0 0 12px;
+  }
+  .rsc-cta-section p { font-family: 'EB Garamond', Georgia, serif; font-size: 17px; color: rgba(255,255,255,0.6); margin: 0 0 28px; }
+  .rsc-cta-section a {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.35);
+    padding: 14px 36px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .rsc-cta-section a:hover { border-color: var(--accent, #95826b); color: var(--accent, #95826b); }
+  @media (max-width: 600px) { .rsc-methods { grid-template-columns: 1fr; } }
+</style>
+
   <div class="rsc-hero">
     <h1>Ring Size Chart</h1>
     <p>Finding your perfect ring size is essential for a comfortable fit. Use our guide below to measure your ring size at home, or visit us in Los Angeles for a professional fitting.</p>

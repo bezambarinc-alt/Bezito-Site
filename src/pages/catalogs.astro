@@ -7,6 +7,135 @@ import Layout from '../layouts/Layout.astro';
   description="Explore Bez Ambar's curated collection catalogs featuring the Flex Collection, Blaze® diamond cuts, and bespoke fine jewelry from Los Angeles."
   canonical="https://bezambar.com/catalogs"
 >
+
+<style is:global>
+  .catalogs-hero {
+    padding: 140px 20px 72px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0,0,0,.06);
+  }
+  .catalogs-hero h1 {
+    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 300;
+    color: var(--ink, #1a1a1a);
+    margin: 0 0 16px;
+    letter-spacing: 0.02em;
+  }
+  .catalogs-hero p {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+
+  .catalogs-section {
+    padding: 72px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    border-bottom: 1px solid rgba(0,0,0,.06);
+  }
+  .catalog-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .catalog-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0,0,0,.08);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.25s;
+    overflow: hidden;
+  }
+  .catalog-card:hover { border-color: var(--accent, #95826b); }
+  .catalog-card-visual {
+    background: #faf7f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 32px;
+  }
+  .catalog-icon { width: 80px; height: 80px; }
+  .catalog-card-content {
+    padding: 32px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .catalog-card-content h2 {
+    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--ink, #1a1a1a);
+    margin: 0 0 12px;
+    letter-spacing: 0.02em;
+  }
+  .catalog-card-content p {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #666;
+    margin: 0 0 24px;
+    flex: 1;
+  }
+  .catalog-card-button {
+    display: inline-block;
+    align-self: flex-start;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink, #1a1a1a);
+    border-bottom: 1px solid var(--accent, #95826b);
+    padding-bottom: 3px;
+    transition: color 0.2s;
+  }
+  .catalog-card:hover .catalog-card-button { color: var(--accent, #95826b); }
+
+  .catalogs-cta-section {
+    text-align: center;
+    padding: 72px 20px;
+    background: var(--ink, #1a1a1a);
+  }
+  .catalogs-cta-section h2 {
+    font-family: var(--serif, 'Cormorant Garamond', Georgia, serif);
+    font-size: clamp(24px, 3.5vw, 36px);
+    font-weight: 300;
+    color: #fff;
+    margin: 0 0 12px;
+  }
+  .catalogs-cta-section p {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 17px;
+    color: rgba(255,255,255,0.6);
+    margin: 0 0 28px;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.65;
+  }
+  .catalogs-cta-button {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.35);
+    padding: 14px 36px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .catalogs-cta-button:hover { border-color: var(--accent, #95826b); color: var(--accent, #95826b); }
+  @media (max-width: 700px) { .catalog-cards-grid { grid-template-columns: 1fr; } }
+</style>
+
   <section class="catalogs-hero">
     <h1>Catalogs</h1>
     <p>Explore our curated collections of fine diamond jewelry. Browse our catalogs featuring our most celebrated designs and proprietary cuts.</p>

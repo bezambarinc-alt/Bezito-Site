@@ -15,7 +15,7 @@ import Layout from '../layouts/Layout.astro';
   <section class="contact-layout">
     <div class="contact-form">
       <h2>Send Us a Message</h2>
-      <form action="https://formsubmit.co/bez@bezambar.com" method="POST">
+      <form id="contact-form" action="https://formsubmit.co/bez@bezambar.com" method="POST">
         <input type="hidden" name="_subject" value="Website Inquiry — Bez Ambar">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_next" value="https://bezambar.com/contact">
@@ -83,7 +83,7 @@ import Layout from '../layouts/Layout.astro';
         <h4>Book a Private Consultation</h4>
         <p>Meet with Bez or a senior advisor to discuss your vision. Available in person at our LA atelier or by video call.</p>
         <p style="margin-top: 15px;">
-          <a href="mailto:bez@bezambar.com?subject=Private%20Consultation%20Request" class="btn btn-primary" style="display: inline-block; padding: 12px 30px;">Request a Time</a>
+          <a href="#contact-form" class="btn btn-primary" style="display: inline-block; padding: 12px 30px;">Send an Inquiry</a>
         </p>
       </div>
     </div>
