@@ -13,6 +13,7 @@ interface Props {
   ogType?: string;
   pageType?: 'website' | 'product' | 'article';
   structuredData?: object | object[];
+  theme?: 'light' | 'dark';
 }
 
 const {
@@ -23,6 +24,7 @@ const {
   ogType = 'website',
   pageType = 'website',
   structuredData,
+  theme = 'light',
 } = Astro.props;
 
 const sdArray = structuredData
@@ -87,7 +89,7 @@ const sdArray = structuredData
 
   <!-- Global styles bundled by Astro via frontmatter import -->
 </head>
-<body>
+<body class={theme === 'dark' ? 'page-dark' : ''}>
   <!-- GTM noscript — placeholder -->
   <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
 
