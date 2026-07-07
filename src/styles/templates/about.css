@@ -613,7 +613,7 @@
 .color-grid { display: flex; gap: 8px; margin: 16px 0; }
 .color-sample {
   width: 40px; height: 40px;
-  border: 1px solid #e0dcd5;
+  border: 1px solid var(--border-warm);
   background: var(--white);
   display: flex; align-items: center; justify-content: center;
   font-family: var(--sans);

@@ -6,7 +6,7 @@
 /* ---- Hero stack ---- */
 .hero-stack {
   position: relative;
-  background: #0d0d0d;
+  background: var(--dark-bg);
   height: 200vh;
 }
 .hero-pin {
@@ -21,7 +21,7 @@
 .hero {
   position: absolute;
   inset: 0;
-  background: #0d0d0d;
+  background: var(--dark-bg);
   transform: translateY(0);
   will-change: transform;
 }
@@ -50,7 +50,7 @@
   bottom: clamp(60px, 8vw, 110px);
   max-width: 560px;
   text-align: left;
-  color: #fff;
+  color: var(--white);
 }
 .hero__eyebrow {
   font-family: var(--sans);
@@ -103,7 +103,7 @@
   cursor: pointer;
   transition: all 0.3s;
 }
-.hero-dots__dot.is-active { background: #fff; transform: scale(1.4); }
+.hero-dots__dot.is-active { background: var(--white); transform: scale(1.4); }
 
 /* ---- Atelier portrait hero image ---- */
 .hero-image {
@@ -111,7 +111,7 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background: #0d0d0d;
+  background: var(--dark-bg);
 }
 .hero-image img {
   position: absolute;
@@ -131,7 +131,7 @@
   text-align: center;
   padding: 0 24px calc(12vh - 25px);
   background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 65%, rgba(0,0,0,0.5) 100%);
-  color: #fff;
+  color: var(--white);
   pointer-events: none;
 }
 .hero-image__eyebrow {
@@ -140,7 +140,7 @@
   font-weight: 500;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: #f4efe5;
+  color: var(--paper);
   margin-bottom: 20px;
   text-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
@@ -151,7 +151,7 @@
   letter-spacing: 0.08em;
   line-height: 1.15;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--white);
   margin: 0 auto 18px;
   max-width: 24ch;
   text-shadow: 0 2px 6px rgba(0,0,0,0.5);
@@ -162,7 +162,7 @@
   font-weight: 300;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: #c9b896;
+  color: var(--accent-warm);
   text-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 
@@ -194,7 +194,7 @@
   object-fit: cover;
 }
 .segment__media--placeholder {
-  background: #f6f1ea;
+  background: var(--paper);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -273,7 +273,7 @@
 /* ---- Cinematic stack ---- */
 .cinematic-stack {
   position: relative;
-  background: #0d0d0d;
+  background: var(--dark-bg);
   height: 200vh;
 }
 .cinematic-pin {
@@ -288,7 +288,7 @@
 .cinematic {
   position: absolute;
   inset: 0;
-  background: #0d0d0d;
+  background: var(--dark-bg);
   transform: translateY(0);
   will-change: transform;
 }
@@ -317,7 +317,7 @@
   bottom: clamp(60px, 8vw, 110px);
   max-width: 560px;
   text-align: left;
-  color: #fff;
+  color: var(--white);
 }
 .cinematic-dots {
   position: fixed;
@@ -361,10 +361,10 @@
 /* ---- Newsletter ---- */
 .newsletter {
   padding: clamp(60px, 10vw, 120px) 40px;
-  background: #fff;
+  background: var(--white);
   color: var(--ink);
   text-align: center;
-  border-top: 1px solid #e8e4de;
+  border-top: 1px solid var(--border-warm);
 }
 .newsletter h2 {
   font-family: var(--sans);
@@ -379,7 +379,7 @@
   font-family: var(--sans);
   font-size: 13px;
   font-weight: 400;
-  color: #4a4a4a;
+  color: var(--ink-soft);
   max-width: 520px;
   margin: 0 auto 36px;
   line-height: 1.85;
@@ -388,7 +388,7 @@
   display: flex;
   max-width: 480px;
   margin: 0 auto;
-  border-bottom: 1px solid #e8e4de;
+  border-bottom: 1px solid var(--border-warm);
 }
 .newsletter input {
   flex: 1;
@@ -400,7 +400,7 @@
   font-size: 13px;
   outline: 0;
 }
-.newsletter input::placeholder { color: #4a4a4a; }
+.newsletter input::placeholder { color: var(--ink-soft); }
 .newsletter button {
   background: transparent;
   border: 0;
@@ -419,7 +419,7 @@
   max-width: 900px;
   margin: 0 auto;
   padding: 96px 40px 64px;
-  border-top: 1px solid #e8e4de;
+  border-top: 1px solid var(--border-warm);
 }
 .ba-faq__eyebrow {
   font-family: var(--sans);
@@ -442,7 +442,7 @@
   margin-bottom: 48px;
 }
 .ba-faq__item {
-  border-bottom: 1px solid #e8e4de;
+  border-bottom: 1px solid var(--border-warm);
   padding: 22px 0;
 }
 .ba-faq__q {
@@ -457,7 +457,7 @@
   font-family: var(--serif);
   font-size: 15px;
   font-weight: 400;
-  color: #4a4a4a;
+  color: var(--ink-soft);
   margin: 0;
   line-height: 1.7;
 }
@@ -469,11 +469,11 @@
   padding: 40px 40px 96px;
   font-family: var(--serif);
   font-size: 14px;
-  color: #888;
+  color: var(--ink-muted);
   line-height: 1.75;
   text-align: center;
 }
-.ba-about strong { color: #4a4a4a; font-weight: 500; }
+.ba-about strong { color: var(--ink-soft); font-weight: 500; }
 
 /* ---- Responsive ---- */
 @media (max-width: 900px) {

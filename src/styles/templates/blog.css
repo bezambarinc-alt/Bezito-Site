@@ -306,7 +306,7 @@
   text-decoration: none;
   transition: background 0.3s ease;
 }
-.ba-post-cta__box a:hover { background: #e0dcd5; }
+.ba-post-cta__box a:hover { background: var(--border-warm); }
 
 .ba-related {
   max-width: var(--max-w);

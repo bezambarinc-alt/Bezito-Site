@@ -15,7 +15,7 @@
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--accent, #95826b);
+  color: var(--accent);
   margin-bottom: 20px;
 }
 .vg-hero__title {
@@ -23,7 +23,7 @@
   font-size: clamp(36px, 6vw, 60px);
   font-weight: 300;
   letter-spacing: 0.03em;
-  color: var(--ink, #1a1a1a);
+  color: var(--ink);
   margin-bottom: 20px;
   line-height: 1.1;
 }
@@ -31,7 +31,7 @@
   font-family: 'EB Garamond', serif;
   font-size: 19px;
   line-height: 1.65;
-  color: var(--ink, #1a1a1a);
+  color: var(--ink);
   opacity: 0.7;
 }
 
@@ -39,7 +39,7 @@
   position: sticky;
   top: 64px;
   z-index: 40;
-  background: #fff;
+  background: var(--white);
   border-bottom: 1px solid rgba(0,0,0,.08);
   display: flex;
   align-items: center;
@@ -59,14 +59,14 @@
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #8a8a8a;
+  color: var(--ink-muted);
   text-decoration: none;
   border-bottom: 2px solid transparent;
   transition: color .2s, border-color .2s;
   white-space: nowrap;
 }
 .vg-cat-link.active,
-.vg-cat-link:hover { color: var(--ink, #1a1a1a); border-bottom-color: var(--accent, #95826b); }
+.vg-cat-link:hover { color: var(--ink); border-bottom-color: var(--accent); }
 
 .vg-cat-item { position: relative; }
 .vg-mega-dropdown {
@@ -75,7 +75,7 @@
   top: 100%;
   left: 0;
   min-width: 640px;
-  background: #fff;
+  background: var(--white);
   border: 1px solid rgba(0,0,0,.08);
   box-shadow: 0 8px 32px rgba(0,0,0,.08);
   padding: 32px;
@@ -91,14 +91,14 @@
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #8a8a8a;
+  color: var(--ink-muted);
   margin-bottom: 12px;
 }
 .vg-mega-col a {
   display: block;
   font-family: 'EB Garamond', serif;
   font-size: 16px;
-  color: var(--ink, #1a1a1a);
+  color: var(--ink);
   text-decoration: none;
   line-height: 2;
   opacity: 0.7;
@@ -117,7 +117,7 @@
   position: relative;
   overflow: hidden;
   aspect-ratio: 1;
-  background: #0d0d0d;
+  background: var(--dark-bg);
   display: block;
   text-decoration: none;
 }
@@ -159,7 +159,7 @@
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--white);
   margin: 0;
 }
 
@@ -181,8 +181,8 @@
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ink, #1a1a1a);
+  color: var(--ink);
   text-decoration: none;
-  border-bottom: 1px solid var(--accent, #95826b);
+  border-bottom: 1px solid var(--accent);
   padding-bottom: 2px;
 }
