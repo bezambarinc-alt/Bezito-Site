@@ -283,6 +283,8 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
   align-items: center;
   gap: 8px;
   user-select: none;
+  min-height: 44px;
+  min-width: 44px;
 }
 .ba-header__hamburger {
   font-size: 16px;
@@ -1056,6 +1058,48 @@ body.menu-open { overflow: hidden; }
   list-style: none;
 }
 
+/* Back button — hidden on desktop, shown on mobile when sub-panel is active */
+.menu-back { display: none; }
+.menu-back__btn {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+}
+.menu-back__btn:hover { color: var(--ink); }
+
+/* Nav — mobile: single panel slide (≤768px) */
+@media (max-width: 768px) {
+  .menu-overlay { width: min(88vw, 340px); }
+  .menu-overlay.has-sub { width: min(88vw, 340px); }
+  .menu-col { flex: 0 0 min(88vw, 340px); width: min(88vw, 340px); }
+  .menu-col--root { transition: transform 0.3s ease; }
+  .menu-overlay.has-sub .menu-col--root { transform: translateX(-100%); }
+  .menu-col--sub.is-active { display: flex; flex-direction: column; }
+  .menu-back { display: block; padding: 16px 40px 8px; }
+  .menu-item { min-height: 44px; }
+}
+
+/* Nav — small phones: full-width overlay, tighter padding */
+@media (max-width: 480px) {
+  .menu-overlay,
+  .menu-overlay.has-sub { width: 92vw; max-width: 92vw; }
+  .menu-col { flex: 0 0 92vw; width: 92vw; }
+  .menu-item { padding: 12px 20px 12px 24px; }
+  .menu-section-label { padding: 18px 24px 6px; }
+  .menu-cta-item { padding: 28px 24px 0; }
+  .menu-back { padding: 16px 24px 8px; }
+  .menu-divider { margin: 8px 24px; }
+  .menu-overlay__close { left: 16px; }
+}
+
 /* ── 17. RESPONSIVE ────────────────────────────────────────── */
 @media (max-width: 1200px) {
   .lv-collection-grid { grid-template-columns: repeat(4, 1fr); }
@@ -1068,10 +1112,7 @@ body.menu-open { overflow: hidden; }
   .ba-segment--reverse { direction: ltr; }
   .ba-segment__media { aspect-ratio: 16/9; }
   .services-inner { grid-template-columns: repeat(2, 1fr); }
-  .ba-footer__cols {
-    grid-template-columns: 1fr 1fr;
-    gap: 40px 32px;
-  }
+  .ba-footer__cols { grid-template-columns: 1fr 1fr; gap: 40px 32px; }
   .ba-footer__brand {
     grid-column: 1 / -1;
     border-right: none;
@@ -1092,6 +1133,20 @@ body.menu-open { overflow: hidden; }
   .lv-collection-bar { padding: 15px 24px 0; }
 }
 
+@media (max-width: 768px) {
+  /* Header */
+  .ba-header__menu-label { display: none; } /* hamburger icon only */
+  /* Footer */
+  .ba-footer { padding: 56px 20px 0; }
+  .ba-footer__cols { grid-template-columns: 1fr 1fr; gap: 36px 24px; }
+  .ba-footer__brand { flex-direction: column; align-items: flex-start; }
+  /* Heroes */
+  .ba-light-hero { padding: 110px 20px 56px; }
+  .ba-inner-hero { padding: 120px 20px 48px; }
+  /* Catalog/collection bar */
+  .lv-collection-bar { padding: 15px 20px 0; }
+}
+
 @media (max-width: 640px) {
   .ba-header { padding: 0 1.25rem; }
   .ba-card-grid { grid-template-columns: 1fr; }
@@ -1099,7 +1154,6 @@ body.menu-open { overflow: hidden; }
   .services-inner { grid-template-columns: 1fr 1fr; }
   .ba-footer { padding: 48px 20px 0; }
   .ba-footer__cols { grid-template-columns: 1fr 1fr; gap: 32px 20px; }
-  .ba-footer__brand { flex-direction: column; align-items: flex-start; }
   .ba-footer__bottom { flex-direction: column; align-items: flex-start; gap: 12px; padding: 20px 0 28px; }
   .ba-footer__legal { flex-wrap: wrap; gap: 14px; }
   .lv-collection-bar { padding: 15px 20px 5px; }
@@ -1107,8 +1161,24 @@ body.menu-open { overflow: hidden; }
   .page-hero { padding: 70px 20px 50px; }
 }
 
+@media (max-width: 480px) {
+  /* Header — hide Contact link; accessible via nav menu CTA */
+  .ba-header__right { display: none; }
+  /* Footer — single column */
+  .ba-footer { padding: 40px 16px 0; }
+  .ba-footer__cols { grid-template-columns: 1fr; gap: 24px; }
+  .ba-footer__bottom { padding: 16px 0 24px; }
+  /* Grids */
+  .ba-info-grid { grid-template-columns: 1fr; }
+  .services-inner { grid-template-columns: 1fr; gap: 16px; }
+  /* Jewelry grid: 2-col stays (images are small enough) */
+  .lv-collection-grid { grid-template-columns: 1fr 1fr; }
+}
+
 @media (max-width: 380px) {
-  .ba-footer__cols { grid-template-columns: 1fr; }
+  /* Very small screens (iPhone SE) */
+  .ba-header__logo { letter-spacing: 0.1em; }
+  .ba-footer { padding: 36px 12px 0; }
 }
 
 /* ── 18. DARK INNER HERO ──────────────────────────────────── */

@@ -21,6 +21,7 @@ const currentPath = Astro.url.pathname;
 
   <!-- Jewelry: Named collections first, then category browse -->
   <ul class="menu-col menu-col--sub" data-col="jewelry">
+    <li class="menu-back"><button onclick="resetMenuCols()" class="menu-back__btn">&#8592; Back</button></li>
     <li class="menu-section-label">Collections</li>
     <li><a class="menu-item menu-item--collection" href="/collection/bloom">Bloom Collection</a></li>
     <li><span class="menu-item menu-item--soon">Dentelle Collection</span></li>
@@ -46,6 +47,7 @@ const currentPath = Astro.url.pathname;
 
   <!-- Atelier: brand story + resources -->
   <ul class="menu-col menu-col--sub" data-col="atelier">
+    <li class="menu-back"><button onclick="resetMenuCols()" class="menu-back__btn">&#8592; Back</button></li>
     <li><a class="menu-item" href="/about-bez-ambar">About Bez Ambar</a></li>
     <li><a class="menu-item" href="/diamond-education">Diamond Education</a></li>
     <li><a class="menu-item" href="/elysian-cut">Elysian Cut&trade;</a></li>
@@ -59,6 +61,7 @@ const currentPath = Astro.url.pathname;
 
   <!-- Service -->
   <ul class="menu-col menu-col--sub" data-col="service">
+    <li class="menu-back"><button onclick="resetMenuCols()" class="menu-back__btn">&#8592; Back</button></li>
     <li><a class="menu-item" href="/contact">Contact Us</a></li>
     <li><a class="menu-item" href="/contact?subject=bespoke">Bespoke Design</a></li>
     <li><a class="menu-item" href="/contact?subject=repairs">Repairs &amp; Cleaning</a></li>
@@ -82,7 +85,6 @@ const currentPath = Astro.url.pathname;
 
     if (!shouldOpen) resetMenuCols();
     if (shouldOpen) {
-      // Move focus into panel
       const firstItem = overlay.querySelector('.menu-item');
       if (firstItem) firstItem.focus();
     }
@@ -95,7 +97,6 @@ const currentPath = Astro.url.pathname;
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    // Sub-panel triggers
     document.querySelectorAll('.menu-item--has-sub').forEach(btn => {
       btn.addEventListener('click', () => {
         const target = btn.dataset.target;
@@ -109,7 +110,6 @@ const currentPath = Astro.url.pathname;
       });
     });
 
-    // Escape key closes menu
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && document.getElementById('menuOverlay')?.classList.contains('is-open')) {
         toggleMenu(true);
@@ -118,190 +118,5 @@ const currentPath = Astro.url.pathname;
   });
 
   window.toggleMenu = toggleMenu;
+  window.resetMenuCols = resetMenuCols;
 </script>
-
-<style>
-  .menu-overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 300px;
-    height: 100vh;
-    background: #fff;
-    z-index: 9999;
-    display: flex;
-    overflow: hidden;
-    transform: translateX(-100%);
-    transition: transform 0.35s ease, width 0.35s ease;
-    box-shadow: 4px 0 32px rgba(0,0,0,0.10);
-  }
-  .menu-overlay.is-open { transform: translateX(0); }
-  .menu-overlay.has-sub { width: 600px; max-width: 92vw; }
-
-  /* Close */
-  .menu-overlay__close {
-    position: absolute;
-    top: 22px; left: 24px;
-    background: none;
-    border: 0;
-    font-size: 24px;
-    color: var(--ink, #1a1a1a);
-    cursor: pointer;
-    line-height: 1;
-    padding: 4px 8px;
-    z-index: 5;
-    transition: opacity 0.2s;
-  }
-  .menu-overlay__close:hover { opacity: 0.45; }
-
-  /* Logo link */
-  .menu-overlay__logo {
-    position: absolute;
-    top: 27px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.4em;
-    color: var(--ink, #1a1a1a);
-    text-transform: uppercase;
-    text-decoration: none;
-    z-index: 4;
-    white-space: nowrap;
-    transition: opacity 0.2s;
-  }
-  .menu-overlay__logo:hover { opacity: 0.6; }
-
-  /* Columns */
-  .menu-col {
-    flex: 0 0 300px;
-    width: 300px;
-    height: 100vh;
-    overflow-y: auto;
-    padding: 88px 0 40px;
-    margin: 0;
-    list-style: none;
-    border-right: 1px solid rgba(0,0,0,0.06);
-  }
-  .menu-col:last-child { border-right: 0; }
-  .menu-col li { list-style: none; }
-  .menu-col--sub { display: none; }
-  .menu-col--sub.is-active { display: block; }
-
-  /* Root col: flex so CTA pushes to bottom */
-  .menu-col--root {
-    display: flex;
-    flex-direction: column;
-  }
-  .menu-cta-item {
-    margin-top: auto;
-    padding: 28px 40px 0;
-  }
-  .menu-cta {
-    display: inline-block;
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ink, #1a1a1a);
-    text-decoration: none;
-    border: 1px solid rgba(0,0,0,0.22);
-    padding: 13px 20px;
-    transition: border-color 0.2s, color 0.2s;
-    white-space: nowrap;
-  }
-  .menu-cta:hover {
-    border-color: var(--accent, #95826b);
-    color: var(--accent, #95826b);
-  }
-
-  /* Section labels */
-  .menu-section-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #ccc;
-    padding: 18px 40px 6px;
-    display: block;
-  }
-
-  /* Menu items */
-  .menu-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 11px 36px 11px 40px;
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: #888;
-    background: none;
-    border: 0;
-    cursor: pointer;
-    text-align: left;
-    text-decoration: none;
-    line-height: 1.4;
-    transition: color 0.15s;
-  }
-  .menu-item:hover,
-  .menu-item:focus-visible { color: var(--ink, #1a1a1a); outline: none; }
-
-  .menu-item--has-sub::after {
-    content: '›';
-    font-size: 18px;
-    font-weight: 300;
-    margin-left: 12px;
-    opacity: 0.5;
-    line-height: 1;
-    flex-shrink: 0;
-  }
-  .menu-item--collection {
-    color: var(--ink, #1a1a1a) !important;
-    font-weight: 500;
-  }
-  .menu-item--soon {
-    opacity: 0.3;
-    pointer-events: none;
-    cursor: default;
-    font-style: italic;
-  }
-
-  /* Dividers */
-  .menu-divider {
-    height: 1px;
-    background: rgba(0,0,0,0.06);
-    margin: 8px 40px;
-    list-style: none;
-  }
-
-  /* Backdrop */
-  .menu-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
-    z-index: 9998;
-  }
-  .menu-backdrop.is-open { opacity: 1; visibility: visible; }
-
-  :global(body.menu-open) { overflow: hidden; }
-
-  /* Mobile */
-  @media (max-width: 600px) {
-    /* On mobile sub-panel pushes full-width, root slides out */
-    .menu-overlay { width: 88vw; }
-    .menu-overlay.has-sub { width: 88vw; }
-    .menu-col { flex: 0 0 88vw; width: 88vw; }
-    .menu-col--root { transition: transform 0.3s ease; }
-    .menu-overlay.has-sub .menu-col--root { transform: translateX(-100%); }
-    .menu-col--sub.is-active { display: flex; flex-direction: column; }
-  }
-</style>
