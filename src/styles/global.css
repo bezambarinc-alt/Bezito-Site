@@ -21,10 +21,16 @@
   --dark-raised:  #1a1a1a;
   --dark-border:  rgba(255, 255, 255, 0.08);
 
-  /* Typography */
+  /* Typography — font stacks */
   --sans:  'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --serif: 'Lyon Text', 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
   --prose: 'Lyon Text', 'EB Garamond', 'Cormorant Garamond', Georgia, serif;
+
+  /* Type scale */
+  --type-display:  clamp(2.5rem, 5vw, 4rem);    /* hero headlines */
+  --type-heading:  clamp(1.75rem, 3vw, 2.5rem); /* h1 / section titles */
+  --type-subhead:  clamp(1.125rem, 2vw, 1.5rem);/* h2 / sub-section */
+  --type-label:    0.9375rem;                    /* 15px — eyebrows, caps labels */
 
   /* Layout */
   --max-w:    1200px;
@@ -549,7 +555,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
   line-height: 1.6;
 }
 
-/* ── 15. LV COLLECTION GRID (collection/index.astro) ─────── */
+/* ── 14. LV COLLECTION GRID (collection/index.astro) ─────── */
 /* /collection/index.astro — 5-col product grid               */
 .lv-collection-bar {
   max-width: var(--max-w-xl);
@@ -752,7 +758,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 }
 .lv-product-card .lv-card-wishlist:hover { color: var(--white); }
 
-/* ── 16. FOOTER ───────────────────────────────────────────── */
+/* ── 15. FOOTER ───────────────────────────────────────────── */
 .ba-footer {
   background: var(--white);
   border-top: 1px solid rgba(0,0,0,.08);
@@ -902,7 +908,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 }
 .ba-footer__legal a:hover { color: var(--accent); }
 
-/* ── 18. NAV (MENU OVERLAY) ───────────────────────────────── */
+/* ── 16. NAV (MENU OVERLAY) ───────────────────────────────── */
 body.menu-open { overflow: hidden; }
 
 .menu-backdrop {
@@ -1050,7 +1056,7 @@ body.menu-open { overflow: hidden; }
   list-style: none;
 }
 
-/* ── 19. RESPONSIVE ────────────────────────────────────────── */
+/* ── 17. RESPONSIVE ────────────────────────────────────────── */
 @media (max-width: 1200px) {
   .lv-collection-grid { grid-template-columns: repeat(4, 1fr); }
 }
@@ -1105,7 +1111,7 @@ body.menu-open { overflow: hidden; }
   .ba-footer__cols { grid-template-columns: 1fr; }
 }
 
-/* ── 20. DARK INNER HERO ──────────────────────────────────── */
+/* ── 18. DARK INNER HERO ──────────────────────────────────── */
 /* Shared by: category pages, blog, press, collection pages  */
 /* Replaces: cat-hero, blog-hero, press-hero, etc.           */
 .ba-inner-hero {
@@ -1200,7 +1206,7 @@ body.menu-open { overflow: hidden; }
   background: var(--white);
 }
 
-/* ── 21. JEWELRY 3-COL GRID (category pages) ─────────────── */
+/* ── 19. JEWELRY 3-COL GRID (category pages) ─────────────── */
 /* lv-collection-grid stays for the 5-col collection index    */
 .ba-jewelry-grid-wrap {
   max-width: var(--max-w-xl);
@@ -1270,7 +1276,7 @@ body.menu-open { overflow: hidden; }
   font-size: 15px;
 }
 
-/* ── 22. STICKY TAB BAR ───────────────────────────────────── */
+/* ── 20. STICKY TAB BAR ───────────────────────────────────── */
 /* diamond-education, potential reuse on other long-form pages */
 .ba-tab-bar {
   position: sticky;
@@ -1346,7 +1352,7 @@ body.menu-open { overflow: hidden; }
 .ba-prose-section li { margin-bottom: 8px; }
 .ba-prose-section a { color: var(--accent); border-bottom: 1px solid currentColor; }
 
-/* ── 24. NEWSLETTER ───────────────────────────────────────── */
+/* ── 21. NEWSLETTER ───────────────────────────────────────── */
 .ba-newsletter {
   padding: clamp(60px, 10vw, 120px) 40px;
   background: var(--white);
@@ -1402,7 +1408,7 @@ body.menu-open { overflow: hidden; }
   cursor: pointer;
 }
 
-/* ── 25. FAQ ──────────────────────────────────────────────── */
+/* ── 22. FAQ ──────────────────────────────────────────────── */
 .ba-faq {
   max-width: 900px;
   margin: 0 auto;
@@ -1449,8 +1455,8 @@ body.menu-open { overflow: hidden; }
   line-height: 1.7;
 }
 
-/* ── 27. RESPONSIVE ADDITIONS ─────────────────────────────── */
-/* ── 28. PAPER CTA (light background variant) ─────────────── */
+/* ── 23. RESPONSIVE ADDITIONS ─────────────────────────────── */
+/* ── 24. PAPER CTA (light background variant) ─────────────── */
 .ba-cta--paper {
   background: var(--paper);
   color: var(--ink);
@@ -1468,7 +1474,7 @@ body.menu-open { overflow: hidden; }
 .ba-cta--paper .ba-cta__btn:hover { background: var(--ink); color: var(--white); }
 
 
-/* ── 29. LIGHT-PAGE COMPONENTS ───────────────────────────────
+/* ── 25. LIGHT-PAGE COMPONENTS ───────────────────────────────
    Shared across elysian-cut, ring-size-chart, catalogs,
    collection pages, and any other light-background editorial page.
    ─────────────────────────────────────────────────────────── */
