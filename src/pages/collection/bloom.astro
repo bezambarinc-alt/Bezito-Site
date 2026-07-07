@@ -452,7 +452,10 @@ const structuredData = [
         }
       </div>
       <div class="pcard__info">
-        <p class="pcard__collection">Bloom Collection</p>
+        <p class="pcard__collection">
+          {p.data.category.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase())}
+          &nbsp;&middot;&nbsp; Bloom Collection
+        </p>
         <p class="pcard__name">{p.data.title}</p>
         <p class="pcard__ref">ref. {p.data.refCode}</p>
       </div>

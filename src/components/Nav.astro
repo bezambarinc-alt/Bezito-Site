@@ -38,8 +38,10 @@ const currentPath = Astro.url.pathname;
   </ul>
 
   <ul class="menu-col menu-col--sub" data-col="bloom">
-    <li><a class="menu-item" href="/jewelry/rings/calla">The Calla &middot; ref. C0728</a></li>
-    <li><a class="menu-item" href="/jewelry/rings/camelia">Cam&eacute;lia &middot; ref. B9792</a></li>
+    <li><a class="menu-item menu-item--collection-link" href="/collection/bloom">View the Collection &rarr;</a></li>
+    <li class="menu-divider"></li>
+    <li><a class="menu-item menu-item--piece" href="/jewelry/rings/calla">The Calla <span class="menu-item__cat">Ring &middot; C0728</span></a></li>
+    <li><a class="menu-item menu-item--piece" href="/jewelry/rings/camelia">Cam&eacute;lia <span class="menu-item__cat">Ring &middot; B9792</span></a></li>
   </ul>
 
   <ul class="menu-col menu-col--sub" data-col="rings">
@@ -273,6 +275,32 @@ const currentPath = Astro.url.pathname;
     font-size: 11px;
     margin-left: 12px;
     opacity: 0.55;
+  }
+  .menu-item--collection-link {
+    color: var(--accent, #95826b) !important;
+    font-weight: 500;
+  }
+  .menu-item--collection-link::after { display: none; }
+  .menu-divider {
+    height: 1px;
+    background: rgba(0,0,0,0.06);
+    margin: 6px 40px;
+    list-style: none;
+  }
+  .menu-item--piece {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .menu-item__cat {
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: #bbb;
+    text-transform: uppercase;
+    font-weight: 400;
   }
 
   /* Backdrop */
