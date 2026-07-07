@@ -207,7 +207,7 @@
   font-style: italic;
   font-size: clamp(20px,2.8vw,32px);
   line-height: 1.5;
-  color: rgba(255,255,255,0.88);
+  color: var(--white);
   max-width: 22ch;
   margin: 0 auto 2rem;
 }
@@ -580,7 +580,6 @@
   font-family: var(--prose);
   font-size: 15px;
   line-height: 1.6;
-  opacity: 0.75;
   margin: 0;
 }
 .grading-scale { margin: 24px 0; }
@@ -622,7 +621,7 @@
   color: var(--ink);
 }
 .scale-legend { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 16px; }
-.scale-legend-item { display: flex; align-items: center; gap: 8px; font-family: var(--prose); font-size: 15px; opacity: 0.75; }
+.scale-legend-item { display: flex; align-items: center; gap: 8px; font-family: var(--prose); font-size: 15px;}
 .scale-legend-dot { width: 16px; height: 16px; border-radius: 2px; flex-shrink: 0; }
 .clarity-scale { margin: 24px 0; }
 .clarity-item {
@@ -644,7 +643,6 @@
   font-family: var(--prose);
   font-size: 16px;
   line-height: 1.5;
-  opacity: 0.8;
 }
 .shapes-grid {
   display: grid;
@@ -664,7 +662,7 @@
   color: var(--ink);
   margin-bottom: 4px;
 }
-.shape-note { font-family: var(--prose); font-size: 15px; opacity: 0.55; }
+.shape-note { font-family: var(--prose); font-size: 15px;}
 .anatomy-grid {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -687,7 +685,6 @@
   font-family: var(--prose);
   font-size: 16px;
   line-height: 1.65;
-  opacity: 0.8;
   margin: 0;
 }
 
