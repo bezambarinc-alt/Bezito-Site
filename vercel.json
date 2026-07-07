@@ -23,19 +23,6 @@
     { "source": "/shop", "destination": "/collection", "permanent": true },
     { "source": "/shop/", "destination": "/collection", "permanent": true },
     { "source": "/shop/page/:num", "destination": "/collection", "permanent": true },
-    { "source": "/single-row", "destination": "/jewelry/necklaces/single-row", "permanent": true },
-    { "source": "/baguette-line", "destination": "/jewelry/necklaces/baguette-line", "permanent": true },
-    { "source": "/baguette-band", "destination": "/jewelry/wedding-bands/baguette-band", "permanent": true },
-    { "source": "/pear-shaped-necklace", "destination": "/jewelry/necklaces/pear-shaped-necklace", "permanent": true },
-    { "source": "/fancy-yellow-three-stone", "destination": "/jewelry/rings/fancy-yellow-three-stone", "permanent": true },
-    { "source": "/fancy-deep-brownish-yellow-cushion", "destination": "/jewelry/rings/fancy-deep-brownish-yellow-cushion", "permanent": true },
-    { "source": "/fancy-very-pink-oval", "destination": "/jewelry/rings/fancy-very-pink-oval", "permanent": true },
-    { "source": "/double-row-asscher-flex", "destination": "/jewelry/bracelets/double-row-asscher-flex", "permanent": true },
-    { "source": "/emerald-cut-stretch-bracelet", "destination": "/jewelry/bracelets/emerald-cut-stretch-bracelet", "permanent": true },
-    { "source": "/single-row-asscher-cut", "destination": "/jewelry/bracelets/single-row-asscher-cut", "permanent": true },
-    { "source": "/blue-sapphire-single-row-flex", "destination": "/jewelry/bracelets/blue-sapphire-single-row-flex", "permanent": true },
-    { "source": "/calla", "destination": "/jewelry/rings/calla", "permanent": true },
-    { "source": "/camelia", "destination": "/jewelry/rings/camelia", "permanent": true },
     { "source": "/product/in100", "destination": "/jewelry/necklaces/single-row", "permanent": true },
     { "source": "/product/in101", "destination": "/jewelry/necklaces/baguette-line", "permanent": true },
     { "source": "/product/c0625", "destination": "/jewelry/wedding-bands/baguette-band", "permanent": true },
@@ -48,17 +35,15 @@
     { "source": "/product/c0755", "destination": "/jewelry/bracelets/single-row-asscher-cut", "permanent": true },
     { "source": "/product/c0825", "destination": "/jewelry/bracelets/blue-sapphire-single-row-flex", "permanent": true },
     { "source": "/product/c0728", "destination": "/jewelry/rings/calla", "permanent": true },
-    { "source": "/product/b9792", "destination": "/jewelry/rings/camelia", "permanent": true }
+    { "source": "/product/b9792", "destination": "/jewelry/rings/camelia", "permanent": true },
+    { "source": "/product-category/:cat", "destination": "/collection?cat=:cat", "permanent": true },
+    { "source": "/product-category/:cat/:subcat", "destination": "/collection?cat=:subcat", "permanent": true }
   ],
   "rewrites": [
     { "source": "/bloom", "destination": "/collection-bloom.html" },
     { "source": "/collection/bloom", "destination": "/collection-bloom.html" },
     { "source": "/product-template", "destination": "/product-template.html" },
     { "source": "/category-template", "destination": "/category-template.html" },
-    { "source": "/product-category/:cat", "destination": "/collection?cat=:cat" },
-    { "source": "/product-category/:cat/:subcat", "destination": "/collection?cat=:subcat" },
-    { "source": "/jewelry/men-wedding-bands", "destination": "/collection?cat=mens-wedding-bands" },
-    { "source": "/jewelry/:cat", "destination": "/collection?cat=:cat" },
     { "source": "/product/:slug", "destination": "/product.html?id=:slug" }
   ]
 }
