@@ -213,18 +213,21 @@
 }
 .ba-post-hero__meta span { margin: 0 10px; }
 
-/* Hero image — full bleed, generous height */
+/* Hero image — full bleed, generous height, parallax-ready */
 .ba-post-img {
   width: 100%;
   margin: 0;
   padding: 0;
+  height: 60vh;
+  overflow: hidden;
 }
 .ba-post-img img {
   width: 100%;
-  height: 60vh;
+  height: 72vh; /* extra height gives parallax room to travel */
   object-fit: cover;
   object-position: center;
   display: block;
+  will-change: transform;
 }
 
 /* Body — two-column editorial layout */
@@ -381,6 +384,46 @@
   transition: color 0.2s ease;
 }
 .ba-post-content a:hover { color: var(--accent); }
+
+/* Strong — make key text land harder */
+.ba-post-content strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* FAQ question paragraphs — full-width label rows above the answer */
+.ba-post-content p:has(> strong:only-child) {
+  column-span: all;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-top: 48px;
+  margin-bottom: 12px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border-warm);
+}
+.ba-post-content p:has(> strong:only-child) strong {
+  font-weight: 600;
+  font-size: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+}
+
+/* Scroll reveal — added via JS, so no-JS users see everything */
+.ba-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.ba-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+.ba-reveal-d1 { transition-delay: 0.1s; }
+.ba-reveal-d2 { transition-delay: 0.2s; }
 
 /* ── IN-ARTICLE CTA ── */
 .ba-post-cta {

@@ -85,3 +85,37 @@ function fmtCat(c: string) {
 )}
 
 </Layout>
+
+<script>
+  // Lazy-load all content images (hero stays eager via loading="eager" in HTML)
+  document.querySelectorAll('.ba-post-content img').forEach(img => {
+    img.setAttribute('loading', 'lazy');
+  });
+
+  // Parallax hero — image drifts up at 15% of scroll, contained by overflow:hidden on parent
+  const heroImg = document.querySelector('.ba-post-img img');
+  if (heroImg) {
+    window.addEventListener('scroll', () => {
+      (heroImg as HTMLElement).style.transform = `translateY(${window.scrollY * -0.15}px)`;
+    }, { passive: true });
+  }
+
+  // Scroll reveals — classes added here so no-JS users see everything normally
+  const revealEls = document.querySelectorAll(
+    '.ba-post-content h3, .ba-post-content h2, .ba-post-content figure, ' +
+    '.ba-post-content video, .ba-post-content blockquote, .ba-post-cta__box'
+  );
+  revealEls.forEach((el, i) => {
+    el.classList.add('ba-reveal');
+    if (i % 3 === 1) el.classList.add('ba-reveal-d1');
+    if (i % 3 === 2) el.classList.add('ba-reveal-d2');
+  });
+
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (isIntersecting) { target.classList.add('is-visible'); obs.unobserve(target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  revealEls.forEach(el => io.observe(el));
+</script>
