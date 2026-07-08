@@ -412,18 +412,63 @@
   text-transform: inherit;
 }
 
-/* Scroll reveal — added via JS, so no-JS users see everything */
+/* ── Motion system ──────────────────────────────────────────────────────
+   Expo-out is the luxury curve: decisive entry, decelerates to a clean stop.
+   Bounce/spring easing is never used — reads immediately as low-tier.
+   All classes injected via JS so no-JS fallback renders everything visible.
+   ─────────────────────────────────────────────────────────────────────── */
+:root {
+  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);   /* expo out — entrances */
+  --ease-wipe:   cubic-bezier(0.77, 0, 0.175, 1);  /* ease-in-out cubic — image reveals */
+  --dur-reveal:  0.9s;
+  --travel:      48px;
+}
+
+/* Fade + rise — text, headings, CTA */
 .ba-reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.75s ease, transform 0.75s ease;
+  transform: translateY(var(--travel));
+  transition:
+    opacity var(--dur-reveal) var(--ease-luxury),
+    transform var(--dur-reveal) var(--ease-luxury);
 }
 .ba-reveal.is-visible {
   opacity: 1;
   transform: none;
 }
-.ba-reveal-d1 { transition-delay: 0.1s; }
-.ba-reveal-d2 { transition-delay: 0.2s; }
+.ba-reveal-d1 { transition-delay: 0.08s; }
+.ba-reveal-d2 { transition-delay: 0.16s; }
+.ba-reveal-d3 { transition-delay: 0.24s; }
+
+/* Clip wipe — figures and images: reveals left-to-right like a curtain pull */
+.ba-reveal-wipe {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.1s var(--ease-wipe);
+}
+.ba-reveal-wipe.is-visible {
+  clip-path: inset(0 0% 0 0);
+}
+
+/* Mobile: shorter travel, quicker duration */
+@media (max-width: 768px) {
+  :root {
+    --dur-reveal: 0.65s;
+    --travel: 24px;
+  }
+}
+
+/* Respect system reduced-motion preference — show everything, no animation */
+@media (prefers-reduced-motion: reduce) {
+  .ba-reveal,
+  .ba-reveal-wipe,
+  .ba-post-img img {
+    transition: none !important;
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+}
 
 /* ── IN-ARTICLE CTA ── */
 .ba-post-cta {
