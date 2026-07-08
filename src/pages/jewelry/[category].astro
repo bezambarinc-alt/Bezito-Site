@@ -20,6 +20,7 @@ export async function getStaticPaths() {
 
 const { category } = Astro.params;
 const { products } = Astro.props;
+const videoProducts = products.filter(p => p.data.heroVideo).slice(0, 3);
 
 const meta: Record<string, { label: string; title: string; description: string; intro: string }> = {
   rings: {
@@ -87,15 +88,25 @@ const structuredData = [
   description={page.description}
   canonical={`https://bezambar.com/jewelry/${category}`}
   structuredData={structuredData}
-  headerLight={true}
 >
 
-<section class="ba-inner-hero ba-inner-hero--light">
-  <a href="/collection" class="ba-inner-hero__back">&larr; All Jewelry</a>
-  <span class="ba-inner-hero__eyebrow">Bez Ambar</span>
-  <h1>{page.label}</h1>
-  <p class="ba-inner-hero__intro">{page.intro}</p>
-  <p class="ba-inner-hero__count">{products.length} {products.length === 1 ? 'piece' : 'pieces'}</p>
+<section class="ba-category-hero">
+  <div class="ba-category-hero__reel">
+    {videoProducts.map(p => (
+      <div class="ba-category-hero__clip">
+        <video src={p.data.heroVideo} poster={p.data.heroImage ?? undefined} autoplay muted loop playsinline></video>
+      </div>
+    ))}
+    {videoProducts.length === 0 && (
+      <div class="ba-category-hero__clip ba-category-hero__clip--empty"></div>
+    )}
+  </div>
+  <div class="ba-category-hero__text">
+    <span class="ba-inner-hero__eyebrow">Bez Ambar</span>
+    <h1>{page.label}</h1>
+    <p class="ba-inner-hero__intro">{page.intro}</p>
+    <p class="ba-inner-hero__count">{products.length} {products.length === 1 ? 'piece' : 'pieces'}</p>
+  </div>
 </section>
 
 <div class="ba-jewelry-grid-wrap">
@@ -120,5 +131,14 @@ const structuredData = [
     <p class="ba-jewelry-empty">No pieces currently available in this category.</p>
   )}
 </div>
+
+<button class="ba-back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+<script>
+  const btt = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    btt?.classList.toggle('is-visible', window.scrollY > 300);
+  }, { passive: true });
+  btt?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
 
 </Layout>
