@@ -6,7 +6,7 @@
   <div class="ba-footer__inner">
     <div class="ba-footer__cols">
 
-      <!-- Brand identity -->
+      <!-- Brand identity — always visible, no accordion -->
       <div class="ba-footer__brand">
         <p class="ba-footer__wordmark">Bez Ambar</p>
         <p class="ba-footer__tagline">Inventor of the Princess Cut</p>
@@ -26,50 +26,78 @@
 
       <!-- Shop -->
       <div class="ba-footer__col">
-        <h4>Shop</h4>
-        <a href="/collection/bloom">Bloom Collection</a>
-        <a href="/jewelry/rings">Rings</a>
-        <a href="/jewelry/engagement-rings">Engagement Rings</a>
-        <a href="/jewelry/wedding-bands">Wedding Bands</a>
-        <a href="/jewelry/bracelets">Bracelets</a>
-        <a href="/jewelry/earrings">Earrings</a>
-        <a href="/jewelry/necklaces">Necklaces</a>
-        <a href="/jewelry/pendants">Pendants</a>
+        <button class="ba-footer__toggle" type="button" aria-expanded="false">
+          Shop
+          <svg class="ba-footer__chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true">
+            <path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="ba-footer__col-links">
+          <a href="/collection/bloom">Bloom Collection</a>
+          <a href="/jewelry/rings">Rings</a>
+          <a href="/jewelry/engagement-rings">Engagement Rings</a>
+          <a href="/jewelry/wedding-bands">Wedding Bands</a>
+          <a href="/jewelry/bracelets">Bracelets</a>
+          <a href="/jewelry/earrings">Earrings</a>
+          <a href="/jewelry/necklaces">Necklaces</a>
+          <a href="/jewelry/pendants">Pendants</a>
+        </div>
       </div>
 
       <!-- Discover -->
       <div class="ba-footer__col">
-        <h4>Discover</h4>
-        <a href="/about-bez-ambar">About Bez Ambar</a>
-        <a href="/diamond-education">Diamond Education</a>
-        <a href="/elysian-cut">Elysian Cut&trade;</a>
-        <a href="/press">Press</a>
-        <a href="/journal">Journal</a>
-        <a href="/catalogs">Catalogs</a>
-        <a href="/ring-size-chart">Ring Size Guide</a>
+        <button class="ba-footer__toggle" type="button" aria-expanded="false">
+          Discover
+          <svg class="ba-footer__chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true">
+            <path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="ba-footer__col-links">
+          <a href="/about-bez-ambar">About Bez Ambar</a>
+          <a href="/diamond-education">Diamond Education</a>
+          <a href="/elysian-cut">Elysian Cut&trade;</a>
+          <a href="/press">Press</a>
+          <a href="/journal">Journal</a>
+          <a href="/catalogs">Catalogs</a>
+          <a href="/ring-size-chart">Ring Size Guide</a>
+        </div>
       </div>
 
       <!-- Service -->
       <div class="ba-footer__col">
-        <h4>Service</h4>
-        <a href="/contact">Contact Us</a>
-        <a href="/contact?subject=bespoke">Bespoke Design</a>
-        <a href="/contact?subject=repairs">Repairs &amp; Cleaning</a>
-        <a href="/contact?subject=resize">Ring Resizing</a>
-        <a href="/warranty">Warranty</a>
+        <button class="ba-footer__toggle" type="button" aria-expanded="false">
+          Service
+          <svg class="ba-footer__chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true">
+            <path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="ba-footer__col-links">
+          <a href="/contact">Contact Us</a>
+          <a href="/contact?subject=bespoke">Bespoke Design</a>
+          <a href="/contact?subject=repairs">Repairs &amp; Cleaning</a>
+          <a href="/contact?subject=resize">Ring Resizing</a>
+          <a href="/warranty">Warranty</a>
+        </div>
       </div>
 
       <!-- Visit -->
       <div class="ba-footer__col ba-footer__col--visit">
-        <h4>Visit the Atelier</h4>
-        <address class="ba-footer__address-block">
-          611 Wilshire Blvd<br>
-          Los Angeles, CA 90017
-        </address>
-        <a href="tel:2136299191" class="ba-footer__contact-link">(213) 629-9191</a>
-        <a href="mailto:bez@bezambar.com" class="ba-footer__contact-link">bez@bezambar.com</a>
-        <p class="ba-footer__hours">Mon &ndash; Fri, 10am &ndash; 6pm PT</p>
-        <p class="ba-footer__appt">By appointment only</p>
+        <button class="ba-footer__toggle" type="button" aria-expanded="false">
+          Visit the Atelier
+          <svg class="ba-footer__chevron" width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true">
+            <path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="ba-footer__col-links">
+          <address class="ba-footer__address-block">
+            611 Wilshire Blvd<br>
+            Los Angeles, CA 90017
+          </address>
+          <a href="tel:2136299191" class="ba-footer__contact-link">(213) 629-9191</a>
+          <a href="mailto:bez@bezambar.com" class="ba-footer__contact-link">bez@bezambar.com</a>
+          <p class="ba-footer__hours">Mon &ndash; Fri, 10am &ndash; 6pm PT</p>
+          <p class="ba-footer__appt">By appointment only</p>
+        </div>
       </div>
 
     </div>
@@ -84,3 +112,14 @@
     </div>
   </div>
 </footer>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.ba-footer__toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (window.innerWidth >= 768) return;
+      const col = btn.closest('.ba-footer__col');
+      const isOpen = col?.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(isOpen ?? false));
+    });
+  });
+</script>

@@ -835,15 +835,30 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
   color: var(--accent);
   margin: 0;
 }
-.ba-footer__col h4 {
+.ba-footer__col h4,
+.ba-footer__toggle {
   font-family: var(--sans);
-  font-size: 15px;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--ink);
   margin: 0 0 16px;
 }
+/* Toggle is a button — strip default styles on desktop */
+.ba-footer__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: default;
+  text-align: left;
+  pointer-events: none;
+}
+.ba-footer__chevron { display: none; }
 .ba-footer__col a {
   display: block;
   font-family: var(--prose);
@@ -1159,11 +1174,67 @@ body.menu-open { overflow: hidden; }
 
 @media (max-width: 768px) {
   /* Header */
-  .ba-header__menu-label { display: none; } /* hamburger icon only */
-  /* Footer */
-  .ba-footer { padding: 56px 20px 0; }
-  .ba-footer__cols { grid-template-columns: 1fr 1fr; gap: 36px 24px; }
-  .ba-footer__brand { flex-direction: column; align-items: flex-start; }
+  .ba-header__menu-label { display: none; }
+  /* Footer — Patek-style accordion */
+  .ba-footer { padding: 40px 0 0; }
+  .ba-footer__inner { padding: 0; }
+  .ba-footer__cols {
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-top: 1px solid rgba(0,0,0,.07);
+    margin-bottom: 0;
+  }
+  .ba-footer__brand {
+    padding: 36px 24px 32px;
+    border-right: none;
+    border-bottom: 1px solid rgba(0,0,0,.07);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .ba-footer__social-link { justify-content: center; }
+  /* Accordion cols */
+  .ba-footer__col {
+    border-bottom: 1px solid rgba(0,0,0,.07);
+  }
+  .ba-footer__toggle {
+    padding: 18px 24px;
+    cursor: pointer;
+    pointer-events: auto;
+    margin-bottom: 0;
+  }
+  .ba-footer__chevron {
+    display: block;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+    color: var(--ink-muted);
+  }
+  .ba-footer__col.is-open .ba-footer__chevron {
+    transform: rotate(180deg);
+  }
+  .ba-footer__col-links {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.32s ease;
+    padding: 0 24px;
+  }
+  .ba-footer__col.is-open .ba-footer__col-links {
+    max-height: 480px;
+    padding-bottom: 20px;
+  }
+  .ba-footer__col a,
+  .ba-footer__contact-link { line-height: 2.4; }
+  .ba-footer__address-block { margin-bottom: 4px; }
+  .ba-footer__hours,
+  .ba-footer__appt { margin-top: 4px; }
+  .ba-footer__bottom {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 24px 24px 32px;
+  }
+  .ba-footer__legal { flex-wrap: wrap; gap: 14px; justify-content: center; }
   /* Catalog/collection bar */
   .lv-collection-bar { padding: 15px 20px 0; }
   /* Note: .ba-inner-hero and .ba-light-hero responsive rules are co-located
