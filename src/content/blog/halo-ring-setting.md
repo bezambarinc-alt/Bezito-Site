@@ -21,7 +21,8 @@ There is a moment, when you hold a well-made halo ring under light, where the ce
 
 Most jewelers approximate this effect. Bez Ambar engineered it.
 
-## The Logic of the Halo
+### The Logic of
+## The Halo
 
 The idea has been with us since the Georgian era. Surround a center stone with smaller diamonds and the eye, unable to locate where the stone ends, perceives the whole composition as one large gem. It is an optical truth, not a trick — the light is real, the brilliance is real.
 
@@ -29,7 +30,8 @@ What has always compromised the halo is the gap. In a conventional pavé halo, s
 
 A 1.00-carat diamond in a standard halo reads closer to 1.20 carats. Better than nothing. But not what the halo is capable of.
 
-## A Different Kind of Stone
+### A Different Kind of
+## Stone
 
 Bez Ambar's solution was not to refine the existing approach. It was to abandon it.
 
@@ -41,7 +43,8 @@ What results is a continuous perimeter of light that merges with the center ston
 
 Bez Ambar received a design patent for the Blaze® setting. It exists only here, or through an authorized Bez Ambar retailer.
 
-## What the Halo Can Become
+### What the Halo
+## Can Become
 
 The halo is not a single thing. It is a structural idea that takes different shapes depending on what the piece is asking for.
 
@@ -51,7 +54,8 @@ Then there are colored halos — sapphires, rubies, fancy colored diamonds repla
 
 The center stone shape matters less than people expect. Round brilliants and cushion cuts integrate most naturally with the halo's geometry. Ovals gain visual length. Princess cuts pair with a square frame that mirrors their own corners. The stone does not need to be exceptional to carry a halo well. In a sense, that is the point.
 
-## An Invitation
+### An
+## Invitation
 
 Every halo ring we make is built around a specific stone. The Blaze® is engineered, not approximated — the accent diamonds are cut to fit, not selected from inventory to come close.
 
@@ -61,7 +65,8 @@ If you have a stone, or are looking for one, we would like to talk about what su
 
 ---
 
-## What People Ask Us
+### What People
+## Ask Us
 
 **Does a halo setting actually make a diamond look bigger?**
 Yes — and by a meaningful amount. A well-executed halo adds 0.25 to 0.50 carats of visual weight to the center stone. The Blaze® maximizes this because there are no gaps between accent stones. The halo fuses with the center stone rather than framing it from a distance.
