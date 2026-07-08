@@ -1018,9 +1018,9 @@ body.menu-open { overflow: hidden; }
 
 .menu-section-label {
   font-family: var(--sans);
-  font-size: 15px;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--ink-muted);
   padding: 18px 40px 6px;
@@ -1034,9 +1034,9 @@ body.menu-open { overflow: hidden; }
   width: 100%;
   padding: 11px 36px 11px 40px;
   font-family: var(--sans);
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 400;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink-muted);
   background: none;
@@ -1052,7 +1052,7 @@ body.menu-open { overflow: hidden; }
 
 .menu-item--has-sub::after {
   content: '›';
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 300;
   margin-left: 12px;
   line-height: 1;
@@ -1072,9 +1072,9 @@ body.menu-open { overflow: hidden; }
 .menu-back { display: none; }
 .menu-back__btn {
   font-family: var(--sans);
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-muted);
   background: none;
