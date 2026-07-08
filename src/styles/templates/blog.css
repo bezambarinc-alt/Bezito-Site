@@ -231,7 +231,7 @@
 .ba-post-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 80px 48px 120px;
+  padding: 160px 48px 120px;
   columns: 2;
   column-gap: 80px;
 }
