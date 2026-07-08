@@ -7,6 +7,14 @@ export default defineConfig({
   site: 'https://bezambar.com',
   output: 'static',
   adapter: vercel(),
+  vite: {
+    build: {
+      rollupOptions: {
+        // pagefind.js is generated after the astro build — don't resolve at bundle time
+        external: ['/pagefind/pagefind.js'],
+      },
+    },
+  },
   integrations: [
     partytown({
       config: {
