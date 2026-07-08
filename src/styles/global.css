@@ -1219,15 +1219,22 @@ body.menu-open { overflow: hidden; }
   display: block;
   text-align: left;
   font-family: var(--sans);
-  font-size: 15px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.16em;
   color: var(--ink-muted);
   text-decoration: none;
-  margin-bottom: 32px;
-  transition: color 0.3s;
+  margin-bottom: 40px;
+  transition: color 0.3s ease, transform 0.25s ease;
 }
-.ba-inner-hero__back:hover { color: var(--white); }
+.ba-inner-hero__back:hover {
+  color: var(--white);
+  transform: translateX(-4px);
+}
+.ba-inner-hero--light .ba-inner-hero__back {
+  max-width: var(--max-w-xl);
+  margin-left: auto;
+  margin-right: auto;
+}
 .ba-inner-hero__eyebrow {
   font-family: var(--sans);
   font-size: 15px;
@@ -1291,7 +1298,7 @@ body.menu-open { overflow: hidden; }
 .ba-inner-hero--light .ba-inner-hero__eyebrow {
   color: var(--accent);
 }
-.ba-inner-hero--light .ba-inner-hero__back:hover { color: var(--ink); }
+.ba-inner-hero--light .ba-inner-hero__back:hover { color: var(--ink); transform: translateX(-4px); }
 .ba-inner-hero--light .ba-inner-hero__count { color: var(--ink-muted); }
 .ba-inner-hero--narrow {
   max-width: 680px;
