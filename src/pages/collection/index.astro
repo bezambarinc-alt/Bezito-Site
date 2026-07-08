@@ -4,45 +4,78 @@ import Layout from '../../layouts/Layout.astro';
 
 const allProducts = await getCollection('products', ({ data }) => data.status === 'live');
 
-const CATEGORY_ORDER = [
-  'bracelets', 'rings', 'engagement-rings', 'wedding-bands',
-  'necklaces', 'pendants', 'earrings',
+const CATEGORIES = [
+  {
+    slug: 'bracelets',
+    label: 'Bracelets',
+    tagline: 'The patented Flex — two decades of engineering.',
+    desc: 'Diamonds that move freely on the wrist, no hinge or clasp in sight. Each bracelet is built by hand in our Los Angeles atelier.',
+  },
+  {
+    slug: 'rings',
+    label: 'Rings',
+    tagline: 'From fancy-color solitaires to multi-stone designs.',
+    desc: 'Every ring is cut and set by hand. Fancy-color diamonds, colored stones, and precision baguettes — made to order, made to last.',
+  },
+  {
+    slug: 'engagement-rings',
+    label: 'Engagement Rings',
+    tagline: 'Every ring a private commission.',
+    desc: 'We source the stone, design the setting, and build the ring to your specification. No catalogue — only intention.',
+  },
+  {
+    slug: 'wedding-bands',
+    label: 'Wedding Bands',
+    tagline: 'Precision-set diamonds for a lifetime.',
+    desc: 'Baguette and brilliant-cut diamonds in platinum and 18K gold. Sizing and stone selection made to order.',
+  },
+  {
+    slug: 'necklaces',
+    label: 'Necklaces',
+    tagline: 'Clean geometry, exceptional stones.',
+    desc: 'Each necklace is designed around the diamond — the setting exists only to let the stone breathe.',
+  },
+  {
+    slug: 'pendants',
+    label: 'Pendants',
+    tagline: 'A single stone. A complete statement.',
+    desc: 'Shaped by the stone, not convention. Each pendant is chosen for its proportions and worn as a declaration.',
+  },
+  {
+    slug: 'earrings',
+    label: 'Earrings',
+    tagline: 'Light at every turn.',
+    desc: 'From quiet studs to architectural drops — each pair is made to catch the light and hold the eye.',
+  },
 ];
 
-// Products sorted by category order, then title
-const products = [...allProducts].sort((a, b) => {
-  const ai = CATEGORY_ORDER.indexOf(a.data.category);
-  const bi = CATEGORY_ORDER.indexOf(b.data.category);
-  const ad = ai === -1 ? 99 : ai;
-  const bd = bi === -1 ? 99 : bi;
-  return ad !== bd ? ad - bd : a.data.title.localeCompare(b.data.title);
-});
-
-// Ring subcategories belong to the "rings" parent filter too
-const PARENT: Record<string, string> = {
-  'engagement-rings': 'rings',
-  'wedding-bands': 'rings',
-};
-
-function dataCat(category: string): string {
-  const parent = PARENT[category];
-  return parent ? `${category} ${parent}` : category;
+// Per-category: best video + poster/fallback image + piece count
+type CatMedia = { video: string | null; image: string | null; count: number };
+const categoryMedia: Record<string, CatMedia> = {};
+for (const cat of CATEGORIES) {
+  const catProducts = allProducts.filter(p => p.data.category === cat.slug);
+  const withVideo = catProducts.find(p => p.data.heroVideo);
+  const withImage = catProducts.find(p => p.data.heroImage);
+  categoryMedia[cat.slug] = {
+    video: withVideo?.data.heroVideo ?? null,
+    image: withVideo?.data.heroImage ?? withImage?.data.heroImage ?? null,
+    count: catProducts.length,
+  };
 }
 
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "All Jewelry",
-  "description": "Browse the complete Bez Ambar collection — flex bracelets, engagement rings, wedding bands, necklaces, earrings and pendants. Made in Los Angeles.",
+  "name": "Collection — Bez Ambar",
+  "description": "Browse the complete Bez Ambar collection — flex bracelets, engagement rings, wedding bands, necklaces, earrings and pendants. Handcrafted in Los Angeles.",
   "url": "https://bezambar.com/collection",
   "brand": { "@type": "Brand", "name": "Bez Ambar" },
-  "numberOfItems": products.length,
 };
 ---
 
 <Layout
   title="Collection — Luxury Diamond Jewelry | Bez Ambar"
-  description="Browse the complete Bez Ambar collection — flex bracelets, engagement rings, wedding bands, necklaces, earrings and pendants. Made in Los Angeles."
+  description="Browse the complete Bez Ambar collection — flex bracelets, engagement rings, wedding bands, necklaces, earrings and pendants. Handcrafted in Los Angeles."
   canonical="https://bezambar.com/collection"
   structuredData={[structuredData]}
 >
@@ -55,126 +88,45 @@ const structuredData = {
   ></video>
   <div class="ba-category-hero__overlay"></div>
   <div class="ba-category-hero__text">
-    <h1>All Jewelry</h1>
-    <p class="ba-category-hero__intro">Every piece handcrafted in our Los Angeles atelier — flex bracelets, rings, necklaces, and beyond.</p>
+    <h1>Collection</h1>
+    <p class="ba-category-hero__intro">Every piece handcrafted in our Los Angeles atelier.</p>
   </div>
 </section>
 
-<p class="ba-collection-count" id="collectionCount"></p>
+<div class="ba-collection-editorial">
+  {CATEGORIES.map((cat, i) => {
+    const media = categoryMedia[cat.slug];
+    const isFlipped = i % 2 === 1;
+    const href = `/jewelry/${cat.slug}`;
+    return (
+      <article class={`ba-collection-tile${isFlipped ? ' ba-collection-tile--flip' : ''}`}>
 
-<div class="ba-jewelry-grid-wrap">
-  {products.length > 0 ? (
-    <div class="ba-jewelry-grid" id="productGrid">
-      {products.map(p => (
-        <a href={p.data.prettyUrl} class="ba-jewelry-card" data-category={dataCat(p.data.category)}>
-          {p.data.heroImage ? (
-            <img src={p.data.heroImage} alt={p.data.title} class="ba-jewelry-card__img" loading="lazy" />
+        <div class="ba-collection-tile__media">
+          {media.video ? (
+            <video src={media.video} poster={media.image ?? undefined} autoplay muted loop playsinline></video>
+          ) : media.image ? (
+            <img src={media.image} alt={cat.label} loading="lazy" />
           ) : (
-            <div class="ba-jewelry-card__img" />
+            <div style="width:100%;height:100%;background:var(--light-bg);" />
           )}
-          <div class="ba-jewelry-card__overlay">
-            <p class="ba-jewelry-card__ref">{p.data.refCode}</p>
-            <p class="ba-jewelry-card__name">{p.data.title}</p>
-            {p.data.subtitle && <p class="ba-jewelry-card__sub">{p.data.subtitle}</p>}
-          </div>
-        </a>
-      ))}
-    </div>
-  ) : (
-    <p class="ba-jewelry-empty">No pieces currently available.</p>
-  )}
+        </div>
+
+        <div class="ba-collection-tile__text">
+          <p class="ba-collection-tile__eyebrow">Bez Ambar</p>
+          <h2 class="ba-collection-tile__title">{cat.label}</h2>
+          <p class="ba-collection-tile__tagline">{cat.tagline}</p>
+          <p class="ba-collection-tile__desc">{cat.desc}</p>
+          {media.count > 0 && (
+            <p class="ba-collection-tile__meta">{media.count} {media.count === 1 ? 'piece' : 'pieces'} available</p>
+          )}
+          <a href={href} class="ba-collection-tile__cta">
+            {media.count > 0 ? 'Explore' : 'Inquire'}
+          </a>
+        </div>
+
+      </article>
+    );
+  })}
 </div>
-
-<button class="ba-filter-pill" id="filterPill" aria-label="Open filters">
-  <svg viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.5">
-    <line x1="0" y1="1" x2="16" y2="1"/>
-    <line x1="3" y1="6" x2="13" y2="6"/>
-    <line x1="6" y1="11" x2="10" y2="11"/>
-  </svg>
-  Filters
-</button>
-
-<button class="ba-back-to-top" id="backToTop" aria-label="Back to top">↑</button>
-
-<div class="ba-filter-overlay" id="filterOverlay"></div>
-
-<div class="ba-filter-panel" id="filterPanel">
-  <div class="ba-filter-panel__head">
-    <button class="ba-filter-panel__close" id="filterClose" aria-label="Close filters">✕</button>
-    <button class="ba-filter-panel__results" id="filterResults">Show All Jewelry</button>
-  </div>
-  <div class="ba-filter-panel__body">
-    <details class="ba-filter-accordion" open>
-      <summary>Categories</summary>
-      <div class="ba-filter-accordion__opts">
-        <button class="ba-filter-opt is-active" data-cat="all"              data-label="All Jewelry">All Jewelry</button>
-        <button class="ba-filter-opt"            data-cat="bracelets"       data-label="Bracelets">Bracelets</button>
-        <button class="ba-filter-opt"            data-cat="rings"           data-label="Rings">Rings</button>
-        <button class="ba-filter-opt ba-filter-opt--sub" data-cat="engagement-rings" data-label="Engagement Rings">Engagement Rings</button>
-        <button class="ba-filter-opt ba-filter-opt--sub" data-cat="wedding-bands"    data-label="Wedding Bands">Wedding Bands</button>
-        <button class="ba-filter-opt"            data-cat="necklaces"       data-label="Necklaces">Necklaces</button>
-        <button class="ba-filter-opt"            data-cat="pendants"        data-label="Pendants">Pendants</button>
-        <button class="ba-filter-opt"            data-cat="earrings"        data-label="Earrings">Earrings</button>
-      </div>
-    </details>
-  </div>
-</div>
-
-<script>
-  const pill     = document.getElementById('filterPill');
-  const panel    = document.getElementById('filterPanel');
-  const overlay  = document.getElementById('filterOverlay');
-  const closeBtn = document.getElementById('filterClose');
-  const resultsBtn = document.getElementById('filterResults');
-  const countEl  = document.getElementById('collectionCount');
-
-  function openFilter()  { panel?.classList.add('is-open');    overlay?.classList.add('is-active'); }
-  function closeFilter() { panel?.classList.remove('is-open'); overlay?.classList.remove('is-active'); }
-
-  pill?.addEventListener('click', openFilter);
-  closeBtn?.addEventListener('click', closeFilter);
-  overlay?.addEventListener('click', closeFilter);
-  resultsBtn?.addEventListener('click', closeFilter);
-
-  function updateLabel(label: string, count: number) {
-    if (countEl) countEl.textContent = count + (count === 1 ? ' piece' : ' pieces');
-    if (resultsBtn) resultsBtn.textContent = 'Show ' + label;
-  }
-
-  document.querySelectorAll('.ba-filter-opt').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const cat   = (btn as HTMLElement).dataset.cat   ?? 'all';
-      const label = (btn as HTMLElement).dataset.label ?? 'All Jewelry';
-      document.querySelectorAll('.ba-filter-opt').forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
-      let visible = 0;
-      document.querySelectorAll<HTMLElement>('.ba-jewelry-card').forEach(card => {
-        const cats = (card.dataset.category ?? '').split(' ');
-        const show = cat === 'all' || cats.includes(cat);
-        card.style.display = show ? '' : 'none';
-        if (show) visible++;
-      });
-      updateLabel(label, visible);
-    });
-  });
-
-  // URL ?cat= pre-filter, or initialize count
-  (function () {
-    const cat = new URLSearchParams(window.location.search).get('cat');
-    if (cat) {
-      const btn = document.querySelector<HTMLElement>('.ba-filter-opt[data-cat="' + cat + '"]');
-      if (btn) { btn.click(); return; }
-    }
-    const total = document.querySelectorAll('.ba-jewelry-card').length;
-    updateLabel('All Jewelry', total);
-  })();
-
-  // Back to top
-  const btt = document.getElementById('backToTop');
-  window.addEventListener('scroll', () => {
-    btt?.classList.toggle('is-visible', window.scrollY > 300);
-  }, { passive: true });
-  btt?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-</script>
 
 </Layout>
