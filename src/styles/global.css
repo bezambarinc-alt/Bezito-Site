@@ -1087,12 +1087,24 @@ body.menu-open { overflow: hidden; }
 
 /* Nav — mobile: single panel slide (≤768px) */
 @media (max-width: 768px) {
+  /* Single-panel slide: sub overlays root absolutely, slides in from right */
   .menu-overlay { width: min(88vw, 340px); }
-  .menu-overlay.has-sub { width: min(88vw, 340px); }
+  .menu-overlay.has-sub { width: min(88vw, 340px); } /* don't expand on mobile */
   .menu-col { flex: 0 0 min(88vw, 340px); width: min(88vw, 340px); }
-  .menu-col--root { transition: transform 0.3s ease; }
-  .menu-overlay.has-sub .menu-col--root { transform: translateX(-100%); }
-  .menu-col--sub.is-active { display: flex; flex-direction: column; }
+  /* Sub panels: cover the overlay, hidden off-screen right */
+  .menu-col--sub {
+    display: flex !important; /* override desktop display:none */
+    flex-direction: column;
+    position: absolute;
+    inset: 0;
+    background: var(--white);
+    transform: translateX(105%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+  }
+  .menu-col--sub.is-active { transform: translateX(0); }
+  /* Root stays put — no translateX; sub slides on top */
+  .menu-overlay.has-sub .menu-col--root { transform: none; }
   .menu-back { display: block; padding: 16px 40px 8px; }
   .menu-item { min-height: 44px; }
 }
