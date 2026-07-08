@@ -3,7 +3,7 @@ title: "Ring Sizing Guide"
 date: 2016-06-01
 category: guides
 excerpt: "A comprehensive guide to finding your perfect ring size. Learn multiple methods for measuring ring size accurately, from string techniques to professional sizing tools."
-heroImage: "https://bezambar.wpenginepowered.com/wp-content/uploads/2016/05/1ROL-5R-model-mb-k.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/v1783540141/blog/legacy/1rol-5r-model-mb-k.jpg"
 author: Bez Ambar
 status: live
 ---

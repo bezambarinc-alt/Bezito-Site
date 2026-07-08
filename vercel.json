@@ -1,48 +1,2418 @@
 {
   "redirects": [
-    { "source": "/about-the-designer", "destination": "/about-bez-ambar", "permanent": true },
-    { "source": "/about-the-designer/", "destination": "/about-bez-ambar", "permanent": true },
-    { "source": "/the-bez-ambar-story-4", "destination": "/about-bez-ambar", "permanent": true },
-    { "source": "/the-bez-ambar-story-4/", "destination": "/about-bez-ambar", "permanent": true },
-    { "source": "/the-bez-ambar-story", "destination": "/about-bez-ambar", "permanent": true },
-    { "source": "/our-story", "destination": "/about-bez-ambar", "permanent": true },
-    { "source": "/about", "destination": "/about-bez-ambar", "permanent": true },
-    { "source": "/bez-ambar-jewelry-design-videos-2", "destination": "/video-gallery", "permanent": true },
-    { "source": "/bez-ambar-jewelry-design-videos-2/", "destination": "/video-gallery", "permanent": true },
-    { "source": "/diamond-education-2", "destination": "/diamond-education", "permanent": true },
-    { "source": "/diamond-education-2/", "destination": "/diamond-education", "permanent": true },
-    { "source": "/diamond-anatomy", "destination": "/diamond-education", "permanent": true },
-    { "source": "/diamond-anatomy/", "destination": "/diamond-education", "permanent": true },
-    { "source": "/bezwarranty", "destination": "/warranty", "permanent": true },
-    { "source": "/bezwarranty/", "destination": "/warranty", "permanent": true },
-    { "source": "/ring-size-chart/", "destination": "/ring-size-chart", "permanent": true },
-    { "source": "/pdf_lv_category/bez-betzalel-ambar-press", "destination": "/press", "permanent": true },
-    { "source": "/pdf_lv_category/bez-betzalel-ambar-press/", "destination": "/press", "permanent": true },
-    { "source": "/bloom", "destination": "/collection/bloom", "permanent": true },
-    { "source": "/our-blog", "destination": "/blog", "permanent": true },
-    { "source": "/our-blog/", "destination": "/blog", "permanent": true },
-    { "source": "/shop", "destination": "/collection", "permanent": true },
-    { "source": "/shop/", "destination": "/collection", "permanent": true },
-    { "source": "/shop/page/:num", "destination": "/collection", "permanent": true },
-    { "source": "/product/in100", "destination": "/jewelry/necklaces/single-row", "permanent": true },
-    { "source": "/product/in101", "destination": "/jewelry/necklaces/baguette-line", "permanent": true },
-    { "source": "/product/c0625", "destination": "/jewelry/wedding-bands/baguette-band", "permanent": true },
-    { "source": "/product/c0508", "destination": "/jewelry/necklaces/pear-shaped-necklace", "permanent": true },
-    { "source": "/product/c0536", "destination": "/jewelry/rings/fancy-yellow-three-stone", "permanent": true },
-    { "source": "/product/1c36", "destination": "/jewelry/rings/fancy-deep-brownish-yellow-cushion", "permanent": true },
-    { "source": "/product/c0747", "destination": "/jewelry/rings/fancy-very-pink-oval", "permanent": true },
-    { "source": "/product/c0754", "destination": "/jewelry/bracelets/double-row-asscher-flex", "permanent": true },
-    { "source": "/product/c0834", "destination": "/jewelry/bracelets/emerald-cut-stretch-bracelet", "permanent": true },
-    { "source": "/product/c0755", "destination": "/jewelry/bracelets/single-row-asscher-cut", "permanent": true },
-    { "source": "/product/c0825", "destination": "/jewelry/bracelets/blue-sapphire-single-row-flex", "permanent": true },
-    { "source": "/product/c0728", "destination": "/jewelry/rings/calla", "permanent": true },
-    { "source": "/product/b9792", "destination": "/jewelry/rings/camelia", "permanent": true },
-    { "source": "/product-category/:cat", "destination": "/collection?cat=:cat", "permanent": true },
-    { "source": "/product-category/:cat/:subcat", "destination": "/collection?cat=:subcat", "permanent": true }
+    {
+      "source": "/about-the-designer",
+      "destination": "/about-bez-ambar",
+      "permanent": true
+    },
+    {
+      "source": "/about-the-designer/",
+      "destination": "/about-bez-ambar",
+      "permanent": true
+    },
+    {
+      "source": "/the-bez-ambar-story-4",
+      "destination": "/about-bez-ambar",
+      "permanent": true
+    },
+    {
+      "source": "/the-bez-ambar-story-4/",
+      "destination": "/about-bez-ambar",
+      "permanent": true
+    },
+    {
+      "source": "/the-bez-ambar-story",
+      "destination": "/about-bez-ambar",
+      "permanent": true
+    },
+    {
+      "source": "/our-story",
+      "destination": "/about-bez-ambar",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/about-bez-ambar",
+      "permanent": true
+    },
+    {
+      "source": "/bez-ambar-jewelry-design-videos-2",
+      "destination": "/video-gallery",
+      "permanent": true
+    },
+    {
+      "source": "/bez-ambar-jewelry-design-videos-2/",
+      "destination": "/video-gallery",
+      "permanent": true
+    },
+    {
+      "source": "/diamond-education-2",
+      "destination": "/diamond-education",
+      "permanent": true
+    },
+    {
+      "source": "/diamond-education-2/",
+      "destination": "/diamond-education",
+      "permanent": true
+    },
+    {
+      "source": "/diamond-anatomy",
+      "destination": "/diamond-education",
+      "permanent": true
+    },
+    {
+      "source": "/diamond-anatomy/",
+      "destination": "/diamond-education",
+      "permanent": true
+    },
+    {
+      "source": "/bezwarranty",
+      "destination": "/warranty",
+      "permanent": true
+    },
+    {
+      "source": "/bezwarranty/",
+      "destination": "/warranty",
+      "permanent": true
+    },
+    {
+      "source": "/ring-size-chart/",
+      "destination": "/ring-size-chart",
+      "permanent": true
+    },
+    {
+      "source": "/pdf_lv_category/bez-betzalel-ambar-press",
+      "destination": "/press",
+      "permanent": true
+    },
+    {
+      "source": "/pdf_lv_category/bez-betzalel-ambar-press/",
+      "destination": "/press",
+      "permanent": true
+    },
+    {
+      "source": "/bloom",
+      "destination": "/collection/bloom",
+      "permanent": true
+    },
+    {
+      "source": "/our-blog",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/our-blog/",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/shop",
+      "destination": "/collection",
+      "permanent": true
+    },
+    {
+      "source": "/shop/",
+      "destination": "/collection",
+      "permanent": true
+    },
+    {
+      "source": "/shop/page/:num",
+      "destination": "/collection",
+      "permanent": true
+    },
+    {
+      "source": "/product/in100",
+      "destination": "/jewelry/necklaces/single-row",
+      "permanent": true
+    },
+    {
+      "source": "/product/in101",
+      "destination": "/jewelry/necklaces/baguette-line",
+      "permanent": true
+    },
+    {
+      "source": "/product/c0625",
+      "destination": "/jewelry/wedding-bands/baguette-band",
+      "permanent": true
+    },
+    {
+      "source": "/product/c0508",
+      "destination": "/jewelry/necklaces/pear-shaped-necklace",
+      "permanent": true
+    },
+    {
+      "source": "/product/c0536",
+      "destination": "/jewelry/rings/fancy-yellow-three-stone",
+      "permanent": true
+    },
+    {
+      "source": "/product/1c36",
+      "destination": "/jewelry/rings/fancy-deep-brownish-yellow-cushion",
+      "permanent": true
+    },
+    {
+      "source": "/product/c0747",
+      "destination": "/jewelry/rings/fancy-very-pink-oval",
+      "permanent": true
+    },
+    {
+      "source": "/product/c0754",
+      "destination": "/jewelry/bracelets/double-row-asscher-flex",
+      "permanent": true
+    },
+    {
+      "source": "/product/c0834",
+      "destination": "/jewelry/bracelets/emerald-cut-stretch-bracelet",
+      "permanent": true
+    },
+    {
+      "source": "/product/c0755",
+      "destination": "/jewelry/bracelets/single-row-asscher-cut",
+      "permanent": true
+    },
+    {
+      "source": "/product/c0825",
+      "destination": "/jewelry/bracelets/blue-sapphire-single-row-flex",
+      "permanent": true
+    },
+    {
+      "source": "/product/c0728",
+      "destination": "/jewelry/rings/calla",
+      "permanent": true
+    },
+    {
+      "source": "/product/b9792",
+      "destination": "/jewelry/rings/camelia",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/:cat",
+      "destination": "/collection?cat=:cat",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/:cat/:subcat",
+      "destination": "/collection?cat=:subcat",
+      "permanent": true
+    },
+    {
+      "source": "/contact-2",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/contact-2/",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/news",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/news/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/home/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/terms-and-conditions",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/terms-and-conditions/",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/shipping-information",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/shipping-information/",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/returns-exchanges",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/returns-exchanges/",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/bez-ambar-store-locator1",
+      "destination": "/retailers",
+      "permanent": true
+    },
+    {
+      "source": "/bez-ambar-store-locator1/",
+      "destination": "/retailers",
+      "permanent": true
+    },
+    {
+      "source": "/case-studies",
+      "destination": "/about-bez-ambar",
+      "permanent": true
+    },
+    {
+      "source": "/case-studies/",
+      "destination": "/about-bez-ambar",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/shop/:slug",
+      "destination": "/collection",
+      "permanent": true
+    },
+    {
+      "source": "/shop/:slug/",
+      "destination": "/collection",
+      "permanent": true
+    },
+    {
+      "source": "/designer-diamond-rings-bez-ambars-finest-engagement-rings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/designer-diamond-rings-bez-ambars-finest-engagement-rings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/blaze-cut-diamonds-unmatched-engagement-rings-wedding-bands",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/blaze-cut-diamonds-unmatched-engagement-rings-wedding-bands/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/design-your-own-diamond-ring-wedding-engagement",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/design-your-own-diamond-ring-wedding-engagement/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/custom-rings-master-craftsman-create-dream-wedding-ring",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/custom-rings-master-craftsman-create-dream-wedding-ring/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/ultimate-wedding-planning-checklist-monthly-breakdown",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/ultimate-wedding-planning-checklist-monthly-breakdown/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/best-diamond-cut-choosing-perfect-diamonds",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/best-diamond-cut-choosing-perfect-diamonds/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/womens-diamond-engagement-rings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/womens-diamond-engagement-rings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/wedding-bands-stunning-fine-jewelry-his-hers",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/wedding-bands-stunning-fine-jewelry-his-hers/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/bridal-ring-sets-diamond-wedding-ring-sets",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/bridal-ring-sets-diamond-wedding-ring-sets/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/wedding-planning-30-experts-tips-tricks-theknot-com",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/wedding-planning-30-experts-tips-tricks-theknot-com/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/choose-engagement-ring-cut-setting-metal",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/choose-engagement-ring-cut-setting-metal/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/wedding-engagement-rings-1st-time-buyers-guide",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/wedding-engagement-rings-1st-time-buyers-guide/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/bez-ambar-unique-buying-experience-los-angeles",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/bez-ambar-unique-buying-experience-los-angeles/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/sets-apart-designer-jewelry-rest",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/sets-apart-designer-jewelry-rest/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/designer-engagement-rings-bez-ambar",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/designer-engagement-rings-bez-ambar/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/custom-rings-diamonds-gemstones",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/custom-rings-diamonds-gemstones/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/fine-jewelry-stunning-necklaces-bracelets-earrings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/fine-jewelry-stunning-necklaces-bracelets-earrings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/knife-edge-unique-wedding-rings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/knife-edge-unique-wedding-rings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/amethyst-engagement-rings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/amethyst-engagement-rings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/unique-diamond-jewelry-los-angeles-ca",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/unique-diamond-jewelry-los-angeles-ca/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/propose-to-partner-perfect-rings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/propose-to-partner-perfect-rings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/ruby-engagement-rings-custom-red-rubies-diamonds",
+      "destination": "/blog/ruby-engagement-rings-custom-red-rubies-diamonds",
+      "permanent": true
+    },
+    {
+      "source": "/ruby-engagement-rings-custom-red-rubies-diamonds/",
+      "destination": "/blog/ruby-engagement-rings-custom-red-rubies-diamonds",
+      "permanent": true
+    },
+    {
+      "source": "/anniversary-rings-wedding-rings-eternity-rings",
+      "destination": "/blog/anniversary-rings-wedding-rings-eternity-rings",
+      "permanent": true
+    },
+    {
+      "source": "/anniversary-rings-wedding-rings-eternity-rings/",
+      "destination": "/blog/anniversary-rings-wedding-rings-eternity-rings",
+      "permanent": true
+    },
+    {
+      "source": "/wedding-bands-for-women-eternity-rings",
+      "destination": "/blog/wedding-bands-for-women-eternity-rings",
+      "permanent": true
+    },
+    {
+      "source": "/wedding-bands-for-women-eternity-rings/",
+      "destination": "/blog/wedding-bands-for-women-eternity-rings",
+      "permanent": true
+    },
+    {
+      "source": "/custom-jewelry-gold-jewelry",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/custom-jewelry-gold-jewelry/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/custom-diamond-necklace-designed-master-craftsmen",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/custom-diamond-necklace-designed-master-craftsmen/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/bracelets-stunning-diamond-bracelet-designs",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/bracelets-stunning-diamond-bracelet-designs/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/jewelry-care-cleaning-jewelry",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/jewelry-care-cleaning-jewelry/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/princess-cut-diamond-inventor",
+      "destination": "/blog/princess-cut-diamond-inventor",
+      "permanent": true
+    },
+    {
+      "source": "/princess-cut-diamond-inventor/",
+      "destination": "/blog/princess-cut-diamond-inventor",
+      "permanent": true
+    },
+    {
+      "source": "/gemstone-jewelry-emerald-engagement-rings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/gemstone-jewelry-emerald-engagement-rings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/radiant-cushion-cut-engagement-rings",
+      "destination": "/blog/radiant-cushion-cut-engagement-rings",
+      "permanent": true
+    },
+    {
+      "source": "/radiant-cushion-cut-engagement-rings/",
+      "destination": "/blog/radiant-cushion-cut-engagement-rings",
+      "permanent": true
+    },
+    {
+      "source": "/diamond-rings-wedding-rings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/diamond-rings-wedding-rings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/designer-diamond-engagement-rings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/designer-diamond-engagement-rings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/halo-engagement-ring-designer-diamond-rings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/halo-engagement-ring-designer-diamond-rings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/designer-engagement-rings-wedding-bands",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/designer-engagement-rings-wedding-bands/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/finest-designer-engagement-rings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/finest-designer-engagement-rings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/designer-split-shank-engagement-rings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/designer-split-shank-engagement-rings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/authentic-bez-ambar-buyer-beware",
+      "destination": "/blog/authentic-bez-ambar-buyer-beware",
+      "permanent": true
+    },
+    {
+      "source": "/authentic-bez-ambar-buyer-beware/",
+      "destination": "/blog/authentic-bez-ambar-buyer-beware",
+      "permanent": true
+    },
+    {
+      "source": "/unique-heart-shaped-engagement-rings-bez-ambar",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/unique-heart-shaped-engagement-rings-bez-ambar/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/designer-engagement-rings-chicago",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/designer-engagement-rings-chicago/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/designer-engagement-rings-nashville-tn",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/designer-engagement-rings-nashville-tn/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-a-halo-engagement-ring",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-a-halo-engagement-ring/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/engagement-rings-boston",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/engagement-rings-boston/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/designer-engagement-rings-dallas",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/designer-engagement-rings-dallas/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/engagement-rings-houston",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/engagement-rings-houston/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/shop-fine-jewelry-online-store",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/shop-fine-jewelry-online-store/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/engagement-rings-los-angeles-best-jewelry",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/engagement-rings-los-angeles-best-jewelry/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/white-black-diamond-jewelry",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/white-black-diamond-jewelry/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/designer-jewelry-2015-golden-globes",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/designer-jewelry-2015-golden-globes/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/men-women-really-want-valentines-day",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/men-women-really-want-valentines-day/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/comparison-video-blaze-cut-diamond-vs-cuts",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/comparison-video-blaze-cut-diamond-vs-cuts/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/difference-yellow-gold-white-gold-rose-gold",
+      "destination": "/blog/difference-yellow-gold-white-gold-rose-gold",
+      "permanent": true
+    },
+    {
+      "source": "/difference-yellow-gold-white-gold-rose-gold/",
+      "destination": "/blog/difference-yellow-gold-white-gold-rose-gold",
+      "permanent": true
+    },
+    {
+      "source": "/stackable-rings-bez-ambar",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/stackable-rings-bez-ambar/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/are-split-shank-engagement-rings-popular",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/are-split-shank-engagement-rings-popular/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/bez-ambars-ring-enhancers-bookend-bands",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/bez-ambars-ring-enhancers-bookend-bands/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/fancy-yellow-heart-shape-diamond-with-blaze",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/fancy-yellow-heart-shape-diamond-with-blaze/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/three-stone-engagement-ring-princess-cut",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/three-stone-engagement-ring-princess-cut/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/three-stone-engagement-ring-with-oval-and-blaze",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/three-stone-engagement-ring-with-oval-and-blaze/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/three-stone-engagement-ring-oval-cut",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/three-stone-engagement-ring-oval-cut/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/bamboo-engagement-ring-with-blaze",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/bamboo-engagement-ring-with-blaze/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/round-center-with-square-sapphires",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/round-center-with-square-sapphires/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/round-center-with-square-rubies",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/round-center-with-square-rubies/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/three-stones-engagement-ring-for-emerald",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/three-stones-engagement-ring-for-emerald/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/three-stones-engagement-ring-for-princess-cut-diamonds-with-blaze",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/three-stones-engagement-ring-for-princess-cut-diamonds-with-blaze/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/pave-split-shank-engagement-ring-with-octagon-halo",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/pave-split-shank-engagement-ring-with-octagon-halo/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/one-carat-heart-shaped-diamond-ring",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/one-carat-heart-shaped-diamond-ring/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/mens-unique-wedding-rings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/mens-unique-wedding-rings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/radiant-cut-diamond-band",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/radiant-cut-diamond-band/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/three-stone-ring-meaning",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/three-stone-ring-meaning/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/cushion-cut-diamond-engagement-ring",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/cushion-cut-diamond-engagement-ring/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/princess-cut-diamond-rings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/princess-cut-diamond-rings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/heart-diamond-engagement-ring",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/heart-diamond-engagement-ring/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/engagement-rings-diamonds-sapphires",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/engagement-rings-diamonds-sapphires/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/pink-princess-cut-diamonds",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/pink-princess-cut-diamonds/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/custom-designer-jewelry-bez-ambar",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/custom-designer-jewelry-bez-ambar/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/jewelers-in-shreveport-la",
+      "destination": "/retailers/jewelers-in-shreveport-la",
+      "permanent": true
+    },
+    {
+      "source": "/jewelers-in-shreveport-la/",
+      "destination": "/retailers/jewelers-in-shreveport-la",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-cathedral-engagement-ring-setting",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-cathedral-engagement-ring-setting/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/los-angeles-custom-jewelry-designer-jewelry-store",
+      "destination": "/retailers/los-angeles-custom-jewelry-designer-jewelry-store",
+      "permanent": true
+    },
+    {
+      "source": "/los-angeles-custom-jewelry-designer-jewelry-store/",
+      "destination": "/retailers/los-angeles-custom-jewelry-designer-jewelry-store",
+      "permanent": true
+    },
+    {
+      "source": "/designer-diamond-engagement-ring",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/designer-diamond-engagement-ring/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/women-three-stone-rings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/women-three-stone-rings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/princess-cut-ring",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/princess-cut-ring/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/wide-band-diamond-rings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/wide-band-diamond-rings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/emerald-cut-diamond-earrings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/emerald-cut-diamond-earrings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/why-is-it-important-to-take-care-of-diamond-jewelry",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/why-is-it-important-to-take-care-of-diamond-jewelry/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/5-carat-diamond-ring",
+      "destination": "/blog/5-carat-diamond-ring",
+      "permanent": true
+    },
+    {
+      "source": "/5-carat-diamond-ring/",
+      "destination": "/blog/5-carat-diamond-ring",
+      "permanent": true
+    },
+    {
+      "source": "/what-to-do-with-a-chipped-diamond",
+      "destination": "/blog/what-to-do-with-a-chipped-diamond",
+      "permanent": true
+    },
+    {
+      "source": "/what-to-do-with-a-chipped-diamond/",
+      "destination": "/blog/what-to-do-with-a-chipped-diamond",
+      "permanent": true
+    },
+    {
+      "source": "/yellow-gold-cross-necklace",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/yellow-gold-cross-necklace/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/quadrillion-cut-different-princess-cut",
+      "destination": "/blog/quadrillion-cut-different-princess-cut",
+      "permanent": true
+    },
+    {
+      "source": "/quadrillion-cut-different-princess-cut/",
+      "destination": "/blog/quadrillion-cut-different-princess-cut",
+      "permanent": true
+    },
+    {
+      "source": "/pink-diamond-engagement-rings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/pink-diamond-engagement-rings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/customized-engagement-ring-for-a-special-order",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/customized-engagement-ring-for-a-special-order/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/all-around-stag-bands",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/all-around-stag-bands/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/engagement-rings-with-bands",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/engagement-rings-with-bands/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/unique-engagement-ring-settings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/unique-engagement-ring-settings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/round-brilliant-cut-diamonds-vs-future-round-diamonds",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/round-brilliant-cut-diamonds-vs-future-round-diamonds/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/bez-ambars-new-patented-design-divine-cut-diamond",
+      "destination": "/blog/bez-ambars-new-patented-design-divine-cut-diamond",
+      "permanent": true
+    },
+    {
+      "source": "/bez-ambars-new-patented-design-divine-cut-diamond/",
+      "destination": "/blog/bez-ambars-new-patented-design-divine-cut-diamond",
+      "permanent": true
+    },
+    {
+      "source": "/micro-pave-heart-pendant-accent-diamond-ring",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/micro-pave-heart-pendant-accent-diamond-ring/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/blaze-cut-diamond",
+      "destination": "/blog/blaze-cut-diamond",
+      "permanent": true
+    },
+    {
+      "source": "/blaze-cut-diamond/",
+      "destination": "/blog/blaze-cut-diamond",
+      "permanent": true
+    },
+    {
+      "source": "/genesis-diamonds-nashville",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/genesis-diamonds-nashville/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/fancy-yellow-diamond-engagement-rings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/fancy-yellow-diamond-engagement-rings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/royal-jewelers-andover",
+      "destination": "/retailers/royal-jewelers-andover",
+      "permanent": true
+    },
+    {
+      "source": "/royal-jewelers-andover/",
+      "destination": "/retailers/royal-jewelers-andover",
+      "permanent": true
+    },
+    {
+      "source": "/invisible-setting-for-diamonds-a-bez-ambar-innovation",
+      "destination": "/blog/invisible-setting-for-diamonds-a-bez-ambar-innovation",
+      "permanent": true
+    },
+    {
+      "source": "/invisible-setting-for-diamonds-a-bez-ambar-innovation/",
+      "destination": "/blog/invisible-setting-for-diamonds-a-bez-ambar-innovation",
+      "permanent": true
+    },
+    {
+      "source": "/sid-potts-shreveport",
+      "destination": "/retailers/sid-potts-shreveport",
+      "permanent": true
+    },
+    {
+      "source": "/sid-potts-shreveport/",
+      "destination": "/retailers/sid-potts-shreveport",
+      "permanent": true
+    },
+    {
+      "source": "/maurice-badler-fine-jewelry",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/maurice-badler-fine-jewelry/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/badler-last-call",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/badler-last-call/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/edmund-t-ahee-jewelers",
+      "destination": "/retailers/edmund-t-ahee-jewelers",
+      "permanent": true
+    },
+    {
+      "source": "/edmund-t-ahee-jewelers/",
+      "destination": "/retailers/edmund-t-ahee-jewelers",
+      "permanent": true
+    },
+    {
+      "source": "/sid-potts",
+      "destination": "/retailers/sid-potts",
+      "permanent": true
+    },
+    {
+      "source": "/sid-potts/",
+      "destination": "/retailers/sid-potts",
+      "permanent": true
+    },
+    {
+      "source": "/edmund-ahee-jewelers",
+      "destination": "/retailers/edmund-ahee-jewelers",
+      "permanent": true
+    },
+    {
+      "source": "/edmund-ahee-jewelers/",
+      "destination": "/retailers/edmund-ahee-jewelers",
+      "permanent": true
+    },
+    {
+      "source": "/ahee-jewelers",
+      "destination": "/retailers/ahee-jewelers",
+      "permanent": true
+    },
+    {
+      "source": "/ahee-jewelers/",
+      "destination": "/retailers/ahee-jewelers",
+      "permanent": true
+    },
+    {
+      "source": "/eiseman-jewels",
+      "destination": "/retailers/eiseman-jewels",
+      "permanent": true
+    },
+    {
+      "source": "/eiseman-jewels/",
+      "destination": "/retailers/eiseman-jewels",
+      "permanent": true
+    },
+    {
+      "source": "/eiseman-jewelers-dallas-tx",
+      "destination": "/retailers/eiseman-jewelers-dallas-tx",
+      "permanent": true
+    },
+    {
+      "source": "/eiseman-jewelers-dallas-tx/",
+      "destination": "/retailers/eiseman-jewelers-dallas-tx",
+      "permanent": true
+    },
+    {
+      "source": "/kassab-jewelers-portland",
+      "destination": "/retailers/kassab-jewelers-portland",
+      "permanent": true
+    },
+    {
+      "source": "/kassab-jewelers-portland/",
+      "destination": "/retailers/kassab-jewelers-portland",
+      "permanent": true
+    },
+    {
+      "source": "/kassab-jewelers",
+      "destination": "/retailers/kassab-jewelers",
+      "permanent": true
+    },
+    {
+      "source": "/kassab-jewelers/",
+      "destination": "/retailers/kassab-jewelers",
+      "permanent": true
+    },
+    {
+      "source": "/james-elliott-jewelers",
+      "destination": "/retailers/james-elliott-jewelers",
+      "permanent": true
+    },
+    {
+      "source": "/james-elliott-jewelers/",
+      "destination": "/retailers/james-elliott-jewelers",
+      "permanent": true
+    },
+    {
+      "source": "/james-elliott-scottsdale",
+      "destination": "/retailers/james-elliott-scottsdale",
+      "permanent": true
+    },
+    {
+      "source": "/james-elliott-scottsdale/",
+      "destination": "/retailers/james-elliott-scottsdale",
+      "permanent": true
+    },
+    {
+      "source": "/alsonjewelers-com",
+      "destination": "/retailers/alsonjewelers-com",
+      "permanent": true
+    },
+    {
+      "source": "/alsonjewelers-com/",
+      "destination": "/retailers/alsonjewelers-com",
+      "permanent": true
+    },
+    {
+      "source": "/turgeon-raine",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/turgeon-raine/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/turgeon-raine-seattle",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/turgeon-raine-seattle/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/alson-jewelers",
+      "destination": "/retailers/alson-jewelers",
+      "permanent": true
+    },
+    {
+      "source": "/alson-jewelers/",
+      "destination": "/retailers/alson-jewelers",
+      "permanent": true
+    },
+    {
+      "source": "/alson-jewelry",
+      "destination": "/retailers/alson-jewelry",
+      "permanent": true
+    },
+    {
+      "source": "/alson-jewelry/",
+      "destination": "/retailers/alson-jewelry",
+      "permanent": true
+    },
+    {
+      "source": "/engagement-rings-and-wedding-bands-buying-online-or-in-store",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/engagement-rings-and-wedding-bands-buying-online-or-in-store/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/alson-jewelers-cleveland-oh",
+      "destination": "/retailers/alson-jewelers-cleveland-oh",
+      "permanent": true
+    },
+    {
+      "source": "/alson-jewelers-cleveland-oh/",
+      "destination": "/retailers/alson-jewelers-cleveland-oh",
+      "permanent": true
+    },
+    {
+      "source": "/bigham-jewelers",
+      "destination": "/retailers/bigham-jewelers",
+      "permanent": true
+    },
+    {
+      "source": "/bigham-jewelers/",
+      "destination": "/retailers/bigham-jewelers",
+      "permanent": true
+    },
+    {
+      "source": "/international-diamond-center-savannah-ga",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/international-diamond-center-savannah-ga/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/international-diamond-center-orlando",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/international-diamond-center-orlando/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/international-diamond-center-clearwater",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/international-diamond-center-clearwater/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/international-diamond-center-tampa",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/international-diamond-center-tampa/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/international-diamond-center-altamonte-springs",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/international-diamond-center-altamonte-springs/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/international-diamond-center",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/international-diamond-center/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/international-diamond-center-winter-park-fl",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/international-diamond-center-winter-park-fl/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/ascot-diamondsarlington-va",
+      "destination": "/retailers/ascot-diamondsarlington-va",
+      "permanent": true
+    },
+    {
+      "source": "/ascot-diamondsarlington-va/",
+      "destination": "/retailers/ascot-diamondsarlington-va",
+      "permanent": true
+    },
+    {
+      "source": "/ascot-diamonds",
+      "destination": "/retailers/ascot-diamonds",
+      "permanent": true
+    },
+    {
+      "source": "/ascot-diamonds/",
+      "destination": "/retailers/ascot-diamonds",
+      "permanent": true
+    },
+    {
+      "source": "/ascot-diamonds-dallas-tx",
+      "destination": "/retailers/ascot-diamonds-dallas-tx",
+      "permanent": true
+    },
+    {
+      "source": "/ascot-diamonds-dallas-tx/",
+      "destination": "/retailers/ascot-diamonds-dallas-tx",
+      "permanent": true
+    },
+    {
+      "source": "/ascot-jewelers",
+      "destination": "/retailers/ascot-jewelers",
+      "permanent": true
+    },
+    {
+      "source": "/ascot-jewelers/",
+      "destination": "/retailers/ascot-jewelers",
+      "permanent": true
+    },
+    {
+      "source": "/i-gorman-jewelers",
+      "destination": "/retailers/i-gorman-jewelers",
+      "permanent": true
+    },
+    {
+      "source": "/i-gorman-jewelers/",
+      "destination": "/retailers/i-gorman-jewelers",
+      "permanent": true
+    },
+    {
+      "source": "/t-bird-jewelers",
+      "destination": "/retailers/t-bird-jewelers",
+      "permanent": true
+    },
+    {
+      "source": "/t-bird-jewelers/",
+      "destination": "/retailers/t-bird-jewelers",
+      "permanent": true
+    },
+    {
+      "source": "/t-bird-jewels",
+      "destination": "/retailers/t-bird-jewels",
+      "permanent": true
+    },
+    {
+      "source": "/t-bird-jewels/",
+      "destination": "/retailers/t-bird-jewels",
+      "permanent": true
+    },
+    {
+      "source": "/t-bird-jewelry",
+      "destination": "/retailers/t-bird-jewelry",
+      "permanent": true
+    },
+    {
+      "source": "/t-bird-jewelry/",
+      "destination": "/retailers/t-bird-jewelry",
+      "permanent": true
+    },
+    {
+      "source": "/fred-brown-jewelers-com",
+      "destination": "/retailers/fred-brown-jewelers-com",
+      "permanent": true
+    },
+    {
+      "source": "/fred-brown-jewelers-com/",
+      "destination": "/retailers/fred-brown-jewelers-com",
+      "permanent": true
+    },
+    {
+      "source": "/radcliffe-pikesville",
+      "destination": "/retailers/radcliffe-pikesville",
+      "permanent": true
+    },
+    {
+      "source": "/radcliffe-pikesville/",
+      "destination": "/retailers/radcliffe-pikesville",
+      "permanent": true
+    },
+    {
+      "source": "/radcliffe-jewelers",
+      "destination": "/retailers/radcliffe-jewelers",
+      "permanent": true
+    },
+    {
+      "source": "/radcliffe-jewelers/",
+      "destination": "/retailers/radcliffe-jewelers",
+      "permanent": true
+    },
+    {
+      "source": "/radcliffe-baltimore",
+      "destination": "/retailers/radcliffe-baltimore",
+      "permanent": true
+    },
+    {
+      "source": "/radcliffe-baltimore/",
+      "destination": "/retailers/radcliffe-baltimore",
+      "permanent": true
+    },
+    {
+      "source": "/radcliffe-maryland",
+      "destination": "/retailers/radcliffe-maryland",
+      "permanent": true
+    },
+    {
+      "source": "/radcliffe-maryland/",
+      "destination": "/retailers/radcliffe-maryland",
+      "permanent": true
+    },
+    {
+      "source": "/difference-between-platinum-and-white-gold",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/difference-between-platinum-and-white-gold/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/titanium-rings-men-pros-and-cons",
+      "destination": "/blog/titanium-rings-men-pros-and-cons",
+      "permanent": true
+    },
+    {
+      "source": "/titanium-rings-men-pros-and-cons/",
+      "destination": "/blog/titanium-rings-men-pros-and-cons",
+      "permanent": true
+    },
+    {
+      "source": "/radcliffe-towson",
+      "destination": "/retailers/radcliffe-towson",
+      "permanent": true
+    },
+    {
+      "source": "/radcliffe-towson/",
+      "destination": "/retailers/radcliffe-towson",
+      "permanent": true
+    },
+    {
+      "source": "/diamonds-made-valued",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/diamonds-made-valued/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/stay-within-budget-buy-dream-ring",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/stay-within-budget-buy-dream-ring/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/london-jewelers-long-island",
+      "destination": "/retailers/london-jewelers-long-island",
+      "permanent": true
+    },
+    {
+      "source": "/london-jewelers-long-island/",
+      "destination": "/retailers/london-jewelers-long-island",
+      "permanent": true
+    },
+    {
+      "source": "/london-jewelers-new-york",
+      "destination": "/retailers/london-jewelers-new-york",
+      "permanent": true
+    },
+    {
+      "source": "/london-jewelers-new-york/",
+      "destination": "/retailers/london-jewelers-new-york",
+      "permanent": true
+    },
+    {
+      "source": "/london-jewelers-americana-manhasset",
+      "destination": "/retailers/london-jewelers-americana-manhasset",
+      "permanent": true
+    },
+    {
+      "source": "/london-jewelers-americana-manhasset/",
+      "destination": "/retailers/london-jewelers-americana-manhasset",
+      "permanent": true
+    },
+    {
+      "source": "/london-jewelers-manhasset",
+      "destination": "/retailers/london-jewelers-manhasset",
+      "permanent": true
+    },
+    {
+      "source": "/london-jewelers-manhasset/",
+      "destination": "/retailers/london-jewelers-manhasset",
+      "permanent": true
+    },
+    {
+      "source": "/london-jewelers-east-hampton",
+      "destination": "/retailers/london-jewelers-east-hampton",
+      "permanent": true
+    },
+    {
+      "source": "/london-jewelers-east-hampton/",
+      "destination": "/retailers/london-jewelers-east-hampton",
+      "permanent": true
+    },
+    {
+      "source": "/london-jewelers-south-hampton",
+      "destination": "/retailers/london-jewelers-south-hampton",
+      "permanent": true
+    },
+    {
+      "source": "/london-jewelers-south-hampton/",
+      "destination": "/retailers/london-jewelers-south-hampton",
+      "permanent": true
+    },
+    {
+      "source": "/vintage-solitaire-engagement-rings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/vintage-solitaire-engagement-rings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/london-jewelers-glen-cove",
+      "destination": "/retailers/london-jewelers-glen-cove",
+      "permanent": true
+    },
+    {
+      "source": "/london-jewelers-glen-cove/",
+      "destination": "/retailers/london-jewelers-glen-cove",
+      "permanent": true
+    },
+    {
+      "source": "/the-blake-lively-inspired-engagement-ring",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/the-blake-lively-inspired-engagement-ring/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/men-wedding-ring-buying-guide",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/men-wedding-ring-buying-guide/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/birthstones-month-gemstones-and-engagement-rings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/birthstones-month-gemstones-and-engagement-rings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/10-largest-diamonds-ever-found",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/10-largest-diamonds-ever-found/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/the-significance-of-mens-wedding-bands",
+      "destination": "/blog/the-significance-of-mens-wedding-bands",
+      "permanent": true
+    },
+    {
+      "source": "/the-significance-of-mens-wedding-bands/",
+      "destination": "/blog/the-significance-of-mens-wedding-bands",
+      "permanent": true
+    },
+    {
+      "source": "/natural-pink-sapphire-earrings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/natural-pink-sapphire-earrings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/perfect-men-wedding-bands-diamonds-guidance",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/perfect-men-wedding-bands-diamonds-guidance/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/black-diamond-earrings-women",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/black-diamond-earrings-women/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/ring-of-light",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/ring-of-light/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/handmade-jewelry-designs",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/handmade-jewelry-designs/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/blaze-halo-setting-makes-diamond-look-bigger",
+      "destination": "/blog/blaze-halo-setting-makes-diamond-look-bigger",
+      "permanent": true
+    },
+    {
+      "source": "/blaze-halo-setting-makes-diamond-look-bigger/",
+      "destination": "/blog/blaze-halo-setting-makes-diamond-look-bigger",
+      "permanent": true
+    },
+    {
+      "source": "/custom-ring-fire-fancy-yellow-diamond",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/custom-ring-fire-fancy-yellow-diamond/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/marquise-engagement-rings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/marquise-engagement-rings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/custom-three-row-wedding-bands-for-women",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/custom-three-row-wedding-bands-for-women/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/heart-shaped-silvet-ring-with-rubies",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/heart-shaped-silvet-ring-with-rubies/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/blue-diamond-pear-shape-ring",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/blue-diamond-pear-shape-ring/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/cushion-cut-engagement-rings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/cushion-cut-engagement-rings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/dancing-with-the-stars",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/dancing-with-the-stars/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/ella-full-finger-ring",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/ella-full-finger-ring/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-a-wedding-band",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-a-wedding-band/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/blue-pasha-custom-tanzanite-engagement-rings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/blue-pasha-custom-tanzanite-engagement-rings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/wedding-ring-designs",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/wedding-ring-designs/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-a-wedding-anniversary-ring",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-a-wedding-anniversary-ring/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/halo-ring-setting",
+      "destination": "/blog/halo-ring-setting",
+      "permanent": true
+    },
+    {
+      "source": "/halo-ring-setting/",
+      "destination": "/blog/halo-ring-setting",
+      "permanent": true
+    },
+    {
+      "source": "/pink-diamond-engagement-rings-2",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/pink-diamond-engagement-rings-2/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/ring-size-guide-choosing-ring-size",
+      "destination": "/blog/ring-size-guide-choosing-ring-size",
+      "permanent": true
+    },
+    {
+      "source": "/ring-size-guide-choosing-ring-size/",
+      "destination": "/blog/ring-size-guide-choosing-ring-size",
+      "permanent": true
+    },
+    {
+      "source": "/blue-sapphire-engagement-ring",
+      "destination": "/blog/blue-sapphire-engagement-ring",
+      "permanent": true
+    },
+    {
+      "source": "/blue-sapphire-engagement-ring/",
+      "destination": "/blog/blue-sapphire-engagement-ring",
+      "permanent": true
+    },
+    {
+      "source": "/rose-gold-wedding-band",
+      "destination": "/blog/rose-gold-wedding-band",
+      "permanent": true
+    },
+    {
+      "source": "/rose-gold-wedding-band/",
+      "destination": "/blog/rose-gold-wedding-band",
+      "permanent": true
+    },
+    {
+      "source": "/diamond-pendant-necklaces",
+      "destination": "/blog/diamond-pendant-necklaces",
+      "permanent": true
+    },
+    {
+      "source": "/diamond-pendant-necklaces/",
+      "destination": "/blog/diamond-pendant-necklaces",
+      "permanent": true
+    },
+    {
+      "source": "/custom-ring-fire-yellow-diamonds",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/custom-ring-fire-yellow-diamonds/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/unusual-engagement-rings-round-crossover",
+      "destination": "/blog/unusual-engagement-rings-round-crossover",
+      "permanent": true
+    },
+    {
+      "source": "/unusual-engagement-rings-round-crossover/",
+      "destination": "/blog/unusual-engagement-rings-round-crossover",
+      "permanent": true
+    },
+    {
+      "source": "/bez-ambar-aura-collection-multi-colored-stone-rings",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/bez-ambar-aura-collection-multi-colored-stone-rings/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/snowflake-newsletter",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/snowflake-newsletter/",
+      "destination": "/journal",
+      "permanent": true
+    },
+    {
+      "source": "/fancy-colored-diamond-jewelry",
+      "destination": "/blog/fancy-colored-diamond-jewelry",
+      "permanent": true
+    },
+    {
+      "source": "/fancy-colored-diamond-jewelry/",
+      "destination": "/blog/fancy-colored-diamond-jewelry",
+      "permanent": true
+    },
+    {
+      "source": "/fancy-intense-blue-diamond-ring",
+      "destination": "/blog/fancy-intense-blue-diamond-ring",
+      "permanent": true
+    },
+    {
+      "source": "/fancy-intense-blue-diamond-ring/",
+      "destination": "/blog/fancy-intense-blue-diamond-ring",
+      "permanent": true
+    },
+    {
+      "source": "/rose-cut-diamond-rings-by-bez-ambar",
+      "destination": "/blog/rose-cut-diamond-rings-by-bez-ambar",
+      "permanent": true
+    },
+    {
+      "source": "/rose-cut-diamond-rings-by-bez-ambar/",
+      "destination": "/blog/rose-cut-diamond-rings-by-bez-ambar",
+      "permanent": true
+    },
+    {
+      "source": "/white-gold-diamond-hoop-earrings",
+      "destination": "/blog/white-gold-diamond-hoop-earrings",
+      "permanent": true
+    },
+    {
+      "source": "/white-gold-diamond-hoop-earrings/",
+      "destination": "/blog/white-gold-diamond-hoop-earrings",
+      "permanent": true
+    },
+    {
+      "source": "/engagement-rings-for-women-heirloom-or-new",
+      "destination": "/blog/engagement-rings-for-women-heirloom-or-new",
+      "permanent": true
+    },
+    {
+      "source": "/engagement-rings-for-women-heirloom-or-new/",
+      "destination": "/blog/engagement-rings-for-women-heirloom-or-new",
+      "permanent": true
+    },
+    {
+      "source": "/chocolate-brown-diamond-rings",
+      "destination": "/blog/chocolate-brown-diamond-rings",
+      "permanent": true
+    },
+    {
+      "source": "/chocolate-brown-diamond-rings/",
+      "destination": "/blog/chocolate-brown-diamond-rings",
+      "permanent": true
+    },
+    {
+      "source": "/secret-behind-ring-sizing",
+      "destination": "/blog/secret-behind-ring-sizing",
+      "permanent": true
+    },
+    {
+      "source": "/secret-behind-ring-sizing/",
+      "destination": "/blog/secret-behind-ring-sizing",
+      "permanent": true
+    },
+    {
+      "source": "/sapphire-engagement-rings-yes-no",
+      "destination": "/blog/sapphire-engagement-rings-yes-no",
+      "permanent": true
+    },
+    {
+      "source": "/sapphire-engagement-rings-yes-no/",
+      "destination": "/blog/sapphire-engagement-rings-yes-no",
+      "permanent": true
+    },
+    {
+      "source": "/blue-diamond-rings",
+      "destination": "/blog/blue-diamond-rings",
+      "permanent": true
+    },
+    {
+      "source": "/blue-diamond-rings/",
+      "destination": "/blog/blue-diamond-rings",
+      "permanent": true
+    },
+    {
+      "source": "/why-a-1-carat-diamond",
+      "destination": "/blog/why-a-1-carat-diamond",
+      "permanent": true
+    },
+    {
+      "source": "/why-a-1-carat-diamond/",
+      "destination": "/blog/why-a-1-carat-diamond",
+      "permanent": true
+    },
+    {
+      "source": "/black-diamond-jewelry",
+      "destination": "/blog/black-diamond-jewelry",
+      "permanent": true
+    },
+    {
+      "source": "/black-diamond-jewelry/",
+      "destination": "/blog/black-diamond-jewelry",
+      "permanent": true
+    },
+    {
+      "source": "/is-a-pink-diamond-engagement-ring-right-for-you",
+      "destination": "/blog/is-a-pink-diamond-engagement-ring-right-for-you",
+      "permanent": true
+    },
+    {
+      "source": "/is-a-pink-diamond-engagement-ring-right-for-you/",
+      "destination": "/blog/is-a-pink-diamond-engagement-ring-right-for-you",
+      "permanent": true
+    },
+    {
+      "source": "/should-you-buy-emerald-engagement-rings",
+      "destination": "/blog/should-you-buy-emerald-engagement-rings",
+      "permanent": true
+    },
+    {
+      "source": "/should-you-buy-emerald-engagement-rings/",
+      "destination": "/blog/should-you-buy-emerald-engagement-rings",
+      "permanent": true
+    },
+    {
+      "source": "/choosing-your-diamond-earrings-studs",
+      "destination": "/blog/choosing-your-diamond-earrings-studs",
+      "permanent": true
+    },
+    {
+      "source": "/choosing-your-diamond-earrings-studs/",
+      "destination": "/blog/choosing-your-diamond-earrings-studs",
+      "permanent": true
+    },
+    {
+      "source": "/online-jewelry-stores",
+      "destination": "/blog/online-jewelry-stores",
+      "permanent": true
+    },
+    {
+      "source": "/online-jewelry-stores/",
+      "destination": "/blog/online-jewelry-stores",
+      "permanent": true
+    },
+    {
+      "source": "/choosing-semi-precious-stones",
+      "destination": "/blog/choosing-semi-precious-stones",
+      "permanent": true
+    },
+    {
+      "source": "/choosing-semi-precious-stones/",
+      "destination": "/blog/choosing-semi-precious-stones",
+      "permanent": true
+    },
+    {
+      "source": "/cushion-cut-diamond-earrings-video",
+      "destination": "/blog/cushion-cut-diamond-earrings-video",
+      "permanent": true
+    },
+    {
+      "source": "/cushion-cut-diamond-earrings-video/",
+      "destination": "/blog/cushion-cut-diamond-earrings-video",
+      "permanent": true
+    },
+    {
+      "source": "/princess-cut-diamond-earrings",
+      "destination": "/blog/princess-cut-diamond-earrings",
+      "permanent": true
+    },
+    {
+      "source": "/princess-cut-diamond-earrings/",
+      "destination": "/blog/princess-cut-diamond-earrings",
+      "permanent": true
+    },
+    {
+      "source": "/the-los-angeles-diamond-district",
+      "destination": "/blog/the-los-angeles-diamond-district",
+      "permanent": true
+    },
+    {
+      "source": "/the-los-angeles-diamond-district/",
+      "destination": "/blog/the-los-angeles-diamond-district",
+      "permanent": true
+    },
+    {
+      "source": "/blue-diamond-ring-vs-blue-sapphire-diamond-ring",
+      "destination": "/blog/blue-diamond-ring-vs-blue-sapphire-diamond-ring",
+      "permanent": true
+    },
+    {
+      "source": "/blue-diamond-ring-vs-blue-sapphire-diamond-ring/",
+      "destination": "/blog/blue-diamond-ring-vs-blue-sapphire-diamond-ring",
+      "permanent": true
+    },
+    {
+      "source": "/the-return-of-pear-shaped-diamond-rings",
+      "destination": "/blog/the-return-of-pear-shaped-diamond-rings",
+      "permanent": true
+    },
+    {
+      "source": "/the-return-of-pear-shaped-diamond-rings/",
+      "destination": "/blog/the-return-of-pear-shaped-diamond-rings",
+      "permanent": true
+    },
+    {
+      "source": "/diamond-hoop-earrings-guide",
+      "destination": "/blog/diamond-hoop-earrings-guide",
+      "permanent": true
+    },
+    {
+      "source": "/diamond-hoop-earrings-guide/",
+      "destination": "/blog/diamond-hoop-earrings-guide",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-an-asscher-cut-diamond",
+      "destination": "/blog/what-is-an-asscher-cut-diamond",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-an-asscher-cut-diamond/",
+      "destination": "/blog/what-is-an-asscher-cut-diamond",
+      "permanent": true
+    }
   ],
   "rewrites": [
-{ "source": "/product-template", "destination": "/product-template.html" },
-    { "source": "/category-template", "destination": "/category-template.html" },
-    { "source": "/product/:slug", "destination": "/product.html?id=:slug" }
+    {
+      "source": "/product-template",
+      "destination": "/product-template.html"
+    },
+    {
+      "source": "/category-template",
+      "destination": "/category-template.html"
+    },
+    {
+      "source": "/product/:slug",
+      "destination": "/product.html?id=:slug"
+    }
   ]
 }
