@@ -1162,11 +1162,10 @@ body.menu-open { overflow: hidden; }
   .ba-footer { padding: 56px 20px 0; }
   .ba-footer__cols { grid-template-columns: 1fr 1fr; gap: 36px 24px; }
   .ba-footer__brand { flex-direction: column; align-items: flex-start; }
-  /* Heroes */
-  .ba-light-hero { padding: 110px 20px 56px; }
-  .ba-inner-hero { padding: 120px 20px 48px; }
   /* Catalog/collection bar */
   .lv-collection-bar { padding: 15px 20px 0; }
+  /* Note: .ba-inner-hero and .ba-light-hero responsive rules are co-located
+     with their base definitions (sections 18 & 25) to avoid cascade order bugs */
 }
 
 @media (max-width: 640px) {
@@ -1190,10 +1189,10 @@ body.menu-open { overflow: hidden; }
   .ba-footer__cols { grid-template-columns: 1fr; gap: 24px; }
   .ba-footer__bottom { padding: 16px 0 24px; }
   /* Grids */
-  .ba-info-grid { grid-template-columns: 1fr; }
   .services-inner { grid-template-columns: 1fr; gap: 16px; }
   /* Jewelry grid: 2-col stays (images are small enough) */
   .lv-collection-grid { grid-template-columns: 1fr 1fr; }
+  /* Note: .ba-info-grid responsive rule is co-located with its base (section 25) */
 }
 
 @media (max-width: 380px) {
@@ -1295,6 +1294,13 @@ body.menu-open { overflow: hidden; }
   margin: 0 auto;
   padding: 140px 2rem 64px;
   background: var(--white);
+}
+@media (max-width: 768px) {
+  .ba-inner-hero { padding: 120px 20px 48px; }
+  .ba-inner-hero--narrow { padding: 100px 1.25rem 48px; }
+}
+@media (max-width: 480px) {
+  .ba-inner-hero { padding: 96px 16px 40px; }
 }
 
 /* ── 19. JEWELRY 3-COL GRID (category pages) ─────────────── */
@@ -1620,6 +1626,12 @@ body.menu-open { overflow: hidden; }
   margin-bottom: 20px;
 }
 /* XL modifier — bigger h1, narrower container, no bottom border (bleeds into prose intro) */
+@media (max-width: 768px) {
+  .ba-light-hero { padding: 110px 20px 56px; }
+}
+@media (max-width: 480px) {
+  .ba-light-hero { padding: 88px 16px 44px; }
+}
 .ba-light-hero--xl {
   max-width: 680px;
   margin-left: auto;
@@ -1707,6 +1719,9 @@ body.menu-open { overflow: hidden; }
   grid-template-columns: 1fr 1fr;
   gap: 32px;
   margin-bottom: 40px;
+}
+@media (max-width: 480px) {
+  .ba-info-grid { grid-template-columns: 1fr; gap: 20px; }
 }
 .ba-info-card {
   background: var(--paper);
