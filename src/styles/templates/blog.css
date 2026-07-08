@@ -306,7 +306,13 @@
   width: 80px;
 }
 
-.ba-post-content img { width: 100%; margin: 40px 0; }
+.ba-post-content img { width: 100%; margin: 56px 0; display: block; column-span: all; }
+.ba-post-content video {
+  width: 100%;
+  display: block;
+  margin: 56px 0;
+  column-span: all;
+}
 
 /* Pull quote */
 .ba-post-content blockquote {

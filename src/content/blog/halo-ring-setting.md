@@ -43,6 +43,8 @@ What results is a continuous perimeter of light that merges with the center ston
 
 Bez Ambar received a design patent for the Blaze® setting. It exists only here, or through an authorized Bez Ambar retailer.
 
+![Ring of Light — princess cut center diamond encircled by a seamless Blaze® frame, Bez Ambar Los Angeles](https://res.cloudinary.com/dlg2mou53/image/upload/BezAmbar-OldSite/2015/01/ring-of-light-with-princess-cut-center-and-a-frame-of-blaze-diamonds1-934x935-1.jpg)
+
 ### What the Halo
 ## Can Become
 
@@ -54,12 +56,18 @@ Then there are colored halos — sapphires, rubies, fancy colored diamonds repla
 
 The center stone shape matters less than people expect. Round brilliants and cushion cuts integrate most naturally with the halo's geometry. Ovals gain visual length. Princess cuts pair with a square frame that mirrors their own corners. The stone does not need to be exceptional to carry a halo well. In a sense, that is the point.
 
+![Frame of Fire — radiant cut center with Blaze® diamond halo, Bez Ambar](https://res.cloudinary.com/dlg2mou53/image/upload/BezAmbar-OldSite/2013/07/Frame-of-Fire-Engagement-Ring-Brown-Radiant-Black-Blaze.jpg)
+
 ### An
 ## Invitation
 
 Every halo ring we make is built around a specific stone. The Blaze® is engineered, not approximated — the accent diamonds are cut to fit, not selected from inventory to come close.
 
 If you have a stone, or are looking for one, we would like to talk about what surrounds it.
+
+<video autoplay muted loop playsinline>
+  <source src="https://res.cloudinary.com/dlg2mou53/video/upload/videos/rings/c0304-hd.mp4" type="video/mp4">
+</video>
 
 [Explore the collection →](/collection) or [reach out directly](/contact) to begin.
 
