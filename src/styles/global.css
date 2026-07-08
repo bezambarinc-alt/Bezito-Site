@@ -1392,62 +1392,56 @@ body.menu-open { overflow: hidden; }
   .ba-jewelry-grid { grid-template-columns: 1fr; }
 }
 
-/* ── 19.6. CATEGORY VIDEO HERO ─────────────────────────── */
+/* ── 19.6. CATEGORY HERO (full-width banner) ────────────── */
 .ba-category-hero {
-  background: var(--dark-bg);
-  padding-top: 64px;
-}
-.ba-category-hero__reel {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3px;
-  height: clamp(300px, 44vw, 600px);
-}
-.ba-category-hero__clip {
-  overflow: hidden;
-  background: #111;
   position: relative;
+  height: clamp(380px, 58vh, 660px);
+  overflow: hidden;
+  background: var(--dark-bg);
 }
-.ba-category-hero__clip video,
-.ba-category-hero__clip img {
+.ba-category-hero > video,
+.ba-category-hero > img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
-  display: block;
-  opacity: 0.9;
-  transition: opacity 0.5s ease;
+  object-position: center;
 }
-.ba-category-hero__clip:hover video,
-.ba-category-hero__clip:hover img { opacity: 1; }
-.ba-category-hero__clip--empty { background: #1a1a1a; }
+.ba-category-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.08) 55%, transparent 100%);
+}
 .ba-category-hero__text {
-  padding: 52px 20px 64px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 48px 40px;
   text-align: center;
 }
-.ba-category-hero__text .ba-inner-hero__eyebrow { color: var(--accent); }
+.ba-category-hero__text .ba-inner-hero__eyebrow {
+  color: rgba(255,255,255,0.6);
+  display: block;
+  margin-bottom: 12px;
+}
 .ba-category-hero__text h1 {
   font-family: var(--serif);
-  font-size: clamp(32px, 5vw, 52px);
+  font-size: clamp(28px, 4vw, 48px);
   font-weight: 300;
   color: var(--white);
-  margin: 0 0 16px;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.06em;
+  margin: 0;
+  line-height: 1.1;
 }
-.ba-category-hero__text .ba-inner-hero__intro {
-  color: rgba(255,255,255,0.55);
-  max-width: 600px;
-  margin: 0 auto;
-}
-.ba-category-hero__text .ba-inner-hero__count { color: var(--accent); }
 @media (max-width: 768px) {
-  .ba-category-hero { padding-top: 56px; }
-  .ba-category-hero__reel { height: clamp(200px, 38vw, 320px); }
+  .ba-category-hero { height: clamp(280px, 52vh, 480px); }
+  .ba-category-hero__text { padding: 36px 24px; }
 }
-@media (max-width: 640px) {
-  .ba-category-hero__reel { grid-template-columns: 1fr; height: 300px; }
-  .ba-category-hero__clip:not(:first-child) { display: none; }
-  .ba-category-hero__text { padding: 36px 16px 48px; }
+@media (max-width: 480px) {
+  .ba-category-hero { height: clamp(240px, 48vh, 360px); }
+  .ba-category-hero__text { padding: 28px 20px; }
 }
 
 /* ── 19.7. COLLECTION COUNT LINE ────────────────────────── */
