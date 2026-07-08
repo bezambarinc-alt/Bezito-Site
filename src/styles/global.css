@@ -1217,6 +1217,7 @@ body.menu-open { overflow: hidden; }
 }
 .ba-inner-hero__back {
   display: block;
+  text-align: left;
   font-family: var(--sans);
   font-size: 15px;
   letter-spacing: 0.12em;
@@ -1270,6 +1271,7 @@ body.menu-open { overflow: hidden; }
 .ba-inner-hero--light {
   background: var(--white);
   padding: 140px 2rem 64px;
+  text-align: center;
 }
 .ba-inner-hero--light h1 {
   font-family: var(--sans);
@@ -1300,6 +1302,7 @@ body.menu-open { overflow: hidden; }
 @media (max-width: 768px) {
   .ba-inner-hero { padding: 120px 20px 48px; }
   .ba-inner-hero--narrow { padding: 100px 1.25rem 48px; }
+  .ba-inner-hero--light { padding: 120px 1.25rem 48px; }
 }
 @media (max-width: 480px) {
   .ba-inner-hero { padding: 96px 16px 40px; }
