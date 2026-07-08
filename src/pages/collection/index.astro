@@ -10,46 +10,52 @@ const CATEGORIES = [
     label: 'Bracelets',
     tagline: 'The patented Flex — two decades of engineering.',
     desc: 'Diamonds that move freely on the wrist, no hinge or clasp in sight. Each bracelet is built by hand in our Los Angeles atelier.',
+    placeholder: null,
   },
   {
     slug: 'rings',
     label: 'Rings',
     tagline: 'From fancy-color solitaires to multi-stone designs.',
     desc: 'Every ring is cut and set by hand. Fancy-color diamonds, colored stones, and precision baguettes — made to order, made to last.',
+    placeholder: null,
   },
   {
     slug: 'engagement-rings',
     label: 'Engagement Rings',
     tagline: 'Every ring a private commission.',
-    desc: 'We source the stone, design the setting, and build the ring to your specification. No catalogue — only intention.',
+    desc: 'We source the stone, design the setting, and build the ring to your exact specification. No catalogue — only intention.',
+    placeholder: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2018/10/10-carat-emerald-cut-diamond-ring-with-blaze.jpg',
   },
   {
     slug: 'wedding-bands',
     label: 'Wedding Bands',
     tagline: 'Precision-set diamonds for a lifetime.',
     desc: 'Baguette and brilliant-cut diamonds in platinum and 18K gold. Sizing and stone selection made to order.',
+    placeholder: null,
   },
   {
     slug: 'necklaces',
     label: 'Necklaces',
     tagline: 'Clean geometry, exceptional stones.',
     desc: 'Each necklace is designed around the diamond — the setting exists only to let the stone breathe.',
+    placeholder: null,
   },
   {
     slug: 'pendants',
     label: 'Pendants',
     tagline: 'A single stone. A complete statement.',
     desc: 'Shaped by the stone, not convention. Each pendant is chosen for its proportions and worn as a declaration.',
+    placeholder: null,
   },
   {
     slug: 'earrings',
     label: 'Earrings',
     tagline: 'Light at every turn.',
     desc: 'From quiet studs to architectural drops — each pair is made to catch the light and hold the eye.',
+    placeholder: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2018/11/Baguettes-Drop-earrings.jpg',
   },
 ];
 
-// Per-category: best video + poster/fallback image + piece count
 type CatMedia = { video: string | null; image: string | null; count: number };
 const categoryMedia: Record<string, CatMedia> = {};
 for (const cat of CATEGORIES) {
@@ -58,16 +64,22 @@ for (const cat of CATEGORIES) {
   const withImage = catProducts.find(p => p.data.heroImage);
   categoryMedia[cat.slug] = {
     video: withVideo?.data.heroVideo ?? null,
-    image: withVideo?.data.heroImage ?? withImage?.data.heroImage ?? null,
+    image: withVideo?.data.heroImage ?? withImage?.data.heroImage ?? cat.placeholder,
     count: catProducts.length,
   };
 }
+
+// Featured pieces for "you may also love" rows under coming-soon tiles
+// Pick top 3 from bracelets — the flagship category
+const featured = allProducts
+  .filter(p => p.data.category === 'bracelets' && p.data.heroImage)
+  .slice(0, 3);
 
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   "name": "Collection — Bez Ambar",
-  "description": "Browse the complete Bez Ambar collection — flex bracelets, engagement rings, wedding bands, necklaces, earrings and pendants. Handcrafted in Los Angeles.",
+  "description": "Browse the complete Bez Ambar collection. Handcrafted in Los Angeles.",
   "url": "https://bezambar.com/collection",
   "brand": { "@type": "Brand", "name": "Bez Ambar" },
 };
@@ -96,35 +108,69 @@ const structuredData = {
 <div class="ba-collection-editorial">
   {CATEGORIES.map((cat, i) => {
     const media = categoryMedia[cat.slug];
+    const isEmpty = media.count === 0;
     const isFlipped = i % 2 === 1;
     const href = `/jewelry/${cat.slug}`;
+
     return (
-      <article class={`ba-collection-tile${isFlipped ? ' ba-collection-tile--flip' : ''}`}>
+      <>
+        <article class={[
+          'ba-collection-tile',
+          isFlipped ? 'ba-collection-tile--flip' : '',
+          isEmpty ? 'ba-collection-tile--coming-soon' : '',
+        ].filter(Boolean).join(' ')}>
 
-        <div class="ba-collection-tile__media">
-          {media.video ? (
-            <video src={media.video} poster={media.image ?? undefined} autoplay muted loop playsinline></video>
-          ) : media.image ? (
-            <img src={media.image} alt={cat.label} loading="lazy" />
-          ) : (
-            <div style="width:100%;height:100%;background:var(--light-bg);" />
-          )}
-        </div>
+          <div class="ba-collection-tile__media">
+            {media.video && !isEmpty ? (
+              <video src={media.video} poster={media.image ?? undefined} autoplay muted loop playsinline></video>
+            ) : media.image ? (
+              <img src={media.image} alt={cat.label} loading="lazy" />
+            ) : (
+              <div class="ba-collection-tile__media-placeholder" />
+            )}
+            {isEmpty && (
+              <div class="ba-collection-tile__coming-badge">Coming Soon</div>
+            )}
+          </div>
 
-        <div class="ba-collection-tile__text">
-          <p class="ba-collection-tile__eyebrow">Bez Ambar</p>
-          <h2 class="ba-collection-tile__title">{cat.label}</h2>
-          <p class="ba-collection-tile__tagline">{cat.tagline}</p>
-          <p class="ba-collection-tile__desc">{cat.desc}</p>
-          {media.count > 0 && (
-            <p class="ba-collection-tile__meta">{media.count} {media.count === 1 ? 'piece' : 'pieces'} available</p>
-          )}
-          <a href={href} class="ba-collection-tile__cta">
-            {media.count > 0 ? 'Explore' : 'Inquire'}
-          </a>
-        </div>
+          <div class="ba-collection-tile__text">
+            <p class="ba-collection-tile__eyebrow">Bez Ambar</p>
+            <h2 class="ba-collection-tile__title">{cat.label}</h2>
+            <p class="ba-collection-tile__tagline">{cat.tagline}</p>
+            <p class="ba-collection-tile__desc">{cat.desc}</p>
+            {!isEmpty && (
+              <p class="ba-collection-tile__meta">{media.count} {media.count === 1 ? 'piece' : 'pieces'} available</p>
+            )}
+            {isEmpty ? (
+              <a href={`/contact?subject=${encodeURIComponent('Notify me: ' + cat.label)}`} class="ba-collection-tile__cta">
+                Notify Me
+              </a>
+            ) : (
+              <a href={href} class="ba-collection-tile__cta">Explore</a>
+            )}
+          </div>
 
-      </article>
+        </article>
+
+        {isEmpty && featured.length > 0 && (
+          <div class="ba-collection-recs">
+            <p class="ba-collection-recs__label">While you wait — you may also love</p>
+            <div class="ba-collection-recs__grid">
+              {featured.map(p => (
+                <a href={p.data.prettyUrl} class="ba-jewelry-card">
+                  {p.data.heroImage && (
+                    <img src={p.data.heroImage} alt={p.data.title} class="ba-jewelry-card__img" loading="lazy" />
+                  )}
+                  <div class="ba-jewelry-card__overlay">
+                    <p class="ba-jewelry-card__ref">{p.data.refCode}</p>
+                    <p class="ba-jewelry-card__name">{p.data.title}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </>
     );
   })}
 </div>

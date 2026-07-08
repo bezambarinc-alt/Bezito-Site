@@ -1,0 +1,106 @@
+---
+// SearchOverlay.astro — Patek-style instant search using Pagefind
+// Triggered by #headerSearchBtn in Header.astro
+---
+
+<div class="ba-search" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search" hidden>
+  <div class="ba-search__inner">
+    <button class="ba-search__close" id="searchClose" aria-label="Close search">✕</button>
+    <div class="ba-search__input-wrap">
+      <input
+        type="search"
+        id="searchInput"
+        class="ba-search__input"
+        placeholder="Search pieces, collections…"
+        autocomplete="off"
+        autocorrect="off"
+        spellcheck="false"
+      />
+    </div>
+    <div class="ba-search__results" id="searchResults" aria-live="polite"></div>
+  </div>
+</div>
+
+<script>
+  let pagefind: any = null;
+
+  async function loadPagefind() {
+    if (pagefind) return pagefind;
+    try {
+      // @ts-ignore — generated at build time
+      pagefind = await import('/pagefind/pagefind.js');
+      await pagefind.options({ baseUrl: '/' });
+      return pagefind;
+    } catch {
+      return null;
+    }
+  }
+
+  const overlay  = document.getElementById('searchOverlay')!;
+  const input    = document.getElementById('searchInput') as HTMLInputElement;
+  const results  = document.getElementById('searchResults')!;
+  const closeBtn = document.getElementById('searchClose')!;
+
+  function openSearch() {
+    overlay.hidden = false;
+    overlay.classList.add('is-open');
+    document.body.classList.add('search-open');
+    setTimeout(() => input?.focus(), 60);
+    loadPagefind(); // pre-warm
+  }
+
+  function closeSearch() {
+    overlay.classList.remove('is-open');
+    document.body.classList.remove('search-open');
+    setTimeout(() => { overlay.hidden = true; }, 300);
+    if (input) input.value = '';
+    results.innerHTML = '';
+  }
+
+  // Wire up the header search icon (defined in Header.astro)
+  document.getElementById('headerSearchBtn')?.addEventListener('click', openSearch);
+  closeBtn.addEventListener('click', closeSearch);
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeSearch();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeSearch();
+  });
+
+  // Search logic
+  let debounceTimer: ReturnType<typeof setTimeout>;
+
+  input?.addEventListener('input', () => {
+    clearTimeout(debounceTimer);
+    const q = input.value.trim();
+    if (!q) { results.innerHTML = ''; return; }
+
+    debounceTimer = setTimeout(async () => {
+      const pf = await loadPagefind();
+      if (!pf) {
+        results.innerHTML = '<p class="ba-search__empty">Search is available on the live site.</p>';
+        return;
+      }
+
+      const search = await pf.debouncedSearch(q);
+      if (!search) return;
+
+      const hits = await Promise.all(search.results.slice(0, 8).map((r: any) => r.data()));
+
+      if (!hits.length) {
+        results.innerHTML = '<p class="ba-search__empty">No results for <em>' + q + '</em></p>';
+        return;
+      }
+
+      results.innerHTML = hits.map((hit: any) => `
+        <a href="${hit.url}" class="ba-search__result" onclick="closeSearchOverlay()">
+          <p class="ba-search__result-title">${hit.meta?.title ?? hit.url}</p>
+          <p class="ba-search__result-excerpt">${hit.excerpt}</p>
+        </a>
+      `).join('');
+    }, 120);
+  });
+
+  // Expose close for inline onclick
+  (window as any).closeSearchOverlay = closeSearch;
+</script>
