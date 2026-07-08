@@ -315,6 +315,12 @@
 @media (max-width: 600px) {
   .ba-tl-entry { grid-template-columns: 1fr; gap: 0.5rem 0; }
 }
+@media (max-width: 480px) {
+  .ba-portrait-hero--short { height: clamp(360px, 90vw, 460px); }
+  .press-section { padding: 56px 16px; }
+  .press-card__body { padding: 16px; }
+  .ba-cta-row { gap: 16px; }
+}
 
 /* ── 29. PRESS PAGE ───────────────────────────────────────── */
 .press-section {
@@ -471,13 +477,11 @@
   .ba-feature-row--reverse .ba-feature-row__media { justify-self: center; max-width: 420px; }
   .ba-feature-row__content,
   .ba-feature-row--reverse .ba-feature-row__content { justify-self: center; max-width: 560px; text-align: center; }
-  .ba-jewelry-grid { grid-template-columns: repeat(2, 1fr); }
   .ba-inner-hero { padding: 120px 20px 48px; }
 }
 @media (max-width: 600px) {
   .four-cs-grid { grid-template-columns: repeat(2, 1fr); }
   .anatomy-grid { grid-template-columns: 1fr; }
-  .ba-jewelry-grid { grid-template-columns: 1fr; }
   .ba-faq { padding: 64px 24px 40px; }
   .ba-faq__title { font-size: 18px; }
   .blog-grid { grid-template-columns: 1fr; }

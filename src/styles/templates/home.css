@@ -483,10 +483,41 @@
   .segment__content, .segment--reverse .segment__content { justify-self: center; max-width: 560px; text-align: center; }
   .hero-image__overlay { padding-bottom: 15vh; }
 }
+@media (max-width: 640px) {
+  /* Hero text: left: 40px has no right constraint → text runs off screen */
+  .hero__content,
+  .cinematic__content,
+  .ba-cinematic__content {
+    left: 20px;
+    right: 20px;
+    max-width: calc(100% - 40px);
+    bottom: clamp(32px, 8vw, 80px);
+  }
+  /* Centered sections: clamp(40px,5vw,80px) never goes below 40px */
+  .segment.segment--centered {
+    padding: 80px 20px clamp(3.5rem, 10vw, 6rem);
+  }
+  .ba-feature-row--centered {
+    padding: 80px 20px clamp(3.5rem, 10vw, 6rem);
+  }
+  .heritage { padding: 60px 20px; }
+  .newsletter { padding: 48px 20px; }
+}
+@media (max-width: 480px) {
+  /* Dot nav dots are too small to tap reliably on phones */
+  .hero-dots,
+  .cinematic-dots,
+  .ba-cinematic-dots { display: none; }
+}
 @media (max-width: 520px) {
   .ba-faq { padding: 64px 24px 40px; }
   .ba-faq__title { font-size: 18px; }
   .ba-about { padding: 24px 24px 64px; font-size: 15px; }
+}
+@media (max-width: 380px) {
+  .newsletter form { flex-direction: column; gap: 0; border-bottom: 0; }
+  .newsletter input { border-bottom: 1px solid var(--border-warm); }
+  .newsletter button { text-align: left; padding: 14px 0; }
 }
 
 /* ── 23. HOMEPAGE EDITORIAL FEATURE ROW ──────────────────── */

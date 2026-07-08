@@ -357,4 +357,11 @@
 @media (max-width: 768px) {
   .ba-post-hero h1 { font-size: 32px; }
   .ba-related__grid { grid-template-columns: 1fr; }
+  .ba-related { padding: 48px 20px 60px; }
+}
+@media (max-width: 480px) {
+  .ba-post-back { padding: 80px 16px 0; }
+  .ba-post-hero { padding: 28px 16px; }
+  .ba-post-cta__box { padding: 36px 20px; }
+  .ba-post-cta__box h3 { font-size: 24px; }
 }

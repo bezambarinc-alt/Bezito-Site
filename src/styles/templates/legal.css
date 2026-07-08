@@ -88,3 +88,9 @@
 }
 .warranty-list li strong { font-weight: 600; font-style: normal; color: var(--ink); opacity: 1; }
 
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .legal-page { padding: 88px 0 56px; }
+  .legal-page__inner { padding: 0 1.25rem; }
+}
+
