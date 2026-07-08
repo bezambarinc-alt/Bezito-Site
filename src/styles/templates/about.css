@@ -484,9 +484,7 @@
   .anatomy-grid { grid-template-columns: 1fr; }
   .ba-faq { padding: 64px 24px 40px; }
   .ba-faq__title { font-size: 18px; }
-  .blog-grid { grid-template-columns: 1fr; }
   .featured-card { grid-template-columns: 1fr; gap: 24px; }
-  .featured-content h2 { font-size: 28px; }
   .press-featured-card { grid-template-columns: 1fr; }
   .press-grid { grid-template-columns: 1fr; }
 }

@@ -1184,9 +1184,14 @@ body.menu-open { overflow: hidden; }
 }
 
 @media (max-width: 900px) {
-  /* Jewelry category grid: 3-col → 2-col */
+  /* Jewelry category grid: 3-col → 2-col (portrait tablet) */
   .ba-jewelry-grid { grid-template-columns: repeat(2, 1fr); }
   .ba-jewelry-grid-wrap { padding: 0 0 56px; }
+}
+
+@media (max-width: 640px) {
+  /* Jewelry category grid: 2-col → 1-col (phone) */
+  .ba-jewelry-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 480px) {
@@ -1199,8 +1204,6 @@ body.menu-open { overflow: hidden; }
   .services-inner { grid-template-columns: 1fr; gap: 16px; }
   /* Jewelry grid: 2-col stays (images are small enough) */
   .lv-collection-grid { grid-template-columns: 1fr 1fr; }
-  /* Jewelry category grid: stay 2-col — portrait cards tile well */
-  .ba-jewelry-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 380px) {
