@@ -51,7 +51,7 @@ function fmtCat(c: string) {
 
 {post.data.heroImage && (
   <div class="ba-post-img">
-    <img src={post.data.heroImage} alt={post.data.title} loading="eager">
+    <img src={post.data.heroImage} alt={post.data.heroImageAlt || post.data.title} loading="eager">
   </div>
 )}
 
