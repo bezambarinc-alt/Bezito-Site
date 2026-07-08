@@ -98,11 +98,11 @@ const structuredData = [
   ) : null}
   <div class="ba-category-hero__overlay"></div>
   <div class="ba-category-hero__text">
-    <span class="ba-inner-hero__eyebrow">Bez Ambar</span>
     <h1>{page.label}</h1>
+    <p class="ba-category-hero__intro">{page.intro}</p>
   </div>
 </section>
-<p class="ba-collection-count">{page.intro} &nbsp;·&nbsp; {products.length} {products.length === 1 ? 'piece' : 'pieces'}</p>
+<p class="ba-collection-count">{products.length} {products.length === 1 ? 'piece' : 'pieces'}</p>
 
 <div class="ba-jewelry-grid-wrap">
   {products.length > 0 ? (
