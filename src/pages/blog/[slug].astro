@@ -142,9 +142,9 @@ function fmtCat(c: string) {
 
   // ── Scroll reveals (all via single IntersectionObserver)
   if (!prefersReduced) {
-    // Figures: wipe targets the inner img (avoids column-span stacking context edge case)
+    // Figures + video: scale-settle reveal (opacity + scale 1.04→1, no lateral movement)
     document.querySelectorAll('.ba-post-content figure img, .ba-post-content video').forEach(el => {
-      el.classList.add('ba-reveal-wipe');
+      el.classList.add('ba-reveal-img');
     });
 
     // H3 → H2 pairs: stagger label then title
@@ -174,6 +174,6 @@ function fmtCat(c: string) {
       });
     }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
 
-    document.querySelectorAll('.ba-reveal, .ba-reveal-wipe').forEach(el => io.observe(el));
+    document.querySelectorAll('.ba-reveal, .ba-reveal-img').forEach(el => io.observe(el));
   }
 </script>
