@@ -1001,18 +1001,20 @@ body.menu-open { overflow: hidden; }
 .menu-col--root { display: flex; flex-direction: column; }
 .menu-cta-item { margin-top: auto; padding: 28px 40px 0; }
 .menu-cta {
-  display: inline-block;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
   font-family: var(--sans);
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--ink);
   text-decoration: none;
   border: 1px solid rgba(0,0,0,0.22);
-  padding: 13px 20px;
+  padding: 13px 16px;
+  text-align: center;
   transition: border-color 0.2s, color 0.2s;
-  white-space: nowrap;
 }
 .menu-cta:hover { border-color: var(--accent); color: var(--accent); }
 
