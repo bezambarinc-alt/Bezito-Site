@@ -43,7 +43,9 @@ What results is a continuous perimeter of light that merges with the center ston
 
 Bez Ambar received a design patent for the Blaze® setting. It exists only here, or through an authorized Bez Ambar retailer.
 
-![Cushion ruby center with baguette diamond halo — from the Bez Ambar Study in Ruby collection](https://res.cloudinary.com/dlg2mou53/image/upload/study-in-ruby/frame_baguette_ruby_halo.jpg)
+<figure>
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_trim/ar_3:2,c_fill,g_auto,w_1400/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Cushion ruby center with baguette diamond halo — Bez Ambar Study in Ruby">
+</figure>
 
 ### What the Halo
 ## Can Become
@@ -56,7 +58,9 @@ Then there are colored halos — sapphires, rubies, fancy colored diamonds repla
 
 The center stone shape matters less than people expect. Round brilliants and cushion cuts integrate most naturally with the halo's geometry. Ovals gain visual length. Princess cuts pair with a square frame that mirrors their own corners. The stone does not need to be exceptional to carry a halo well. In a sense, that is the point.
 
-![Spiral frame halo design — cushion ruby center, Bez Ambar Study in Ruby](https://res.cloudinary.com/dlg2mou53/image/upload/study-in-ruby/frame_squares_spiral.jpg)
+<figure>
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_trim/ar_3:2,c_fill,g_auto,w_1400/study-in-ruby/frame_squares_spiral.jpg" alt="Geometric square spiral halo frame — cushion ruby center, Bez Ambar">
+</figure>
 
 ### An
 ## Invitation

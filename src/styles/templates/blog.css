@@ -306,12 +306,44 @@
   width: 80px;
 }
 
-.ba-post-content img { width: 100%; margin: 56px 0; display: block; column-span: all; }
+/* Inline images — natural size within column, no stretching */
+.ba-post-content img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 48px auto;
+}
+
+/* Full-bleed editorial images — opt-in via wrapping figure.ba-full */
+.ba-post-content figure {
+  column-span: all;
+  margin: 64px 0;
+}
+.ba-post-content figure img {
+  width: 100%;
+  height: 56vh;
+  object-fit: cover;
+  object-position: center;
+  margin: 0;
+}
+.ba-post-content figcaption {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Video — always full bleed, cinematic */
 .ba-post-content video {
   width: 100%;
   display: block;
-  margin: 56px 0;
+  margin: 64px 0;
   column-span: all;
+  max-height: 70vh;
+  object-fit: cover;
 }
 
 /* Pull quote */
