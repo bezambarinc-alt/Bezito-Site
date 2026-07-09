@@ -10,7 +10,7 @@
   margin: 0 auto;
 }
 .vg-hero__eyebrow {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--sans);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.18em;
@@ -19,7 +19,7 @@
   margin-bottom: 20px;
 }
 .vg-hero__title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--serif);
   font-size: clamp(36px, 6vw, 60px);
   font-weight: 300;
   letter-spacing: 0.03em;
@@ -28,7 +28,7 @@
   line-height: 1.1;
 }
 .vg-hero__lede {
-  font-family: 'EB Garamond', serif;
+  font-family: var(--prose);
   font-size: 19px;
   line-height: 1.65;
   color: var(--ink);
@@ -53,7 +53,7 @@
   flex-shrink: 0;
   display: block;
   padding: 16px 16px;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--sans);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -85,7 +85,7 @@
 .vg-cat-item:hover .vg-mega-dropdown,
 .vg-cat-item:focus-within .vg-mega-dropdown { display: grid; }
 .vg-mega-col h4 {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--sans);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.15em;
@@ -95,7 +95,7 @@
 }
 .vg-mega-col a {
   display: block;
-  font-family: 'EB Garamond', serif;
+  font-family: var(--prose);
   font-size: 16px;
   color: var(--ink);
   text-decoration: none;
@@ -104,82 +104,52 @@
 }
 .vg-mega-col a:hover { opacity: 1; }
 
+/* ── Archive grid — Patek-field layout ── */
 .vg-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 2px;
-  padding: 2px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 56px clamp(24px, 4vw, 48px);
+  padding: 64px clamp(2rem, 7vw, 5rem) 96px;
+  background: var(--paper);
 }
 
 .video-card {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 1;
-  background: var(--dark-bg);
-  display: block;
+  display: flex;
+  flex-direction: column;
   text-decoration: none;
+  cursor: pointer;
+  background: transparent;
 }
 .video-card[hidden] { display: none; }
+
 .video-thumb {
+  display: block;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
-  transition: transform .5s ease;
+  transition: transform 0.6s ease;
 }
 .video-card:hover .video-thumb { transform: scale(1.03); }
-.play-btn {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity .2s;
-}
-.play-btn svg {
-  width: 40px; height: 40px;
-  fill: rgba(255,255,255,0.9);
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,.5));
-}
-.video-card:hover .play-btn { opacity: 1; }
-.video-overlay {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 24px 16px 16px;
-  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-  opacity: 0;
-  transition: opacity .2s;
-}
-.video-card:hover .video-overlay { opacity: 1; }
-.video-overlay h3 {
-  font-family: 'Inter', sans-serif;
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--white);
-  margin: 0;
-}
+.video-thumb[src=""] { background: var(--border-warm); min-height: 200px; }
 
-/* Phase 3 placeholder */
-.vg-placeholder {
-  grid-column: 1 / -1;
-  padding: 80px 2rem;
-  text-align: center;
+/* Hidden — no play button in Patek field */
+.play-btn { display: none; }
+
+/* Label sits below thumb, always visible */
+.video-overlay {
+  position: static;
+  background: none;
+  padding: 14px 2px 0;
+  opacity: 1;
 }
-.vg-placeholder p {
-  font-family: 'EB Garamond', serif;
-  font-size: 18px;
-  margin-bottom: 20px;
-}
-.vg-placeholder a {
-  font-family: 'Inter', sans-serif;
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
+.video-overlay h3 {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 1px solid var(--accent);
-  padding-bottom: 2px;
+  color: var(--ink-muted);
+  margin: 0;
+  transition: color 0.2s;
 }
+.video-card:hover .video-overlay h3 { color: var(--ink); }
