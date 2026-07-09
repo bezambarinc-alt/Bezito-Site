@@ -4,8 +4,8 @@ date: 2018-04-19
 updatedDate: 2026-07-08
 category: guides
 excerpt: "The LA Diamond District on Hill Street in downtown Los Angeles houses nearly 5,000 jewelry businesses. What you can actually accomplish there, and what you cannot, is a useful distinction to have before you go."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540146/blog/legacy/10ct-diamond-mask-group-7.jpg"
-heroImageAlt: "Diamond jewelry grouping by Bez Ambar, Los Angeles"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/atelier/fifty-years-portrait-2026.jpg"
+heroImageAlt: "Bez Ambar master jeweler, 50 years in the Los Angeles diamond trade"
 author: Bez Ambar
 status: live
 schema:
