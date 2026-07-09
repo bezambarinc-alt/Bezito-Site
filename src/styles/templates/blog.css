@@ -22,7 +22,7 @@
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;
   }
-  .ba-reveal, .ba-reveal-wipe {
+  .ba-reveal, .ba-reveal-wipe, .ba-post-img img {
     opacity: 1 !important;
     transform: none !important;
     clip-path: none !important;
@@ -256,29 +256,27 @@
 }
 .ba-post-hero__meta span { margin: 0 10px; }
 
-/* Hero image — natural ratio, centered, no forced crop */
+/* Hero image — full bleed banner */
 .ba-post-img {
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 48px;
-  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  height: 60vh;
+  overflow: hidden;
 }
 .ba-post-img img {
   width: 100%;
-  height: auto;
-  max-height: 80vh;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   display: block;
+  will-change: transform;
 }
 
 /* Hero video — 16:9, full bleed */
 .ba-post-img--video {
-  width: 100%;
-  max-width: 100%;
-  padding: 0;
+  height: auto;
   aspect-ratio: 16 / 9;
-  overflow: hidden;
   background: #111;
 }
 .ba-post-img--video video {

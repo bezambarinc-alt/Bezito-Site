@@ -4,7 +4,7 @@ date: 2017-05-10
 updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "Resetting a grandmother's diamond or starting from a new stone: both are meaningful choices. The decision turns on more than sentiment."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/BezAmbar-OldSite/2019/08/5-carat-emerald-cut-engagement-ring-christina-ring.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/BezAmbar-OldSite/2019/08/5-carat-emerald-cut-engagement-ring-christina-ring.jpg"
 heroImageAlt: "Diamond engagement ring by Bez Ambar, Los Angeles atelier"
 author: Bez Ambar
 status: live
