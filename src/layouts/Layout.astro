@@ -30,11 +30,37 @@ const {
   headerLight = false,
 } = Astro.props;
 
-const sdArray = structuredData
-  ? Array.isArray(structuredData)
-    ? structuredData
-    : [structuredData]
+// Organization schema fires on every page — single source of truth for brand entity
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'JewelryStore',
+  '@id': 'https://bezambar.com/#organization',
+  name: 'Bez Ambar',
+  url: 'https://bezambar.com',
+  description: 'Independent jewelry designer and maker based in Los Angeles. Creator of patented diamond cuts including the Blaze® accent stone.',
+  logo: {
+    '@type': 'ImageObject',
+    url: 'https://bezambar.com/logo.svg',
+    width: 200,
+    height: 60,
+  },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Los Angeles',
+    addressRegion: 'CA',
+    addressCountry: 'US',
+  },
+  email: 'bez@bezambar.com',
+  sameAs: [
+    'https://www.instagram.com/bezambarjewelry/',
+  ],
+};
+
+const pageSchemas = structuredData
+  ? Array.isArray(structuredData) ? structuredData : [structuredData]
   : [];
+
+const sdArray = [orgSchema, ...pageSchemas];
 ---
 
 <!DOCTYPE html>

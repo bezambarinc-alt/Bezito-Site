@@ -41,11 +41,17 @@ const blog = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.date(),
+    updatedDate: z.date().optional(),
     category: z.string(),
     excerpt: z.string(),
     heroImage: z.string().url().optional(),
+    heroImageAlt: z.string().optional(),
     author: z.string().default('Bez Ambar'),
     status: z.enum(['live', 'draft']),
+    schema: z.object({
+      type: z.string().optional(),
+      faq: z.boolean().optional(),
+    }).optional(),
   }),
 });
 

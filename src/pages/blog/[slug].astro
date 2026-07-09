@@ -25,13 +25,105 @@ function fmtDate(d: Date) {
 function fmtCat(c: string) {
   return c.replace(/-/g, ' ');
 }
+
+// ── Structured data ────────────────────────────────────────────────────────
+
+const postUrl = `https://bezambar.com/blog/${post.slug}`;
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': `${postUrl}#article`,
+  headline: post.data.title,
+  description: post.data.excerpt,
+  datePublished: post.data.date.toISOString(),
+  dateModified: (post.data.updatedDate ?? post.data.date).toISOString(),
+  url: postUrl,
+  author: {
+    '@type': 'Person',
+    name: post.data.author,
+    url: 'https://bezambar.com/about-bez-ambar',
+  },
+  publisher: {
+    '@type': 'Organization',
+    '@id': 'https://bezambar.com/#organization',
+    name: 'Bez Ambar',
+  },
+  ...(post.data.heroImage && {
+    image: {
+      '@type': 'ImageObject',
+      url: post.data.heroImage,
+      width: 1200,
+      height: 800,
+    },
+  }),
+  mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home',  item: 'https://bezambar.com' },
+    { '@type': 'ListItem', position: 2, name: 'Blog',  item: 'https://bezambar.com/blog' },
+    { '@type': 'ListItem', position: 3, name: post.data.title, item: postUrl },
+  ],
+};
+
+// FAQPage — parsed from markdown body when schema.faq is true
+function parseFaqs(body: string) {
+  const faqs: Array<{ question: string; answer: string }> = [];
+  const lines = body.split('\n');
+  let i = 0;
+  while (i < lines.length) {
+    const line = lines[i].trim();
+    // FAQ question: a line that is ONLY **text** (nothing else)
+    if (/^\*\*[^*]+\*\*$/.test(line)) {
+      const question = line.replace(/^\*\*|\*\*$/g, '').trim();
+      const answerLines: string[] = [];
+      i++;
+      while (i < lines.length) {
+        const next = lines[i].trim();
+        if (/^\*\*[^*]+\*\*$/.test(next) || next === '---') break;
+        if (next) answerLines.push(next);
+        i++;
+      }
+      // Strip markdown links → plain text for schema
+      const answer = answerLines.join(' ').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').trim();
+      if (answer) faqs.push({ question, answer });
+    } else {
+      i++;
+    }
+  }
+  return faqs;
+}
+
+const faqSchema = post.data.schema?.faq
+  ? (() => {
+      const faqs = parseFaqs(post.body);
+      return faqs.length ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faqs.map(({ question, answer }) => ({
+          '@type': 'Question',
+          name: question,
+          acceptedAnswer: { '@type': 'Answer', text: answer },
+        })),
+      } : null;
+    })()
+  : null;
+
+const pageSchemas = [articleSchema, breadcrumbSchema, faqSchema].filter(Boolean);
 ---
 
 <Layout
   title={`${post.data.title} | Bez Ambar`}
   description={post.data.excerpt}
-  canonical={`https://bezambar.com/blog/${post.slug}`}
+  canonical={postUrl}
   ogImage={post.data.heroImage}
+  ogType="article"
+  pageType="article"
+  structuredData={pageSchemas}
   headerLight={true}
 >
 
