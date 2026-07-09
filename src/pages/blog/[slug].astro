@@ -25,6 +25,9 @@ function fmtDate(d: Date) {
 function fmtCat(c: string) {
   return c.replace(/-/g, ' ');
 }
+function thumb(url: string = '') {
+  return url.replace('ar_16:9,g_auto,w_1400', 'ar_4:3,g_auto,w_800');
+}
 
 // ── Structured data ────────────────────────────────────────────────────────
 
@@ -172,7 +175,7 @@ const pageSchemas = [articleSchema, breadcrumbSchema, faqSchema].filter(Boolean)
       {related.map(p => (
         <a href={`/blog/${p.slug}`} class="ba-related__card">
           <div class="ba-related__img">
-            <img src={p.data.heroImage} alt={p.data.title} loading="lazy">
+            <img src={thumb(p.data.heroImage)} alt={p.data.title} loading="lazy">
           </div>
           <h4>{p.data.title}</h4>
           <p class="ba-related__date">{fmtDate(p.data.date)}</p>
