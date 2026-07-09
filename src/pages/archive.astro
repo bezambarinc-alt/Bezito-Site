@@ -3251,30 +3251,37 @@ import '../styles/templates/tools.css';
   const catLinks = document.querySelectorAll('.vg-cat-link');
   const subLinks = document.querySelectorAll('[data-sub]');
   const cards = document.querySelectorAll('.video-card');
+  const grid = document.getElementById('vgGrid');
   let activeCategory = 'rings';
   let activeSub = null;
 
-  // Load GIFs as cards enter viewport, stop them as cards leave
+  // Masonry: measure each visible card and set grid-row span
+  function masonryLayout() {
+    grid.querySelectorAll('.video-card:not([hidden])').forEach(item => {
+      item.style.gridRowEnd = '';
+      const h = item.getBoundingClientRect().height + 8; // +8 = margin-bottom
+      if (h > 8) item.style.gridRowEnd = `span ${Math.ceil(h)}`;
+    });
+  }
+
+  // Load GIFs entering viewport, pause leaving — relayout after each load
   const imgObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const img = entry.target;
       if (entry.isIntersecting) {
-        // Entering: restore src from data-src and start GIF
         if (img.dataset.src) {
           img.src = img.dataset.src;
+          img.addEventListener('load', masonryLayout, { once: true });
         }
-      } else {
-        // Leaving: pause GIF by clearing src, save URL back to data-src
-        if (img.src) {
-          img.dataset.src = img.src;
-          img.src = '';
-        }
+      } else if (img.src) {
+        img.dataset.src = img.src;
+        img.src = '';
       }
     });
   }, { rootMargin: '100px' });
 
   function observeVisible() {
-    document.querySelectorAll('.video-card:not([hidden]) .video-thumb').forEach(img => {
+    grid.querySelectorAll('.video-card:not([hidden]) .video-thumb').forEach(img => {
       imgObserver.observe(img);
     });
   }
@@ -3287,6 +3294,7 @@ import '../styles/templates/tools.css';
       const subMatch = !activeSub || (sub && (sub === activeSub || sub.includes(activeSub)));
       card.hidden = !(catMatch && subMatch);
     });
+    masonryLayout();
     observeVisible();
   }
 
@@ -3310,6 +3318,9 @@ import '../styles/templates/tools.css';
       applyFilter();
     });
   });
+
+  // Relayout on resize
+  new ResizeObserver(masonryLayout).observe(grid);
 
   // Default: rings on load
   const ringsLink = document.querySelector('.vg-cat-link[data-filter="rings"]');
