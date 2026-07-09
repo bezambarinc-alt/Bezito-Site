@@ -4,8 +4,9 @@ date: 2020-02-21
 updatedDate: 2026-07-08
 category: diamonds
 excerpt: "The Asscher cut was invented in 1902 and revived for Art Deco jewelry in the 1920s. Its step-cut facets produce a completely different visual experience than a brilliant cut."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/v1783540149/blog/legacy/size_diameter_carat-weight_chart.jpg"
-heroImageAlt: "Diamond size and carat weight comparison chart showing Asscher cut proportions"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/videos/bracelets/asscher-cut-double-row-bracelet-c0754-2026.mp4"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/v1783540149/blog/legacy/size_diameter_carat-weight_chart.jpg"
+heroImageAlt: "Asscher cut double row diamond bracelet by Bez Ambar in motion"
 author: Bez Ambar
 status: live
 schema:

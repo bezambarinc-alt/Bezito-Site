@@ -4,8 +4,9 @@ date: 2017-09-21
 updatedDate: 2026-07-08
 category: colored-stones
 excerpt: "Emeralds are the greenest thing in fine jewelry, and they are also the most requiring. Understanding what they are and how they behave is the honest basis for the decision."
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/videos/bracelets/emerald-cut-flex-bracelet-c0834-2026.mp4"
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/v1783540145/blog/legacy/frame-of-light-engagement-ring-for-emerald-cut-diamond.jpg"
-heroImageAlt: "Emerald cut diamond ring with Frame of Light setting, Bez Ambar"
+heroImageAlt: "Emerald cut diamond jewelry in motion, Bez Ambar"
 author: Bez Ambar
 status: live
 schema:

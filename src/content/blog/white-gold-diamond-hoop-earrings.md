@@ -4,6 +4,7 @@ date: 2017-03-27
 updatedDate: 2026-07-08
 category: earrings
 excerpt: "White gold diamond hoops are the most versatile fine jewelry earring in production. The reasons are structural, not sentimental."
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/videos/earrings/3hoop30rb-2026.mp4"
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/v1783540150/blog/legacy/light-hoops-diamond-earrings-bez-ambar-los-angeles.jpg"
 heroImageAlt: "Bez Ambar Light Hoops diamond earrings in white gold, Los Angeles"
 author: Bez Ambar

@@ -4,8 +4,8 @@ date: 2020-02-17
 updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "The 1-carat threshold is a marketing construct that became a cultural benchmark. Understanding why it exists, and what it actually costs, makes the decision clearer."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/v1783540149/blog/legacy/size_diameter_carat-weight_chart.jpg"
-heroImageAlt: "Diamond size and carat weight comparison chart"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/BezAmbar-OldSite/2017/08/1-Carat-Diamond-Engagement-Ring-French-Paloma-white.jpg"
+heroImageAlt: "1-carat diamond engagement ring by Bez Ambar"
 author: Bez Ambar
 status: live
 schema:
@@ -30,6 +30,10 @@ This concentration of demand at magic sizes is a genuine market phenomenon. Peop
 
 <figure>
   <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Bez Ambar diamond engagement ring collection, studio photograph">
+</figure>
+
+<figure>
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/v1783540149/blog/legacy/size_diameter_carat-weight_chart.jpg" alt="Diamond carat weight to face-up diameter conversion chart">
 </figure>
 
 ### Cut Quality

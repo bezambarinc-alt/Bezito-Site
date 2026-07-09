@@ -4,6 +4,7 @@ date: 2016-07-29
 updatedDate: 2026-07-08
 category: wedding-rings
 excerpt: "Rose gold has moved from Victorian novelty to enduring choice for wedding bands. The reasons have more to do with metallurgy and skin tone than with trend cycles."
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/videos/bands/oval-eternity-band-hd.mp4"
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/v1783540143/blog/legacy/three-row-window-diamond-band-rose-gold.jpg"
 heroImageAlt: "Bez Ambar three-row diamond window band in rose gold"
 author: Bez Ambar

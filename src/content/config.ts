@@ -44,6 +44,7 @@ const blog = defineCollection({
     updatedDate: z.date().optional(),
     category: z.string(),
     excerpt: z.string(),
+    heroVideo: z.string().url().optional(),
     heroImage: z.string().url().optional(),
     heroImageAlt: z.string().optional(),
     author: z.string().default('Bez Ambar'),

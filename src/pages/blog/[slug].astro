@@ -141,11 +141,17 @@ const pageSchemas = [articleSchema, breadcrumbSchema, faqSchema].filter(Boolean)
   </p>
 </section>
 
-{post.data.heroImage && (
+{post.data.heroVideo ? (
+  <div class="ba-post-img ba-post-img--video">
+    <video autoplay muted loop playsinline>
+      <source src={post.data.heroVideo} type="video/mp4">
+    </video>
+  </div>
+) : post.data.heroImage ? (
   <div class="ba-post-img">
     <img src={post.data.heroImage} alt={post.data.heroImageAlt || post.data.title} loading="eager">
   </div>
-)}
+) : null}
 
 <div class="ba-post-content">
   <Content />
@@ -207,7 +213,7 @@ const pageSchemas = [articleSchema, breadcrumbSchema, faqSchema].filter(Boolean)
   }
 
   // ── Lenis smooth scroll + parallax (desktop pointer, no reduced-motion)
-  const heroImg = document.querySelector('.ba-post-img img');
+  const heroImg = document.querySelector<HTMLElement>('.ba-post-img img, .ba-post-img video');
   if (hasPointer && !prefersReduced) {
     const lenis = new Lenis({
       duration: 1.2,
@@ -226,9 +232,8 @@ const pageSchemas = [articleSchema, breadcrumbSchema, faqSchema].filter(Boolean)
       requestAnimationFrame(raf);
     })(0);
   } else if (heroImg && !prefersReduced) {
-    // Mobile fallback parallax at reduced intensity
     window.addEventListener('scroll', () => {
-      (heroImg as HTMLElement).style.transform = `translateY(${window.scrollY * -0.07}px)`;
+      heroImg.style.transform = `translateY(${window.scrollY * -0.07}px)`;
     }, { passive: true });
   }
 
