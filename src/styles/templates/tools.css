@@ -104,52 +104,71 @@
 }
 .vg-mega-col a:hover { opacity: 1; }
 
-/* ── Archive grid — Patek-field layout ── */
+/* ── Archive grid — journal-style ── */
 .vg-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 56px clamp(24px, 4vw, 48px);
-  padding: 64px clamp(2rem, 7vw, 5rem) 96px;
-  background: var(--paper);
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding: 24px clamp(1.5rem, 4vw, 3rem) 64px;
+  background: var(--white);
 }
 
+@media (max-width: 900px) { .vg-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 600px) { .vg-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; } }
+
 .video-card {
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: var(--border-warm);
   text-decoration: none;
   cursor: pointer;
-  background: transparent;
 }
 .video-card[hidden] { display: none; }
 
 .video-thumb {
   display: block;
   width: 100%;
-  aspect-ratio: 1 / 1;
+  height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
+  transition: transform 0.5s ease;
 }
-.video-card:hover .video-thumb { transform: scale(1.03); }
-.video-thumb[src=""] { background: var(--border-warm); min-height: 200px; }
+.video-card:hover .video-thumb { transform: scale(1.04); }
+.video-thumb[src=""] { opacity: 0; }
 
-/* Hidden — no play button in Patek field */
-.play-btn { display: none; }
+/* Play icon — subtle, centered */
+.play-btn {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+.play-btn svg { width: 32px; height: 32px; fill: rgba(255,255,255,0.9); filter: drop-shadow(0 1px 4px rgba(0,0,0,0.4)); }
+.video-card:hover .play-btn { opacity: 1; }
 
-/* Label sits below thumb, always visible */
+/* Ref overlay — appears on hover like Instagram */
 .video-overlay {
-  position: static;
-  background: none;
-  padding: 14px 2px 0;
-  opacity: 1;
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: flex-end;
+  padding: 14px 12px;
+  opacity: 0;
+  transition: opacity 0.2s;
 }
+.video-card:hover .video-overlay { opacity: 1; }
 .video-overlay h3 {
   font-family: var(--sans);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 400;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ink-muted);
+  color: #fff;
   margin: 0;
-  transition: color 0.2s;
 }
-.video-card:hover .video-overlay h3 { color: var(--ink); }
