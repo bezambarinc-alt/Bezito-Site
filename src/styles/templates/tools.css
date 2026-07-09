@@ -104,40 +104,51 @@
 }
 .vg-mega-col a:hover { opacity: 1; }
 
-/* ── Archive grid — journal-style ── */
+/* ── Archive grid — dark masonry / Curator-style ── */
 .vg-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  padding: 24px clamp(1.5rem, 4vw, 3rem) 64px;
-  background: var(--white);
+  grid-auto-flow: dense;
+  gap: 3px;
+  padding: 3px 0 0;
+  background: var(--dark-bg);
 }
 
 @media (max-width: 900px) { .vg-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 600px) { .vg-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; } }
+@media (max-width: 560px) { .vg-grid { grid-template-columns: repeat(2, 1fr); } }
 
 .video-card {
   position: relative;
   display: block;
   overflow: hidden;
-  aspect-ratio: 1 / 1;
-  background: var(--border-warm);
+  background: var(--dark-surface);
   text-decoration: none;
   cursor: pointer;
 }
 .video-card[hidden] { display: none; }
 
+/* Every 5th card: featured 2×2 */
+.video-card:not([hidden]):nth-child(5n+1) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
 .video-thumb {
   display: block;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   transition: transform 0.5s ease;
 }
+/* Featured card: thumb fills its 2×2 cell */
+.video-card:not([hidden]):nth-child(5n+1) .video-thumb {
+  height: 100%;
+  aspect-ratio: auto;
+}
 .video-card:hover .video-thumb { transform: scale(1.04); }
-.video-thumb[src=""] { opacity: 0; }
+.video-thumb[src=""] { opacity: 0; min-height: 120px; }
 
-/* Play icon — subtle, centered */
+/* Play icon */
 .play-btn {
   position: absolute;
   inset: 0;
@@ -148,17 +159,17 @@
   transition: opacity 0.2s;
   pointer-events: none;
 }
-.play-btn svg { width: 32px; height: 32px; fill: rgba(255,255,255,0.9); filter: drop-shadow(0 1px 4px rgba(0,0,0,0.4)); }
+.play-btn svg { width: 36px; height: 36px; fill: rgba(255,255,255,0.85); filter: drop-shadow(0 1px 6px rgba(0,0,0,0.6)); }
 .video-card:hover .play-btn { opacity: 1; }
 
-/* Ref overlay — appears on hover like Instagram */
+/* Ref — fades in on hover */
 .video-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0,0,0,0.5);
   display: flex;
   align-items: flex-end;
-  padding: 14px 12px;
+  padding: 16px 14px;
   opacity: 0;
   transition: opacity 0.2s;
 }
