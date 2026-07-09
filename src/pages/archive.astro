@@ -3254,22 +3254,27 @@ import '../styles/templates/tools.css';
   let activeCategory = 'rings';
   let activeSub = null;
 
-  // Lazy-load: swap data-src → src when card scrolls into view
+  // Load GIFs as cards enter viewport, stop them as cards leave
   const imgObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
+      const img = entry.target;
       if (entry.isIntersecting) {
-        const img = entry.target;
+        // Entering: restore src from data-src and start GIF
         if (img.dataset.src) {
           img.src = img.dataset.src;
-          delete img.dataset.src;
-          imgObserver.unobserve(img);
+        }
+      } else {
+        // Leaving: pause GIF by clearing src, save URL back to data-src
+        if (img.src) {
+          img.dataset.src = img.src;
+          img.src = '';
         }
       }
     });
-  }, { rootMargin: '200px' });
+  }, { rootMargin: '100px' });
 
   function observeVisible() {
-    document.querySelectorAll('.video-card:not([hidden]) .video-thumb[data-src]').forEach(img => {
+    document.querySelectorAll('.video-card:not([hidden]) .video-thumb').forEach(img => {
       imgObserver.observe(img);
     });
   }
