@@ -5,7 +5,7 @@ updatedDate: 2026-07-08
 category: wedding-rings
 excerpt: "Wedding rings, anniversary rings, and eternity rings each mark a different chapter. Understanding the distinctions helps you choose something that actually means what you intend it to."
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/videos/bands/oval-eternity-band-hd.mp4"
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/v1783540125/blog/legacy/2etf36lz-2.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540125/blog/legacy/2etf36lz-2.jpg"
 heroImageAlt: "Bez Ambar diamond eternity band and wedding ring set in rose gold"
 author: Bez Ambar
 status: live

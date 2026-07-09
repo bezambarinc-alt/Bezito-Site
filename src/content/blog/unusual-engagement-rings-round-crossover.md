@@ -4,7 +4,7 @@ date: 2016-08-20
 updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "The bypass and crossover ring is one of the oldest departure points from the standard solitaire. What makes it work, and what makes it fail, comes down to execution."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/v1783540148/blog/legacy/parahiba-marq-special-drawing.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540148/blog/legacy/parahiba-marq-special-drawing.jpg"
 heroImageAlt: "Bez Ambar crossover engagement ring sketch with Paraiba tourmaline marquise stone"
 author: Bez Ambar
 status: live

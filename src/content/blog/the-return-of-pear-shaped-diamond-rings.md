@@ -4,7 +4,7 @@ date: 2018-05-15
 updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "The pear shape has been in and out of fashion since Lodewyk van Bercken developed the first complex faceted cuts in 1475. Its current moment is earned rather than accidental."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/v1783540147/blog/legacy/pear-shape-8-26-dvvs2.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540147/blog/legacy/pear-shape-8-26-dvvs2.jpg"
 heroImageAlt: "Pear-shaped diamond engagement ring, Bez Ambar, D VVS2 pear brilliant"
 author: Bez Ambar
 status: live

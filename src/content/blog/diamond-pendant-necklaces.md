@@ -5,7 +5,7 @@ updatedDate: 2026-07-08
 category: necklaces
 excerpt: "A diamond pendant necklace is defined by two things that are often underspecified: the chain length and the pendant's relationship to that length. Getting both right matters more than the pendant design itself."
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/videos/pendants/c0346-hd.mp4"
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/v1783540127/blog/legacy/designer-diamond-engagement-rings-los-angeles.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540127/blog/legacy/designer-diamond-engagement-rings-los-angeles.jpg"
 heroImageAlt: "Diamond pendant necklace by Bez Ambar"
 author: Bez Ambar
 status: live

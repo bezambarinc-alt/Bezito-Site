@@ -4,7 +4,7 @@ date: 2018-03-29
 updatedDate: 2026-07-08
 category: colored-stones
 excerpt: "Semi-precious stones give engagement rings color, character, and individuality that diamonds structurally cannot provide. The tradeoffs are real and worth understanding before choosing."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/v1783540129/blog/legacy/1flo24.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540129/blog/legacy/1flo24.jpg"
 heroImageAlt: "Colored gemstone ring, Bez Ambar Los Angeles"
 author: Bez Ambar
 status: live

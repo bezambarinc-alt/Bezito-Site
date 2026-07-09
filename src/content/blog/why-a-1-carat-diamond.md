@@ -33,7 +33,7 @@ This concentration of demand at magic sizes is a genuine market phenomenon. Peop
 </figure>
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/v1783540149/blog/legacy/size_diameter_carat-weight_chart.jpg" alt="Diamond carat weight to face-up diameter conversion chart">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540149/blog/legacy/size_diameter_carat-weight_chart.jpg" alt="Diamond carat weight to face-up diameter conversion chart">
 </figure>
 
 ### Cut Quality

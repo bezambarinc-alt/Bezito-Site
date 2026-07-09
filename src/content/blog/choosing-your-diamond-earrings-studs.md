@@ -4,7 +4,7 @@ date: 2018-02-20
 updatedDate: 2026-07-08
 category: earrings
 excerpt: "Diamond stud earrings are a timeless essential in every jewelry collection. Learn how to choose the perfect pair based on cut, clarity, setting, and your personal style."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/v1783540133/blog/legacy/platinum-diamond-stud-earring-with-blaze-cut-diamonds-eneoct24nc.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540133/blog/legacy/platinum-diamond-stud-earring-with-blaze-cut-diamonds-eneoct24nc.jpg"
 heroImageAlt: "Platinum diamond stud earrings with Blaze® cut diamond frame by Bez Ambar"
 author: Bez Ambar
 status: live

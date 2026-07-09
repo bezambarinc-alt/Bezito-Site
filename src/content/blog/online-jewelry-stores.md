@@ -4,7 +4,7 @@ date: 2018-03-27
 updatedDate: 2026-07-08
 category: guides
 excerpt: "Online jewelry retail has matured substantially. Some categories of fine jewelry are genuinely well-suited to online purchase. Others are not. Knowing which is which saves money and prevents disappointment."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/v1783540127/blog/legacy/designer-diamond-engagement-rings-los-angeles.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540127/blog/legacy/designer-diamond-engagement-rings-los-angeles.jpg"
 heroImageAlt: "Designer diamond engagement rings, Bez Ambar Los Angeles"
 author: Bez Ambar
 status: live

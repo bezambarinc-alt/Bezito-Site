@@ -4,7 +4,7 @@ date: 2017-08-25
 updatedDate: 2026-07-08
 category: diamonds
 excerpt: "Black diamonds absorb light rather than reflect it. That difference in physics produces a completely distinct aesthetic and a different set of considerations before buying."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/v1783540127/blog/legacy/designer-diamond-engagement-rings-los-angeles.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540127/blog/legacy/designer-diamond-engagement-rings-los-angeles.jpg"
 heroImageAlt: "Designer diamond ring collection, Bez Ambar Los Angeles atelier"
 author: Bez Ambar
 status: live
