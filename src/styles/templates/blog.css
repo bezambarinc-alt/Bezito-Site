@@ -22,7 +22,7 @@
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;
   }
-  .ba-reveal, .ba-reveal-wipe, .ba-post-img img {
+  .ba-reveal, .ba-reveal-wipe {
     opacity: 1 !important;
     transform: none !important;
     clip-path: none !important;
@@ -256,21 +256,36 @@
 }
 .ba-post-hero__meta span { margin: 0 10px; }
 
-/* Hero image — full bleed, generous height, parallax-ready */
+/* Hero image — natural ratio, centered, no forced crop */
 .ba-post-img {
   width: 100%;
-  margin: 0;
-  padding: 0;
-  height: 60vh;
-  overflow: hidden;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+  box-sizing: border-box;
 }
 .ba-post-img img {
   width: 100%;
-  height: 72vh; /* extra height gives parallax room to travel */
-  object-fit: cover;
-  object-position: center;
+  height: auto;
+  max-height: 80vh;
+  object-fit: contain;
   display: block;
-  will-change: transform;
+}
+
+/* Hero video — 16:9, full bleed */
+.ba-post-img--video {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #111;
+}
+.ba-post-img--video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 /* Body — two-column editorial layout */

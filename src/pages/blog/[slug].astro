@@ -213,28 +213,16 @@ const pageSchemas = [articleSchema, breadcrumbSchema, faqSchema].filter(Boolean)
   }
 
   // ── Lenis smooth scroll + parallax (desktop pointer, no reduced-motion)
-  const heroImg = document.querySelector<HTMLElement>('.ba-post-img img, .ba-post-img video');
   if (hasPointer && !prefersReduced) {
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
 
-    // Parallax driven by Lenis — no separate window.scroll listener needed
-    if (heroImg) {
-      lenis.on('scroll', ({ scroll }: { scroll: number }) => {
-        (heroImg as HTMLElement).style.transform = `translateY(${scroll * -0.15}px)`;
-      });
-    }
-
     (function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
     })(0);
-  } else if (heroImg && !prefersReduced) {
-    window.addEventListener('scroll', () => {
-      heroImg.style.transform = `translateY(${window.scrollY * -0.07}px)`;
-    }, { passive: true });
   }
 
   // ── Scroll reveals (all via single IntersectionObserver)
