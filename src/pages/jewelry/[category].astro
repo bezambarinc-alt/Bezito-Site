@@ -20,54 +20,76 @@ export async function getStaticPaths() {
 
 const { category } = Astro.params;
 const { products } = Astro.props;
-const videoProducts = products.filter(p => p.data.heroVideo).slice(0, 3);
+const featured = products.slice(0, 2);
 
-const meta: Record<string, { label: string; title: string; description: string; intro: string }> = {
+const meta: Record<string, { label: string; title: string; description: string; lede: string; quote: string }> = {
   rings: {
     label: 'Rings',
     title: 'Diamond & Gemstone Rings — Bez Ambar',
     description: 'Handcrafted diamond and colored stone rings by master jeweler Bez Ambar. Each piece is made to order in Los Angeles.',
-    intro: 'From fancy-color diamond solitaires to multi-stone designs, each ring is cut and set by hand in our Los Angeles atelier.',
+    lede: 'From fancy-color solitaires to multi-stone designs, each ring made to order.',
+    quote: 'Every stone arrives with a language. The setting is the translation.',
   },
   bracelets: {
     label: 'Bracelets',
     title: 'Diamond Flex Bracelets — Bez Ambar',
     description: 'The patented Bez Ambar Flex — diamond and gemstone bracelets engineered to move with the wrist. Made in Los Angeles.',
-    intro: 'The patented Flex mechanism — two decades in development — lets diamonds move freely on the wrist without a hinge or clasp showing.',
+    lede: 'The patented Flex — diamonds that move freely on the wrist, no hinge in sight.',
+    quote: 'The wrist is where the idea lives. Everything else is engineering.',
   },
   necklaces: {
     label: 'Necklaces',
-    title: 'Diamond Necklaces & Pendants — Bez Ambar',
-    description: 'Diamond necklaces and single-stone pendants by Bez Ambar. Handcrafted to order in Los Angeles, California.',
-    intro: 'Clean geometry, exceptional stones. Each necklace is designed around the diamond — the setting exists only to let the stone breathe.',
+    title: 'Diamond Necklaces — Bez Ambar',
+    description: 'Diamond necklaces and station pieces by Bez Ambar. Handcrafted to order in Los Angeles, California.',
+    lede: 'Clean geometry, exceptional stones. Each necklace designed around the diamond.',
+    quote: 'A necklace frames the face. Get the geometry right and it does the rest.',
   },
   'wedding-bands': {
     label: 'Wedding Bands',
     title: 'Diamond Wedding Bands — Bez Ambar',
     description: 'Diamond wedding bands handcrafted in Los Angeles. Baguette and brilliant-cut designs made to specification.',
-    intro: 'Precision-set baguette and brilliant diamonds in platinum and 18K gold. Made to specification — sizing and stone selection on request.',
+    lede: 'Precision-set diamonds in platinum and 18K gold — made to specification.',
+    quote: 'A band worn every day for fifty years deserves more than a passing glance.',
   },
   'engagement-rings': {
     label: 'Engagement Rings',
     title: 'Engagement Rings — Bez Ambar',
     description: 'Bespoke engagement rings by Bez Ambar. Custom diamond and gemstone designs made to order in Los Angeles.',
-    intro: 'Every engagement ring is a private commission. We source the stone, design the setting, and build the ring to your exact specification.',
+    lede: 'Every engagement ring is a private commission. No catalogue — only intention.',
+    quote: 'The stone chooses you. I just make the setting worthy of it.',
+  },
+  earrings: {
+    label: 'Earrings',
+    title: 'Diamond Earrings — Bez Ambar',
+    description: 'Diamond and gemstone earrings by Bez Ambar. From quiet studs to architectural drops, made to order in Los Angeles.',
+    lede: 'Light at every turn. From quiet studs to architectural drops.',
+    quote: 'Earrings are the only jewelry that moves with the face. That matters.',
+  },
+  pendants: {
+    label: 'Pendants',
+    title: 'Diamond Pendants — Bez Ambar',
+    description: 'Single-stone diamond pendants by Bez Ambar. Shaped by the stone, not convention. Made in Los Angeles.',
+    lede: 'A single stone. A complete statement.',
+    quote: 'One stone. One chain. No room to hide — and no need to.',
   },
 };
 
 const page = meta[category] ?? {
-  label: category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
-  title: `${category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} — Bez Ambar`,
-  description: `Fine jewelry by Bez Ambar. Handcrafted in Los Angeles.`,
-  intro: 'Each piece is made to order in our Los Angeles atelier.',
+  label: category.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
+  title: `${category.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase())} — Bez Ambar`,
+  description: 'Fine jewelry by Bez Ambar. Handcrafted in Los Angeles.',
+  lede: 'Each piece made to order in our Los Angeles atelier.',
+  quote: 'Every piece begins with one stone and one drawing.',
 };
+
+const heroProduct = products.find(p => p.data.heroVideo) ?? products[0];
 
 const structuredData = [
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Jewelry", "item": "https://bezambar.com/collection" },
+      { "@type": "ListItem", "position": 1, "name": "Collection", "item": "https://bezambar.com/collection" },
       { "@type": "ListItem", "position": 2, "name": page.label, "item": `https://bezambar.com/jewelry/${category}` }
     ]
   },
@@ -90,42 +112,93 @@ const structuredData = [
   structuredData={structuredData}
 >
 
-<section class="ba-category-hero">
-  {videoProducts[0] ? (
-    <video src={videoProducts[0].data.heroVideo} poster={videoProducts[0].data.heroImage ?? undefined} autoplay muted loop playsinline></video>
-  ) : products[0]?.data.heroImage ? (
-    <img src={products[0].data.heroImage} alt={page.label} />
-  ) : null}
-  <div class="ba-category-hero__overlay"></div>
-  <div class="ba-category-hero__text">
-    <h1>{page.label}</h1>
-    <p class="ba-category-hero__intro">{page.intro}</p>
+<!-- ── HERO ── -->
+<section class="ba-portrait-hero ba-portrait-hero--serif">
+  {heroProduct?.data.heroVideo && (
+    <video src={heroProduct.data.heroVideo} autoplay loop muted playsinline></video>
+  )}
+  {!heroProduct?.data.heroVideo && heroProduct?.data.heroImage && (
+    <img src={heroProduct.data.heroImage} alt={page.label} />
+  )}
+  <div class="ba-portrait-hero__overlay">
+    <span class="ba-portrait-hero__eyebrow">Bez Ambar</span>
+    <h1 class="ba-portrait-hero__title">{page.label}</h1>
+    <p class="ba-portrait-hero__lede">{page.lede}</p>
   </div>
 </section>
-<p class="ba-collection-count">{products.length} {products.length === 1 ? 'piece' : 'pieces'}</p>
 
-<div class="ba-jewelry-grid-wrap">
-  {products.length > 0 ? (
-    <div class="ba-jewelry-grid">
-      {products.map(p => (
-        <a href={p.data.prettyUrl} class="ba-jewelry-card">
-          {p.data.heroImage ? (
-            <img src={p.data.heroImage} alt={p.data.title} class="ba-jewelry-card__img" loading="lazy" />
-          ) : (
-            <div class="ba-jewelry-card__img" />
-          )}
-          <div class="ba-jewelry-card__overlay">
-            <p class="ba-jewelry-card__ref">{p.data.refCode}</p>
-            <p class="ba-jewelry-card__name">{p.data.title}</p>
-            {p.data.subtitle && <p class="ba-jewelry-card__sub">{p.data.subtitle}</p>}
-          </div>
-        </a>
-      ))}
+<!-- ── FEATURED EDITORIAL SEGMENTS ── -->
+{featured.map((p, i) => (
+  <div class={`ba-segment${i % 2 === 1 ? ' ba-segment--reverse' : ''}`}>
+    <div class="ba-segment__media">
+      {p.data.heroVideo
+        ? <video src={p.data.heroVideo} autoplay loop muted playsinline></video>
+        : <img src={p.data.heroImage ?? ''} alt={p.data.title} loading="lazy" />
+      }
     </div>
-  ) : (
-    <p class="ba-jewelry-empty">No pieces currently available in this category.</p>
-  )}
+    <div class="ba-segment__text">
+      <span class="ba-eyebrow">{p.data.title} &nbsp;&middot;&nbsp; ref. {p.data.refCode}</span>
+      <h2 class="ba-segment__heading">{p.data.subtitle ?? p.data.title}</h2>
+      <p class="ba-segment__ref">
+        {typeof p.data.stone.carats === 'number' && `${p.data.stone.carats} ct · `}
+        {p.data.stone.shape}
+        {p.data.stone.color && ` · ${p.data.stone.color}`}
+        {p.data.stone.clarity && ` ${p.data.stone.clarity}`}
+        {` · ${p.data.metal}`}
+      </p>
+      <p class="ba-segment__body">{p.data.description}</p>
+      <a class="ba-segment__link" href={p.data.prettyUrl}>View {p.data.title}</a>
+    </div>
+  </div>
+))}
+
+<!-- ── PULL QUOTE ── -->
+{products.length > 0 && (
+  <section class="ba-pull-quote">
+    <span class="ba-pull-quote__mark">&ldquo;</span>
+    <p class="ba-pull-quote__text">{page.quote}</p>
+    <span class="ba-pull-quote__attr">Bez Ambar</span>
+  </section>
+)}
+
+<!-- ── PIECES HEADER ── -->
+<div class="ba-section-divider">
+  <span class="ba-section-divider__eyebrow">{page.label}</span>
+  <h2 class="ba-section-divider__title">The Pieces</h2>
 </div>
+
+<!-- ── PRODUCT GRID ── -->
+{products.length > 0 ? (
+  <section class="ba-product-grid">
+    {products.map(p => (
+      <a class="ba-card" href={p.data.prettyUrl}>
+        <div class="ba-card__media">
+          {p.data.heroVideo
+            ? <video src={p.data.heroVideo} autoplay loop muted playsinline></video>
+            : p.data.heroImage
+              ? <img src={p.data.heroImage} alt={p.data.title} loading="lazy" />
+              : <div />
+          }
+        </div>
+        <div class="ba-card__info">
+          <p class="ba-card__collection">{page.label}</p>
+          <p class="ba-card__name">{p.data.title}</p>
+          <p class="ba-card__ref">ref. {p.data.refCode}</p>
+        </div>
+      </a>
+    ))}
+  </section>
+) : (
+  <p class="ba-jewelry-empty">No pieces currently available in this category.</p>
+)}
+
+<!-- ── CTA ── -->
+<section class="ba-cta">
+  <span class="ba-cta__eyebrow">Don&rsquo;t See It</span>
+  <h2 class="ba-cta__title">Commission a Piece</h2>
+  <p class="ba-cta__body">If the piece you&rsquo;re looking for isn&rsquo;t here, it can be made. Every Bez Ambar piece begins with one stone and one drawing.</p>
+  <a href={`/contact?subject=${encodeURIComponent('Bespoke Commission — Inquiry')}`} class="ba-cta__btn">Inquire</a>
+</section>
 
 <button class="ba-back-to-top" id="backToTop" aria-label="Back to top">↑</button>
 <script>
