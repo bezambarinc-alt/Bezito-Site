@@ -276,11 +276,6 @@
       "permanent": true
     },
     {
-      "source": "/blog",
-      "destination": "/journal",
-      "permanent": true
-    },
-    {
       "source": "/shop/:slug",
       "destination": "/collection",
       "permanent": true
