@@ -3349,9 +3349,10 @@ import '../styles/templates/tools.css';
       // Ref number
       inqTitle.textContent = title;
 
-      // Description — innerHTML to handle &eacute; etc., omit if empty
-      inqDesc.innerHTML = desc;
-      inqDesc.hidden = !desc;
+      // Description — omit if empty or just a SKU/name label ("X by Bez Ambar")
+      var descClean = /by Bez Ambar$/i.test(desc.trim()) ? '' : desc;
+      inqDesc.innerHTML = descClean;
+      inqDesc.hidden = !descClean;
 
       // Specs — split on <br>, strip remaining tags, render as list items
       inqSpecs.innerHTML = '';
