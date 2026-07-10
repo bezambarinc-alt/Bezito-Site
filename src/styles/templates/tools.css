@@ -104,36 +104,37 @@
 }
 .vg-mega-col a:hover { opacity: 1; }
 
-/* ── Archive grid — CSS columns (browser-native masonry) ── */
+/* ── Archive grid ── */
 .vg-grid {
-  column-count: 5;
-  column-gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
   padding: 32px clamp(1.5rem, 5vw, 4rem) 80px;
   background: var(--white);
 }
-@media (max-width: 1100px) { .vg-grid { column-count: 4; } }
-@media (max-width: 720px)  { .vg-grid { column-count: 3; } }
-@media (max-width: 480px)  { .vg-grid { column-count: 2; } }
+@media (max-width: 1100px) { .vg-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 720px)  { .vg-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 480px)  { .vg-grid { grid-template-columns: repeat(2, 1fr); } }
 
-/* sizer divs used by old Masonry approach — hide them */
+/* sizer divs used by old Masonry approach — exclude from grid */
 .grid-sizer, .gutter-sizer { display: none; }
 
 .video-card {
-  break-inside: avoid;
   display: block;
-  width: 100%;
   overflow: hidden;
   text-decoration: none;
   cursor: pointer;
-  margin-bottom: 10px;
-  background: var(--border-warm);
+  background: #111;
+  /* Reserve 16:9 space before GIF loads — no layout shift */
+  aspect-ratio: 739 / 415;
 }
 .video-card[hidden] { display: none; }
 
 .video-thumb {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   transition: transform 0.5s ease;
 }
 .video-card:hover .video-thumb { transform: scale(1.03); }
