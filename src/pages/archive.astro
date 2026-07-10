@@ -3250,104 +3250,77 @@ import '../styles/templates/tools.css';
 </Layout>
 
 <script>
-  function loadScript(src, cb) {
-    var s = document.createElement('script');
-    s.src = src;
-    s.onload = cb;
-    document.head.appendChild(s);
-  }
+  (function() {
+    var grid = document.getElementById('vgGrid');
+    var catLinks = document.querySelectorAll('.vg-cat-link');
+    var subLinks = document.querySelectorAll('[data-sub]');
+    var cards = document.querySelectorAll('.video-card');
+    var activeCategory = 'rings';
+    var activeSub = null;
 
-  loadScript('https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js', function() {
-    loadScript('https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js', function() {
-      var grid = document.getElementById('vgGrid');
-      var catLinks = document.querySelectorAll('.vg-cat-link');
-      var subLinks = document.querySelectorAll('[data-sub]');
-      var cards = document.querySelectorAll('.video-card');
-      var activeCategory = 'rings';
-      var activeSub = null;
-
-      // Init with itemSelector:'none' so Masonry doesn't measure 0-height images
-      var msnry = new Masonry(grid, {
-        itemSelector: 'none',
-        columnWidth: '.grid-sizer',
-        gutter: '.gutter-sizer',
-        percentPosition: true,
-        transitionDuration: '0.2s'
-      });
-
-      var imgObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (!entry.isIntersecting) return;
-          var img = entry.target;
-          if (img.dataset.src) {
-            img.src = img.dataset.src;
-            delete img.dataset.src;
-            img.addEventListener('load', function() { msnry.layout(); }, { once: true });
-            imgObserver.unobserve(img);
-          }
-        });
-      }, { rootMargin: '400px' });
-
-      function observeVisible() {
-        grid.querySelectorAll('.video-card:not([hidden]) .video-thumb[data-src]').forEach(function(img) {
-          imgObserver.observe(img);
-        });
-      }
-
-      function applyFilter() {
-        cards.forEach(function(card) {
-          var cat = card.dataset.category;
-          var sub = card.dataset.subcategory;
-          var catMatch = activeCategory === 'all' || cat === activeCategory || cat === 'all';
-          var subMatch = !activeSub || (sub && (sub === activeSub || sub.indexOf(activeSub) !== -1));
-          card.hidden = !(catMatch && subMatch);
-        });
-
-        msnry.options.itemSelector = '.video-card:not([hidden])';
-        msnry.reloadItems();
-
-        // Eagerly load first 30 visible images so Masonry has real dimensions
-        // (same pattern as desandro's reference: imagesLoaded fires BEFORE layout)
-        var lazyImgs = Array.from(grid.querySelectorAll('.video-card:not([hidden]) .video-thumb[data-src]'));
-        lazyImgs.slice(0, 30).forEach(function(img) {
+    var imgObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) return;
+        var img = entry.target;
+        if (img.dataset.src) {
           img.src = img.dataset.src;
           delete img.dataset.src;
-        });
+          imgObserver.unobserve(img);
+        }
+      });
+    }, { rootMargin: '400px' });
 
-        // Wait for those images to have real dimensions, then layout + observe the rest
-        imagesLoaded(grid, function() {
-          msnry.layout();
-          observeVisible();
-        });
-      }
+    function observeVisible() {
+      grid.querySelectorAll('.video-card:not([hidden]) .video-thumb[data-src]').forEach(function(img) {
+        imgObserver.observe(img);
+      });
+    }
 
-      catLinks.forEach(function(link) {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          catLinks.forEach(function(l) { l.classList.remove('active'); });
-          link.classList.add('active');
-          activeCategory = link.dataset.filter || 'all';
-          activeSub = null;
-          applyFilter();
-        });
+    function applyFilter() {
+      cards.forEach(function(card) {
+        var cat = card.dataset.category;
+        var sub = card.dataset.subcategory;
+        var catMatch = activeCategory === 'all' || cat === activeCategory || cat === 'all';
+        var subMatch = !activeSub || (sub && (sub === activeSub || sub.indexOf(activeSub) !== -1));
+        card.hidden = !(catMatch && subMatch);
       });
 
-      subLinks.forEach(function(link) {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          subLinks.forEach(function(l) { l.classList.remove('active'); });
-          link.classList.add('active');
-          activeSub = link.dataset.sub || null;
-          applyFilter();
-        });
+      // Eagerly load first 30 above-fold images; browser reflows columns as they decode
+      var lazyImgs = Array.from(grid.querySelectorAll('.video-card:not([hidden]) .video-thumb[data-src]'));
+      lazyImgs.slice(0, 30).forEach(function(img) {
+        img.src = img.dataset.src;
+        delete img.dataset.src;
       });
 
-      var ringsLink = document.querySelector('.vg-cat-link[data-filter="rings"]');
-      if (ringsLink) {
+      observeVisible();
+    }
+
+    catLinks.forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
         catLinks.forEach(function(l) { l.classList.remove('active'); });
-        ringsLink.classList.add('active');
-      }
-      applyFilter();
+        link.classList.add('active');
+        activeCategory = link.dataset.filter || 'all';
+        activeSub = null;
+        applyFilter();
+      });
     });
-  });
+
+    subLinks.forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        subLinks.forEach(function(l) { l.classList.remove('active'); });
+        link.classList.add('active');
+        activeSub = link.dataset.sub || null;
+        applyFilter();
+      });
+    });
+
+    var ringsLink = document.querySelector('.vg-cat-link[data-filter="rings"]');
+    if (ringsLink) {
+      catLinks.forEach(function(l) { l.classList.remove('active'); });
+      ringsLink.classList.add('active');
+    }
+    applyFilter();
+  })();
 </script>
