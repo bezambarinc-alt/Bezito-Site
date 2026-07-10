@@ -3253,55 +3253,68 @@ import '../styles/templates/tools.css';
   (function() {
     var grid = document.getElementById('vgGrid');
     var catLinks = document.querySelectorAll('.vg-cat-link');
-    var subLinks = document.querySelectorAll('[data-sub]');
-    var cards = document.querySelectorAll('.video-card');
+    var subLinks  = document.querySelectorAll('[data-sub]');
+    var cards     = Array.from(document.querySelectorAll('.video-card'));
     var activeCategory = 'rings';
-    var activeSub = null;
+    var activeSub      = null;
 
-    // Assign height variety by index — same pattern Curator uses to crop uniform content
-    var HEIGHTS = ['video-card--md', 'video-card--lg', 'video-card--sm',
-                   'video-card--md', 'video-card--sm', 'video-card--lg',
-                   'video-card--md', 'video-card--sm', 'video-card--lg',
-                   'video-card--md', 'video-card--lg', 'video-card--sm'];
-    cards.forEach(function(card, i) {
-      card.classList.add(HEIGHTS[i % HEIGHTS.length]);
-    });
+    // Height variety — Curator-style for uniform 16:9 GIFs
+    var HEIGHTS = ['video-card--md','video-card--lg','video-card--sm',
+                   'video-card--md','video-card--sm','video-card--lg',
+                   'video-card--md','video-card--sm','video-card--lg',
+                   'video-card--md','video-card--lg','video-card--sm'];
+    cards.forEach(function(c, i) { c.classList.add(HEIGHTS[i % HEIGHTS.length]); });
 
-    var imgObserver = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (!entry.isIntersecting) return;
-        var img = entry.target;
-        if (img.dataset.src) {
-          img.src = img.dataset.src;
-          delete img.dataset.src;
-          imgObserver.unobserve(img);
-        }
-      });
-    }, { rootMargin: '400px' });
-
-    function observeVisible() {
-      grid.querySelectorAll('.video-card:not([hidden]) .video-thumb[data-src]').forEach(function(img) {
-        imgObserver.observe(img);
-      });
+    // Load a GIF: swap data-src → src, fade in on load
+    function loadImg(img) {
+      if (!img.dataset.src) return;
+      var src = img.dataset.src;
+      delete img.dataset.src;
+      img.src = src;
+      img.addEventListener('load', function() { img.classList.add('is-loaded'); }, { once: true });
     }
 
+    // Load observer: fires when card approaches viewport
+    var loadObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) loadImg(e.target.querySelector('.video-thumb'));
+      });
+    }, { rootMargin: '200px' });
+
+    // Pause observer: clear src when card leaves view to stop GIF CPU burn
+    var pauseObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        var img = e.target.querySelector('.video-thumb');
+        if (!img) return;
+        if (e.isIntersecting) {
+          if (img.dataset.paused) { img.src = img.dataset.paused; delete img.dataset.paused; }
+        } else {
+          if (img.src && img.classList.contains('is-loaded')) {
+            img.dataset.paused = img.src;
+            img.src = '';
+          }
+        }
+      });
+    }, { rootMargin: '50px' });
+
     function applyFilter() {
+      // Reset observers before rebuilding visibility
+      loadObserver.disconnect();
+      pauseObserver.disconnect();
+
       cards.forEach(function(card) {
         var cat = card.dataset.category;
         var sub = card.dataset.subcategory;
-        var catMatch = activeCategory === 'all' || cat === activeCategory || cat === 'all';
-        var subMatch = !activeSub || (sub && (sub === activeSub || sub.indexOf(activeSub) !== -1));
-        card.hidden = !(catMatch && subMatch);
+        var catOk = activeCategory === 'all' || cat === activeCategory || cat === 'all';
+        var subOk = !activeSub || (sub && (sub === activeSub || sub.indexOf(activeSub) !== -1));
+        card.hidden = !(catOk && subOk);
       });
 
-      // Eagerly load first 30 above-fold images; browser reflows columns as they decode
-      var lazyImgs = Array.from(grid.querySelectorAll('.video-card:not([hidden]) .video-thumb[data-src]'));
-      lazyImgs.slice(0, 30).forEach(function(img) {
-        img.src = img.dataset.src;
-        delete img.dataset.src;
+      cards.forEach(function(card) {
+        if (card.hidden) return;
+        loadObserver.observe(card);
+        pauseObserver.observe(card);
       });
-
-      observeVisible();
     }
 
     catLinks.forEach(function(link) {
