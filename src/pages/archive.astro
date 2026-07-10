@@ -59,15 +59,10 @@ import '../styles/templates/tools.css';
     </div>
 
     <div class="inq-modal__content">
-      <p  class="inq-modal__eyebrow" id="inqCategory"></p>
-      <h2 class="inq-modal__title"   id="inqTitle"></h2>
-      <p  class="inq-modal__sku"     id="inqSku"></p>
-      <p  class="inq-modal__desc"    id="inqDesc"></p>
-
-      <details class="inq-modal__specs-wrap">
-        <summary class="inq-modal__specs-toggle">Materials &amp; Specifications</summary>
-        <p class="inq-modal__specs" id="inqSpecs"></p>
-      </details>
+      <p class="inq-modal__eyebrow" id="inqCategory"></p>
+      <h2 class="inq-modal__ref" id="inqTitle"></h2>
+      <p class="inq-modal__desc" id="inqDesc"></p>
+      <ul class="inq-modal__specs" id="inqSpecs"></ul>
 
       <form class="inq-form" id="inqForm" novalidate>
         <div class="inq-form__row">
@@ -3303,28 +3298,46 @@ import '../styles/templates/tools.css';
     var inqTitle    = document.getElementById('inqTitle');
     var inqSku      = document.getElementById('inqSku');
     var inqDesc     = document.getElementById('inqDesc');
-    var inqSpecs    = document.getElementById('inqSpecs');
-    var inqForm     = document.getElementById('inqForm');
-    var inqConfirm  = document.getElementById('inqConfirm');
+    var inqSpecs    = document.getElementById(‘inqSpecs’);
+    var inqForm     = document.getElementById(‘inqForm’);
+    var inqConfirm  = document.getElementById(‘inqConfirm’);
 
     function openModal(pieceId, fallbackTitle, fallbackGif) {
       var piece = (pieceData && pieceData[pieceId]) || null;
       var title = (piece && piece.title) || fallbackTitle || pieceId;
-      var category = (piece && piece.category) || '';
-      var sku = (piece && piece.sku) || '';
-      var desc = (piece && piece.desc) || '';
-      var specs = (piece && piece.specs) || '';
-      var mp4 = (piece && piece.mp4Url) || '';
+      var category = (piece && piece.category) || ‘’;
+      var desc = (piece && piece.desc) || ‘’;
+      var specsHtml = (piece && piece.specs) || ‘’;
+      var mp4 = (piece && piece.mp4Url) || ‘’;
 
+      // Category eyebrow — omit if empty
       inqCategory.textContent = category;
-      inqTitle.textContent = title;
-      inqSku.textContent = sku ? 'Ref. ' + sku : '';
-      inqDesc.textContent = desc;
-      inqSpecs.innerHTML = specs;
+      inqCategory.hidden = !category;
 
-      // Set message placeholder with piece title
-      var msgField = document.getElementById('inqMessage');
-      if (msgField) msgField.placeholder = 'I’m interested in ' + title + '…';
+      // Title as ref number
+      inqTitle.textContent = title;
+
+      // Description — omit if empty
+      inqDesc.textContent = desc;
+      inqDesc.hidden = !desc;
+
+      // Specs — parse HTML <br>-separated into list items, omit if empty
+      inqSpecs.innerHTML = ‘’;
+      if (specsHtml) {
+        specsHtml.split(/<br\s*\/?>/i).forEach(function(line) {
+          var text = line.replace(/<[^>]+>/g, ‘’).trim();
+          if (text) {
+            var li = document.createElement(‘li’);
+            li.textContent = text;
+            inqSpecs.appendChild(li);
+          }
+        });
+      }
+      inqSpecs.hidden = !inqSpecs.children.length;
+
+      // Set message placeholder with piece ref
+      var msgField = document.getElementById(‘inqMessage’);
+      if (msgField) msgField.placeholder = ‘I’m interested in ‘ + title + ‘…’;
 
       // Media: prefer mp4, fall back to GIF
       if (mp4) {

@@ -229,24 +229,17 @@
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
-.inq-modal__title {
-  font-family: var(--serif);
-  font-size: clamp(22px,3vw,36px);
-  font-weight: 300;
-  letter-spacing: 0.03em;
-  color: var(--ink);
-  margin-bottom: 6px;
-  line-height: 1.2;
-}
-.inq-modal__sku {
+/* Ref number — the title IS the SKU */
+.inq-modal__ref {
   font-family: var(--sans);
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  color: var(--ink-muted);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  margin-bottom: 20px;
+  color: var(--ink);
+  margin-bottom: 18px;
 }
 .inq-modal__desc {
   font-family: var(--prose);
@@ -255,34 +248,34 @@
   color: var(--ink);
   margin-bottom: 20px;
 }
-.inq-modal__specs-wrap {
+/* Specs — clean dotted list, no accordion */
+.inq-modal__specs {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   border-top: 1px solid var(--border-warm);
-  border-bottom: 1px solid var(--border-warm);
-  margin-bottom: 28px;
+  padding-top: 16px;
 }
-.inq-modal__specs-toggle {
+.inq-modal__specs li {
   font-family: var(--sans);
   font-size: 11px;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ink);
-  padding: 14px 0;
-  cursor: pointer;
-  list-style: none;
+  color: var(--ink-muted);
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  user-select: none;
+  gap: 8px;
 }
-.inq-modal__specs-toggle::-webkit-details-marker { display: none; }
-.inq-modal__specs-toggle::after { content: '+'; font-size: 14px; color: var(--ink-muted); }
-details[open] .inq-modal__specs-toggle::after { content: '−'; }
-.inq-modal__specs {
-  font-family: var(--prose);
-  font-size: 14px;
-  line-height: 1.9;
-  color: var(--ink);
-  padding-bottom: 16px;
+.inq-modal__specs li::before {
+  content: '';
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
 }
 
 /* Form */
