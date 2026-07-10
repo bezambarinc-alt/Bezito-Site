@@ -48,6 +48,52 @@ import '../styles/templates/tools.css';
     </div>
   </aside>
 
+  <!-- Inquiry modal -->
+  <div class="inq-backdrop" id="inqBackdrop" aria-hidden="true"></div>
+  <div class="inq-modal" id="inqModal" role="dialog" aria-modal="true" aria-label="Inquire about this piece" hidden>
+    <button class="inq-modal__close" id="inqClose" aria-label="Close">✕</button>
+
+    <div class="inq-modal__media">
+      <video class="inq-modal__video" id="inqVideo" autoplay loop muted playsinline></video>
+      <img  class="inq-modal__gif"   id="inqGif"   src="" alt="" hidden>
+    </div>
+
+    <div class="inq-modal__content">
+      <p  class="inq-modal__eyebrow" id="inqCategory"></p>
+      <h2 class="inq-modal__title"   id="inqTitle"></h2>
+      <p  class="inq-modal__sku"     id="inqSku"></p>
+      <p  class="inq-modal__desc"    id="inqDesc"></p>
+
+      <details class="inq-modal__specs-wrap">
+        <summary class="inq-modal__specs-toggle">Materials &amp; Specifications</summary>
+        <p class="inq-modal__specs" id="inqSpecs"></p>
+      </details>
+
+      <form class="inq-form" id="inqForm" novalidate>
+        <div class="inq-form__row">
+          <div class="inq-form__field">
+            <label class="inq-form__label" for="inqName">Name</label>
+            <input class="inq-form__input" type="text" id="inqName" name="name" required autocomplete="name" placeholder="Your name">
+          </div>
+          <div class="inq-form__field">
+            <label class="inq-form__label" for="inqEmail">Email</label>
+            <input class="inq-form__input" type="email" id="inqEmail" name="email" required autocomplete="email" placeholder="your@email.com">
+          </div>
+        </div>
+        <div class="inq-form__field">
+          <label class="inq-form__label" for="inqPhone">Phone <span class="inq-form__optional">(optional)</span></label>
+          <input class="inq-form__input" type="tel" id="inqPhone" name="phone" autocomplete="tel" placeholder="+1 (000) 000-0000">
+        </div>
+        <div class="inq-form__field">
+          <label class="inq-form__label" for="inqMessage">Message</label>
+          <textarea class="inq-form__input inq-form__textarea" id="inqMessage" name="message" rows="3" placeholder="I'm interested in this piece…"></textarea>
+        </div>
+        <button class="inq-form__submit" type="submit">Send Inquiry</button>
+        <p class="inq-form__confirm" id="inqConfirm" hidden>Thank you — we'll be in touch within one business day.</p>
+      </form>
+    </div>
+  </div>
+
   <!-- Video grid -->
   <div class="vg-grid" id="vgGrid">
   <div class="grid-sizer"></div>
@@ -3241,6 +3287,132 @@ import '../styles/templates/tools.css';
         applyFilter();
         closePanel();
       });
+    });
+
+    // ── Inquiry Modal ──────────────────────────────────────────────
+    var pieceData   = null;
+    var dataLoading = false;
+    var pendingOpen = null;
+
+    var inqBackdrop = document.getElementById('inqBackdrop');
+    var inqModal    = document.getElementById('inqModal');
+    var inqClose    = document.getElementById('inqClose');
+    var inqVideo    = document.getElementById('inqVideo');
+    var inqGif      = document.getElementById('inqGif');
+    var inqCategory = document.getElementById('inqCategory');
+    var inqTitle    = document.getElementById('inqTitle');
+    var inqSku      = document.getElementById('inqSku');
+    var inqDesc     = document.getElementById('inqDesc');
+    var inqSpecs    = document.getElementById('inqSpecs');
+    var inqForm     = document.getElementById('inqForm');
+    var inqConfirm  = document.getElementById('inqConfirm');
+
+    function openModal(pieceId, fallbackTitle, fallbackGif) {
+      var piece = (pieceData && pieceData[pieceId]) || null;
+      var title = (piece && piece.title) || fallbackTitle || pieceId;
+      var category = (piece && piece.category) || '';
+      var sku = (piece && piece.sku) || '';
+      var desc = (piece && piece.desc) || '';
+      var specs = (piece && piece.specs) || '';
+      var mp4 = (piece && piece.mp4Url) || '';
+
+      inqCategory.textContent = category;
+      inqTitle.textContent = title;
+      inqSku.textContent = sku ? 'Ref. ' + sku : '';
+      inqDesc.textContent = desc;
+      inqSpecs.innerHTML = specs;
+
+      // Set message placeholder with piece title
+      var msgField = document.getElementById('inqMessage');
+      if (msgField) msgField.placeholder = 'I’m interested in ' + title + '…';
+
+      // Media: prefer mp4, fall back to GIF
+      if (mp4) {
+        inqVideo.src = mp4;
+        inqVideo.hidden = false;
+        inqGif.hidden = true;
+        inqVideo.play();
+      } else if (fallbackGif) {
+        inqGif.src = fallbackGif;
+        inqGif.hidden = false;
+        inqVideo.hidden = true;
+        inqVideo.src = '';
+      }
+
+      // Reset form state
+      inqForm.reset();
+      inqConfirm.hidden = true;
+      inqForm.hidden = false;
+
+      inqModal.hidden = false;
+      requestAnimationFrame(function() {
+        inqModal.classList.add('is-open');
+        inqBackdrop.classList.add('is-active');
+      });
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      inqModal.classList.remove('is-open');
+      inqBackdrop.classList.remove('is-active');
+      document.body.style.overflow = '';
+      setTimeout(function() {
+        inqModal.hidden = true;
+        inqVideo.pause();
+        inqVideo.src = '';
+        inqGif.src = '';
+      }, 400);
+    }
+
+    function loadDataThenOpen(pieceId, fallbackTitle, fallbackGif) {
+      if (pieceData) { openModal(pieceId, fallbackTitle, fallbackGif); return; }
+      pendingOpen = [pieceId, fallbackTitle, fallbackGif];
+      if (dataLoading) return;
+      dataLoading = true;
+      fetch('/archive-data.json')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          pieceData = data;
+          if (pendingOpen) { openModal.apply(null, pendingOpen); pendingOpen = null; }
+        })
+        .catch(function() {
+          if (pendingOpen) { openModal.apply(null, pendingOpen); pendingOpen = null; }
+        });
+    }
+
+    // Intercept card clicks
+    cards.forEach(function(card) {
+      card.addEventListener('click', function(e) {
+        e.preventDefault();
+        var href = card.getAttribute('href') || '';
+        var match = href.match(/[?&]id=([^&]+)/);
+        var pieceId = match ? decodeURIComponent(match[1]) : '';
+        var h3 = card.querySelector('h3');
+        var fallbackTitle = h3 ? h3.textContent.trim() : '';
+        var img = card.querySelector('.video-thumb');
+        var fallbackGif = img ? (img.src || img.dataset.src || img.dataset.paused || '') : '';
+        loadDataThenOpen(pieceId, fallbackTitle, fallbackGif);
+      });
+    });
+
+    inqClose.addEventListener('click', closeModal);
+    inqBackdrop.addEventListener('click', closeModal);
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && !inqModal.hidden) closeModal();
+    });
+
+    // Form submit — mailto fallback
+    inqForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var name    = document.getElementById('inqName').value.trim();
+      var email   = document.getElementById('inqEmail').value.trim();
+      var phone   = document.getElementById('inqPhone').value.trim();
+      var message = document.getElementById('inqMessage').value.trim();
+      var subject = 'Inquiry: ' + inqTitle.textContent;
+      var body = 'Name: ' + name + '\nEmail: ' + email + (phone ? '\nPhone: ' + phone : '') + '\n\n' + (message || 'I am interested in this piece.');
+      window.location.href = 'mailto:bez@bezambar.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      inqForm.hidden = true;
+      inqConfirm.hidden = false;
     });
   })();
 </script>
