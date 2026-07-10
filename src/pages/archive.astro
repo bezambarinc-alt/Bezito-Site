@@ -3266,8 +3266,9 @@ import '../styles/templates/tools.css';
       var activeCategory = 'rings';
       var activeSub = null;
 
+      // Init with itemSelector:'none' so Masonry doesn't measure 0-height images
       var msnry = new Masonry(grid, {
-        itemSelector: '.video-card:not([hidden])',
+        itemSelector: 'none',
         columnWidth: '.grid-sizer',
         gutter: '.gutter-sizer',
         percentPosition: true,
@@ -3285,7 +3286,7 @@ import '../styles/templates/tools.css';
             imgObserver.unobserve(img);
           }
         });
-      }, { rootMargin: '300px' });
+      }, { rootMargin: '400px' });
 
       function observeVisible() {
         grid.querySelectorAll('.video-card:not([hidden]) .video-thumb[data-src]').forEach(function(img) {
@@ -3301,7 +3302,9 @@ import '../styles/templates/tools.css';
           var subMatch = !activeSub || (sub && (sub === activeSub || sub.indexOf(activeSub) !== -1));
           card.hidden = !(catMatch && subMatch);
         });
+        // Switch itemSelector to visible cards, repack
         msnry.options.itemSelector = '.video-card:not([hidden])';
+        var visibleItems = grid.querySelectorAll('.video-card:not([hidden])');
         msnry.reloadItems();
         msnry.layout();
         observeVisible();
