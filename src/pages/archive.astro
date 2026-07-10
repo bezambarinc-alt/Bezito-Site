@@ -29,13 +29,12 @@ import '../styles/templates/tools.css';
   <!-- Backdrop -->
   <div class="ba-filter-overlay" id="archiveFilterOverlay" aria-hidden="true"></div>
 
-  <!-- Filter panel — top-level categories only -->
+  <!-- Filter panel — styled to match nav menu drawer -->
   <aside class="ba-filter-panel" id="archiveFilterPanel" role="dialog" aria-label="Filter archive">
-    <div class="ba-filter-panel__head">
-      <button class="ba-filter-panel__close" id="archiveFilterClose" aria-label="Close filters">✕</button>
-      <button class="ba-filter-panel__results" id="archiveFilterApply">Show pieces</button>
-    </div>
-    <div class="ba-filter-panel__body">
+    <button class="ba-filter-panel__close" id="archiveFilterClose" aria-label="Close filters">✕</button>
+    <span class="ba-filter-panel__title">Filter</span>
+    <nav class="ba-filter-panel__body">
+      <span class="ba-filter-section-label">Collection</span>
       <button class="ba-filter-opt is-active" data-filter="all">All Pieces</button>
       <button class="ba-filter-opt" data-filter="rings">Rings</button>
       <button class="ba-filter-opt" data-filter="bands">Bands</button>
@@ -43,6 +42,9 @@ import '../styles/templates/tools.css';
       <button class="ba-filter-opt" data-filter="earrings">Earrings</button>
       <button class="ba-filter-opt" data-filter="bracelets">Bracelets</button>
       <button class="ba-filter-opt" data-filter="mens">Men's</button>
+    </nav>
+    <div class="ba-filter-panel__footer">
+      <button class="ba-filter-panel__results" id="archiveFilterApply">Show Pieces</button>
     </div>
   </aside>
 
