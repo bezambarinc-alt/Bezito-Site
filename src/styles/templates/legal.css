@@ -7,7 +7,6 @@
 .legal-page { padding: 120px 0 80px; }
 .legal-page__inner { max-width: 720px; margin: 0 auto; padding: 0 2rem; }
 .legal-page h1 {
-  font-family: var(--sans);
   font-size: clamp(28px, 4vw, 40px);
   font-weight: 300;
   letter-spacing: 0.04em;
@@ -26,7 +25,6 @@
 }
 .legal-section { margin-bottom: 40px; }
 .legal-section h2 {
-  font-family: var(--sans);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.1em;
