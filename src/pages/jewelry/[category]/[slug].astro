@@ -124,6 +124,7 @@ const ogImage = product.heroImage
       </div>
     </div>
   </section>
+  <div id="heroEnd"></div>
 
   {product.images.length > 0 && (
     <div class="hero-video hero-video--secondary">
@@ -197,22 +198,21 @@ const ogImage = product.heroImage
     ).observe(hero);
   }
 
-  // Floating Inquire pill — hide when bottom CTA is visible
-  const pill   = document.getElementById('prodPill');
-  const ctaSec = document.getElementById('inquire');
-  if (pill && ctaSec) {
+  // Floating Inquire pill
+  const pill      = document.getElementById('prodPill');
+  const heroEnd   = document.getElementById('heroEnd');
+  const ctaSec    = document.getElementById('inquire');
+  if (pill && heroEnd && ctaSec) {
+    // Show pill once the hero (incl. description + share) has fully scrolled out
+    new IntersectionObserver(
+      ([e]) => pill.classList.toggle('is-visible', !e.isIntersecting),
+      { threshold: 0 }
+    ).observe(heroEnd);
+    // Hide pill when bottom CTA enters view (pill "merges" into that button)
     new IntersectionObserver(
       ([e]) => pill.classList.toggle('is-hidden', e.isIntersecting),
       { threshold: 0.2 }
     ).observe(ctaSec);
-    // Show pill after scrolling past hero
-    const heroSec = document.querySelector('.hero') as HTMLElement;
-    if (heroSec) {
-      new IntersectionObserver(
-        ([e]) => pill.classList.toggle('is-visible', !e.isIntersecting),
-        { threshold: 0.5 }
-      ).observe(heroSec);
-    }
   }
 
   // Share
