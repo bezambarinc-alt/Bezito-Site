@@ -15,16 +15,35 @@ import '../styles/templates/tools.css';
     <p class="vg-hero__lede">Over five hundred Bez Ambar pieces, filmed at the atelier in Los Angeles. Watch each stone under light before you inquire.</p>
   </section>
 
-  <!-- Category filter bar -->
-  <nav class="vg-cat-bar" aria-label="Filter by category">
-    <a href="#" class="vg-cat-link" data-filter="all">All</a>
-    <a href="#" class="vg-cat-link active" data-filter="rings">Rings</a>
-    <a href="#" class="vg-cat-link" data-filter="bands">Bands</a>
-    <a href="#" class="vg-cat-link" data-filter="necklaces">Necklaces</a>
-    <a href="#" class="vg-cat-link" data-filter="earrings">Earrings</a>
-    <a href="#" class="vg-cat-link" data-filter="bracelets">Bracelets</a>
-    <a href="#" class="vg-cat-link" data-filter="mens">Men's</a>
-  </nav>
+  <!-- Floating filter pill -->
+  <button class="ba-filter-pill" id="archiveFilterPill" aria-label="Filter pieces">
+    <svg viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <line x1="0" y1="1.5" x2="14" y2="1.5"/>
+      <line x1="2" y1="5" x2="12" y2="5"/>
+      <line x1="4" y1="8.5" x2="10" y2="8.5"/>
+    </svg>
+    <span id="archivePillLabel">Filter</span>
+  </button>
+
+  <!-- Backdrop -->
+  <div class="ba-filter-overlay" id="archiveFilterOverlay" aria-hidden="true"></div>
+
+  <!-- Filter panel — top-level categories only -->
+  <aside class="ba-filter-panel" id="archiveFilterPanel" role="dialog" aria-label="Filter archive">
+    <div class="ba-filter-panel__head">
+      <button class="ba-filter-panel__close" id="archiveFilterClose" aria-label="Close filters">✕</button>
+      <button class="ba-filter-panel__results" id="archiveFilterApply">Show pieces</button>
+    </div>
+    <div class="ba-filter-panel__body">
+      <button class="ba-filter-opt is-active" data-filter="all">All Pieces</button>
+      <button class="ba-filter-opt" data-filter="rings">Rings</button>
+      <button class="ba-filter-opt" data-filter="bands">Bands</button>
+      <button class="ba-filter-opt" data-filter="necklaces">Necklaces</button>
+      <button class="ba-filter-opt" data-filter="earrings">Earrings</button>
+      <button class="ba-filter-opt" data-filter="bracelets">Bracelets</button>
+      <button class="ba-filter-opt" data-filter="mens">Men's</button>
+    </div>
+  </aside>
 
   <!-- Video grid -->
   <div class="vg-grid" id="vgGrid">
@@ -3113,7 +3132,6 @@ import '../styles/templates/tools.css';
 <script>
   (function() {
     var grid     = document.getElementById('vgGrid');
-    var catLinks = document.querySelectorAll('.vg-cat-link');
     var sentinel = document.getElementById('archiveSentinel');
     var cards    = Array.from(document.querySelectorAll('.video-card'));
     var BATCH    = 30;
@@ -3132,7 +3150,14 @@ import '../styles/templates/tools.css';
       (byCategory[cat] = byCategory[cat] || []).push(card);
     });
 
-    var activeCategory = 'rings';
+    var pill     = document.getElementById('archiveFilterPill');
+    var overlay  = document.getElementById('archiveFilterOverlay');
+    var panel    = document.getElementById('archiveFilterPanel');
+    var closeBtn = document.getElementById('archiveFilterClose');
+    var applyBtn = document.getElementById('archiveFilterApply');
+    var opts     = document.querySelectorAll('.ba-filter-opt');
+
+    var activeCategory = 'all';
     var filtered = [];
     var batchStart = 0;
     var shown = new Set();
@@ -3203,13 +3228,22 @@ import '../styles/templates/tools.css';
       showBatch();
     }
 
-    catLinks.forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        catLinks.forEach(function(l) { l.classList.remove('active'); });
-        link.classList.add('active');
-        activeCategory = link.dataset.filter || 'all';
+    // Panel open/close
+    function openPanel()  { panel.classList.add('is-open'); overlay.classList.add('is-active'); }
+    function closePanel() { panel.classList.remove('is-open'); overlay.classList.remove('is-active'); }
+
+    pill.addEventListener('click', openPanel);
+    overlay.addEventListener('click', closePanel);
+    closeBtn.addEventListener('click', closePanel);
+    applyBtn.addEventListener('click', closePanel);
+
+    opts.forEach(function(opt) {
+      opt.addEventListener('click', function() {
+        opts.forEach(function(o) { o.classList.remove('is-active'); });
+        opt.classList.add('is-active');
+        activeCategory = opt.dataset.filter || 'all';
         applyFilter();
+        closePanel();
       });
     });
 
