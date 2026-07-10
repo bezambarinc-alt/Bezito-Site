@@ -104,31 +104,35 @@
 }
 .vg-mega-col a:hover { opacity: 1; }
 
-/* ── Archive grid ── */
+/* ── Archive grid — CSS columns with height variety (Curator-style) ── */
 .vg-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
+  columns: 5;
+  column-gap: 10px;
   padding: 32px clamp(1.5rem, 5vw, 4rem) 80px;
   background: var(--white);
 }
-@media (max-width: 1100px) { .vg-grid { grid-template-columns: repeat(4, 1fr); } }
-@media (max-width: 720px)  { .vg-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 480px)  { .vg-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 1100px) { .vg-grid { columns: 4; } }
+@media (max-width: 720px)  { .vg-grid { columns: 3; } }
+@media (max-width: 480px)  { .vg-grid { columns: 2; } }
 
-/* sizer divs used by old Masonry approach — exclude from grid */
 .grid-sizer, .gutter-sizer { display: none; }
 
 .video-card {
+  break-inside: avoid;
   display: block;
+  width: 100%;
   overflow: hidden;
   text-decoration: none;
   cursor: pointer;
+  margin-bottom: 10px;
   background: #111;
-  /* Reserve 16:9 space before GIF loads — no layout shift */
-  aspect-ratio: 739 / 415;
 }
 .video-card[hidden] { display: none; }
+
+/* Three height tiers — assigned by JS based on index */
+.video-card--sm  { height: 160px; }
+.video-card--md  { height: 240px; }
+.video-card--lg  { height: 340px; }
 
 .video-thumb {
   display: block;

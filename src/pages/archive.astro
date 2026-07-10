@@ -3258,6 +3258,15 @@ import '../styles/templates/tools.css';
     var activeCategory = 'rings';
     var activeSub = null;
 
+    // Assign height variety by index — same pattern Curator uses to crop uniform content
+    var HEIGHTS = ['video-card--md', 'video-card--lg', 'video-card--sm',
+                   'video-card--md', 'video-card--sm', 'video-card--lg',
+                   'video-card--md', 'video-card--sm', 'video-card--lg',
+                   'video-card--md', 'video-card--lg', 'video-card--sm'];
+    cards.forEach(function(card, i) {
+      card.classList.add(HEIGHTS[i % HEIGHTS.length]);
+    });
+
     var imgObserver = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (!entry.isIntersecting) return;
