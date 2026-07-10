@@ -3259,12 +3259,12 @@ import '../styles/templates/tools.css';
   function masonryLayout() {
     grid.querySelectorAll('.video-card:not([hidden])').forEach(item => {
       item.style.gridRowEnd = '';
-      const h = item.getBoundingClientRect().height + 8; // +8 = margin-bottom
-      if (h > 8) item.style.gridRowEnd = `span ${Math.ceil(h)}`;
+      const h = item.getBoundingClientRect().height + 4; // +4 = margin-bottom
+      if (h > 4) item.style.gridRowEnd = `span ${Math.ceil(h)}`;
     });
   }
 
-  // Load GIFs entering viewport, pause leaving — relayout after each load
+  // Load GIFs entering viewport, pause leaving — relayout on both
   const imgObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const img = entry.target;
@@ -3276,9 +3276,10 @@ import '../styles/templates/tools.css';
       } else if (img.src) {
         img.dataset.src = img.src;
         img.src = '';
+        masonryLayout(); // recalculate after collapse
       }
     });
-  }, { rootMargin: '100px' });
+  }, { rootMargin: '200px' });
 
   function observeVisible() {
     grid.querySelectorAll('.video-card:not([hidden]) .video-thumb').forEach(img => {
