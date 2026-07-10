@@ -15,156 +15,149 @@ import '../styles/templates/tools.css';
     <p class="vg-hero__lede">Over five hundred Bez Ambar pieces, filmed at the atelier in Los Angeles. Watch each stone under light before you inquire.</p>
   </section>
 
-  <!-- Category filter bar -->
-  <div class="vg-cat-bar" id="vgCatBar">
-    <a href="#" class="vg-cat-link active" data-filter="all">All</a>
+  <!-- Floating filter pill -->
+  <button class="ba-filter-pill" id="archiveFilterPill" aria-label="Filter pieces">
+    <svg viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <line x1="0" y1="1.5" x2="14" y2="1.5"/>
+      <line x1="2" y1="5" x2="12" y2="5"/>
+      <line x1="4" y1="8.5" x2="10" y2="8.5"/>
+    </svg>
+    <span id="archivePillLabel">Filter</span>
+  </button>
 
-    <div class="vg-cat-item">
-      <a href="#" class="vg-cat-link" data-filter="rings">Rings</a>
-      <div class="vg-mega-dropdown">
-        <div class="vg-mega-col">
-          <h4>White Diamonds</h4>
-          <a href="#" data-sub="round">Round</a>
-          <a href="#" data-sub="framed-round">Framed Round</a>
-          <a href="#" data-sub="oval">Oval</a>
-          <a href="#" data-sub="pear">Pear</a>
-          <a href="#" data-sub="marquise">Marquise</a>
-          <a href="#" data-sub="radiant">Radiant</a>
-          <a href="#" data-sub="cushion">Cushion</a>
-          <a href="#" data-sub="emerald-cut">Emerald</a>
-        </div>
-        <div class="vg-mega-col">
-          <h4>Fancy Colors</h4>
-          <a href="#" data-sub="pink">Pink</a>
-          <a href="#" data-sub="blue">Blue</a>
-          <a href="#" data-sub="yellow">Yellow</a>
-        </div>
-        <div class="vg-mega-col">
-          <h4>Gemstones</h4>
-          <a href="#" data-sub="red">Red</a>
-          <a href="#" data-sub="gem-blue">Blue</a>
-          <a href="#" data-sub="green">Green</a>
-          <a href="#" data-sub="other-colors">Other Colors</a>
-          <a href="#" data-sub="color-frame">Color Frame</a>
-        </div>
-        <div class="vg-mega-col">
-          <h4>Three Stone Ring</h4>
-          <a href="#" data-sub="three-round">Round</a>
-          <a href="#" data-sub="three-oval">Oval</a>
-          <a href="#" data-sub="three-cushion">Cushion</a>
-          <a href="#" data-sub="three-emerald">Emerald</a>
-          <a href="#" data-sub="square-center">Square Center</a>
-        </div>
-        <div class="vg-mega-col">
-          <h4>By Collection</h4>
-          <a href="#" data-sub="blaze-rof">Blaze&reg; Ring of Fire&reg;</a>
-          <a href="#" data-sub="blaze">Blaze&reg;</a>
-          <a href="#" data-sub="divine">Divine&reg;</a>
-          <a href="#" data-sub="quadrillion">Quadrillion&reg; (Princess)</a>
-          <a href="#" data-sub="pave">Pave</a>
-        </div>
-      </div>
+  <!-- Backdrop -->
+  <div class="ba-filter-overlay" id="archiveFilterOverlay" aria-hidden="true"></div>
+
+  <!-- Filter sidebar -->
+  <aside class="ba-filter-panel" id="archiveFilterPanel" role="dialog" aria-label="Filter archive">
+    <div class="ba-filter-panel__head">
+      <button class="ba-filter-panel__close" id="archiveFilterClose" aria-label="Close filters">✕</button>
+      <button class="ba-filter-panel__results" id="archiveFilterApply">Show <span id="archiveFilterCount">0</span> pieces</button>
     </div>
+    <div class="ba-filter-panel__body">
 
-    <div class="vg-cat-item">
-      <a href="#" class="vg-cat-link" data-filter="bands">Bands</a>
-      <div class="vg-mega-dropdown">
-        <div class="vg-mega-col">
-          <h4>White Diamonds</h4>
-          <a href="#" data-sub="band-round">Round</a>
-          <a href="#" data-sub="band-princess">Quadrillion&reg; (Princess)</a>
-          <a href="#" data-sub="band-emerald">Emerald</a>
-          <a href="#" data-sub="band-heart">Heart</a>
+      <button class="ba-filter-opt is-active" data-filter="all" data-sub="">All Pieces</button>
+
+      <details class="ba-filter-accordion" open>
+        <summary>Rings</summary>
+        <div class="ba-filter-accordion__opts">
+          <button class="ba-filter-opt" data-filter="rings" data-sub="">All Rings</button>
+          <p class="ba-filter-group-label">White Diamonds</p>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="round">Round</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="framed-round">Framed Round</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="oval">Oval</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="pear">Pear</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="marquise">Marquise</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="radiant">Radiant</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="cushion">Cushion</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="emerald-cut">Emerald</button>
+          <p class="ba-filter-group-label">Fancy Colors</p>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="pink">Pink</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="blue">Blue</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="yellow">Yellow</button>
+          <p class="ba-filter-group-label">Gemstones</p>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="red">Red</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="gem-blue">Blue</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="green">Green</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="other-colors">Other Colors</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="color-frame">Color Frame</button>
+          <p class="ba-filter-group-label">Three Stone</p>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="three-round">Round</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="three-oval">Oval</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="three-cushion">Cushion</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="three-emerald">Emerald</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="square-center">Square Center</button>
+          <p class="ba-filter-group-label">By Collection</p>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="blaze-rof">Blaze&reg; Ring of Fire&reg;</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="blaze">Blaze&reg;</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="divine">Divine&reg;</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="quadrillion">Quadrillion&reg; (Princess)</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="rings" data-sub="pave">Pave</button>
         </div>
-        <div class="vg-mega-col">
-          <h4>Fancy Colors</h4>
-          <a href="#" data-sub="band-pink">Pink</a>
-          <a href="#" data-sub="band-blue">Blue</a>
-          <a href="#" data-sub="band-yellow">Yellow</a>
+      </details>
+
+      <details class="ba-filter-accordion">
+        <summary>Bands</summary>
+        <div class="ba-filter-accordion__opts">
+          <button class="ba-filter-opt" data-filter="bands" data-sub="">All Bands</button>
+          <p class="ba-filter-group-label">White Diamonds</p>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="bands" data-sub="band-round">Round</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="bands" data-sub="band-princess">Quadrillion&reg; (Princess)</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="bands" data-sub="band-emerald">Emerald</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="bands" data-sub="band-heart">Heart</button>
+          <p class="ba-filter-group-label">Fancy Colors</p>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="bands" data-sub="band-pink">Pink</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="bands" data-sub="band-blue">Blue</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="bands" data-sub="band-yellow">Yellow</button>
+          <p class="ba-filter-group-label">Gemstones</p>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="bands" data-sub="band-gem-red">Red</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="bands" data-sub="band-gem-blue">Blue</button>
+          <p class="ba-filter-group-label">By Collection</p>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="bands" data-sub="band-asscher">Asscher</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="bands" data-sub="band-baguette">Baguette</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="bands" data-sub="band-blaze">Blaze&reg;</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="bands" data-sub="band-space">Space Collection</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="bands" data-sub="band-pave">Pave</button>
+          <p class="ba-filter-group-label">By Style</p>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="bands" data-sub="band-wide">Wide</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="bands" data-sub="band-black">Black</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="bands" data-sub="band-eternity">Eternity</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="bands" data-sub="band-delicate">Delicate</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="bands" data-sub="band-flex">Flex</button>
         </div>
-        <div class="vg-mega-col">
-          <h4>Gemstones</h4>
-          <a href="#" data-sub="band-gem-red">Red</a>
-          <a href="#" data-sub="band-gem-blue">Blue</a>
+      </details>
+
+      <details class="ba-filter-accordion">
+        <summary>Necklaces</summary>
+        <div class="ba-filter-accordion__opts">
+          <button class="ba-filter-opt" data-filter="necklaces" data-sub="">All Necklaces</button>
+          <p class="ba-filter-group-label">Color</p>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="necklaces" data-sub="neck-fancy">Fancy Color Diamond</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="necklaces" data-sub="neck-gems">Gems</button>
+          <p class="ba-filter-group-label">By Collection</p>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="necklaces" data-sub="neck-crosses">Crosses</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="necklaces" data-sub="neck-pave">Pave</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="necklaces" data-sub="neck-hearts">Hearts</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="necklaces" data-sub="neck-fashion">Fashion</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="necklaces" data-sub="neck-initials">Initials</button>
+          <p class="ba-filter-group-label">By Style</p>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="necklaces" data-sub="neck-dogtag">Dogtag</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="necklaces" data-sub="neck-large">Large Pendants</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="necklaces" data-sub="neck-matrix">Matrix</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="necklaces" data-sub="neck-center">Center Stone</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="necklaces" data-sub="neck-rolos">Rolos</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="necklaces" data-sub="neck-allure">Allure Heart</button>
         </div>
-        <div class="vg-mega-col">
-          <h4>By Collection</h4>
-          <a href="#" data-sub="band-asscher">Asscher</a>
-          <a href="#" data-sub="band-baguette">Baguette</a>
-          <a href="#" data-sub="band-blaze">Blaze&reg;</a>
-          <a href="#" data-sub="band-space">Space Collection</a>
-          <a href="#" data-sub="band-pave">Pave</a>
+      </details>
+
+      <details class="ba-filter-accordion">
+        <summary>Earrings</summary>
+        <div class="ba-filter-accordion__opts">
+          <button class="ba-filter-opt" data-filter="earrings" data-sub="">All Earrings</button>
+          <p class="ba-filter-group-label">Color</p>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="earrings" data-sub="ear-fancy">Fancy Color Diamond</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="earrings" data-sub="ear-gems">Gems</button>
+          <p class="ba-filter-group-label">By Collection</p>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="earrings" data-sub="ear-blaze">Blaze&reg;</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="earrings" data-sub="ear-rof">Ring of Fire&reg;</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="earrings" data-sub="ear-flower">Flower</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="earrings" data-sub="ear-cross">Cross</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="earrings" data-sub="ear-fashion">Fashion</button>
+          <p class="ba-filter-group-label">By Style</p>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="earrings" data-sub="ear-matrix">Matrix</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="earrings" data-sub="ear-center">Center Stone</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="earrings" data-sub="ear-hoops">Hoops</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="earrings" data-sub="ear-studs">Studs</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="earrings" data-sub="ear-drops">Drops</button>
+          <button class="ba-filter-opt ba-filter-opt--sub" data-filter="earrings" data-sub="ear-huggies">Huggies</button>
         </div>
-        <div class="vg-mega-col">
-          <h4>By Style</h4>
-          <a href="#" data-sub="band-wide">Wide</a>
-          <a href="#" data-sub="band-black">Black</a>
-          <a href="#" data-sub="band-eternity">Eternity</a>
-          <a href="#" data-sub="band-delicate">Delicate</a>
-          <a href="#" data-sub="band-flex">Flex</a>
-        </div>
-      </div>
+      </details>
+
+      <button class="ba-filter-opt" data-filter="bracelets" data-sub="">Bracelets</button>
+      <button class="ba-filter-opt" data-filter="mens" data-sub="">Men's</button>
+
     </div>
-
-    <div class="vg-cat-item">
-      <a href="#" class="vg-cat-link" data-filter="necklaces">Necklaces</a>
-      <div class="vg-mega-dropdown">
-        <div class="vg-mega-col">
-          <h4>Color</h4>
-          <a href="#" data-sub="neck-fancy">Fancy Color Diamond</a>
-          <a href="#" data-sub="neck-gems">Gems</a>
-        </div>
-        <div class="vg-mega-col">
-          <h4>By Collection</h4>
-          <a href="#" data-sub="neck-crosses">Crosses</a>
-          <a href="#" data-sub="neck-pave">Pave</a>
-          <a href="#" data-sub="neck-hearts">Hearts</a>
-          <a href="#" data-sub="neck-fashion">Fashion</a>
-          <a href="#" data-sub="neck-initials">Initials</a>
-        </div>
-        <div class="vg-mega-col">
-          <h4>By Style</h4>
-          <a href="#" data-sub="neck-dogtag">Dogtag</a>
-          <a href="#" data-sub="neck-large">Large Pendants</a>
-          <a href="#" data-sub="neck-matrix">Matrix</a>
-          <a href="#" data-sub="neck-center">Center Stone</a>
-          <a href="#" data-sub="neck-rolos">Rolos</a>
-          <a href="#" data-sub="neck-allure">Allure Heart</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="vg-cat-item">
-      <a href="#" class="vg-cat-link" data-filter="earrings">Earrings</a>
-      <div class="vg-mega-dropdown">
-        <div class="vg-mega-col">
-          <h4>Color</h4>
-          <a href="#" data-sub="ear-fancy">Fancy Color Diamond</a>
-          <a href="#" data-sub="ear-gems">Gems</a>
-        </div>
-        <div class="vg-mega-col">
-          <h4>By Collection</h4>
-          <a href="#" data-sub="ear-blaze">Blaze&reg;</a>
-          <a href="#" data-sub="ear-rof">Ring of Fire&reg;</a>
-          <a href="#" data-sub="ear-flower">Flower</a>
-          <a href="#" data-sub="ear-cross">Cross</a>
-          <a href="#" data-sub="ear-fashion">Fashion</a>
-        </div>
-        <div class="vg-mega-col">
-          <h4>By Style</h4>
-          <a href="#" data-sub="ear-matrix">Matrix</a>
-          <a href="#" data-sub="ear-center">Center Stone</a>
-          <a href="#" data-sub="ear-hoops">Hoops</a>
-          <a href="#" data-sub="ear-studs">Studs</a>
-          <a href="#" data-sub="ear-drops">Drops</a>
-          <a href="#" data-sub="ear-huggies">Huggies</a>
-        </div>
-      </div>
-    </div>
-
-    <a href="#" class="vg-cat-link" data-filter="bracelets">Bracelets</a>
-    <a href="#" class="vg-cat-link" data-filter="mens">Men's</a>
-  </div>
+  </aside>
 
   <!-- Video grid -->
   <div class="vg-grid" id="vgGrid">
@@ -3246,49 +3239,73 @@ import '../styles/templates/tools.css';
                 <h3>Bez Ambar</h3>
             </div>
         </a>
+  <div id="archiveSentinel" style="height:1px;width:100%;"></div>
   </div>
 </Layout>
 
+<style is:global>
+  .ba-filter-group-label {
+    font-family: var(--sans);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin: 16px 0 4px;
+    padding: 0;
+  }
+  .ba-filter-pill--active { background: var(--accent); }
+</style>
+
 <script>
   (function() {
-    var grid     = document.getElementById('vgGrid');
-    var catLinks = document.querySelectorAll('.vg-cat-link');
-    var subLinks = document.querySelectorAll('[data-sub]');
-    var cards    = Array.from(document.querySelectorAll('.video-card'));
-    var activeCategory = 'rings';
-    var activeSub      = null;
+    var pill      = document.getElementById('archiveFilterPill');
+    var overlay   = document.getElementById('archiveFilterOverlay');
+    var panel     = document.getElementById('archiveFilterPanel');
+    var closeBtn  = document.getElementById('archiveFilterClose');
+    var applyBtn  = document.getElementById('archiveFilterApply');
+    var countSpan = document.getElementById('archiveFilterCount');
+    var pillLabel = document.getElementById('archivePillLabel');
+    var sentinel  = document.getElementById('archiveSentinel');
 
-    // Height variety — Curator-style for uniform 16:9 GIFs
+    var cards = Array.from(document.querySelectorAll('.video-card'));
+    var BATCH = 24;
+
+    // Height variety
     var HEIGHTS = ['video-card--md','video-card--lg','video-card--sm',
                    'video-card--md','video-card--sm','video-card--lg',
                    'video-card--md','video-card--sm','video-card--lg',
                    'video-card--md','video-card--lg','video-card--sm'];
     cards.forEach(function(c, i) { c.classList.add(HEIGHTS[i % HEIGHTS.length]); });
 
-    // Pre-index by category — avoid scanning all 574 cards on every filter click
+    // Pre-index by category
     var byCategory = Object.create(null);
     cards.forEach(function(card) {
       var cat = card.dataset.category || 'all';
       (byCategory[cat] = byCategory[cat] || []).push(card);
     });
 
-    // Load a GIF: swap data-src → src, fade in on load
-    function loadImg(img) {
-      if (!img.dataset.src) return;
-      var src = img.dataset.src;
-      delete img.dataset.src;
-      img.src = src;
-      img.addEventListener('load', function() { img.classList.add('is-loaded'); }, { once: true });
-    }
+    // Filter state
+    var activeCategory = 'rings';
+    var activeSub      = null;
+    var filtered       = [];
+    var batchStart     = 0;
+    var shown          = new Set();
 
-    // Load observer: fires when card approaches viewport
+    // Lazy load observer
     var loadObserver = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) {
-        if (e.isIntersecting) loadImg(e.target.querySelector('.video-thumb'));
+        if (!e.isIntersecting) return;
+        var img = e.target.querySelector('.video-thumb');
+        if (img && img.dataset.src) {
+          img.src = img.dataset.src;
+          delete img.dataset.src;
+          img.addEventListener('load', function() { img.classList.add('is-loaded'); }, {once:true});
+        }
+        loadObserver.unobserve(e.target);
       });
     }, { rootMargin: '200px' });
 
-    // Pause observer: clears src when off-screen to stop GIF CPU burn
+    // Pause observer — stop GIF CPU burn when off-screen
     var pauseObserver = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) {
         var img = e.target.querySelector('.video-thumb');
@@ -3302,65 +3319,98 @@ import '../styles/templates/tools.css';
       });
     }, { rootMargin: '50px' });
 
-    // Currently visible set — track to minimize DOM ops
-    var shown = new Set();
+    function computeFiltered() {
+      var candidates;
+      if (activeCategory === 'all') {
+        candidates = cards.slice();
+      } else {
+        candidates = (byCategory[activeCategory] || []).slice();
+        if (byCategory['all']) candidates = candidates.concat(byCategory['all']);
+      }
+      filtered = candidates.filter(function(card) {
+        if (!activeSub) return true;
+        return (card.dataset.subcategory || '') === activeSub;
+      });
+    }
 
-    function getCandidates() {
-      if (activeCategory === 'all') return cards;
-      var result = (byCategory[activeCategory] || []).slice();
-      // 'all'-category cards appear in every view
-      if (byCategory['all']) result = result.concat(byCategory['all']);
-      return result;
+    function showBatch() {
+      var end = Math.min(batchStart + BATCH, filtered.length);
+      for (var i = batchStart; i < end; i++) {
+        var card = filtered[i];
+        card.hidden = false;
+        loadObserver.observe(card);
+        pauseObserver.observe(card);
+        shown.add(card);
+      }
+      batchStart = end;
+      if (sentinel) sentinel.hidden = (batchStart >= filtered.length);
     }
 
     function applyFilter() {
       loadObserver.disconnect();
       pauseObserver.disconnect();
+      shown.forEach(function(card) { card.hidden = true; });
+      shown.clear();
+      batchStart = 0;
 
-      // Build next visible set from candidates only (not all 574)
-      var next = new Set();
-      getCandidates().forEach(function(card) {
-        var sub = card.dataset.subcategory || '';
-        // Exact match — indexOf was sloppy (e.g. "oval" matched "three-oval")
-        if (!activeSub || sub === activeSub) next.add(card);
-      });
+      computeFiltered();
 
-      // Minimal DOM writes — only update cards that changed state
-      shown.forEach(function(card) { if (!next.has(card)) card.hidden = true; });
-      next.forEach(function(card) { if (!shown.has(card)) card.hidden = false; });
-      shown = next;
+      if (countSpan) countSpan.textContent = filtered.length;
+      if (applyBtn) applyBtn.textContent = 'Show ' + filtered.length + ' pieces';
 
-      shown.forEach(function(card) {
-        loadObserver.observe(card);
-        pauseObserver.observe(card);
-      });
+      showBatch();
     }
 
-    catLinks.forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        catLinks.forEach(function(l) { l.classList.remove('active'); });
-        link.classList.add('active');
-        activeCategory = link.dataset.filter || 'all';
-        activeSub = null;
+    // Sentinel IntersectionObserver — loads next batch when user approaches bottom
+    var sentinelObserver = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting && batchStart < filtered.length) showBatch();
+    }, { rootMargin: '400px' });
+    if (sentinel) sentinelObserver.observe(sentinel);
+
+    // Sidebar open/close
+    function openPanel() {
+      panel.classList.add('is-open');
+      overlay.classList.add('is-active');
+      panel.removeAttribute('aria-hidden');
+    }
+    function closePanel() {
+      panel.classList.remove('is-open');
+      overlay.classList.remove('is-active');
+      panel.setAttribute('aria-hidden', 'true');
+    }
+
+    pill.addEventListener('click', openPanel);
+    overlay.addEventListener('click', closePanel);
+    closeBtn.addEventListener('click', closePanel);
+    applyBtn.addEventListener('click', closePanel);
+
+    // Filter option clicks
+    var opts = document.querySelectorAll('.ba-filter-opt');
+    opts.forEach(function(opt) {
+      opt.addEventListener('click', function() {
+        opts.forEach(function(o) { o.classList.remove('is-active'); });
+        opt.classList.add('is-active');
+
+        var newCat = opt.dataset.filter || 'all';
+        var newSub = opt.dataset.sub   || null;
+        activeCategory = newCat;
+        activeSub      = newSub;
+
+        // Update pill label
+        var label = opt.textContent.trim();
+        if (pillLabel) pillLabel.textContent = label === 'All Pieces' ? 'Filter' : label;
+        pill.classList.toggle('ba-filter-pill--active', label !== 'All Pieces');
+
         applyFilter();
+        closePanel();
       });
     });
 
-    subLinks.forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        subLinks.forEach(function(l) { l.classList.remove('active'); });
-        link.classList.add('active');
-        activeSub = link.dataset.sub || null;
-        applyFilter();
-      });
-    });
-
-    var ringsLink = document.querySelector('.vg-cat-link[data-filter="rings"]');
-    if (ringsLink) {
-      catLinks.forEach(function(l) { l.classList.remove('active'); });
-      ringsLink.classList.add('active');
+    // Initial render — start on rings
+    var ringsBtn = document.querySelector('.ba-filter-opt[data-filter="rings"][data-sub=""]');
+    if (ringsBtn) {
+      opts.forEach(function(o) { o.classList.remove('is-active'); });
+      ringsBtn.classList.add('is-active');
     }
     applyFilter();
   })();
