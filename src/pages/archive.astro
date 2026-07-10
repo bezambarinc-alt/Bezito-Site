@@ -3322,25 +3322,25 @@ import '../styles/templates/tools.css';
     var dataLoading = false;
     var pendingOpen = null;
 
-    var inqBackdrop = document.getElementById(‘inqBackdrop’);
-    var inqModal    = document.getElementById(‘inqModal’);
-    var inqClose    = document.getElementById(‘inqClose’);
-    var inqVideo    = document.getElementById(‘inqVideo’);
-    var inqGif      = document.getElementById(‘inqGif’);
-    var inqCategory = document.getElementById(‘inqCategory’);
-    var inqTitle    = document.getElementById(‘inqTitle’);
-    var inqDesc     = document.getElementById(‘inqDesc’);
-    var inqSpecs    = document.getElementById(‘inqSpecs’);
-    var inqForm     = document.getElementById(‘inqForm’);
-    var inqConfirm  = document.getElementById(‘inqConfirm’);
+    var inqBackdrop = document.getElementById('inqBackdrop');
+    var inqModal    = document.getElementById('inqModal');
+    var inqClose    = document.getElementById('inqClose');
+    var inqVideo    = document.getElementById('inqVideo');
+    var inqGif      = document.getElementById('inqGif');
+    var inqCategory = document.getElementById('inqCategory');
+    var inqTitle    = document.getElementById('inqTitle');
+    var inqDesc     = document.getElementById('inqDesc');
+    var inqSpecs    = document.getElementById('inqSpecs');
+    var inqForm     = document.getElementById('inqForm');
+    var inqConfirm  = document.getElementById('inqConfirm');
 
     function openModal(pieceId, fallbackTitle, fallbackGif) {
       var piece    = (pieceData && pieceData[pieceId]) || null;
       var title    = (piece && piece.title)    || fallbackTitle || pieceId;
-      var category = (piece && piece.category) || ‘’;
-      var desc     = (piece && piece.desc)     || ‘’;
-      var specsRaw = (piece && piece.specs)    || ‘’;
-      var mp4      = (piece && piece.mp4Url)   || ‘’;
+      var category = (piece && piece.category) || '';
+      var desc     = (piece && piece.desc)     || '';
+      var specsRaw = (piece && piece.specs)    || '';
+      var mp4      = (piece && piece.mp4Url)   || '';
 
       // Category eyebrow — omit if empty
       inqCategory.textContent = category;
@@ -3354,18 +3354,18 @@ import '../styles/templates/tools.css';
       inqDesc.hidden = !desc;
 
       // Specs — split on <br>, strip remaining tags, render as list items
-      inqSpecs.innerHTML = ‘’;
+      inqSpecs.innerHTML = '';
       specsRaw.split(/<br\s*\/?>/i).forEach(function(line) {
-        var text = line.replace(/<[^>]+>/g, ‘’).trim();
+        var text = line.replace(/<[^>]+>/g, '').trim();
         if (!text) return;
-        var li = document.createElement(‘li’);
+        var li = document.createElement('li');
         li.innerHTML = text;
         inqSpecs.appendChild(li);
       });
       inqSpecs.hidden = inqSpecs.children.length === 0;
 
       // Message placeholder
-      document.getElementById(‘inqMessage’).placeholder = ‘I\’m interested in ‘ + title + ‘…’;
+      document.getElementById('inqMessage').placeholder = 'I\'m interested in ' + title + '…';
 
       // Media: prefer mp4, fall back to GIF
       if (mp4) {
