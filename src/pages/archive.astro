@@ -168,6 +168,7 @@ import '../styles/templates/tools.css';
 
   <!-- Video grid -->
   <div class="vg-grid" id="vgGrid">
+  <div class="grid-sizer"></div>
 <a class="video-card" href="video-product.html?id=b2958-palfs" data-category="rings" data-subcategory="round">
             <img class="video-thumb" loading="lazy" decoding="async" data-src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B2958.gif?v=1649457984" alt="B2958 - PALFS">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
@@ -3248,86 +3249,90 @@ import '../styles/templates/tools.css';
 </Layout>
 
 <script>
-  const catLinks = document.querySelectorAll('.vg-cat-link');
-  const subLinks = document.querySelectorAll('[data-sub]');
-  const cards = document.querySelectorAll('.video-card');
-  const grid = document.getElementById('vgGrid');
-  let activeCategory = 'rings';
-  let activeSub = null;
-
-  // Masonry: measure each visible card and set grid-row span
-  function masonryLayout() {
-    grid.querySelectorAll('.video-card:not([hidden])').forEach(item => {
-      item.style.gridRowEnd = '';
-      const h = item.getBoundingClientRect().height + 4; // +4 = margin-bottom
-      if (h > 4) item.style.gridRowEnd = `span ${Math.ceil(h)}`;
-    });
+  function loadScript(src, cb) {
+    var s = document.createElement('script');
+    s.src = src;
+    s.onload = cb;
+    document.head.appendChild(s);
   }
 
-  // Load GIFs entering viewport, pause leaving — relayout on both
-  const imgObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      const img = entry.target;
-      if (entry.isIntersecting) {
-        if (img.dataset.src) {
-          img.src = img.dataset.src;
-          img.addEventListener('load', masonryLayout, { once: true });
-        }
-      } else if (img.src) {
-        img.dataset.src = img.src;
-        img.src = '';
-        masonryLayout(); // recalculate after collapse
+  loadScript('https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js', function() {
+    loadScript('https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js', function() {
+      var grid = document.getElementById('vgGrid');
+      var catLinks = document.querySelectorAll('.vg-cat-link');
+      var subLinks = document.querySelectorAll('[data-sub]');
+      var cards = document.querySelectorAll('.video-card');
+      var activeCategory = 'rings';
+      var activeSub = null;
+
+      var msnry = new Masonry(grid, {
+        itemSelector: '.video-card:not([hidden])',
+        columnWidth: '.grid-sizer',
+        percentPosition: true,
+        gutter: 8,
+        transitionDuration: '0.2s'
+      });
+
+      var imgObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) return;
+          var img = entry.target;
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+            delete img.dataset.src;
+            img.addEventListener('load', function() { msnry.layout(); }, { once: true });
+            imgObserver.unobserve(img);
+          }
+        });
+      }, { rootMargin: '300px' });
+
+      function observeVisible() {
+        grid.querySelectorAll('.video-card:not([hidden]) .video-thumb[data-src]').forEach(function(img) {
+          imgObserver.observe(img);
+        });
       }
-    });
-  }, { rootMargin: '200px' });
 
-  function observeVisible() {
-    grid.querySelectorAll('.video-card:not([hidden]) .video-thumb').forEach(img => {
-      imgObserver.observe(img);
-    });
-  }
+      function applyFilter() {
+        cards.forEach(function(card) {
+          var cat = card.dataset.category;
+          var sub = card.dataset.subcategory;
+          var catMatch = activeCategory === 'all' || cat === activeCategory || cat === 'all';
+          var subMatch = !activeSub || (sub && (sub === activeSub || sub.indexOf(activeSub) !== -1));
+          card.hidden = !(catMatch && subMatch);
+        });
+        msnry.options.itemSelector = '.video-card:not([hidden])';
+        msnry.reloadItems();
+        msnry.layout();
+        observeVisible();
+      }
 
-  function applyFilter() {
-    cards.forEach(card => {
-      const cat = card.dataset.category;
-      const sub = card.dataset.subcategory;
-      const catMatch = activeCategory === 'all' || cat === activeCategory || cat === 'all';
-      const subMatch = !activeSub || (sub && (sub === activeSub || sub.includes(activeSub)));
-      card.hidden = !(catMatch && subMatch);
-    });
-    masonryLayout();
-    observeVisible();
-  }
+      catLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          catLinks.forEach(function(l) { l.classList.remove('active'); });
+          link.classList.add('active');
+          activeCategory = link.dataset.filter || 'all';
+          activeSub = null;
+          applyFilter();
+        });
+      });
 
-  catLinks.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      catLinks.forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
-      activeCategory = link.dataset.filter || 'all';
-      activeSub = null;
+      subLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          subLinks.forEach(function(l) { l.classList.remove('active'); });
+          link.classList.add('active');
+          activeSub = link.dataset.sub || null;
+          applyFilter();
+        });
+      });
+
+      var ringsLink = document.querySelector('.vg-cat-link[data-filter="rings"]');
+      if (ringsLink) {
+        catLinks.forEach(function(l) { l.classList.remove('active'); });
+        ringsLink.classList.add('active');
+      }
       applyFilter();
     });
   });
-
-  subLinks.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      subLinks.forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
-      activeSub = link.dataset.sub || null;
-      applyFilter();
-    });
-  });
-
-  // Relayout on resize
-  new ResizeObserver(masonryLayout).observe(grid);
-
-  // Default: rings on load
-  const ringsLink = document.querySelector('.vg-cat-link[data-filter="rings"]');
-  if (ringsLink) {
-    catLinks.forEach(l => l.classList.remove('active'));
-    ringsLink.classList.add('active');
-  }
-  applyFilter();
 </script>

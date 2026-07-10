@@ -104,31 +104,28 @@
 }
 .vg-mega-col a:hover { opacity: 1; }
 
-/* ── Archive grid — masonry (grid-span technique) ── */
+/* ── Archive grid — Masonry.js ── */
 .vg-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-auto-rows: 1px;
-  column-gap: 4px;
-  row-gap: 0;
-  padding: 4px 0 80px;
-  background: var(--dark-bg);
-  align-items: start;
+  position: relative;
+  padding: 32px clamp(1.5rem, 5vw, 4rem) 80px;
+  background: var(--white);
 }
 
-@media (max-width: 1100px) { .vg-grid { grid-template-columns: repeat(4, 1fr); } }
-@media (max-width: 720px)  { .vg-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 480px)  { .vg-grid { grid-template-columns: repeat(2, 1fr); } }
+/* Column width sizer — 5 cols */
+.grid-sizer,
+.video-card { width: 19%; }
+
+@media (max-width: 1100px) { .grid-sizer, .video-card { width: 24%; } }
+@media (max-width: 720px)  { .grid-sizer, .video-card { width: 32%; } }
+@media (max-width: 480px)  { .grid-sizer, .video-card { width: 49%; } }
 
 .video-card {
-  align-self: start;
   display: block;
   overflow: hidden;
-  position: relative;
   text-decoration: none;
   cursor: pointer;
-  background: var(--dark-surface);
-  margin-bottom: 4px;
+  margin-bottom: 8px;
+  background: var(--border-warm);
 }
 .video-card[hidden] { display: none; }
 
