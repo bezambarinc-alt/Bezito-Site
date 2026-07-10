@@ -169,6 +169,7 @@ import '../styles/templates/tools.css';
   <!-- Video grid -->
   <div class="vg-grid" id="vgGrid">
   <div class="grid-sizer"></div>
+  <div class="gutter-sizer"></div>
 <a class="video-card" href="video-product.html?id=b2958-palfs" data-category="rings" data-subcategory="round">
             <img class="video-thumb" loading="lazy" decoding="async" data-src="https://cdn.shopify.com/s/files/1/0560/4301/2138/products/B2958.gif?v=1649457984" alt="B2958 - PALFS">
             <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></div>
@@ -3268,8 +3269,8 @@ import '../styles/templates/tools.css';
       var msnry = new Masonry(grid, {
         itemSelector: '.video-card:not([hidden])',
         columnWidth: '.grid-sizer',
+        gutter: '.gutter-sizer',
         percentPosition: true,
-        gutter: 8,
         transitionDuration: '0.2s'
       });
 
