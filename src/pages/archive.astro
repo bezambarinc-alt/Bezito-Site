@@ -3326,7 +3326,7 @@ import '../styles/templates/tools.css';
         var text = line.replace(/<[^>]+>/g, ‘’).trim();
         if (!text) return;
         var li = document.createElement(‘li’);
-        li.textContent = text;
+        li.innerHTML = text;
         inqSpecs.appendChild(li);
       });
       inqSpecs.hidden = inqSpecs.children.length === 0;

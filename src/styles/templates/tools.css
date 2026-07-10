@@ -221,6 +221,7 @@
   flex-direction: column;
 }
 
+/* Category — gold chip above ref */
 .inq-modal__eyebrow {
   font-family: var(--sans);
   font-size: 10px;
@@ -228,34 +229,36 @@
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--accent);
-  margin: 0 0 8px;
+  margin: 0 0 6px;
 }
-/* Ref number */
+/* Ref number — large, clear */
 .inq-modal__ref {
-  font-family: var(--sans);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  font-family: var(--serif);
+  font-size: clamp(18px, 2.2vw, 28px);
+  font-weight: 400;
+  letter-spacing: 0.04em;
   color: var(--ink);
-  margin: 0 0 24px;
+  margin: 0 0 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-warm);
 }
+/* Description — prose, clearly below the rule */
 .inq-modal__desc {
   font-family: var(--prose);
-  font-size: 15px;
-  line-height: 1.7;
+  font-size: 14px;
+  line-height: 1.75;
   color: var(--ink);
   margin: 0 0 20px;
 }
-/* Specs — inline dotted list */
+/* Specs — clean dotted list */
 .inq-modal__specs {
   list-style: none;
-  margin: 0 0 32px;
-  padding: 16px 0 0;
+  margin: 0 0 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  border-top: 1px solid var(--border-warm);
+  flex: 1;
 }
 .inq-modal__specs li {
   font-family: var(--sans);
