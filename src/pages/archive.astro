@@ -62,6 +62,19 @@ import '../styles/templates/tools.css';
       <p class="inq-modal__eyebrow" id="inqCategory"></p>
       <h2 class="inq-modal__ref" id="inqTitle"></h2>
       <p class="inq-modal__desc" id="inqDesc"></p>
+
+      <!-- Share -->
+      <div class="inq-share">
+        <div class="inq-share__wrap">
+          <button class="inq-share__trigger" id="inqShareTrigger">Share</button>
+          <div class="inq-share__menu" id="inqShareMenu" hidden>
+            <button class="inq-share__item" id="inqShareCopy"><span id="inqCopyLabel">Copy link</span></button>
+            <a class="inq-share__item" id="inqShareEmail" href="#">Email</a>
+            <a class="inq-share__item" id="inqShareWA" href="#" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
       <ul class="inq-modal__specs" id="inqSpecs"></ul>
 
       <form class="inq-form" id="inqForm" novalidate>
@@ -86,18 +99,6 @@ import '../styles/templates/tools.css';
         <button class="inq-form__submit" type="submit">Send Inquiry</button>
         <p class="inq-form__confirm" id="inqConfirm" hidden>Thank you — we'll be in touch within one business day.</p>
       </form>
-
-      <!-- Share -->
-      <div class="inq-share">
-        <div class="inq-share__wrap">
-          <button class="inq-share__trigger" id="inqShareTrigger">Share</button>
-          <div class="inq-share__menu" id="inqShareMenu" hidden>
-            <button class="inq-share__item" id="inqShareCopy"><span id="inqCopyLabel">Copy link</span></button>
-            <a class="inq-share__item" id="inqShareEmail" href="#">Email</a>
-            <a class="inq-share__item" id="inqShareWA" href="#" target="_blank" rel="noopener">WhatsApp</a>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 

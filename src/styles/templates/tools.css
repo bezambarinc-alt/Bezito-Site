@@ -354,9 +354,7 @@
 
 /* ── Share ── */
 .inq-share {
-  padding-top: 28px;
-  border-top: 1px solid var(--border-warm);
-  margin-top: 24px;
+  margin: 4px 0 20px;
 }
 .inq-share__wrap { position: relative; display: inline-block; }
 .inq-share__trigger {
