@@ -111,7 +111,7 @@ const ogImage = product.heroImage
       {product.subtitle && <span class="hero__subtitle">{product.subtitle}</span>}
     </h1>
     <p class="hero__lede">{product.description}</p>
-    <a class="hero__cta" href={`/contact?subject=${encodeURIComponent(product.inquirySubject)}`}>Inquire</a>
+    <button class="hero__cta" id="prodInquireBtn">Inquire</button>
   </section>
 
   {product.images.length > 0 && (
@@ -157,7 +157,7 @@ const ogImage = product.heroImage
         <details class="tech-item">
           <summary class="tech-item__head">Inquiry</summary>
           <div class="tech-item__body">
-            <p>Each piece is made to specification. Pricing on request. <a href={`/contact?subject=${encodeURIComponent(product.inquirySubject)}`}>Contact us to inquire.</a></p>
+            <p>Each piece is made to specification. Pricing on request. <button class="tech-inline-btn" id="prodInquireBtn2">Send an inquiry.</button></p>
           </div>
         </details>
       </div>
@@ -167,11 +167,77 @@ const ogImage = product.heroImage
   <section class="product-cta" id="inquire">
     <h2 class="product-cta__title">See It in Person</h2>
     <p class="product-cta__body">Every piece is available to view by appointment at our Los Angeles atelier. Call <a href="tel:2136299191">(213) 629-9191</a> or send an inquiry below.</p>
-    <a class="product-cta__btn" href={`/contact?subject=${encodeURIComponent(product.inquirySubject)}`}>Inquire About This Piece</a>
+    <button class="product-cta__btn" id="prodInquireBtn3">Inquire About This Piece</button>
   </section>
+
+  <!-- Inquiry Modal -->
+  <div class="inq-backdrop" id="inqBackdrop" aria-hidden="true"></div>
+  <div class="inq-modal" id="inqModal" role="dialog" aria-modal="true" hidden>
+    <button class="inq-modal__close" id="inqClose" aria-label="Close">&#x2715;</button>
+    <div class="inq-modal__media">
+      {product.heroVideo
+        ? <video class="inq-modal__video" src={product.heroVideo} autoplay loop muted playsinline></video>
+        : product.heroImage
+          ? <img class="inq-modal__gif" src={product.heroImage} alt={product.title} />
+          : null
+      }
+    </div>
+    <div class="inq-modal__content">
+      <p class="inq-modal__eyebrow">{eyebrow}</p>
+      <h2 class="inq-modal__ref">{product.title}</h2>
+      <p class="inq-modal__desc">{product.description}</p>
+
+      <!-- Share -->
+      <div class="inq-share">
+        <div class="inq-share__wrap">
+          <button class="inq-share__trigger" id="inqShareTrigger">Share</button>
+          <div class="inq-share__menu" id="inqShareMenu" hidden>
+            <button class="inq-share__item" id="inqShareCopy"><span id="inqCopyLabel">Copy link</span></button>
+            <a class="inq-share__item" id="inqShareEmail" href="#">Email</a>
+            <a class="inq-share__item" id="inqShareWA" href="#" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <ul class="inq-modal__specs">
+        {[
+          product.stone.carats && `${product.stone.carats}ct`,
+          product.stone.color,
+          product.stone.clarity && `${product.stone.clarity} clarity`,
+          product.stone.shape,
+          product.stone.origin,
+          product.metal,
+        ].filter(Boolean).map(spec => <li>{spec}</li>)}
+      </ul>
+
+      <form class="inq-form" id="inqForm" novalidate>
+        <div class="inq-form__row">
+          <div class="inq-form__field">
+            <label class="inq-form__label" for="inqName">Name</label>
+            <input class="inq-form__input" type="text" id="inqName" name="name" required autocomplete="name" placeholder="Your name">
+          </div>
+          <div class="inq-form__field">
+            <label class="inq-form__label" for="inqEmail">Email</label>
+            <input class="inq-form__input" type="email" id="inqEmail" name="email" required autocomplete="email" placeholder="your@email.com">
+          </div>
+        </div>
+        <div class="inq-form__field">
+          <label class="inq-form__label" for="inqPhone">Phone <span class="inq-form__optional">(optional)</span></label>
+          <input class="inq-form__input" type="tel" id="inqPhone" name="phone" autocomplete="tel" placeholder="+1 (000) 000-0000">
+        </div>
+        <div class="inq-form__field">
+          <label class="inq-form__label" for="inqMessage">Message</label>
+          <textarea class="inq-form__input inq-form__textarea" id="inqMessage" name="message" rows="3" placeholder="I'm interested in this piece..."></textarea>
+        </div>
+        <button class="inq-form__submit" type="submit">Send Inquiry</button>
+        <p class="inq-form__confirm" id="inqConfirm" hidden>Thank you — we'll be in touch within one business day.</p>
+      </form>
+    </div>
+  </div>
 </Layout>
 
 <script>
+  // Header transparency on hero
   const hero = document.getElementById('hero-video');
   const header = document.querySelector('.ba-header');
   if (hero && header) {
@@ -181,5 +247,87 @@ const ogImage = product.heroImage
     );
     obs.observe(hero);
   }
+
+  // Inquiry modal
+  const backdrop  = document.getElementById('inqBackdrop');
+  const modal     = document.getElementById('inqModal');
+  const closeBtn  = document.getElementById('inqClose');
+  const form      = document.getElementById('inqForm');
+  const confirm   = document.getElementById('inqConfirm');
+  const triggers  = [
+    document.getElementById('prodInquireBtn'),
+    document.getElementById('prodInquireBtn2'),
+    document.getElementById('prodInquireBtn3'),
+  ].filter(Boolean);
+
+  function openModal() {
+    modal.hidden = false;
+    backdrop.classList.add('is-active');
+    requestAnimationFrame(() => modal.classList.add('is-open'));
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    modal.classList.remove('is-open');
+    backdrop.classList.remove('is-active');
+    document.body.style.overflow = '';
+    setTimeout(() => { modal.hidden = true; }, 400);
+  }
+
+  triggers.forEach(t => t.addEventListener('click', openModal));
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', closeModal);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name    = (document.getElementById('inqName') as HTMLInputElement).value.trim();
+    const email   = (document.getElementById('inqEmail') as HTMLInputElement).value.trim();
+    const phone   = (document.getElementById('inqPhone') as HTMLInputElement).value.trim();
+    const message = (document.getElementById('inqMessage') as HTMLTextAreaElement).value.trim();
+    const subject = encodeURIComponent(document.querySelector('.inq-modal__ref')?.textContent || 'Inquiry');
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}${phone ? '\nPhone: ' + phone : ''}\n\n${message}`);
+    window.location.href = `mailto:info@bezambar.com?subject=${subject}&body=${body}`;
+    confirm.hidden = false;
+  });
+
+  // Share
+  const shareTrigger = document.getElementById('inqShareTrigger');
+  const shareMenu    = document.getElementById('inqShareMenu');
+  const shareCopy    = document.getElementById('inqShareCopy');
+  const shareEmail   = document.getElementById('inqShareEmail') as HTMLAnchorElement;
+  const shareWA      = document.getElementById('inqShareWA') as HTMLAnchorElement;
+  const copyLabel    = document.getElementById('inqCopyLabel');
+  const pageTitle    = document.title;
+  const pageUrl      = window.location.href;
+
+  const emailSubject = encodeURIComponent('Bez Ambar — ' + document.querySelector('h1')?.textContent?.trim());
+  const emailBody    = encodeURIComponent('Take a look at this piece from Bez Ambar:\n' + pageUrl);
+  const waText       = encodeURIComponent('Take a look at this Bez Ambar piece: ' + pageUrl);
+  shareEmail.href = 'mailto:?subject=' + emailSubject + '&body=' + emailBody;
+  shareWA.href    = 'https://wa.me/?text=' + waText;
+
+  shareTrigger.addEventListener('click', function() {
+    if (navigator.share) {
+      navigator.share({ title: pageTitle, url: pageUrl }).catch(() => {});
+    } else {
+      const open = !shareMenu.hidden;
+      shareMenu.hidden = open;
+      shareTrigger.setAttribute('aria-expanded', String(!open));
+    }
+  });
+
+  shareCopy.addEventListener('click', function() {
+    navigator.clipboard.writeText(pageUrl).then(function() {
+      copyLabel.textContent = 'Copied!';
+      shareMenu.hidden = true;
+      setTimeout(() => { copyLabel.textContent = 'Copy link'; }, 2000);
+    });
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!shareMenu.hidden && !(e.target as Element).closest('.inq-share__wrap')) {
+      shareMenu.hidden = true;
+    }
+  });
 </script>
 
