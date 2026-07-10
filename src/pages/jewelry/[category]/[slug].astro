@@ -184,7 +184,7 @@ const ogImage = product.heroImage
   </section>
 
   <!-- Floating Inquire pill -->
-  <a class="prod-pill" id="prodPill" href="#inquire">Inquire</a>
+  <a class="prod-pill" id="prodPill" href={`/contact?subject=${encodeURIComponent(product.inquirySubject)}`}>Inquire</a>
 </Layout>
 
 <script>
