@@ -9,6 +9,12 @@
   max-width: 680px;
   margin: 0 auto;
 }
+@media (max-width: 768px) {
+  .vg-hero { padding-top: 100px; padding-bottom: 40px; }
+}
+@media (max-width: 480px) {
+  .vg-hero { padding-top: 80px; padding-bottom: 32px; }
+}
 .vg-hero__eyebrow {
   font-family: var(--sans);
   font-size: 15px;

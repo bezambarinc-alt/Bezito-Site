@@ -1534,11 +1534,14 @@ body.menu-open { overflow: hidden; }
 }
 
 /* ── 19.8. FILTER PANEL ─────────────────────────────────── */
-/* Pill anchor — centers pill inline below hero description */
+/* Pill anchor — centers pill inline below hero description.
+   min-height prevents layout collapse when pill goes fixed,
+   which would trigger IntersectionObserver loop. */
 .ba-filter-pill-anchor {
   display: flex;
   justify-content: center;
   margin-top: 36px;
+  min-height: 48px;
 }
 
 .ba-filter-pill {
@@ -1556,10 +1559,13 @@ body.menu-open { overflow: hidden; }
   display: flex;
   align-items: center;
   gap: 10px;
+  min-height: 48px; /* accessible touch target */
   z-index: 900;
-  transition: background 0.25s, box-shadow 0.25s;
+  transition: background 0.25s, box-shadow 0.25s, opacity 0.2s;
   box-shadow: 0 2px 12px rgba(0,0,0,0.15);
   white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 .ba-filter-pill:hover { background: var(--ink); color: var(--white); }
 .ba-filter-pill svg { width: 14px; height: 10px; flex-shrink: 0; }
@@ -1567,10 +1573,21 @@ body.menu-open { overflow: hidden; }
 /* When pill floats to bottom after scrolling past anchor */
 .ba-filter-pill.is-floating {
   position: fixed;
-  bottom: 32px;
+  bottom: max(24px, env(safe-area-inset-bottom, 24px));
   left: 50%;
   transform: translateX(-50%);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 28px rgba(0,0,0,0.35);
+}
+
+@media (max-width: 480px) {
+  .ba-filter-pill {
+    font-size: 10px;
+    padding: 13px 22px;
+    gap: 8px;
+  }
+  .ba-filter-pill.is-floating {
+    bottom: max(20px, env(safe-area-inset-bottom, 20px));
+  }
 }
 .ba-filter-overlay {
   position: fixed;
@@ -1591,10 +1608,11 @@ body.menu-open { overflow: hidden; }
   background: var(--white);
   z-index: 1010;
   transform: translateX(-100%);
-  transition: transform 0.35s ease;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 .ba-filter-panel.is-open { transform: translateX(0); }
 .ba-filter-panel__head {
@@ -1668,19 +1686,27 @@ body.menu-open { overflow: hidden; }
   font-family: var(--sans);
   font-size: 14px;
   color: var(--ink-soft);
-  padding: 10px 0;
+  padding: 14px 0;
   cursor: pointer;
   background: none;
   border: none;
   border-bottom: 1px solid transparent;
   text-align: left;
   width: 100%;
+  min-height: 48px;
   transition: color 0.2s;
   letter-spacing: 0.04em;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 .ba-filter-opt:hover { color: var(--ink); }
 .ba-filter-opt.is-active { color: var(--ink); border-bottom-color: var(--accent); }
 .ba-filter-opt--sub { padding-left: 16px; font-size: 13px; }
+
+@media (max-width: 480px) {
+  .ba-filter-panel { width: 100vw; }
+  .ba-filter-panel__close { padding: 8px; font-size: 18px; }
+}
 
 /* ── 19.9. BACK TO TOP ───────────────────────────────────── */
 .ba-back-to-top {
