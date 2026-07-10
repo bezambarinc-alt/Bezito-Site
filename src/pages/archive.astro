@@ -3302,12 +3302,23 @@ import '../styles/templates/tools.css';
           var subMatch = !activeSub || (sub && (sub === activeSub || sub.indexOf(activeSub) !== -1));
           card.hidden = !(catMatch && subMatch);
         });
-        // Switch itemSelector to visible cards, repack
+
         msnry.options.itemSelector = '.video-card:not([hidden])';
-        var visibleItems = grid.querySelectorAll('.video-card:not([hidden])');
         msnry.reloadItems();
-        msnry.layout();
-        observeVisible();
+
+        // Eagerly load first 30 visible images so Masonry has real dimensions
+        // (same pattern as desandro's reference: imagesLoaded fires BEFORE layout)
+        var lazyImgs = Array.from(grid.querySelectorAll('.video-card:not([hidden]) .video-thumb[data-src]'));
+        lazyImgs.slice(0, 30).forEach(function(img) {
+          img.src = img.dataset.src;
+          delete img.dataset.src;
+        });
+
+        // Wait for those images to have real dimensions, then layout + observe the rest
+        imagesLoaded(grid, function() {
+          msnry.layout();
+          observeVisible();
+        });
       }
 
       catLinks.forEach(function(link) {
