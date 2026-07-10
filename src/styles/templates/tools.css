@@ -356,11 +356,14 @@
 .inq-share {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
   padding-top: 20px;
   border-top: 1px solid var(--border-warm);
   margin-top: 24px;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
+.inq-share::-webkit-scrollbar { display: none; }
 .inq-share__label {
   font-family: var(--sans);
   font-size: 10px;
@@ -382,6 +385,7 @@
   transition: color 0.2s;
   -webkit-tap-highlight-color: transparent;
   padding: 4px;
+  flex-shrink: 0;
 }
 .inq-share__btn:hover { color: var(--ink); }
 .inq-share__btn svg { width: 18px; height: 18px; display: block; }
