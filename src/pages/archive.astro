@@ -3162,21 +3162,7 @@ import '../styles/templates/tools.css';
     var batchStart = 0;
     var shown = new Set();
 
-    // Load observer: swap data-src → src as card approaches viewport
-    var loadObserver = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (!e.isIntersecting) return;
-        var img = e.target.querySelector('.video-thumb');
-        if (img && img.dataset.src) {
-          img.src = img.dataset.src;
-          delete img.dataset.src;
-          img.addEventListener('load', function() { img.classList.add('is-loaded'); }, { once: true });
-        }
-        loadObserver.unobserve(e.target);
-      });
-    }, { rootMargin: '200px' });
-
-    // Pause observer: stop GIF CPU burn when off-screen
+    // Pause observer: stop GIF/AVIF CPU burn when scrolled off-screen
     var pauseObserver = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) {
         var img = e.target.querySelector('.video-thumb');
@@ -3209,8 +3195,14 @@ import '../styles/templates/tools.css';
       var end = Math.min(batchStart + BATCH, filtered.length);
       for (var i = batchStart; i < end; i++) {
         var card = filtered[i];
+        var img = card.querySelector('.video-thumb');
         card.hidden = false;
-        loadObserver.observe(card);
+        // Set src directly — no IO middleman that fires before CSS columns reflows
+        if (img && img.dataset.src) {
+          img.src = img.dataset.src;
+          delete img.dataset.src;
+          img.addEventListener('load', function() { this.classList.add('is-loaded'); }, { once: true });
+        }
         pauseObserver.observe(card);
         shown.add(card);
       }
@@ -3219,9 +3211,17 @@ import '../styles/templates/tools.css';
     }
 
     function applyFilter() {
-      loadObserver.disconnect();
       pauseObserver.disconnect();
-      shown.forEach(function(card) { card.hidden = true; });
+      shown.forEach(function(card) {
+        var img = card.querySelector('.video-thumb');
+        if (img && img.src && !img.dataset.src) {
+          img.dataset.src = img.dataset.paused || img.src;
+          img.src = '';
+          img.classList.remove('is-loaded');
+          delete img.dataset.paused;
+        }
+        card.hidden = true;
+      });
       shown.clear();
       batchStart = 0;
       computeFiltered();
