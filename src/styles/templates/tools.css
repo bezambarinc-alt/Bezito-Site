@@ -42,8 +42,9 @@
   border-bottom: 1px solid rgba(0,0,0,.08);
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0;
-  padding: 0 clamp(1rem, 4vw, 3rem);
+  padding: 0 clamp(1.25rem, 5vw, 4rem);
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -108,7 +109,7 @@
 .vg-grid {
   columns: 5;
   column-gap: 10px;
-  padding: 32px clamp(1.5rem, 5vw, 4rem) 80px;
+  padding: 32px clamp(1.25rem, 5vw, 4rem) 80px;
   background: var(--white);
 }
 @media (max-width: 1100px) { .vg-grid { columns: 4; } }
