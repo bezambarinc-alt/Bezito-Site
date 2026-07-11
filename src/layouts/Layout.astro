@@ -5,6 +5,8 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import SearchOverlay from '../components/SearchOverlay.astro';
 import '../styles/global.css';
+import '@fontsource-variable/inter';
+import '@fontsource-variable/cormorant-garamond';
 
 interface Props {
   title: string;
@@ -101,11 +103,7 @@ const sdArray = [orgSchema, ...pageSchemas];
   <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
   <link rel="dns-prefetch" href="https://player.vimeo.com">
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Lyon Text Regular — Fontstand web font (licensed to bezambar.com / bezambar-web2026.vercel.app) -->
+  <!-- Lyon Text Regular — Fontstand web font (licensed to bezambar.com) -->
   <link rel="stylesheet" href="https://webfonts.fontstand.com/WF-099839-d89c1d499f0c1f40d1e6d7330af17f97.css" type="text/css">
 
   <!-- JSON-LD structured data -->

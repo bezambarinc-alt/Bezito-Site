@@ -1,7 +1,7 @@
 /* ============================================================
    BEZ AMBAR — Global Design System
    Patek-style light luxury
-   Fonts: Inter · Cormorant Garamond · EB Garamond
+   Fonts: Inter (variable) · Cormorant Garamond (variable) · Lyon Text (Fontstand, production)
    ============================================================ */
 
 /* ── 1. TOKENS ────────────────────────────────────────────── */
@@ -22,9 +22,9 @@
   --dark-border:  rgba(255, 255, 255, 0.08);
 
   /* Typography — font stacks */
-  --sans:  'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --serif: 'Lyon Text', 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
-  --prose: 'Lyon Text', 'EB Garamond', 'Cormorant Garamond', Georgia, serif;
+  --sans:  'InterVariable', 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --serif: 'Lyon Text', 'Cormorant GaramondVariable', 'Cormorant Garamond', Georgia, serif;
+  --prose: 'Lyon Text', 'Cormorant GaramondVariable', 'Cormorant Garamond', Georgia, serif;
 
   /* Type scale */
   --type-display:  clamp(2.5rem, 5vw, 4rem);    /* hero headlines */
