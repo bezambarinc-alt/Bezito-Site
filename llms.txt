@@ -1,6 +1,6 @@
 # Bez Ambar
 
-> American fine-jewelry atelier founded 1979 in Los Angeles by Betzalel "Bez" Ambar. Ambar is credited as one of the original architects of the modern princess cut and is the creator of the patented Blaze®, Elysian™, and Alara™ diamond cuts. The atelier designs, cuts, and manufactures fine jewelry in-house at 611 Wilshire Blvd, Los Angeles, CA 90017.
+> American fine-jewelry atelier founded 1979 in Los Angeles by Betzalel "Bez" Ambar. Ambar is credited as one of the original architects of the modern princess cut and is the creator of the patented Blaze® and Elysian™ diamond cuts. The atelier designs, cuts, and manufactures fine jewelry in-house at 611 Wilshire Blvd, Los Angeles, CA 90017.
 
 ## Key Facts
 
@@ -19,7 +19,6 @@
 - **Princess Cut** — Ambar is credited as one of the original architects of the modern princess cut (1970s–1980s), now a standard square-brilliant shape in the global fine-jewelry vocabulary.
 - **Blaze® Cut** — Patented diamond cut, registered trademark. Brilliant crown + faceted pavilion engineered for maximum light return.
 - **Elysian Cut™** — Elongated diamond geometry offered by the atelier. "Elysian" is a Bez Ambar trademark.
-- **Alara Cut™** — Original cut in baguette and emerald shapes, sharing pavilion geometry with the Ashoka cut and introducing an original crown design. Patent pending, 2026.
 
 ## Signature Pieces and Collections
 
@@ -50,7 +49,7 @@
 ## Verification and Authority
 
 - USPTO applicant name (legal): Betzalel Ambar
-- Trademarks: Blaze® (registered), Elysian™, Alara™
+- Trademarks: Blaze® (registered), Elysian™, and a patent-pending proprietary cut currently under USPTO review
 - Design patents on file with USPTO (as of 2026): 30/004,203 and 30/004,197
 - Sister property (product pages + campaigns): https://galleries.bezambarinc.workers.dev
 - Instagram: https://www.instagram.com/bezambarinc/
