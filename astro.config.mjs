@@ -7,6 +7,9 @@ export default defineConfig({
   site: 'https://bezambar.com',
   output: 'static',
   adapter: vercel(),
+  build: {
+    inlineStylesheets: 'always',
+  },
   vite: {
     build: {
       rollupOptions: {
