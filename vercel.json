@@ -336,12 +336,12 @@
     },
     {
       "source": "/blaze-cut-diamonds-unmatched-engagement-rings-wedding-bands",
-      "destination": "/journal",
+      "destination": "/blog/blaze-cut-diamond",
       "permanent": true
     },
     {
       "source": "/blaze-cut-diamonds-unmatched-engagement-rings-wedding-bands/",
-      "destination": "/journal",
+      "destination": "/blog/blaze-cut-diamond",
       "permanent": true
     },
     {
@@ -1916,12 +1916,12 @@
     },
     {
       "source": "/the-significance-of-mens-wedding-bands",
-      "destination": "/blog/the-significance-of-mens-wedding-bands",
+      "destination": "/blog/mens-wedding-band-buying-guide",
       "permanent": true
     },
     {
       "source": "/the-significance-of-mens-wedding-bands/",
-      "destination": "/blog/the-significance-of-mens-wedding-bands",
+      "destination": "/blog/mens-wedding-band-buying-guide",
       "permanent": true
     },
     {
