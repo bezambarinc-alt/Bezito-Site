@@ -65,7 +65,7 @@ import '../styles/templates/tools.css';
 
       <!-- Share -->
       <div class="inq-share">
-        <div class="inq-share__wrap">
+        <div class="inq-share__wrap" data-share>
           <button class="inq-share__trigger" id="inqShareTrigger">Share</button>
           <div class="inq-share__menu" id="inqShareMenu" hidden>
             <button class="inq-share__item" id="inqShareCopy"><span id="inqCopyLabel">Copy link</span></button>
@@ -3186,6 +3186,8 @@ import '../styles/templates/tools.css';
 </Layout>
 
 <script>
+  import { initShare, updateShare } from '../scripts/share';
+
   (function() {
     var cards = Array.from(document.querySelectorAll('.video-card'));
 
@@ -3279,13 +3281,13 @@ import '../styles/templates/tools.css';
       });
     }
 
-    function openPanel()  { panel.classList.add('is-open'); overlay.classList.add('is-active'); }
-    function closePanel() { panel.classList.remove('is-open'); overlay.classList.remove('is-active'); }
+    function openPanel()  { panel && panel.classList.add('is-open'); overlay && overlay.classList.add('is-active'); }
+    function closePanel() { panel && panel.classList.remove('is-open'); overlay && overlay.classList.remove('is-active'); }
 
-    pill.addEventListener('click', openPanel);
-    overlay.addEventListener('click', closePanel);
-    closeBtn.addEventListener('click', closePanel);
-    applyBtn.addEventListener('click', closePanel);
+    if (pill)     pill.addEventListener('click', openPanel);
+    if (overlay)  overlay.addEventListener('click', closePanel);
+    if (closeBtn) closeBtn.addEventListener('click', closePanel);
+    if (applyBtn) applyBtn.addEventListener('click', closePanel);
 
     opts.forEach(function(opt) {
       opt.addEventListener('click', function() {
@@ -3396,12 +3398,23 @@ import '../styles/templates/tools.css';
       if (dataLoading) return;
       dataLoading = true;
       fetch('/archive-data.json')
-        .then(function(r) { return r.json(); })
+        .then(function(r) {
+          if (!r.ok) {
+            var err = new Error('archive-data.json fetch failed: ' + r.status + ' ' + r.statusText);
+            if (r.status === 404) console.warn('[archive] archive-data.json not found (404) — modal will use fallback data only.');
+            else console.error('[archive]', err);
+            throw err;
+          }
+          return r.json();
+        })
         .then(function(data) {
           pieceData = data;
+          dataLoading = false;
           if (pendingOpen) { openModal.apply(null, pendingOpen); pendingOpen = null; }
         })
-        .catch(function() {
+        .catch(function(err) {
+          console.error('[archive] Could not load piece data:', err);
+          dataLoading = false;
           if (pendingOpen) { openModal.apply(null, pendingOpen); pendingOpen = null; }
         });
     }
@@ -3421,13 +3434,14 @@ import '../styles/templates/tools.css';
       });
     });
 
-    // Share
-    var inqShareTrigger = document.getElementById('inqShareTrigger');
-    var inqShareMenu    = document.getElementById('inqShareMenu');
-    var inqShareCopy    = document.getElementById('inqShareCopy');
-    var inqShareEmail   = document.getElementById('inqShareEmail');
-    var inqShareWA      = document.getElementById('inqShareWA');
-    var inqCopyLabel    = document.getElementById('inqCopyLabel');
+    // Share — wired via shared module; state is updated per openModal call
+    var inqShareWrap    = document.querySelector('.inq-share__wrap');
+    var inqShareTrigger = document.getElementById('inqShareTrigger') as HTMLButtonElement | null;
+    var inqShareMenu    = document.getElementById('inqShareMenu') as HTMLElement | null;
+    var inqShareCopy    = document.getElementById('inqShareCopy') as HTMLButtonElement | null;
+    var inqShareEmail   = document.getElementById('inqShareEmail') as HTMLAnchorElement | null;
+    var inqShareWA      = document.getElementById('inqShareWA') as HTMLAnchorElement | null;
+    var inqCopyLabel    = document.getElementById('inqCopyLabel') as HTMLElement | null;
     var currentPieceId    = '';
     var currentPieceTitle = '';
 
@@ -3438,54 +3452,30 @@ import '../styles/templates/tools.css';
     function updateShareLinks(pieceId, title) {
       currentPieceId    = pieceId;
       currentPieceTitle = title;
-      var url          = getPieceUrl(pieceId);
-      var emailSubject = encodeURIComponent('Bez Ambar — ' + title);
-      var emailBody    = encodeURIComponent('Take a look at this piece from Bez Ambar:\n' + url);
-      var waText       = encodeURIComponent('Take a look at this Bez Ambar piece — ' + title + ': ' + url);
-      inqShareEmail.href = 'mailto:?subject=' + emailSubject + '&body=' + emailBody;
-      inqShareWA.href    = 'https://wa.me/?text=' + waText;
+      updateShare(
+        { emailLink: inqShareEmail, waLink: inqShareWA },
+        title,
+        getPieceUrl(pieceId),
+      );
     }
 
-    inqShareTrigger.addEventListener('click', function() {
-      if (navigator.share) {
-        // Mobile — native OS share sheet (Instagram, TikTok, iMessage, etc.)
-        navigator.share({
-          title: 'Bez Ambar — ' + currentPieceTitle,
-          text:  'Take a look at this piece from Bez Ambar',
-          url:   getPieceUrl(currentPieceId)
-        }).catch(function() {});
-      } else {
-        // Desktop — toggle minimal text menu
-        var open = !inqShareMenu.hidden;
-        inqShareMenu.hidden = open;
-        inqShareTrigger.setAttribute('aria-expanded', String(!open));
-      }
-    });
+    initShare(
+      { wrap: inqShareWrap, trigger: inqShareTrigger, menu: inqShareMenu,
+        copyBtn: inqShareCopy, copyLabel: inqCopyLabel,
+        emailLink: inqShareEmail, waLink: inqShareWA },
+      function() {
+        return { title: 'Bez Ambar — ' + currentPieceTitle, url: getPieceUrl(currentPieceId) };
+      },
+    );
 
-    inqShareCopy.addEventListener('click', function() {
-      var url = getPieceUrl(currentPieceId);
-      navigator.clipboard.writeText(url).then(function() {
-        inqCopyLabel.textContent = 'Copied!';
-        inqShareMenu.hidden = true;
-        setTimeout(function() { inqCopyLabel.textContent = 'Copy link'; }, 2000);
-      });
-    });
-
-    // Close menu on outside click
-    document.addEventListener('click', function(e) {
-      if (!inqShareMenu.hidden && !e.target.closest('.inq-share__wrap')) {
-        inqShareMenu.hidden = true;
-      }
-    });
-
-    inqClose.addEventListener('click', closeModal);
-    inqBackdrop.addEventListener('click', closeModal);
+    if (inqClose) inqClose.addEventListener('click', closeModal);
+    if (inqBackdrop) inqBackdrop.addEventListener('click', closeModal);
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && !inqModal.hidden) closeModal();
+      if (e.key === 'Escape' && inqModal && !inqModal.hidden) closeModal();
     });
 
     // Form submit — mailto fallback
-    inqForm.addEventListener('submit', function(e) {
+    if (inqForm) inqForm.addEventListener('submit', function(e) {
       e.preventDefault();
       var name    = document.getElementById('inqName').value.trim();
       var email   = document.getElementById('inqEmail').value.trim();
@@ -3495,7 +3485,7 @@ import '../styles/templates/tools.css';
       var body = 'Name: ' + name + '\nEmail: ' + email + (phone ? '\nPhone: ' + phone : '') + '\n\n' + (message || 'I am interested in this piece.');
       window.location.href = 'mailto:bez@bezambar.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
       inqForm.hidden = true;
-      inqConfirm.hidden = false;
+      if (inqConfirm) inqConfirm.hidden = false;
     });
 
     // Auto-open if ?piece= param in URL (shared link)

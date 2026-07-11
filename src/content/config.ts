@@ -33,7 +33,10 @@ const products = defineCollection({
     images: z.array(z.string().url()).default([]),
     inquirySubject: z.string(),
     prettyUrl: z.string(),
-  }),
+  }).refine(
+    (d) => d.heroVideo !== null || d.heroImage !== null,
+    { message: 'Product must have at least one of heroVideo or heroImage.' },
+  ),
 });
 
 const blog = defineCollection({
@@ -53,7 +56,10 @@ const blog = defineCollection({
       type: z.string().optional(),
       faq: z.boolean().optional(),
     }).optional(),
-  }),
+  }).refine(
+    (d) => !d.heroImage || !!d.heroImageAlt,
+    { message: 'Blog post with heroImage must also provide heroImageAlt.' },
+  ),
 });
 
 export const collections = { products, blog };

@@ -39,6 +39,7 @@
   /* Borders */
   --border:       rgba(0,0,0,0.08);
   --border-warm:  #e8e4de;
+  --light-bg:     #f7f5f2;
 }
 
 /* ── 2. RESET & BASE ──────────────────────────────────────── */
@@ -1079,7 +1080,7 @@ body.menu-open { overflow: hidden; }
   line-height: 1;
   flex-shrink: 0;
 }
-.menu-item--collection { color: var(--ink) !important; font-weight: 500; }
+.menu-col .menu-item--collection { color: var(--ink); font-weight: 500; }
 .menu-item--soon { opacity: 0.3; pointer-events: none; cursor: default; font-style: italic; }
 
 .menu-divider {
@@ -1957,8 +1958,7 @@ body.menu-open { overflow: hidden; }
   color: var(--ink);
   margin: 40px 0 16px;
 }
-.ba-prose-section p,
-.ba-prose-section li {
+.ba-prose-section p {
   font-family: var(--prose);
   font-size: 18px;
   line-height: 1.75;
@@ -1966,7 +1966,13 @@ body.menu-open { overflow: hidden; }
   margin-bottom: 16px;
 }
 .ba-prose-section ul { padding-left: 1.5rem; margin: 16px 0; }
-.ba-prose-section li { margin-bottom: 8px; }
+.ba-prose-section li {
+  font-family: var(--prose);
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
 .ba-prose-section a { color: var(--accent); border-bottom: 1px solid currentColor; }
 
 /* ── 21. NEWSLETTER ───────────────────────────────────────── */
@@ -2099,7 +2105,7 @@ body.menu-open { overflow: hidden; }
 .ba-below-header { padding-top: 84px !important; }
 
 /* Sub-category items in category dropdown */
-.lv-cat-sub { padding-left: 28px !important; font-size: 15px !important; }
+.lv-cat-menu .lv-cat-sub { padding-left: 28px; font-size: 15px; }
 
 
 

@@ -108,24 +108,6 @@
   margin-bottom: 40px;
   margin-top: 24px;
 }
-.hero__cta {
-  display: inline-block;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: var(--sans);
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 1px solid var(--accent);
-  padding-bottom: 3px;
-  transition: color 0.2s, border-color 0.2s;
-}
-.hero__cta:hover { color: var(--accent); }
-
 /* Technical section */
 .technical {
   padding: 80px 2rem;
@@ -206,17 +188,6 @@ details[open] .tech-item__head::after {
   margin: 0 auto 36px;
 }
 .product-cta__body a { color: var(--accent-warm); text-decoration: none; }
-.tech-inline-btn {
-  background: none;
-  border: none;
-  padding: 0;
-  font-family: inherit;
-  font-size: inherit;
-  color: var(--accent-warm, var(--accent));
-  cursor: pointer;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
 .product-cta__btn {
   display: inline-block;
   background: none;

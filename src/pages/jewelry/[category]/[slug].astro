@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
 import '../../../styles/templates/product.css';
+import { COLLECTION_LABELS } from '../../../config/collections';
 
 export async function getStaticPaths() {
   const products = await getCollection('products', ({ data }) => data.status === 'live');
@@ -17,11 +18,6 @@ const categoryLabel = product.category
   .replace(/-/g, ' ')
   .replace(/\b\w/g, (l: string) => l.toUpperCase());
 
-const COLLECTION_LABELS: Record<string, string> = {
-  signature: 'Signature Pieces',
-  bloom: 'Bloom Collection',
-  dentelle: 'Dentelle Collection',
-};
 const eyebrow = product.collection
   ? (COLLECTION_LABELS[product.collection] ?? `${product.collection.charAt(0).toUpperCase()}${product.collection.slice(1)} Collection`)
   : categoryLabel;
@@ -114,7 +110,7 @@ const ogImage = product.heroImage
 
     <!-- Share — sits quietly below the description -->
     <div class="prod-share">
-      <div class="prod-share__wrap">
+      <div class="prod-share__wrap" data-share>
         <button class="prod-share__trigger" id="prodShareTrigger">Share</button>
         <div class="prod-share__menu" id="prodShareMenu" hidden>
           <button class="prod-share__item" id="prodShareCopy"><span id="prodCopyLabel">Copy link</span></button>
@@ -188,6 +184,8 @@ const ogImage = product.heroImage
 </Layout>
 
 <script>
+  import { initShare, updateShare } from '../../../scripts/share';
+
   // Header transparency
   const hero   = document.getElementById('hero-video');
   const header = document.querySelector('.ba-header');
@@ -199,16 +197,14 @@ const ogImage = product.heroImage
   }
 
   // Floating Inquire pill
-  const pill      = document.getElementById('prodPill');
-  const heroEnd   = document.getElementById('heroEnd');
-  const ctaSec    = document.getElementById('inquire');
+  const pill    = document.getElementById('prodPill') as HTMLAnchorElement | null;
+  const heroEnd = document.getElementById('heroEnd');
+  const ctaSec  = document.getElementById('inquire');
   if (pill && heroEnd && ctaSec) {
-    // Show pill once the hero (incl. description + share) has fully scrolled out
     new IntersectionObserver(
       ([e]) => pill.classList.toggle('is-visible', !e.isIntersecting),
       { threshold: 0 }
     ).observe(heroEnd);
-    // Hide pill when bottom CTA enters view (pill "merges" into that button)
     new IntersectionObserver(
       ([e]) => pill.classList.toggle('is-hidden', e.isIntersecting),
       { threshold: 0.2 }
@@ -216,43 +212,23 @@ const ogImage = product.heroImage
   }
 
   // Share
-  const pageTitle    = document.title;
-  const pageUrl      = window.location.href;
-  const shareTrigger = document.getElementById('prodShareTrigger');
-  const shareMenu    = document.getElementById('prodShareMenu');
-  const shareCopy    = document.getElementById('prodShareCopy');
-  const shareEmail   = document.getElementById('prodShareEmail') as HTMLAnchorElement;
-  const shareWA      = document.getElementById('prodShareWA') as HTMLAnchorElement;
-  const copyLabel    = document.getElementById('prodCopyLabel');
+  const shareWrap    = document.querySelector('.prod-share__wrap');
+  const shareTrigger = document.getElementById('prodShareTrigger') as HTMLButtonElement | null;
+  const shareMenu    = document.getElementById('prodShareMenu') as HTMLElement | null;
+  const shareCopy    = document.getElementById('prodShareCopy') as HTMLButtonElement | null;
+  const shareEmail   = document.getElementById('prodShareEmail') as HTMLAnchorElement | null;
+  const shareWA      = document.getElementById('prodShareWA') as HTMLAnchorElement | null;
+  const copyLabel    = document.getElementById('prodCopyLabel') as HTMLElement | null;
 
-  const h1Text       = document.querySelector('h1')?.textContent?.trim() || '';
-  const emailSubject = encodeURIComponent('Bez Ambar — ' + h1Text);
-  const emailBody    = encodeURIComponent('Take a look at this piece from Bez Ambar:\n' + pageUrl);
-  shareEmail.href = 'mailto:?subject=' + emailSubject + '&body=' + encodeURIComponent('\n') + emailBody.replace(/^[^&]*/, emailBody);
-  shareEmail.href = 'mailto:?subject=' + emailSubject + '&body=' + encodeURIComponent('Take a look at this piece from Bez Ambar:\n' + pageUrl);
-  shareWA.href    = 'https://wa.me/?text=' + encodeURIComponent('Bez Ambar — ' + h1Text + ': ' + pageUrl);
+  const pageUrl = window.location.href;
+  const h1Text  = document.querySelector('h1')?.textContent?.trim() ?? document.title;
 
-  shareTrigger.addEventListener('click', function() {
-    if (navigator.share) {
-      navigator.share({ title: pageTitle, url: pageUrl }).catch(() => {});
-    } else {
-      var open = !shareMenu.hidden;
-      shareMenu.hidden = open;
-    }
-  });
+  updateShare({ emailLink: shareEmail, waLink: shareWA }, h1Text, pageUrl);
 
-  shareCopy.addEventListener('click', function() {
-    navigator.clipboard.writeText(pageUrl).then(function() {
-      copyLabel.textContent = 'Copied!';
-      shareMenu.hidden = true;
-      setTimeout(function() { copyLabel.textContent = 'Copy link'; }, 2000);
-    });
-  });
-
-  document.addEventListener('click', function(e) {
-    if (!shareMenu.hidden && !(e.target as Element).closest('.prod-share__wrap')) {
-      shareMenu.hidden = true;
-    }
-  });
+  initShare(
+    { wrap: shareWrap, trigger: shareTrigger, menu: shareMenu,
+      copyBtn: shareCopy, copyLabel, emailLink: shareEmail, waLink: shareWA },
+    () => ({ title: document.title, url: pageUrl }),
+  );
 </script>
 
