@@ -53,7 +53,6 @@ body {
 }
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; height: auto; }
-h1, h2, h3, h4, h5, h6 { font-family: var(--serif); font-weight: 400; }
 
 /* ── 3. DARK-PAGE THEME ───────────────────────────────────── */
 /* Pages pass theme="dark" to Layout; Layout adds class="page-dark" to <body>.
@@ -1355,9 +1354,11 @@ body.menu-open { overflow: hidden; }
   text-align: center;
 }
 .ba-inner-hero--light h1 {
+  font-family: var(--sans);
   font-size: clamp(32px, 5vw, 52px);
-  font-weight: 300;
-  letter-spacing: 0.03em;
+  font-weight: 200;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--ink);
   margin-bottom: 20px;
 }
