@@ -35,6 +35,8 @@
     }
   ],
   "redirects": [
+    { "source": "/catalogs", "destination": "/collection", "permanent": true },
+    { "source": "/catalogs/", "destination": "/collection", "permanent": true },
     { "source": "/552", "destination": "/journal", "permanent": true },
     { "source": "/552/", "destination": "/journal", "permanent": true },
     { "source": "/599", "destination": "/journal", "permanent": true },
