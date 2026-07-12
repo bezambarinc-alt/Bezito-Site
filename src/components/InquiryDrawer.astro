@@ -19,42 +19,24 @@
       <p class="ba-drawer__subhead">Our team will be in touch within one business day.</p>
 
       <form id="drawer-form" novalidate>
-        <div class="form-group">
-          <label for="d-name">Your Name</label>
-          <input type="text" id="d-name" name="name" placeholder="First and Last Name" required autocomplete="name">
-        </div>
+        <!-- Intent, piece title, and SKU are set programmatically — hidden from the user -->
+        <input type="hidden" id="d-intent" name="intent">
 
-        <div class="form-group">
-          <label for="d-email">Email Address</label>
-          <input type="email" id="d-email" name="email" placeholder="you@email.com" required autocomplete="email">
-        </div>
+        <div class="ba-drawer__fields">
+          <div class="inq-form__field">
+            <label class="inq-form__label" for="d-name">Your Name</label>
+            <input class="inq-form__input" type="text" id="d-name" name="name" placeholder="First and Last" required autocomplete="name">
+          </div>
 
-        <div class="form-group">
-          <label for="d-phone">Phone <span class="form-optional">(Optional)</span></label>
-          <input type="tel" id="d-phone" name="phone" placeholder="(xxx) xxx-xxxx" autocomplete="tel">
-        </div>
-
-        <div class="form-group">
-          <label for="d-intent">How can we help?</label>
-          <select id="d-intent" name="intent" required>
-            <option value="">Select...</option>
-            <option value="commission a piece">Commission a Piece</option>
-            <option value="consultation">Private Consultation</option>
-            <option value="collection piece">A Piece from the Collection</option>
-            <option value="atelier visit">Visit the Atelier</option>
-            <option value="repairs">Repair or Cleaning</option>
-            <option value="resize">Ring Resizing</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="d-message">Message <span class="form-optional">(Optional)</span></label>
-          <textarea id="d-message" name="message" rows="3" placeholder="Tell us about what you have in mind..."></textarea>
+          <div class="inq-form__field">
+            <label class="inq-form__label" for="d-email">Email Address</label>
+            <input class="inq-form__input" type="email" id="d-email" name="email" placeholder="you@email.com" required autocomplete="email">
+          </div>
         </div>
 
         <p class="form-privacy">Your inquiry is private and handled directly by our team.</p>
 
-        <button type="submit" class="btn btn-primary form-submit" id="drawer-submit-btn">
+        <button type="submit" class="ba-drawer__submit" id="drawer-submit-btn">
           <span class="btn-label">Send Inquiry</span>
           <span class="btn-loading" aria-hidden="true" style="display:none">Sending...</span>
         </button>
@@ -157,9 +139,33 @@
   font-family: var(--sans);
   font-size: 0.8125rem;
   color: var(--ink-muted);
-  margin-bottom: 1.75rem;
+  margin-bottom: 2rem;
   line-height: 1.5;
 }
+.ba-drawer__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-bottom: 1.75rem;
+}
+.ba-drawer__submit {
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--ink);
+  border: none;
+  padding: 16px 32px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  min-height: 52px;
+  -webkit-tap-highlight-color: transparent;
+}
+.ba-drawer__submit:hover { background: var(--accent); color: var(--ink); }
+.ba-drawer__submit:disabled { opacity: 0.5; cursor: not-allowed; }
 
 /* shared form atoms used by both drawer and contact page */
 .form-optional {
@@ -171,7 +177,7 @@
   font-family: var(--sans);
   font-size: 0.75rem;
   color: var(--ink-muted);
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 .form-error {
   font-family: var(--sans);
@@ -210,7 +216,7 @@
   const closeBtn  = document.getElementById('drawerClose') as HTMLButtonElement;
   const contextEl = document.getElementById('drawerContext') as HTMLElement;
   const contextTitleEl = document.getElementById('drawerContextTitle') as HTMLElement;
-  const intentSelect   = document.getElementById('d-intent') as HTMLSelectElement;
+  const intentInput    = document.getElementById('d-intent') as HTMLInputElement;
   const form      = document.getElementById('drawer-form') as HTMLFormElement;
   const successEl = document.getElementById('drawer-success') as HTMLElement;
   const errorEl   = document.getElementById('drawer-form-error') as HTMLElement;
@@ -230,10 +236,8 @@
       contextEl.hidden = true;
     }
 
-    if (opts.intent && intentSelect) {
-      intentSelect.value = opts.intent;
-    } else if (intentSelect) {
-      intentSelect.value = '';
+    if (intentInput) {
+      intentInput.value = opts.intent || '';
     }
 
     // reset form state
@@ -241,14 +245,16 @@
     successEl.style.display = 'none';
     errorEl.style.display = 'none';
     form.reset();
+    // re-apply intent after reset (reset clears hidden inputs too)
+    if (intentInput) intentInput.value = opts.intent || '';
 
     drawer.hidden = false;
     requestAnimationFrame(() => drawer.classList.add('is-open'));
     document.body.style.overflow = 'hidden';
 
-    // focus first input
-    const first = form.querySelector('input') as HTMLInputElement | null;
-    setTimeout(() => first?.focus(), 60);
+    // focus name input
+    const nameInput = form.querySelector('#d-name') as HTMLInputElement | null;
+    setTimeout(() => nameInput?.focus(), 60);
   }
 
   function closeDrawer() {
@@ -284,9 +290,9 @@
       firstName,
       lastName,
       email:      data.get('email') as string,
-      phone:     (data.get('phone')   as string) || '',
-      intent:    (data.get('intent')  as string) || '',
-      message:   (data.get('message') as string) || '',
+      phone:      '',
+      intent:     (data.get('intent') as string) || '',
+      message:    '',
       pieceTitle: drawerPieceTitle,
       pieceSku:   drawerPieceSku,
       utmSource:   sessionStorage.getItem('utm_source')   || '',
