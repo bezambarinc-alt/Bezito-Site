@@ -3474,18 +3474,40 @@ import '../styles/templates/tools.css';
       if (e.key === 'Escape' && inqModal && !inqModal.hidden) closeModal();
     });
 
-    // Form submit — mailto fallback
+    // Form submit — Worker endpoint
     if (inqForm) inqForm.addEventListener('submit', function(e) {
       e.preventDefault();
       var name    = document.getElementById('inqName').value.trim();
       var email   = document.getElementById('inqEmail').value.trim();
       var phone   = document.getElementById('inqPhone').value.trim();
       var message = document.getElementById('inqMessage').value.trim();
-      var subject = 'Inquiry: ' + inqTitle.textContent;
-      var body = 'Name: ' + name + '\nEmail: ' + email + (phone ? '\nPhone: ' + phone : '') + '\n\n' + (message || 'I am interested in this piece.');
-      window.location.href = 'mailto:bez@bezambar.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-      inqForm.hidden = true;
-      if (inqConfirm) inqConfirm.hidden = false;
+      var pieceTitle = inqTitle ? inqTitle.textContent.trim() : '';
+      var pieceSku   = currentPieceId || '';
+
+      var submitBtn = inqForm.querySelector('[type=submit]');
+      if (submitBtn) submitBtn.disabled = true;
+
+      fetch('https://bezito-forms.bezambarinc.workers.dev/api/archive-inquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          phone: phone,
+          message: message,
+          piece_title: pieceTitle,
+          piece_sku: pieceSku,
+          utm_source:   sessionStorage.getItem('utm_source')   || '',
+          utm_medium:   sessionStorage.getItem('utm_medium')   || '',
+          utm_campaign: sessionStorage.getItem('utm_campaign') || '',
+        }),
+      })
+      .then(function(res) { return res.json(); })
+      .catch(function() { return { ok: false }; })
+      .finally(function() {
+        inqForm.hidden = true;
+        if (inqConfirm) inqConfirm.hidden = false;
+      });
     });
 
     // Auto-open if ?piece= param in URL (shared link)

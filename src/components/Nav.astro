@@ -16,7 +16,7 @@ const currentPath = Astro.url.pathname;
     <li><a class="menu-item" href="/archive">The Archive</a></li>
     <li><button class="menu-item menu-item--has-sub" data-target="service" type="button">Service</button></li>
     <li class="menu-cta-item">
-      <a href="/contact?subject=consultation" class="menu-cta">Book a Consultation</a>
+      <a href="/contact" class="menu-cta" onclick="toggleMenu(true); openInquiryDrawer({intent:'consultation'}); return false;">Book a Consultation</a>
     </li>
   </ul>
 
@@ -61,9 +61,9 @@ const currentPath = Astro.url.pathname;
   <ul class="menu-col menu-col--sub" data-col="service">
     <li class="menu-back"><button onclick="resetMenuCols()" class="menu-back__btn">&#8592; Back</button></li>
     <li><a class="menu-item" href="/contact">Contact Us</a></li>
-    <li><a class="menu-item" href="/contact?subject=bespoke">Bespoke Design</a></li>
-    <li><a class="menu-item" href="/contact?subject=repairs">Repairs &amp; Cleaning</a></li>
-    <li><a class="menu-item" href="/contact?subject=resize">Ring Resizing</a></li>
+    <li><a class="menu-item" href="/contact" onclick="toggleMenu(true); openInquiryDrawer({intent:'commission a piece'}); return false;">Bespoke Design</a></li>
+    <li><a class="menu-item" href="/contact" onclick="toggleMenu(true); openInquiryDrawer({intent:'repairs'}); return false;">Repairs &amp; Cleaning</a></li>
+    <li><a class="menu-item" href="/contact" onclick="toggleMenu(true); openInquiryDrawer({intent:'resize'}); return false;">Ring Resizing</a></li>
     <li class="menu-divider"></li>
     <li><a class="menu-item" href="/warranty">Warranty &amp; Policies</a></li>
   </ul>

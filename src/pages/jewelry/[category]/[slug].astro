@@ -165,7 +165,7 @@ const ogImage = product.heroImage
         <details class="tech-item">
           <summary class="tech-item__head">Inquiry</summary>
           <div class="tech-item__body">
-            <p>Each piece is made to specification. Pricing on request. <a href={`/contact?subject=${encodeURIComponent(product.inquirySubject)}`}>Contact us to inquire.</a></p>
+            <p>Each piece is made to specification. Pricing on request. <a href="/contact" onclick={`openInquiryDrawer({title:${JSON.stringify(product.title)},sku:${JSON.stringify(product.sku)},intent:'collection piece'}); return false;`}>Contact us to inquire.</a></p>
           </div>
         </details>
       </div>
@@ -176,11 +176,11 @@ const ogImage = product.heroImage
   <section class="product-cta" id="inquire">
     <h2 class="product-cta__title">See It in Person</h2>
     <p class="product-cta__body">Every piece is available to view by appointment at our Los Angeles atelier. Call <a href="tel:2136299191">(213) 629-9191</a> or send an inquiry below.</p>
-    <a class="product-cta__btn" href={`/contact?subject=${encodeURIComponent(product.inquirySubject)}`}>Inquire About This Piece</a>
+    <a class="product-cta__btn" href="/contact" onclick={`openInquiryDrawer({title:${JSON.stringify(product.title)},sku:${JSON.stringify(product.sku)},intent:'collection piece'}); return false;`}>Inquire About This Piece</a>
   </section>
 
   <!-- Floating Inquire pill -->
-  <a class="prod-pill" id="prodPill" href={`/contact?subject=${encodeURIComponent(product.inquirySubject)}`}>Inquire</a>
+  <a class="prod-pill" id="prodPill" href="/contact" onclick={`openInquiryDrawer({title:${JSON.stringify(product.title)},sku:${JSON.stringify(product.sku)},intent:'collection piece'}); return false;`}>Inquire</a>
 </Layout>
 
 <script>
