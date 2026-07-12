@@ -285,14 +285,73 @@ const structuredData = [
   <!-- ============================================================
        NEWSLETTER
        ============================================================ -->
-  <section class="newsletter">
-    <h2>Stay in Touch</h2>
-    <p>Be the first to see new cuts and pieces &mdash; often before they appear anywhere else. A quiet note, now and then, from the atelier.</p>
-    <form onsubmit="event.preventDefault(); alert('Connect to your email provider');">
-      <input type="email" placeholder="Your email address" required>
-      <button type="submit">Subscribe &rarr;</button>
+  <section class="newsletter" id="newsletter">
+    <h2>The Private List</h2>
+    <p>First access to new pieces, archive discoveries, and notes from the atelier. Rarely sent. Always worth it.</p>
+
+    <form id="newsletter-form" novalidate>
+      <input type="email" id="newsletter-email" name="email" placeholder="Your email address" required autocomplete="email">
+      <button type="submit" id="newsletter-submit">
+        <span class="nl-label">Join &rarr;</span>
+        <span class="nl-loading" aria-hidden="true" style="display:none">&hellip;</span>
+      </button>
     </form>
+
+    <p class="newsletter-confirm" id="newsletter-confirm" style="display:none">You&rsquo;re on the list. We&rsquo;ll be in touch.</p>
+    <p class="newsletter-error" id="newsletter-error" role="alert" style="display:none"></p>
   </section>
+
+  <script>
+    (function () {
+      const WORKER_URL = 'https://bezito-forms.bezambarinc.workers.dev';
+      const form    = document.getElementById('newsletter-form') as HTMLFormElement | null;
+      const confirm = document.getElementById('newsletter-confirm') as HTMLElement | null;
+      const errEl   = document.getElementById('newsletter-error') as HTMLElement | null;
+      const btn     = document.getElementById('newsletter-submit') as HTMLButtonElement | null;
+
+      form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!btn) return;
+
+        const label   = btn.querySelector('.nl-label')   as HTMLElement | null;
+        const loading = btn.querySelector('.nl-loading') as HTMLElement | null;
+
+        if (label)   label.style.display   = 'none';
+        if (loading) loading.style.display = '';
+        btn.disabled = true;
+        if (errEl) errEl.style.display = 'none';
+
+        const email = ((document.getElementById('newsletter-email') as HTMLInputElement)?.value || '').trim();
+
+        try {
+          const res = await fetch(`${WORKER_URL}/api/newsletter`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email,
+              utm_source:   sessionStorage.getItem('utm_source')   || '',
+              utm_medium:   sessionStorage.getItem('utm_medium')   || '',
+              utm_campaign: sessionStorage.getItem('utm_campaign') || '',
+            }),
+          });
+
+          if (!res.ok) {
+            const body = await res.json().catch(() => ({})) as { error?: string };
+            throw new Error(body.error || 'Could not subscribe. Please try again.');
+          }
+
+          if (form)    form.style.display    = 'none';
+          if (confirm) confirm.style.display = '';
+        } catch (err: unknown) {
+          const msg = err instanceof Error ? err.message : 'Something went wrong.';
+          if (errEl) { errEl.textContent = msg; errEl.style.display = ''; }
+          if (label)   label.style.display   = '';
+          if (loading) loading.style.display = 'none';
+          btn.disabled = false;
+        }
+      });
+    })();
+  </script>
 
   <!-- ============================================================
        FAQ — for AI answer engines
