@@ -5,142 +5,172 @@ import '../styles/templates/contact.css';
 
 <Layout
   title="Contact & Consultation — Bez Ambar"
-  description="Schedule a private consultation, inquire about a bespoke piece, or visit our Los Angeles atelier. We're here for you."
+  description="Schedule a private consultation, inquire about a bespoke piece, or visit our Los Angeles atelier."
   canonical="https://bezambar.com/contact"
   headerLight={true}
+  pageType="light"
 >
-  <section class="page-hero">
-    <h1>Contact &amp; Consultation</h1>
-    <p>Whether you're beginning a commission, inquiring about a piece, or booking an atelier visit — we're here for you.</p>
-  </section>
+  <!-- Masthead -->
+  <header class="contact-masthead">
+    <span class="contact-masthead__eyebrow">Los Angeles Atelier</span>
+    <h1 class="contact-masthead__title">Begin a Conversation</h1>
+    <hr class="contact-masthead__rule">
+    <p class="contact-masthead__lede">Every inquiry is handled personally. Whether you are beginning a commission, inquiring about a piece from the collection, or arranging a private visit — we welcome your message.</p>
+  </header>
 
-  <section class="contact-layout">
+  <div class="contact-layout">
+
+    <!-- Form column -->
     <div class="contact-form">
-      <h2>Send Us a Message</h2>
+      <p class="contact-form__heading">Send a Message</p>
 
       <form id="contact-form" novalidate>
-        <div class="form-group">
-          <label for="name">Your Name</label>
-          <input type="text" id="name" name="name" placeholder="First and Last Name" required autocomplete="name">
+
+        <div class="contact-row">
+          <div class="contact-field">
+            <label for="c-name">Your Name</label>
+            <input type="text" id="c-name" name="name" placeholder="First and Last" required autocomplete="name">
+          </div>
+          <div class="contact-field">
+            <label for="c-email">Email Address</label>
+            <input type="email" id="c-email" name="email" placeholder="you@email.com" required autocomplete="email">
+          </div>
         </div>
 
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" placeholder="you@email.com" required autocomplete="email">
+        <div class="contact-row">
+          <div class="contact-field contact-field--optional">
+            <label for="c-phone">Phone</label>
+            <input type="tel" id="c-phone" name="phone" placeholder="(xxx) xxx-xxxx" autocomplete="tel">
+          </div>
+          <div class="contact-field contact-field--select">
+            <label for="c-intent">How Can We Help</label>
+            <select id="c-intent" name="intent" required>
+              <option value="">Select...</option>
+              <option value="commission a piece">Commission a Piece</option>
+              <option value="consultation">Private Consultation</option>
+              <option value="collection piece">A Piece from the Collection</option>
+              <option value="atelier visit">Visit the Atelier</option>
+              <option value="repairs">Repair or Cleaning</option>
+              <option value="resize">Ring Resizing</option>
+            </select>
+          </div>
         </div>
 
-        <div class="form-group">
-          <label for="phone">Phone <span class="form-optional">(Optional)</span></label>
-          <input type="tel" id="phone" name="phone" placeholder="(xxx) xxx-xxxx" autocomplete="tel">
+        <div class="contact-field contact-field--optional">
+          <label for="c-message">Message</label>
+          <textarea id="c-message" name="message" placeholder="Tell us about what you have in mind…"></textarea>
         </div>
 
-        <div class="form-group">
-          <label for="intent">How can we help?</label>
-          <select id="intent" name="intent" required>
-            <option value="">Select...</option>
-            <option value="commission a piece">Commission a Piece</option>
-            <option value="consultation">Private Consultation</option>
-            <option value="collection piece">A Piece from the Collection</option>
-            <option value="atelier visit">Visit the Atelier</option>
-            <option value="repairs">Repair or Cleaning</option>
-            <option value="resize">Ring Resizing</option>
-          </select>
-        </div>
+        <p class="contact-form__privacy">Your inquiry is private and handled directly by our team.</p>
 
-        <div class="form-group">
-          <label for="message">Message <span class="form-optional">(Optional)</span></label>
-          <textarea id="message" name="message" placeholder="Tell us about what you have in mind..."></textarea>
-        </div>
-
-        <p class="form-privacy">Your inquiry is private and handled directly by our team.</p>
-
-        <button type="submit" class="btn btn-primary form-submit" id="submit-btn">
+        <button type="submit" class="contact-form__submit" id="submit-btn">
           <span class="btn-label">Send Inquiry</span>
-          <span class="btn-loading" aria-hidden="true" style="display:none">Sending...</span>
+          <span class="btn-loading" aria-hidden="true" style="display:none">Sending…</span>
         </button>
 
-        <p class="form-error" id="form-error" role="alert" style="display:none"></p>
+        <p class="contact-form__error" id="form-error" role="alert" style="display:none"></p>
       </form>
 
-      <div id="form-success" class="form-success-state" style="display:none">
-        <div class="success-mark">&#10022;</div>
+      <div id="form-success" class="contact-success" style="display:none">
+        <div class="contact-success__mark">&#10022;</div>
         <h3>Your inquiry has been received.</h3>
-        <p>A member of our team will be in touch within one business day. We look forward to connecting with you.</p>
+        <p>A member of our team will be in touch within one business day.<br>We look forward to connecting with you.</p>
       </div>
     </div>
 
-    <div class="contact-details">
-      <h2>Other Ways to Reach Us</h2>
+    <!-- Sidebar -->
+    <aside class="contact-sidebar">
 
-      <div class="contact-details-item">
-        <h4>Email</h4>
-        <p><a href="mailto:bez@bezambar.com">bez@bezambar.com</a></p>
+      <div class="contact-sidebar__section">
+        <span class="contact-sidebar__label">Telephone</span>
+        <p class="contact-sidebar__value"><a href="tel:2136299191">(213) 629-9191</a></p>
+        <p class="contact-sidebar__meta">Mon – Fri, 10 am – 6 pm PT</p>
       </div>
 
-      <div class="contact-details-item">
-        <h4>Phone</h4>
-        <p><a href="tel:2136299191">(213) 629-9191</a></p>
-        <p class="contact-meta">Monday &ndash; Friday, 10am &ndash; 6pm PT</p>
+      <div class="contact-sidebar__section">
+        <span class="contact-sidebar__label">Email</span>
+        <p class="contact-sidebar__value"><a href="mailto:bez@bezambar.com">bez@bezambar.com</a></p>
       </div>
 
-      <div class="contact-details-item">
-        <h4>Visit the Atelier</h4>
-        <p>611 Wilshire Blvd<br>Los Angeles, CA 90017</p>
-        <p class="contact-meta">By appointment only</p>
+      <hr class="contact-sidebar__divider">
+
+      <div class="contact-sidebar__section">
+        <span class="contact-sidebar__label">Atelier</span>
+        <p class="contact-sidebar__value">611 Wilshire Blvd<br>Los Angeles, CA 90017</p>
+        <p class="contact-sidebar__meta">By appointment only</p>
       </div>
 
-      <div class="contact-details-item contact-consultation">
-        <h4>Book a Private Consultation</h4>
-        <p>Meet with Bez or a senior advisor to discuss your vision. Available in person at our LA atelier or by video call.</p>
-        <p><a href="#contact-form" class="btn btn-primary">Send an Inquiry</a></p>
-      </div>
-    </div>
-  </section>
+      <hr class="contact-sidebar__divider">
 
-  <div class="services-strip">
-    <div class="services-inner">
-      <div class="service-item"><h4>Bespoke Design</h4><p>One-of-a-kind pieces<br>designed with you</p></div>
-      <div class="service-item"><h4>Complimentary Shipping</h4><p>Fully insured FedEx<br>Priority delivery</p></div>
-      <div class="service-item"><h4>Provenance Certificate</h4><p>Signed certificate<br>with every piece</p></div>
-      <div class="service-item"><h4>LA Atelier</h4><p>Visit us by appointment<br>611 Wilshire Blvd</p></div>
+      <div class="contact-sidebar__section">
+        <span class="contact-sidebar__label">Instagram</span>
+        <p class="contact-sidebar__value"><a href="https://www.instagram.com/bezambarjewelry/" target="_blank" rel="noopener">@bezambarjewelry</a></p>
+      </div>
+
+      <hr class="contact-sidebar__divider">
+
+      <p class="contact-sidebar__note">Every piece is made to specification. We invite you to visit our atelier to experience the work in person and discuss your vision with Bez directly.</p>
+
+    </aside>
+  </div>
+
+  <!-- Services strip -->
+  <div class="contact-services">
+    <div class="contact-services__inner">
+      <div>
+        <p class="contact-service__label">Bespoke Design</p>
+        <p class="contact-service__text">One-of-a-kind pieces designed with you</p>
+      </div>
+      <div>
+        <p class="contact-service__label">Complimentary Shipping</p>
+        <p class="contact-service__text">Fully insured FedEx Priority delivery</p>
+      </div>
+      <div>
+        <p class="contact-service__label">Provenance Certificate</p>
+        <p class="contact-service__text">Signed certificate with every piece</p>
+      </div>
+      <div>
+        <p class="contact-service__label">LA Atelier</p>
+        <p class="contact-service__text">Visit us by appointment — 611 Wilshire Blvd</p>
+      </div>
     </div>
   </div>
 
   <script>
     const WORKER_URL = 'https://bezito-forms.bezambarinc.workers.dev';
 
-    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    const form      = document.getElementById('contact-form') as HTMLFormElement | null;
     const successEl = document.getElementById('form-success') as HTMLElement | null;
-    const errorEl = document.getElementById('form-error') as HTMLElement | null;
+    const errorEl   = document.getElementById('form-error') as HTMLElement | null;
     const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
 
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!submitBtn) return;
 
-      const btnLabel = submitBtn.querySelector('.btn-label') as HTMLElement | null;
+      const btnLabel   = submitBtn.querySelector('.btn-label')   as HTMLElement | null;
       const btnLoading = submitBtn.querySelector('.btn-loading') as HTMLElement | null;
 
-      if (btnLabel) btnLabel.style.display = 'none';
+      if (btnLabel)   btnLabel.style.display   = 'none';
       if (btnLoading) btnLoading.style.display = '';
       submitBtn.disabled = true;
       if (errorEl) errorEl.style.display = 'none';
 
       const data = new FormData(form);
-      const fullName = ((data.get('name') as string) || '').trim();
-      const spaceIdx = fullName.indexOf(' ');
+      const fullName  = ((data.get('name') as string) || '').trim();
+      const spaceIdx  = fullName.indexOf(' ');
       const firstName = spaceIdx > -1 ? fullName.slice(0, spaceIdx) : fullName;
-      const lastName = spaceIdx > -1 ? fullName.slice(spaceIdx + 1) : '';
+      const lastName  = spaceIdx > -1 ? fullName.slice(spaceIdx + 1) : '';
 
       const payload = {
         firstName,
         lastName,
-        email: data.get('email') as string,
-        phone: (data.get('phone') as string) || '',
-        intent: (data.get('intent') as string) || '',
-        message: (data.get('message') as string) || '',
-        utmSource: sessionStorage.getItem('utm_source') || '',
-        utmMedium: sessionStorage.getItem('utm_medium') || '',
+        email:     data.get('email')   as string,
+        phone:    (data.get('phone')   as string) || '',
+        intent:   (data.get('intent')  as string) || '',
+        message:  (data.get('message') as string) || '',
+        utmSource:   sessionStorage.getItem('utm_source')   || '',
+        utmMedium:   sessionStorage.getItem('utm_medium')   || '',
         utmCampaign: sessionStorage.getItem('utm_campaign') || '',
       };
 
@@ -150,21 +180,16 @@ import '../styles/templates/contact.css';
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
         });
-
         if (!res.ok) {
           const body = await res.json().catch(() => ({})) as { error?: string };
           throw new Error(body.error || 'Submission failed. Please try again.');
         }
-
-        if (form) form.style.display = 'none';
+        if (form)      form.style.display      = 'none';
         if (successEl) successEl.style.display = '';
       } catch (err: unknown) {
-        const msg = err instanceof Error ? err.message : 'Something went wrong. Please email us directly at bez@bezambar.com.';
-        if (errorEl) {
-          errorEl.textContent = msg;
-          errorEl.style.display = '';
-        }
-        if (btnLabel) btnLabel.style.display = '';
+        const msg = err instanceof Error ? err.message : 'Something went wrong. Please email us at bez@bezambar.com.';
+        if (errorEl) { errorEl.textContent = msg; errorEl.style.display = ''; }
+        if (btnLabel)   btnLabel.style.display   = '';
         if (btnLoading) btnLoading.style.display = 'none';
         submitBtn.disabled = false;
       }

@@ -44,6 +44,23 @@
         <p class="form-error" id="drawer-form-error" role="alert" style="display:none"></p>
       </form>
 
+      <!-- Contact block — always visible below the form -->
+      <div class="ba-drawer__contact">
+        <hr class="ba-drawer__contact-rule">
+        <div class="ba-drawer__contact-row">
+          <span class="ba-drawer__contact-label">Tel</span>
+          <a href="tel:2136299191" class="ba-drawer__contact-value">(213) 629-9191</a>
+        </div>
+        <div class="ba-drawer__contact-row">
+          <span class="ba-drawer__contact-label">Atelier</span>
+          <span class="ba-drawer__contact-value">611 Wilshire Blvd<br>Los Angeles, CA 90017</span>
+        </div>
+        <div class="ba-drawer__contact-row">
+          <span class="ba-drawer__contact-label">Instagram</span>
+          <a href="https://www.instagram.com/bezambarjewelry/" target="_blank" rel="noopener" class="ba-drawer__contact-value">@bezambarjewelry</a>
+        </div>
+      </div>
+
       <div id="drawer-success" class="form-success-state" style="display:none">
         <div class="success-mark">&#10022;</div>
         <h3>Your inquiry has been received.</h3>
@@ -166,6 +183,43 @@
 }
 .ba-drawer__submit:hover { background: var(--accent); color: var(--ink); }
 .ba-drawer__submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Drawer contact block ─────────────────────────────────── */
+.ba-drawer__contact {
+  margin-top: 2rem;
+}
+.ba-drawer__contact-rule {
+  width: 100%;
+  height: 1px;
+  background: var(--border-warm);
+  border: none;
+  margin-bottom: 1.5rem;
+}
+.ba-drawer__contact-row {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 12px;
+  align-items: start;
+  margin-bottom: 1.25rem;
+}
+.ba-drawer__contact-label {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-top: 3px;
+}
+.ba-drawer__contact-value {
+  font-family: var(--serif);
+  font-size: 15px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a.ba-drawer__contact-value:hover { color: var(--ink); }
 
 /* shared form atoms used by both drawer and contact page */
 .form-optional {
