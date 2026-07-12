@@ -176,7 +176,7 @@ const ogImage = product.heroImage
   <section class="product-cta" id="inquire">
     <h2 class="product-cta__title">See It in Person</h2>
     <p class="product-cta__body">Every piece is available to view by appointment at our Los Angeles atelier. Call <a href="tel:2136299191">(213) 629-9191</a> or send an inquiry below.</p>
-    <a class="product-cta__btn" href="/contact" onclick={`openInquiryDrawer({title:${JSON.stringify(product.title)},sku:${JSON.stringify(product.sku)},intent:'collection piece'}); return false;`}>Inquire About This Piece</a>
+    <a class="product-cta__btn" id="inquireBtn" href="/contact" onclick={`openInquiryDrawer({title:${JSON.stringify(product.title)},sku:${JSON.stringify(product.sku)},intent:'collection piece'}); return false;`}>Inquire About This Piece</a>
   </section>
 
   <!-- Floating Inquire pill -->
@@ -196,19 +196,19 @@ const ogImage = product.heroImage
     ).observe(hero);
   }
 
-  // Floating Inquire pill
-  const pill    = document.getElementById('prodPill') as HTMLAnchorElement | null;
-  const heroEnd = document.getElementById('heroEnd');
-  const ctaSec  = document.getElementById('inquire');
-  if (pill && heroEnd && ctaSec) {
+  // Floating Inquire pill — shows after hero, hides only when the inquiry button itself is visible
+  const pill       = document.getElementById('prodPill') as HTMLAnchorElement | null;
+  const heroEnd    = document.getElementById('heroEnd');
+  const inquireBtn = document.getElementById('inquireBtn');
+  if (pill && heroEnd && inquireBtn) {
     new IntersectionObserver(
       ([e]) => pill.classList.toggle('is-visible', !e.isIntersecting),
       { threshold: 0 }
     ).observe(heroEnd);
     new IntersectionObserver(
       ([e]) => pill.classList.toggle('is-hidden', e.isIntersecting),
-      { threshold: 0.2 }
-    ).observe(ctaSec);
+      { threshold: 0 }
+    ).observe(inquireBtn);
   }
 
   // Share
