@@ -227,6 +227,11 @@ details[open] .tech-item__head::after {
 
 /* ── Floating Inquire pill ────────────────────────────────── */
 .prod-pill {
+  display: none; /* mobile-only: enabled below 769px */
+}
+
+@media (max-width: 768px) {
+.prod-pill {
   position: fixed;
   bottom: max(28px, env(safe-area-inset-bottom, 28px));
   left: 50%;
@@ -262,6 +267,7 @@ details[open] .tech-item__head::after {
   pointer-events: none;
   transform: translateX(-50%) translateY(40px);
 }
+} /* end @media (max-width: 768px) */
 
 /* ── Share (hero) ─────────────────────────────────────────── */
 .prod-share { margin-top: 20px; }
