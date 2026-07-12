@@ -11,53 +11,62 @@ import '../styles/templates/contact.css';
 >
   <section class="page-hero">
     <h1>Contact &amp; Consultation</h1>
-    <p>Whether you're beginning a bespoke design, inquiring about a piece, or booking an atelier visit — we're here for you.</p>
+    <p>Whether you're beginning a commission, inquiring about a piece, or booking an atelier visit — we're here for you.</p>
   </section>
 
   <section class="contact-layout">
     <div class="contact-form">
       <h2>Send Us a Message</h2>
-      <form id="contact-form" action="https://formsubmit.co/bez@bezambar.com" method="POST">
-        <input type="hidden" name="_subject" value="Website Inquiry — Bez Ambar">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="https://bezambar.com/contact">
 
+      <form id="contact-form" novalidate>
         <div class="form-group">
           <label for="name">Your Name</label>
-          <input type="text" id="name" name="name" placeholder="First and Last Name" required>
+          <input type="text" id="name" name="name" placeholder="First and Last Name" required autocomplete="name">
         </div>
 
         <div class="form-group">
           <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" placeholder="you@email.com" required>
+          <input type="email" id="email" name="email" placeholder="you@email.com" required autocomplete="email">
         </div>
 
         <div class="form-group">
-          <label for="phone">Phone (Optional)</label>
-          <input type="tel" id="phone" name="phone" placeholder="(xxx) xxx-xxxx">
+          <label for="phone">Phone <span class="form-optional">(Optional)</span></label>
+          <input type="tel" id="phone" name="phone" placeholder="(xxx) xxx-xxxx" autocomplete="tel">
         </div>
 
         <div class="form-group">
-          <label for="interest">I'm Interested In</label>
-          <select id="interest" name="interest">
-            <option value="">Select an option...</option>
-            <option value="Bespoke Design">Bespoke Design</option>
-            <option value="Family Signature Pendant">Family Signature Pendant</option>
-            <option value="Collection Piece">A Piece from the Collection</option>
-            <option value="Engagement Ring">Engagement Ring</option>
-            <option value="Atelier Visit">Visiting the Atelier</option>
-            <option value="Repair or Cleaning">Repair or Cleaning</option>
-            <option value="Other">Something Else</option>
+          <label for="intent">How can we help?</label>
+          <select id="intent" name="intent" required>
+            <option value="">Select...</option>
+            <option value="commission a piece">Commission a Piece</option>
+            <option value="consultation">Private Consultation</option>
+            <option value="collection piece">A Piece from the Collection</option>
+            <option value="atelier visit">Visit the Atelier</option>
+            <option value="repairs">Repair or Cleaning</option>
+            <option value="resize">Ring Resizing</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" placeholder="Tell us about what you're looking for..."></textarea>
+          <label for="message">Message <span class="form-optional">(Optional)</span></label>
+          <textarea id="message" name="message" placeholder="Tell us about what you have in mind..."></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary form-submit">Send Message</button>
+        <p class="form-privacy">Your inquiry is private and handled directly by our team.</p>
+
+        <button type="submit" class="btn btn-primary form-submit" id="submit-btn">
+          <span class="btn-label">Send Inquiry</span>
+          <span class="btn-loading" aria-hidden="true" style="display:none">Sending...</span>
+        </button>
+
+        <p class="form-error" id="form-error" role="alert" style="display:none"></p>
       </form>
+
+      <div id="form-success" class="form-success-state" style="display:none">
+        <div class="success-mark">&#10022;</div>
+        <h3>Your inquiry has been received.</h3>
+        <p>A member of our team will be in touch within one business day. We look forward to connecting with you.</p>
+      </div>
     </div>
 
     <div class="contact-details">
@@ -71,7 +80,7 @@ import '../styles/templates/contact.css';
       <div class="contact-details-item">
         <h4>Phone</h4>
         <p><a href="tel:2136299191">(213) 629-9191</a></p>
-        <p class="contact-meta">Monday – Friday, 10am – 6pm PT</p>
+        <p class="contact-meta">Monday &ndash; Friday, 10am &ndash; 6pm PT</p>
       </div>
 
       <div class="contact-details-item">
@@ -96,4 +105,69 @@ import '../styles/templates/contact.css';
       <div class="service-item"><h4>LA Atelier</h4><p>Visit us by appointment<br>611 Wilshire Blvd</p></div>
     </div>
   </div>
+
+  <script>
+    const WORKER_URL = 'https://bezito-forms.bezambarinc.workers.dev';
+
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    const successEl = document.getElementById('form-success') as HTMLElement | null;
+    const errorEl = document.getElementById('form-error') as HTMLElement | null;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!submitBtn) return;
+
+      const btnLabel = submitBtn.querySelector('.btn-label') as HTMLElement | null;
+      const btnLoading = submitBtn.querySelector('.btn-loading') as HTMLElement | null;
+
+      if (btnLabel) btnLabel.style.display = 'none';
+      if (btnLoading) btnLoading.style.display = '';
+      submitBtn.disabled = true;
+      if (errorEl) errorEl.style.display = 'none';
+
+      const data = new FormData(form);
+      const fullName = ((data.get('name') as string) || '').trim();
+      const spaceIdx = fullName.indexOf(' ');
+      const firstName = spaceIdx > -1 ? fullName.slice(0, spaceIdx) : fullName;
+      const lastName = spaceIdx > -1 ? fullName.slice(spaceIdx + 1) : '';
+
+      const payload = {
+        firstName,
+        lastName,
+        email: data.get('email') as string,
+        phone: (data.get('phone') as string) || '',
+        intent: (data.get('intent') as string) || '',
+        message: (data.get('message') as string) || '',
+        utmSource: sessionStorage.getItem('utm_source') || '',
+        utmMedium: sessionStorage.getItem('utm_medium') || '',
+        utmCampaign: sessionStorage.getItem('utm_campaign') || '',
+      };
+
+      try {
+        const res = await fetch(`${WORKER_URL}/api/contact`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        if (!res.ok) {
+          const body = await res.json().catch(() => ({})) as { error?: string };
+          throw new Error(body.error || 'Submission failed. Please try again.');
+        }
+
+        if (form) form.style.display = 'none';
+        if (successEl) successEl.style.display = '';
+      } catch (err: unknown) {
+        const msg = err instanceof Error ? err.message : 'Something went wrong. Please email us directly at bez@bezambar.com.';
+        if (errorEl) {
+          errorEl.textContent = msg;
+          errorEl.style.display = '';
+        }
+        if (btnLabel) btnLabel.style.display = '';
+        if (btnLoading) btnLoading.style.display = 'none';
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
 </Layout>

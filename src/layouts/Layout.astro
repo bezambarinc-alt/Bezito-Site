@@ -133,5 +133,15 @@ const sdArray = [orgSchema, ...pageSchemas];
   </main>
 
   <Footer data-pagefind-ignore />
+
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(function (key) {
+        var val = params.get(key);
+        if (val) sessionStorage.setItem(key, val);
+      });
+    })();
+  </script>
 </body>
 </html>
