@@ -111,7 +111,14 @@ const ogImage = product.heroImage
     <!-- Share — sits quietly below the description -->
     <div class="prod-share">
       <div class="prod-share__wrap" data-share>
-        <button class="prod-share__trigger" id="prodShareTrigger">Share</button>
+        <button class="prod-share__trigger" id="prodShareTrigger">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/>
+            <polyline points="16 6 12 2 8 6"/>
+            <line x1="12" y1="2" x2="12" y2="15"/>
+          </svg>
+          Share
+        </button>
         <div class="prod-share__menu" id="prodShareMenu" hidden>
           <button class="prod-share__item" id="prodShareCopy"><span id="prodCopyLabel">Copy link</span></button>
           <a class="prod-share__item" id="prodShareEmail" href="#">Email</a>
