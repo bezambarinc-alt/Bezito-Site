@@ -817,19 +817,8 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
   color: var(--ink-muted);
   margin: 0 0 24px;
 }
-.ba-footer__social { margin-bottom: 24px; }
-.ba-footer__social-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--sans);
-  font-size: 15px;
-  letter-spacing: 0.04em;
-  color: var(--ink-soft);
-  text-decoration: none;
-  transition: color .2s;
-}
-.ba-footer__social-link:hover { color: var(--accent); }
+.ba-footer__social { margin-bottom: 24px; gap: 18px; }
+.ba-footer__social .social-links__icon { color: var(--ink-soft); }
 .ba-footer__featuring {
   font-family: var(--sans);
   font-size: 15px;
@@ -1198,7 +1187,7 @@ body.menu-open { overflow: hidden; }
     flex-direction: column;
     align-items: center;
   }
-  .ba-footer__social-link { justify-content: center; }
+  .ba-footer__social { justify-content: center; }
   /* Accordion cols */
   .ba-footer__col {
     border-bottom: 1px solid rgba(0,0,0,.07);

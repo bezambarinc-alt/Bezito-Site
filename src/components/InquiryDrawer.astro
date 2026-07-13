@@ -1,6 +1,7 @@
 ---
 // InquiryDrawer.astro — slide-right inquiry panel, present on every page via Layout.
 // Open from anywhere: window.openInquiryDrawer({ title?, sku?, intent? })
+import SocialLinks from './SocialLinks.astro';
 ---
 
 <div id="inquiry-drawer" class="ba-drawer" role="dialog" aria-modal="true" aria-labelledby="ba-drawer-heading" hidden>
@@ -55,9 +56,9 @@
           <span class="ba-drawer__contact-label">Atelier</span>
           <span class="ba-drawer__contact-value">611 Wilshire Blvd<br>Los Angeles, CA 90017</span>
         </div>
-        <div class="ba-drawer__contact-row">
-          <span class="ba-drawer__contact-label">Instagram</span>
-          <a href="https://www.instagram.com/bezambarjewelry/" target="_blank" rel="noopener" class="ba-drawer__contact-value">@bezambarjewelry</a>
+        <div class="ba-drawer__contact-row ba-drawer__contact-row--social">
+          <span class="ba-drawer__contact-label">Follow</span>
+          <SocialLinks class="ba-drawer__socials" />
         </div>
       </div>
 
@@ -220,6 +221,9 @@
   transition: color 0.2s;
 }
 a.ba-drawer__contact-value:hover { color: var(--ink); }
+
+.ba-drawer__socials { gap: 16px; }
+.ba-drawer__socials .social-links__icon { color: var(--ink-soft); }
 
 /* shared form atoms used by both drawer and contact page */
 .form-optional {

@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import '../styles/templates/contact.css';
+import SocialLinks from '../components/SocialLinks.astro';
 ---
 
 <Layout
@@ -103,8 +104,8 @@ import '../styles/templates/contact.css';
       <hr class="contact-sidebar__divider">
 
       <div class="contact-sidebar__section">
-        <span class="contact-sidebar__label">Instagram</span>
-        <p class="contact-sidebar__value"><a href="https://www.instagram.com/bezambarjewelry/" target="_blank" rel="noopener">@bezambarjewelry</a></p>
+        <span class="contact-sidebar__label">Follow</span>
+        <SocialLinks class="contact-sidebar__socials" />
       </div>
 
       <hr class="contact-sidebar__divider">

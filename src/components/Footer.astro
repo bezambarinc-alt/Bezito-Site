@@ -1,5 +1,6 @@
 ---
 // Footer.astro
+import SocialLinks from './SocialLinks.astro';
 ---
 
 <footer class="ba-footer" id="inquire">
@@ -11,16 +12,7 @@
         <p class="ba-footer__wordmark">Bez Ambar</p>
         <p class="ba-footer__tagline">Inventor of the Princess Cut</p>
         <p class="ba-footer__estab">Los Angeles &middot; Est. 1979</p>
-        <div class="ba-footer__social">
-          <a href="https://www.instagram.com/bezambarjewelry/" target="_blank" rel="noopener" aria-label="Bez Ambar on Instagram" class="ba-footer__social-link">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-              <circle cx="12" cy="12" r="4"/>
-              <circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" stroke="none"/>
-            </svg>
-            <span>@bezambar</span>
-          </a>
-        </div>
+        <SocialLinks class="ba-footer__social" />
         <p class="ba-footer__featuring">Featuring the Blaze&reg; Cut</p>
       </div>
 

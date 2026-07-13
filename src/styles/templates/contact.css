@@ -235,6 +235,10 @@
   border: none;
   margin: 48px 0;
 }
+.contact-sidebar__socials {
+  margin-top: 12px;
+  gap: 18px;
+}
 .contact-sidebar__note {
   font-family: var(--prose);
   font-size: 16px;
