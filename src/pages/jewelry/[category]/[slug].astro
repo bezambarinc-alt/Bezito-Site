@@ -171,7 +171,7 @@ const ogImage = product.heroImage
           href="/contact"
           onclick={`openInquiryDrawer({title:${JSON.stringify(product.title)},sku:${JSON.stringify(product.sku)},intent:'collection piece'}); return false;`}
         >
-          Inquire About This Piece
+          <span>Inquire About This Piece</span>
         </a>
         <p class="prod-inquiry__secondary">
           Or call <a href="tel:2136299191">(213) 629-9191</a>
@@ -204,7 +204,7 @@ const ogImage = product.heroImage
   <a class="prod-pill" id="prodPill" href="#inquire"
     onclick={`openInquiryDrawer({title:${JSON.stringify(product.title)},sku:${JSON.stringify(product.sku)},intent:'collection piece'}); return false;`}
   >
-    Inquire About This Piece
+    <span>Inquire About This Piece</span>
   </a>
 
 </Layout>
