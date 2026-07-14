@@ -118,9 +118,8 @@
   margin-bottom: 40px;
   margin-top: 24px;
 }
-/* Technical section — 2-col Patek layout */
+/* Technical section — 2-col layout */
 .technical {
-  background: #f0eeeb;
   padding: 80px clamp(2rem, 6vw, 6rem);
 }
 .technical__inner {
@@ -134,7 +133,7 @@
 .technical__label {
   font-family: var(--sans);
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 200;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--accent);
@@ -142,18 +141,18 @@
   padding-top: 22px;
 }
 .tech-item {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 .tech-item:last-child {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 .tech-item__head {
   font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.18em;
+  font-size: 15px;
+  font-weight: 200;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--ink);
   padding: 20px 0;
   cursor: pointer;
   list-style: none;
@@ -161,23 +160,22 @@
   justify-content: space-between;
   align-items: center;
 }
-.tech-item__head::-webkit-details-marker { display: none; }
 .tech-item__head::after {
-  content: '∨';
-  font-size: 11px;
-  font-weight: 400;
+  content: '+';
+  font-size: 18px;
+  font-weight: 200;
   color: var(--accent);
-  transition: transform 0.25s ease;
+  transition: transform 0.2s;
 }
 details[open] .tech-item__head::after {
-  content: '∧';
+  transform: rotate(45deg);
 }
 .tech-item__body {
   padding: 0 0 20px;
   font-family: var(--prose);
-  font-size: 15px;
-  line-height: 1.7;
-  color: var(--ink-soft);
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink);
 }
 .tech-item__body a {
   color: var(--accent);
