@@ -72,7 +72,6 @@
   margin-bottom: 14px;
 }
 .hero__sub {
-  font-family: var(--serif);
   font-size: clamp(1rem, 1.3vw, 1.15rem);
   line-height: 1.6;
   color: var(--white);
@@ -665,7 +664,6 @@
   margin-bottom: 14px;
 }
 .ba-cinematic__sub {
-  font-family: var(--serif);
   font-size: clamp(1rem, 1.3vw, 1.15rem);
   line-height: 1.6;
   color: var(--white);

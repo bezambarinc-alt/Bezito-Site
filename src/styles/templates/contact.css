@@ -21,7 +21,6 @@
   display: block;
 }
 .contact-masthead__title {
-  font-family: var(--serif);
   font-size: clamp(38px, 5.5vw, 64px);
   font-weight: 300;
   letter-spacing: 0.01em;
@@ -45,7 +44,7 @@
 
 /* ── Layout grid ─────────────────────────────────────────── */
 .contact-layout {
-  max-width: 1080px;
+  max-width: var(--max-w);
   margin: 0 auto;
   padding: 0 40px 120px;
   display: grid;
@@ -177,7 +176,6 @@
   margin-bottom: 24px;
 }
 .contact-success h3 {
-  font-family: var(--serif);
   font-size: 26px;
   font-weight: 300;
   letter-spacing: 0.02em;
@@ -252,7 +250,7 @@
   padding: 64px 40px;
 }
 .contact-services__inner {
-  max-width: 1080px;
+  max-width: var(--max-w);
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
