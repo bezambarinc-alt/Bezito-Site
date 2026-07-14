@@ -7,6 +7,7 @@ const products = defineCollection({
     sku: z.string(),
     title: z.string(),
     subtitle: z.string().optional(),
+    editorial: z.string().optional(),
     category: z.enum([
       'rings',
       'engagement-rings',

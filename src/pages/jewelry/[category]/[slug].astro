@@ -101,12 +101,9 @@ const ogImage = product.heroImage
       <span aria-hidden="true">/</span>
       <span>{product.title}</span>
     </nav>
-    <p class="hero__eyebrow">{eyebrow}</p>
-    <h1 class="hero__title">
-      {product.title}
-      {product.subtitle && <span class="hero__subtitle">{product.subtitle}</span>}
-    </h1>
-    <p class="hero__lede">{product.description}</p>
+    <h1 class="hero__title">{product.title}</h1>
+    {product.subtitle && <p class="hero__ref-line">{product.subtitle}</p>}
+    <p class="hero__lede">{product.editorial ?? product.description}</p>
 
     <!-- Share — sits quietly below the description -->
     <div class="prod-share">
@@ -141,7 +138,6 @@ const ogImage = product.heroImage
 
   <section class="technical" id="technical">
     <div class="technical__inner">
-      <h2 class="technical__title">Technical Details</h2>
       <div class="technical__list">
         <details class="tech-item" open>
           <summary class="tech-item__head">Gem Stone</summary>
