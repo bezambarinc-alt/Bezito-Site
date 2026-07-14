@@ -120,21 +120,21 @@
 }
 /* Technical section — 2-col layout */
 .technical {
-  padding: 80px clamp(2rem, 6vw, 6rem);
+  padding: 80px clamp(3rem, 8vw, 120px);
 }
 .technical__inner {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 2fr 3fr;
   gap: 80px;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   align-items: start;
 }
 .technical__label {
   font-family: var(--sans);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 200;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--accent);
   line-height: 1.7;
