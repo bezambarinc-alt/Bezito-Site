@@ -22,6 +22,28 @@ const eyebrow = product.collection
   ? (COLLECTION_LABELS[product.collection] ?? `${product.collection.charAt(0).toUpperCase()}${product.collection.slice(1)} Collection`)
   : categoryLabel;
 
+// Build spec rows — only show rows with data
+const specs: { label: string; value: string }[] = [];
+if (product.stone?.shape || product.stone?.carats) {
+  const stoneParts = [
+    product.stone?.carats && `${product.stone.carats} ct`,
+    product.stone?.color,
+    product.stone?.clarity && `${product.stone.clarity} clarity`,
+    product.stone?.shape,
+  ].filter(Boolean);
+  specs.push({ label: 'Stone', value: stoneParts.join(' · ') + (product.stone?.origin ? ` — ${product.stone.origin}` : '') });
+}
+if (product.metal) specs.push({ label: 'Metal', value: product.metal });
+specs.push({ label: 'Origin', value: 'Los Angeles, California' });
+if (product.stone?.shape) specs.push({ label: 'Cut', value: product.stone.shape });
+if (product.stone?.color) specs.push({ label: 'Color', value: product.stone.color });
+if (product.stone?.clarity) specs.push({ label: 'Clarity', value: product.stone.clarity });
+
+// All gallery images (hero + additional)
+const galleryImages = [
+  ...(product.images || []),
+];
+
 const structuredData = [
   {
     "@context": "https://schema.org",
@@ -75,6 +97,7 @@ const ogImage = product.heroImage
   pageType="product"
   structuredData={structuredData}
 >
+  <!-- Full-bleed hero video / image -->
   {product.heroVideo ? (
     <div class="hero-video" id="hero-video">
       <video src={product.heroVideo} autoplay loop muted playsinline preload="auto"></video>
@@ -93,103 +116,103 @@ const ogImage = product.heroImage
     </div>
   ) : null}
 
-  <section class="hero">
-    <nav class="breadcrumb" aria-label="breadcrumb">
-      <a href="/collection">Jewelry</a>
-      <span aria-hidden="true">/</span>
-      <a href={`/collection?cat=${product.category}`}>{categoryLabel}</a>
-      <span aria-hidden="true">/</span>
-      <span>{product.title}</span>
-    </nav>
-    <h1 class="hero__title">{product.title}</h1>
-    {product.subtitle && <p class="hero__ref-line">{product.subtitle}</p>}
-    <p class="hero__lede">{product.editorial ?? product.description}</p>
+  <!-- 2-column body -->
+  <div class="prod-body">
 
-    <!-- Share — sits quietly below the description -->
-    <div class="prod-share">
-      <div class="prod-share__wrap" data-share>
-        <button class="prod-share__trigger" id="prodShareTrigger">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/>
-            <polyline points="16 6 12 2 8 6"/>
-            <line x1="12" y1="2" x2="12" y2="15"/>
-          </svg>
-          Share
-        </button>
-        <div class="prod-share__menu" id="prodShareMenu" hidden>
-          <button class="prod-share__item" id="prodShareCopy"><span id="prodCopyLabel">Copy link</span></button>
-          <a class="prod-share__item" id="prodShareEmail" href="#">Email</a>
-          <a class="prod-share__item" id="prodShareWA" href="#" target="_blank" rel="noopener">WhatsApp</a>
+    <!-- Left: gallery column -->
+    <div class="prod-gallery" id="prod-gallery">
+      {galleryImages.map((src, i) => (
+        <div class={`prod-gallery__item${i === 0 ? ' prod-gallery__item--hero' : ''}`}>
+          {src.endsWith('.mp4') ? (
+            <video src={src} autoplay loop muted playsinline preload="auto"></video>
+          ) : (
+            <img src={src} alt={`${product.title}${i > 0 ? ` — view ${i + 1}` : ''}`} loading={i === 0 ? 'eager' : 'lazy'} />
+          )}
+        </div>
+      ))}
+      {galleryImages.length === 0 && product.heroImage && (
+        <div class="prod-gallery__item prod-gallery__item--hero">
+          <img src={product.heroImage} alt={product.title} loading="eager" />
+        </div>
+      )}
+    </div>
+
+    <!-- Right: info panel (sticky on desktop) -->
+    <div class="prod-info" id="prod-info">
+      <nav class="breadcrumb" aria-label="breadcrumb">
+        <a href="/collection">Jewelry</a>
+        <span aria-hidden="true">/</span>
+        <a href={`/collection?cat=${product.category}`}>{categoryLabel}</a>
+      </nav>
+
+      <p class="prod-eyebrow">{eyebrow}</p>
+      <h1 class="prod-title">{product.title}</h1>
+      {product.subtitle && <p class="prod-ref">{product.subtitle}</p>}
+
+      <p class="prod-lede">{product.editorial ?? product.description}</p>
+
+      <!-- Spec list — always visible, no accordion -->
+      <dl class="prod-specs">
+        {specs.map(s => (
+          <div class="prod-spec">
+            <dt class="prod-spec__label">{s.label}</dt>
+            <dd class="prod-spec__value">{s.value}</dd>
+          </div>
+        ))}
+      </dl>
+
+      <!-- Inline inquiry CTA -->
+      <div class="prod-inquiry" id="inquire">
+        <p class="prod-inquiry__label">Acquire This Piece</p>
+        <h2 class="prod-inquiry__title">See It in Person</h2>
+        <a
+          class="prod-inquiry__btn"
+          id="inquireBtn"
+          href="/contact"
+          onclick={`openInquiryDrawer({title:${JSON.stringify(product.title)},sku:${JSON.stringify(product.sku)},intent:'collection piece'}); return false;`}
+        >
+          Inquire About This Piece
+        </a>
+        <p class="prod-inquiry__secondary">
+          Or call <a href="tel:2136299191">(213) 629-9191</a>
+        </p>
+      </div>
+
+      <!-- Share -->
+      <div class="prod-share">
+        <div class="prod-share__wrap" data-share>
+          <button class="prod-share__trigger" id="prodShareTrigger">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/>
+              <polyline points="16 6 12 2 8 6"/>
+              <line x1="12" y1="2" x2="12" y2="15"/>
+            </svg>
+            Share
+          </button>
+          <div class="prod-share__menu" id="prodShareMenu" hidden>
+            <button class="prod-share__item" id="prodShareCopy"><span id="prodCopyLabel">Copy link</span></button>
+            <a class="prod-share__item" id="prodShareEmail" href="#">Email</a>
+            <a class="prod-share__item" id="prodShareWA" href="#" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
         </div>
       </div>
     </div>
-  </section>
-  <div id="heroEnd"></div>
 
-  {product.images.length > 0 && (
-    <div class="hero-video hero-video--secondary">
-      {product.images[0].endsWith('.mp4') ? (
-        <video src={product.images[0]} autoplay loop muted playsinline preload="auto"></video>
-      ) : (
-        <img src={product.images[0]} alt={`${product.title} — detail`} loading="lazy" />
-      )}
-    </div>
-  )}
+  </div>
 
-  <section class="technical" id="technical">
-    <div class="technical__inner">
-      <div class="technical__list">
-        <details class="tech-item" open>
-          <summary class="tech-item__head">Gem Stone</summary>
-          <div class="tech-item__body">
-            <p>
-              {[
-                product.stone.carats && `${product.stone.carats} carats`,
-                product.stone.color,
-                product.stone.clarity && `${product.stone.clarity} clarity`,
-                product.stone.shape,
-              ].filter(Boolean).join(' · ')}
-              {product.stone.origin && ` — ${product.stone.origin}`}
-            </p>
-          </div>
-        </details>
-        <details class="tech-item">
-          <summary class="tech-item__head">Metal</summary>
-          <div class="tech-item__body">
-            <p>{product.metal}</p>
-          </div>
-        </details>
-        <details class="tech-item">
-          <summary class="tech-item__head">Made in</summary>
-          <div class="tech-item__body">
-            <p>Los Angeles, California, USA. Handcrafted by Bez Ambar.</p>
-          </div>
-        </details>
-        <details class="tech-item">
-          <summary class="tech-item__head">Inquiry</summary>
-          <div class="tech-item__body">
-            <p>Each piece is made to specification. Pricing on request. <a href="/contact" onclick={`openInquiryDrawer({title:${JSON.stringify(product.title)},sku:${JSON.stringify(product.sku)},intent:'collection piece'}); return false;`}>Contact us to inquire.</a></p>
-          </div>
-        </details>
-      </div>
-    </div>
-  </section>
+  <!-- Floating scroll pill -->
+  <a class="prod-pill" id="prodPill" href="#inquire"
+    onclick={`openInquiryDrawer({title:${JSON.stringify(product.title)},sku:${JSON.stringify(product.sku)},intent:'collection piece'}); return false;`}
+  >
+    Inquire About This Piece
+  </a>
 
-  <!-- Bottom CTA — floating pill merges into this -->
-  <section class="product-cta" id="inquire">
-    <h2 class="product-cta__title">See It in Person</h2>
-    <p class="product-cta__body">Every piece is available to view by appointment at our Los Angeles atelier. Call <a href="tel:2136299191">(213) 629-9191</a> or send an inquiry below.</p>
-    <a class="product-cta__btn" id="inquireBtn" href="/contact" onclick={`openInquiryDrawer({title:${JSON.stringify(product.title)},sku:${JSON.stringify(product.sku)},intent:'collection piece'}); return false;`}>Inquire About This Piece</a>
-  </section>
-
-  <!-- Floating Inquire pill -->
-  <a class="prod-pill" id="prodPill" href="/contact" onclick={`openInquiryDrawer({title:${JSON.stringify(product.title)},sku:${JSON.stringify(product.sku)},intent:'collection piece'}); return false;`}>Inquire</a>
 </Layout>
 
 <script>
   import { initShare, updateShare } from '../../../scripts/share';
 
-  // Header transparency
+  // Header transparency over hero
   const hero   = document.getElementById('hero-video');
   const header = document.querySelector('.ba-header');
   if (hero && header) {
@@ -199,19 +222,21 @@ const ogImage = product.heroImage
     ).observe(hero);
   }
 
-  // Floating Inquire pill — shows after hero, hides only when the inquiry button itself is visible
-  const pill       = document.getElementById('prodPill') as HTMLAnchorElement | null;
-  const heroEnd    = document.getElementById('heroEnd');
-  const inquireBtn = document.getElementById('inquireBtn');
-  if (pill && heroEnd && inquireBtn) {
+  // Floating pill — show after hero, hide when inquiry in view
+  const pill    = document.getElementById('prodPill');
+  const inquire = document.getElementById('inquire');
+  if (pill && hero) {
     new IntersectionObserver(
       ([e]) => pill.classList.toggle('is-visible', !e.isIntersecting),
-      { threshold: 0 }
-    ).observe(heroEnd);
+      { threshold: 0.1 }
+    ).observe(hero);
+  }
+  if (pill && inquire) {
     new IntersectionObserver(
-      ([e]) => pill.classList.toggle('is-hidden', e.isIntersecting),
-      { threshold: 0 }
-    ).observe(inquireBtn);
+      ([e]) => { if (e.isIntersecting) { pill.classList.add('is-hidden'); pill.classList.remove('is-visible'); }
+                 else { pill.classList.remove('is-hidden'); } },
+      { threshold: 0.1 }
+    ).observe(inquire);
   }
 
   // Share
@@ -234,4 +259,3 @@ const ogImage = product.heroImage
     () => ({ title: document.title, url: pageUrl }),
   );
 </script>
-
