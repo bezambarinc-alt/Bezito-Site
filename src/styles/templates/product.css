@@ -118,25 +118,42 @@
   margin-bottom: 40px;
   margin-top: 24px;
 }
-/* Technical section */
+/* Technical section — 2-col Patek layout */
 .technical {
-  padding: 80px 2rem;
-  max-width: 760px;
+  background: #f0eeeb;
+  padding: 80px clamp(2rem, 6vw, 6rem);
+}
+.technical__inner {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 80px;
+  max-width: 1200px;
   margin: 0 auto;
+  align-items: start;
+}
+.technical__label {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  line-height: 1.7;
+  padding-top: 22px;
 }
 .tech-item {
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 .tech-item:last-child {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .tech-item__head {
   font-family: var(--sans);
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--accent);
   padding: 20px 0;
   cursor: pointer;
   list-style: none;
@@ -144,27 +161,37 @@
   justify-content: space-between;
   align-items: center;
 }
+.tech-item__head::-webkit-details-marker { display: none; }
 .tech-item__head::after {
-  content: '+';
-  font-size: 18px;
-  font-weight: 300;
+  content: '∨';
+  font-size: 11px;
+  font-weight: 400;
   color: var(--accent);
-  transition: transform 0.2s;
+  transition: transform 0.25s ease;
 }
 details[open] .tech-item__head::after {
-  transform: rotate(45deg);
+  content: '∧';
 }
 .tech-item__body {
   padding: 0 0 20px;
   font-family: var(--prose);
-  font-size: 17px;
-  line-height: 1.65;
-  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-soft);
 }
 .tech-item__body a {
   color: var(--accent);
   text-decoration: none;
   border-bottom: 1px solid currentColor;
+}
+
+/* Responsive technical */
+@media (max-width: 768px) {
+  .technical__inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .technical__label { padding-top: 0; }
 }
 
 /* Product CTA */
@@ -213,14 +240,12 @@ details[open] .tech-item__head::after {
 @media (max-width: 768px) {
   .hero-video--secondary { height: 480px; }
   .hero { padding: 72px 1.5rem 64px; }
-  .technical { padding: 64px 1.5rem; }
   .product-cta { padding: 64px 1.5rem; }
 }
 @media (max-width: 480px) {
   .hero-video--secondary { height: 360px; }
   .hero-video__ref { bottom: 1rem; right: 1rem; }
   .hero { padding: 56px 1.25rem 48px; }
-  .technical { padding: 48px 1.25rem; }
   .product-cta { padding: 48px 1.25rem; }
   .product-cta__title { font-size: 28px; }
   .product-cta__btn { padding: 14px 28px; }
