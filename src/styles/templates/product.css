@@ -124,7 +124,7 @@
 }
 .technical__inner {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 80px;
   max-width: 1400px;
   margin: 0 auto;
