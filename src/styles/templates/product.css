@@ -80,7 +80,7 @@
   margin-bottom: 20px;
 }
 .hero__title {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: clamp(32px, 5vw, 52px);
   font-weight: 300;
   letter-spacing: 0.03em;
@@ -175,7 +175,7 @@ details[open] .tech-item__head::after {
   color: var(--white);
 }
 .product-cta__title {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: clamp(28px, 4vw, 42px);
   font-weight: 300;
   letter-spacing: 0.04em;
