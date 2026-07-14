@@ -4,7 +4,7 @@ date: 2019-03-05
 updatedDate: 2026-07-08
 category: diamonds
 excerpt: "Lab-grown and natural diamonds are chemically identical. What separates them is origin, rarity, and market value — and each buyer needs to decide which of those things matters to them."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540137/blog/legacy/fancy-colored-diamond-jewelry.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540137/Jewelry%20Images/Legacy/fancy-colored-diamond-jewelry.jpg"
 heroImageAlt: "Lab-grown diamond next to natural diamond of identical grading"
 author: Bez Ambar
 status: live

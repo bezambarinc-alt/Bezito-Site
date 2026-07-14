@@ -4,7 +4,7 @@ date: 2018-04-03
 updatedDate: 2026-07-08
 category: earrings
 excerpt: "Watch our exclusive video showcasing the beauty of cushion cut diamond earrings. See how light dances through the facets of these exquisite pieces from our collection."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540134/blog/legacy/cushion-cut-diamond-earring-of-fire.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540134/Jewelry%20Images/Legacy/cushion-cut-diamond-earring-of-fire.jpg"
 heroImageAlt: "Cushion cut diamond stud earrings with Blaze® halo frame by Bez Ambar"
 author: Bez Ambar
 status: live
@@ -40,7 +40,7 @@ In an earring, the stone is almost never still. The natural movement of the head
 Bez Ambar's Ring of Fire cushion cut earrings carry this idea as far as it goes. A pair of 2-carat E-SI cushion cut centers, each framed in a complete surround of Blaze® cut diamonds, the gap-free patented square accent stones. The frame closes completely, no interruption between stones, so the center and the surround move as a single field of light. Each earring reads closer to 6 carats face-up. The width across each stud is approximately 11.5mm, substantial presence without extreme weight.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/blog/legacy/cushion-cut-diamond-earring-of-fire.jpg" alt="Cushion cut diamond stud earrings with Blaze® halo frame by Bez Ambar">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/Legacy/cushion-cut-diamond-earring-of-fire.jpg" alt="Cushion cut diamond stud earrings with Blaze® halo frame by Bez Ambar">
 </figure>
 
 ### Setting the

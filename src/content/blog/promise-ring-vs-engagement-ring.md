@@ -4,7 +4,7 @@ date: 2023-10-05
 updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "Promise rings and engagement rings are not the same thing. Understanding the distinction helps you choose the right piece at the right moment."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540141/blog/legacy/1rol-5r-model-mb-k.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540141/Jewelry%20Images/Legacy/1rol-5r-model-mb-k.jpg"
 heroImageAlt: "Two rings side by side — a simple promise ring and a diamond engagement ring"
 author: Bez Ambar
 status: live

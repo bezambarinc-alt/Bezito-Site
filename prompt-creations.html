@@ -1,0 +1,1017 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prompt Creations — Bez Ambar</title>
+<meta name="description" content="Reusable AI image prompts for Bez Ambar campaign imagery. Named muses, canonical crops, paste-ready.">
+<link rel="canonical" href="https://galleries.bezambarinc.workers.dev/page/prompt-creations">
+<meta property="og:title" content="Prompt Creations — Bez Ambar">
+<meta property="og:description" content="Reusable AI image prompts for Bez Ambar campaign imagery.">
+<meta property="og:image" content="https://res.cloudinary.com/dlg2mou53/image/upload/v1783043871/Studio/prompt-creations/rings/livia-close-yellow-toi-et-moi-result.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231a1a1a'/%3E%3Ctext x='16' y='22' font-family='Inter,sans-serif' font-size='18' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://webfonts.fontstand.com/WF-099839-d89c1d499f0c1f40d1e6d7330af17f97.css" type="text/css"/>
+<style>
+  :root {
+    --serif: 'Lyon Text Regular', 'EB Garamond', Georgia, serif;
+    --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-muted: #8a8a8a;
+    --paper: #ffffff;
+    --paper-warm: #faf7f2;
+    --rule: rgba(0,0,0,.08);
+    --rule-soft: rgba(0,0,0,.04);
+    --accent: #95826b;
+    --code-bg: #f7f5f1;
+    --gutter: clamp(1.25rem, 5vw, 4rem);
+    --max-wide: 1200px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  img, video { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; }
+
+  /* Fixed header — solid white so it sits above content */
+  .ba-header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    padding: 16px 20px;
+    text-align: center;
+  }
+  .ba-header__logo {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: var(--ink);
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  /* Page hero */
+  .page-hero {
+    padding: 120px var(--gutter) 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--rule);
+  }
+  .page-hero__eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 20px;
+  }
+  .page-hero__title {
+    font-family: var(--sans);
+    font-size: clamp(26px, 3vw, 38px);
+    font-weight: 200;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+  .page-hero__lede {
+    font-family: var(--serif);
+    font-size: clamp(16px, 1.4vw, 19px);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  /* Category tabs */
+  .tabs {
+    position: sticky;
+    top: 52px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    z-index: 50;
+  }
+  .tabs__inner {
+    max-width: var(--max-wide);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    display: flex;
+    justify-content: center;
+    gap: clamp(20px, 4vw, 56px);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs__inner::-webkit-scrollbar { display: none; }
+  .tab {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    background: none;
+    border: 0;
+    padding: 22px 4px;
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+    transition: color .2s ease, border-color .2s ease;
+    white-space: nowrap;
+  }
+  .tab:hover { color: var(--ink); }
+  .tab.is-active {
+    color: var(--ink);
+    border-bottom-color: var(--ink);
+  }
+
+  /* Panel */
+  .panel {
+    display: none;
+    padding: 60px var(--gutter) 100px;
+    max-width: var(--max-wide);
+    margin: 0 auto;
+  }
+  .panel.is-active { display: block; }
+
+  /* Category intro (Livia banner style) */
+  .category-intro {
+    padding: 0 0 44px;
+    margin-bottom: 44px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .category-intro__eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .category-intro__title {
+    font-family: var(--serif);
+    font-size: clamp(24px, 2.6vw, 34px);
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: 0.005em;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .category-intro__body {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 720px;
+  }
+
+  /* Prompt card grid */
+  .prompts {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  @media (min-width: 900px) {
+    .prompts { grid-template-columns: 1fr 1fr; gap: 48px; }
+  }
+
+  /* ── Log tab — timeline layout ── */
+  .log-list { display: flex; flex-direction: column; gap: 0; }
+  .log-entry {
+    display: grid;
+    grid-template-columns: 72px 80px 1fr;
+    gap: 0 16px;
+    align-items: flex-start;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .log-entry:first-child { border-top: 1px solid var(--rule); }
+  .log-entry__date {
+    font-family: var(--sans);
+    font-size: 10px;
+    color: var(--mid);
+    line-height: 1.4;
+    padding-top: 2px;
+    text-align: right;
+    letter-spacing: .04em;
+    white-space: nowrap;
+  }
+  .log-entry__thumb {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 1px solid var(--rule);
+    display: block;
+    flex-shrink: 0;
+    cursor: zoom-in;
+  }
+  .log-entry__content { min-width: 0; }
+  .log-entry__title {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .log-entry__eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    color: var(--mid);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .log-entry__prompt-wrap {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 10px 12px;
+    position: relative;
+  }
+  .log-entry__prompt-wrap pre {
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 1.55;
+    color: var(--ink);
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin: 0;
+    padding-top: 4px;
+    max-height: 100px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--rule) transparent;
+  }
+  .log-entry__prompt-wrap pre::-webkit-scrollbar { width: 4px; }
+  .log-entry__prompt-wrap pre::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
+  .log-entry__copy {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-family: var(--sans);
+    font-size: 10px;
+    padding: 2px 8px;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    color: var(--mid);
+    cursor: pointer;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  .log-entry__copy:hover { color: var(--gold); border-color: var(--gold); }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+  }
+  .card__media {
+    position: relative;
+    aspect-ratio: 4/5;
+    background: #0d0d0d;
+    overflow: hidden;
+  }
+  .card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .card__body {
+    padding: 28px 28px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .card__eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .card__title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--ink);
+  }
+  .card__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .chip {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding: 5px 10px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+  }
+  .card__desc {
+    font-family: var(--serif);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .card__prompt {
+    position: relative;
+  }
+  .card__prompt-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 8px;
+  }
+  .copy-btn {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    background: none;
+    border: 1px solid var(--rule);
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: color .2s, border-color .2s, background .2s;
+    border-radius: 2px;
+  }
+  .copy-btn:hover {
+    color: var(--ink);
+    border-color: var(--ink);
+    background: var(--paper-warm);
+  }
+  .copy-btn.is-copied {
+    color: var(--paper);
+    background: var(--ink);
+    border-color: var(--ink);
+  }
+  .card__prompt pre {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.55;
+    background: var(--code-bg);
+    padding: 18px 20px;
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 320px;
+    overflow-y: auto;
+  }
+  .card__variant {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--rule);
+  }
+  .card__variant-header {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  /* Empty state */
+  .empty {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--ink-muted);
+  }
+  .empty__title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .empty__body {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  /* Footer */
+  .ba-footer {
+    background: #1a1a1a;
+    color: #a9a29a;
+    padding: 44px var(--gutter);
+    text-align: center;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .ba-footer a { color: #d9d1c5; text-decoration: none; margin: 0 12px; }
+</style>
+</head>
+<body>
+
+<header class="ba-header">
+  <a href="/" class="ba-header__logo">Bez Ambar</a>
+</header>
+
+<section class="page-hero">
+  <div class="page-hero__eyebrow">Reference · AI Imagery</div>
+  <h1 class="page-hero__title">Prompt Creations</h1>
+  <p class="page-hero__lede">Reusable AI prompts for Bez Ambar campaign imagery. Named muses, canonical crops, paste-ready blocks. Copy the prompt, drop it into Photoshop Generative Fill or Nano Banana with your reference piece.</p>
+</section>
+
+<nav class="tabs" role="tablist">
+  <div class="tabs__inner">
+    <button class="tab is-active" data-tab="rings" role="tab" aria-selected="true">Rings</button>
+    <button class="tab" data-tab="earrings" role="tab">Earrings</button>
+    <button class="tab" data-tab="bracelets" role="tab">Bracelets</button>
+    <button class="tab" data-tab="necklaces" role="tab">Necklaces</button>
+    <button class="tab" data-tab="pendants" role="tab">Pendants</button>
+    <button class="tab" data-tab="log" role="tab" style="margin-left:auto;opacity:.7;border-left:1px solid rgba(255,255,255,.1);padding-left:20px;">Log</button>
+  </div>
+</nav>
+
+<section class="panel is-active" id="panel-rings" role="tabpanel">
+
+  <div class="category-intro">
+    <div class="category-intro__eyebrow">Muse · Rings</div>
+    <h2 class="category-intro__title">Livia — the reusable hand-shot muse</h2>
+    <p class="category-intro__body">Livia is the named model for every Bez Ambar "ring on a hand" mockup. Warm bronze skin, matte natural finish, sculpted cheekbones, soft nude-berry lip, bare shoulders. Deep forest-green backdrop, soft directional light, Graff-style editorial framing. Two canonical crops — pull-back portrait, and close ring-hero — swap the ring description and generate.</p>
+  </div>
+
+  <div class="prompts">
+
+    <article class="card">
+      <div class="card__media">
+        <img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783043873/Studio/prompt-creations/rings/livia-portrait-ruby-cushion-ref.png" alt="Livia portrait — ruby cushion ring reference">
+      </div>
+      <div class="card__body">
+        <div class="card__eyebrow">Ring · Livia · Crop A</div>
+        <h3 class="card__title">Livia Portrait</h3>
+        <div class="card__chips">
+          <span class="chip">Pull-back</span>
+          <span class="chip">Ring + Ear Companion</span>
+          <span class="chip">Forest Green</span>
+          <span class="chip">Full Editorial</span>
+        </div>
+        <p class="card__desc">Full campaign framing. Shoulder + jaw + earring + hand + ring together. Best for launch pages, IG covers, and pieces that ship with a matching earring or necklace.</p>
+        <div class="card__prompt">
+          <div class="card__prompt-label">
+            <span>Prompt</span>
+            <button class="copy-btn" data-target="prompt-livia-portrait">Copy</button>
+          </div>
+<pre id="prompt-livia-portrait">Photorealistic editorial jewelry campaign photograph in the "Livia" style. Model: young woman with warm bronze skin, matte natural finish, sculpted cheekbones, soft nude-berry lip, minimal natural makeup, bare shoulders. Pose: hand raised near her jaw in a soft closed-fist with the ring finger extended forward, showing this ring on her ring finger, ring facing the camera. Short natural manicure. Ring detail: [RING DESCRIPTION — stones, cut, metal, prong style]. Backdrop: deep forest-green, soft directional light from front-left, shallow depth of field, 85mm feel. Preserve the ring's proportions, prongs, and stone orientation exactly. Graff-style luxury jewelry editorial.
+(End of prompt — 2026-07-02)</pre>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card__media">
+        <img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783043871/Studio/prompt-creations/rings/livia-close-yellow-toi-et-moi-result.png" alt="Livia close — yellow toi-et-moi ring result">
+      </div>
+      <div class="card__body">
+        <div class="card__eyebrow">Ring · Livia · Crop B</div>
+        <h3 class="card__title">Livia Close</h3>
+        <div class="card__chips">
+          <span class="chip">Tight Crop</span>
+          <span class="chip">Ring Hero</span>
+          <span class="chip">Forest Green</span>
+          <span class="chip">Worn — Not Floating</span>
+        </div>
+        <p class="card__desc">Tight crop. Lower half of face + hand + ring. Ring occupies 30–40% of frame. Best for single-piece launches, product-page heroes, IG posts where the ring is the whole show.</p>
+        <div class="card__prompt">
+          <div class="card__prompt-label">
+            <span>Prompt</span>
+            <button class="copy-btn" data-target="prompt-livia-close">Copy</button>
+          </div>
+<pre id="prompt-livia-close">Photorealistic close-crop editorial jewelry photograph in the "Livia close" style. Frame: only the lower half of the face (nude-berry soft-matte lips, warm bronze skin, sculpted jaw) and the hand in the foreground. Hand raised across the mouth in a soft closed-fist pose with the ring finger extended horizontally toward the camera. The ring is WORN on the ring finger — seated at the base of the finger with the prongs resting on the skin, band wrapped fully around the finger, ring facing the camera. Not held, not floating. Short natural manicure. Ring detail: [RING DESCRIPTION — stones, cut, metal, prong style]. Backdrop: deep forest-green, soft directional light from front-left, shallow depth of field, 85mm feel, ring sharp with everything else falling slightly out of focus. Graff-style luxury jewelry editorial.
+(End of prompt — 2026-07-02)</pre>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="category-intro" style="margin-top: 80px;">
+    <div class="category-intro__eyebrow">Style · Design Presentation</div>
+    <h2 class="category-intro__title">Stone Sketch — atelier presentation style</h2>
+    <p class="category-intro__body">Stone Sketch is the named presentation style for design-phase and hero-card imagery. Real stones sitting on a loose freehand pencil sketch of the ring — deep mid-gray paper, single hard side key from upper left, dramatic diagonal shadows that glow with each stone's own color inside the darkness. Van Cleef "Pierres de Caractère" spirit. Fully universal: swap the ring design and the featured stones per shot.</p>
+  </div>
+
+  <div class="prompts">
+
+    <article class="card">
+      <div class="card__media">
+        <img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783163690/Studio/prompt-creations/rings/pierres-emerald-reference.png" alt="Stone Sketch reference — VCA emeralds on architectural sketch">
+      </div>
+      <div class="card__body">
+        <div class="card__eyebrow">Style · Stone Sketch · Universal</div>
+        <h3 class="card__title">Stone Sketch</h3>
+        <div class="card__chips">
+          <span class="chip">Deep Gray Paper</span>
+          <span class="chip">Side Key</span>
+          <span class="chip">Color-in-Shadow</span>
+          <span class="chip">Freehand Sketch</span>
+          <span class="chip">Universal</span>
+        </div>
+        <p class="card__desc">Universal template. Fill two placeholders — the ring design and which stones are real — and the invariants (paper, light, shadow-glow, freehand line) do the rest. Any stone color, any silhouette. Accent stones stay drawn.</p>
+        <div class="card__prompt">
+          <div class="card__prompt-label">
+            <span>Prompt</span>
+            <button class="copy-btn" data-target="prompt-stone-sketch">Copy</button>
+          </div>
+<pre id="prompt-stone-sketch">Photorealistic jewelry atelier presentation in the "STONE SKETCH" style. Background: DEEP MID-GRAY paper (moody neutral gray, roughly 40% gray, cool, tending toward charcoal at the corners) filling the entire frame, visible paper tooth and cotton grain, deep atmospheric falloff so the edges read almost black. Lighting: strong single directional key from the upper left, warm and focused, creating dramatic long diagonal shadows to the lower right — high contrast, moody, cinematic. Beneath and around the stones: a LOOSE FREEHAND graphite pencil sketch of the ring design described here — [RING DESIGN DESCRIPTION: silhouette, gallery, prongs, shank, accent stones and their placement]. Sketch style: free hand designer's quick line, confident but not precise, uneven pressure, some lines doubled or ghosted, construction marks visible, real hand-drawn energy — NOT drafted, NOT ruler-straight, NOT a technical drawing. Graphite reads clearly against the deep gray paper. On top of the sketch, sitting as real physical stones on the paper: [STONE COUNT AND DESCRIPTION: e.g. "two loose fancy vivid yellow pear-shape diamonds" / "three loose Colombian emerald step-cuts" / "one 5ct oval Burmese ruby flanked by two D-color trapezoid diamonds"], oriented exactly as in the reference design, high internal brilliance, sharp facet reflections. From each real stone a LONG DRAMATIC DIAGONAL SHADOW stretches across the paper to the lower right (roughly 2× to 3× the stone's length), and INSIDE each shadow THE STONE'S OWN COLOR bleeds through as a luminous glow — yellow diamonds → warm canary glow inside the shadow; emeralds → deep green glow; rubies → warm red glow; sapphires → deep blue glow; white diamonds → cool prismatic bounce. This color-in-shadow effect is the Stone Sketch signature: color inside the darkness, not on the paper around the stone. Any accent stones in the design that are NOT called out as real remain as loose pencil sketch only — drawn, not real. Sharp focus on the real stones and their glowing shadows, softer on the pencil work. Cinematic haute joaillerie campaign in the Van Cleef &amp; Arpels "Pierres de Caractère" spirit.
+(End of prompt — 2026-07-04)</pre>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="category-intro" style="margin-top: 80px;">
+    <div class="category-intro__eyebrow">Style · Archival Plate</div>
+    <h2 class="category-intro__title">Bulgari Sketch — atelier design plate</h2>
+    <p class="category-intro__body">Bulgari Sketch is the classic maison archival design plate — deep charcoal paper, the featured piece rendered in soft gouache and pencil at center, freehand sketch alternates and construction lines in the negative space around it, blind embossed BEZ AMBAR seal in the lower right (no ink, just paper relief). Bulgari archive DNA, Bez Ambar mark. Universal: swap the featured piece per shot.</p>
+  </div>
+
+  <div class="prompts">
+
+    <article class="card">
+      <div class="card__media">
+        <img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783166449/Studio/prompt-creations/rings/bulgari-sketch-result.png" alt="Bulgari Sketch result — toi-et-moi pears on black atelier plate">
+      </div>
+      <div class="card__body">
+        <div class="card__eyebrow">Style · Bulgari Sketch · Universal</div>
+        <h3 class="card__title">Bulgari Sketch</h3>
+        <div class="card__chips">
+          <span class="chip">Black Paper</span>
+          <span class="chip">Gouache Hero</span>
+          <span class="chip">Sketch Alternates</span>
+          <span class="chip">Construction Lines</span>
+          <span class="chip">Blind Emboss</span>
+          <span class="chip">Universal</span>
+        </div>
+        <p class="card__desc">Universal template. Fill one placeholder — the featured piece — and the invariants (black paper, gouache render, sketch alternates + construction lines, BEZ AMBAR blind emboss) do the rest. No writing anywhere; only linework and the emboss.</p>
+        <div class="card__prompt">
+          <div class="card__prompt-label">
+            <span>Prompt</span>
+            <button class="copy-btn" data-target="prompt-bulgari-sketch">Copy</button>
+          </div>
+<pre id="prompt-bulgari-sketch">Photorealistic Bez Ambar atelier design plate in the classic maison archival style. Background: deep charcoal / near-black textured paper (~15% gray, matte, subtle paper grain and fiber visible) filling the entire frame — the drama comes from the darkness. Composition is a TWO-LAYER ATELIER DESIGN PLATE:
+
+LAYER 1 — the featured piece (HERO): a photorealistic rendered reproduction of the exact jewelry piece shown in the reference image — faithfully capturing its silhouette, stone arrangement, cut shapes, metal details, and prong style — composed slightly above center, RENDERED IN RICH PAINTERLY OIL COLORS WITH PHOTOGRAPHIC-LEVEL DETAIL — luminous, dimensional, deep saturation, sharp facet definition, dramatic highlight-to-shadow contrast, subtle impasto brushwork on the metal, hyperreal quality that makes the piece look almost tangible against the black. The featured stones are rendered in their TRUE COLORS as shown in the reference image — do NOT invent stone colors not present in the reference. If the reference shows white diamonds, render them as brilliant icy-white diamonds with no color tint. If it shows colored stones, render those exact colors only. Metalwork rendered with painterly white and pale-gray impasto suggesting brilliance and dimensionality. The featured piece OWNS the composition's attention. Approximately 50–60% of the frame.
+
+LAYER 2 — SUBDUED pencil sketch alternates and construction lines in the surrounding negative space (upper corners, lower corners, and along the edges): 3–5 small quick freehand pencil-sketch variations of the same design DRAWN IN SOFT WHITE / LIGHT GRAY LINE (luminous white pencil on the dark paper, high contrast — the classic jeweler's sketch-on-black-board quality; lines read clearly bright against the deep charcoal) — alternate silhouettes, alternate gallery treatments, alternate prong studies, alternate profile views. Include visible CONSTRUCTION LINES: light guide axes, centerline crosses, circle-of-symmetry marks, radial construction arcs, faint dimension marks — also in the same soft white pencil line. Cross-hatched shading on the sketches, quick unfinished energy, real hand-drawn feel — NOT drafted, NOT ruler-perfect. The sketches are SECONDARY information, ambient design context — the eye should go to the hero piece first and only. NO handwritten text, NO annotations, NO labels, NO numbers, NO letters — only linework.
+
+BLIND EMBOSS: in the LOWER RIGHT corner, a small round BLIND EMBOSS pressed directly into the charcoal paper (NO INK, NO COLOR, NO WAX — just relief in the paper itself). Roughly 2cm diameter. The emboss reads "BEZ AMBAR" in elegant serif around the perimeter with a small crown or diamond emblem at center. The emboss is DEBOSSED (pressed inward) with a subtle raised inner surface, catching a soft highlight along the upper-left edge and a delicate shadow along the lower-right edge from the key light — visible only through subtle relief, not through pigment. Elegant, restrained, Patek-level quiet.
+
+Overall mood: fine art archival design plate, classic haute joaillerie atelier heritage, dignified, reverent — the way a private commission would be blocked out in a leather-bound design book. Sharp focus on the rendered piece, softer on the sketches. NO Bulgari markings, NO Cartier markings, NO other house names, NO writing anywhere — only linework and the BEZ AMBAR blind emboss.
+(End of prompt — 2026-07-04)</pre>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="category-intro" style="margin-top: 80px;">
+    <div class="category-intro__eyebrow">Style · Multi-View Drawing</div>
+    <h2 class="category-intro__title">Graff Drawing — atelier design drawing</h2>
+    <p class="category-intro__body">Graff Drawing is the refined atelier presentation for private commissions. Bright cream watercolor paper, the same piece rendered in three stacked views (profile / front / three-quarter) in delicate translucent watercolor and fine pencil, copperplate handwritten annotations calling out stones and metals, a subtle circular BEZ AMBAR stamp in the lower right. The quiet, refined sibling of Bulgari Sketch. Universal: swap the piece and annotations per shot.</p>
+  </div>
+
+  <div class="prompts">
+
+    <article class="card">
+      <div class="card__media">
+        <img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783195739/Studio/prompt-creations/rings/graff-drawing-reference.png" alt="Graff Drawing reference — three-view watercolor plate of a fancy yellow radiant three-stone ring">
+      </div>
+      <div class="card__body">
+        <div class="card__eyebrow">Style · Graff Drawing · Universal</div>
+        <h3 class="card__title">Graff Drawing</h3>
+        <div class="card__chips">
+          <span class="chip">Cream Paper</span>
+          <span class="chip">Three Views</span>
+          <span class="chip">Watercolor + Pencil</span>
+          <span class="chip">Copperplate Annotations</span>
+          <span class="chip">BEZ AMBAR Stamp</span>
+          <span class="chip">Universal</span>
+        </div>
+        <p class="card__desc">Universal template. Fill two placeholders — the piece + the annotations — and the invariants (cream paper, three views, translucent watercolor + fine pencil, copperplate script, subtle stamp) do the rest. Quiet, refined, atelier-precise.</p>
+        <div class="card__prompt">
+          <div class="card__prompt-label">
+            <span>Prompt</span>
+            <button class="copy-btn" data-target="prompt-graff-drawing">Copy</button>
+          </div>
+<pre id="prompt-graff-drawing">Photorealistic Bez Ambar atelier design drawing in the classic "GRAFF DRAWING" style. Background: bright warm off-white cotton watercolor paper (soft cream, subtle warmth, roughly 92% white) filling the entire frame, visible watercolor tooth and cotton grain, light diffuse overhead lighting, corners very softly darker with a delicate vignette — luminous, refined, restrained.
+
+Composition is a VERTICAL MULTI-VIEW DESIGN PLATE showing the same piece from three angles stacked top to bottom, each centered on the vertical midline:
+- TOP: profile / side view of [PIECE DESCRIPTION]
+- MIDDLE: front-facing hero view showing the featured stone(s) full face
+- BOTTOM: three-quarter or dimensional view showing depth
+
+Behind each view: very faint pencil centerline crosses and light construction axes in barely-visible graphite (~15% gray, ghosted, ambient), suggesting the geometric setup. Roughly equal spacing between the three views, generous breathing room.
+
+RENDERING STYLE — delicate watercolor + fine pencil, illustrator-quality:
+- Metal (white gold, platinum, yellow gold): translucent light gray or gold watercolor washes with soft graphite linework defining edges. Refined, gentle, never heavy.
+- Featured colored stones: saturated but delicate watercolor washes in the stone's true color — yellow diamonds in warm luminous canary yellow with visible facet lines drawn in fine pencil; emeralds in cool clear green; rubies in warm red; sapphires in cornflower blue. All rendered with translucency and internal light, not opaque paint. The paper glows through.
+- Accent white diamonds: pale translucent gray-blue washes with faint pencil facet lines.
+- Overall: SOFT, LUMINOUS, REFINED — as if the artist used minimal pigment and let the paper breathe.
+
+HANDWRITTEN ANNOTATIONS: elegant copperplate script in soft graphite gray (~40% gray), positioned in the negative space to the LEFT and RIGHT of the views, pointing to specific elements with delicate dotted leader lines. Written in an atelier hand — beautiful, slightly imperfect, atelier-authentic. Annotations for this piece: [ANNOTATIONS — e.g. "Brilliant cut white diamond shoulders" / "16ct fancy intense radiant cut Yellow diamond" / "Platinum shank" / "Fancy vivid yellow pear diamonds 8ct total"]. Breathing room preserved — annotations don't crowd the piece.
+
+BEZ AMBAR STAMP: small circular stamp in the LOWER RIGHT corner — LIGHT GRAY, LOW CONTRAST, printed feel (not embossed, not wax). Reads "DESIGN · BEZ AMBAR · WORLDWIDE" in fine serif letters around the circumference with a small emblem at center. Roughly 2cm diameter. Delicate, understated, atelier signature — visible but quiet.
+
+Overall mood: fine art atelier design drawing, refined and restrained, private-commission luxury, the way a top-house design would be presented in a leather portfolio to a client. NO Graff markings, NO Cartier markings, NO other house names — only BEZ AMBAR.
+(End of prompt — 2026-07-04)</pre>
+        </div>
+
+        <div class="card__variant">
+          <div class="card__variant-header">Variant · 16:9 Landscape — Gouache, No Writing</div>
+          <div class="card__media" style="margin: 0 0 16px;">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783198466/Studio/prompt-creations/rings/graff-drawing-landscape-result.png" alt="Graff Drawing 16:9 landscape — gouache toi-et-moi result">
+          </div>
+          <div class="card__prompt">
+            <div class="card__prompt-label">
+              <span>Prompt — Landscape</span>
+              <button class="copy-btn" data-target="prompt-graff-drawing-landscape">Copy</button>
+            </div>
+<pre id="prompt-graff-drawing-landscape">Photorealistic Bez Ambar atelier design drawing in the classic "GRAFF DRAWING" style, LANDSCAPE 16:9 aspect ratio. Background: bright warm off-white cotton paper (soft cream, subtle warmth, roughly 92% white) filling the entire frame, visible fine paper grain, light diffuse overhead lighting, corners very softly darker with a delicate vignette — luminous, refined.
+
+Composition is a HORIZONTAL MULTI-VIEW DESIGN PLATE showing the same piece from three angles arranged LEFT to RIGHT, each centered on the horizontal midline and aligned along a common baseline:
+- LEFT: profile / side view of [PIECE DESCRIPTION]
+- CENTER: front-facing hero view showing the featured stone(s) full face
+- RIGHT: three-quarter or dimensional view showing depth
+
+CONSTRUCTION LINES — visible and expressive on the bare paper around the piece: pencil centerline crosses and light construction axes behind each view in soft graphite (~25% gray), radiating axis lines, circle-of-symmetry marks, faint radial guides, gentle triangulation lines. NO dimension numbers, NO measurements, NO handwritten labels — just the pencil geometry.
+
+RENDERING STYLE — OPAQUE GOUACHE PAINTING WITH PHOTOREALISTIC DETAIL, by a master illustrator's hand. NOT translucent watercolor — solid pigment coverage, dimensional impasto quality, painterly brushwork combined with photographic-level realism in every facet, prong, and reflection. Every surface built up from layered gouache pigments: WIDE MULTI-PIGMENT PALETTE, at least 10–12 distinct color notes visible across the piece rendering. Never one flat color. Every surface — metal and stone — layered from multiple pigments the way a master gouache artist works: not a single yellow but yellow + amber + warm gold + cool green shadow + pink highlight + violet-blue pavilion + coral bounce; not a single red but red + rose + violet-red + orange-red + pink edge + blue undertone. Every stone is a symphony of tones, painted with photographic precision.
+
+METAL PALETTE (per view, ~5–6 notes visible), painted in opaque gouache:
+- Deep graphite / near-black line defining the edges and prongs
+- Cool blue-gray in the recesses and shadows
+- Warm gold-touched highlight where light catches the crest
+- Silver-white crest reflections, opaque and bright
+- Warm coral or pink BOUNCE tones from neighboring colored stones reflected into the metal surface
+- Cool green or blue COMPLEMENTARY-COLOR shadows in the deepest folds
+- Painterly brushwork visible in the strokes, but every facet edge photographically sharp
+
+STONE PALETTE (per stone, ~7–8 notes visible in solid layered gouache):
+- Core saturation in the stone's true color, deep and rich
+- A warmer neighbor tone (yellow → warm orange-amber; ruby → warm rose; sapphire → warm violet-purple; emerald → warm olive)
+- A cooler complementary shadow tone in the pavilion (yellow → cool green; ruby → cool blue; sapphire → deep indigo; emerald → cool teal)
+- A bright pigment highlight on the crown catching the light — opaque, luminous, painted with a small precise brush
+- A darker culet accent at the point
+- A metallic bounce (gold, rose, or silver) reflecting from the setting
+- Fine facet linework cross-hatching the interior structure with photographic precision
+- A subtle secondary refraction color inside the belly (pink, coral, or amethyst flash)
+- SUPER REALISTIC facet definition — individual crown facets, table edges, pavilion star facets all clearly resolved
+
+WHITE ACCENT DIAMONDS — layered pale gray-blue gouache with individually painted facet edges, warm coral and pink bounce tones from neighboring colored stones, subtle prismatic rainbow flashes inside the facets, opaque and dimensional.
+
+Overall the piece should carry AT LEAST 10–12 DISTINCT COLOR NOTES visible when the eye scans across the rendering, executed in OPAQUE GOUACHE with painterly brushwork BUT photorealistic facet-level detail. The paper is the ground around the piece; the piece itself is painted SOLID and DIMENSIONAL, not translucent. Warm and cool tones playing against each other, every surface catching secondary colors from every other surface, the whole thing luminous and hyperreal.
+
+BEZ AMBAR STAMP: small circular stamp in the LOWER RIGHT corner — light gray, low contrast, printed feel (not embossed, not wax). Reads "DESIGN · BEZ AMBAR · WORLDWIDE" in fine serif letters around the circumference with a small emblem at center. Roughly 2cm diameter. Delicate, understated.
+
+Overall mood: fine art atelier design drawing by a MASTER GOUACHE ILLUSTRATOR — richly colored, painterly, photorealistic, dimensional. NO handwritten text anywhere. NO annotations. NO labels. NO writing of any kind — only construction lines, the piece, and the stamp. NO Graff markings, NO Cartier markings, NO other house names — only BEZ AMBAR. Final image aspect: 16:9 landscape, three views spanning the horizontal length.
+(End of prompt — 2026-07-04)</pre>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="category-intro" style="margin-top: 80px;">
+    <div class="category-intro__eyebrow">Tool · Repair</div>
+    <h2 class="category-intro__title">Diamond Enhancer — fix AI facet artifacts</h2>
+    <p class="category-intro__body">When AI-generated diamonds look like scattered dots or blurry sparkle blobs instead of sharp facets, apply this prompt as a selection pass over the jewelry only. Works in Photoshop Generative Fill, Gemini, or any inpainting tool. Run twice on the same selection for stubborn artifacts.</p>
+  </div>
+
+  <div class="prompts">
+
+    <article class="card">
+      <div class="card__media">
+        <img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783385987/Studio/prompt-creations/tools/diamond-enhancer-ref.png" alt="Diamond enhancer reference — sharp pear and cushion facets">
+      </div>
+      <div class="card__body">
+        <div class="card__eyebrow">Tool · Universal · Any Diamond Piece</div>
+        <h3 class="card__title">Diamond Enhancer</h3>
+        <div class="card__chips">
+          <span class="chip">Facet Sharpening</span>
+          <span class="chip">Dot Artifact Fix</span>
+          <span class="chip">Selection Pass</span>
+          <span class="chip">Run 2× if Needed</span>
+        </div>
+        <p class="card__desc">Select only the diamond/jewelry area — not skin or background. Paste this prompt into GenFill or your inpainting tool. The geometric plane language forces the model to resolve hard facet edges instead of averaging into noise. Run a second pass on the same selection if dots remain.</p>
+        <div class="card__prompt">
+          <div class="card__prompt-label">
+            <span>Prompt</span>
+            <button class="copy-btn" data-target="prompt-diamond-enhancer">Copy</button>
+          </div>
+<pre id="prompt-diamond-enhancer">Ultra-sharp photorealistic diamond facets. Each facet is a flat geometric plane — table, crown facets, star facets, upper girdle facets, pavilion — separated by razor-crisp edges with no blurring, no softening, no pixelation. Where two facets meet, the edge is a hard line. The interior of each facet is a single clean mirror reflection: either a bright specular highlight, a cool blue-gray depth tone, or a white prismatic flash — not blended together, not blurry, not dotted. No scattered sparkle blobs. No "glitter" noise. Diamond brilliance comes from the sharp contrast between adjacent facets, each reading its own clean flat tone. Photorealistic luxury jewelry photography, shot at f/8, studio strobe, medium format. The result should look like a GIA grading photograph, not an AI render.
+(End of prompt — 2026-07-06)</pre>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+</section>
+
+<section class="panel" id="panel-earrings" role="tabpanel">
+
+  <div class="category-intro">
+    <div class="category-intro__eyebrow">Muse · Earrings</div>
+    <h2 class="category-intro__title">Earring Profile Shot — two model variants</h2>
+    <p class="category-intro__body">Strict 90-degree profile shots built for earring placement. Each scene is fully self-contained — no base image needed. Feed your earring as a reference image and the prompt places it into this exact scene. Two model variants: African profile (deep shadow, high contrast) and Blonde American (same composition, fair skin).</p>
+  </div>
+
+  <div class="prompts">
+
+    <article class="card">
+      <div class="card__media">
+        <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1783388866/Studio/prompt-creations/earrings/earring-profile-african-ref.png" alt="African profile earring reference — hard key light, deep shadow on right">
+      </div>
+      <div class="card__body">
+        <div class="card__eyebrow">Earrings · Profile · African Model</div>
+        <h3 class="card__title">90° Profile — African Model, Hard Shadow</h3>
+        <div class="card__chips">
+          <span class="chip">Any Earring</span>
+          <span class="chip">Reference-Image Driven</span>
+          <span class="chip">Strict Profile</span>
+          <span class="chip">Hard Key Left</span>
+          <span class="chip">Deep Shadow</span>
+        </div>
+        <p class="card__desc">Strict 90-degree profile, dark warm-brown skin, single hard key from the left — right half of face falls into deep near-total shadow. Feed any earring reference alongside this prompt and it plants the piece on the ear in this exact scene.</p>
+        <div class="card__prompt">
+          <div class="card__prompt-label">
+            <span>Prompt</span>
+            <button class="copy-btn" data-target="prompt-earring-african">Copy</button>
+          </div>
+<pre id="prompt-earring-african">A woman photographed in strict 90-degree profile, facing right. Dark warm-brown skin, matte finish with natural luminosity. Hair pulled back close to the head, ears fully exposed. Single hard key light from the LEFT — the left side of the face and neck are fully lit; the right half of the face falls into a deep, near-total shadow. Deep neutral gray gradient background, darkening toward the edges. The earring — taken from the reference image — sits on the left ear, fully visible in this profile view, catching the key light with sharp white specular highlights on every top-facing facet. The model's gaze is directed straight ahead, chin level, neck elongated, bare shoulders. No other jewelry. Ultra-sharp focus on the earring. Photorealistic luxury jewelry campaign photography, Cartier editorial grade.
+(End of prompt — 2026-07-06)</pre>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card__media">
+        <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1783388865/Studio/prompt-creations/earrings/earring-profile-blonde-ref.png" alt="Blonde American profile earring reference — same composition, fair skin">
+      </div>
+      <div class="card__body">
+        <div class="card__eyebrow">Earrings · Profile · Blonde Model</div>
+        <h3 class="card__title">90° Profile — Blonde American, Hard Shadow</h3>
+        <div class="card__chips">
+          <span class="chip">Any Earring</span>
+          <span class="chip">Reference-Image Driven</span>
+          <span class="chip">Strict Profile</span>
+          <span class="chip">Hard Key Left</span>
+          <span class="chip">Fair Skin</span>
+        </div>
+        <p class="card__desc">Same strict 90-degree profile and hard-key lighting as the African variant — blonde hair pulled back, fair to medium skin, deep shadow on the right. Same composition, different model. Swap the reference earring, same prompt works every time.</p>
+        <div class="card__prompt">
+          <div class="card__prompt-label">
+            <span>Prompt</span>
+            <button class="copy-btn" data-target="prompt-earring-blonde">Copy</button>
+          </div>
+<pre id="prompt-earring-blonde">A blonde American woman photographed in strict 90-degree profile, facing right. Fair to medium skin, smooth and luminous. Blonde hair pulled back close to the head, ears fully exposed. Single hard key light from the LEFT — the left side of the face and neck are fully lit; the right half of the face falls into a deep, near-total shadow. Deep neutral gray gradient background, darkening toward the edges. The earring — taken from the reference image — sits on the left ear, fully visible in this profile view, catching the key light with sharp white specular highlights on every top-facing facet. The model's gaze is directed straight ahead, chin level, neck elongated, bare shoulders. No other jewelry. Ultra-sharp focus on the earring. Photorealistic luxury jewelry campaign photography, Cartier editorial grade.
+(End of prompt — 2026-07-06)</pre>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+</section>
+
+<section class="panel" id="panel-bracelets" role="tabpanel">
+  <div class="empty">
+    <div class="empty__title">Bracelet prompts — coming soon</div>
+    <div class="empty__body">Named muse pending</div>
+  </div>
+</section>
+
+<section class="panel" id="panel-necklaces" role="tabpanel">
+
+  <div class="category-intro">
+    <div class="category-intro__eyebrow">Muse · Necklaces</div>
+    <h2 class="category-intro__title">Diamond Necklace Close-Up — editorial décolletage</h2>
+    <p class="category-intro__body">A self-contained editorial scene for any diamond necklace. No base image needed — the full lighting, model, and atmosphere are described in the prompt. Feed your necklace as a reference image and the prompt places it into this scene. Swap the reference, same prompt works every time.</p>
+  </div>
+
+  <div class="prompts">
+
+    <article class="card">
+      <div class="card__media">
+        <img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783378043/Studio/prompt-creations/necklaces/necklace-closeup-editorial-ref.png" alt="Diamond necklace editorial close-up reference — décolletage with hard key light">
+      </div>
+      <div class="card__body">
+        <div class="card__eyebrow">Necklace · Editorial · Close-Up</div>
+        <h3 class="card__title">Diamond Necklace — Décolletage Hero</h3>
+        <div class="card__chips">
+          <span class="chip">Any Necklace</span>
+          <span class="chip">Reference-Image Driven</span>
+          <span class="chip">Hard Key Light</span>
+          <span class="chip">Deep Gray BG</span>
+          <span class="chip">Cartier Editorial</span>
+        </div>
+        <p class="card__desc">No necklace shape in the prompt — all design detail comes from your reference image. Feed any necklace reference alongside this prompt and it plants the piece into this exact scene. The model, lighting, and atmosphere are fully self-contained.</p>
+        <div class="card__prompt">
+          <div class="card__prompt-label">
+            <span>Prompt</span>
+            <button class="copy-btn" data-target="prompt-necklace-closeup">Copy</button>
+          </div>
+<pre id="prompt-necklace-closeup">A female model photographed from the chest up in dramatic fine jewelry editorial style. Deep neutral gray gradient background, darkening toward the edges. Studio lighting with a single hard key light from upper left, casting a strong diagonal shadow across the right side of the neck and collarbone. Skin tone warm olive-bronze, smooth and luminous. The model's chin is slightly lifted, neck elongated, bare shoulders relaxed. A diamond necklace — taken from the reference image — rests at the base of the neck, following the natural curve of the collarbone, sitting flush against the skin. The piece catches the key light with sharp white specular highlights on the top-facing facets and falls into cool blue-gray shadow on the underside. A soft shadow falls from the piece downward onto the décolletage. The necklace is the sole focus of the shot; the face is cropped or softly out of focus. Photorealistic luxury jewelry campaign photography, Cartier editorial grade, ultra-sharp on the piece.
+(End of prompt — 2026-07-06)</pre>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+</section>
+
+<section class="panel" id="panel-pendants" role="tabpanel">
+  <div class="empty">
+    <div class="empty__title">Pendant prompts — coming soon</div>
+    <div class="empty__body">Named muse pending</div>
+  </div>
+</section>
+
+<section class="panel" id="panel-log" role="tabpanel">
+
+  <div class="category-intro">
+    <div class="category-intro__eyebrow">Session Log · Jul 12–13, 2026 · Insperation topic</div>
+    <h2 class="category-intro__title">Oval Cognac Diamond Ring — Photoshop Session</h2>
+    <p class="category-intro__body">Chronological prompt log from the Jul 12–13 design session. Date + time on the left, thumbnail, prompt on the right.</p>
+  </div>
+
+  <div class="log-list">
+
+    <div class="log-entry">
+      <div class="log-entry__date">Jul 12<br>04:07<br><a href="https://t.me/c/3605997427/2681" target="_blank" style="color:var(--gold-dim);font-size:10px;text-decoration:none;">↗ msg</a></div>
+      <img class="log-entry__thumb" src="https://res.cloudinary.com/dlg2mou53/image/upload/w_160,h_160,c_fill/v1783927458/inspiration-log/oval-cognac-matched-shank-2026-07-12.png" alt="Narrow shank" onclick="lb(this.src.replace('w_160,h_160,c_fill/',''))">
+      <div class="log-entry__content">
+        <div class="log-entry__eyebrow">Ring · PS GenFill · Structure Edit</div>
+        <div class="log-entry__title">Narrow Shank at Shoulders</div>
+        <div class="log-entry__prompt-wrap">
+          <button class="log-entry__copy" onclick="cpLog(this)">Copy</button>
+<pre>Redraw the ring shank at the shoulder points where it exits the halo at the 9 o'clock and 3 o'clock positions. Reduce the visible horizontal profile of the shank dramatically at those join points so that from a face-up view, almost no shank is visible on either side — the band should appear to tuck directly behind the halo edge and nearly disappear. The cross-section height of the shank (top to bottom) must remain exactly as thick as the border of the surrounding pavé halo frame — the thickness matches, only the visible side profile shrinks. Preserve the oxidized dark gold metal finish, the micro-pavé cognac diamond texture covering the shank, the teardrop prongs, the center oval stone, and the black studio background. Photorealistic high-end jewelry product photography.
+MASK: both shoulder zones at 9 + 3 o'clock, loose 15–20% margin.</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry__date">Jul 12<br>23:51<br><a href="https://t.me/c/3605997427/2701" target="_blank" style="color:var(--gold-dim);font-size:10px;text-decoration:none;">↗ msg</a></div>
+      <img class="log-entry__thumb" src="https://res.cloudinary.com/dlg2mou53/image/upload/w_160,h_160,c_fill/v1783927460/inspiration-log/oval-cognac-wider-view-2026-07-12.png" alt="Platinum swap" onclick="lb(this.src.replace('w_160,h_160,c_fill/',''))">
+      <div class="log-entry__content">
+        <div class="log-entry__eyebrow">Ring · PS GenFill · Material Swap</div>
+        <div class="log-entry__title">Platinum + White Diamond Swap</div>
+        <div class="log-entry__prompt-wrap">
+          <button class="log-entry__copy" onclick="cpLog(this)">Copy</button>
+<pre>This is a material-only color swap — do NOT change the ring's design, shape, or structure in any way. Keep the exact same thick domed oval halo frame with its deep multi-row micro-pavé coverage, the exact same matched shank width, the exact same teardrop prong style and count, the exact same camera angle and composition. Only change two things: (1) recolor all pavé accent stones from cognac brown to colorless white diamond brilliance, D-E color, icy white sparkle; (2) recolor all metal from oxidized dark gold to bright polished platinum, cool silver-white with crisp specular highlights. The center oval fancy cognac diamond stays completely identical — same color, same cut, same brightness. The halo silhouette shape, the dome depth, the pavé stone count and texture, the shank profile, the prong geometry, the black studio background — all identical to the input image. Only the stone color and metal color change. Photorealistic high-end jewelry product photography.
+MASK: entire halo frame + shank, exclude center stone, loose 15% margin.</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry__date">Jul 13<br>00:06<br><a href="https://t.me/c/3605997427/2711" target="_blank" style="color:var(--gold-dim);font-size:10px;text-decoration:none;">↗ msg</a></div>
+      <img class="log-entry__thumb" src="https://res.cloudinary.com/dlg2mou53/image/upload/w_160,h_160,c_fill/v1783927461/inspiration-log/oval-cognac-platinum-render-2026-07-13.png" alt="Horizon reflection" onclick="lb(this.src.replace('w_160,h_160,c_fill/',''))">
+      <div class="log-entry__content">
+        <div class="log-entry__eyebrow">Ring · PS GenFill · Background</div>
+        <div class="log-entry__title">Dark Studio Horizon + Reflection</div>
+        <div class="log-entry__prompt-wrap">
+          <button class="log-entry__copy" onclick="cpLog(this)">Copy</button>
+<pre>Add a subtle dark studio horizon line and a clean mirror reflection of the ring in the bottom portion of the image only. The ring must remain at exactly the same scale, size, and position within the frame as in the input image — do not resize, reposition, shrink, or move the ring in any way. Only modify the lower background area: introduce a barely visible edge where a deep charcoal polished surface meets the dark backdrop, and place a natural compressed mirror reflection of the ring just below it — soft-edged, fading out downward, showing the platinum sparkle and warm cognac center glow. Everything above the horizon — the ring, the halo, the prongs, the center stone, the upper and side background — stays pixel-identical to the input. Luxury studio product photography, dark and dramatic.
+MASK: bottom 30% of image only — reflection zone + horizon strip. Do NOT mask upper area or sides.</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-entry__date">Jul 13<br>02:22<br><a href="https://t.me/c/3605997427/2791" target="_blank" style="color:var(--gold-dim);font-size:10px;text-decoration:none;">↗ msg</a></div>
+      <img class="log-entry__thumb" src="https://res.cloudinary.com/dlg2mou53/image/upload/w_160,h_160,c_fill/v1783934565/inspiration-log/ermine-pave-detail-layer-2026-07-13.png" alt="Pavé detail layer" onclick="lb(this.src.replace('w_160,h_160,c_fill/',''))">
+      <div class="log-entry__content">
+        <div class="log-entry__eyebrow">Ring · PS GenFill · Layer Above · Detail Pass</div>
+        <div class="log-entry__title">Pavé Diamond Detail — Surface Pass</div>
+        <div class="log-entry__prompt-wrap">
+          <button class="log-entry__copy" onclick="cpLog(this)">Copy</button>
+<pre>This is a surface-detail pass only. Match the exact number of stones, their exact sizes, and their exact positions from the layer beneath this selection — do not move, enlarge, reduce, or add any diamonds. On those same stones at their current size, add maximum photorealistic surface detail: visible facets, bright table flash, dark star pattern, spectral fire, platinum beads between stones at their current spacing. The geometry is already correct — improve only the rendering quality. The oval cognac center stone, prongs, shank, composition, and white background are unchanged.
+MASK: oval pavé halo band only. Loose mask, 10px soft feather. Run as layer above the existing ring.</pre>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<footer class="ba-footer">
+  <div>Bez Ambar &nbsp;·&nbsp; 213-629-9191 &nbsp;·&nbsp; <a href="mailto:info@bezambar.com">info@bezambar.com</a></div>
+</footer>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      tabs.forEach(t => {
+        const active = t === tab;
+        t.classList.toggle('is-active', active);
+        t.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+      panels.forEach(p => p.classList.toggle('is-active', p.id === 'panel-' + target));
+      history.replaceState(null, '', '#' + target);
+    });
+  });
+
+  // Deep link support
+  const hash = location.hash.replace('#', '');
+  if (hash) {
+    const target = document.querySelector('.tab[data-tab="' + hash + '"]');
+    if (target) target.click();
+  }
+
+  // Copy-to-clipboard (card prompts)
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const pre = document.getElementById(btn.dataset.target);
+      if (!pre) return;
+      try {
+        await navigator.clipboard.writeText(pre.textContent);
+        const orig = btn.textContent;
+        btn.textContent = 'Copied';
+        btn.classList.add('is-copied');
+        setTimeout(() => { btn.textContent = orig; btn.classList.remove('is-copied'); }, 1400);
+      } catch (e) { console.error('Copy failed', e); }
+    });
+  });
+
+  // Copy-to-clipboard (log prompts)
+  function cpLog(btn) {
+    const pre = btn.closest('.log-entry__prompt-wrap').querySelector('pre');
+    if (!pre) return;
+    navigator.clipboard.writeText(pre.textContent.trim()).then(() => {
+      const orig = btn.textContent;
+      btn.textContent = 'Copied';
+      setTimeout(() => btn.textContent = orig, 1400);
+    });
+  }
+
+  // Lightbox (log thumbnails)
+  function lb(src) {
+    const img = document.getElementById('lbImg');
+    if (img) { img.src = src; document.getElementById('lb').classList.add('on'); document.body.style.overflow = 'hidden'; }
+  }
+  function closeLB() {
+    const el = document.getElementById('lb');
+    if (el) { el.classList.remove('on'); document.body.style.overflow = ''; }
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
+</script>
+
+<!-- Lightbox -->
+<div id="lb" onclick="closeLB()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:999;align-items:center;justify-content:center;" class="lb-wrap">
+  <button onclick="closeLB()" style="position:absolute;top:20px;right:24px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;opacity:.7;">&times;</button>
+  <img id="lbImg" src="" alt="" style="max-width:90vw;max-height:90vh;border-radius:4px;">
+</div>
+<script>
+  document.getElementById('lb').style.display = 'flex';
+  document.getElementById('lb').style.display = 'none';
+  document.querySelectorAll('.lb-wrap').forEach(el => el.style.display = 'none');
+  document.getElementById('lb').addEventListener('click', function(e){ if(e.target===this) closeLB(); });
+</script>
+
+</body>
+</html>

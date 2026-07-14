@@ -4,7 +4,7 @@ date: 2019-06-05
 updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "The solitaire endures not because it is simple, but because nothing else focuses a stone's beauty with the same ruthless clarity."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540126/blog/legacy/divine-stone-alone.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540126/Jewelry%20Images/Legacy/divine-stone-alone.jpg"
 heroImageAlt: "Single round brilliant diamond solitaire ring against a soft neutral background"
 author: Bez Ambar
 status: live

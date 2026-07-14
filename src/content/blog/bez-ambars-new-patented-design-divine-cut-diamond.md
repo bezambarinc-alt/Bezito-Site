@@ -4,7 +4,7 @@ date: 2016-06-28
 updatedDate: 2026-07-08
 category: diamonds
 excerpt: "The Divine Cut is a proprietary faceting pattern developed and patented by Bez Ambar. Understanding what it does differently from standard brilliant cutting explains why it produces a distinct visual result."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540126/blog/legacy/divine-stone-alone.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540126/Jewelry%20Images/Legacy/divine-stone-alone.jpg"
 heroImageAlt: "The Divine Cut diamond by Bez Ambar, isolated stone showing facet pattern"
 author: Bez Ambar
 status: live
@@ -49,7 +49,7 @@ The Divine Cut's modified facet pattern means its flash characteristics shift di
 In settings with accent stones, the center stone's proprietary faceting creates a deliberate contrast with any round brilliant accent diamonds around it. The two facet architectures produce different visual signatures, and their interaction in a halo or pavé setting creates a layered light effect.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540126/blog/legacy/divine-stone-alone.jpg" alt="The Divine Cut diamond by Bez Ambar — proprietary facet pattern viewed face-up" />
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540126/Jewelry%20Images/Legacy/divine-stone-alone.jpg" alt="The Divine Cut diamond by Bez Ambar — proprietary facet pattern viewed face-up" />
 </figure>
 
 ### Choosing

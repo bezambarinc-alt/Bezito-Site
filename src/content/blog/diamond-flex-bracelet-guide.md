@@ -4,7 +4,7 @@ date: 2021-11-10
 updatedDate: 2026-07-08
 category: bracelets
 excerpt: "A flex bracelet moves with the wrist because its linked construction articulates independently — that engineering is what separates a comfortable piece from one that fights you all day."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry/3rows_round_Flex_ring_mucrzv.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry/Jewelry%20Images/Rings/3rows_round_Flex_ring_mucrzv.jpg"
 heroImageAlt: "Three-row diamond flex bracelet in 18k white gold showing articulated link movement"
 author: Bez Ambar
 status: live
@@ -36,7 +36,7 @@ Width must be proportionate to wrist circumference. A three-row bracelet coverin
 Stone shape affects the flex bracelet's visual language significantly. Round brilliant stones set in each segment produce a sparkle-dominant piece — the light return from each stone fires in all directions and the overall effect is brilliant and dynamic. Baguette diamonds — rectangular step cuts — in channel settings across each segment produce a more linear, architectural piece where the light return is more controlled and the overall effect reads as clean and modern. Princess cut diamonds occupy a middle position: more brilliance than baguettes, more geometric character than round brilliants. The shape choice should reflect the wearer's overall aesthetic rather than a performance metric.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry/C0723_Oval_Eternity_Band_awpedb.jpg" alt="Flex bracelet segment detail showing hinge construction and diamond setting across joint">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry/Jewelry%20Images/Rings/C0723_Oval_Eternity_Band_awpedb.jpg" alt="Flex bracelet segment detail showing hinge construction and diamond setting across joint">
 </figure>
 
 ### The Wear

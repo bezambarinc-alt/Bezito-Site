@@ -4,7 +4,7 @@ date: 2019-07-22
 updatedDate: 2026-07-08
 category: diamonds
 excerpt: "Fancy yellow diamonds occupy a separate market from white diamonds entirely — graded on different criteria and priced by logic that most buyers are not familiar with."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540132/blog/legacy/chocolate-brown-diamond-ring.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540132/Jewelry%20Images/Legacy/chocolate-brown-diamond-ring.jpg"
 heroImageAlt: "Fancy yellow diamond ring in yellow gold and platinum setting showing vivid color"
 author: Bez Ambar
 status: live

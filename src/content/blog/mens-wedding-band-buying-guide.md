@@ -4,7 +4,7 @@ date: 2024-04-22
 updatedDate: 2026-07-08
 category: guides
 excerpt: "Men's wedding bands are often bought in thirty minutes without the same attention given to the engagement ring — the piece is worn every day for the rest of a life and deserves better than a fast decision."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540144/blog/legacy/unique-mens-wedding-band-bez-ambar-los-angeles.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540144/Jewelry%20Images/Legacy/unique-mens-wedding-band-bez-ambar-los-angeles.jpg"
 heroImageAlt: "Men's custom wedding band in platinum with hand-finished surface texture and clean profile"
 author: Bez Ambar
 status: live

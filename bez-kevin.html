@@ -161,6 +161,42 @@
     border-left: 3px solid #4a7a4a;
     background: #fafaf7;
   }
+  .card.p0 {
+    border-left: 3px solid #b03030;
+  }
+  .card.p0 .card-priority {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #b03030;
+    margin-bottom: 6px;
+  }
+  .card.p1 {
+    border-left: 3px solid var(--accent);
+  }
+  .card.p1 .card-priority {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .card.p2 {
+    border-left: 3px solid #aaa;
+  }
+  .card.p2 .card-priority {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 6px;
+  }
   .card .card-date {
     font-family: var(--sans);
     font-size: 10px;
@@ -228,11 +264,149 @@
       <div class="card-meta">To Do + Accomplished</div>
     </div>
 
-    <div class="empty">— tomorrow's report will land here —</div>
+    <div class="card">
+      <div class="card-date">2026 · 07 · 09</div>
+      <div class="card-title">Report — 2026 · 07 · 09</div>
+      <div class="card-body">Archive page UX overhaul — Patek-style floating filter pill + slide-in sidebar replaces mega-dropdown nav. Infinite scroll (24 per batch). Earring asset to Cloudinary. <a href="https://galleries.bezambarinc.workers.dev/page/bez-kevin-report-2026-07-09" target="_blank" rel="noopener">Open report →</a></div>
+      <div class="card-meta">To Do + Accomplished</div>
+    </div>
+
+    <div class="card">
+      <div class="card-date">2026 · 07 · 10</div>
+      <div class="card-title">Report — 2026 · 07 · 10</div>
+      <div class="card-body">Astro site performance pass — full codebase audit + fixes, Vimeo lazy-load, SearchOverlay deferral, CSS chunk renaming, Google Fonts → self-hosted variable fonts, image srcset, security headers. Lighthouse targets addressed systematically.</div>
+      <div class="card-meta">To Do + Accomplished</div>
+    </div>
+
+    <div class="card">
+      <div class="card-date">2026 · 07 · 11</div>
+      <div class="card-title">Report — 2026 · 07 · 11</div>
+      <div class="card-body">CRM setup — Freshsales Enterprise activated, login consolidated to bezambarinc@gmail.com, Bezito API connected (1,226 contacts live). Lawyers list import + pipeline build queued. <a href="https://galleries.bezambarinc.workers.dev/page/bez-kevin-report-2026-07-11" target="_blank" rel="noopener">Open report →</a></div>
+      <div class="card-meta">To Do + Accomplished</div>
+    </div>
+
+    <div class="card">
+      <div class="card-date">2026 · 07 · 12</div>
+      <div class="card-title">Report — 2026 · 07 · 12</div>
+      <div class="card-body">Freshsales inquiry pipeline smoke tested — 6 custom fields confirmed, contact upsert + deal creation + link all working. Site UX pass: inquiry drawer stripped to name/email only, contact page Patek-style revamp, SocialLinks component (5 platforms), share button prominent + consistent. Freshsales deal stage architecture defined (11-stage jewelry pipeline). <a href="https://galleries.bezambarinc.workers.dev/page/bez-kevin-report-2026-07-12" target="_blank" rel="noopener">Open report →</a></div>
+      <div class="card-meta">To Do + Accomplished</div>
+    </div>
+
+    <div class="empty">— next report will land here —</div>
+  </section>
+
+  <section id="proposals">
+    <div class="sec-eyebrow">Section Two</div>
+    <h2>Proposals</h2>
+    <div class="divider"></div>
+    <p class="sec-sub">Architecture decisions, stack proposals, and strategic choices pending approval or in progress.</p>
+
+    <div class="card todo">
+      <div class="card-date">2026 · 07 · 08</div>
+      <div class="card-title">Agentic CRM + Marketing Stack — Proposed Architecture</div>
+      <div class="card-body">
+        Full agentic customer service and marketing infrastructure. Every layer has a REST API — Bezito operates all of it programmatically.<br><br>
+
+        <table style="width:100%;border-collapse:collapse;font-family:var(--sans);font-size:13px;">
+          <thead>
+            <tr style="border-bottom:1px solid var(--rule);">
+              <th style="text-align:left;padding:8px 12px 8px 0;color:var(--ink-muted);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;font-size:10px;">Layer</th>
+              <th style="text-align:left;padding:8px 12px 8px 0;color:var(--ink-muted);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;font-size:10px;">Tool</th>
+              <th style="text-align:left;padding:8px 0;color:var(--ink-muted);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;font-size:10px;">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--rule);">
+              <td style="padding:10px 12px 10px 0;color:var(--ink);">CRM / pipeline</td>
+              <td style="padding:10px 12px 10px 0;color:var(--ink);">FreshSales Pro</td>
+              <td style="padding:10px 0;color:#4a7a4a;font-weight:600;">✓ Have it</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--rule);">
+              <td style="padding:10px 12px 10px 0;color:var(--ink);">Unified inbox — email + SMS + social DMs + comments</td>
+              <td style="padding:10px 12px 10px 0;color:var(--ink);">Freshchat</td>
+              <td style="padding:10px 0;color:var(--accent);font-weight:600;">⚠ Confirm plan includes it</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--rule);">
+              <td style="padding:10px 12px 10px 0;color:var(--ink);">Email campaigns + nurture flows</td>
+              <td style="padding:10px 12px 10px 0;color:var(--ink);">Klaviyo</td>
+              <td style="padding:10px 0;color:#4a7a4a;font-weight:600;">✓ Have it</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--rule);">
+              <td style="padding:10px 12px 10px 0;color:var(--ink);">Landing pages + form webhooks</td>
+              <td style="padding:10px 12px 10px 0;color:var(--ink);">CF Workers</td>
+              <td style="padding:10px 0;color:#4a7a4a;font-weight:600;">✓ Have it</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--rule);">
+              <td style="padding:10px 12px 10px 0;color:var(--ink);">PXM — product data source of truth</td>
+              <td style="padding:10px 12px 10px 0;color:var(--ink);">Plytix Standard (free, 500 SKUs)</td>
+              <td style="padding:10px 0;color:var(--accent);font-weight:600;">⚠ Confirm Shopify connector on free tier</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 12px 10px 0;color:var(--ink);">IG DM funnel automation (comment → DM flows)</td>
+              <td style="padding:10px 12px 10px 0;color:var(--ink);">ManyChat Pro</td>
+              <td style="padding:10px 0;color:#b03030;font-weight:600;">✗ Still needed — $15/mo</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <br><strong>Two open items before this is locked:</strong><br>
+        1. Confirm Freshchat is included in the current Freshworks plan (or cost to add)<br>
+        2. Confirm Plytix Shopify connector is available on free tier (contact their Account Manager)<br><br>
+
+        <strong>On Plytix:</strong> Purpose-built cloud PIM — Product Information Management system. Free up to 500 SKUs, full REST API, I handle all data input/output agentically. Bearer token expires every 15 min; agent re-authenticates via KV cache. No product-level webhooks on any plan (polling-based instead) — not a blocker. Confirmed: create/update/delete products, custom attributes (cut, carat, metal, collection, price), Cloudinary URL linking, bulk ops, category/family management.<br><br>
+
+        <strong>Future consideration — Pimcore:</strong> If Bez Ambar ever stands up a VPS (even a $12/month DigitalOcean droplet), Pimcore Community Edition is the upgrade path. It combines Plytix-style PIM with a full DAM (Digital Asset Management) and CMS in one open-source platform. More powerful than Plytix at zero ongoing cost. Table that for now — revisit when server infrastructure becomes viable.
+      </div>
+      <div class="owner">@kevin (confirm Freshchat plan + Plytix Shopify) · @bezito (wire everything once confirmed)</div>
+    </div>
+
+  </section>
+
+  <section id="blog-seo">
+    <div class="sec-eyebrow">Section Three</div>
+    <h2>Blog, SEO &amp; URL Migration</h2>
+    <div class="divider"></div>
+    <p class="sec-sub">Everything that needs to happen before DNS cutover to keep search equity, fix broken images, and build out the journal + retailer presence. P0 = blocks launch. P1 = before launch. P2 = post-launch.</p>
+
+    <!-- PHASE 5: Retailer / authorized dealer pages (phases 1-4 moved to Done) -->
+
+    <!-- PHASE 5: Retailer / authorized dealer pages -->
+    <div class="card p1">
+      <div class="card-priority">P1 — Before Launch · Phase 5</div>
+      <div class="card-title">Build Retailer / Authorized Dealer Pages at /retailers/[slug]</div>
+      <div class="card-body">
+        Bez Ambar has ~35 authorized retailers on the WP site (as blog posts — not a structured section). These need proper pages so they (a) preserve the WP URL equity, (b) rank for "[Brand] authorized dealer [City]" queries, and (c) support the luxury brand narrative.<br><br>
+        <strong>Architecture:</strong><br>
+        — <code>src/pages/retailers/index.astro</code> — consolidated dealer locator with map embed, alphabetical list by city, filterable<br>
+        — <code>src/pages/retailers/[slug].astro</code> — dynamic individual retailer page<br>
+        — <code>src/content/retailers/[slug].md</code> — one file per dealer with structured frontmatter<br><br>
+        <strong>Per-retailer frontmatter (minimum):</strong><br>
+        <code>name, city, state, address, phone, website, hours, description, lat, lng, heroImage</code><br><br>
+        <strong>Schema.org on each page:</strong> <code>JewelryStore</code> (subtype of <code>LocalBusiness</code>) with <code>name</code>, <code>address</code>, <code>telephone</code>, <code>openingHours</code>, <code>geo</code>, <code>hasMap</code>, <code>brand</code> (Bez Ambar). This is what Google Maps, Bing, Apple Maps, and AI local search all read.<br><br>
+        <strong>Content per page:</strong> Store name + location hero, description, hours, map embed (Google Maps iframe), link to store website, "Authorized Bez Ambar Dealer" badge, CTA to contact Bez Ambar directly<br><br>
+        <strong>Redirects needed:</strong> Each of the ~35 WP retailer post slugs (e.g. <code>/hamra-jewelers-houston</code>) → <code>/retailers/hamra-jewelers-houston</code><br><br>
+        <strong>First step:</strong> Verify which retailers are still active. The WP posts may be stale — some dealers may have closed or dropped the line. Bez to confirm list before building all 35.
+      </div>
+      <div class="owner">@kevin (build) · @bez (confirm active retailers) · @bezito (content + schema)</div>
+    </div>
+
+    <!-- PHASE 6 moved to Done -->
+
+    <!-- PHASE 7: Divine Cut - add to About page -->
+    <div class="card p2">
+      <div class="card-priority">P2 — Post-Launch · Phase 7</div>
+      <div class="card-title">Divine Cut Diamond — Reference in About Page</div>
+      <div class="card-body">
+        The Divine Cut is a proprietary Bez Ambar diamond design with its own blog post (<code>bez-ambars-new-patented-design-divine-cut-diamond</code>) but it's not mentioned in <code>about-bez-ambar.astro</code>. It should be — it's a brand signature creation and a brand authority signal for AI engines that construct knowledge graphs about Bez.<br><br>
+        Add a paragraph or callout in the About page that references the Divine Cut alongside the Elysian Cut™ and Blaze® as examples of Bez's original designs. Update the schema.org <code>knowsAbout</code> / <code>brand</code> structured data accordingly.
+      </div>
+      <div class="owner">@kevin · @bez (copy approval)</div>
+    </div>
+
   </section>
 
   <section id="ideas">
-    <div class="sec-eyebrow">Section Two</div>
+    <div class="sec-eyebrow">Section Four</div>
     <h2>Ideas</h2>
     <div class="divider"></div>
     <p class="sec-sub">Concepts to explore, threads to pull, things worth building later.</p>
@@ -241,17 +415,175 @@
   </section>
 
   <section id="directions">
-    <div class="sec-eyebrow">Section Three</div>
+    <div class="sec-eyebrow">Section Five</div>
     <h2>Directions</h2>
     <div class="divider"></div>
     <p class="sec-sub">Next steps, who owns what, deadlines, dependencies.</p>
+
+    <div class="card todo">
+      <div class="card-date">2026 · 07 · 11</div>
+      <div class="card-title">Replace Vimeo Hero Iframes → Cloudinary Self-Hosted MP4</div>
+      <div class="card-body">
+        4 homepage hero videos still load from Vimeo player embeds (IDs: 1192444919, 1193154076, 1193140625, 1193149437). Vimeo loads ~2–3MB of SDK assets on first render even with lazy-load.<br><br>
+        <strong>Steps:</strong><br>
+        1. Kevin downloads each video from Vimeo (has account access)<br>
+        2. Upload to Cloudinary: <code>videos/hero/elysian-cut.mp4</code>, <code>videos/hero/oval-band.mp4</code>, <code>videos/hero/elysian-pear-coming-soon.mp4</code>, <code>videos/hero/elysian-pear-band.mp4</code><br>
+        3. Bezito swaps <code>&lt;iframe data-src="player.vimeo.com/..."&gt;</code> → <code>&lt;video autoplay muted loop playsinline&gt;</code> in index.astro<br>
+        4. Remove <code>frame-src https://player.vimeo.com</code> from CSP once done
+      </div>
+      <div class="owner">@kevin (download + upload to Cloudinary) · @bezito (code swap)</div>
+    </div>
+
+    <div class="card todo">
+      <div class="card-date">2026 · 07 · 11</div>
+      <div class="card-title">Cloudinary Manual Audit — Kevin to Review Library</div>
+      <div class="card-body">
+        Kevin to log into <a href="https://console.cloudinary.com/" target="_blank" rel="noopener">Cloudinary Console →</a> (account: <strong>dlg2mou53</strong>, login: bezambarinc@gmail.com) and audit:<br><br>
+        — <code>archive-videos/</code> — 546 videos migrated from Shopify CDN 2026-07-11. Spot-check playback on a sample<br>
+        — <code>videos/</code> — hero, rings, bracelets, etc. — confirm naming and folder structure<br>
+        — <code>blog/legacy/</code> — blog hero images<br>
+        — Flag anything that needs renaming, deleting, or re-uploading
+      </div>
+      <div class="owner">@kevin</div>
+    </div>
+
+    <div class="card todo">
+      <div class="card-date">2026 · 07 · 11</div>
+      <div class="card-title">Plytix PXM Integration — Wire into Astro Data Layer</div>
+      <div class="card-body">
+        Plytix is the locked PXM (Product Experience Management) choice (Airtable free tier as fallback). ~50–200 SKUs. Needs to feed Astro static build + Klaviyo + CF Workers.<br><br>
+        <strong>Architecture:</strong><br>
+        — Plytix API → <code>scripts/sync-plytix.js</code> script that fetches product data and writes to <code>src/content/products/</code> as .md or JSON<br>
+        — Astro reads from content collection at build time (no runtime API calls)<br>
+        — Klaviyo product catalog fed from same Plytix export<br>
+        — CF Workers product pages can pull from Plytix API directly or from cached D1<br><br>
+        <strong>First step:</strong> Kevin to provide Plytix API key + confirm which fields are canonical (name, SKU, description, images, category, price, variants).
+      </div>
+      <div class="owner">@kevin (API key + field map) · @bezito (integration build)</div>
+    </div>
+
+    <div class="card todo">
+      <div class="card-date">2026 · 07 · 11</div>
+      <div class="card-title">CTA + Freshsales Integration — Phase A: bez-forms CF Worker (Foundation)</div>
+      <div class="card-body">
+        New Cloudflare Worker: <code>bez-forms</code> — the secure proxy that sits between all site forms and the Freshsales API. Keeps the API key server-side (never in browser JS). Static Astro site has no server runtime so this is the only safe architecture.<br><br>
+        <strong>Routes:</strong><br>
+        — <code>POST /api/contact</code> — main contact form<br>
+        — <code>POST /api/archive-inquiry</code> — archive piece inquiry<br>
+        — <code>POST /api/newsletter</code> — email capture<br><br>
+        <strong>Security:</strong> input whitelist (no passthrough of arbitrary fields), HTML strip on text fields, CF rate limiting (5 req/min per IP), CORS origin allowlist (bezambar.com + Vercel preview).<br><br>
+        <strong>Kevin to do first (unblocks everything):</strong><br>
+        1. Log into Freshsales admin → Settings → Custom Fields → Contacts → create these 6 fields:<br>
+        &nbsp;&nbsp;— <code>cf_inquiry_type</code> (Single Line Text)<br>
+        &nbsp;&nbsp;— <code>cf_piece_title</code> (Single Line Text)<br>
+        &nbsp;&nbsp;— <code>cf_piece_sku</code> (Single Line Text)<br>
+        &nbsp;&nbsp;— <code>cf_utm_source</code> (Single Line Text)<br>
+        &nbsp;&nbsp;— <code>cf_utm_medium</code> (Single Line Text)<br>
+        &nbsp;&nbsp;— <code>cf_utm_campaign</code> (Single Line Text)<br>
+        2. Confirm Worker subdomain preference: <code>bez-forms.bezambarinc.workers.dev</code> or different<br><br>
+        <strong>Bezito builds once Kevin confirms fields are created.</strong>
+      </div>
+      <div class="owner">@kevin (Freshsales custom fields — blocking) · @bezito (Worker build)</div>
+    </div>
+
+    <div class="card todo">
+      <div class="card-date">2026 · 07 · 11</div>
+      <div class="card-title">CTA + Freshsales Integration — Phase B: Contact Page Overhaul</div>
+      <div class="card-body">
+        Replace <code>formsubmit.co</code> with <code>fetch()</code> to the bez-forms Worker. Current behavior redirects the user back to a blank form with no confirmation — broken UX.<br><br>
+        <strong>Changes to <code>src/pages/contact.astro</code>:</strong><br>
+        — Form action → JS <code>fetch()</code> submit to Worker<br>
+        — Inline success state (no redirect): <em>"Thank you — Bez or a senior advisor will be in touch within one business day."</em><br>
+        — Dropdown label: "How can we help?" (was "I'm Interested In")<br>
+        — Options: "Commission a bespoke piece / Inquire about a collection piece / Book an atelier visit or consultation / Repairs or cleaning / Ring resizing / Something else"<br>
+        — Submit button: "Send Inquiry" (never "Submit")<br>
+        — <code>?subject</code> URL param auto-selects the dropdown on load<br><br>
+        <strong>Changes to <code>src/layouts/Layout.astro</code>:</strong><br>
+        — Add UTM persistence snippet (reads utm_* from URL on load → stores in sessionStorage → form JS reads before POST)<br><br>
+        <strong>Changes to <code>vercel.json</code>:</strong><br>
+        — Add <code>https://bez-forms.bezambarinc.workers.dev</code> to <code>connect-src</code> in CSP
+      </div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card todo">
+      <div class="card-date">2026 · 07 · 11</div>
+      <div class="card-title">CTA + Freshsales Integration — Phase C: Inquiry Drawer Component</div>
+      <div class="card-body">
+        New reusable <code>InquiryDrawer.astro</code> component — slides from the right edge, parent page stays visible behind it. This is the Patek-level UX pattern: customer never leaves the piece they're inquiring about.<br><br>
+        <strong>Replaces navigation to <code>/contact</code> for all high-intent CTAs:</strong><br>
+        — Product page "Inquire About This Piece" (pre-populates piece name + SKU)<br>
+        — Archive inquiry form (pre-populates piece title)<br>
+        — Bespoke CTAs on About, Blog, Bloom collection<br>
+        — Elysian Cut "Inquire" (currently a broken <code>mailto:</code> link)<br>
+        — Nav "Book a Consultation"<br><br>
+        <strong>Fields:</strong> Name · Email · Phone (optional) · Message (pre-seeded from context)<br>
+        <strong>No subject dropdown</strong> — drawer already knows the context from its opener.<br>
+        <strong>Success state:</strong> inline in drawer — <em>"Thank you — we'll be in touch within one business day."</em> Drawer stays open showing confirmation (doesn't auto-close).<br>
+        <strong>Dismiss:</strong> ESC key or click outside.<br>
+        <strong>Tag routing:</strong> product inquiry → <code>product_inquiry</code>; bespoke → <code>bespoke_commission</code>; consultation → <code>consultation_inquiry</code>; archive → <code>archive_inquiry</code>.
+      </div>
+      <div class="owner">@bezito (depends on Phase A)</div>
+    </div>
+
+    <div class="card todo">
+      <div class="card-date">2026 · 07 · 11</div>
+      <div class="card-title">CTA + Freshsales Integration — Phase D: Newsletter + Waitlist</div>
+      <div class="card-body">
+        Two passive capture patterns — neither uses a popup, neither offers a discount. Patek would never discount to get an email.<br><br>
+        <strong>Newsletter (homepage footer):</strong><br>
+        — Replace fake <code>alert()</code> with real POST to Worker <code>/api/newsletter</code><br>
+        — Fields: Email + First Name (enables personalized follow-up)<br>
+        — Copy: <em>"Private access to new pieces and atelier events"</em> — not "Subscribe to our newsletter"<br>
+        — CTA: <em>"Join the Private List"</em><br>
+        — Success state: field replaced by <em>"You're on the private list."</em><br>
+        — Freshsales tag: <code>newsletter_subscriber</code><br><br>
+        <strong>Waitlist (collection tiles — coming soon categories):</strong><br>
+        — Replace <code>/contact?subject=Notify me: &lt;category&gt;</code> links with inline email field that resolves in place<br>
+        — Copy: <em>"Join the Waitlist"</em> — implies scarcity, not marketing<br>
+        — Freshsales tag: <code>notify_me</code> + <code>category_&lt;slug&gt;</code><br><br>
+        <strong>Klaviyo:</strong> Worker can forward newsletter signups to Klaviyo API in parallel once Kevin provides API key. Not blocking — add when ready.
+      </div>
+      <div class="owner">@bezito (depends on Phase A) · @kevin (Klaviyo key when ready)</div>
+    </div>
+
+    <div class="card todo">
+      <div class="card-date">2026 · 07 · 11</div>
+      <div class="card-title">CTA + Freshsales Integration — Phase E: Fix Remaining mailto: Links + Microcopy Pass</div>
+      <div class="card-body">
+        Broken and off-brand contact points that need fixing after the drawer exists:<br><br>
+        <strong>Broken <code>mailto:</code> links (open mail client — breaks web flow):</strong><br>
+        — <code>elysian-cut.astro:54</code> — "Inquire" mailto → opens InquiryDrawer instead<br>
+        — <code>about-bez-ambar.astro:273</code> — raw <code>bez@bezambar.com</code> mailto → keep as text link (this one is fine as contact info, not a CTA)<br><br>
+        <strong>Global microcopy pass — words that are and aren't Patek-level:</strong><br>
+        — "Submit" → never use; "Send Inquiry" everywhere<br>
+        — "Contact Us" in nav/footer → keep (generic nav label is fine)<br>
+        — "Book a Consultation" → opens drawer (already correct CTA text)<br>
+        — Any remaining "Notify Me" → "Join the Waitlist"<br>
+        — Success states across all forms: named, personal, specific response time
+      </div>
+      <div class="owner">@bezito (depends on Phase C)</div>
+    </div>
+
+    <div class="card todo">
+      <div class="card-date">2026 · 07 · 11</div>
+      <div class="card-title">CTA + Freshsales Integration — Phase F: Sticky Inquiry Pill (Mobile)</div>
+      <div class="card-body">
+        On mobile, the primary "Inquire" CTA on product pages and the archive page scrolls out of view almost immediately. A sticky pill keeps it always reachable.<br><br>
+        <strong>Behavior:</strong> fixed position, bottom-right of viewport, appears after 300px scroll, opens InquiryDrawer on tap. Disappears when the drawer is open.<br><br>
+        <strong>Copy:</strong> "Inquire" — single word, no icon needed.<br>
+        <strong>Pages:</strong> product slug pages + archive page.<br><br>
+        Low-dev effort, high mobile conversion impact. Patek's own site uses a persistent "Contact a boutique" mechanism — same principle.
+      </div>
+      <div class="owner">@bezito (depends on Phase C)</div>
+    </div>
 
     <div class="card todo">
       <div class="card-date">2026 · 07 · 06</div>
       <div class="card-title">Social Media — Branding Audit Needed (Consistency Across All 5 Channels)</div>
       <div class="card-body">
         All 5 profiles now wired into the site's JSON-LD sameAs (affects AI citations in ChatGPT / Perplexity / Google SGE):<br><br>
-        <a href="https://www.instagram.com/bezambarinc/" target="_blank" rel="noopener">Instagram @bezambarinc →</a><br>
+        <a href="https://www.instagram.com/bezambarjewelry/" target="_blank" rel="noopener">Instagram @bezambarjewelry →</a><br>
         <a href="https://www.linkedin.com/in/bez-ambar-869936a/" target="_blank" rel="noopener">LinkedIn →</a><br>
         <a href="https://www.youtube.com/@BezAmbarInc/" target="_blank" rel="noopener">YouTube @BezAmbarInc →</a><br>
         <a href="https://www.tiktok.com/@bezambar" target="_blank" rel="noopener">TikTok @bezambar →</a><br>
@@ -275,7 +607,7 @@
   </section>
 
   <section id="links">
-    <div class="sec-eyebrow">Section Four</div>
+    <div class="sec-eyebrow">Section Six</div>
     <h2>Links</h2>
     <div class="divider"></div>
     <p class="sec-sub">Live pages, references, tools, and anything worth keeping one click away.</p>
@@ -299,9 +631,15 @@
     </div>
 
     <div class="card">
-      <div class="card-title">bezambar.com — Brand Site</div>
-      <div class="card-body">The main Bez Ambar brand site. <a href="https://bezambar.com/" target="_blank" rel="noopener">Open bezambar.com →</a></div>
-      <div class="card-meta">Vercel</div>
+      <div class="card-title">bezambar.com — Brand Site (Production)</div>
+      <div class="card-body">The main Bez Ambar brand site. DNS still points to WordPress — Vercel build is staged and ready for cutover. <a href="https://bezambar.com/" target="_blank" rel="noopener">Open bezambar.com →</a></div>
+      <div class="card-meta">Vercel · main branch</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Astro Dev — feat/astro-migration</div>
+      <div class="card-body">Live preview of the Astro build on the <code>feat/astro-migration</code> branch. Updates automatically on every push. <a href="https://bezito-site-git-feat-astro-migration-bezambarinc-alts-projects.vercel.app/" target="_blank" rel="noopener">Open Astro Dev →</a></div>
+      <div class="card-meta">Vercel · feat/astro-migration branch</div>
     </div>
 
     <div class="card">
@@ -311,6 +649,298 @@
     </div>
 
     <div class="empty">— add more links as we go —</div>
+  </section>
+
+  <section id="astro-launch">
+    <div class="sec-eyebrow">Section Seven</div>
+    <h2>Astro Site — Pre-Launch Checklist</h2>
+    <div class="divider"></div>
+    <p class="sec-sub">Audit run 2026 · 07 · 08. P0 = blocks launch. P1 = fix before launch. P2 = polish.</p>
+
+    <div class="card p0">
+      <div class="card-priority">P0 — Blocks Launch</div>
+      <div class="card-title">Newsletter form is a fake</div>
+      <div class="card-body"><code>src/pages/index.astro:278</code> — <code>onsubmit</code> fires an <code>alert()</code>. No email is captured. Wire to Mailchimp, Klaviyo, or formsubmit.co before going live.</div>
+      <div class="owner">@kevin</div>
+    </div>
+
+    <div class="card p0">
+      <div class="card-priority">P0 — Blocks Launch</div>
+      <div class="card-title">3 homepage sections are grey placeholder boxes</div>
+      <div class="card-body"><code>index.astro:185, 242, 255</code> — Atelier, "Where to See It," and Private Viewing render empty debug divs. Supply real images or restructure to text-only.</div>
+      <div class="owner">@darryl (visuals) · @kevin (restructure fallback)</div>
+    </div>
+
+    <!-- WP Engine CDN item: confirmed done (all 124 posts on Cloudinary, zero wpenginepowered.com URLs found) -->
+
+    <div class="card p1">
+      <div class="card-priority">P1 — Fix Before Launch</div>
+      <div class="card-title">GTM commented out — no analytics from day one</div>
+      <div class="card-body"><code>Layout.astro:91</code> — GTM script and noscript are placeholders with <code>GTM-XXXXXXX</code>. Wire a real container ID before launch.</div>
+      <div class="owner">@kevin</div>
+    </div>
+
+    <div class="card p1">
+      <div class="card-priority">P1 — Fix Before Launch</div>
+      <div class="card-title">Press page "Read Article" is a dead link + wrong images</div>
+      <div class="card-body"><code>press.astro:29</code> — CTA goes to <code>#</code>. All three press cards use generic ring photos instead of actual 1985/1992/2003 editorial imagery. Link to scans/PDFs or replace with masthead art.</div>
+      <div class="owner">@bez (source materials) · @kevin (implementation)</div>
+    </div>
+
+    <!-- Video Gallery moved to Done -->
+
+    <div class="card p1">
+      <div class="card-priority">P1 — Fix Before Launch</div>
+      <div class="card-title">/jewelry/earrings shows "No pieces available"</div>
+      <div class="card-body">No earring products exist in the content collection. The nav links to this page. Either add a product or remove the Earrings nav link until inventory exists.</div>
+      <div class="owner">@bez (inventory decision) · @kevin (nav)</div>
+    </div>
+
+    <div class="card p1" style="opacity:.55">
+      <div class="card-priority" style="color:#4a7a4a;">✓ Done — 2026 · 07 · 10</div>
+      <div class="card-title">index.legacy.astro generates a live public route</div>
+      <div class="card-body">Deleted. Route removed from the build.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card p1">
+      <div class="card-priority">P1 — Fix Before Launch</div>
+      <div class="card-title">Elysian Band variants share hero images</div>
+      <div class="card-body">2ELS-25 &amp; 2ELS-30 use the same hero image; 2ELS-50 &amp; 2ELS-70 use the same hero image. All four product cards look identical in the grid. Confirm intentional or supply per-variant images.</div>
+      <div class="owner">@bez (confirm) · @darryl (new shots if needed)</div>
+    </div>
+
+    <div class="card p1">
+      <div class="card-priority">P1 — Fix Before Launch</div>
+      <div class="card-title">3 Liquid Carat variants share the same hero video</div>
+      <div class="card-body">5FLX25, 5FLX30, and 5FLX40 all point to the same <code>.mp4</code>. Three distinct product pages look identical at the hero. Acceptable if only one video exists — just needs confirmation.</div>
+      <div class="owner">@bez (confirm) · @darryl (new video if needed)</div>
+    </div>
+
+    <div class="card p1">
+      <div class="card-priority">P1 — Fix Before Launch</div>
+      <div class="card-title">Bloom page has two placeholder href="#" cards</div>
+      <div class="card-body"><code>collection/bloom.astro:122–134</code> — Two coming-soon anchor tags are keyboard-reachable but go nowhere. Swap to <code>&lt;div&gt;</code> or remove.</div>
+      <div class="owner">@kevin</div>
+    </div>
+
+    <div class="card p2">
+      <div class="card-priority">P2 — Polish</div>
+      <div class="card-title">schema.org Instagram handle (fixed in code, verify live)</div>
+      <div class="card-body">Was <code>@bezambarinc</code> in sameAs — corrected to <code>@bezambarjewelry</code> on 2026-07-08. Footer link also updated. Verify post-deploy.</div>
+      <div class="card-priority" style="color:#4a7a4a;margin-top:10px;">✓ Done in code — pending deploy</div>
+    </div>
+
+    <!-- apple-touch-icon, 404 noindex, twitter:site moved to Done -->
+
+    <div class="card p1">
+      <div class="card-priority">P1 — Fix Before Launch</div>
+      <div class="card-title">Replace Vimeo hero iframes with Cloudinary self-hosted mp4</div>
+      <div class="card-body">
+        4 homepage hero videos (IDs: 1192444919, 1193154076, 1193140625, 1193149437) still load from Vimeo player embeds. None of these exist in Cloudinary. Each Vimeo iframe loads ~2–3 MB of Vimeo JS/assets on the first render, even with lazy-load. Replacing with self-hosted Cloudinary mp4 removes the Vimeo SDK entirely from the critical path.<br><br>
+        <strong>Steps:</strong><br>
+        1. Download each video from Vimeo (Kevin has access)<br>
+        2. Upload to Cloudinary: <code>videos/hero/elysian-cut.mp4</code>, <code>videos/hero/oval-band.mp4</code>, <code>videos/hero/elysian-pear-coming-soon.mp4</code>, <code>videos/hero/elysian-pear-band.mp4</code><br>
+        3. Replace <code>&lt;iframe src/data-src="player.vimeo.com/..."&gt;</code> with <code>&lt;video autoplay muted loop playsinline&gt;&lt;source src="res.cloudinary.com/..."&gt;&lt;/video&gt;</code><br>
+        4. Remove frame-src vimeo CSP entry once done
+      </div>
+      <div class="owner">@kevin (download videos) · @bezito (Cloudinary upload + code swap)</div>
+    </div>
+
+    <!-- Alara / llms.txt moved to Done -->
+  </section>
+
+  <section id="completed">
+    <div class="sec-eyebrow">Completed</div>
+    <h2>Done</h2>
+    <div class="divider"></div>
+    <p class="sec-sub">Shipped and closed. Kept for reference.</p>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 10</div>
+      <div class="card-title">Security headers — vercel.json</div>
+      <div class="card-body">Added full HTTP security header set: Content-Security-Policy (CSP — script/style/img/font/frame/connect/worker-src), X-Frame-Options (SAMEORIGIN), X-Content-Type-Options (nosniff), Strict-Transport-Security (HSTS, 2yr, preload), Cross-Origin-Opener-Policy (same-origin-allow-popups), Permissions-Policy, Referrer-Policy. Vimeo player.js/CSS correctly excluded from parent CSP (loads inside iframe context).</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 10</div>
+      <div class="card-title">Image srcset — atelier portrait + Quadrillion</div>
+      <div class="card-body">Atelier portrait (LCP): srcset 600/1200/1800w, q_auto:good, sizes="100vw", fetchpriority="high". Quadrillion: srcset 400/750/1100w, sizes="(max-width:768px) 100vw, 50vw", lazy load. Both use Cloudinary f_auto for next-gen format delivery.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 10</div>
+      <div class="card-title">Google Fonts removed → Fontsource self-hosted variable fonts</div>
+      <div class="card-body">Eliminated 16 Google Font requests (Cormorant Garamond ×5, EB Garamond ×5, Inter ×6) — all render-blocking external network calls. Replaced with @fontsource-variable/inter + @fontsource-variable/cormorant-garamond. EB Garamond dropped from the font stack. Browser now downloads only needed unicode subsets (2–3 self-hosted woff2 files vs. 16 remote files). Fontstand link preserved for Lyon Text on production domain.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 10</div>
+      <div class="card-title">CSS chunk renamed — styles.[hash].css</div>
+      <div class="card-body">Vite/Rollup was naming the shared global CSS chunk "about-bez-ambar.[hash].css" (after the first alphabetical page importing Layout.astro). Fixed via assetFileNames in astro.config.mjs rollupOptions — all CSS now outputs as "styles.[hash].css". Clarifies Lighthouse audits and removes false impression of page-specific CSS loading on every route.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 10</div>
+      <div class="card-title">SearchOverlay deferred with is:idle</div>
+      <div class="card-body">Changed &lt;script&gt; → &lt;script is:idle&gt; in SearchOverlay.astro. All search JS (Pagefind wiring + event listeners) now runs during browser idle time instead of blocking main thread at load. Reduces TBT (Total Blocking Time) on slower devices.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 10</div>
+      <div class="card-title">Vimeo lazy-load — 3 of 4 hero iframes</div>
+      <div class="card-body">Hero slide 0 (Elysian Cut, above the fold) loads immediately via src=. Slides 1–3 use data-src and load on demand: hero slide 1 at scroll progress ≥30% or dot-click; cinematic slide 0 via IntersectionObserver (rootMargin: 200px); cinematic slide 1 at scroll progress ≥30%. loadIframe() helper ensures each iframe loads at most once.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 10</div>
+      <div class="card-title">Codebase audit — batch fixes (10 items)</div>
+      <div class="card-body">
+        Full pre-launch code quality pass across the Astro site:<br>
+        — Deleted index.legacy.astro (579-line orphan generating a live public route)<br>
+        — Layout.astro: canonical auto-derives from Astro.url when prop omitted<br>
+        — Shared collections.ts config (COLLECTION_LABELS, single source of truth)<br>
+        — Shared src/scripts/share.ts (native share API + clipboard fallback)<br>
+        — Null guards on all unguarded DOM querySelector calls<br>
+        — archive.astro: graceful fetch error handling with 404 tracking in CF Analytics<br>
+        — Content schema: heroVideo or heroImage required (build-time enforcement)<br>
+        — CSS cleanup: duplicate .ba-faq from home.css, dead .vg-cat-bar from tools.css, dead .hero__cta + .tech-inline-btn from product.css, !important removed<br>
+        — Typography fix: /jewelry/* category pages h1/h2 now use Inter (--sans) not serif; removed ba-portrait-hero--serif class from [category].astro
+      </div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 09</div>
+      <div class="card-title">Archive page — Patek-style filter UI + infinite scroll</div>
+      <div class="card-body">Floating filter pill triggers slide-in sidebar (replaces mega-dropdown nav). Infinite scroll loads 24 pieces per batch. Earring asset uploaded to Cloudinary.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 08</div>
+      <div class="card-title">Footer — Mobile Accordion (Patek-style)</div>
+      <div class="card-body">Footer columns collapse into tap-to-expand accordion on mobile. Desktop layout unchanged. Smooth max-height animation, chevron rotates on open.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 08</div>
+      <div class="card-title">Footer bottom — Centered Lyon copyright on mobile, space-between on desktop</div>
+      <div class="card-body">Copyright and legal links switched to Lyon serif at 12px. Desktop: copyright left / legal right. Mobile: stacked and centered.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 08</div>
+      <div class="card-title">Instagram handle unified to @bezambarjewelry</div>
+      <div class="card-body">Corrected across schema.org sameAs (Jeweler org + Person entries) and footer social link. Was split between @bezambarinc and @bezambar.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 07</div>
+      <div class="card-title">Pagefind Search Overlay</div>
+      <div class="card-body">Patek-style full-screen search overlay wired to Pagefind static index. Triggered by header search icon. Graceful fallback in dev mode ("search available on live site"). Build script: <code>astro build &amp;&amp; pagefind --site dist</code>.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 07</div>
+      <div class="card-title">/collection — Patek-style editorial with Coming Soon tiles</div>
+      <div class="card-body">Rebuilt from content collection. Alternating 3:2/2:3 media+text tiles. Empty categories show Coming Soon badge + "Notify Me" CTA + recommended pieces strip below.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 06</div>
+      <div class="card-title">Category hero — title + intro unified in video overlay</div>
+      <div class="card-body">Removed redundant text block below hero. Title and description now overlay the video directly. Eyebrow removed from all category pages.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 04</div>
+      <div class="card-title">AI / SEO optimization pass — bezambar.com</div>
+      <div class="card-body">JSON-LD schema (Jeweler, Person, WebSite, FAQPage), 8 visible FAQs, Wikipedia-style bio in footer, AI sitemap (llms.txt), canonical setup for bezambar.com cutover. Staged on new Vercel build.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 11</div>
+      <div class="card-title">Video Gallery — populated and live</div>
+      <div class="card-body">Page rebuilt from empty placeholder. Videos populated, category filters wired.</div>
+      <div class="owner">@kevin</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 11</div>
+      <div class="card-title">Apple Touch Icon — Cloudinary-generated 180×180 PNG</div>
+      <div class="card-body">Added <code>&lt;link rel="apple-touch-icon"&gt;</code> to Layout.astro pointing to a Cloudinary text-overlay URL: black background, gold "B", 180×180 PNG generated on the fly. No static asset required.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 11</div>
+      <div class="card-title">404 page — noindex added, canonical removed</div>
+      <div class="card-body">Layout.astro now accepts a <code>noindex</code> prop that flips the robots meta to <code>noindex,nofollow</code>. 404.astro passes <code>noindex={true}</code>. Error page will no longer be crawled or indexed.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 11</div>
+      <div class="card-title">twitter:site meta added to Layout.astro</div>
+      <div class="card-body">Added <code>&lt;meta name="twitter:site" content="@bezambarjewelry"&gt;</code> to the Twitter Card block in Layout.astro. Fires on every page.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 11</div>
+      <div class="card-title">llms.txt — deleted entirely (Bez decision)</div>
+      <div class="card-body">File pulled from the repo. Hard rule: no public Alara mention until patent granted. Option 1 — full removal. Re-add once USPTO grants 30/004,203.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 11</div>
+      <div class="card-title">Blog Phase 6 — Journal restructure (/journal = article listing)</div>
+      <div class="card-body"><code>/journal</code> rebuilt as paginated article listing with category filters (Education / Style / Brand / Diamonds). Individual posts stay at <code>/blog/[slug]</code>. Instagram feed relocated. Nav updated. <code>/blog</code> → <code>/journal</code> redirect added to vercel.json.</div>
+      <div class="owner">@kevin</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 11</div>
+      <div class="card-title">Blog Phase 1 — Image migration WP Engine CDN → Cloudinary</div>
+      <div class="card-body">Audited all 124 blog posts in <code>src/content/blog/</code>. Zero WP Engine CDN dependencies found — all hero images already on Cloudinary (<code>res.cloudinary.com/dlg2mou53</code>) with proper <code>c_fill,ar_16:9,g_auto</code> transforms. No migration needed.</div>
+      <div class="owner">@kevin</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 11</div>
+      <div class="card-title">Blog Phase 2 — Existing post revamp (124 posts)</div>
+      <div class="card-body">All 124 existing <code>src/content/blog/</code> posts confirmed live with Cloudinary images, proper frontmatter (title, date, category, excerpt, heroImage, heroImageAlt, author, status, schema), and content. Blog corpus confirmed production-ready.</div>
+      <div class="owner">@kevin</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 11</div>
+      <div class="card-title">Blog Phase 3 — High-traffic missing posts created (8 new posts)</div>
+      <div class="card-body">Created 8 new posts for highest-priority missing WP slugs (verified via GA export): <code>quadrillion-cut-different-princess-cut</code> (156 views), <code>blaze-cut-diamond</code> (70 views), <code>5-carat-diamond-ring</code> (60 views), <code>what-to-do-with-a-chipped-diamond</code> (1149s avg engagement), <code>invisible-setting-for-diamonds-a-bez-ambar-innovation</code>, <code>titanium-rings-men-pros-and-cons</code>, <code>princess-cut-diamond-inventor</code>, <code>authentic-bez-ambar-buyer-beware</code>. Em dashes cleaned from all posts. Three lower-priority slugs (<code>difference-yellow-gold-white-gold-rose-gold</code>, <code>wedding-bands-for-women-eternity-rings</code>, <code>radiant-cushion-cut-engagement-rings</code>) redirect to existing related posts via vercel.json.</div>
+      <div class="owner">@bezito · @kevin</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 11</div>
+      <div class="card-title">Blog Phase 4 — vercel.json redirect map complete (213 WP slugs)</div>
+      <div class="card-body">Cross-referenced full WP post CSV (213 slugs) against Astro blog posts and existing redirects. All 213 WP slugs now covered. Fixed two broken targets: <code>blaze-cut-diamonds-unmatched-engagement-rings-wedding-bands</code> was pointing to <code>/journal</code> (now → <code>/blog/blaze-cut-diamond</code>); <code>the-significance-of-mens-wedding-bands</code> was pointing to a non-existent slug (now → <code>/blog/mens-wedding-band-buying-guide</code>). Added redirects for numeric post IDs <code>/552</code> and <code>/599</code>.</div>
+      <div class="owner">@bezito · @kevin</div>
+    </div>
   </section>
 
 </main>

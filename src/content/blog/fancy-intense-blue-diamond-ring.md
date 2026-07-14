@@ -4,7 +4,7 @@ date: 2017-03-04
 updatedDate: 2026-07-08
 category: colored-stones
 excerpt: "Fancy Intense is the third of five color saturation grades for blue diamonds. It sits between Fancy and Fancy Vivid, a position that represents significant visual saturation with prices that, while extraordinary, remain below the top tier."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540130/blog/legacy/fancy-intense-blue-diamond-ring.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540130/Jewelry%20Images/Legacy/fancy-intense-blue-diamond-ring.jpg"
 heroImageAlt: "Fancy Intense blue diamond ring, custom design, Bez Ambar Los Angeles"
 author: Bez Ambar
 status: live

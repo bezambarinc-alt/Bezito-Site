@@ -4,7 +4,7 @@ date: 2020-03-10
 updatedDate: 2026-07-08
 category: earrings
 excerpt: "The oval diamond's elongated silhouette makes it an excellent earring stone — it delivers more visual surface area than a round brilliant of the same carat weight and creates a flattering vertical line at the face."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540133/blog/legacy/platinum-diamond-stud-earring-with-blaze-cut-diamonds-eneoct24nc.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540133/Jewelry%20Images/Legacy/platinum-diamond-stud-earring-with-blaze-cut-diamonds-eneoct24nc.jpg"
 heroImageAlt: "Fine platinum diamond stud earrings by Bez Ambar showing brilliant cut stones"
 author: Bez Ambar
 status: live

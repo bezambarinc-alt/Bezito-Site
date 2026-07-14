@@ -4,7 +4,7 @@ date: 2018-02-20
 updatedDate: 2026-07-08
 category: earrings
 excerpt: "Diamond stud earrings are a timeless essential in every jewelry collection. Learn how to choose the perfect pair based on cut, clarity, setting, and your personal style."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540133/blog/legacy/platinum-diamond-stud-earring-with-blaze-cut-diamonds-eneoct24nc.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540133/Jewelry%20Images/Legacy/platinum-diamond-stud-earring-with-blaze-cut-diamonds-eneoct24nc.jpg"
 heroImageAlt: "Platinum diamond stud earrings with Blaze® cut diamond frame by Bez Ambar"
 author: Bez Ambar
 status: live
@@ -36,7 +36,7 @@ A bezel setting wraps the stone in a continuous metal rim. It is the most protec
 Then there is the framed stud. Bez Ambar's Ring of Fire stud earrings place a center stone inside a complete frame of Blaze® cut diamonds, the same patented square-cut accent stones used in halo rings. The frame closes without gaps, so the center diamond and its surround read as a single, much larger gem. A 1.00-carat stud in a Blaze® frame can appear close to 2.00 carats face-up. For those who want presence without extreme carat weight, this is a worthwhile calculation.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/blog/legacy/platinum-diamond-stud-earring-with-blaze-cut-diamonds-eneoct24nc.jpg" alt="Platinum diamond stud earrings with Blaze® cut diamond frame by Bez Ambar">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/Legacy/platinum-diamond-stud-earring-with-blaze-cut-diamonds-eneoct24nc.jpg" alt="Platinum diamond stud earrings with Blaze® cut diamond frame by Bez Ambar">
 </figure>
 
 ### Size and

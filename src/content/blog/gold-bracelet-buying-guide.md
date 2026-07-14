@@ -4,7 +4,7 @@ date: 2023-06-12
 updatedDate: 2026-07-08
 category: bracelets
 excerpt: "Buying a gold bracelet well means understanding karat, weight, and link construction before you see the price tag — here is what each of those variables actually controls."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry/C0625_Baguette_band_Master_e4azkj.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry/Jewelry%20Images/Rings/C0625_Baguette_band_Master_e4azkj.jpg"
 heroImageAlt: "18k yellow gold baguette bracelet showing substantial link construction and finish quality"
 author: Bez Ambar
 status: live
@@ -36,7 +36,7 @@ Solid gold link bracelets are the most durable. Every link is machined or cast f
 Hollow link bracelets are lighter and less expensive at equivalent apparent size. The best hollow-link bracelets are designed with sufficient wall thickness that the tubing maintains rigidity over decades of wear. Poorly made hollow link bracelets have walls so thin that the tubing dents at wear points within a year of daily use, and the resulting dimples are permanent and irreparable. The test is to apply gentle pressure between two fingernails on a straight section of the link — a link that deforms at that pressure level will deform in wear.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry/C0723_Oval_Eternity_Band_awpedb.jpg" alt="Gold bracelet clasp and link detail showing construction quality and metal weight">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry/Jewelry%20Images/Rings/C0723_Oval_Eternity_Band_awpedb.jpg" alt="Gold bracelet clasp and link detail showing construction quality and metal weight">
 </figure>
 
 ### The Market

@@ -4,7 +4,7 @@ date: 2020-05-20
 updatedDate: 2026-07-08
 category: diamonds
 excerpt: "Old mine cut and old European cut diamonds are not inferior modern cuts — they are a different optical philosophy from a different era, and understanding that changes what you see in them."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540142/blog/legacy/rose-cut-diamond-engagement-ring.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540142/Jewelry%20Images/Legacy/rose-cut-diamond-engagement-ring.jpg"
 heroImageAlt: "Old European cut diamond ring showing characteristic high crown and small table"
 author: Bez Ambar
 status: live

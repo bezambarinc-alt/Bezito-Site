@@ -4,7 +4,7 @@ date: 2017-09-15
 updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "The cushion cut has outlasted every trend in fine jewelry because it does something no other shape can — it fills a diamond with fire that moves."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540128/blog/legacy/flower-of-light-diamond-engagement-ring-with-knife-edge-bands.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540128/Jewelry%20Images/Legacy/flower-of-light-diamond-engagement-ring-with-knife-edge-bands.jpg"
 heroImageAlt: "Flower of Light diamond engagement ring set in knife-edge gold bands"
 author: Bez Ambar
 status: live

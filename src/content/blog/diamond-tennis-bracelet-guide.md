@@ -36,7 +36,7 @@ We sort tennis bracelet stones by diameter and color before any other grading is
 Total carat weight is the number most often advertised for tennis bracelets, but it is the least useful single metric for comparing quality across pieces. Three carats spread across seventy stones in a four-prong setting in SI1 clarity diamonds is a very different piece from three carats spread across twenty-eight stones in a bezel setting in VS1 clarity. Both state "three carats." The price difference between them will be substantial, and the visual character differs as well. Specify stone count, per-stone size, clarity, and setting type when comparing pieces across vendors.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry/C0723_Oval_Eternity_Band_awpedb.jpg" alt="Tennis bracelet clasp detail and hinge construction in 18k white gold">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry/Jewelry%20Images/Rings/C0723_Oval_Eternity_Band_awpedb.jpg" alt="Tennis bracelet clasp detail and hinge construction in 18k white gold">
 </figure>
 
 ### The Clasp

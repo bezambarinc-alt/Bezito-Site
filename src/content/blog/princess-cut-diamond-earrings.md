@@ -5,7 +5,7 @@ updatedDate: 2026-07-08
 category: earrings
 excerpt: "The princess cut's square geometry reads differently in earrings than in rings. Understanding the differences shapes better decisions about size, setting, and pairing."
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/videos/earrings/c0211-hd.mp4"
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540140/blog/legacy/ring-of-fire-princess-earrings.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540140/Jewelry%20Images/Legacy/ring-of-fire-princess-earrings.jpg"
 heroImageAlt: "Bez Ambar Ring of Fire princess cut diamond earrings"
 author: Bez Ambar
 status: live

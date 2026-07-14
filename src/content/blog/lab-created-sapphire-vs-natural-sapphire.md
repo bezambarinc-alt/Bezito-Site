@@ -4,7 +4,7 @@ date: 2021-08-20
 updatedDate: 2026-07-08
 category: colored-stones
 excerpt: "Laboratory sapphire is chemically identical to natural sapphire — the differences that matter are rarity, origin documentation, and long-term value retention, not the gemology."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/stones/sapphire_537ct_oval_ceylon_agl_hero.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Real%20Stones/sapphire_537ct_oval_ceylon_agl_hero.jpg"
 heroImageAlt: "Oval natural Ceylon sapphire with AGL origin certificate showing deep vivid blue color"
 author: Bez Ambar
 status: live

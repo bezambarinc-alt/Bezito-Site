@@ -4,7 +4,7 @@ date: 2014-11-01
 updatedDate: 2026-07-11
 category: craftsmanship
 excerpt: "Invisible setting makes diamonds appear to float in metal with no visible prongs or bezels. It is one of the most technically demanding techniques in fine jewelry, and a Bez Ambar signature."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540127/blog/legacy/designer-diamond-engagement-rings-los-angeles.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540127/Jewelry%20Images/Legacy/designer-diamond-engagement-rings-los-angeles.jpg"
 heroImageAlt: "Bez Ambar invisibly set diamond band, diamonds appear to float with no visible prongs or bezels"
 author: Bez Ambar
 status: live

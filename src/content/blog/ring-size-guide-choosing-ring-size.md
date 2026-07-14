@@ -4,7 +4,7 @@ date: 2016-06-01
 updatedDate: 2026-07-08
 category: guides
 excerpt: "Ring sizing seems simple until it is not. A well-sized ring should slip over the knuckle with slight resistance and sit without rotating. Getting there requires knowing a few things most buyers do not."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540141/blog/legacy/1rol-5r-model-mb-k.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540141/Jewelry%20Images/Legacy/1rol-5r-model-mb-k.jpg"
 heroImageAlt: "Bez Ambar diamond ring on model's hand showing proper fit"
 author: Bez Ambar
 status: live

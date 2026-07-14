@@ -4,7 +4,7 @@ date: 2024-01-09
 updatedDate: 2026-07-08
 category: guides
 excerpt: "The karat difference between 14k and 18k gold is not just a purity number — it affects color, hardness, maintenance, and long-term wear in ways that should inform which karat you choose for which piece."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540144/blog/legacy/unique-mens-wedding-band-bez-ambar-los-angeles.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540144/Jewelry%20Images/Legacy/unique-mens-wedding-band-bez-ambar-los-angeles.jpg"
 heroImageAlt: "14k and 18k gold wedding bands displayed side by side showing color depth comparison"
 author: Bez Ambar
 status: live

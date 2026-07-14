@@ -4,7 +4,7 @@ date: 2022-10-05
 updatedDate: 2026-07-08
 category: bracelets
 excerpt: "An eternity bracelet carries diamonds through its full circumference with no break — the visual effect is complete, the fabrication demands are unforgiving."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry/C0723_Oval_Eternity_Band_awpedb.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry/Jewelry%20Images/Rings/C0723_Oval_Eternity_Band_awpedb.jpg"
 heroImageAlt: "Diamond eternity bracelet in 18k white gold with oval brilliant stones set continuously"
 author: Bez Ambar
 status: live
@@ -36,7 +36,7 @@ The engineering precision required for channel setting in a bracelet is substant
 Prong settings in eternity bracelets produce higher brilliance than channel settings, because each stone's sides are open to ambient light. The tradeoff is the presence of prong tips around every stone — hundreds of tips across the full bracelet circumference — each of which must be inspected annually and retipped as needed. For a bracelet worn daily, this maintenance commitment is real and should factor into the decision. Bezel-set eternity bracelets are rare because the individual bezels required for each stone through the full circumference add metal bulk that can overwhelm the stone surface area at this scale.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry/C0723_Oval_Eternity_Band_awpedb.jpg" alt="Diamond eternity bracelet detail showing channel setting construction and stone continuity">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry/Jewelry%20Images/Rings/C0723_Oval_Eternity_Band_awpedb.jpg" alt="Diamond eternity bracelet detail showing channel setting construction and stone continuity">
 </figure>
 
 ### The Fit

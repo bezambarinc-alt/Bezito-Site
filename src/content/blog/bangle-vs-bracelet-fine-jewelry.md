@@ -4,7 +4,7 @@ date: 2020-04-28
 updatedDate: 2026-07-08
 category: bracelets
 excerpt: "Bangles and bracelets solve different design problems — understanding what each does well prevents buying the wrong one for the intended use."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry/3rows_round_Flex_ring_mucrzv.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry/Jewelry%20Images/Rings/3rows_round_Flex_ring_mucrzv.jpg"
 heroImageAlt: "Gold bangle and flex bracelet displayed together showing structural contrast"
 author: Bez Ambar
 status: live
@@ -36,7 +36,7 @@ The clasp is both the advantage and the responsibility of bracelet ownership. Th
 Flexibility also allows a bracelet to carry more material at a given apparent size. A flex bracelet — using a series of linked elements that articulate independently — can carry multiple rows of diamonds, substantial total weight, and significant stone surface area while lying flat on the wrist because the linked construction allows it to conform. A bangle at equivalent diamond coverage would need to be substantially larger in diameter to allow the hand to pass through, changing its proportional character.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry/C0723_Oval_Eternity_Band_awpedb.jpg" alt="Fine gold bracelet with diamond accents showing clasp mechanism and link flexibility">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry/Jewelry%20Images/Rings/C0723_Oval_Eternity_Band_awpedb.jpg" alt="Fine gold bracelet with diamond accents showing clasp mechanism and link flexibility">
 </figure>
 
 ### The Decision
