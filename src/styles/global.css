@@ -22,7 +22,7 @@
   --dark-border:  rgba(255, 255, 255, 0.08);
 
   /* Typography — font stacks */
-  --sans:  'InterVariable', 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --sans:  'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --serif: 'Lyon Text', 'Cormorant GaramondVariable', 'Cormorant Garamond', Georgia, serif;
   --prose: 'Lyon Text', 'Cormorant GaramondVariable', 'Cormorant Garamond', Georgia, serif;
 
