@@ -200,15 +200,18 @@ const ogImage = product.heroImage
     ).observe(hero);
   }
 
-  // Floating Inquire pill — shows after hero, hides only when the inquiry button itself is visible
+  // Floating Inquire pill
+  // Show: once hero VIDEO has fully scrolled out of view (above viewport)
+  // Hide: only when the bottom CTA inquiry button comes into view
   const pill       = document.getElementById('prodPill') as HTMLAnchorElement | null;
-  const heroEnd    = document.getElementById('heroEnd');
   const inquireBtn = document.getElementById('inquireBtn');
-  if (pill && heroEnd && inquireBtn) {
+  if (pill && hero) {
     new IntersectionObserver(
       ([e]) => pill.classList.toggle('is-visible', !e.isIntersecting),
       { threshold: 0 }
-    ).observe(heroEnd);
+    ).observe(hero);
+  }
+  if (pill && inquireBtn) {
     new IntersectionObserver(
       ([e]) => pill.classList.toggle('is-hidden', e.isIntersecting),
       { threshold: 0 }
