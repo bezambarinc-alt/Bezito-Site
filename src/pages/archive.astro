@@ -3233,7 +3233,7 @@ import '../styles/templates/tools.css';
         }
         imgObserver.unobserve(img);
       });
-    }, { rootMargin: '400px' });
+    }, { rootMargin: '800px' });
 
     // Pause GIF/AVIF CPU burn when card scrolls off-screen
     var pauseObserver = new IntersectionObserver(function(entries) {
@@ -3247,7 +3247,19 @@ import '../styles/templates/tools.css';
           img.src = '';
         }
       });
-    }, { rootMargin: '50px' });
+    }, { rootMargin: '100px' });
+
+    // Eagerly load the first 24 images — skip the observer wait for initial viewport
+    var eagerCount = 0;
+    cards.forEach(function(card) {
+      var img = card.querySelector('.video-thumb');
+      if (img && img.dataset.src && eagerCount < 24) {
+        img.src = img.dataset.src;
+        delete img.dataset.src;
+        img.addEventListener('load', function() { img.classList.add('is-loaded'); }, { once: true });
+        eagerCount++;
+      }
+    });
 
     // Observe all cards from the start — CSS columns sees full layout immediately
     cards.forEach(function(card) {
