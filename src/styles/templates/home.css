@@ -427,18 +427,6 @@
   margin-top: 8px;
 }
 
-/* ---- About ---- */
-.ba-about {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 40px 40px 96px;
-  font-family: var(--serif);
-  font-size: 15px;
-  color: var(--ink-muted);
-  line-height: 1.75;
-  text-align: center;
-}
-.ba-about strong { color: var(--ink-soft); font-weight: 500; }
 
 /* ---- Responsive ---- */
 @media (max-width: 900px) {
@@ -475,7 +463,6 @@
   .ba-cinematic-dots { display: none; }
 }
 @media (max-width: 520px) {
-  .ba-about { padding: 24px 24px 64px; font-size: 15px; }
 }
 @media (max-width: 380px) {
   .newsletter form { flex-direction: column; gap: 0; border-bottom: 0; }
