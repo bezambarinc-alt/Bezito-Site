@@ -144,6 +144,17 @@ const sdArray = [orgSchema, ...pageSchemas];
         if (val) sessionStorage.setItem(key, val);
       });
     })();
+
+    // Loop all videos but skip the last 3 seconds (avoids freeze/black frames at end)
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('video').forEach(function (v) {
+        v.addEventListener('timeupdate', function () {
+          if (v.duration && v.currentTime >= v.duration - 3) {
+            v.currentTime = 0;
+          }
+        });
+      });
+    });
   </script>
 </body>
 </html>
