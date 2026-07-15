@@ -51,4 +51,4 @@ The header is transparent at page top by default. JS adds `is-solid` (white back
 ## Global Scripts (fire on every page)
 
 - **UTM capture** — reads `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content` from URL params and saves to `sessionStorage` for form submission
-- **Video loop** — detects video `timeupdate` events and resets to 0 at `duration - 3s` to avoid end-of-clip freeze frame
+- **Video loop** — listens to `timeupdate` on all `<video>` elements; when playback reaches `duration - 3s`, jumps back to 0. This avoids freeze frames or black endings that commonly appear in the final seconds of looped clips. The video files themselves are not trimmed — only playback is interrupted early.
