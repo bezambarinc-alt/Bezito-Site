@@ -295,7 +295,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 .ba-header__logo {
   font-family: var(--sans);
   font-size: 15px;
-  font-weight: 300;
+  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   text-decoration: none;
