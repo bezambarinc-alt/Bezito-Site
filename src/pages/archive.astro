@@ -29,7 +29,7 @@ import '../styles/templates/editorial.css';
   <!-- Backdrop -->
   <div class="ba-filter-overlay" id="archiveFilterOverlay" aria-hidden="true"></div>
 
-  <!-- Filter panel — styled to match nav menu drawer -->
+  <!-- Filter panel -->
   <aside class="ba-filter-panel" id="archiveFilterPanel" role="dialog" aria-label="Filter archive">
     <button class="ba-filter-panel__close" id="archiveFilterClose" aria-label="Close filters">✕</button>
     <span class="ba-filter-panel__title">Filter</span>
@@ -48,18 +48,175 @@ import '../styles/templates/editorial.css';
     </div>
   </aside>
 
-
-
   <!-- Video grid -->
   <div class="vg-grid" id="vgGrid">
-  <div class="grid-sizer"></div>
-  <div class="gutter-sizer"></div>
-  <p class="archive-loading">Loading collection…</p>
+    <div class="grid-sizer"></div>
+    <div class="gutter-sizer"></div>
+    <p class="archive-loading">Loading collection…</p>
   </div>
+
+  <!-- Archive piece modal: video left + inquiry form right -->
+  <div id="am-overlay" class="am-overlay" hidden aria-modal="true" role="dialog" aria-label="Piece detail">
+    <div class="am-backdrop" id="amBackdrop"></div>
+    <div class="am-panel">
+      <button class="am-close" id="amClose" aria-label="Close">&#x2715;</button>
+      <div class="am-video-col">
+        <video class="am-video" id="amVideo" autoplay muted loop playsinline></video>
+      </div>
+      <div class="am-form-col">
+        <p class="am-eyebrow">Inquiring about</p>
+        <p class="am-piece-title" id="amPieceTitle"></p>
+        <h2 class="am-heading">Connect with the Atelier</h2>
+        <p class="am-subhead">We respond personally within one business day.</p>
+        <form id="am-form" novalidate>
+          <input type="hidden" id="am-intent" name="intent" value="archive piece">
+          <div class="am-fields">
+            <div class="inq-form__field">
+              <label class="inq-form__label" for="am-name">Your Name</label>
+              <input class="inq-form__input" type="text" id="am-name" name="name" placeholder="First and Last" required autocomplete="name">
+            </div>
+            <div class="inq-form__field">
+              <label class="inq-form__label" for="am-email">Email Address</label>
+              <input class="inq-form__input" type="email" id="am-email" name="email" placeholder="you@email.com" required autocomplete="email">
+            </div>
+          </div>
+          <p class="form-privacy">Your enquiry is private and handled directly by Bez's team.</p>
+          <button type="submit" class="ba-drawer__submit" id="am-submit">
+            <span class="btn-label">Send Inquiry</span>
+            <span class="btn-loading" aria-hidden="true" style="display:none">Sending…</span>
+          </button>
+          <p class="form-error" id="am-error" role="alert" style="display:none"></p>
+        </form>
+        <div id="am-success" class="form-success-state" style="display:none">
+          <div class="success-mark">&#10022;</div>
+          <h3>Your inquiry has been received.</h3>
+          <p>A member of our team will be in touch within one business day.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </Layout>
+
+<style is:global>
+/* ── Archive piece modal ───────────────────────────────────── */
+.am-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 950;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.am-overlay.is-open { opacity: 1; }
+.am-overlay[hidden] { display: none !important; }
+.am-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.82);
+}
+.am-panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: 60fr 40fr;
+  width: min(1120px, 96vw);
+  max-height: 90vh;
+  background: #0e0e0e;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+}
+.am-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 20;
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  font-size: 0.9rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+.am-close:hover { background: rgba(0,0,0,0.85); }
+.am-video-col {
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  max-height: 90vh;
+}
+.am-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.am-form-col {
+  background: var(--white, #fff);
+  padding: 2.75rem 2.25rem 2.75rem;
+  overflow-y: auto;
+  max-height: 90vh;
+}
+.am-eyebrow {
+  font-family: var(--sans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-muted, #888);
+  margin-bottom: 0.25rem;
+}
+.am-piece-title {
+  font-size: 1rem;
+  color: var(--ink, #1a1a1a);
+  line-height: 1.4;
+  margin-bottom: 1.75rem;
+  padding-left: 0.875rem;
+  border-left: 2px solid var(--accent, #95826b);
+}
+.am-heading {
+  font-size: 1.375rem;
+  font-weight: 400;
+  color: var(--ink, #1a1a1a);
+  margin-bottom: 0.4rem;
+}
+.am-subhead {
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  color: var(--ink-muted, #888);
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+.am-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-bottom: 1.75rem;
+}
+@media (max-width: 680px) {
+  .am-panel {
+    grid-template-columns: 1fr;
+    grid-template-rows: 42vw 1fr;
+    width: 100%;
+    max-height: 100dvh;
+  }
+  .am-video-col { max-height: 42vw; }
+  .am-form-col { max-height: calc(100dvh - 42vw); padding: 2rem 1.5rem; }
+  .am-close { top: 0.75rem; right: 0.75rem; }
+}
+</style>
 
 <script>
 (function() {
+  var WORKER_URL = 'https://bezito-forms.bezambarinc.workers.dev';
+
   var HEIGHTS = ['video-card--md','video-card--lg','video-card--sm',
                  'video-card--md','video-card--sm','video-card--lg',
                  'video-card--md','video-card--sm','video-card--lg',
@@ -74,6 +231,108 @@ import '../styles/templates/editorial.css';
     }, { threshold: 0 }).observe(anchor);
   }
 
+  // ── Archive modal ──────────────────────────────────────────
+  var amOverlay   = document.getElementById('am-overlay');
+  var amBackdrop  = document.getElementById('amBackdrop');
+  var amClose     = document.getElementById('amClose');
+  var amVideo     = document.getElementById('amVideo');
+  var amTitle     = document.getElementById('amPieceTitle');
+  var amForm      = document.getElementById('am-form');
+  var amSuccess   = document.getElementById('am-success');
+  var amError     = document.getElementById('am-error');
+  var amSubmit    = document.getElementById('am-submit');
+  var amPieceSku  = '';
+  var amPieceTitle = '';
+
+  function openModal(mp4Url, title, sku) {
+    amPieceTitle = title || '';
+    amPieceSku   = sku   || '';
+    amTitle.textContent = title || '';
+    amVideo.src = mp4Url || '';
+    amVideo.load();
+    amVideo.play().catch(function() {});
+    amForm.style.display = '';
+    amSuccess.style.display = 'none';
+    amError.style.display = 'none';
+    amForm.reset();
+    amOverlay.hidden = false;
+    requestAnimationFrame(function() { amOverlay.classList.add('is-open'); });
+    document.body.style.overflow = 'hidden';
+    setTimeout(function() {
+      var nameInput = amForm.querySelector('#am-name');
+      if (nameInput) nameInput.focus();
+    }, 60);
+  }
+
+  function closeModal() {
+    amOverlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+    setTimeout(function() {
+      amOverlay.hidden = true;
+      amVideo.pause();
+      amVideo.src = '';
+    }, 260);
+  }
+
+  if (amClose)   amClose.addEventListener('click', closeModal);
+  if (amBackdrop) amBackdrop.addEventListener('click', closeModal);
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && amOverlay && amOverlay.classList.contains('is-open')) closeModal();
+  });
+
+  if (amForm) {
+    amForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btnLabel   = amSubmit.querySelector('.btn-label');
+      var btnLoading = amSubmit.querySelector('.btn-loading');
+      if (btnLabel)   btnLabel.style.display   = 'none';
+      if (btnLoading) btnLoading.style.display = '';
+      amSubmit.disabled = true;
+      amError.style.display = 'none';
+
+      var data = new FormData(amForm);
+      var fullName = (data.get('name') || '').trim();
+      var spaceIdx = fullName.indexOf(' ');
+      var firstName = spaceIdx > -1 ? fullName.slice(0, spaceIdx) : fullName;
+      var lastName  = spaceIdx > -1 ? fullName.slice(spaceIdx + 1) : '';
+
+      var payload = {
+        firstName: firstName,
+        lastName:  lastName,
+        email:     data.get('email'),
+        phone:     '',
+        intent:    'archive piece',
+        message:   '',
+        pieceTitle: amPieceTitle,
+        pieceSku:   amPieceSku,
+        utmSource:   sessionStorage.getItem('utm_source')   || '',
+        utmMedium:   sessionStorage.getItem('utm_medium')   || '',
+        utmCampaign: sessionStorage.getItem('utm_campaign') || '',
+      };
+
+      fetch(WORKER_URL + '/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      .then(function(res) {
+        if (!res.ok) return res.json().catch(function() { return {}; }).then(function(b) {
+          throw new Error(b.error || 'Submission failed. Please try again.');
+        });
+        amForm.style.display = 'none';
+        amSuccess.style.display = '';
+      })
+      .catch(function(err) {
+        amError.textContent = err.message || 'Something went wrong. Please email us at bez@bezambar.com.';
+        amError.style.display = '';
+        if (btnLabel)   btnLabel.style.display   = '';
+        if (btnLoading) btnLoading.style.display = 'none';
+        amSubmit.disabled = false;
+      });
+    });
+  }
+
+  // ── Helpers ────────────────────────────────────────────────
   function escAttr(s) {
     return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
@@ -83,6 +342,9 @@ import '../styles/templates/editorial.css';
     a.className = 'video-card ' + HEIGHTS[idx % HEIGHTS.length];
     a.href = '/archive?id=' + encodeURIComponent(id);
     a.dataset.category = entry.htmlCategory || 'rings';
+    a.dataset.mp4  = entry.mp4Url  || '';
+    a.dataset.title = entry.title || '';
+    a.dataset.sku   = id;
     a.innerHTML =
       '<img class="video-thumb" loading="lazy" decoding="async"' +
       ' data-src="' + escAttr(entry.gifUrl) + '"' +
@@ -192,18 +454,11 @@ import '../styles/templates/editorial.css';
       });
     });
 
-    // Card clicks → global inquiry drawer
+    // Card clicks → archive modal (video + form)
     cards.forEach(function(card) {
       card.addEventListener('click', function(e) {
         e.preventDefault();
-        var href = card.getAttribute('href') || '';
-        var match = href.match(/[?&]id=([^&]+)/);
-        var pieceId = match ? decodeURIComponent(match[1]) : '';
-        var h3 = card.querySelector('h3');
-        var title = h3 ? h3.textContent.trim() : '';
-        if (window.openInquiryDrawer) {
-          window.openInquiryDrawer({ title: title, sku: pieceId, intent: 'collection piece' });
-        }
+        openModal(card.dataset.mp4, card.dataset.title, card.dataset.sku);
       });
     });
   }
