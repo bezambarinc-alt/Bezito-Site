@@ -106,13 +106,11 @@ The CF Worker:
 
 | Form field | FreshSales field |
 |---|---|
-| firstName + lastName | Contact name |
+| name | Contact name |
 | email | Contact email |
-| phone | Contact phone |
-| intent | Deal description + custom field |
-| message | Deal description body |
+| intent (programmatic) | Deal description + custom field |
 | pieceTitle + pieceSku | Deal name / description |
-| utm_source / _medium / _campaign | Custom UTM fields on deal |
+| utmSource / utmMedium / utmCampaign | Custom UTM fields on deal |
 
 ---
 
@@ -182,7 +180,7 @@ Build command (in `package.json`):
 astro build && pagefind --site dist
 ```
 
-The index is written into `dist/_pagefind/` at build time. It is served as a static asset — no server-side search, no API call.
+The index is written into `dist/pagefind/` at build time. It is served as a static asset — no server-side search, no API call.
 
 The `SearchOverlay` component loads Pagefind's JS at runtime and queries the index client-side. No external network call during search.
 
@@ -200,7 +198,7 @@ Do not remove this — it will break the build.
 Lyon Text is loaded via **Fontstand's CDN** under a domain-licensed webfont agreement.
 
 ```html
-<link rel="stylesheet" href="https://webfonts.fontstand.com/WF-018636-5d7f06a8b72bc81df8eb71b57ae12d35.css" />
+<link rel="stylesheet" href="https://webfonts.fontstand.com/WF-099839-d89c1d499f0c1f40d1e6d7330af17f97.css" />
 ```
 
 **What this means:**

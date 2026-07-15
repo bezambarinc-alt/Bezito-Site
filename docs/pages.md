@@ -6,14 +6,14 @@
 |---|---|---|---|
 | `/` | `pages/index.astro` | `templates/home.css` | Homepage |
 | `/about-bez-ambar` | `pages/about-bez-ambar.astro` | `templates/editorial.css` | |
-| `/archive` | `pages/archive.astro` | inline `<style is:global>` | Lazy-loaded video grid; has its own modal |
+| `/archive` | `pages/archive.astro` | `templates/editorial.css` + inline `<style is:global>` | Lazy-loaded video grid; has its own modal |
 | `/blog` | `pages/blog/index.astro` | `templates/blog.css` | Blog listing |
 | `/blog/[slug]` | `pages/blog/[slug].astro` | `templates/blog.css` | Blog article — **different typography rules, see typography.md** |
 | `/contact` | `pages/contact.astro` | `templates/contact.css` | |
 | `/collection` | `pages/collection/index.astro` | global.css only | Collection hub |
 | `/collection/[slug]` | `pages/collection/[slug].astro` | global.css only | Dynamic — driven by `COLLECTIONS` map in the file |
 | `/diamond-education` | `pages/diamond-education.astro` | `templates/editorial.css` | |
-| `/elysian-cut` | `pages/elysian-cut.astro` | global.css only | |
+| `/elysian-cut` | `pages/elysian-cut.astro` | `templates/editorial.css` | |
 | `/jewelry/[category]` | `pages/jewelry/[category].astro` | global.css only | Dynamic — driven by `meta` map in the file |
 | `/jewelry/[category]/[slug]` | `pages/jewelry/[category]/[slug].astro` | `templates/product.css` | Product detail page |
 | `/journal` | `pages/journal.astro` | `templates/editorial.css` | |
@@ -48,7 +48,7 @@ Article listing + article pages. **Only page type with different typography rule
 Plain text pages (privacy policy, terms, warranty). Minimal layout. Template: `legal.css`.
 
 ### Archive
-Video archive grid. Lazy-loads cards from `/public/archive-data.json`. Has its own Cloudinary video modal (not the global InquiryDrawer). Styles are inline `<style is:global>` in the page file.
+Video archive grid. Lazy-loads cards from `/public/archive-data.json`. Has its own Cloudinary video modal (not the global InquiryDrawer). Uses `editorial.css` plus additional modal styles in an inline `<style is:global>` block.
 
 ## Dynamic Page Data
 

@@ -44,15 +44,24 @@ The `InquiryDrawer` is a slide-right panel rendered by `Layout.astro` on every p
 window.openInquiryDrawer({
   title: 'Single Row Flex Bracelet',   // optional — pre-fills piece title
   sku: 'C0754',                         // optional — passed in form payload
-  intent: 'bespoke'                     // optional — can be: 'general', 'bespoke', 'service', 'consultation'
+  intent: 'consultation'                // optional — must match FreshSales intent values (see below)
 })
 ```
+
+Intent values (must align with FreshSales dropdown on the `/contact` page):
+- `'commission a piece'` — Bespoke Design links (Nav + Footer)
+- `'consultation'` — Nav bottom CTA "Arrange a Private Consultation"
+- `'collection piece'` — A Piece from the Collection
+- `'atelier visit'` — Visit the Atelier
+- `'repairs'` — Repairs & Cleaning
+- `'resize'` — Ring Resizing
 
 Called from:
 - Product page "Inquire" CTA buttons
 - Nav bottom CTA ("Arrange a Private Consultation")
-- Header contact icon (no piece context, general inquiry)
+- Header contact icon — **currently links to `/contact` page** (TODO: should open InquiryDrawer with contact-style form)
 - Collection page CTAs
+- Footer service links
 - Any inline text link that should trigger inquiry
 
 ### Form Fields

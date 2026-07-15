@@ -68,10 +68,11 @@ These are not stylistic choices — they are structural constraints that govern 
 
 The full palette is in [colors.md](colors.md). The essential rules:
 
-- `--accent` (`#95826b`) — warm sand/gold. Used sparingly. CTAs, active states, underlines.
-- `--dark` (`#0a0a08`) — near-black. Primary text on light pages. Heroes/backdrops.
-- `--warm-white` (`#f9f6f1`) — off-white, parchment. Primary page background for editorial content.
-- `--light-text` (`#f9f6f1` or `#ffffffdd`) — body text on dark/hero sections.
+- `--accent` (`#95826b`) — warm sand/gold. CTAs, active states, eyebrow labels, decorative rules.
+- `--dark-bg` (`#0d0d0d`) — near-black. Heroes, dark-section backdrops.
+- `--paper` (`#faf7f2`) — warm off-white. Primary editorial section background.
+- `--white` (`#ffffff`) — pure white. Default page background.
+- `--ink` (`#1a1a1a`) — primary body text on light pages.
 - Gold tone is warm, never yellow. Never bright. Never metallic-effect-on-screen.
 
 ### Typography

@@ -8,7 +8,8 @@ Fixed top bar. Always rendered.
 
 - Left: hamburger button that opens `Nav`
 - Center: "BEZ AMBAR" wordmark link → `/`
-- Right: search icon (opens `SearchOverlay`), contact icon (opens `InquiryDrawer`)
+- Right: search icon (opens `SearchOverlay`), contact icon → currently `<a href="/contact">` (navigates to contact page)
+- **TODO:** contact icon should open InquiryDrawer with a contact-style form instead of navigating away
 - Transparent at page top; JS adds `.is-solid` (white background) on scroll
 - All styles in `global.css` section 7 — no scoped `<style>` block in the component
 
@@ -28,7 +29,10 @@ Slide-left menu overlay. Always rendered, hidden until toggled.
 Five-column footer. Always rendered.
 
 - Column 1: Brand — wordmark, tagline, `<SocialLinks />`, Blaze® credit
-- Columns 2–5: Shop / Atelier / Service / Contact+Address link groups
+- Column 2: Shop — collection + category links
+- Column 3: Discover — About, Diamond Education, Elysian Cut, Press, Journal, Ring Size Guide
+- Column 4: Service — Contact, Bespoke Design, Repairs & Cleaning, Ring Resizing, Warranty
+- Column 5: Visit the Atelier — address + hours
 - Accordion on mobile (each column collapses)
 - Imports `SocialLinks`
 
@@ -53,8 +57,11 @@ Slide-right inquiry/contact panel. Always rendered, hidden until triggered.
 
 ## SocialLinks (`SocialLinks.astro`)
 
-Icon-only social row. Used inside `Footer` and `InquiryDrawer`.
+Icon-only social row. Used inside `Footer`, `InquiryDrawer`, and the contact page.
 
 - Instagram → `https://www.instagram.com/bezambarjewelry/`
 - Pinterest → `https://www.pinterest.com/bezambarinc/`
+- YouTube → `https://www.youtube.com/@BezAmbarInc/`
+- TikTok → `https://www.tiktok.com/@bezambar`
+- LinkedIn → `https://www.linkedin.com/in/bez-ambar-869936a/`
 - Accepts optional `class` prop for layout overrides
