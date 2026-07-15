@@ -54,7 +54,7 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
-h1, h2, h3, h4, h5, h6 { font-family: var(--serif);
+h1, h2, h3, h4, h5, h6 { font-family: var(--sans);
  text-transform: var(--sans-transform, none);
  letter-spacing: var(--sans-letter-spacing, normal); }
 a { color: inherit; text-decoration: none; }
@@ -371,7 +371,9 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
   display: block;
 }
 .ba-cta__title {
-  font-family: var(--serif);
+  font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: clamp(24px, 3.5vw, 38px);
   font-weight: 300;
   line-height: 1.2;
@@ -431,7 +433,9 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 }
 .ba-segment__text .ba-eyebrow { margin-bottom: 20px; }
 .ba-segment__heading {
-  font-family: var(--serif);
+  font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: clamp(22px, 3vw, 32px);
   font-weight: 300;
   line-height: 1.2;
@@ -485,7 +489,9 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
   margin: 0 auto 24px;
 }
 .ba-pull-quote__attr {
-  font-family: var(--serif);
+  font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 600;
   color: var(--ink-muted);
@@ -2058,7 +2064,9 @@ body.menu-open { overflow: hidden; }
   text-align: center;
 }
 .ba-faq__title {
-  font-family: var(--serif);
+  font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 22px;
   font-weight: 300;
   color: var(--ink);
@@ -2437,7 +2445,9 @@ body.menu-open { overflow: hidden; }
   text-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 .ba-portrait-hero__title {
-  font-family: var(--serif);
+  font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: clamp(28px, 4vw, 44px);
   font-weight: 200;
   line-height: 1.15;
@@ -2520,7 +2530,9 @@ body.menu-open { overflow: hidden; }
   display: block;
 }
 .ba-section-divider__title {
-  font-family: var(--serif);
+  font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: clamp(24px, 3.5vw, 38px);
   font-weight: 200;
   color: var(--ink);
@@ -2602,7 +2614,9 @@ body.search-open { overflow: hidden; }
 .ba-search__result:last-child { border-bottom: none; }
 
 .ba-search__result-title {
-  font-family: var(--serif);
+  font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 11px;
   color: inherit;
   margin: 0 0 5px;
