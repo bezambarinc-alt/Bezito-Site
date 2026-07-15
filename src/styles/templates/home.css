@@ -58,8 +58,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 400;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 7px;
 }
@@ -69,9 +67,7 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: clamp(1.8rem, 3.5vw, 3rem);
   font-weight: 200;
-  letter-spacing: -0.01em;
   line-height: 1.15;
-  text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 14px;
 }
@@ -143,8 +139,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 500;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
   color: var(--paper);
   margin-bottom: 20px;
   text-shadow: 0 1px 3px rgba(0,0,0,0.5);
@@ -155,9 +149,7 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: clamp(28px, 4vw, 44px);
   font-weight: 200;
-  letter-spacing: 0.08em;
   line-height: 1.15;
-  text-transform: uppercase;
   color: var(--white);
   margin: 0 auto 18px;
   max-width: 24ch;
@@ -169,8 +161,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 300;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
   color: var(--accent-warm);
   text-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
@@ -214,8 +204,6 @@
   text-transform: var(--sans-transform, none);
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
   color: var(--ink-muted);
 }
 .segment__content {
@@ -229,8 +217,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 400;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 7px;
 }
@@ -240,8 +226,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: clamp(1.8rem, 3.5vw, 3rem);
   font-weight: 200;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
   line-height: 1.15;
   color: var(--accent);
   margin-bottom: 24px;
@@ -261,8 +245,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 600;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
   color: var(--ink);
   border-bottom: 1px solid var(--ink);
   padding-bottom: 4px;
@@ -372,8 +354,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 400;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
   color: var(--accent);
 }
 
@@ -391,8 +371,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 400;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 22px;
 }
@@ -435,8 +413,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
   padding: 14px 8px;
   cursor: pointer;
 }
@@ -447,7 +423,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 14px;
   color: var(--accent);
-  letter-spacing: 0.03em;
   margin-top: 0;
 }
 .newsletter-error {
@@ -544,8 +519,6 @@
   text-transform: var(--sans-transform, none);
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
   color: var(--ink-muted);
 }
 .ba-feature-row__content {
@@ -559,8 +532,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 400;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 7px;
 }
@@ -570,8 +541,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: clamp(1.8rem, 3.5vw, 3rem);
   font-weight: 200;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
   line-height: 1.15;
   color: var(--accent);
   margin-bottom: 24px;
@@ -591,8 +560,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 600;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
   color: var(--ink);
   border-bottom: 1px solid var(--ink);
   padding-bottom: 4px;
@@ -675,8 +642,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 400;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 7px;
 }
@@ -686,9 +651,7 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: clamp(1.8rem, 3.5vw, 3rem);
   font-weight: 200;
-  letter-spacing: -0.01em;
   line-height: 1.15;
-  text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 14px;
 }

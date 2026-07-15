@@ -29,8 +29,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
   color: var(--ink);
   text-decoration: none;
   border-bottom: 1px solid var(--ink);
@@ -73,14 +71,11 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 400;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
   color: var(--ink-muted);
 }
 .ba-about-intro__prose h2 {
   font-size: clamp(20px, 2.2vw, 26px);
   font-weight: 200;
-  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--ink);
   margin-bottom: 1.5rem;
@@ -114,7 +109,6 @@
 .ba-craft-section__prose h2 {
   font-size: clamp(18px,2vw,24px);
   font-weight: 200;
-  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 2rem;
@@ -143,7 +137,6 @@
 .ba-timeline__header h2 {
   font-size: clamp(20px,2.2vw,26px);
   font-weight: 200;
-  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 0.75rem;
@@ -170,7 +163,6 @@
   font-weight: 200;
   color: var(--accent);
   line-height: 1;
-  letter-spacing: -0.02em;
   padding-top: 3px;
 }
 .ba-tl-title {
@@ -179,8 +171,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 600;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
   color: var(--ink);
   margin-bottom: 10px;
 }
@@ -222,8 +212,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 400;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
   color: var(--accent-warm);
 }
 
@@ -236,7 +224,6 @@
 .ba-cuts-section__header h2 {
   font-size: clamp(20px,2.2vw,26px);
   font-weight: 200;
-  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 0.75rem;
@@ -263,8 +250,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 500;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
   color: var(--ink-muted);
   margin-bottom: 10px;
 }
@@ -274,7 +259,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: clamp(16px,1.8vw,20px);
   font-weight: 300;
-  letter-spacing: 0.02em;
   color: var(--ink);
   margin-bottom: 14px;
 }
@@ -294,7 +278,6 @@
 .ba-atelier h2 {
   font-size: clamp(20px,2.2vw,26px);
   font-weight: 200;
-  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 1.5rem;
@@ -306,8 +289,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 300;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
   color: var(--ink-muted);
   line-height: 2.6;
 }
@@ -329,7 +310,6 @@
   font-weight: 400;
   color: var(--ink);
   margin: 0 0 40px;
-  letter-spacing: 0.02em;
 }
 .press-featured-card {
   display: grid;
@@ -362,8 +342,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 20px;
   display: block;
@@ -389,8 +367,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
   color: var(--ink);
   text-decoration: none;
   border-bottom: 1px solid var(--accent);
@@ -429,8 +405,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
   color: var(--accent);
   display: block;
   margin-bottom: 10px;
@@ -493,8 +467,6 @@
   text-transform: var(--sans-transform, none);
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
   color: var(--ink-muted);
   margin: 0 0 12px;
 }
@@ -504,8 +476,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
   color: var(--accent);
   text-decoration: none;
   border-bottom: 1px solid currentColor;
@@ -534,7 +504,6 @@
 .four-c-card h3 {
   font-size: 15px;
   font-weight: 600;
-  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink);
   margin: 0 0 12px;
@@ -552,8 +521,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
   color: var(--ink-muted);
   margin-bottom: 12px;
 }
@@ -567,7 +534,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 500;
-  letter-spacing: 0.05em;
   color: var(--white);
 }
 .seg-excellent { background: var(--ink); }
@@ -605,7 +571,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 600;
-  letter-spacing: 0.08em;
   color: var(--accent);
   min-width: 48px;
 }
@@ -629,8 +594,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: var(--ink);
   margin-bottom: 4px;
 }
@@ -650,8 +613,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 6px;
 }
@@ -675,15 +636,12 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 20px;
 }
 .vg-hero__title {
   font-size: clamp(36px, 6vw, 60px);
   font-weight: 300;
-  letter-spacing: 0.03em;
   color: var(--ink);
   margin-bottom: 20px;
   line-height: 1.1;

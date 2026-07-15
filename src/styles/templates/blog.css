@@ -62,8 +62,6 @@
   text-transform: var(--sans-transform, none);
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 16px;
   display: block;
@@ -90,8 +88,6 @@
   text-transform: var(--sans-transform, none);
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
   color: var(--ink);
   border-bottom: 1px solid var(--ink);
   padding-bottom: 2px;
@@ -118,8 +114,6 @@
   text-transform: var(--sans-transform, none);
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
   padding: 8px 20px;
   border: 1px solid var(--border-warm);
   background: transparent;
@@ -164,8 +158,6 @@
   text-transform: var(--sans-transform, none);
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 8px;
 }
@@ -215,8 +207,6 @@
   text-transform: var(--sans-transform, none);
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
   color: var(--ink-muted);
   text-decoration: none;
   transition: color 0.3s ease;
@@ -236,8 +226,6 @@
   text-transform: var(--sans-transform, none);
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 11px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
   color: var(--ink-muted);
   margin-bottom: 20px;
   display: block;
@@ -251,7 +239,6 @@
   margin: 0 0 28px;
   max-width: 800px;
   line-height: 1.1;
-  letter-spacing: -0.02em;
   overflow: hidden; /* mask for line-reveal */
 }
 /* H1 inner span — slides up from below the mask on page load */
@@ -275,7 +262,6 @@
   text-transform: var(--sans-transform, none);
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 12px;
-  letter-spacing: 0.12em;
   color: var(--ink-muted);
 }
 .ba-post-hero__meta span { margin: 0 10px; }
@@ -361,8 +347,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 11px;
   font-weight: 400;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
   color: var(--ink-muted);
   margin: 96px 0 0;
 }
@@ -373,7 +357,6 @@
   font-style: italic;
   color: var(--ink);
   line-height: 1.1;
-  letter-spacing: -0.01em;
   margin: 4px 0 48px;
 }
 /* Standalone H2 without a preceding H3 label gets its own top margin */
@@ -417,7 +400,6 @@
   text-transform: var(--sans-transform, none);
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 12px;
-  letter-spacing: 0.1em;
   color: var(--ink-muted);
   margin-top: 10px;
   text-align: center;
@@ -483,8 +465,6 @@
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 13px;
   font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
   color: var(--ink);
   margin-top: 48px;
   margin-bottom: 12px;
@@ -494,7 +474,6 @@
 .ba-post-content p:has(> strong:only-child) strong {
   font-weight: 600;
   font-size: inherit;
-  letter-spacing: inherit;
   text-transform: inherit;
 }
 
@@ -563,7 +542,6 @@
   color: var(--ink-muted);
   margin: 8px 0 0;
   line-height: 1.7;
-  letter-spacing: 0.02em;
 }
 .ba-post-cta__box a {
   display: inline-block;
@@ -571,8 +549,6 @@
   text-transform: var(--sans-transform, none);
   letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 12px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
   color: var(--white);
   background: var(--ink);
   padding: 16px 40px;
