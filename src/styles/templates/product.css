@@ -11,6 +11,7 @@
   justify-content: center;
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   letter-spacing: 0.08em;
   color: var(--ink-soft);
@@ -53,6 +54,7 @@
 .hero-video__ref-id {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.28em;
@@ -62,6 +64,7 @@
 .hero-video__ref-name {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: clamp(1.25rem, 2.2vw, 1.75rem);
   font-weight: 200;
   letter-spacing: 0.08em;
@@ -77,6 +80,7 @@
 .hero__eyebrow {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -87,6 +91,7 @@
 .hero__title {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: clamp(32px, 5vw, 52px);
   font-weight: 300;
   letter-spacing: 0.03em;
@@ -101,6 +106,7 @@
 .hero__subtitle {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 300;
   letter-spacing: 0.22em;
@@ -110,6 +116,7 @@
 .hero__ref-line {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 13px;
   font-weight: 400;
   letter-spacing: 0.18em;
@@ -141,6 +148,7 @@
 .technical__label {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: var(--type-heading);
   font-weight: 200;
   letter-spacing: 0.1em;
@@ -159,6 +167,7 @@
 .tech-item__head {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 200;
   letter-spacing: 0.14em;
@@ -213,6 +222,7 @@ details[open] .tech-item__head::after {
 .product-cta__title {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: clamp(28px, 4vw, 42px);
   font-weight: 300;
   letter-spacing: 0.04em;
@@ -232,6 +242,7 @@ details[open] .tech-item__head::after {
   cursor: pointer;
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -277,6 +288,7 @@ details[open] .tech-item__head::after {
   color: var(--white);
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.28em;
@@ -313,6 +325,7 @@ details[open] .tech-item__head::after {
   padding: 10px 18px;
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -343,6 +356,7 @@ details[open] .tech-item__head::after {
   padding: 14px 20px;
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.18em;

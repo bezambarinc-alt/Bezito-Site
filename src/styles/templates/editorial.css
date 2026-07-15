@@ -26,6 +26,7 @@
 .ba-cta-inline {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -59,6 +60,7 @@
 .ba-stat__number {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: clamp(28px, 3.5vw, 44px);
   font-weight: 200;
   color: var(--accent);
@@ -68,6 +70,7 @@
 .ba-stat__label {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 400;
   letter-spacing: 0.22em;
@@ -162,6 +165,7 @@
 .ba-tl-year {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: clamp(36px,4.5vw,58px);
   font-weight: 200;
   color: var(--accent);
@@ -172,6 +176,7 @@
 .ba-tl-title {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.10em;
@@ -214,6 +219,7 @@
 .ba-pull-quote--dark .ba-pull-quote__attr {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 400;
   letter-spacing: 0.28em;
@@ -254,6 +260,7 @@
 .ba-cut-card__since {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.28em;
@@ -264,6 +271,7 @@
 .ba-cut-card__name {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: clamp(16px,1.8vw,20px);
   font-weight: 300;
   letter-spacing: 0.02em;
@@ -295,6 +303,7 @@
 .ba-atelier__details {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 300;
   letter-spacing: 0.2em;
@@ -350,6 +359,7 @@
 .press-featured-card__tag {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.18em;
@@ -376,6 +386,7 @@
   display: inline-block;
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -415,6 +426,7 @@
 .press-card__year {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.18em;
@@ -479,6 +491,7 @@
 .ba-follow-cta__handle {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -488,6 +501,7 @@
 .ba-follow-cta__link {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.14em;
@@ -535,6 +549,7 @@
   display: block;
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.15em;
@@ -549,6 +564,7 @@
   text-align: center;
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.05em;
@@ -567,6 +583,7 @@
   display: flex; align-items: center; justify-content: center;
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 600;
   color: var(--ink);
@@ -585,6 +602,7 @@
 .clarity-grade {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -608,6 +626,7 @@
 .shape-name {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -628,6 +647,7 @@
 .anatomy-term dt {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -652,6 +672,7 @@
 .vg-hero__eyebrow {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.18em;
