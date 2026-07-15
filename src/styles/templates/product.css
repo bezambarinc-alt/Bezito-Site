@@ -83,9 +83,7 @@
   margin-bottom: 20px;
 }
 .hero__title {
-  font-family: var(--sans);
-  text-transform: var(--sans-transform, none);
-  letter-spacing: var(--sans-letter-spacing, normal);
+  font-family: var(--serif);
   font-size: clamp(32px, 5vw, 52px);
   font-weight: 300;
   color: var(--ink);
@@ -97,9 +95,7 @@
   align-items: center;
 }
 .hero__subtitle {
-  font-family: var(--sans);
-  text-transform: var(--sans-transform, none);
-  letter-spacing: var(--sans-letter-spacing, normal);
+  font-family: var(--serif);
   font-size: 15px;
   font-weight: 300;
   color: var(--accent);
@@ -205,9 +201,7 @@ details[open] .tech-item__head::after {
   color: var(--white);
 }
 .product-cta__title {
-  font-family: var(--sans);
-  text-transform: var(--sans-transform, none);
-  letter-spacing: var(--sans-letter-spacing, normal);
+  font-family: var(--serif);
   font-size: clamp(28px, 4vw, 42px);
   font-weight: 300;
   margin-bottom: 20px;

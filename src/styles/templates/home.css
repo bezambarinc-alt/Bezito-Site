@@ -144,9 +144,7 @@
   text-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 .hero-image__title {
-  font-family: var(--sans);
-  text-transform: var(--sans-transform, none);
-  letter-spacing: var(--sans-letter-spacing, normal);
+  font-family: var(--serif);
   font-size: clamp(28px, 4vw, 44px);
   font-weight: 200;
   line-height: 1.15;
@@ -221,9 +219,7 @@
   margin-bottom: 7px;
 }
 .segment__title {
-  font-family: var(--sans);
-  text-transform: var(--sans-transform, none);
-  letter-spacing: var(--sans-letter-spacing, normal);
+  font-family: var(--serif);
   font-size: clamp(1.8rem, 3.5vw, 3rem);
   font-weight: 200;
   line-height: 1.15;
@@ -536,9 +532,7 @@
   margin-bottom: 7px;
 }
 .ba-feature-row__title {
-  font-family: var(--sans);
-  text-transform: var(--sans-transform, none);
-  letter-spacing: var(--sans-letter-spacing, normal);
+  font-family: var(--serif);
   font-size: clamp(1.8rem, 3.5vw, 3rem);
   font-weight: 200;
   line-height: 1.15;

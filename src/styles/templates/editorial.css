@@ -166,9 +166,7 @@
   padding-top: 3px;
 }
 .ba-tl-title {
-  font-family: var(--sans);
-  text-transform: var(--sans-transform, none);
-  letter-spacing: var(--sans-letter-spacing, normal);
+  font-family: var(--serif);
   font-size: 15px;
   font-weight: 600;
   color: var(--ink);
@@ -207,9 +205,7 @@
   margin: 0 auto 2rem;
 }
 .ba-pull-quote--dark .ba-pull-quote__attr {
-  font-family: var(--sans);
-  text-transform: var(--sans-transform, none);
-  letter-spacing: var(--sans-letter-spacing, normal);
+  font-family: var(--serif);
   font-size: 15px;
   font-weight: 400;
   color: var(--accent-warm);
@@ -254,9 +250,7 @@
   margin-bottom: 10px;
 }
 .ba-cut-card__name {
-  font-family: var(--sans);
-  text-transform: var(--sans-transform, none);
-  letter-spacing: var(--sans-letter-spacing, normal);
+  font-family: var(--serif);
   font-size: clamp(16px,1.8vw,20px);
   font-weight: 300;
   color: var(--ink);

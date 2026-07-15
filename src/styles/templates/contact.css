@@ -54,9 +54,7 @@
 
 /* ── Form ────────────────────────────────────────────────── */
 .contact-form__heading {
-  font-family: var(--sans);
-  text-transform: var(--sans-transform, none);
-  letter-spacing: var(--sans-letter-spacing, normal);
+  font-family: var(--serif);
   font-size: 10px;
   font-weight: 500;
   color: var(--ink-muted);
