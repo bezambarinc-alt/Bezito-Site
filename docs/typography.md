@@ -71,7 +71,8 @@ Blog is the **only page type** with different typography rules. All other pages 
 Blog overrides (in `src/styles/templates/blog.css`):
 
 - `ba-post-hero h1` → Lyon Text, italic, weight 400 (serif, not sans)
-- `ba-post-content h2`, `h3` → Lyon Text, italic (serif body headings)
+- `ba-post-content h2` → Lyon Text, italic (serif body heading)
+- `ba-post-content h3` → Open Sans, uppercase, 11px, `--ink-muted` (small-caps section label — sans, not serif)
 - Body copy in `ba-post-content` → Lyon Text (same as base, no change)
 
 Do not apply blog typography rules to any other page type.

@@ -106,7 +106,7 @@ The CF Worker:
 
 | Form field | FreshSales field |
 |---|---|
-| name | Contact name |
+| firstName + lastName (split from Name input) | Contact name |
 | email | Contact email |
 | intent (programmatic) | Deal description + custom field |
 | pieceTitle + pieceSku | Deal name / description |

@@ -58,7 +58,7 @@ Submits to the **FreshSales Worker** at `https://bezito-forms.bezambarinc.worker
 
 Form fields (visible): `name`, `email`. All other context is set programmatically.
 
-Payload fields: `name`, `email`, `intent` (set programmatically), `pieceTitle`, `pieceSku`, `utmSource`, `utmMedium`, `utmCampaign`.
+Payload fields: `firstName`, `lastName` (split from single Name input at first space), `email`, `intent` (set programmatically), `pieceTitle`, `pieceSku`, `utmSource`, `utmMedium`, `utmCampaign`.
 
 UTM fields are captured from the URL on page load and saved to `sessionStorage` — they're included automatically in every form submission.
 
@@ -178,6 +178,9 @@ Lyon Text (Fontstand CDN) may not render in local dev if the license is domain-l
 web/bez-ambar/
 ├── docs/                   ← design & dev documentation (READ FIRST)
 │   ├── README.md           ← docs index
+│   ├── brand.md
+│   ├── inquiry-model.md
+│   ├── integrations.md
 │   ├── typography.md
 │   ├── colors.md
 │   ├── layout.md

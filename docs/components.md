@@ -51,7 +51,7 @@ Slide-right inquiry/contact panel. Always rendered, hidden until triggered.
 - Opens via `window.openInquiryDrawer({ title?, sku?, intent? })`
 - Form shows two fields only: Name + Email. Intent is always set programmatically, never shown to the visitor.
 - Submits to FreshSales worker: `https://bezito-forms.bezambarinc.workers.dev/api/contact`
-- Payload includes: name, email, intent (programmatic), pieceTitle, pieceSku, utmSource, utmMedium, utmCampaign
+- Payload includes: firstName, lastName (split from single Name input), email, intent (programmatic), pieceTitle, pieceSku, utmSource, utmMedium, utmCampaign
 - Used site-wide for general inquiries, bespoke commissions, and service requests
 - **Note:** The Archive page has its own separate modal (video left + form right) — it does NOT use this drawer
 

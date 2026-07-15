@@ -19,7 +19,7 @@ Clicks inquiry CTA (button, nav CTA, or drawer trigger)
        ↓
 InquiryDrawer opens (pre-filled with piece context)
        ↓
-Visitor submits form (name, email, phone, message)
+Visitor submits form (name, email)
        ↓
 CF Worker receives POST → creates FreshSales contact + lead
        ↓
