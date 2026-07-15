@@ -41,6 +41,8 @@ Jewelry category listings (rings, bracelets, etc.). Product grid with hero. No s
 ### Collection
 Named collection landing pages (Bloom, Dentelle, etc.). Hero + spotlight modules + product grid + CTA. No separate template CSS — built from global component classes. Generated dynamically; metadata in `COLLECTIONS` map inside `[slug].astro`. **Add a new collection by adding one entry to that map — no new file needed.**
 
+**Why data maps in the page file (not a CMS or database for categories/collections):** categories and collections change rarely and always require a developer touch anyway (new Cloudinary assets, new navigation links, new content decisions). Keeping the config co-located with the template that renders it means the developer can read both in one file. A CMS abstraction here would add infrastructure complexity with no editorial benefit — editors don't manage categories independently.
+
 ### Blog
 Article listing + article pages. **Only page type with different typography rules.** Template: `blog.css`. Article h1 is Lyon Text italic; section headings inside articles are also serif italic.
 

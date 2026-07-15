@@ -50,5 +50,14 @@ The header is transparent at page top by default. JS adds `is-solid` (white back
 
 ## Global Scripts (fire on every page)
 
-- **UTM capture** — reads `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content` from URL params and saves to `sessionStorage` for form submission
+- **UTM capture** — reads `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content` from URL params and saves to `sessionStorage` for form submission.
+  - **Why `sessionStorage` (not `localStorage` or cookie):** clears on tab/browser close — single-session attribution only. No cross-session persistence, no consent banner requirements.
 - **Video loop** — listens to `timeupdate` on all `<video>` elements; when playback reaches `duration - 3s`, jumps back to 0. This avoids freeze frames or black endings that commonly appear in the final seconds of looped clips. The video files themselves are not trimmed — only playback is interrupted early.
+  - **Why 3 seconds:** a conservative buffer that catches freeze/black frames that typically occur in the final 1–2s of web-encoded MP4s. Source clips are not re-encoded when the threshold needs adjusting — change the constant in the script only.
+  - **Why JS interrupt vs trimming files:** keeps source assets untouched and allows future adjustment of the threshold per-clip without touching Cloudinary.
+
+## Search Indexing
+
+`<main>` carries `data-pagefind-body` — Pagefind indexes only content inside this attribute. `<Footer>` carries `data-pagefind-ignore`.
+
+**Why ignore the footer:** footer navigation text (collection names, service labels, address) would match on every single page and pollute search result ranking. Only page-specific content should be indexed.

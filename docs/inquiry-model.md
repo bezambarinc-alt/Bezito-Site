@@ -38,6 +38,8 @@ Nothing in this flow involves a transaction. The form submission is the conversi
 
 The `InquiryDrawer` is a slide-right panel rendered by `Layout.astro` on every page. It is always present in the DOM; it's hidden until triggered.
 
+**Why always-in-DOM (not mounted on demand):** the drawer can be triggered from anywhere — product CTAs, nav, footer service links, inline text links. Pre-rendering it means zero load time on open. Mounting it dynamically would introduce a flicker or delay on the first open, which is unacceptable for the primary conversion action.
+
 ### Opening It
 
 ```js
@@ -69,6 +71,8 @@ Called from:
 Visible to visitor:
 - Name (required)
 - Email (required)
+
+**Why only two fields:** minimize friction at the top of the funnel. Name + email is enough to start the relationship. Everything else — stone preferences, budget, timeline, ring size — belongs in the follow-up call, not a web form. Every additional field increases abandon rate. The piece context (title, SKU, intent) is passed programmatically so it's already in FreshSales without the visitor typing anything.
 
 Hidden / auto-filled:
 - `intent` — set programmatically via `openInquiryDrawer()` (e.g. `'consultation'`, `'commission a piece'`, `'repairs'`, `'resize'`)

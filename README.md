@@ -68,6 +68,26 @@ The Archive page (`/archive`) has its own separate video + inquiry modal. It is 
 
 ---
 
+## Key Decisions
+
+These are the non-obvious choices with explicit rationale. Do not revisit them without updating this doc.
+
+| Decision | Choice | Why |
+|---|---|---|
+| No shopping cart | Inquiry-only | Made-to-order pieces require a conversation. Cart checkout is structurally incompatible with this product. |
+| Framework | Astro (static) | No user sessions, no server-side personalization, no dynamic data at runtime. Static output = best performance, simplest hosting, lowest cost. SSR adds complexity with no benefit here. |
+| Search | Pagefind | No API key, no external service, zero cost, works offline. Fully client-side. Adequate for ~50–200 SKUs. |
+| PXM | Plytix | Product data feeds three channels (Astro site, Klaviyo, CF Workers). A headless CMS would compromise the data model to fit the website's needs. Plytix is built for multi-channel product distribution. |
+| Form proxy | CF Worker | FreshSales API key never touches the browser. Worker handles validation, rate limiting, and CRM integration server-side. |
+| Form fields | Name + Email only | Lower friction = higher submit rate. All other context (piece, intent, UTM) is passed programmatically. The conversation after submission collects everything else. |
+| UTM storage | `sessionStorage` | Single-session attribution. Clears on tab close. No cross-session persistence, no cookie consent requirement. |
+| Video delivery | Cloudinary URL transforms | Transcoding and quality/format optimization at request time via URL params. No need to store multiple pre-encoded versions per clip. |
+| Video loop | JS interrupt at `duration - 3s` | Source files stay untouched. Avoids freeze frames that appear in the final 1–2s of web-encoded MP4s. Threshold adjustable in code without re-encoding. |
+| Category/collection config | Data map in page file | Config co-located with the template that renders it. Categories/collections change rarely and always require a developer; a CMS abstraction adds overhead with no editorial benefit. |
+| InquiryDrawer | Always-in-DOM, hidden | Zero open latency — can be triggered from anywhere on the page. Mounting on demand would introduce a flicker on the primary conversion action. |
+
+---
+
 ## Tech Stack
 
 | Layer | Technology | Notes |

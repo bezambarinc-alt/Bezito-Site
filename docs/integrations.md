@@ -68,6 +68,10 @@ src/content/products/*.md   (Astro content collection entries)
 - **API access:** active. Credentials stored in workspace (ask Kevin or check the Controller dir).
 - Plytix also feeds Klaviyo (campaign segmentation) and CF Workers (landing pages) — not only the Astro site.
 
+### Why Plytix (not a headless CMS)
+
+Product data is multi-channel: the Astro site, Klaviyo email campaigns, and CF Worker landing pages all consume it. A headless CMS (Contentful, Sanity) would center the website as the authoring environment. Plytix is built specifically for multi-channel product data distribution — one source, many outputs, no content model compromises for any single channel.
+
 ---
 
 ## FreshSales (CRM)
@@ -102,6 +106,8 @@ The CF Worker:
 4. Creates a new deal/lead with piece context + UTM attribution
 5. Returns `{ success: true }` or error message
 
+**Why proxy through a CF Worker (not call FreshSales directly from the browser):** FreshSales API keys never touch the client. A direct browser → FreshSales call would expose the API key in every page source. The worker also enables server-side validation, rate limiting, and future queueing without any changes to the site.
+
 ### Field Mapping
 
 | Form field | FreshSales field |
@@ -135,6 +141,8 @@ https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1/<public-id>
 ```
 
 Transformations are applied via URL parameters — never transform at upload time. This allows re-delivery at different sizes without re-uploading.
+
+**Why Cloudinary (not self-hosting or another CDN):** product videos need adaptive delivery across device sizes and connection speeds. Cloudinary handles transcoding, format selection (`f_auto`), and quality optimization (`q_auto`) per request via URL params. Self-hosting would require storing multiple pre-encoded versions of every clip.
 
 ### Folder Structure
 
@@ -190,6 +198,8 @@ external: ['/pagefind/pagefind.js']
 ```
 
 Do not remove this — it will break the build.
+
+**Why Pagefind (not Algolia, Elasticsearch, or another search service):** no API key, no external dependency at runtime, zero cost, works offline. The index is a static asset served from the same CDN as the rest of the site. Search queries never leave the browser — fully client-side. Since the site is static and the product catalog is small (~50–200 SKUs), a hosted search service adds cost and complexity with no benefit.
 
 ---
 
