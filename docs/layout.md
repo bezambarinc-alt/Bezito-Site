@@ -38,7 +38,7 @@ Every page wraps in `src/layouts/Layout.astro`. It renders this structure on eve
 | `canonical` | string | auto (from `Astro.url`) | canonical URL |
 | `ogImage` | string | Cloudinary default | OG + Twitter image |
 | `ogType` | string | `'website'` | OG type |
-| `pageType` | `'website'` \| `'product'` \| `'article'` | `'website'` | Semantic page classification — used by product pages (`'product'`), blog posts (`'article'`), contact page (`'light'` — nonstandard value currently in use) |
+| `pageType` | `'website'` \| `'product'` \| `'article'` | `'website'` | Semantic page classification — product pages pass `'product'`, blog posts pass `'article'`, all other pages default to `'website'` |
 | `structuredData` | object \| object[] | — | Additional JSON-LD schemas (merged with org schema) |
 | `theme` | `'light'` \| `'dark'` | `'light'` | `page-dark` body class on dark pages |
 | `headerLight` | boolean | `false` | `page-header-light` body class — header starts in ink color on light-bg pages |
