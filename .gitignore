@@ -3,3 +3,12 @@ node_modules/
 dist/
 .astro/
 *.log
+
+# Legacy pre-Astro HTML files at repo root — not part of Astro build
+/*.html
+/*.html.bak
+/*.html.backup
+/*.html.local-backup
+/*.xml
+/*.css
+robots.txt
