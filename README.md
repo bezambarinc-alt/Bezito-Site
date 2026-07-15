@@ -56,7 +56,9 @@ window.openInquiryDrawer({ title?: string, sku?: string, intent?: string })
 
 Submits to the **FreshSales Worker** at `https://bezito-forms.bezambarinc.workers.dev/api/contact`.
 
-Payload fields: `firstName`, `lastName`, `email`, `phone`, `intent`, `message`, `pieceTitle`, `pieceSku`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`.
+Form fields (visible): `name`, `email`. All other context is set programmatically.
+
+Payload fields: `name`, `email`, `intent` (set programmatically), `pieceTitle`, `pieceSku`, `utmSource`, `utmMedium`, `utmCampaign`.
 
 UTM fields are captured from the URL on page load and saved to `sessionStorage` — they're included automatically in every form submission.
 

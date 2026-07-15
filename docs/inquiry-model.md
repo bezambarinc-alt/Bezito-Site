@@ -58,17 +58,14 @@ Called from:
 ### Form Fields
 
 Visible to visitor:
-- First Name (required)
-- Last Name (required)
+- Name (required)
 - Email (required)
-- Phone (optional)
-- Intent dropdown: "I'm interested in this piece" / "Bespoke commission" / "Repair or service" / "Private consultation"
-- Message (optional)
 
 Hidden / auto-filled:
+- `intent` — set programmatically via `openInquiryDrawer()` (e.g. `'consultation'`, `'commission a piece'`, `'repairs'`, `'resize'`)
 - `pieceTitle` — passed via `openInquiryDrawer()`
 - `pieceSku` — passed via `openInquiryDrawer()`
-- `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content` — captured from URL on load, stored in `sessionStorage`, auto-included in every submit
+- `utmSource`, `utmMedium`, `utmCampaign` — captured from URL on load, stored in `sessionStorage`, auto-included in every submit
 
 ### Submission
 
@@ -94,7 +91,7 @@ The Archive page (`/archive`) has its own inquiry mechanism — separate from `I
 - Triggered by clicking a piece card in the archive grid
 - Opens a full-width overlay (not a slide-panel)
 - Left side: Cloudinary MP4 video (autoplay, looped, no controls)
-- Right side: inquiry form — same fields as InquiryDrawer, same POST endpoint
+- Right side: inquiry form — name + email fields, same POST endpoint as InquiryDrawer
 - The piece context (title, sku) is injected from `archive-data.json` entry
 - Closing dismisses the overlay; does not navigate away
 
