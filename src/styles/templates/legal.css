@@ -8,6 +8,7 @@
 .legal-page__inner { max-width: 720px; margin: 0 auto; padding: 0 2rem; }
 .legal-page h1 {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: clamp(28px, 4vw, 40px);
   font-weight: 300;
   letter-spacing: 0.04em;
@@ -16,6 +17,7 @@
 }
 .legal-page__meta {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   letter-spacing: 0.08em;
   color: var(--ink);
@@ -27,6 +29,7 @@
 .legal-section { margin-bottom: 40px; }
 .legal-section h2 {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -61,6 +64,7 @@
 }
 .warranty-sub {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.12em;

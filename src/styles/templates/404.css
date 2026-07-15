@@ -14,6 +14,7 @@
 .ba-not-found__inner { max-width: 480px; }
 .ba-not-found__code {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -45,6 +46,7 @@
 }
 .ba-not-found__links a {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.15em;

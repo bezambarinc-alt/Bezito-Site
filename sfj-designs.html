@@ -1,0 +1,853 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SFJ — Designs</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --serif: 'EB Garamond', Georgia, serif;
+    --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-muted: #8a8a8a;
+    --paper: #faf9f6;
+    --paper-warm: #f4f0ea;
+    --rule: rgba(0,0,0,.08);
+    --rule-soft: rgba(0,0,0,.04);
+    --accent: #8b7355;
+    --accent-light: #c5a87a;
+    --charcoal: #1c1a17;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── HEADER ─── */
+  .site-header {
+    text-align: center;
+    padding: 60px 8vw 48px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--charcoal);
+    color: #fff;
+  }
+  .site-header .eyebrow {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 18px;
+  }
+  .site-header h1 {
+    font-family: var(--sans);
+    font-size: clamp(20px, 3vw, 32px);
+    font-weight: 200;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  .site-header .intro {
+    font-family: var(--serif);
+    font-size: clamp(15px, 1.6vw, 18px);
+    font-style: italic;
+    color: rgba(255,255,255,0.65);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.75;
+  }
+  .site-header .rule-ornament {
+    width: 48px;
+    height: 1px;
+    background: var(--accent-light);
+    margin: 24px auto 0;
+  }
+
+  /* ─── JEWELER CARDS ─── */
+  .jewelers-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 64px 6vw 100px;
+    display: grid;
+    gap: 0;
+  }
+
+  .jeweler-card {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+    padding: 52px 0;
+  }
+  .jeweler-card:last-child {
+    border-bottom: none;
+  }
+
+  .jeweler-card__index {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-top: 6px;
+    padding-right: 32px;
+  }
+  .jeweler-card__index .num {
+    display: block;
+    font-size: 36px;
+    font-family: var(--serif);
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--rule);
+    color: rgba(0,0,0,.1);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .jeweler-card__body {}
+  .jeweler-card__name {
+    font-family: var(--sans);
+    font-size: clamp(18px, 2vw, 22px);
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+  }
+  .jeweler-card__sub {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-style: italic;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .jeweler-card__desc {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+    max-width: 680px;
+  }
+
+  .jeweler-card__facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px 32px;
+    margin-bottom: 24px;
+  }
+  .fact {
+    border-left: 2px solid var(--accent-light);
+    padding-left: 14px;
+  }
+  .fact__label {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 3px;
+  }
+  .fact__value {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  .jeweler-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tag {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--paper-warm);
+    border: 1px solid rgba(139,115,85,.2);
+    padding: 5px 12px;
+    border-radius: 2px;
+  }
+
+  .jeweler-card__quote {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-style: italic;
+    color: var(--ink-soft);
+    border-left: 3px solid var(--accent-light);
+    padding-left: 20px;
+    margin: 20px 0;
+    max-width: 620px;
+  }
+
+  /* ─── SYNTHESIS SECTION ─── */
+  .synthesis {
+    background: var(--charcoal);
+    color: #fff;
+    padding: 64px 8vw;
+    text-align: center;
+  }
+  .synthesis .eyebrow {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 24px;
+  }
+  .synthesis h2 {
+    font-family: var(--sans);
+    font-size: clamp(16px, 2vw, 22px);
+    font-weight: 200;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 32px;
+  }
+  .synthesis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 32px 48px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .thread {
+    border-top: 1px solid rgba(255,255,255,.15);
+    padding-top: 20px;
+  }
+  .thread__label {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 8px;
+  }
+  .thread__text {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-style: italic;
+    color: rgba(255,255,255,.75);
+    line-height: 1.65;
+  }
+
+  /* ─── FOOTER ─── */
+  .site-footer {
+    text-align: center;
+    padding: 28px 8vw;
+    border-top: 1px solid var(--rule);
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  /* ─── GALLERY ─── */
+  .jeweler-gallery {
+    margin-top: 28px;
+  }
+  .jeweler-gallery__label {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 14px;
+  }
+  .jeweler-gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 8px;
+  }
+  .jeweler-gallery__grid a {
+    display: block;
+    overflow: hidden;
+    border-radius: 2px;
+    background: var(--paper-warm);
+    aspect-ratio: 1;
+  }
+  .jeweler-gallery__grid a img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease, opacity 0.25s ease;
+    opacity: 0.92;
+  }
+  .jeweler-gallery__grid a:hover img { transform: scale(1.04); opacity: 1; }
+
+  /* Lightbox */
+  .lb-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 9999;
+    background: rgba(20,18,14,0.95);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .lb-overlay.open { display: flex; }
+  .lb-overlay img {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 2px;
+  }
+  .lb-close {
+    position: absolute; top: 20px; right: 28px;
+    font-family: var(--sans); font-size: 22px; font-weight: 200;
+    color: rgba(255,255,255,.7); cursor: pointer; line-height: 1;
+    background: none; border: none;
+  }
+  .lb-close:hover { color: #fff; }
+  .lb-nav {
+    display: flex; gap: 32px; margin-top: 18px;
+  }
+  .lb-nav button {
+    font-family: var(--sans); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.24em; text-transform: uppercase;
+    color: rgba(255,255,255,.55); background: none; border: none; cursor: pointer;
+    padding: 8px 0;
+  }
+  .lb-nav button:hover { color: #fff; }
+  .lb-counter {
+    font-family: var(--sans); font-size: 10px; letter-spacing: 0.2em;
+    color: rgba(255,255,255,.35); margin-top: 12px;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 680px) {
+    .jeweler-card {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .jeweler-card__index .num { font-size: 24px; margin-bottom: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<nav style="display:flex;align-items:center;gap:24px;padding:12px 32px;background:#111;border-bottom:1px solid #222;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.15em;text-transform:uppercase;">
+  <span style="color:#e8e2d9;margin-right:auto;letter-spacing:.2em;font-weight:600;">Bez Ambar</span>
+  <a href="/page/saul-favorite-jewelers" style="color:#888;text-decoration:none;" onmouseover="this.style.color='#c5a258'" onmouseout="this.style.color='#888'">SFJ</a>
+  <a href="/page/sfj-designs" style="color:#c5a258;border-bottom:1px solid #c5a258;padding-bottom:2px;text-decoration:none;">Designs</a>
+  <a href="/page/sfj-jewelers" style="color:#888;text-decoration:none;" onmouseover="this.style.color='#c5a258'" onmouseout="this.style.color='#888'">Jewelers</a>
+  <a href="/page/inspiration-log" style="color:#888;text-decoration:none;" onmouseover="this.style.color='#c5a258'" onmouseout="this.style.color='#888'">Log</a>
+  <a href="/page/prompt-creations" style="color:#888;text-decoration:none;" onmouseover="this.style.color='#c5a258'" onmouseout="this.style.color='#888'">Prompts</a>
+</nav>
+
+<header class="site-header">
+  <div class="eyebrow">Private Reference — Bez Ambar</div>
+  <h1>Designs</h1>
+  <p class="intro">Projects in development</p>
+  <div class="rule-ornament"></div>
+</header>
+
+<!-- HERO -->
+<div style="background:#fff;width:100%;position:relative;border-bottom:1px solid rgba(0,0,0,.06);cursor:pointer;" onclick="document.getElementById('hero-lb').style.display='flex'">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_1600,c_scale/inspiration-log/inverted-jenny-necklace-hero-2026-07-13d" style="width:90%;max-height:70vh;object-fit:contain;display:block;margin:0 auto;" alt="Inverted Jenny Necklace">
+  <div style="position:absolute;left:5vw;bottom:10px;pointer-events:none;">
+    <div style="font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:clamp(22px,2.6vw,44px);font-weight:200;line-height:1;letter-spacing:0.04em;text-transform:uppercase;color:#95826b;">Inverted Jenny</div>
+    <div style="font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:clamp(9px,0.75vw,12px);font-weight:400;letter-spacing:0.35em;text-transform:uppercase;color:#95826b;margin-top:12px;">$10M Necklace · In Design</div>
+  </div>
+</div>
+<!-- Hero lightbox -->
+<div id="hero-lb" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.97);align-items:center;justify-content:center;" onclick="this.style.display='none'">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/inspiration-log/inverted-jenny-necklace-hero-2026-07-13d" style="max-width:95vw;max-height:95vh;object-fit:contain;">
+</div>
+
+<!-- INVERTED JENNY — Featured Project Brief -->
+<div style="background:#fff;border-bottom:2px solid rgba(149,130,107,.18);">
+  <div style="max-width:1100px;margin:0 auto;padding:48px 6vw 52px;">
+    <div style="display:grid;grid-template-columns:220px 1fr;gap:0;">
+      <div style="font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--accent);padding-top:6px;padding-right:32px;">
+        <span style="display:block;font-size:36px;font-family:'EB Garamond',Georgia,serif;font-weight:400;letter-spacing:0;color:rgba(0,0,0,.1);line-height:1;margin-bottom:8px;">01</span>
+        Los Angeles<br>Jul 13, 2026<br><a href="https://telegram.me/c/3605997427/577/2909" target="_blank" style="color:var(--accent-light);font-size:9px;letter-spacing:0.15em;text-decoration:none;text-transform:uppercase;font-weight:400;">↗ Telegram Thread</a>
+      </div>
+      <div>
+        <div style="font-family:var(--sans);font-size:clamp(18px,2vw,22px);font-weight:300;letter-spacing:0.14em;text-transform:uppercase;color:var(--charcoal);margin-bottom:4px;">Inverted Jenny</div>
+        <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;font-style:italic;color:var(--accent);margin-bottom:20px;">All-Diamond Necklace · Platinum · $10M · In Design</div>
+        <p style="font-family:'EB Garamond',Georgia,serif;font-size:17px;line-height:1.75;color:var(--ink-soft);margin-bottom:28px;max-width:680px;">
+          The rarest stamp in American philately — the Inverted Jenny, a 24-cent 1918 airmail stamp with an upside-down biplane — set as the heart of a $10M high-jewelry necklace. The stamp (25×29mm) anchors a 55×59mm pendant: 28 Blaze® squares (4mm) form the inner ring, 20 round brilliants (7.4mm · ~1.5ct each) the outer halo. A 12mm round brilliant bail (~6.5ct) feeds an alternating chain of 18 emerald-cut (11×7.6mm · ~2.5ct) and 18 round (9mm · ~2.7ct) diamonds — 86 stones total. Every stone D/VS1, platinum-set.
+        </p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px 32px;margin-bottom:28px;">
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Centerpiece</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">Inverted Jenny stamp, 1918</div>
+          </div>
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Stamp Dimensions</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">25×29mm</div>
+          </div>
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Pendant Overall</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">55mm wide · 59mm tall (~2.2"×2.3")</div>
+          </div>
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;grid-column-start:1;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Frame Inner Row</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">28 × Blaze® cut · 4mm · ~0.35ct each (~9.8ct total)</div>
+          </div>
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;grid-column-start:1;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Frame Outer Halo</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">20 × round brilliant · 7.4mm · ~1.5ct each (~30ct total)</div>
+          </div>
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Bail</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">1 × round brilliant · 12mm (~6.5ct)</div>
+          </div>
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;grid-column-start:1;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Chain — Round Brilliants</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">18 × 9mm · ~2.7ct each (~48.6ct total)</div>
+          </div>
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;grid-column-start:1;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Chain — Emerald Cuts</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">18 × 11×7.6mm · ~2.5ct each (~45ct total)</div>
+          </div>
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Target Value</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">$10,000,000</div>
+          </div>
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Metal</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">Platinum</div>
+          </div>
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Stone Quality</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">D · VS1 · all stones</div>
+          </div>
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Status</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">Design exploration</div>
+          </div>
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Started</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">July 6, 2026</div>
+          </div>
+        </div>
+        <!-- Cost Estimate -->
+        <div style="background:rgba(149,130,107,.06);border-left:3px solid var(--accent-light);padding:18px 22px;border-radius:0 4px 4px 0;margin-bottom:16px;">
+          <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:14px;">Estimated Cost</div>
+          <table style="width:100%;border-collapse:collapse;font-family:'EB Garamond',Georgia,serif;font-size:14px;color:var(--ink-soft);">
+            <thead>
+              <tr style="border-bottom:1px solid rgba(149,130,107,.2);">
+                <th style="text-align:left;font-family:var(--sans);font-size:8px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--ink-muted);padding-bottom:8px;">Section</th>
+                <th style="text-align:right;font-family:var(--sans);font-size:8px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--ink-muted);padding-bottom:8px;">Carats</th>
+                <th style="text-align:right;font-family:var(--sans);font-size:8px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--ink-muted);padding-bottom:8px;">$/ct</th>
+                <th style="text-align:right;font-family:var(--sans);font-size:8px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--ink-muted);padding-bottom:8px;">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid rgba(0,0,0,.04);">
+                <td style="padding:7px 0;">Blaze® inner frame (28 stones)</td>
+                <td style="text-align:right;padding:7px 0;">9.8ct</td>
+                <td style="text-align:right;padding:7px 0;">$1,500</td>
+                <td style="text-align:right;padding:7px 0;">$14,700</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(0,0,0,.04);">
+                <td style="padding:7px 0;">Outer halo rounds (20 stones)</td>
+                <td style="text-align:right;padding:7px 0;">30ct</td>
+                <td style="text-align:right;padding:7px 0;">$7,000</td>
+                <td style="text-align:right;padding:7px 0;">$210,000</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(0,0,0,.04);">
+                <td style="padding:7px 0;">Chain emerald cuts (18 stones)</td>
+                <td style="text-align:right;padding:7px 0;">45ct</td>
+                <td style="text-align:right;padding:7px 0;">$12,000</td>
+                <td style="text-align:right;padding:7px 0;">$540,000</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(0,0,0,.04);">
+                <td style="padding:7px 0;">Chain rounds (18 stones)</td>
+                <td style="text-align:right;padding:7px 0;">48.6ct</td>
+                <td style="text-align:right;padding:7px 0;">$12,000</td>
+                <td style="text-align:right;padding:7px 0;">$583,200</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(0,0,0,.04);">
+                <td style="padding:7px 0;">Bail (12mm round · 6.5ct)</td>
+                <td style="text-align:right;padding:7px 0;">6.5ct</td>
+                <td style="text-align:right;padding:7px 0;">$33,000</td>
+                <td style="text-align:right;padding:7px 0;">$214,500</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(0,0,0,.04);">
+                <td style="padding:7px 0;">Labor</td>
+                <td style="text-align:right;padding:7px 0;">—</td>
+                <td style="text-align:right;padding:7px 0;">—</td>
+                <td style="text-align:right;padding:7px 0;">$20,000</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 0 2px;font-weight:600;color:var(--ink);">Total</td>
+                <td style="text-align:right;padding:10px 0 2px;color:var(--ink);">140.4ct</td>
+                <td></td>
+                <td style="text-align:right;padding:10px 0 2px;font-weight:600;color:var(--ink);">$1,582,400</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="background:rgba(149,130,107,.06);border-left:3px solid var(--accent-light);padding:18px 22px;border-radius:0 4px 4px 0;">
+          <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:10px;">Design Evolution</div>
+          <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink-soft);line-height:1.7;">
+            Chopard-inspired multi-layer marquise cluster frame → simplified to baguette inner row + round outer halo → converted baguette row to carré squares → chain baguettes replaced with all-round graduated strand → stone reduction pass (−30%) in progress to refine count and spacing.
+          </div>
+          <div style="margin-top:14px;">
+            <a href="https://galleries.bezambarinc.workers.dev/page/necklace-worklog" target="_blank" style="font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-light);padding-bottom:1px;">↗ Full Design Worklog · PW 1465</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HERO 2 — Inverted Jenny V2 Smaller Pendant -->
+<div style="background:#fff;width:100%;position:relative;border-bottom:1px solid rgba(0,0,0,.06);cursor:pointer;" onclick="document.getElementById('jenny-v2-lb').style.display='flex'">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_1600,c_scale/inspiration-log/inverted-jenny-necklace-v2-smaller-2026-07-13b" style="width:90%;max-height:70vh;object-fit:contain;display:block;margin:0 auto;" alt="Inverted Jenny — Smaller Version">
+  <div style="position:absolute;left:5vw;bottom:10px;pointer-events:none;">
+    <div style="font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:clamp(22px,2.6vw,44px);font-weight:200;line-height:1;letter-spacing:0.04em;text-transform:uppercase;color:#95826b;">Inverted Jenny</div>
+    <div style="font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:clamp(9px,0.75vw,12px);font-weight:400;letter-spacing:0.35em;text-transform:uppercase;color:#95826b;margin-top:12px;">Smaller Version · V2</div>
+  </div>
+</div>
+<!-- Jenny V2 lightbox -->
+<div id="jenny-v2-lb" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.97);align-items:center;justify-content:center;" onclick="this.style.display='none'">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/inspiration-log/inverted-jenny-necklace-v2-smaller-2026-07-13b" style="max-width:95vw;max-height:95vh;object-fit:contain;">
+</div>
+
+<!-- Inverted Jenny V2 — Smaller Version Brief -->
+<div style="background:#fff;border-bottom:2px solid rgba(149,130,107,.18);">
+  <div style="max-width:1100px;margin:0 auto;padding:48px 6vw 52px;">
+    <div style="display:grid;grid-template-columns:220px 1fr;gap:0;">
+      <div style="font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--accent);padding-top:6px;padding-right:32px;">
+        <span style="display:block;font-size:36px;font-family:'EB Garamond',Georgia,serif;font-weight:400;letter-spacing:0;color:rgba(0,0,0,.1);line-height:1;margin-bottom:8px;">01b</span>
+        Los Angeles<br>Jul 13, 2026<br><a href="https://telegram.me/c/3605997427/577/2909" target="_blank" style="color:var(--accent-light);font-size:9px;letter-spacing:0.15em;text-decoration:none;text-transform:uppercase;font-weight:400;">↗ Telegram Thread</a>
+      </div>
+      <div>
+        <div style="font-family:var(--sans);font-size:clamp(18px,2vw,22px);font-weight:300;letter-spacing:0.14em;text-transform:uppercase;color:var(--charcoal);margin-bottom:4px;">Inverted Jenny — Smaller Version</div>
+        <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;font-style:italic;color:var(--accent);margin-bottom:20px;">All-Diamond Necklace · Platinum · Compact Pendant · In Design</div>
+        <p style="font-family:'EB Garamond',Georgia,serif;font-size:17px;line-height:1.75;color:var(--ink-soft);margin-bottom:28px;max-width:680px;">
+          A more refined, wearable version of the flagship Jenny — same stamp centerpiece, tighter pendant footprint. 26 Blaze® squares frame the inner row, 30 round brilliants (5.2mm) the outer halo. Same D/VS1 platinum standard throughout.
+        </p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px 32px;margin-bottom:28px;">
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;grid-column-start:1;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Frame Inner Row</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">26 × Blaze® cut · 0.28ct each · 7.28ct total</div>
+          </div>
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;grid-column-start:1;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Frame Outer Halo</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">30 × round brilliant · 5.2mm · ~0.50ct each · 15ct total</div>
+          </div>
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Stone Quality</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">D · VS1 · all stones</div>
+          </div>
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Metal</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">Platinum</div>
+          </div>
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Status</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">Design exploration</div>
+          </div>
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Started</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">July 13, 2026</div>
+          </div>
+        </div>
+        <!-- V2 Cost Estimate -->
+        <div style="background:rgba(149,130,107,.06);border-left:3px solid var(--accent-light);padding:18px 22px;border-radius:0 4px 4px 0;">
+          <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:14px;">Estimated Cost</div>
+          <table style="width:100%;border-collapse:collapse;font-family:'EB Garamond',Georgia,serif;font-size:14px;color:var(--ink-soft);">
+            <thead>
+              <tr style="border-bottom:1px solid rgba(149,130,107,.2);">
+                <th style="text-align:left;font-family:var(--sans);font-size:8px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--ink-muted);padding-bottom:8px;">Section</th>
+                <th style="text-align:right;font-family:var(--sans);font-size:8px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--ink-muted);padding-bottom:8px;">Carats</th>
+                <th style="text-align:right;font-family:var(--sans);font-size:8px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--ink-muted);padding-bottom:8px;">$/ct</th>
+                <th style="text-align:right;font-family:var(--sans);font-size:8px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--ink-muted);padding-bottom:8px;">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid rgba(0,0,0,.04);">
+                <td style="padding:7px 0;">Blaze® inner frame (26 stones)</td>
+                <td style="text-align:right;padding:7px 0;">7.28ct</td>
+                <td style="text-align:right;padding:7px 0;">$1,300</td>
+                <td style="text-align:right;padding:7px 0;">$9,464</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(0,0,0,.04);">
+                <td style="padding:7px 0;">Outer halo rounds (30 stones · 5.2mm)</td>
+                <td style="text-align:right;padding:7px 0;">15ct</td>
+                <td style="text-align:right;padding:7px 0;">~$3,000</td>
+                <td style="text-align:right;padding:7px 0;">~$45,000</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(0,0,0,.04);">
+                <td style="padding:7px 0;">Chain rounds (58 stones · 6.6mm · ~1.05ct each)</td>
+                <td style="text-align:right;padding:7px 0;">~61ct</td>
+                <td style="text-align:right;padding:7px 0;">$4,500</td>
+                <td style="text-align:right;padding:7px 0;">$274,500</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(0,0,0,.04);">
+                <td style="padding:7px 0;">Center round stone</td>
+                <td style="text-align:right;padding:7px 0;">—</td>
+                <td style="text-align:right;padding:7px 0;">—</td>
+                <td style="text-align:right;padding:7px 0;">$200,000</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(0,0,0,.04);">
+                <td style="padding:7px 0;">Labor</td>
+                <td style="text-align:right;padding:7px 0;">—</td>
+                <td style="text-align:right;padding:7px 0;">—</td>
+                <td style="text-align:right;padding:7px 0;">$25,000</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 0 2px;font-weight:600;color:var(--ink);">Total</td>
+                <td style="text-align:right;padding:10px 0 2px;color:var(--ink);">~83ct</td>
+                <td></td>
+                <td style="text-align:right;padding:10px 0 2px;font-weight:600;color:var(--ink);">~$553,964</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HERO 3 — Tessera -->
+<div style="background:#fff;width:100%;position:relative;border-bottom:1px solid rgba(0,0,0,.06);cursor:pointer;" onclick="document.getElementById('tessera-lb').style.display='flex'">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_1600,c_scale/inspiration-log/tessera-hero-2026-07-14" style="width:90%;max-height:70vh;object-fit:contain;display:block;margin:0 auto;" alt="Tessera — Bez Ambar">
+  <div style="position:absolute;left:5vw;bottom:10px;pointer-events:none;">
+    <div style="font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:clamp(22px,2.6vw,44px);font-weight:200;line-height:1;letter-spacing:0.04em;text-transform:uppercase;color:#95826b;">Tessera</div>
+    <div style="font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:clamp(9px,0.75vw,12px);font-weight:400;letter-spacing:0.35em;text-transform:uppercase;color:#95826b;margin-top:12px;">Design Exploration</div>
+  </div>
+</div>
+<!-- Tessera lightbox -->
+<div id="tessera-lb" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.97);align-items:center;justify-content:center;" onclick="this.style.display='none'">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/inspiration-log/tessera-hero-2026-07-14" style="max-width:95vw;max-height:95vh;object-fit:contain;">
+</div>
+
+<!-- HERO 4 — The Ermine -->
+<div style="background:#fff;width:100%;position:relative;border-bottom:1px solid rgba(0,0,0,.06);cursor:pointer;" onclick="document.getElementById('ermine-lb').style.display='flex'">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_1600,c_scale/inspiration-log/the-ermine-hero-white-2026-07-13" style="width:90%;max-height:70vh;object-fit:contain;display:block;margin:0 auto;" alt="The Ermine">
+  <div style="position:absolute;left:5vw;bottom:10px;pointer-events:none;">
+    <div style="font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:clamp(22px,2.6vw,44px);font-weight:200;line-height:1;letter-spacing:0.04em;text-transform:uppercase;color:#95826b;">The Ermine</div>
+    <div style="font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:clamp(9px,0.75vw,12px);font-weight:400;letter-spacing:0.35em;text-transform:uppercase;color:#95826b;margin-top:12px;">Collection</div>
+  </div>
+</div>
+<!-- Ermine lightbox -->
+<div id="ermine-lb" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.97);align-items:center;justify-content:center;" onclick="this.style.display='none'">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/inspiration-log/the-ermine-hero-white-2026-07-13" style="max-width:95vw;max-height:95vh;object-fit:contain;">
+</div>
+
+<!-- DESIGNS -->
+<section id="designs" style="background:var(--paper);border-bottom:1px solid var(--rule);">
+  <div style="max-width:1100px;margin:0 auto;padding:64px 6vw;">
+    <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.42em;text-transform:uppercase;color:var(--accent);margin-bottom:32px;">Active Projects</div>
+
+    <!-- PROJECT 00: TESSERA -->
+    <div style="display:grid;grid-template-columns:220px 1fr;gap:0;border-bottom:1px solid var(--rule);padding-bottom:52px;margin-bottom:52px;">
+      <div style="font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--accent);padding-top:6px;padding-right:32px;">
+        <span style="display:block;font-size:36px;font-family:'EB Garamond',Georgia,serif;font-weight:400;letter-spacing:0;color:rgba(0,0,0,.1);line-height:1;margin-bottom:8px;">00</span>
+        Los Angeles<br>Jul 14, 2026
+      </div>
+      <div>
+        <div style="font-family:var(--sans);font-size:clamp(18px,2vw,22px);font-weight:300;letter-spacing:0.14em;text-transform:uppercase;color:var(--charcoal);margin-bottom:4px;">Tessera</div>
+        <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;font-style:italic;color:var(--accent);margin-bottom:20px;">Emerald · Diamond · Platinum · Design Exploration</div>
+        <p style="font-size:15px;color:var(--ink-soft);max-width:540px;margin-bottom:24px;line-height:1.75;">
+          A geometric high-jewelry necklace centered on a vivid emerald-cut emerald, framed by a stepped octagonal halo of trapezoid-cut diamonds radiating outward in a tessellation pattern. An all-emerald station chain, each link an emerald-cut stone, feeds the pendant via a single emerald-cut diamond bail. The architecture is pure Art Deco — every line angular, every stone step-cut, every plane intentional.
+        </p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-bottom:28px;">
+          <div style="background:var(--paper-warm);padding:14px 16px;">
+            <div style="font-family:var(--sans);font-size:8px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:6px;">Center Stone</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">Emerald-cut emerald</div>
+          </div>
+          <div style="background:var(--paper-warm);padding:14px 16px;">
+            <div style="font-family:var(--sans);font-size:8px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:6px;">Halo</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">Trapezoid-cut diamonds · octagonal stepped frame</div>
+          </div>
+          <div style="background:var(--paper-warm);padding:14px 16px;">
+            <div style="font-family:var(--sans);font-size:8px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:6px;">Chain</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">Emerald-cut emeralds · full station</div>
+          </div>
+          <div style="background:var(--paper-warm);padding:14px 16px;">
+            <div style="font-family:var(--sans);font-size:8px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:6px;">Bail</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">Emerald-cut diamond</div>
+          </div>
+          <div style="background:var(--paper-warm);padding:14px 16px;">
+            <div style="font-family:var(--sans);font-size:8px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:6px;">Metal</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">Platinum</div>
+          </div>
+          <div style="background:var(--paper-warm);padding:14px 16px;">
+            <div style="font-family:var(--sans);font-size:8px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:6px;">Style</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">Art Deco · all step-cuts</div>
+          </div>
+          <div style="background:var(--paper-warm);padding:14px 16px;">
+            <div style="font-family:var(--sans);font-size:8px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:6px;">Status</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">Design exploration</div>
+          </div>
+          <div style="background:var(--paper-warm);padding:14px 16px;">
+            <div style="font-family:var(--sans);font-size:8px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:6px;">Started</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">July 14, 2026</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 01: THE ERMINE -->
+    <div style="display:grid;grid-template-columns:220px 1fr;gap:0;border-bottom:1px solid var(--rule);padding-bottom:52px;">
+      <div style="font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--accent);padding-top:6px;padding-right:32px;">
+        <span style="display:block;font-size:36px;font-family:'EB Garamond',Georgia,serif;font-weight:400;letter-spacing:0;color:rgba(0,0,0,.1);line-height:1;margin-bottom:8px;">01</span>
+        Los Angeles<br>Jul 13, 2026<br><a href="https://t.me/c/3605997427/2768" target="_blank" style="color:var(--accent-light);font-size:9px;letter-spacing:0.15em;text-decoration:none;text-transform:uppercase;font-weight:400;">↗ Telegram</a>
+      </div>
+      <div>
+        <div style="font-family:var(--sans);font-size:clamp(18px,2vw,22px);font-weight:300;letter-spacing:0.14em;text-transform:uppercase;color:var(--charcoal);margin-bottom:4px;">The Ermine</div>
+        <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;font-style:italic;color:var(--accent);margin-bottom:20px;">Oval Cognac Diamond · Platinum Pavé · In Development</div>
+        <p style="font-family:'EB Garamond',Georgia,serif;font-size:17px;line-height:1.75;color:var(--ink-soft);margin-bottom:28px;max-width:680px;">
+          The stone is the queen. Everything else — the double oval pavé halo, the tapered platinum shank — is what she wears. White diamonds as ermine, setting as regalia. A statement ring built around an exceptional oval cognac center.
+        </p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px 32px;margin-bottom:28px;">
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Center Stone</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">Oval cognac diamond</div>
+          </div>
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Setting</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">Double oval pavé halo, platinum</div>
+          </div>
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Status</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">Design exploration</div>
+          </div>
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Started</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">July 12, 2026</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;max-width:520px;">
+          <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_400,h_400,c_fill/inspiration-log/oval-cognac-wider-view-2026-07-12" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:2px;cursor:pointer;" onclick="document.getElementById('ermine-lb').style.display='flex';document.getElementById('ermine-lb').querySelector('img').src=this.src.replace('w_400,h_400,c_fill/','');" alt="The Ermine — wider view">
+          <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_400,h_400,c_fill/inspiration-log/oval-cognac-matched-shank-2026-07-12" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:2px;cursor:pointer;" onclick="document.getElementById('ermine-lb').style.display='flex';document.getElementById('ermine-lb').querySelector('img').src=this.src.replace('w_400,h_400,c_fill/','');" alt="The Ermine — shank detail">
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 02: INVERTED JENNY NECKLACE -->
+    <div style="display:grid;grid-template-columns:220px 1fr;gap:0;padding-top:52px;">
+      <div style="font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--accent);padding-top:6px;padding-right:32px;">
+        <span style="display:block;font-size:36px;font-family:'EB Garamond',Georgia,serif;font-weight:400;letter-spacing:0;color:rgba(0,0,0,.1);line-height:1;margin-bottom:8px;">02</span>
+        Los Angeles<br>Jul 13, 2026<br><a href="https://t.me/c/3605997427/577" target="_blank" style="color:var(--accent-light);font-size:9px;letter-spacing:0.15em;text-decoration:none;text-transform:uppercase;font-weight:400;">↗ Telegram</a>
+      </div>
+      <div>
+        <div style="font-family:var(--sans);font-size:clamp(18px,2vw,22px);font-weight:300;letter-spacing:0.14em;text-transform:uppercase;color:var(--charcoal);margin-bottom:4px;">Inverted Jenny</div>
+        <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;font-style:italic;color:var(--accent);margin-bottom:20px;">All-Diamond Necklace · Platinum · $10M · In Design</div>
+        <p style="font-family:'EB Garamond',Georgia,serif;font-size:17px;line-height:1.75;color:var(--ink-soft);margin-bottom:28px;max-width:680px;">
+          The rarest stamp in American philately — the Inverted Jenny, a 24-cent 1918 airmail stamp with an upside-down biplane — set as the heart of a $10M high-jewelry necklace. The stamp (20×18mm face) anchors a 55×59mm pendant: 28 Blaze® squares (4mm) inner ring, 20 round brilliants (7.4mm) outer halo. A 12mm round brilliant bail (~6.5ct) feeds an alternating chain of emerald-cut (11×7.6mm) and round (9mm) diamonds. Every stone D/VS1, platinum-set.
+        </p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px 32px;margin-bottom:28px;">
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Centerpiece</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">Inverted Jenny stamp, 1918</div>
+          </div>
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Frame</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">Carré inner · round brilliant outer halo</div>
+          </div>
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Chain</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">Alternating emerald cut + round · 12mm bail</div>
+          </div>
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Status</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">Design exploration</div>
+          </div>
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Target Value</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">$10,000,000</div>
+          </div>
+          <div style="border-left:2px solid var(--accent-light);padding-left:14px;">
+            <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:3px;">Started</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-size:15px;color:var(--ink);line-height:1.5;">July 6, 2026</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;max-width:340px;">
+          <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_400,h_400,c_fill/inspiration-log/inverted-jenny-necklace-hero-2026-07-13d" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:2px;cursor:pointer;" onclick="document.getElementById('hero-lb').style.display='flex';document.getElementById('hero-lb').querySelector('img').src=this.src.replace('w_400,h_400,c_fill/','');" alt="Inverted Jenny Necklace">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  Bez Ambar · Private Reference · SFJ — Designs
+</footer>
+
+<!-- Lightbox overlay -->
+<div class="lb-overlay" id="lb">
+  <button class="lb-close" id="lb-close">✕</button>
+  <img id="lb-img" src="" alt="">
+  <div class="lb-nav">
+    <button id="lb-prev">← Prev</button>
+    <button id="lb-next">Next →</button>
+  </div>
+  <div class="lb-counter" id="lb-counter"></div>
+</div>
+
+<script>
+(function() {
+  const overlay = document.getElementById('lb');
+  const lbImg = document.getElementById('lb-img');
+  const lbCounter = document.getElementById('lb-counter');
+  let images = [], current = 0;
+
+  function initGallery(gridId) {
+    const els = document.querySelectorAll('#' + gridId + ' a');
+    const galleryImgs = [];
+    els.forEach(a => { galleryImgs.push(a.dataset.full); });
+    els.forEach(a => {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        images = galleryImgs;
+        current = parseInt(this.dataset.idx, 10);
+        show(current);
+      });
+    });
+  }
+
+  function show(idx) {
+    lbImg.src = images[idx];
+    lbCounter.textContent = (idx + 1) + ' / ' + images.length;
+    overlay.classList.add('open');
+  }
+
+  document.getElementById('lb-close').addEventListener('click', () => overlay.classList.remove('open'));
+  document.getElementById('lb-prev').addEventListener('click', () => { current = (current - 1 + images.length) % images.length; show(current); });
+  document.getElementById('lb-next').addEventListener('click', () => { current = (current + 1) % images.length; show(current); });
+
+  overlay.addEventListener('click', function(e) { if (e.target === this) this.classList.remove('open'); });
+
+  document.addEventListener('keydown', function(e) {
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'Escape') overlay.classList.remove('open');
+    if (e.key === 'ArrowLeft') { current = (current - 1 + images.length) % images.length; show(current); }
+    if (e.key === 'ArrowRight') { current = (current + 1) % images.length; show(current); }
+  });
+})();
+</script>
+
+</body>
+</html>

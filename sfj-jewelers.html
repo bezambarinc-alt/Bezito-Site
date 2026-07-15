@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SFJ — Jewelers</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --serif: 'EB Garamond', Georgia, serif;
+    --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-muted: #8a8a8a;
+    --paper: #faf9f6;
+    --paper-warm: #f4f0ea;
+    --rule: rgba(0,0,0,.08);
+    --rule-soft: rgba(0,0,0,.04);
+    --accent: #8b7355;
+    --accent-light: #c5a87a;
+    --charcoal: #1c1a17;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── HEADER ─── */
+  .site-header {
+    text-align: center;
+    padding: 60px 8vw 48px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--charcoal);
+    color: #fff;
+  }
+  .site-header .eyebrow {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 18px;
+  }
+  .site-header h1 {
+    font-family: var(--sans);
+    font-size: clamp(20px, 3vw, 32px);
+    font-weight: 200;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  .site-header .intro {
+    font-family: var(--serif);
+    font-size: clamp(15px, 1.6vw, 18px);
+    font-style: italic;
+    color: rgba(255,255,255,0.65);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.75;
+  }
+  .site-header .rule-ornament {
+    width: 48px;
+    height: 1px;
+    background: var(--accent-light);
+    margin: 24px auto 0;
+  }
+
+  /* ─── JEWELER CARDS ─── */
+  .jewelers-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 64px 6vw 100px;
+    display: grid;
+    gap: 0;
+  }
+
+  .jeweler-card {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+    padding: 52px 0;
+  }
+  .jeweler-card:last-child {
+    border-bottom: none;
+  }
+
+  .jeweler-card__index {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-top: 6px;
+    padding-right: 32px;
+  }
+  .jeweler-card__index .num {
+    display: block;
+    font-size: 36px;
+    font-family: var(--serif);
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--rule);
+    color: rgba(0,0,0,.1);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .jeweler-card__body {}
+  .jeweler-card__name {
+    font-family: var(--sans);
+    font-size: clamp(18px, 2vw, 22px);
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+  }
+  .jeweler-card__sub {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-style: italic;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .jeweler-card__desc {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+    max-width: 680px;
+  }
+
+  .jeweler-card__facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px 32px;
+    margin-bottom: 24px;
+  }
+  .fact {
+    border-left: 2px solid var(--accent-light);
+    padding-left: 14px;
+  }
+  .fact__label {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 3px;
+  }
+  .fact__value {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  .jeweler-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tag {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--paper-warm);
+    border: 1px solid rgba(139,115,85,.2);
+    padding: 5px 12px;
+    border-radius: 2px;
+  }
+
+  .jeweler-card__quote {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-style: italic;
+    color: var(--ink-soft);
+    border-left: 3px solid var(--accent-light);
+    padding-left: 20px;
+    margin: 20px 0;
+    max-width: 620px;
+  }
+
+  /* ─── SYNTHESIS SECTION ─── */
+  .synthesis {
+    background: var(--charcoal);
+    color: #fff;
+    padding: 64px 8vw;
+    text-align: center;
+  }
+  .synthesis .eyebrow {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 24px;
+  }
+  .synthesis h2 {
+    font-family: var(--sans);
+    font-size: clamp(16px, 2vw, 22px);
+    font-weight: 200;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 32px;
+  }
+  .synthesis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 32px 48px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .thread {
+    border-top: 1px solid rgba(255,255,255,.15);
+    padding-top: 20px;
+  }
+  .thread__label {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 8px;
+  }
+  .thread__text {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-style: italic;
+    color: rgba(255,255,255,.75);
+    line-height: 1.65;
+  }
+
+  /* ─── FOOTER ─── */
+  .site-footer {
+    text-align: center;
+    padding: 28px 8vw;
+    border-top: 1px solid var(--rule);
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  /* ─── GALLERY ─── */
+  .jeweler-gallery {
+    margin-top: 28px;
+  }
+  .jeweler-gallery__label {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 14px;
+  }
+  .jeweler-gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 8px;
+  }
+  .jeweler-gallery__grid a {
+    display: block;
+    overflow: hidden;
+    border-radius: 2px;
+    background: var(--paper-warm);
+    aspect-ratio: 1;
+  }
+  .jeweler-gallery__grid a img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease, opacity 0.25s ease;
+    opacity: 0.92;
+  }
+  .jeweler-gallery__grid a:hover img { transform: scale(1.04); opacity: 1; }
+
+  /* Lightbox */
+  .lb-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 9999;
+    background: rgba(20,18,14,0.95);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .lb-overlay.open { display: flex; }
+  .lb-overlay img {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 2px;
+  }
+  .lb-close {
+    position: absolute; top: 20px; right: 28px;
+    font-family: var(--sans); font-size: 22px; font-weight: 200;
+    color: rgba(255,255,255,.7); cursor: pointer; line-height: 1;
+    background: none; border: none;
+  }
+  .lb-close:hover { color: #fff; }
+  .lb-nav {
+    display: flex; gap: 32px; margin-top: 18px;
+  }
+  .lb-nav button {
+    font-family: var(--sans); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.24em; text-transform: uppercase;
+    color: rgba(255,255,255,.55); background: none; border: none; cursor: pointer;
+    padding: 8px 0;
+  }
+  .lb-nav button:hover { color: #fff; }
+  .lb-counter {
+    font-family: var(--sans); font-size: 10px; letter-spacing: 0.2em;
+    color: rgba(255,255,255,.35); margin-top: 12px;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 680px) {
+    .jeweler-card {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .jeweler-card__index .num { font-size: 24px; margin-bottom: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<nav style="display:flex;align-items:center;gap:24px;padding:12px 32px;background:#111;border-bottom:1px solid #222;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.15em;text-transform:uppercase;">
+  <span style="color:#e8e2d9;margin-right:auto;letter-spacing:.2em;font-weight:600;">Bez Ambar</span>
+  <a href="/page/saul-favorite-jewelers" style="color:#888;text-decoration:none;" onmouseover="this.style.color='#c5a258'" onmouseout="this.style.color='#888'">SFJ</a>
+  <a href="/page/sfj-designs" style="color:#888;text-decoration:none;" onmouseover="this.style.color='#c5a258'" onmouseout="this.style.color='#888'">Designs</a>
+  <a href="/page/sfj-jewelers" style="color:#c5a258;border-bottom:1px solid #c5a258;padding-bottom:2px;text-decoration:none;">Jewelers</a>
+  <a href="/page/inspiration-log" style="color:#888;text-decoration:none;" onmouseover="this.style.color='#c5a258'" onmouseout="this.style.color='#888'">Log</a>
+  <a href="/page/prompt-creations" style="color:#888;text-decoration:none;" onmouseover="this.style.color='#c5a258'" onmouseout="this.style.color='#888'">Prompts</a>
+</nav>
+
+<header class="site-header">
+  <div class="eyebrow">Private Reference — Bez Ambar</div>
+  <h1>Jewelers</h1>
+  <p class="intro">Ateliers we study for craft and market direction</p>
+  <div class="rule-ornament"></div>
+</header>
+
+<main class="jewelers-grid" id="jewelers">
+
+  <!-- CARD 1: GLENN SPIRO -->
+  <article class="jeweler-card">
+    <div class="jeweler-card__index">
+      <span class="num">01</span>
+      London · Mayfair
+    </div>
+    <div class="jeweler-card__body">
+      <div class="jeweler-card__name">Glenn Spiro</div>
+      <div class="jeweler-card__sub">G London — Est. 2014</div>
+      <p class="jeweler-card__desc">
+        The jeweler's jeweler. Twenty-five years in the trade — including running Christie's Jewelry Department — before opening a private atelier in the former studio of royal couturier Sir Norman Hartnell on Bruton Street, Mayfair. Works exclusively in exceptional, one-of-a-kind stones that take years to set. As exclusive as the field gets.
+      </p>
+      <blockquote class="jeweler-card__quote">
+        "There are a limited number of people who have the style, conviction, confidence and financial ability to own fabulous jewellery."
+      </blockquote>
+      <div class="jeweler-card__facts">
+        <div class="fact">
+          <div class="fact__label">Location</div>
+          <div class="fact__value">26 Bruton Street, Mayfair, London — appointment only. Also St. Tropez, St. Barths, Bergdorf Goodman NYC</div>
+        </div>
+        <div class="fact">
+          <div class="fact__label">Output</div>
+          <div class="fact__value">Tiny. Individual pieces can take years to complete</div>
+        </div>
+        <div class="fact">
+          <div class="fact__label">Retail</div>
+          <div class="fact__value">Harrods London + Bergdorf Goodman NYC only</div>
+        </div>
+        <div class="fact">
+          <div class="fact__label">Notable</div>
+          <div class="fact__value">Assouline monograph published. Father-son operation — son Joe now works alongside</div>
+        </div>
+      </div>
+      <div class="jeweler-card__tags">
+        <span class="tag">Rarity</span>
+        <span class="tag">Technical Mastery</span>
+        <span class="tag">Appointment Only</span>
+        <span class="tag">Stone Sourcing</span>
+        <span class="tag">Mayfair</span>
+      </div>
+
+      <div class="jeweler-gallery">
+        <div class="jeweler-gallery__label">Images — Glenn Spiro / G London</div>
+        <div class="jeweler-gallery__grid" id="gs-gallery">
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783825403/Glen%20Spiro/glen-spiro-01.png" data-idx="0"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783825403/Glen%20Spiro/glen-spiro-01.png" loading="lazy" alt="Glenn Spiro 01"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783825404/Glen%20Spiro/glen-spiro-02.png" data-idx="1"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783825404/Glen%20Spiro/glen-spiro-02.png" loading="lazy" alt="Glenn Spiro 02"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783825405/Glen%20Spiro/glen-spiro-03.png" data-idx="2"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783825405/Glen%20Spiro/glen-spiro-03.png" loading="lazy" alt="Glenn Spiro 03"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783825406/Glen%20Spiro/glen-spiro-04.png" data-idx="3"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783825406/Glen%20Spiro/glen-spiro-04.png" loading="lazy" alt="Glenn Spiro 04"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783825407/Glen%20Spiro/glen-spiro-05.png" data-idx="4"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783825407/Glen%20Spiro/glen-spiro-05.png" loading="lazy" alt="Glenn Spiro 05"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783825407/Glen%20Spiro/glen-spiro-06.png" data-idx="5"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783825407/Glen%20Spiro/glen-spiro-06.png" loading="lazy" alt="Glenn Spiro 06"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783825408/Glen%20Spiro/glen-spiro-07.png" data-idx="6"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783825408/Glen%20Spiro/glen-spiro-07.png" loading="lazy" alt="Glenn Spiro 07"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783825409/Glen%20Spiro/glen-spiro-08.png" data-idx="7"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783825409/Glen%20Spiro/glen-spiro-08.png" loading="lazy" alt="Glenn Spiro 08"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783825410/Glen%20Spiro/glen-spiro-09.png" data-idx="8"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783825410/Glen%20Spiro/glen-spiro-09.png" loading="lazy" alt="Glenn Spiro 09"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783825411/Glen%20Spiro/glen-spiro-10.png" data-idx="9"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783825411/Glen%20Spiro/glen-spiro-10.png" loading="lazy" alt="Glenn Spiro 10"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783825412/Glen%20Spiro/glen-spiro-11.png" data-idx="10"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783825412/Glen%20Spiro/glen-spiro-11.png" loading="lazy" alt="Glenn Spiro 11"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783825413/Glen%20Spiro/glen-spiro-12.png" data-idx="11"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783825413/Glen%20Spiro/glen-spiro-12.png" loading="lazy" alt="Glenn Spiro 12"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783825414/Glen%20Spiro/glen-spiro-13.png" data-idx="12"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783825414/Glen%20Spiro/glen-spiro-13.png" loading="lazy" alt="Glenn Spiro 13"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783825415/Glen%20Spiro/glen-spiro-14.png" data-idx="13"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783825415/Glen%20Spiro/glen-spiro-14.png" loading="lazy" alt="Glenn Spiro 14"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783825416/Glen%20Spiro/glen-spiro-15.png" data-idx="14"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783825416/Glen%20Spiro/glen-spiro-15.png" loading="lazy" alt="Glenn Spiro 15"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783825417/Glen%20Spiro/glen-spiro-16.png" data-idx="15"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783825417/Glen%20Spiro/glen-spiro-16.png" loading="lazy" alt="Glenn Spiro 16"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783845311/sfj/glenn-spiro/gs-01.png" data-gallery="gs" data-idx="16"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783845311/sfj/glenn-spiro/gs-01.png" loading="lazy" alt="Glenn Spiro — massive oval diamond in yellow gold bezel ring"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783845313/sfj/glenn-spiro/gs-02.png" data-gallery="gs" data-idx="17"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783845313/sfj/glenn-spiro/gs-02.png" loading="lazy" alt="Glenn Spiro — cognac/yellow diamond pavé butterfly wing earrings in oxidized gold"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783845314/sfj/glenn-spiro/gs-03.png" data-gallery="gs" data-idx="18"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783845314/sfj/glenn-spiro/gs-03.png" loading="lazy" alt="Glenn Spiro — Colombian emerald in carved dark wood hexagonal bezel, rose gold shank"></a>
+        </div>
+        <div style="margin-top:10px; display:flex; flex-direction:column; gap:6px;">
+          <a href="https://glennspiro.com" target="_blank" style="font-family:var(--sans);font-size:11px;letter-spacing:0.12em;color:var(--accent);text-decoration:none;">
+            ↗ glennspiro.com — official site
+          </a>
+          <a href="https://glennspiro.com/jewellery/02" target="_blank" style="font-family:var(--sans);font-size:11px;letter-spacing:0.12em;color:var(--accent);text-decoration:none;">
+            ↗ G London — jewellery catalogue (PDF)
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- CARD 2: TAFFIN -->
+  <article class="jeweler-card">
+    <div class="jeweler-card__index">
+      <span class="num">02</span>
+      New York · Madison Ave
+    </div>
+    <div class="jeweler-card__body">
+      <div class="jeweler-card__name">Taffin</div>
+      <div class="jeweler-card__sub">James de Givenchy — Est. 1996</div>
+      <p class="jeweler-card__desc">
+        James Claude Taffin de Givenchy — nephew of couturier Hubert de Givenchy. French-American, based entirely in New York where everything is designed and made. Came out of Christie's West Coast Jewelry Department, then Verdura. Wildly inventive: unexpected materials, graphic comic-book energy filtered through a museum sensibility. 80% of pieces are custom commissions. Genuinely art-object territory, not fashion-adjacent jewelry.
+      </p>
+      <div class="jeweler-card__facts">
+        <div class="fact">
+          <div class="fact__label">Location</div>
+          <div class="fact__value">501 Madison Avenue, NYC — appointment-only salon he designed himself; atelier in the same building</div>
+        </div>
+        <div class="fact">
+          <div class="fact__label">Signature</div>
+          <div class="fact__value">Statue of Liberty hallmark stamp on every piece</div>
+        </div>
+        <div class="fact">
+          <div class="fact__label">Output</div>
+          <div class="fact__value">One-of-a-kind. Roughly 80% custom commissions</div>
+        </div>
+        <div class="fact">
+          <div class="fact__label">Published</div>
+          <div class="fact__value">Rizzoli 400-page monograph, 2016 — extremely rare for a jeweler this private</div>
+        </div>
+      </div>
+      <div class="jeweler-card__tags">
+        <span class="tag">Art Object</span>
+        <span class="tag">Custom Commissions</span>
+        <span class="tag">French-American</span>
+        <span class="tag">Museum Sensibility</span>
+        <span class="tag">NYC</span>
+      </div>
+
+      <div class="jeweler-gallery">
+        <div class="jeweler-gallery__label">Images — Taffin</div>
+        <div class="jeweler-gallery__grid" id="taffin-gallery">
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783836923/inspirations/taffin/cigarette-earrings-diamond-pave-emerald-tips.png" data-gallery="taffin" data-idx="0"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783836923/inspirations/taffin/cigarette-earrings-diamond-pave-emerald-tips.png" loading="lazy" alt="Taffin — diamond pavé cigarette earrings, emerald cab tips"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783836924/inspirations/taffin/bombe-ring-diamond-sapphire-side.png" data-gallery="taffin" data-idx="1"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783836924/inspirations/taffin/bombe-ring-diamond-sapphire-side.png" loading="lazy" alt="Taffin — diamond + sapphire bombe ring, side"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783836924/inspirations/taffin/fancy-yellow-sapphire-bombe-ring-front.png" data-gallery="taffin" data-idx="2"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783836924/inspirations/taffin/fancy-yellow-sapphire-bombe-ring-front.png" loading="lazy" alt="Taffin — Fancy Yellow + sapphire bombe ring, front"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783836925/inspirations/taffin/yellow-diamond-red-ceramic-bypass-ring.png" data-gallery="taffin" data-idx="3"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783836925/inspirations/taffin/yellow-diamond-red-ceramic-bypass-ring.png" loading="lazy" alt="Taffin — yellow diamond in red ceramic bypass ring"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783836926/inspirations/taffin/wire-choker-pink-stone-drop.png" data-gallery="taffin" data-idx="4"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783836926/inspirations/taffin/wire-choker-pink-stone-drop.png" loading="lazy" alt="Taffin — gold wire choker with pink stone drop"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783836926/inspirations/taffin/pink-oval-oxidized-stick-earrings.png" data-gallery="taffin" data-idx="5"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783836926/inspirations/taffin/pink-oval-oxidized-stick-earrings.png" loading="lazy" alt="Taffin — large pink oval on oxidized stick earrings"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783836927/inspirations/taffin/cushion-red-ceramic-frame-earrings.png" data-gallery="taffin" data-idx="6"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783836927/inspirations/taffin/cushion-red-ceramic-frame-earrings.png" loading="lazy" alt="Taffin — cushion stones in red ceramic frame earrings"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783836928/inspirations/taffin/miami-viewings-ceramic-sphere-clips.png" data-gallery="taffin" data-idx="7"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783836928/inspirations/taffin/miami-viewings-ceramic-sphere-clips.png" loading="lazy" alt="Taffin Miami Viewings — cushion diamonds on ceramic spheres"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783836929/inspirations/taffin/round-diamond-black-ceramic-ring.png" data-gallery="taffin" data-idx="8"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783836929/inspirations/taffin/round-diamond-black-ceramic-ring.png" loading="lazy" alt="Taffin — round diamond in black ceramic ring"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783836929/inspirations/taffin/pear-diamond-coiling-pave-shank.png" data-gallery="taffin" data-idx="9"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783836929/inspirations/taffin/pear-diamond-coiling-pave-shank.png" loading="lazy" alt="Taffin — large pear diamond on coiling pavé shank"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783836634/inspirations/taffin/fancy-yellow-sapphire-ring-sothebys.jpg" data-gallery="taffin" data-idx="10"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783836634/inspirations/taffin/fancy-yellow-sapphire-ring-sothebys.jpg" loading="lazy" alt="Taffin — Fancy Light Yellow + sapphire ring, Sotheby's 2023"></a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783836656/inspirations/taffin/coral-ruby-diamond-earrings-christies.jpg" data-gallery="taffin" data-idx="11"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783836656/inspirations/taffin/coral-ruby-diamond-earrings-christies.jpg" loading="lazy" alt="Taffin — coral, ruby and diamond earrings, Christie's"></a>
+        </div>
+        <div style="margin-top:10px; display:flex; flex-direction:column; gap:6px;">
+          <a href="https://taffin.com" target="_blank" style="font-family:var(--sans);font-size:11px;letter-spacing:0.12em;color:var(--accent);text-decoration:none;">
+            ↗ taffin.com — official site
+          </a>
+          <a href="https://www.instagram.com/taffinjewelry/" target="_blank" style="font-family:var(--sans);font-size:11px;letter-spacing:0.12em;color:var(--accent);text-decoration:none;">
+            ↗ @taffinjewelry — Instagram
+          </a>
+          <a href="https://www.sothebys.com/en/buy/auction/2023/important-jewels-6/fancy-light-yellow-diamond-and-sapphire-ring" target="_blank" style="font-family:var(--sans);font-size:11px;letter-spacing:0.12em;color:var(--accent);text-decoration:none;">
+            ↗ Sotheby's 2023 — 10.12ct Fancy Light Yellow + pavé sapphire ring
+          </a>
+          <a href="https://www.artnet.com/artists/taffin-co/pair-of-diamond-and-ceramic-cigarette-earrings-_6agARj26lWe_tKtaLaY2A2" target="_blank" style="font-family:var(--sans);font-size:11px;letter-spacing:0.12em;color:var(--accent);text-decoration:none;">
+            ↗ Artnet — Diamond &amp; Ceramic Cigarette Earrings
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- CARD 3: FORMS -->
+  <article class="jeweler-card">
+    <div class="jeweler-card__index">
+      <span class="num">03</span>
+      Hong Kong · Central
+    </div>
+    <div class="jeweler-card__body">
+      <div class="jeweler-card__name">Forms</div>
+      <div class="jeweler-card__sub">Janover &amp; Assor — Est. 2010</div>
+      <p class="jeweler-card__desc">
+        Founded by Tzvika Janover and Elad Assor — both from multi-generational diamond cutting families. Hidden inside a nondescript office building in Central Hong Kong with no signage. Collectors fly in from around the world. Walk-in vault lined with trays of exceptional stones: rare old rubies, untreated Colombian emeralds, champagne diamonds. Pieces emerge from playing with the actual stones until an idea forms. One of the few houses where the atelier and the vault exist under the same roof.
+      </p>
+      <div class="jeweler-card__facts">
+        <div class="fact">
+          <div class="fact__label">Location</div>
+          <div class="fact__value">2/F Hong Kong Diamond Exchange Building, 8-10 Duddell Street, Central — no signage</div>
+        </div>
+        <div class="fact">
+          <div class="fact__label">Output</div>
+          <div class="fact__value">Maximum 100 unique pieces per year</div>
+        </div>
+        <div class="fact">
+          <div class="fact__label">Philosophy</div>
+          <div class="fact__value">"Hardly a trace of metal visible." Metal serves the stone, never dominates it</div>
+        </div>
+        <div class="fact">
+          <div class="fact__label">DNA</div>
+          <div class="fact__value">Mughal and Indian jewel tradition filtered through contemporary technical innovation</div>
+        </div>
+      </div>
+      <div class="jeweler-card__tags">
+        <span class="tag">Stone First</span>
+        <span class="tag">Hidden Atelier</span>
+        <span class="tag">Max 100 Pieces / Year</span>
+        <span class="tag">Vault + Atelier</span>
+        <span class="tag">Hong Kong</span>
+      </div>
+
+      <div class="jeweler-gallery">
+        <div class="jeweler-gallery__label">Images — Forms Hong Kong</div>
+        <div class="jeweler-gallery__grid" id="forms-gallery">
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783836413/inspirations/forms/yellow-diamond-shakudo-ring.png" data-gallery="forms" data-idx="0">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783836413/inspirations/forms/yellow-diamond-shakudo-ring.png" loading="lazy" alt="Forms — Fancy Yellow diamond in shakudo bezel">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783836414/inspirations/forms/green-white-cascade-earrings.png" data-gallery="forms" data-idx="1">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783836414/inspirations/forms/green-white-cascade-earrings.png" loading="lazy" alt="Forms — Green and white diamond cascade earrings">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783841809/sfj/forms/forms-01.png" data-gallery="forms" data-idx="2">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783841809/sfj/forms/forms-01.png" loading="lazy" alt="Forms — Pink and white diamond toi et moi ring">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783841811/sfj/forms/forms-02.png" data-gallery="forms" data-idx="3">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783841811/sfj/forms/forms-02.png" loading="lazy" alt="Forms — piece 02">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783841812/sfj/forms/forms-03.png" data-gallery="forms" data-idx="4">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783841812/sfj/forms/forms-03.png" loading="lazy" alt="Forms — piece 03">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783841814/sfj/forms/forms-04.png" data-gallery="forms" data-idx="5">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783841814/sfj/forms/forms-04.png" loading="lazy" alt="Forms — piece 04">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783841815/sfj/forms/forms-05.png" data-gallery="forms" data-idx="6">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783841815/sfj/forms/forms-05.png" loading="lazy" alt="Forms — piece 05">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783841816/sfj/forms/forms-06.png" data-gallery="forms" data-idx="7">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783841816/sfj/forms/forms-06.png" loading="lazy" alt="Forms — piece 06">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783841817/sfj/forms/forms-07.png" data-gallery="forms" data-idx="8">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783841817/sfj/forms/forms-07.png" loading="lazy" alt="Forms — piece 07">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783841819/sfj/forms/forms-08.png" data-gallery="forms" data-idx="9">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783841819/sfj/forms/forms-08.png" loading="lazy" alt="Forms — Colombian emerald ring">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783841819/sfj/forms/forms-09.png" data-gallery="forms" data-idx="10">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783841819/sfj/forms/forms-09.png" loading="lazy" alt="Forms — piece 09">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783841820/sfj/forms/forms-10.png" data-gallery="forms" data-idx="11">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783841820/sfj/forms/forms-10.png" loading="lazy" alt="Forms — piece 10">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783841821/sfj/forms/forms-11.png" data-gallery="forms" data-idx="12">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783841821/sfj/forms/forms-11.png" loading="lazy" alt="Forms — piece 11">
+          </a>
+        </div>
+        <div style="margin-top:10px;">
+          <a href="https://galeriemagazine.com/forms-hong-kong/" target="_blank" style="font-family:var(--sans);font-size:11px;letter-spacing:0.12em;color:var(--accent);text-decoration:none;">
+            ↗ Galerie Magazine — Forms Hong Kong feature (shakudo ring + full house profile)
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- CARD 4: DAVID MORRIS / JEREMY MORRIS -->
+  <article class="jeweler-card">
+    <div class="jeweler-card__index">
+      <span class="num">04</span>
+      London · New Bond St
+    </div>
+    <div class="jeweler-card__body">
+      <div class="jeweler-card__name">Jeremy Morris</div>
+      <div class="jeweler-card__sub">David Morris — Est. 1962</div>
+      <p class="jeweler-card__desc">
+        Second-generation. David Morris founded the house in 1962 after training at Hatton Garden and graduating from the Central School of Arts and Crafts. Jeremy took over as managing director and principal designer in 2003. Big bold color, obsessive gemstone sourcing — suppliers give first look on exceptional stones. Innovating in materials (titanium alongside gold). The most retail-visible of the four, but still genuinely high jewelry with a working atelier above the Bond Street boutique.
+      </p>
+      <div class="jeweler-card__facts">
+        <div class="fact">
+          <div class="fact__label">Location</div>
+          <div class="fact__value">180 New Bond Street, London (Grade II* listed 1908 townhouse) + 12 boutiques worldwide</div>
+        </div>
+        <div class="fact">
+          <div class="fact__label">Heritage</div>
+          <div class="fact__value">De Beers Diamonds International Awards 1963 &amp; 1964. Made the Miss World Crown. James Bond films. Elizabeth Taylor (via Richard Burton)</div>
+        </div>
+        <div class="fact">
+          <div class="fact__label">Clientele</div>
+          <div class="fact__value">Barbra Streisand, Oprah, Kate Winslet, Adele, Keira Knightley, Catherine Zeta-Jones</div>
+        </div>
+        <div class="fact">
+          <div class="fact__label">Scale</div>
+          <div class="fact__value">12 boutiques: London, Harrods, Dubai, Abu Dhabi, Doha, Hong Kong, Paris</div>
+        </div>
+        <div class="fact">
+          <div class="fact__label">Net-a-Porter</div>
+          <div class="fact__value">Sold on NAP — the only jeweler on this list with a major e-commerce presence there. NAP's jewelry roster includes Cartier, Tiffany, Messika, Chopard, Shay, Anita Ko. Their EIP (Extremely Important People) clients — $25K+/yr spenders, top 2% of customers — account for ~50% of all NAP revenue. Being listed = editorial validation + global reach to that exact buyer. NAP also publishes PORTER magazine, so brands get written up alongside being shoppable.</div>
+        </div>
+      </div>
+      <div class="jeweler-card__tags">
+        <span class="tag">Legacy House</span>
+        <span class="tag">Bold Color</span>
+        <span class="tag">Bond Street</span>
+        <span class="tag">Titanium Innovation</span>
+        <span class="tag">Celebrity Clientele</span>
+      </div>
+      <div class="jeweler-gallery">
+        <div class="jeweler-gallery__label">Images — David Morris</div>
+        <div class="jeweler-gallery__grid" id="dm-gallery">
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783842654/sfj/david-morris/dm-01.png" data-gallery="dm" data-idx="0">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783842654/sfj/david-morris/dm-01.png" loading="lazy" alt="David Morris — circular diamond cluster earrings in rose gold">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783842656/sfj/david-morris/dm-02.png" data-gallery="dm" data-idx="1">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783842656/sfj/david-morris/dm-02.png" loading="lazy" alt="David Morris — pear diamond open cuff bangle">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783842658/sfj/david-morris/dm-03.png" data-gallery="dm" data-idx="2">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783842658/sfj/david-morris/dm-03.png" loading="lazy" alt="David Morris — piece 03">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783842659/sfj/david-morris/dm-04.png" data-gallery="dm" data-idx="3">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783842659/sfj/david-morris/dm-04.png" loading="lazy" alt="David Morris — piece 04">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783842660/sfj/david-morris/dm-05.png" data-gallery="dm" data-idx="4">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783842660/sfj/david-morris/dm-05.png" loading="lazy" alt="David Morris — piece 05">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783842661/sfj/david-morris/dm-06.png" data-gallery="dm" data-idx="5">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783842661/sfj/david-morris/dm-06.png" loading="lazy" alt="David Morris — orange sapphire cushion with pink diamond halo">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783842661/sfj/david-morris/dm-07.png" data-gallery="dm" data-idx="6">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783842661/sfj/david-morris/dm-07.png" loading="lazy" alt="David Morris — Rose Cut Ring">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783842662/sfj/david-morris/dm-08.png" data-gallery="dm" data-idx="7">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783842662/sfj/david-morris/dm-08.png" loading="lazy" alt="David Morris — piece 08">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783842663/sfj/david-morris/dm-09.png" data-gallery="dm" data-idx="8">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783842663/sfj/david-morris/dm-09.png" loading="lazy" alt="David Morris — piece 09">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783842664/sfj/david-morris/dm-10.png" data-gallery="dm" data-idx="9">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783842664/sfj/david-morris/dm-10.png" loading="lazy" alt="David Morris — pink + white emerald-cut line bracelet">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783842664/sfj/david-morris/dm-11.png" data-gallery="dm" data-idx="10">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783842664/sfj/david-morris/dm-11.png" loading="lazy" alt="David Morris — piece 11">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783842665/sfj/david-morris/dm-12.png" data-gallery="dm" data-idx="11">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783842665/sfj/david-morris/dm-12.png" loading="lazy" alt="David Morris — piece 12">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783843089/sfj/david-morris/dm-13.png" data-gallery="dm" data-idx="12">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783843089/sfj/david-morris/dm-13.png" loading="lazy" alt="David Morris — piece 13">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783843090/sfj/david-morris/dm-14.png" data-gallery="dm" data-idx="13">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783843090/sfj/david-morris/dm-14.png" loading="lazy" alt="David Morris — piece 14">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783843092/sfj/david-morris/dm-15.png" data-gallery="dm" data-idx="14">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783843092/sfj/david-morris/dm-15.png" loading="lazy" alt="David Morris — piece 15">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783843093/sfj/david-morris/dm-16.png" data-gallery="dm" data-idx="15">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783843093/sfj/david-morris/dm-16.png" loading="lazy" alt="David Morris — piece 16">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783843094/sfj/david-morris/dm-17.png" data-gallery="dm" data-idx="16">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783843094/sfj/david-morris/dm-17.png" loading="lazy" alt="David Morris — piece 17">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783843095/sfj/david-morris/dm-18.png" data-gallery="dm" data-idx="17">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783843095/sfj/david-morris/dm-18.png" loading="lazy" alt="David Morris — piece 18">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783843096/sfj/david-morris/dm-19.png" data-gallery="dm" data-idx="18">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783843096/sfj/david-morris/dm-19.png" loading="lazy" alt="David Morris — piece 19">
+          </a>
+          <a href="#" data-full="https://res.cloudinary.com/dlg2mou53/image/upload/v1783843097/sfj/david-morris/dm-20.png" data-gallery="dm" data-idx="19">
+            <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_280,h_280,c_fill/v1783843097/sfj/david-morris/dm-20.png" loading="lazy" alt="David Morris — piece 20">
+          </a>
+        </div>
+        <div style="margin-top:10px; display:flex; flex-direction:column; gap:6px;">
+          <a href="https://www.davidmorris.com" target="_blank" style="font-family:var(--sans);font-size:11px;letter-spacing:0.12em;color:var(--accent);text-decoration:none;">
+            ↗ davidmorris.com — official site
+          </a>
+          <a href="https://www.instagram.com/davidmorrisjewels/" target="_blank" style="font-family:var(--sans);font-size:11px;letter-spacing:0.12em;color:var(--accent);text-decoration:none;">
+            ↗ @davidmorrisjewels — Instagram
+          </a>
+          <a href="https://www.net-a-porter.com/en-us/shop/designer/david-morris" target="_blank" style="font-family:var(--sans);font-size:11px;letter-spacing:0.12em;color:var(--accent);text-decoration:none;">
+            ↗ Net-a-Porter — David Morris shop
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+</main>
+
+<!-- OTHER JEWELERS -->
+<section id="other-jewelers" style="background:var(--paper-warm);padding:64px 8vw;border-top:1px solid var(--rule);">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.42em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">Second Tier</div>
+    <h2 style="font-family:var(--sans);font-size:clamp(18px,2.2vw,26px);font-weight:200;letter-spacing:0.16em;text-transform:uppercase;color:var(--charcoal);margin-bottom:12px;">Other Jewelers</h2>
+    <p style="font-family:var(--serif);font-style:italic;color:var(--ink-muted);font-size:16px;margin-bottom:40px;">Designers we watch and draw from — significant craft, distinctive voice, not yet at the top tier.</p>
+    <div style="font-family:var(--sans);font-size:13px;color:var(--ink-muted);letter-spacing:0.1em;">Coming soon — add names and notes here.</div>
+  </div>
+</section>
+
+<!-- SYNTHESIS -->
+<section class="synthesis">
+  <div class="eyebrow">Common Thread</div>
+  <h2>What These Four Share</h2>
+  <div class="synthesis-grid">
+    <div class="thread">
+      <div class="thread__label">Access</div>
+      <div class="thread__text">Appointment-only or near-invisible to the public. You have to know to find them.</div>
+    </div>
+    <div class="thread">
+      <div class="thread__label">Philosophy</div>
+      <div class="thread__text">Stone-first design. The gem dictates the piece, not the other way around.</div>
+    </div>
+    <div class="thread">
+      <div class="thread__label">Scale</div>
+      <div class="thread__text">Deliberately tiny output. Rarity is structural, not marketing.</div>
+    </div>
+    <div class="thread">
+      <div class="thread__label">Craft</div>
+      <div class="thread__text">Extraordinary technical mastery. Settings and techniques unavailable at any other scale.</div>
+    </div>
+    <div class="thread">
+      <div class="thread__label">Clientele</div>
+      <div class="thread__text">Collectors, not customers. People who understand what they're buying.</div>
+    </div>
+    <div class="thread">
+      <div class="thread__label">For Bez Ambar</div>
+      <div class="thread__text">Forms and Taffin are the closest analogs to where Bez Ambar is heading — stone-first, hidden, custom, collectible.</div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  Bez Ambar · Private Reference · SFJ — Jewelers
+</footer>
+
+<!-- Lightbox overlay -->
+<div class="lb-overlay" id="lb">
+  <button class="lb-close" id="lb-close">✕</button>
+  <img id="lb-img" src="" alt="">
+  <div class="lb-nav">
+    <button id="lb-prev">← Prev</button>
+    <button id="lb-next">Next →</button>
+  </div>
+  <div class="lb-counter" id="lb-counter"></div>
+</div>
+
+<script>
+(function() {
+  const overlay = document.getElementById('lb');
+  const lbImg = document.getElementById('lb-img');
+  const lbCounter = document.getElementById('lb-counter');
+  let images = [], current = 0;
+
+  function initGallery(gridId) {
+    const els = document.querySelectorAll('#' + gridId + ' a');
+    const galleryImgs = [];
+    els.forEach(a => { galleryImgs.push(a.dataset.full); });
+    els.forEach(a => {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        images = galleryImgs;
+        current = parseInt(this.dataset.idx, 10);
+        show(current);
+      });
+    });
+  }
+
+  initGallery('gs-gallery');
+  initGallery('taffin-gallery');
+  initGallery('forms-gallery');
+  initGallery('dm-gallery');
+
+  function show(idx) {
+    lbImg.src = images[idx];
+    lbCounter.textContent = (idx + 1) + ' / ' + images.length;
+    overlay.classList.add('open');
+  }
+
+  document.getElementById('lb-close').addEventListener('click', () => overlay.classList.remove('open'));
+  document.getElementById('lb-prev').addEventListener('click', () => { current = (current - 1 + images.length) % images.length; show(current); });
+  document.getElementById('lb-next').addEventListener('click', () => { current = (current + 1) % images.length; show(current); });
+
+  overlay.addEventListener('click', function(e) { if (e.target === this) this.classList.remove('open'); });
+
+  document.addEventListener('keydown', function(e) {
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'Escape') overlay.classList.remove('open');
+    if (e.key === 'ArrowLeft') { current = (current - 1 + images.length) % images.length; show(current); }
+    if (e.key === 'ArrowRight') { current = (current + 1) % images.length; show(current); }
+  });
+})();
+</script>
+
+</body>
+</html>

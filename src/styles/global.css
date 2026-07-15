@@ -23,6 +23,7 @@
 
   /* Typography — font stacks */
   --sans:  'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --sans-transform: uppercase;
   --serif: 'Lyon Text', 'Cormorant GaramondVariable', 'Cormorant Garamond', Georgia, serif;
   --prose: 'Lyon Text', 'Cormorant GaramondVariable', 'Cormorant Garamond', Georgia, serif;
 
@@ -52,7 +53,8 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
-h1, h2, h3, h4, h5, h6 { font-family: var(--sans); }
+h1, h2, h3, h4, h5, h6 { font-family: var(--sans);
+ text-transform: var(--sans-transform, none); }
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; height: auto; }
 
@@ -97,6 +99,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 /* Canonical eyebrow label */
 .ba-eyebrow {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -107,6 +110,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 /* Legacy alias — keep until all pages migrated */
 .eyebrow {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -144,6 +148,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 /* Underline text link in accent */
 .text-link {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -170,6 +175,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 .image-placeholder.tall { min-height: 450px; }
 .image-placeholder p {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   color: var(--ink-muted);
   letter-spacing: 0.05em;
@@ -180,6 +186,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
   display: inline-block;
   padding: 16px 40px;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.16em;
@@ -205,6 +212,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
   display: inline-block;
   padding: 15px 36px;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -223,6 +231,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
   display: inline-block;
   padding: 13px 32px;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -243,6 +252,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
   text-align: center;
   padding: 10px 20px;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -275,6 +285,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 }
 .ba-header__menu {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -294,6 +305,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 }
 .ba-header__logo {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -357,6 +369,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 }
 .ba-cta__eyebrow {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -367,6 +380,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 }
 .ba-cta__title {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: clamp(24px, 3.5vw, 38px);
   font-weight: 300;
   letter-spacing: 0.06em;
@@ -385,6 +399,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
   display: inline-block;
   padding: 14px 36px;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -428,6 +443,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 .ba-segment__text .ba-eyebrow { margin-bottom: 20px; }
 .ba-segment__heading {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: clamp(22px, 3vw, 32px);
   font-weight: 300;
   letter-spacing: 0.04em;
@@ -444,6 +460,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 }
 .ba-segment__link {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -483,6 +500,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 }
 .ba-pull-quote__attr {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -520,6 +538,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 .ba-card__info { padding: 18px 0 4px; }
 .ba-card__collection {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -535,6 +554,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 }
 .ba-card__ref {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   letter-spacing: 0.08em;
   color: var(--ink-muted);
@@ -557,6 +577,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 }
 .service-item h4 {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -566,6 +587,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 }
 .service-item p {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   color: var(--ink-muted);
   line-height: 1.6;
@@ -584,6 +606,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 .lv-cat-dropdown { position: relative; }
 .lv-cat-dropdown > button {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.04em;
@@ -616,6 +639,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 .lv-cat-dropdown.open .lv-cat-menu { opacity: 1; visibility: visible; transform: translateY(0); }
 .lv-cat-menu .cat-label {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.2em;
@@ -629,6 +653,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
   align-items: center;
   justify-content: space-between;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 400;
   color: var(--ink-soft);
@@ -641,6 +666,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 .lv-cat-menu a.active-cat::after { content: '✓'; font-size: 15px; }
 .lv-filter-btn {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -698,6 +724,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 .lv-subcat-thumb img { width: 100%; height: 100%; object-fit: cover; }
 .lv-subcat-label {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 400;
   letter-spacing: 0.02em;
@@ -747,6 +774,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 }
 .lv-product-card .lv-card-info h3 {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -758,6 +786,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 }
 .lv-product-card .lv-card-price {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 400;
   color: var(--white);
@@ -780,6 +809,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
   border-top: 1px solid rgba(0,0,0,.08);
   padding: 72px 24px 0;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   color: var(--ink-soft);
 }
 .ba-footer__inner { max-width: var(--max-w); margin: 0 auto; }
@@ -796,6 +826,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 }
 .ba-footer__wordmark {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.32em;
@@ -813,6 +844,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 }
 .ba-footer__estab {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   letter-spacing: 0.06em;
   color: var(--ink-muted);
@@ -822,6 +854,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 .ba-footer__social .social-links__icon { color: var(--ink-soft); }
 .ba-footer__featuring {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -831,6 +864,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 .ba-footer__col h4,
 .ba-footer__toggle {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.2em;
@@ -884,6 +918,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 .ba-footer__contact-link:hover { color: var(--accent); }
 .ba-footer__hours {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   color: var(--ink-muted);
   margin: 12px 0 2px;
@@ -891,6 +926,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 }
 .ba-footer__appt {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -981,6 +1017,7 @@ body.menu-open { overflow: hidden; }
   left: 50%;
   transform: translateX(-50%);
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.4em;
@@ -1015,6 +1052,7 @@ body.menu-open { overflow: hidden; }
   width: 100%;
   box-sizing: border-box;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -1030,6 +1068,7 @@ body.menu-open { overflow: hidden; }
 
 .menu-section-label {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.22em;
@@ -1046,6 +1085,7 @@ body.menu-open { overflow: hidden; }
   width: 100%;
   padding: 11px 36px 11px 40px;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 13px;
   font-weight: 400;
   letter-spacing: 0.18em;
@@ -1084,6 +1124,7 @@ body.menu-open { overflow: hidden; }
 .menu-back { display: none; }
 .menu-back__btn {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.14em;
@@ -1285,6 +1326,7 @@ body.menu-open { overflow: hidden; }
   display: block;
   text-align: left;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 12px;
   letter-spacing: 0.16em;
   color: var(--ink-muted);
@@ -1303,6 +1345,7 @@ body.menu-open { overflow: hidden; }
 }
 .ba-inner-hero__eyebrow {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -1334,6 +1377,7 @@ body.menu-open { overflow: hidden; }
 .ba-inner-hero__count {
   margin-top: 16px;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1348,6 +1392,7 @@ body.menu-open { overflow: hidden; }
 }
 .ba-inner-hero--light h1 {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: clamp(32px, 5vw, 52px);
   font-weight: 200;
   letter-spacing: 0.04em;
@@ -1423,6 +1468,7 @@ body.menu-open { overflow: hidden; }
 }
 .ba-jewelry-card__ref {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -1439,6 +1485,7 @@ body.menu-open { overflow: hidden; }
 }
 .ba-jewelry-card__sub {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   color: var(--white);
   letter-spacing: 0.05em;
@@ -1448,6 +1495,7 @@ body.menu-open { overflow: hidden; }
   padding: 80px 20px;
   color: var(--ink-muted);
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
 }
 @media (max-width: 900px) {
@@ -1518,6 +1566,7 @@ body.menu-open { overflow: hidden; }
 /* ── 19.7. COLLECTION COUNT LINE ────────────────────────── */
 .ba-collection-count {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -1545,6 +1594,7 @@ body.menu-open { overflow: hidden; }
   border-radius: 100px;
   padding: 14px 28px;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -1633,6 +1683,7 @@ body.menu-open { overflow: hidden; }
   left: 50%;
   transform: translateX(-50%);
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.4em;
@@ -1653,6 +1704,7 @@ body.menu-open { overflow: hidden; }
 .ba-filter-section-label {
   display: block;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.22em;
@@ -1668,6 +1720,7 @@ body.menu-open { overflow: hidden; }
   width: 100%;
   padding: 11px 36px 11px 40px;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 13px;
   font-weight: 400;
   letter-spacing: 0.18em;
@@ -1707,6 +1760,7 @@ body.menu-open { overflow: hidden; }
   width: 100%;
   box-sizing: border-box;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -1800,6 +1854,7 @@ body.menu-open { overflow: hidden; }
 }
 .ba-collection-tile__eyebrow {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -1833,6 +1888,7 @@ body.menu-open { overflow: hidden; }
 }
 .ba-collection-tile__meta {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -1845,6 +1901,7 @@ body.menu-open { overflow: hidden; }
   align-items: center;
   gap: 10px;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -1908,6 +1965,7 @@ body.menu-open { overflow: hidden; }
   border-bottom: 2px solid transparent;
   padding: 16px 20px;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -1932,6 +1990,7 @@ body.menu-open { overflow: hidden; }
 .ba-prose-section:last-child { border-bottom: none; }
 .ba-prose-section h2 {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: clamp(24px, 3vw, 32px);
   font-weight: 200;
   letter-spacing: 0.04em;
@@ -1941,6 +2000,7 @@ body.menu-open { overflow: hidden; }
 }
 .ba-prose-section h3 {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -1975,6 +2035,7 @@ body.menu-open { overflow: hidden; }
 }
 .ba-newsletter__eyebrow {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 400;
   letter-spacing: 0.05em;
@@ -1985,6 +2046,7 @@ body.menu-open { overflow: hidden; }
 }
 .ba-newsletter__body {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   color: var(--ink-soft);
   max-width: 520px;
@@ -2004,6 +2066,7 @@ body.menu-open { overflow: hidden; }
   padding: 14px 0;
   color: var(--ink);
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   outline: 0;
 }
@@ -2013,6 +2076,7 @@ body.menu-open { overflow: hidden; }
   border: 0;
   color: var(--ink);
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.05em;
@@ -2030,6 +2094,7 @@ body.menu-open { overflow: hidden; }
 }
 .ba-faq__eyebrow {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.18em;
@@ -2040,6 +2105,7 @@ body.menu-open { overflow: hidden; }
 }
 .ba-faq__title {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 22px;
   font-weight: 300;
   letter-spacing: 0.08em;
@@ -2127,6 +2193,7 @@ body.menu-open { overflow: hidden; }
 .ba-light-hero__eyebrow {
   display: block;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.18em;
@@ -2192,6 +2259,7 @@ body.menu-open { overflow: hidden; }
 }
 .ba-light-card__sub {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -2239,6 +2307,7 @@ body.menu-open { overflow: hidden; }
 .ba-info-card--solo { margin-bottom: 24px; }
 .ba-info-card h3 {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.15em;
@@ -2260,6 +2329,7 @@ body.menu-open { overflow: hidden; }
 .ba-contact-note {
   text-align: center;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   letter-spacing: 0.05em;
   color: var(--ink-muted);
@@ -2273,6 +2343,7 @@ body.menu-open { overflow: hidden; }
   width: 100%;
   border-collapse: collapse;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
 }
 .ba-table th {
@@ -2342,6 +2413,7 @@ body.menu-open { overflow: hidden; }
   display: inline-block;
   align-self: flex-start;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -2413,6 +2485,7 @@ body.menu-open { overflow: hidden; }
 }
 .ba-portrait-hero__eyebrow {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.32em;
@@ -2423,6 +2496,7 @@ body.menu-open { overflow: hidden; }
 }
 .ba-portrait-hero__title {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: clamp(28px, 4vw, 44px);
   font-weight: 200;
   letter-spacing: 0.08em;
@@ -2435,6 +2509,7 @@ body.menu-open { overflow: hidden; }
 }
 .ba-portrait-hero__sub {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 300;
   letter-spacing: 0.22em;
@@ -2482,6 +2557,7 @@ body.menu-open { overflow: hidden; }
 .ba-card.pcard--placeholder .ba-card__media::after {
   content: attr(data-label);
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -2499,6 +2575,7 @@ body.menu-open { overflow: hidden; }
 }
 .ba-section-divider__eyebrow {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.4em;
@@ -2509,6 +2586,7 @@ body.menu-open { overflow: hidden; }
 }
 .ba-section-divider__title {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: clamp(24px, 3.5vw, 38px);
   font-weight: 200;
   letter-spacing: 0.1em;
@@ -2593,6 +2671,7 @@ body.search-open { overflow: hidden; }
 
 .ba-search__result-title {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -2645,6 +2724,7 @@ body.search-open { overflow: hidden; }
   left: 32px;
   z-index: 2;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -2662,6 +2742,7 @@ body.search-open { overflow: hidden; }
 }
 .ba-collection-recs__label {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -2748,6 +2829,7 @@ body.search-open { overflow: hidden; }
 
 .inq-modal__eyebrow {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.28em;
@@ -2783,6 +2865,7 @@ body.search-open { overflow: hidden; }
 }
 .inq-modal__specs li {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -2812,6 +2895,7 @@ body.search-open { overflow: hidden; }
 .inq-form__field { display: flex; flex-direction: column; gap: 6px; }
 .inq-form__label {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -2835,6 +2919,7 @@ body.search-open { overflow: hidden; }
 .inq-form__submit {
   align-self: flex-start;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -2874,6 +2959,7 @@ body.search-open { overflow: hidden; }
   border: 1px solid var(--border-warm);
   padding: 10px 18px;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -2899,6 +2985,7 @@ body.search-open { overflow: hidden; }
   width: 100%;
   padding: 14px 20px;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.18em;

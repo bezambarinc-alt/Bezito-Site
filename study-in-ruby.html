@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Study in Ruby — Cushion-cut rubies, explored in frame — Bez Ambar</title>
+<meta name="description" content="A study of cushion-cut rubies, 1.5 to 2.5 carat, dressed in six different frames. By Bez Ambar.">
+<link rel="canonical" href="https://galleries.bezambarinc.workers.dev/page/study-in-ruby">
+<meta property="og:title" content="A Study in Ruby — Bez Ambar">
+<meta property="og:description" content="One pair of cushion rubies. Six frames. A study in how a stone can be dressed.">
+<meta property="og:url" content="https://galleries.bezambarinc.workers.dev/page/study-in-ruby">
+<meta property="og:image" content="https://res.cloudinary.com/dlg2mou53/image/upload/v1782717591/study-in-ruby/placeholder_ballerina_cushion_ruby.jpg">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231a1a1a'/%3E%3Ctext x='16' y='22' font-family='Inter,sans-serif' font-size='18' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://webfonts.fontstand.com/WF-099839-d89c1d499f0c1f40d1e6d7330af17f97.css" type="text/css"/>
+<style>
+  :root {
+    --serif: 'Lyon Text Regular', 'EB Garamond', Georgia, serif;
+    --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --paper: #ffffff;
+    --paper-warm: #faf7f2;
+    --rule: rgba(0,0,0,.08);
+    --accent: #95826b;
+    --ruby: #8a0e1f;
+    --gutter: clamp(1.25rem, 5vw, 4rem);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; height: auto; }
+
+  /* Header */
+  .ba-header {
+    position: sticky; top: 0; z-index: 100;
+    background: #fff;
+    border-bottom: 1px solid var(--rule);
+    padding: 18px 20px;
+    text-align: center;
+  }
+  .ba-header__logo {
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: var(--ink);
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  /* Top title strip — charcoal +10% toward white */
+  .strip {
+    background: #313131;
+    text-align: center;
+    padding: clamp(2.5rem, 5vw, 4rem) var(--gutter) 20px;
+  }
+  .strip__eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #c9b896;
+    margin-bottom: 18px;
+  }
+  .strip__title {
+    font-family: var(--sans);
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 200;
+    letter-spacing: 0.06em;
+    line-height: 1.25;
+    text-transform: uppercase;
+    color: #ffffff;
+    max-width: 34ch;
+    margin: 0 auto;
+  }
+  .strip__sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 16px;
+    color: #c9c2b5;
+    margin-top: 18px;
+    max-width: 52ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Gallery Hero — triptych on the same gray as the strip (continuous block) */
+  .hero {
+    background: #313131;
+    padding: 0;
+    min-height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .triptych--hero {
+    max-width: 70vw;
+    padding-top: 20px;
+  }
+  .hero__caption {
+    background: #313131;
+    color: #c9c2b5;
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 22px var(--gutter) 6px;
+  }
+  .hero__tagline {
+    background: #313131;
+    color: #b8b0a3;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.45;
+    text-align: center;
+    padding: 0 var(--gutter) 22px;
+    max-width: 56ch;
+    margin: 0 auto;
+  }
+
+  /* Sketches commentary — sits below the hero on white, written-page feel */
+  .sketches {
+    background: var(--paper);
+    padding: clamp(2.5rem, 5vw, 4rem) var(--gutter);
+    color: var(--ink);
+  }
+  .sketches__inner {
+    max-width: 64ch;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .sketches__eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: 18px;
+  }
+  .sketches__title {
+    font-family: var(--sans);
+    font-size: clamp(18px, 2vw, 22px);
+    font-weight: 200;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .sketches__body {
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--ink);
+  }
+  .sketches__body p + p { margin-top: 1rem; }
+  .sketches__body strong {
+    font-family: var(--sans);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+  .sketches__rule {
+    width: 36px;
+    height: 1px;
+    background: var(--accent);
+    margin: 28px auto 0;
+  }
+
+  /* Editor's note */
+  .note {
+    padding: clamp(2rem, 4vw, 3rem) var(--gutter);
+    background: var(--paper);
+    text-align: center;
+  }
+  .note__body {
+    max-width: 56ch;
+    margin: 0 auto;
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--ink);
+  }
+  .note__body p + p { margin-top: 1.25rem; }
+  .note__body em { font-style: italic; color: var(--ink-soft); }
+  .note__feature {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--accent);
+    text-align: center;
+    max-width: 40ch;
+    margin: 1.75rem auto !important;
+    letter-spacing: 0.01em;
+  }
+  .note__rule {
+    width: 36px;
+    height: 1px;
+    background: var(--accent);
+    margin: 28px auto 0;
+  }
+
+  /* Movement */
+  .movement {
+    padding: clamp(1.75rem, 3.5vw, 3rem) 0 clamp(1.5rem, 3vw, 2.5rem);
+    background: var(--paper);
+  }
+  .movement:nth-of-type(even) { background: var(--paper-warm); }
+  .movement__head {
+    text-align: center;
+    padding: 0 var(--gutter) clamp(1.5rem, 3vw, 2.25rem);
+  }
+  .movement__eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .movement__title {
+    font-family: var(--sans);
+    font-size: clamp(18px, 2.2vw, 22px);
+    font-weight: 200;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    max-width: 32ch;
+    margin: 0 auto;
+  }
+  .movement__caption {
+    margin-top: 18px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-soft);
+    max-width: 48ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Triptych — three portraits with 40px breathing gaps, 70% width */
+  .triptych {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    width: 100%;
+    max-width: 70vw;
+    margin: 0 auto;
+    padding: 10px;
+    background: transparent;
+  }
+  .triptych img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1080 / 1350;
+    object-fit: cover;
+    display: block;
+  }
+  @media (max-width: 720px) {
+    .triptych {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Footer / inquire */
+  .inquire {
+    background: #1a1a1a;
+    color: #f4efe5;
+    padding: clamp(3.5rem, 7vw, 6rem) var(--gutter);
+    text-align: center;
+  }
+  .inquire__eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #c9b896;
+    margin-bottom: 18px;
+  }
+  .inquire__title {
+    font-family: var(--sans);
+    font-size: clamp(20px, 2.6vw, 26px);
+    font-weight: 200;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    max-width: 28ch;
+    margin: 0 auto 1.25rem;
+  }
+  .inquire__body {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 16px;
+    color: #c9c2b5;
+    max-width: 50ch;
+    margin: 0 auto 2rem;
+  }
+  .inquire__contact {
+    font-family: var(--sans);
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #f4efe5;
+    line-height: 2;
+  }
+  .inquire__contact a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.25); }
+  .inquire__contact a:hover { border-bottom-color: #c9b896; }
+
+  .spacer-100 {
+    height: 75px;
+    background: var(--paper);
+  }
+
+  /* Lightbox — click any triptych image to open in centre overlay */
+  .triptych img { cursor: zoom-in; }
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.94);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: clamp(20px, 4vw, 60px);
+    cursor: pointer;
+  }
+  .lightbox.is-open { display: flex; }
+  .lightbox__img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    cursor: default;
+    box-shadow: 0 30px 80px rgba(0,0,0,.6);
+  }
+  .lightbox__close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background: transparent;
+    border: 0;
+    color: #fff;
+    font-size: 36px;
+    line-height: 1;
+    font-family: var(--sans);
+    font-weight: 200;
+    cursor: pointer;
+    padding: 8px 12px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .lightbox__close:hover { opacity: 1; }
+
+  .colophon {
+    background: #0f0f0f;
+    color: #6f6a60;
+    font-family: var(--sans);
+    text-align: center;
+    padding: 32px var(--gutter);
+  }
+  .colophon__brand {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .colophon__contact {
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: #8a8478;
+    line-height: 1.9;
+  }
+  .colophon__contact a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,.12);
+    padding-bottom: 2px;
+  }
+  .colophon__contact a:hover { color: #c9b896; border-bottom-color: #c9b896; }
+  .colophon__sep {
+    margin: 0 10px;
+    color: #3a3a3a;
+  }
+  @media (max-width: 600px) {
+    .colophon__contact { font-size: 11px; }
+    .colophon__sep { display: block; height: 0; margin: 0; overflow: hidden; }
+  }
+</style>
+</head>
+<body>
+
+<header class="ba-header">
+  <a class="ba-header__logo" href="/">BEZ AMBAR</a>
+</header>
+
+<section class="strip">
+  <div class="strip__eyebrow">A Design Board</div>
+  <h1 class="strip__title">Cushion Ruby</h1>
+  <p class="strip__sub">The search for the proper motif &mdash; and the meaning that brings the piece to life.</p>
+</section>
+
+<section class="hero">
+  <div class="triptych triptych--hero">
+    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,g_center,w_1400,ar_4:5,q_auto,f_auto/v1782795995/study-in-ruby/movement_vi_left_small_single_row.jpg" alt="Small single row of square step-cut diamonds">
+    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,g_center,w_1400,ar_4:5,q_auto,f_auto/v1782795997/study-in-ruby/movement_vi_right_large_single_row.jpg" alt="Larger single row of square step-cut diamonds">
+    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,g_center,w_1400,ar_4:5,q_auto,f_auto/v1782795996/study-in-ruby/movement_vi_middle_double_row.jpg" alt="Double row of square step-cut diamonds">
+  </div>
+  <div class="hero__caption">The Blaze&reg; Dignity Motif</div>
+  <div class="hero__tagline">Authority through reduction.</div>
+</section>
+
+<div class="spacer-100"></div>
+
+<section class="hero">
+  <div class="triptych triptych--hero">
+    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,g_center,w_1400,ar_4:5,q_auto,f_auto/v1782766930/study-in-ruby/frame_invisible_squares.jpg" alt="Invisible-set squares study">
+    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,g_center,w_1400,ar_4:5,q_auto,f_auto/v1782766927/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Baguette skirt with ruby halo">
+    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,g_center,w_1400,ar_4:5,q_auto,f_auto/v1782766928/study-in-ruby/frame_square_geometric.jpg" alt="Square geometric step-cut study">
+  </div>
+  <div class="hero__caption">The Aureole&trade; Motif</div>
+  <div class="hero__tagline">Worn alone, or haloed in its own light.</div>
+</section>
+
+<div class="spacer-100"></div>
+
+<section class="hero">
+  <div class="triptych triptych--hero">
+    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,g_center,w_1400,ar_4:5,q_auto,f_auto/v1782717591/study-in-ruby/placeholder_ballerina_cushion_ruby.jpg" alt="Hero view 1">
+    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,g_center,w_1400,ar_4:5,q_auto,f_auto/v1782719278/study-in-ruby/frame_ballerina_full.jpg" alt="Hero view 2">
+    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,g_center,w_1400,ar_4:5,q_auto,f_auto/v1782718100/study-in-ruby/ballerina_view_b.jpg" alt="Hero view 3">
+  </div>
+  <div class="hero__caption">The Baguettes Skirt Frame&trade; Motif</div>
+  <div class="hero__tagline">Glamour through celebration.</div>
+</section>
+
+<div class="spacer-100"></div>
+
+<section class="hero">
+  <div class="triptych triptych--hero">
+    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,g_center,w_1400,ar_4:5,q_auto,f_auto/v1782766083/study-in-ruby/frame_marquise_fan.jpg" alt="The Garland — marquise sunburst">
+    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,g_center,w_1400,ar_4:5,q_auto,f_auto/v1782847489/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="The Garland — tighter mixed pear and marquise sunburst">
+    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,g_center,w_1400,ar_4:5,q_auto,f_auto/v1782847490/study-in-ruby/gallery_hero_right_lighter.jpg" alt="The Garland — lighter mixed pear and marquise sunburst">
+  </div>
+  <div class="hero__caption">The Garland&trade; Motif</div>
+  <div class="hero__tagline">Grace through Nature.</div>
+</section>
+
+<section class="note">
+  <div class="note__body">
+    <p>A stone of this weight, in this colour, in this cut, asks a single question of its maker: <em>what shall it wear?</em></p>
+    <p>Studying that question — slowly, by hand, in graphite and watercolour — is itself part of the art of making jewelry. The differences between two frames can be minute: the angle of a baguette, the depth of a halo, the breath between the stone and its setting.</p>
+    <p class="note__feature">In our trade, a subtle difference is sometimes a world apart.</p>
+    <p>What you have just seen is not a collection, but a study. One pair of cushion rubies — two to six carat — dressed several ways. Some frames are taken from collections already in the house; others are answers we drew on the way to finding the right one.</p>
+    <div class="note__rule"></div>
+  </div>
+</section>
+
+<div class="colophon">
+  <div class="colophon__brand">Bez Ambar — Los Angeles — A Study in Ruby</div>
+  <div class="colophon__contact">
+    <a href="tel:+12136299191">Office 213&nbsp;·&nbsp;629&nbsp;·&nbsp;9191</a><span class="colophon__sep">·</span><a href="tel:+13232172778">Cell 323&nbsp;·&nbsp;217&nbsp;·&nbsp;2778</a><span class="colophon__sep">·</span><a href="https://bezambar.com">bezambar.com</a><span class="colophon__sep">·</span><a href="mailto:info@bezambar.com">info@bezambar.com</a>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lightbox__close" id="lightbox-close" aria-label="Close">&times;</button>
+  <img class="lightbox__img" id="lightbox-img" alt="">
+</div>
+
+<script>
+(function () {
+  var lb = document.getElementById('lightbox');
+  var img = document.getElementById('lightbox-img');
+  var btn = document.getElementById('lightbox-close');
+  function open(src, alt) {
+    img.src = src;
+    img.alt = alt || '';
+    lb.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function close() {
+    lb.classList.remove('is-open');
+    img.src = '';
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('.triptych img').forEach(function (el) {
+    el.addEventListener('click', function () {
+      var big = el.src.replace(/w_1400/, 'w_2400');
+      open(big, el.alt);
+    });
+  });
+  btn.addEventListener('click', close);
+  lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+})();
+</script>
+
+<script>
+(function(){
+  var u = new URLSearchParams(location.search).get('u') || '';
+  var img = new Image();
+  img.src = 'https://galleries.bezambarinc.workers.dev/t?p=study-in-ruby' + (u ? '&u=' + encodeURIComponent(u) : '');
+  img.style.cssText = 'position:absolute;width:1px;height:1px;opacity:0;';
+  img.alt = '';
+  document.body.appendChild(img);
+})();
+</script>
+
+</body>
+</html>

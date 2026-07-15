@@ -59,6 +59,7 @@
 }
 .featured-content__tag {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -76,6 +77,7 @@
 }
 .featured-content__excerpt {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   color: var(--ink-muted);
   line-height: 1.8;
@@ -83,6 +85,7 @@
 }
 .featured-content__read-more {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -92,6 +95,7 @@
 }
 .featured-content__date {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   color: var(--ink-muted);
   margin-bottom: 8px;
@@ -107,6 +111,7 @@
 }
 .blog-filter__btn {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -151,6 +156,7 @@
 }
 .blog-card__cat {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -167,11 +173,13 @@
 }
 .blog-card__date {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   color: var(--ink-muted);
 }
 .blog-card__excerpt {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   color: var(--ink-muted);
   line-height: 1.7;
@@ -196,6 +204,7 @@
 }
 .ba-post-back a {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -215,6 +224,7 @@
 }
 .ba-post-hero__cat {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 11px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -252,6 +262,7 @@
 .ba-post-hero__meta.is-active { opacity: 1; transition-delay: 0.35s; }
 .ba-post-hero__meta {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 12px;
   letter-spacing: 0.12em;
   color: var(--ink-muted);
@@ -335,6 +346,7 @@
    When H3 immediately precedes H2, they form one visual unit */
 .ba-post-content h3 {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 11px;
   font-weight: 400;
   letter-spacing: 0.28em;
@@ -390,6 +402,7 @@
 }
 .ba-post-content figcaption {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 12px;
   letter-spacing: 0.1em;
   color: var(--ink-muted);
@@ -453,6 +466,7 @@
 .ba-post-content p:has(> strong:only-child) {
   column-span: all;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.06em;
@@ -529,6 +543,7 @@
 }
 .ba-post-cta__box p {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 13px;
   color: var(--ink-muted);
   margin: 8px 0 0;
@@ -538,6 +553,7 @@
 .ba-post-cta__box a {
   display: inline-block;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -594,6 +610,7 @@
 }
 .ba-related__date {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 15px;
   color: var(--ink-muted);
 }

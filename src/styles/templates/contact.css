@@ -12,6 +12,7 @@
 }
 .contact-masthead__eyebrow {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.32em;
@@ -56,6 +57,7 @@
 /* ── Form ────────────────────────────────────────────────── */
 .contact-form__heading {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.3em;
@@ -71,6 +73,7 @@
 .contact-field label {
   display: block;
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 9px;
   font-weight: 500;
   letter-spacing: 0.28em;
@@ -136,6 +139,7 @@
 
 .contact-form__privacy {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 10px;
   letter-spacing: 0.06em;
   color: var(--ink-muted);
@@ -143,6 +147,7 @@
 }
 .contact-form__submit {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.26em;
@@ -160,6 +165,7 @@
 .contact-form__submit:disabled { opacity: 0.45; cursor: not-allowed; }
 .contact-form__error {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 12px;
   color: #b94040;
   margin-top: 16px;
@@ -184,6 +190,7 @@
 }
 .contact-success p {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 13px;
   letter-spacing: 0.04em;
   color: var(--ink-muted);
@@ -199,6 +206,7 @@
 }
 .contact-sidebar__label {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 9px;
   font-weight: 500;
   letter-spacing: 0.3em;
@@ -221,6 +229,7 @@
 .contact-sidebar__value a:hover { color: var(--ink); }
 .contact-sidebar__meta {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 11px;
   letter-spacing: 0.08em;
   color: var(--ink-muted);
@@ -258,6 +267,7 @@
 }
 .contact-service__label {
   font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
   font-size: 9px;
   font-weight: 500;
   letter-spacing: 0.28em;

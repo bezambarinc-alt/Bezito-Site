@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mailing Lists — Bez Ambar</title>
+<meta name="description" content="Bez Ambar mailing-list dashboard — Consumer and Retailer lists, with direct links to the underlying Google Sheets.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23c41e3a'/%3E%3Ctext x='16' y='22' font-family='Montserrat,sans-serif' font-size='18' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --ink: #d7d3c8;
+  --ink-soft: rgba(215, 211, 200, .62);
+  --paper: #2a2a2a;
+  --paper-warm: #333333;
+  --rule: rgba(215, 211, 200, .16);
+  --accent: #c5a258;
+  --accent-soft: #c9b684;
+  --font-display: "Didot", "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+body.locked { overflow: hidden; }
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-soft); }
+
+.ba-header { position: sticky; top: 0; z-index: 100; background: #fff; border-bottom: 1px solid var(--rule); padding: 18px 20px; text-align: center; }
+.ba-header__logo { font-family: var(--font-body); font-size: 16px; font-weight: 700; letter-spacing: 5px; color: #000; text-transform: uppercase; text-decoration: none; }
+
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+.hero { padding: clamp(3rem, 8vw, 6rem) 0 clamp(2rem, 5vw, 3.5rem); text-align: center; }
+.eyebrow { font-size: .8rem; letter-spacing: .28em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 1rem; }
+.hero h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2.2rem, 5vw, 3.6rem); margin: 0 0 .6rem; color: #fff; }
+.hero .lede { font-family: var(--font-display); font-style: italic; color: var(--ink-soft); font-size: 1.15rem; max-width: 640px; margin: 0 auto; }
+.updated { margin-top: 1.4rem; font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-soft); }
+
+.bucket { padding: clamp(2.5rem, 5vw, 4rem) 0; border-top: 1px solid var(--rule); }
+.bucket-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
+.bucket-head h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.7rem, 3.2vw, 2.4rem); margin: 0; color: #fff; }
+.bucket-head .count { font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent-soft); }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem; }
+
+.card { background: var(--paper-warm); border: 1px solid var(--rule); border-radius: 4px; padding: 1.5rem 1.5rem 1.25rem; display: flex; flex-direction: column; gap: .75rem; transition: border-color .2s ease, transform .2s ease; }
+.card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.card .label { font-size: .68rem; letter-spacing: .28em; text-transform: uppercase; color: var(--ink-soft); }
+.card h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.3rem; margin: 0; color: #fff; line-height: 1.25; }
+.card .meta { font-size: .85rem; color: var(--ink-soft); display: flex; flex-direction: column; gap: .2rem; }
+.card .meta strong { color: var(--ink); font-weight: 500; }
+.card .rows { font-family: var(--font-display); font-size: 1.8rem; color: var(--accent); line-height: 1; margin-top: .3rem; }
+.card .rows-unit { font-size: .7rem; letter-spacing: .2em; color: var(--ink-soft); text-transform: uppercase; }
+.card .actions { margin-top: auto; padding-top: .75rem; border-top: 1px solid var(--rule); display: flex; gap: .8rem; flex-wrap: wrap; }
+.card .actions a { font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; font-weight: 500; }
+.tag { display: inline-block; font-size: .65rem; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-soft); border: 1px solid var(--rule); padding: .15rem .5rem; border-radius: 2px; }
+.tag.dup { color: #d99; border-color: rgba(217, 153, 153, .35); }
+
+footer.site { background: #0d0d0d; color: var(--accent-soft); text-align: center; padding: 2.5rem 24px; font-family: var(--font-body); font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; margin-top: 3rem; }
+footer.site .footer-logo { display: block; font-family: var(--font-body); font-size: 14px; font-weight: 700; letter-spacing: 5px; color: var(--accent); margin-bottom: 1rem; }
+footer.site .footer-tag { margin-top: 1rem; font-size: .65rem; color: #555; letter-spacing: .15em; }
+
+/* ---------- Lock screen ---------- */
+#lock-screen { position: fixed; inset: 0; background: var(--paper); display: flex; align-items: center; justify-content: center; z-index: 9999; flex-direction: column; padding: 20px; }
+#lock-screen .lock-logo { font-family: var(--font-body); font-size: 16px; font-weight: 700; letter-spacing: 5px; color: var(--accent); text-transform: uppercase; margin-bottom: 1.2rem; }
+#lock-screen .lock-title { font-family: var(--font-display); font-size: 2rem; color: #fff; font-weight: 400; margin-bottom: .4rem; }
+#lock-screen .lock-sub { font-size: .72rem; letter-spacing: .25em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 2.5rem; }
+#lock-screen input { background: transparent; border: 1px solid var(--rule); color: #fff; padding: 14px 20px; font-size: 16px; min-width: 280px; font-family: var(--font-body); border-radius: 3px; letter-spacing: .15em; text-align: center; }
+#lock-screen input:focus { outline: none; border-color: var(--accent); }
+#lock-screen button { background: var(--accent); color: #1a1a1a; border: none; padding: 12px 36px; font-size: .8rem; font-weight: 700; letter-spacing: .25em; text-transform: uppercase; margin-top: 1rem; cursor: pointer; font-family: var(--font-body); border-radius: 3px; transition: background .15s; }
+#lock-screen button:hover { background: var(--accent-soft); }
+#lock-screen .err { color: #e57373; font-size: .8rem; margin-top: 1.2rem; height: 1rem; letter-spacing: .1em; }
+</style>
+</head>
+<body class="locked">
+
+<div id="lock-screen">
+  <div class="lock-logo">Bez Ambar</div>
+  <div class="lock-title">Mailing Lists</div>
+  <div class="lock-sub">Restricted · Enter password</div>
+  <input type="password" id="lock-pwd" placeholder="••••" autocomplete="current-password" autofocus inputmode="numeric">
+  <button id="lock-submit">Unlock</button>
+  <div class="err" id="lock-err"></div>
+</div>
+
+<header class="ba-header">
+  <a href="https://bezambar.com" class="ba-header__logo">Bez Ambar</a>
+</header>
+
+<section class="hero wrap">
+  <div class="eyebrow">Internal · Bezito Campaigns</div>
+  <h1>Mailing Lists</h1>
+  <p class="lede">Two main buckets — Consumer and Retailers. Each card links straight to the live Google Sheet.</p>
+  <div class="updated">Updated 2026-05-15</div>
+</section>
+
+<div id="content-target"></div>
+
+<footer class="site">
+  <span class="footer-logo">Bez Ambar</span>
+  Mailing-list dashboard · Internal
+  <div class="footer-tag">Inventor of the Princess Cut · Since 1979</div>
+</footer>
+
+<script>
+const SALT_B64 = "tdvwz03WGl4fAvv9orxfzA==";
+const IV_B64 = "gKrj8dznFVNtuZUg";
+const CT_B64 = "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";
+const ITERATIONS = 250000;
+
+function b64ToBuf(b64) { return Uint8Array.from(atob(b64), c => c.charCodeAt(0)); }
+
+async function deriveKey(password) {
+  const enc = new TextEncoder();
+  const baseKey = await crypto.subtle.importKey('raw', enc.encode(password), { name: 'PBKDF2' }, false, ['deriveKey']);
+  return await crypto.subtle.deriveKey(
+    { name: 'PBKDF2', salt: b64ToBuf(SALT_B64), iterations: ITERATIONS, hash: 'SHA-256' },
+    baseKey,
+    { name: 'AES-GCM', length: 256 },
+    false,
+    ['decrypt']
+  );
+}
+
+async function tryUnlock(password) {
+  try {
+    const key = await deriveKey(password);
+    const ct = b64ToBuf(CT_B64);
+    const plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64ToBuf(IV_B64) }, key, ct);
+    const html = new TextDecoder().decode(plain);
+    document.getElementById('content-target').innerHTML = html;
+    document.getElementById('lock-screen').remove();
+    document.body.classList.remove('locked');
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+document.getElementById('lock-submit').addEventListener('click', async () => {
+  const pwd = document.getElementById('lock-pwd').value;
+  const errEl = document.getElementById('lock-err');
+  errEl.textContent = '';
+  if (!pwd) return;
+  const ok = await tryUnlock(pwd);
+  if (!ok) errEl.textContent = 'Wrong password';
+});
+document.getElementById('lock-pwd').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('lock-submit').click();
+});
+</script>
+
+</body>
+</html>

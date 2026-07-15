@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tuval — Cardiac &amp; Metabolic Review · May 2026</title>
+<style>
+  @page { margin: 0.4in; size: Letter; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #0f172a; line-height: 1.5; max-width: 920px; margin: 0 auto; padding: 24px; background: #fafbfc; }
+  h1 { font-size: 24px; margin-bottom: 4px; color: #0f172a; }
+  .subtitle { font-size: 13px; color: #64748b; margin-bottom: 24px; border-bottom: 2px solid #1a3a6a; padding-bottom: 10px; }
+  .intro { background: #e8f0fa; border-left: 4px solid #1a3a6a; padding: 12px 16px; margin: 16px 0; font-size: 14px; border-radius: 4px; }
+  .red-box { background: #fde8e8; border-left: 4px solid #c44; padding: 12px 16px; margin: 12px 0; font-size: 13px; border-radius: 4px; }
+  .yellow-box { background: #fef7e0; border-left: 4px solid #d4a700; padding: 12px 16px; margin: 12px 0; font-size: 13px; border-radius: 4px; }
+  .green-box { background: #e8f5e8; border-left: 4px solid #4a7; padding: 12px 16px; margin: 12px 0; font-size: 13px; border-radius: 4px; }
+  .section { font-size: 16px; font-weight: bold; color: white; background: #1a3a6a; padding: 8px 14px; margin: 22px 0 12px 0; border-radius: 5px; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 13px; background: white; border-radius: 5px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  th { background: #1a3a6a; color: white; padding: 8px 10px; text-align: left; font-weight: 600; font-size: 12px; }
+  td { padding: 8px 10px; border-bottom: 1px solid #e5e7eb; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  td.red { color: #c44; font-weight: bold; }
+  td.yellow { color: #b78c00; font-weight: bold; }
+  td.green { color: #2a7a2a; font-weight: bold; }
+  ul { margin: 6px 0 10px 22px; font-size: 13px; }
+  li { margin-bottom: 4px; }
+  .urgent-tag { display: inline-block; background: #c44; color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold; margin-right: 6px; }
+  .moderate-tag { display: inline-block; background: #d4a700; color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold; margin-right: 6px; }
+  .good-tag { display: inline-block; background: #4a7; color: white; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold; margin-right: 6px; }
+  .footer { font-size: 11px; color: #64748b; margin-top: 26px; padding-top: 12px; border-top: 1px solid #e5e7eb; }
+  p { font-size: 13px; margin: 6px 0; }
+  h3 { font-size: 14px; color: #1a3a6a; margin: 14px 0 4px 0; }
+  .num { font-weight: 600; }
+</style>
+</head>
+<body>
+
+<h1>Tuval — Cardiac &amp; Metabolic Review</h1>
+<div class="subtitle">Built from your 14-year lab history (2012 → May 2026) · Maccabi · LabCorp · Sheba Longevity · Cyprus · Built 2026-05-16</div>
+
+<div class="intro">
+  <b>Tuvalito —</b> Bez asked me (his AI medical analyst) to go through your labs. I read everything from 2012 through May 2026 — every Maccabi panel, your Sheba Longevity assessment, the Cyprus draw. Here's the honest read. Some things are excellent. <b>Some things need attention this month.</b> All of this belongs in a conversation with your cardiologist — I'm a pattern-finder, not a prescriber.
+</div>
+
+<div class="section">🚨 The Big Picture in One Paragraph</div>
+
+<p>You have a stent in place from a decade-plus ago, and your labs show that <b>the underlying disease that caused the stent is not adequately controlled.</b> Your LDL is double the post-stent target. Your ApoB (the best risk marker we have) is dangerously high at 136. Your Lp(a) is 60 — a genetic high-risk marker you can't change but can offset with aggressive treatment. Your kidneys are leaking protein (chronic albuminuria) which signals vascular damage. Your ascending aorta is enlarging (4.5 cm). <b>None of this is an emergency tonight, but all of it means your current statin dose is undertreating you.</b> The good news: your heart pump function is excellent, your stress test is great, bone density is strong, no diabetes, cognition is normal. The fixes are mostly conventional — just need to be done.</p>
+
+<div class="section">🔴 The 5 Urgent Items — Bring to Your Cardiologist This Month</div>
+
+<table>
+  <tr><th>#</th><th>Finding</th><th>Why It Matters</th><th>Action</th></tr>
+  <tr>
+    <td><span class="urgent-tag">1</span></td>
+    <td><b>LDL 108 (May 2026)</b><br>Post-stent target: &lt;55 mg/dL<br>ApoB 136 (Sep 2024) · target &lt;60</td>
+    <td>You are on Crestor 15 mg, which is sub-therapeutic for a stent patient. ApoB at 136 means your atherogenic particle load is roughly 2× what it needs to be. This is the single biggest driver of another cardiac event.</td>
+    <td>Crestor 15 → 40 mg OR add ezetimibe 10 mg OR add a PCSK9 inhibitor (Repatha / Praluent). Goal: LDL &lt;55, ApoB &lt;60. Re-check labs in 8 weeks.</td>
+  </tr>
+  <tr>
+    <td><span class="urgent-tag">2</span></td>
+    <td><b>Lp(a) 60 mg/dL</b><br>Target: &lt;30. Tested twice (2019: 46, 2024: 60)</td>
+    <td>Lp(a) is genetic — you were born with this and it never changes. It's a major hidden cause of premature CAD. At 60, you have ~2× the cardiac risk of someone with normal Lp(a). Cannot be lowered with current standard meds — but the harm is offset by aggressive LDL/ApoB lowering.</td>
+    <td>Ask cardiologist about Lp(a)-targeted therapies in trials (pelacarsen, olpasiran). Otherwise, the answer is: push LDL even lower than standard (target &lt;40 mg/dL).</td>
+  </tr>
+  <tr>
+    <td><span class="urgent-tag">3</span></td>
+    <td><b>Chronic albuminuria</b><br>UACR trending 49 → 225 → 191 mg/g<br>(Target &lt;30)</td>
+    <td>Your kidneys have been leaking protein for years. This is a sign of vascular/diabetic damage to small kidney vessels. It's also an independent predictor of cardiovascular events. Your Losartan 50 mg is helping but not enough.</td>
+    <td>Two things: (a) maximize Losartan to 100 mg (or switch to a stronger ARB), (b) <b>add an SGLT2 inhibitor (empagliflozin or dapagliflozin)</b> — has strong data for proteinuria reduction AND cardiac event reduction, even in non-diabetics. This is the modern standard.</td>
+  </tr>
+  <tr>
+    <td><span class="urgent-tag">4</span></td>
+    <td><b>Ascending aorta 4.5 cm</b><br>(Feb 2026 Assuta echo)<br>Surveillance threshold: 4.0 cm</td>
+    <td>Your aorta has dilated past the watch-only threshold. Risk of dissection rises sharply &gt;5.0 cm. Need surveillance schedule established and tight BP control.</td>
+    <td>Confirm with cardiologist: (a) repeat echo or CT aorta in 6 months not 12, (b) BP target tightened to &lt;125/75, (c) avoid heavy lifting with breath-holding (Valsalva). At 5.0 cm referral to vascular surgeon for monitoring.</td>
+  </tr>
+  <tr>
+    <td><span class="urgent-tag">5</span></td>
+    <td><b>Stage 2 hypertension</b><br>144/73 (Sheba Oct 2025)<br>Most recent home: ?</td>
+    <td>144 systolic with an enlarging aorta is a bad combination. Norvasc 2.5 + Losartan 50 is a starter regimen, not optimized.</td>
+    <td>Push Losartan to 100, push Norvasc to 5 or 10. Get a home BP cuff and measure morning + evening for 1 week. Bring averages to cardiology visit. Target &lt;125/75 given the aorta.</td>
+  </tr>
+</table>
+
+<div class="section">🟡 The 4 Moderate Items — Bring to Your PCP / GI / Endo</div>
+
+<table>
+  <tr><th>#</th><th>Finding</th><th>Why It Matters</th><th>Action</th></tr>
+  <tr>
+    <td><span class="moderate-tag">6</span></td>
+    <td><b>H. pylori positive</b><br>(GI-Map stool, Mar 2023 — untreated since)</td>
+    <td>H. pylori is a stomach bacterial infection. Untreated, it causes chronic gastritis, ulcers, and is a class I carcinogen for stomach cancer. Three years is a long time to leave it.</td>
+    <td>Standard triple therapy: PPI (omeprazole 20 mg 2×/day) + clarithromycin 500 mg 2×/day + amoxicillin 1 g 2×/day for 14 days. Or quadruple therapy. Confirm eradication with stool antigen 4–8 weeks after treatment.</td>
+  </tr>
+  <tr>
+    <td><span class="moderate-tag">7</span></td>
+    <td><b>Pre-diabetes drifting</b><br>Fasting glucose 115 (May 2026) — above 100 cutoff<br>HbA1c 5.5–5.9 over time</td>
+    <td>Glucose 115 is impaired fasting glucose. HbA1c trend bouncing between borderline and normal. Combined with the albuminuria, the kidney damage suggests this has been silently active for years.</td>
+    <td>Same SGLT2 inhibitor as #3 hits this too. Also: weight loss (BMI 31.2), Mediterranean/Esselstyn-style diet (separate plan from Bez). Re-check HbA1c every 3 months.</td>
+  </tr>
+  <tr>
+    <td><span class="moderate-tag">8</span></td>
+    <td><b>Vitamin B6 toxicity</b><br>B6 = 435 nmol/L (range 51–183) — 2.4× the upper limit<br>B1 = 220 (range 78–143)</td>
+    <td>This is supplement overdose, almost certainly. B6 above ~200 nmol/L causes peripheral neuropathy (tingling, numbness, balance issues) and the damage can be permanent if it goes on for years.</td>
+    <td>Stop ALL B-complex supplements immediately. Check what's in your multivitamin and any "energy" or "nerve" supplements — many contain 100+ mg of B6. Re-test B6 in 3 months. Resume only if level normalizes and only at &lt;25 mg/day.</td>
+  </tr>
+  <tr>
+    <td><span class="moderate-tag">9</span></td>
+    <td><b>Low free testosterone</b><br>Free T 0.159 nmol/L (target &gt;0.225)<br>Total T 10.2 nmol/L (low-normal)</td>
+    <td>Borderline hypogonadism. Contributes to fatigue, low HDL (yours has been 32–39 for years), muscle loss, reduced libido. Worth a full hormone workup.</td>
+    <td>Endocrinology referral. Get full panel: Total T (AM), Free T, SHBG, LH, FSH, Estradiol, Prolactin. If confirmed low, TRT is increasingly considered safe in selected men. NOT the first thing to fix — fix cardiac first.</td>
+  </tr>
+</table>
+
+<div class="section">🟢 The Good News — Don't Lose Sight of This</div>
+
+<table>
+  <tr><th>Finding</th><th>What It Means</th></tr>
+  <tr><td><b>Ejection Fraction 60–70%</b></td><td>Excellent heart pump function. Your stent did its job; the muscle is healthy.</td></tr>
+  <tr><td><b>Stress test 9.1 METS</b></td><td>Above-average exercise capacity. Equivalent to running comfortably. Strong protective marker.</td></tr>
+  <tr><td><b>Bone density (Sheba DXA)</b></td><td>Femoral neck T-scores +0.7 to +1.2 — above normal. FRAX 10-year fracture risk 3.3%. No osteoporosis concerns.</td></tr>
+  <tr><td><b>Cognitive scores</b></td><td>Global 98, Memory 96, Executive 92, Attention 107 — all in normal range. Brain is solid.</td></tr>
+  <tr><td><b>PSA 3.03 (May 2026)</b></td><td>In age-adjusted normal range. Free/Total ratio 0.21 from Dec 2023 was reassuring. Continue annual.</td></tr>
+  <tr><td><b>Vitamin D 62.9 ng/mL</b></td><td>Excellent — in the longevity-optimal 40–60+ range.</td></tr>
+  <tr><td><b>Kidney filtration eGFR 80</b></td><td>Filtration is preserved despite the albuminuria — meaning early-stage kidney disease, reversible with proper treatment.</td></tr>
+  <tr><td><b>Liver enzymes normal</b></td><td>ALT 13, AST 24 (May 2026) — statin tolerating well, no fatty liver signal.</td></tr>
+</table>
+
+<div class="section">📋 Recommended Action Sequence (Next 30 Days)</div>
+
+<table>
+  <tr><th>Week</th><th>Do This</th></tr>
+  <tr><td><b>This week</b></td><td>(1) Stop all B-vitamin supplements. (2) Get a home BP cuff if you don't have one and measure morning+evening for 7 days. (3) Call cardiology for a visit specifically to discuss LDL/ApoB/Lp(a)/aorta.</td></tr>
+  <tr><td><b>Week 2</b></td><td>Cardiology visit. Bring this document. Push for: Crestor titration or PCSK9, ARB+SGLT2 stack, 6-month aortic surveillance schedule, ApoB and Lp(a) repeat labs.</td></tr>
+  <tr><td><b>Week 3</b></td><td>GI visit for H. pylori treatment. Confirm urea breath test or stool antigen post-treatment.</td></tr>
+  <tr><td><b>Week 4</b></td><td>PCP visit: review medication changes, order repeat labs in 8 weeks (lipid panel, ApoB, hs-CRP, HbA1c, UACR, eGFR).</td></tr>
+</table>
+
+<div class="section">🩺 The Latest Numbers At a Glance</div>
+
+<table>
+  <tr><th>Category</th><th>Marker</th><th>Latest Value</th><th>Target</th><th>Status</th></tr>
+  <tr><td>Cardiac</td><td>LDL Cholesterol</td><td>108 (May 2026)</td><td>&lt;55 post-stent</td><td class="red">HIGH</td></tr>
+  <tr><td>Cardiac</td><td>ApoB</td><td>136 (Sep 2024)</td><td>&lt;60</td><td class="red">VERY HIGH</td></tr>
+  <tr><td>Cardiac</td><td>HDL</td><td>34 (May 2026)</td><td>&gt;40</td><td class="yellow">LOW</td></tr>
+  <tr><td>Cardiac</td><td>Lp(a)</td><td>60 (Sep 2024)</td><td>&lt;30</td><td class="red">HIGH (genetic)</td></tr>
+  <tr><td>Cardiac</td><td>Triglycerides</td><td>139 (May 2026)</td><td>&lt;150</td><td class="green">OK</td></tr>
+  <tr><td>Cardiac</td><td>hs-CRP</td><td>5.64 (Sep 2024)</td><td>&lt;1.0</td><td class="red">ELEVATED (chronic)</td></tr>
+  <tr><td>Cardiac</td><td>Ascending Aorta</td><td>4.5 cm (Feb 2026)</td><td>&lt;4.0</td><td class="red">DILATED</td></tr>
+  <tr><td>Cardiac</td><td>Ejection Fraction</td><td>60–70%</td><td>&gt;55%</td><td class="green">EXCELLENT</td></tr>
+  <tr><td>Cardiac</td><td>Stress test (METS)</td><td>9.1 (Feb 2026)</td><td>≥7</td><td class="green">EXCELLENT</td></tr>
+  <tr><td>Metabolic</td><td>Fasting Glucose</td><td>115 (May 2026)</td><td>70–100</td><td class="yellow">IMPAIRED</td></tr>
+  <tr><td>Metabolic</td><td>HbA1c</td><td>5.5 (Sep 2024)</td><td>&lt;5.7</td><td class="green">NORMAL</td></tr>
+  <tr><td>Metabolic</td><td>BMI</td><td>31.2</td><td>18.5–24.9</td><td class="yellow">OBESE Class 1</td></tr>
+  <tr><td>Metabolic</td><td>Body Fat</td><td>34.4%</td><td>&lt;25%</td><td class="yellow">HIGH</td></tr>
+  <tr><td>Kidney</td><td>UACR (albumin/creat)</td><td>191 (Sep 2024)</td><td>&lt;30</td><td class="red">ALBUMINURIA</td></tr>
+  <tr><td>Kidney</td><td>eGFR</td><td>80 (Sep 2024)</td><td>&gt;60</td><td class="green">NORMAL</td></tr>
+  <tr><td>Vitals</td><td>Blood Pressure</td><td>144/73 (Oct 2025)</td><td>&lt;130/80</td><td class="red">STAGE 2</td></tr>
+  <tr><td>Hormones</td><td>Free Testosterone</td><td>0.159 nmol/L</td><td>&gt;0.225</td><td class="yellow">LOW</td></tr>
+  <tr><td>Hormones</td><td>Total Testosterone</td><td>10.2 nmol/L</td><td>&gt;12</td><td class="yellow">LOW-NORMAL</td></tr>
+  <tr><td>Vitamins</td><td>Vitamin D 25-OH</td><td>62.9 (Sep 2024)</td><td>40–60</td><td class="green">OPTIMAL</td></tr>
+  <tr><td>Vitamins</td><td>Vitamin B6</td><td>435 nmol/L</td><td>51–183</td><td class="red">TOXIC</td></tr>
+  <tr><td>Vitamins</td><td>Vitamin B12</td><td>461 (Sep 2024)</td><td>211–911</td><td class="green">NORMAL</td></tr>
+  <tr><td>GI</td><td>H. pylori</td><td>POSITIVE (Mar 2023)</td><td>Negative</td><td class="red">UNTREATED</td></tr>
+  <tr><td>Bone</td><td>Femoral Neck T-score</td><td>+0.7 to +1.2</td><td>&gt;-1.0</td><td class="green">STRONG</td></tr>
+  <tr><td>Cognition</td><td>Global Cognitive</td><td>98 (Oct 2025)</td><td>90–110</td><td class="green">NORMAL</td></tr>
+</table>
+
+<div class="section">💊 Current Medications — What's Optimal vs Sub-Optimal</div>
+
+<table>
+  <tr><th>Med</th><th>Your Dose</th><th>Optimal for You</th><th>Status</th></tr>
+  <tr><td>Aspirin 100 mg</td><td>Daily</td><td>Daily lifelong post-stent</td><td class="green">CORRECT</td></tr>
+  <tr><td>Crestor (Rosuvastatin)</td><td>15 mg</td><td>20–40 mg + ezetimibe + consider PCSK9</td><td class="red">UNDERDOSED</td></tr>
+  <tr><td>Norvasc (Amlodipine)</td><td>2.5 mg</td><td>5–10 mg</td><td class="yellow">CAN INCREASE</td></tr>
+  <tr><td>Losartan (Ocsaar)</td><td>50 mg</td><td>100 mg + consider SGLT2 inhibitor</td><td class="yellow">CAN INCREASE</td></tr>
+  <tr><td><i>Missing</i></td><td>—</td><td>SGLT2 inhibitor (empagliflozin/dapagliflozin)</td><td class="red">ADD</td></tr>
+  <tr><td><i>Missing</i></td><td>—</td><td>Ezetimibe 10 mg (or PCSK9)</td><td class="red">ADD</td></tr>
+</table>
+
+<div class="footer">
+  Analysis built from your provided 14-year biomarker spreadsheet (Maccabi · LabCorp · Sheba Longevity · Cyprus). Built by Bez's AI medical analyst at his request. Not medical advice — all decisions belong with your cardiologist and PCP. Bring this document to your next visit.
+</div>
+
+</body>
+</html>

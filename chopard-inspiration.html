@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chopard Inspiration — Bez Ambar</title>
+<meta name="description" content="Bez Ambar internal Chopard reference board. High jewelry study — necklaces, earrings, statement pieces.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231a1a1a'/%3E%3Ctext x='16' y='22' font-family='Inter,sans-serif' font-size='18' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://webfonts.fontstand.com/WF-099839-d89c1d499f0c1f40d1e6d7330af17f97.css" type="text/css"/>
+<style>
+  :root {
+    --serif: 'Lyon Text Regular', 'EB Garamond', Georgia, serif;
+    --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-muted: #8a8a8a;
+    --paper: #ffffff;
+    --paper-warm: #faf7f2;
+    --rule: rgba(0,0,0,.08);
+    --accent: #95826b;
+    --gutter: clamp(1.25rem, 5vw, 4rem);
+    --max-wide: 1300px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; height: auto; }
+
+  .ba-header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    padding: 16px 20px;
+    text-align: center;
+  }
+  .ba-header__logo {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: var(--ink);
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .page-hero {
+    padding: 110px var(--gutter) 48px;
+    text-align: center;
+    border-bottom: 1px solid var(--rule);
+  }
+  .page-hero__eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 18px;
+  }
+  .page-hero__title {
+    font-family: var(--sans);
+    font-size: clamp(26px, 3vw, 38px);
+    font-weight: 200;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .page-hero__lede {
+    font-family: var(--serif);
+    font-size: clamp(16px, 1.4vw, 19px);
+    color: var(--ink-soft);
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  .grid-section {
+    max-width: var(--max-wide);
+    margin: 0 auto;
+    padding: 60px var(--gutter) 100px;
+  }
+  .section-header {
+    margin-bottom: 44px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-header__eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .section-header__title {
+    font-family: var(--serif);
+    font-size: clamp(22px, 2.2vw, 30px);
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .section-header__body {
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 680px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  @media (min-width: 640px) {
+    .grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+  }
+  @media (min-width: 1000px) {
+    .grid { grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+  }
+
+  .tile {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    cursor: zoom-in;
+    transition: border-color .2s, transform .15s;
+  }
+  .tile:hover { border-color: rgba(0,0,0,.2); transform: translateY(-2px); }
+  .tile__img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+    background: var(--paper-warm);
+  }
+  .tile__meta {
+    padding: 14px 16px 16px;
+    border-top: 1px solid var(--rule);
+  }
+  .tile__label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  /* Lightbox */
+  .lb {
+    display: none;
+    position: fixed; inset: 0; z-index: 999;
+    background: rgba(0,0,0,.92);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .lb.is-open { display: flex; }
+  .lb__img {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    display: block;
+  }
+  .lb__close {
+    position: fixed; top: 20px; right: 24px;
+    background: none; border: 0;
+    color: rgba(255,255,255,.7);
+    font-size: 32px; line-height: 1;
+    cursor: pointer;
+    transition: color .15s;
+    z-index: 1000;
+  }
+  .lb__close:hover { color: #fff; }
+  .lb__nav {
+    position: fixed;
+    top: 50%; transform: translateY(-50%);
+    background: none; border: 0;
+    color: rgba(255,255,255,.5);
+    font-size: 40px; line-height: 1;
+    cursor: pointer;
+    padding: 10px 16px;
+    transition: color .15s;
+    z-index: 1000;
+  }
+  .lb__nav:hover { color: #fff; }
+  .lb__prev { left: 12px; }
+  .lb__next { right: 12px; }
+  .lb__counter {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: rgba(255,255,255,.45);
+    text-transform: uppercase;
+  }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 32px var(--gutter);
+    text-align: center;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+</style>
+</head>
+<body>
+
+<header class="ba-header">
+  <a class="ba-header__logo" href="https://galleries.bezambarinc.workers.dev">Bez Ambar</a>
+</header>
+
+<section class="page-hero">
+  <div class="page-hero__eyebrow">Reference · High Jewelry Study</div>
+  <h1 class="page-hero__title">Chopard Inspiration</h1>
+  <p class="page-hero__lede">Chopard Red Carpet and L'Heure du Diamant references — necklaces, earrings, multi-strand drapes, colored stone centrepieces. Study material for $10M+ format design.</p>
+</section>
+
+<section class="grid-section">
+  <div class="section-header">
+    <div class="section-header__eyebrow">Chopard · High Jewellery</div>
+    <h2 class="section-header__title">Red Carpet & L'Heure du Diamant Collection</h2>
+    <p class="section-header__body">Multi-strand diamond cascades, colored stone drops, transformable architectures. Diamond + emerald + ruby centrepiece studies from Cannes and TEFAF presentations. Click any image to expand.</p>
+  </div>
+
+  <div class="grid" id="gallery">
+    <div class="tile" data-idx="0">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783368772/inspirations/choppard/chopard-01.png" alt="Chopard high jewelry reference 1" loading="eager">
+      <div class="tile__meta"><span class="tile__label">Chopard · 01</span></div>
+    </div>
+    <div class="tile" data-idx="1">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783368773/inspirations/choppard/chopard-02.png" alt="Chopard high jewelry reference 2" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 02</span></div>
+    </div>
+    <div class="tile" data-idx="2">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783368773/inspirations/choppard/chopard-03.png" alt="Chopard high jewelry reference 3" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 03</span></div>
+    </div>
+    <div class="tile" data-idx="3">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783368774/inspirations/choppard/chopard-04.png" alt="Chopard high jewelry reference 4" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 04</span></div>
+    </div>
+    <div class="tile" data-idx="4">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783368775/inspirations/choppard/chopard-05.png" alt="Chopard high jewelry reference 5" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 05</span></div>
+    </div>
+    <div class="tile" data-idx="5">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783368776/inspirations/choppard/chopard-06.png" alt="Chopard high jewelry reference 6" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 06</span></div>
+    </div>
+    <div class="tile" data-idx="6">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783368777/inspirations/choppard/chopard-07.png" alt="Chopard high jewelry reference 7" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 07</span></div>
+    </div>
+    <div class="tile" data-idx="7">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783368778/inspirations/choppard/chopard-08.png" alt="Chopard high jewelry reference 8" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 08</span></div>
+    </div>
+    <div class="tile" data-idx="8">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783368779/inspirations/choppard/chopard-09.png" alt="Chopard high jewelry reference 9" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 09</span></div>
+    </div>
+    <div class="tile" data-idx="9">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783368780/inspirations/choppard/chopard-10.png" alt="Chopard high jewelry reference 10" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 10</span></div>
+    </div>
+    <div class="tile" data-idx="10">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783369105/inspirations/choppard/chopard-11.png" alt="Chopard high jewelry reference 11" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 11</span></div>
+    </div>
+    <div class="tile" data-idx="11">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783369107/inspirations/choppard/chopard-12.png" alt="Chopard high jewelry reference 12" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 12</span></div>
+    </div>
+    <div class="tile" data-idx="12">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783370233/inspirations/choppard/chopard-13.png" alt="Chopard high jewelry reference 13" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 13</span></div>
+    </div>
+    <div class="tile" data-idx="13">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783370234/inspirations/choppard/chopard-14.png" alt="Chopard high jewelry reference 14" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 14</span></div>
+    </div>
+    <div class="tile" data-idx="14">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783370234/inspirations/choppard/chopard-15.png" alt="Chopard high jewelry reference 15" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 15</span></div>
+    </div>
+    <div class="tile" data-idx="15">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783370235/inspirations/choppard/chopard-16.png" alt="Chopard high jewelry reference 16" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 16</span></div>
+    </div>
+    <div class="tile" data-idx="16">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783370236/inspirations/choppard/chopard-17.png" alt="Chopard high jewelry reference 17" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 17</span></div>
+    </div>
+    <div class="tile" data-idx="17">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783370237/inspirations/choppard/chopard-18.png" alt="Chopard high jewelry reference 18" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 18</span></div>
+    </div>
+    <div class="tile" data-idx="18">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783370238/inspirations/choppard/chopard-19.png" alt="Chopard high jewelry reference 19" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 19</span></div>
+    </div>
+    <div class="tile" data-idx="19">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783370240/inspirations/choppard/chopard-20.png" alt="Chopard high jewelry reference 20" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 20</span></div>
+    </div>
+    <div class="tile" data-idx="20">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783370240/inspirations/choppard/chopard-21.png" alt="Chopard high jewelry reference 21" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 21</span></div>
+    </div>
+    <div class="tile" data-idx="21">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783370241/inspirations/choppard/chopard-22.png" alt="Chopard high jewelry reference 22" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 22</span></div>
+    </div>
+    <div class="tile" data-idx="22">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783370242/inspirations/choppard/chopard-23.png" alt="Chopard high jewelry reference 23" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 23</span></div>
+    </div>
+    <div class="tile" data-idx="23">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783370243/inspirations/choppard/chopard-24.png" alt="Chopard high jewelry reference 24" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 24</span></div>
+    </div>
+    <div class="tile" data-idx="24">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783370244/inspirations/choppard/chopard-25.png" alt="Chopard high jewelry reference 25" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 25</span></div>
+    </div>
+    <div class="tile" data-idx="25">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783370244/inspirations/choppard/chopard-26.png" alt="Chopard high jewelry reference 26" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 26</span></div>
+    </div>
+    <div class="tile" data-idx="26">
+      <img class="tile__img" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783370245/inspirations/choppard/chopard-27.png" alt="Chopard high jewelry reference 27" loading="lazy">
+      <div class="tile__meta"><span class="tile__label">Chopard · 27</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true">
+  <button class="lb__close" id="lbClose" aria-label="Close">&times;</button>
+  <button class="lb__nav lb__prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+  <img class="lb__img" id="lbImg" src="" alt="">
+  <button class="lb__nav lb__next" id="lbNext" aria-label="Next">&#8250;</button>
+  <div class="lb__counter" id="lbCounter"></div>
+</div>
+
+<footer>
+  <span>Bez Ambar &nbsp;·&nbsp; Internal Reference Board &nbsp;·&nbsp; Chopard High Jewellery Study</span>
+</footer>
+
+<script>
+const tiles = Array.from(document.querySelectorAll('.tile'));
+const imgs = tiles.map(t => t.querySelector('.tile__img').src);
+const lb = document.getElementById('lb');
+const lbImg = document.getElementById('lbImg');
+const lbCounter = document.getElementById('lbCounter');
+let current = 0;
+
+function open(idx) {
+  current = idx;
+  lbImg.src = imgs[idx];
+  lbCounter.textContent = `${idx + 1} / ${imgs.length}`;
+  lb.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+function close() {
+  lb.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+function prev() { open((current - 1 + imgs.length) % imgs.length); }
+function next() { open((current + 1) % imgs.length); }
+
+tiles.forEach((t, i) => t.addEventListener('click', () => open(i)));
+document.getElementById('lbClose').addEventListener('click', close);
+document.getElementById('lbPrev').addEventListener('click', prev);
+document.getElementById('lbNext').addEventListener('click', next);
+lb.addEventListener('click', e => { if (e.target === lb) close(); });
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('is-open')) return;
+  if (e.key === 'Escape') close();
+  if (e.key === 'ArrowLeft') prev();
+  if (e.key === 'ArrowRight') next();
+});
+</script>
+</body>
+</html>

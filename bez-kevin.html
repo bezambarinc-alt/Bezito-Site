@@ -292,6 +292,20 @@
       <div class="card-meta">To Do + Accomplished</div>
     </div>
 
+    <div class="card">
+      <div class="card-date">2026 · 07 · 13</div>
+      <div class="card-title">Report — 2026 · 07 · 13</div>
+      <div class="card-body">Cloudinary DAM restructure (Phase 3 + full CDN link sweep), product page Patek direction (Technical 2-col, pill, CTA copy, font alignment), Inter font fix, video loop fix. All pushed to Bezito-Site main. <a href="https://galleries.bezambarinc.workers.dev/page/bez-kevin-report-2026-07-13" target="_blank" rel="noopener">Open report →</a></div>
+      <div class="card-meta">To Do + Accomplished</div>
+    </div>
+
+    <div class="card">
+      <div class="card-date">2026 · 07 · 14</div>
+      <div class="card-title">Report — 2026 · 07 · 14</div>
+      <div class="card-body">Hero ref overlay — font corrected to <code>var(--sans)</code>, size scaled to hero-appropriate <code>clamp()</code>. Full-site font + width audit. Archive page fixes: Cloudinary GIF transforms (f_auto,q_auto,w_400 on 572 URLs), CSP allowing Fontstand CloudFront, eager-load first 24 images, wider observer margins. Global font baseline: <code>h1–h6 { font-family: var(--sans) }</code> added to global.css, all per-template serif overrides stripped (home, tools, contact, about, InquiryDrawer). Contact/about inner widths standardized to <code>var(--max-w)</code>. Pushed to feat/astro-migration. <a href="https://galleries.bezambarinc.workers.dev/page/bez-kevin-report-2026-07-14" target="_blank" rel="noopener">Open report →</a></div>
+      <div class="card-meta">To Do + Accomplished</div>
+    </div>
+
     <div class="empty">— next report will land here —</div>
   </section>
 
@@ -462,68 +476,31 @@
       <div class="owner">@kevin (API key + field map) · @bezito (integration build)</div>
     </div>
 
-    <div class="card todo">
-      <div class="card-date">2026 · 07 · 11</div>
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 12</div>
       <div class="card-title">CTA + Freshsales Integration — Phase A: bez-forms CF Worker (Foundation)</div>
       <div class="card-body">
-        New Cloudflare Worker: <code>bez-forms</code> — the secure proxy that sits between all site forms and the Freshsales API. Keeps the API key server-side (never in browser JS). Static Astro site has no server runtime so this is the only safe architecture.<br><br>
-        <strong>Routes:</strong><br>
-        — <code>POST /api/contact</code> — main contact form<br>
-        — <code>POST /api/archive-inquiry</code> — archive piece inquiry<br>
-        — <code>POST /api/newsletter</code> — email capture<br><br>
-        <strong>Security:</strong> input whitelist (no passthrough of arbitrary fields), HTML strip on text fields, CF rate limiting (5 req/min per IP), CORS origin allowlist (bezambar.com + Vercel preview).<br><br>
-        <strong>Kevin to do first (unblocks everything):</strong><br>
-        1. Log into Freshsales admin → Settings → Custom Fields → Contacts → create these 6 fields:<br>
-        &nbsp;&nbsp;— <code>cf_inquiry_type</code> (Single Line Text)<br>
-        &nbsp;&nbsp;— <code>cf_piece_title</code> (Single Line Text)<br>
-        &nbsp;&nbsp;— <code>cf_piece_sku</code> (Single Line Text)<br>
-        &nbsp;&nbsp;— <code>cf_utm_source</code> (Single Line Text)<br>
-        &nbsp;&nbsp;— <code>cf_utm_medium</code> (Single Line Text)<br>
-        &nbsp;&nbsp;— <code>cf_utm_campaign</code> (Single Line Text)<br>
-        2. Confirm Worker subdomain preference: <code>bez-forms.bezambarinc.workers.dev</code> or different<br><br>
-        <strong>Bezito builds once Kevin confirms fields are created.</strong>
+        Worker live at <code>bezito-forms.bezambarinc.workers.dev</code>. Routes: <code>POST /api/contact</code>, <code>/api/archive-inquiry</code>, <code>/api/newsletter</code>. Input whitelist, HTML strip, CORS allowlist (bezambar.com + Vercel preview). Kevin created the 6 Freshsales custom fields manually (API doesn't support field creation); Worker updated to confirmed internal names: <code>cf_inquiry_type</code> (Dropdown), <code>cf_piece_name</code>, <code>cf_sku</code>, <code>cf_utm_source</code>, <code>cf_utm_medium</code>, <code>cf_utm_campaign</code>. Full pipeline smoke tested — contact upsert + deal creation + 6 custom fields all confirmed.
       </div>
-      <div class="owner">@kevin (Freshsales custom fields — blocking) · @bezito (Worker build)</div>
+      <div class="owner">@kevin (field creation) · @bezito (Worker build)</div>
     </div>
 
-    <div class="card todo">
-      <div class="card-date">2026 · 07 · 11</div>
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 12</div>
       <div class="card-title">CTA + Freshsales Integration — Phase B: Contact Page Overhaul</div>
       <div class="card-body">
-        Replace <code>formsubmit.co</code> with <code>fetch()</code> to the bez-forms Worker. Current behavior redirects the user back to a blank form with no confirmation — broken UX.<br><br>
-        <strong>Changes to <code>src/pages/contact.astro</code>:</strong><br>
-        — Form action → JS <code>fetch()</code> submit to Worker<br>
-        — Inline success state (no redirect): <em>"Thank you — Bez or a senior advisor will be in touch within one business day."</em><br>
-        — Dropdown label: "How can we help?" (was "I'm Interested In")<br>
-        — Options: "Commission a bespoke piece / Inquire about a collection piece / Book an atelier visit or consultation / Repairs or cleaning / Ring resizing / Something else"<br>
-        — Submit button: "Send Inquiry" (never "Submit")<br>
-        — <code>?subject</code> URL param auto-selects the dropdown on load<br><br>
-        <strong>Changes to <code>src/layouts/Layout.astro</code>:</strong><br>
-        — Add UTM persistence snippet (reads utm_* from URL on load → stores in sessionStorage → form JS reads before POST)<br><br>
-        <strong>Changes to <code>vercel.json</code>:</strong><br>
-        — Add <code>https://bez-forms.bezambarinc.workers.dev</code> to <code>connect-src</code> in CSP
+        Contact page rebuilt Patek-style: white ground, centered serif masthead ("Begin a Conversation"), thin gold rule, underline-only inputs, 9px small-caps labels, asymmetric 2-col grid (form left, typographic sidebar right — phone, email, atelier, social icons). Form submits via <code>fetch()</code> to bez-forms Worker (no redirect). UTM persistence wired into Layout.astro (sessionStorage). CSP updated in vercel.json to allow Worker origin.
       </div>
       <div class="owner">@bezito</div>
     </div>
 
-    <div class="card todo">
-      <div class="card-date">2026 · 07 · 11</div>
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 12</div>
       <div class="card-title">CTA + Freshsales Integration — Phase C: Inquiry Drawer Component</div>
       <div class="card-body">
-        New reusable <code>InquiryDrawer.astro</code> component — slides from the right edge, parent page stays visible behind it. This is the Patek-level UX pattern: customer never leaves the piece they're inquiring about.<br><br>
-        <strong>Replaces navigation to <code>/contact</code> for all high-intent CTAs:</strong><br>
-        — Product page "Inquire About This Piece" (pre-populates piece name + SKU)<br>
-        — Archive inquiry form (pre-populates piece title)<br>
-        — Bespoke CTAs on About, Blog, Bloom collection<br>
-        — Elysian Cut "Inquire" (currently a broken <code>mailto:</code> link)<br>
-        — Nav "Book a Consultation"<br><br>
-        <strong>Fields:</strong> Name · Email · Phone (optional) · Message (pre-seeded from context)<br>
-        <strong>No subject dropdown</strong> — drawer already knows the context from its opener.<br>
-        <strong>Success state:</strong> inline in drawer — <em>"Thank you — we'll be in touch within one business day."</em> Drawer stays open showing confirmation (doesn't auto-close).<br>
-        <strong>Dismiss:</strong> ESC key or click outside.<br>
-        <strong>Tag routing:</strong> product inquiry → <code>product_inquiry</code>; bespoke → <code>bespoke_commission</code>; consultation → <code>consultation_inquiry</code>; archive → <code>archive_inquiry</code>.
+        <code>InquiryDrawer.astro</code> live — slides from right, backdrop dims page behind it. Stripped to Name + Email only (no phone/message/dropdown). Intent, piece title, and SKU flow to Freshsales as hidden inputs. Contact block below form (tel, atelier address, all 5 social icons). ESC or backdrop click to dismiss. <code>window.openInquiryDrawer()</code> global API — all product page and archive CTAs call it. Success state inline in drawer.
       </div>
-      <div class="owner">@bezito (depends on Phase A)</div>
+      <div class="owner">@bezito</div>
     </div>
 
     <div class="card todo">
@@ -755,6 +732,83 @@
     <h2>Done</h2>
     <div class="divider"></div>
     <p class="sec-sub">Shipped and closed. Kept for reference.</p>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 14</div>
+      <div class="card-title">Product page — hero ref overlay (font + size)</div>
+      <div class="card-body"><code>.hero-video__ref-name</code> was <code>var(--serif)</code> at 18px — wrong font family (headings are always <code>var(--sans)</code>) and too small for a full-screen hero. Fixed to <code>var(--sans)</code> weight 200 at <code>clamp(1.25rem, 2.2vw, 1.75rem)</code>. Ref ID pulled back to 11px / 0.28em / 0.75 opacity as a subtle secondary label.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 13</div>
+      <div class="card-title">Product page — CTA copy ("Private Viewing" / "Contact an Ambassador")</div>
+      <div class="card-body">Bottom CTA section heading updated from generic "Inquire" to "Private Viewing". Button copy updated to "Contact an Ambassador" (Cartier phrasing — research confirmed this is the luxury standard). Body copy rewritten to atelier-level language.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 13</div>
+      <div class="card-title">Product page — floating inquiry pill behavior</div>
+      <div class="card-body">Pill was triggering on <code>#heroEnd</code> (below fold on load) causing it to flash immediately and disappear mid-page. Fixed: pill always visible via <code>classList.add('is-visible')</code> on init; single IntersectionObserver on <code>#inquireBtn</code> (the bottom CTA button) at <code>threshold: 0</code> triggers hide only when the CTA is actually in view.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 13</div>
+      <div class="card-title">Cloudinary DAM — Phase 3 restructure + full CDN link sweep</div>
+      <div class="card-body"><code>archive-videos/</code> → <code>archive/videos/</code> folder migration. Cascata heroImage path corrected (<code>Rings/</code> → <code>Necklaces/</code>). Full codebase sweep: all Cloudinary CDN refs updated to match restructured folder paths. All pushed to Bezito-Site main.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 13</div>
+      <div class="card-title">Inter font fix — Variable → regular fontsource, all weights loaded</div>
+      <div class="card-body">Switched <code>@fontsource-variable/inter</code> → <code>@fontsource/inter</code> (regular). Loaded all weights used on the site (200–700). Resolves weight-rendering inconsistencies from the variable font build.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 13</div>
+      <div class="card-title">Video loop fix — skip last 3 seconds to avoid end-of-clip freeze</div>
+      <div class="card-body">Hero and product page videos were freezing on the last frame before looping. Fixed by trimming 3 seconds off the loop end point, creating a seamless repeat.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 13</div>
+      <div class="card-title">Product page — Technical Characteristics 2-col Patek layout</div>
+      <div class="card-body">Technical section rebuilt as CSS Grid <code>1fr 1fr</code> (50/50). Left column: "Technical Characteristics" label in <code>var(--sans)</code> at <code>var(--type-heading)</code>, weight 200, uppercase, right-aligned, gold accent. Right column: accordion list with + / × chevrons. Global spacing token <code>.ba-section</code> applied. Responsive: stacks to single column below 768px.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 12</div>
+      <div class="card-title">Freshsales — full inquiry pipeline smoke tested end-to-end</div>
+      <div class="card-body">Submitted test inquiries via live Astro site. Full pipeline confirmed: CF Worker → contact upsert → deal creation → deal linked to contact (POST + PUT, two-step) → all 6 custom fields populated (<code>cf_inquiry_type: Inquiry</code>, <code>cf_piece_name: Elysian Band 50</code>, <code>cf_sku: elysian-band-50</code>, <code>cf_utm_source/medium/campaign</code>). 6 smoke test contacts cleaned up; qa+smoke@bezambar.com retained as reference.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 12</div>
+      <div class="card-title">Contact page — full Patek-style revamp</div>
+      <div class="card-body">White ground, centered serif masthead ("Begin a Conversation"), thin gold rule, underline-only inputs, 9px small-caps labels (0.28em tracking), asymmetric 2-col grid (form left, typographic sidebar right). Sidebar: phone, email, atelier address, all 5 social icons under "Follow" label. Services strip restyled. Dropdown label "How can we help?"; button "Send Inquiry".</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 12</div>
+      <div class="card-title">Social icons — SocialLinks.astro component (5 platforms)</div>
+      <div class="card-body">Shared <code>SocialLinks.astro</code> with stroke SVG icons for Instagram, Pinterest, YouTube, TikTok, and LinkedIn. Icon-only display, hover goes to accent gold. Used in footer brand column, contact page sidebar, and inquiry drawer. One update propagates everywhere.</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 12</div>
+      <div class="card-title">Share button — prominent and consistent across product + archive</div>
+      <div class="card-body">Share trigger on product pages and archive modal was 10px gray text — invisible. Updated to a bordered pill (1px border-warm, hover → ink border) with an upload SVG icon, 11px ink-soft type. Applied consistently to both <code>prod-share</code> (product pages) and <code>inq-share</code> (archive modal).</div>
+      <div class="owner">@bezito</div>
+    </div>
 
     <div class="card done">
       <div class="card-date">2026 · 07 · 10</div>
