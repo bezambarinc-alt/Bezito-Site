@@ -33,17 +33,58 @@ import '../styles/templates/editorial.css';
   <aside class="ba-filter-panel" id="archiveFilterPanel" role="dialog" aria-label="Filter archive">
     <button class="ba-filter-panel__close" id="archiveFilterClose" aria-label="Close filters">✕</button>
     <span class="ba-filter-panel__title">Filter</span>
-    <nav class="ba-filter-panel__body">
+    <div class="ba-filter-panel__body">
+
       <span class="ba-filter-section-label">Collection</span>
-      <button class="ba-filter-opt is-active" data-filter="all">All Pieces</button>
-      <button class="ba-filter-opt" data-filter="rings">Rings</button>
-      <button class="ba-filter-opt" data-filter="bands">Bands</button>
-      <button class="ba-filter-opt" data-filter="necklaces">Necklaces</button>
-      <button class="ba-filter-opt" data-filter="earrings">Earrings</button>
-      <button class="ba-filter-opt" data-filter="bracelets">Bracelets</button>
-      <button class="ba-filter-opt" data-filter="mens">Men's</button>
-    </nav>
+      <div class="ba-filter-opts-row">
+        <button class="ba-filter-opt is-active" data-filter-cat="all">All</button>
+        <button class="ba-filter-opt" data-filter-cat="rings">Rings</button>
+        <button class="ba-filter-opt" data-filter-cat="bands">Bands</button>
+        <button class="ba-filter-opt" data-filter-cat="necklaces">Necklaces</button>
+        <button class="ba-filter-opt" data-filter-cat="earrings">Earrings</button>
+        <button class="ba-filter-opt" data-filter-cat="bracelets">Bracelets</button>
+        <button class="ba-filter-opt" data-filter-cat="mens">Men's</button>
+      </div>
+
+      <span class="ba-filter-section-label">Stone Shape</span>
+      <div class="ba-filter-opts-row">
+        <button class="ba-filter-opt is-active" data-filter-shape="all">All</button>
+        <button class="ba-filter-opt" data-filter-shape="round">Round</button>
+        <button class="ba-filter-opt" data-filter-shape="oval">Oval</button>
+        <button class="ba-filter-opt" data-filter-shape="pear">Pear</button>
+        <button class="ba-filter-opt" data-filter-shape="princess">Princess</button>
+        <button class="ba-filter-opt" data-filter-shape="fancy-color">Fancy Color</button>
+      </div>
+
+      <span class="ba-filter-section-label">Carat Weight (Total Piece)</span>
+      <div class="ba-filter-range">
+        <div class="ba-filter-range__field">
+          <label class="ba-filter-range__label">Min</label>
+          <input class="ba-filter-range__input" type="number" id="caratMin" min="0" step="0.1" placeholder="0">
+        </div>
+        <span class="ba-filter-range__sep">—</span>
+        <div class="ba-filter-range__field">
+          <label class="ba-filter-range__label">Max</label>
+          <input class="ba-filter-range__input" type="number" id="caratMax" min="0" step="0.1" placeholder="Any">
+        </div>
+      </div>
+
+      <span class="ba-filter-section-label">Price</span>
+      <div class="ba-filter-range">
+        <div class="ba-filter-range__field">
+          <label class="ba-filter-range__label">Min $</label>
+          <input class="ba-filter-range__input" type="number" id="priceMin" min="0" step="1000" placeholder="0">
+        </div>
+        <span class="ba-filter-range__sep">—</span>
+        <div class="ba-filter-range__field">
+          <label class="ba-filter-range__label">Max $</label>
+          <input class="ba-filter-range__input" type="number" id="priceMax" min="0" step="1000" placeholder="Any">
+        </div>
+      </div>
+
+    </div>
     <div class="ba-filter-panel__footer">
+      <button class="ba-filter-panel__reset" id="archiveFilterReset">Clear All</button>
       <button class="ba-filter-panel__results" id="archiveFilterApply">Show Pieces</button>
     </div>
   </aside>
@@ -339,11 +380,27 @@ import '../styles/templates/editorial.css';
     return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 
+  function shapeFromEntry(entry) {
+    var cat = (entry.category || '').toLowerCase();
+    if (cat.includes('round'))  return 'round';
+    if (cat.includes('oval'))   return 'oval';
+    if (cat.includes('pear'))   return 'pear';
+    if (cat.includes('princess') || cat.includes('blaze')) return 'princess';
+    if (cat.includes('fancy') || cat.includes('color') || cat.includes('colour')) return 'fancy-color';
+    if (cat.includes('emerald')) return 'emerald';
+    if (cat.includes('cushion')) return 'cushion';
+    if (cat.includes('marquise')) return 'marquise';
+    return 'other';
+  }
+
   function buildCard(id, entry, idx) {
     var a = document.createElement('a');
     a.className = 'video-card ' + HEIGHTS[idx % HEIGHTS.length];
     a.href = '/archive?id=' + encodeURIComponent(id);
     a.dataset.category = entry.htmlCategory || 'rings';
+    a.dataset.shape  = shapeFromEntry(entry);
+    a.dataset.carats = entry.carats || '';
+    a.dataset.price  = entry.price  || '';
     a.dataset.mp4  = entry.mp4Url  || '';
     a.dataset.title = entry.title || '';
     a.dataset.sku   = id;
@@ -406,20 +463,54 @@ import '../styles/templates/editorial.css';
       pauseObserver.observe(card);
     });
 
-    // Filter
+    // Filter state
     var overlay  = document.getElementById('archiveFilterOverlay');
     var panel    = document.getElementById('archiveFilterPanel');
     var closeBtn = document.getElementById('archiveFilterClose');
     var applyBtn = document.getElementById('archiveFilterApply');
-    var opts     = document.querySelectorAll('.ba-filter-opt');
+    var resetBtn = document.getElementById('archiveFilterReset');
+    var catOpts   = document.querySelectorAll('[data-filter-cat]');
+    var shapeOpts = document.querySelectorAll('[data-filter-shape]');
+    var caratMinEl = document.getElementById('caratMin');
+    var caratMaxEl = document.getElementById('caratMax');
+    var priceMinEl = document.getElementById('priceMin');
+    var priceMaxEl = document.getElementById('priceMax');
+
     var activeCategory = 'all';
+    var activeShape    = 'all';
+
+    function getNum(el) { var v = parseFloat(el && el.value); return isNaN(v) ? null : v; }
+
+    function passesCard(card) {
+      // Category
+      if (activeCategory !== 'all' && card.dataset.category !== activeCategory) return false;
+      // Shape — "other" cards are excluded only if a specific shape is active
+      if (activeShape !== 'all') {
+        var s = card.dataset.shape || 'other';
+        if (s !== activeShape) return false;
+      }
+      // Carat range (only filter if card has carat data)
+      var carats = parseFloat(card.dataset.carats);
+      if (!isNaN(carats)) {
+        var cMin = getNum(caratMinEl), cMax = getNum(caratMaxEl);
+        if (cMin !== null && carats < cMin) return false;
+        if (cMax !== null && carats > cMax) return false;
+      }
+      // Price range (only filter if card has price data)
+      var price = parseFloat(card.dataset.price);
+      if (!isNaN(price)) {
+        var pMin = getNum(priceMinEl), pMax = getNum(priceMaxEl);
+        if (pMin !== null && price < pMin) return false;
+        if (pMax !== null && price > pMax) return false;
+      }
+      return true;
+    }
 
     function applyFilter() {
-      var visibleSet = new Set(
-        activeCategory === 'all' ? cards : (byCategory[activeCategory] || [])
-      );
+      var count = 0;
       cards.forEach(function(card) {
-        var show = visibleSet.has(card);
+        var show = passesCard(card);
+        if (show) count++;
         card.hidden = !show;
         var img = card.querySelector('.video-thumb');
         if (!img) return;
@@ -436,24 +527,65 @@ import '../styles/templates/editorial.css';
           pauseObserver.unobserve(card);
         }
       });
+      var applyLabel = applyBtn && applyBtn;
+      if (applyLabel) applyLabel.textContent = count + ' Piece' + (count !== 1 ? 's' : '');
     }
 
-    function openPanel()  { panel && panel.classList.add('is-open'); overlay && overlay.classList.add('is-active'); }
-    function closePanel() { panel && panel.classList.remove('is-open'); overlay && overlay.classList.remove('is-active'); }
+    function pillLabel() {
+      var parts = [];
+      if (activeCategory !== 'all') parts.push(activeCategory);
+      if (activeShape !== 'all') parts.push(activeShape);
+      var cMin = getNum(caratMinEl), cMax = getNum(caratMaxEl);
+      if (cMin !== null || cMax !== null) parts.push('Carats');
+      var pMin = getNum(priceMinEl), pMax = getNum(priceMaxEl);
+      if (pMin !== null || pMax !== null) parts.push('Price');
+      var label = parts.length ? parts.join(' · ') : 'Filter';
+      var pillLabelEl = document.getElementById('archivePillLabel');
+      if (pillLabelEl) pillLabelEl.textContent = label;
+      if (pill) pill.classList.toggle('is-active', parts.length > 0);
+    }
+
+    function openPanel()  { applyFilter(); panel && panel.classList.add('is-open'); overlay && overlay.classList.add('is-active'); }
+    function closePanel() { panel && panel.classList.remove('is-open'); overlay && overlay.classList.remove('is-active'); pillLabel(); }
+
+    function resetFilters() {
+      activeCategory = 'all';
+      activeShape    = 'all';
+      catOpts.forEach(function(o) { o.classList.toggle('is-active', o.dataset.filterCat === 'all'); });
+      shapeOpts.forEach(function(o) { o.classList.toggle('is-active', o.dataset.filterShape === 'all'); });
+      if (caratMinEl) caratMinEl.value = '';
+      if (caratMaxEl) caratMaxEl.value = '';
+      if (priceMinEl) priceMinEl.value = '';
+      if (priceMaxEl) priceMaxEl.value = '';
+      applyFilter();
+    }
 
     if (pill)     pill.addEventListener('click', openPanel);
-    if (overlay)  overlay.addEventListener('click', closePanel);
-    if (closeBtn) closeBtn.addEventListener('click', closePanel);
-    if (applyBtn) applyBtn.addEventListener('click', closePanel);
+    if (overlay)  overlay.addEventListener('click', function() { applyFilter(); closePanel(); });
+    if (closeBtn) closeBtn.addEventListener('click', function() { applyFilter(); closePanel(); });
+    if (applyBtn) applyBtn.addEventListener('click', function() { applyFilter(); closePanel(); });
+    if (resetBtn) resetBtn.addEventListener('click', resetFilters);
 
-    opts.forEach(function(opt) {
+    catOpts.forEach(function(opt) {
       opt.addEventListener('click', function() {
-        opts.forEach(function(o) { o.classList.remove('is-active'); });
+        catOpts.forEach(function(o) { o.classList.remove('is-active'); });
         opt.classList.add('is-active');
-        activeCategory = opt.dataset.filter || 'all';
+        activeCategory = opt.dataset.filterCat || 'all';
         applyFilter();
-        closePanel();
       });
+    });
+
+    shapeOpts.forEach(function(opt) {
+      opt.addEventListener('click', function() {
+        shapeOpts.forEach(function(o) { o.classList.remove('is-active'); });
+        opt.classList.add('is-active');
+        activeShape = opt.dataset.filterShape || 'all';
+        applyFilter();
+      });
+    });
+
+    [caratMinEl, caratMaxEl, priceMinEl, priceMaxEl].forEach(function(el) {
+      if (el) el.addEventListener('input', applyFilter);
     });
 
     // Card clicks → archive modal (video + form)
