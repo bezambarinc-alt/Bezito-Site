@@ -42,7 +42,15 @@ const commonSizes = new Set(['5', '5.5', '6', '6.5', '7', '7.5']);
 
 <!-- Hero -->
 <section class="rsg-hero">
-  <div class="rsg-hero__ambient"></div>
+  <img
+    class="rsg-hero__bg"
+    src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1400/Jewelry%20Images/Rings/ceylon-sapphire-1130-model"
+    alt=""
+    aria-hidden="true"
+    loading="eager"
+    fetchpriority="high"
+  >
+  <div class="rsg-hero__overlay"></div>
   <div class="rsg-hero__content">
     <p class="rsg-hero__eyebrow">Resources</p>
     <h1 class="rsg-hero__title">Ring Size<br>Guide</h1>
@@ -171,7 +179,7 @@ const commonSizes = new Set(['5', '5.5', '6', '6.5', '7', '7.5']);
 <style is:global>
 /* ── RING SIZE GUIDE ─────────────────────────────────────────── */
 
-/* Hero — dark, shorter than full-page heroes */
+/* Hero — dark, photo background */
 .rsg-hero {
   min-height: 72vh;
   background: var(--ink);
@@ -183,10 +191,24 @@ const commonSizes = new Set(['5', '5.5', '6', '6.5', '7', '7.5']);
   padding: clamp(7rem, 12vw, 10rem) clamp(1.5rem, 6vw, 6rem) clamp(5rem, 8vw, 7rem);
   text-align: center;
 }
-.rsg-hero__ambient {
+.rsg-hero__bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 60% 45% at 50% 60%, rgba(149,130,107,.14) 0%, transparent 70%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  opacity: 0.42;
+}
+.rsg-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(20,18,15,.72) 0%,
+    rgba(20,18,15,.38) 45%,
+    rgba(20,18,15,.72) 100%
+  );
   pointer-events: none;
 }
 .rsg-hero__content { position: relative; z-index: 1; max-width: 680px; }
