@@ -1,112 +1,452 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import '../styles/templates/editorial.css';
+
+const sizes = [
+  { us: '3',    dia_mm: '14.1', dia_in: '0.554', circ: '44.2', uk: 'F',    eu: '44',   jp: '4'  },
+  { us: '3.25', dia_mm: '14.3', dia_in: '0.562', circ: '44.8', uk: 'F½',   eu: '44.5', jp: '—'  },
+  { us: '3.5',  dia_mm: '14.5', dia_in: '0.570', circ: '45.5', uk: 'G',    eu: '45.5', jp: '5'  },
+  { us: '3.75', dia_mm: '14.7', dia_in: '0.578', circ: '46.1', uk: 'G½',   eu: '46',   jp: '—'  },
+  { us: '4',    dia_mm: '14.9', dia_in: '0.586', circ: '46.8', uk: 'H',    eu: '47',   jp: '7'  },
+  { us: '4.5',  dia_mm: '15.3', dia_in: '0.602', circ: '48.0', uk: 'I',    eu: '48',   jp: '8'  },
+  { us: '5',    dia_mm: '15.7', dia_in: '0.618', circ: '49.3', uk: 'J',    eu: '49',   jp: '9'  },
+  { us: '5.5',  dia_mm: '16.1', dia_in: '0.634', circ: '50.6', uk: 'K',    eu: '50.5', jp: '—'  },
+  { us: '6',    dia_mm: '16.5', dia_in: '0.650', circ: '51.9', uk: 'L',    eu: '52',   jp: '12' },
+  { us: '6.5',  dia_mm: '16.9', dia_in: '0.665', circ: '53.1', uk: 'M',    eu: '53',   jp: '13' },
+  { us: '7',    dia_mm: '17.3', dia_in: '0.681', circ: '54.4', uk: 'N',    eu: '54',   jp: '14' },
+  { us: '7.5',  dia_mm: '17.7', dia_in: '0.697', circ: '55.7', uk: 'O',    eu: '56',   jp: '15' },
+  { us: '8',    dia_mm: '18.1', dia_in: '0.713', circ: '57.0', uk: 'P',    eu: '57',   jp: '16' },
+  { us: '8.5',  dia_mm: '18.5', dia_in: '0.728', circ: '58.3', uk: 'Q',    eu: '58',   jp: '17' },
+  { us: '9',    dia_mm: '19.0', dia_in: '0.748', circ: '59.5', uk: 'R',    eu: '59.5', jp: '19' },
+  { us: '9.5',  dia_mm: '19.4', dia_in: '0.764', circ: '60.8', uk: 'S',    eu: '61',   jp: '20' },
+  { us: '10',   dia_mm: '19.8', dia_in: '0.780', circ: '62.1', uk: 'T',    eu: '62',   jp: '22' },
+  { us: '10.5', dia_mm: '20.2', dia_in: '0.795', circ: '63.4', uk: 'U',    eu: '63.5', jp: '23' },
+  { us: '11',   dia_mm: '20.6', dia_in: '0.811', circ: '64.6', uk: 'V',    eu: '65',   jp: '24' },
+  { us: '11.5', dia_mm: '21.0', dia_in: '0.827', circ: '65.9', uk: 'W',    eu: '66',   jp: '25' },
+  { us: '12',   dia_mm: '21.4', dia_in: '0.843', circ: '67.2', uk: 'X',    eu: '67',   jp: '26' },
+  { us: '12.5', dia_mm: '21.8', dia_in: '0.858', circ: '68.5', uk: 'Y',    eu: '68.5', jp: '27' },
+  { us: '13',   dia_mm: '22.2', dia_in: '0.874', circ: '69.7', uk: 'Z',    eu: '70',   jp: '28' },
+  { us: '14',   dia_mm: '23.0', dia_in: '0.906', circ: '72.3', uk: 'Z+2',  eu: '72.5', jp: '—'  },
+];
+
+// most common women's engagement ring sizes
+const commonSizes = new Set(['5', '5.5', '6', '6.5', '7', '7.5']);
 ---
 
 <Layout
-  title="Ring Size Chart — Bez Ambar"
-  description="Find your perfect ring size with our US and international ring size chart, measurement guide, and professional fitting tips."
+  title="Ring Size Guide — Bez Ambar"
+  description="Find your ring size at home or visit the Los Angeles atelier for a professional fitting. US and international ring size chart with diameter, circumference, and conversion guide."
   canonical="https://bezambar.com/ring-size-chart"
   headerLight={true}
 >
 
-  <section class="ba-light-hero">
-    <h1>Ring Size Chart</h1>
-    <p>Finding your perfect ring size is essential for a comfortable fit. Use our guide below to measure your ring size at home, or visit us in Los Angeles for a professional fitting.</p>
-  </section>
+<!-- Hero -->
+<section class="rsg-hero">
+  <div class="rsg-hero__ambient"></div>
+  <div class="rsg-hero__content">
+    <p class="rsg-hero__eyebrow">Resources</p>
+    <h1 class="rsg-hero__title">Ring Size<br>Guide</h1>
+    <div class="rsg-hero__rule"></div>
+    <p class="rsg-hero__lede">Measure at home or visit the atelier for a professional fitting. An accurate size is the foundation of a comfortable piece.</p>
+  </div>
+</section>
 
-  <p class="ba-contact-note">Have questions? Call us at <a href="tel:2136299191">213-629-9191</a> and our team will be happy to assist you.</p>
+<!-- How to measure -->
+<section class="rsg-measure">
+  <div class="rsg-measure__inner">
+    <div class="rsg-measure__header rsg-fade">
+      <span class="rsg-eyebrow">How to Measure</span>
+      <h2 class="rsg-heading">Two Methods at Home</h2>
+      <p class="rsg-intro">Either method gives a reliable result. For the most precise sizing, we recommend a professional mandrel fitting at any jeweler — or visit us in Los Angeles.</p>
+    </div>
 
-  <section class="ba-page-section">
-    <h2>How to Measure Your Ring Size at Home</h2>
-    <div class="ba-info-grid">
-      <div class="ba-info-card">
-        <h3>Method 1: Measure an Existing Ring</h3>
-        <ol>
+    <div class="rsg-methods rsg-fade">
+      <div class="rsg-method">
+        <div class="rsg-method__num">01</div>
+        <h3 class="rsg-method__title">Measure an Existing Ring</h3>
+        <ol class="rsg-method__steps">
           <li>Find a ring that fits the intended finger comfortably.</li>
-          <li>Measure the inside diameter in millimeters.</li>
-          <li>Match the measurement to the chart below.</li>
+          <li>Measure the inside diameter in millimeters using a ruler or calipers.</li>
+          <li>Match the measurement to the diameter column in the chart below.</li>
         </ol>
       </div>
-      <div class="ba-info-card">
-        <h3>Method 2: Use a String or Paper Strip</h3>
-        <ol>
-          <li>Cut a thin strip of paper and wrap it around the base of the ring finger.</li>
-          <li>Mark the point where the strip overlaps.</li>
-          <li>Measure the length in millimeters with a ruler.</li>
-          <li>Match the circumference to the chart below.</li>
+      <div class="rsg-method__divider"></div>
+      <div class="rsg-method">
+        <div class="rsg-method__num">02</div>
+        <h3 class="rsg-method__title">Wrap a Strip of Paper</h3>
+        <ol class="rsg-method__steps">
+          <li>Cut a thin strip of paper and wrap it snugly around the base of the finger.</li>
+          <li>Mark the point where the ends meet.</li>
+          <li>Measure the length in millimeters — this is the circumference.</li>
+          <li>Match to the circumference column in the chart below.</li>
         </ol>
       </div>
     </div>
 
-    <div class="ba-info-card ba-info-card--solo">
-      <h3>Tips for an Accurate Measurement</h3>
-      <ul>
-        <li>Measure your finger over the knuckle to ensure the ring slides on comfortably.</li>
-        <li>Fingers swell in summer. Measure during warm conditions for a realistic fit.</li>
-        <li>Wider bands fit tighter. Add a quarter size when purchasing a wide band.</li>
-        <li>Warm up your hands before measuring for the most accurate result.</li>
-        <li>Your dominant hand tends to be slightly larger. Measure the specific finger you plan to wear the ring on.</li>
-        <li>Do not measure when your finger is swollen from exercise, heat, or salt intake.</li>
-      </ul>
+    <!-- Tips -->
+    <div class="rsg-tips rsg-fade">
+      <span class="rsg-eyebrow">Tips for Accuracy</span>
+      <div class="rsg-tips-grid">
+        <div class="rsg-tip">
+          <div class="rsg-tip__rule"></div>
+          <p>Measure over the knuckle — the ring must pass over it.</p>
+        </div>
+        <div class="rsg-tip">
+          <div class="rsg-tip__rule"></div>
+          <p>Fingers swell in warm weather. Measure in the afternoon, after activity.</p>
+        </div>
+        <div class="rsg-tip">
+          <div class="rsg-tip__rule"></div>
+          <p>Wide bands fit tighter. Add a quarter size for bands wider than 6 mm.</p>
+        </div>
+        <div class="rsg-tip">
+          <div class="rsg-tip__rule"></div>
+          <p>Your dominant hand is typically slightly larger. Measure the specific finger.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Eternity note — standout -->
+<div class="rsg-eternity rsg-fade">
+  <div class="rsg-eternity__inner">
+    <span class="rsg-eternity__label">Important</span>
+    <p class="rsg-eternity__text">Eternity rings and fully-set bracelets cannot be resized after completion. For these pieces, we require a confirmed professional fitting before production begins.</p>
+    <a href="tel:2136299191" class="rsg-eternity__cta">(213) 629-9191</a>
+  </div>
+</div>
+
+<!-- Chart -->
+<section class="rsg-chart-section">
+  <div class="rsg-chart-section__inner">
+    <div class="rsg-chart-header rsg-fade">
+      <span class="rsg-eyebrow">US &amp; International</span>
+      <h2 class="rsg-heading">Ring Size Chart</h2>
+      <p class="rsg-intro">Sizes 5&ndash;7½ are the most common for women&rsquo;s engagement rings. Sizes 9&ndash;12 are most common for men.</p>
     </div>
 
-    <p>For the most accurate sizing, we recommend visiting a local jeweler who can use a professional mandrel or finger gauge.</p>
-  </section>
-
-  <section class="ba-page-section">
-    <h2>US &amp; International Ring Size Chart</h2>
-    <p>US ring sizes alongside inside diameter, circumference, and international equivalents.</p>
-
-    <div class="ba-table-wrap">
-      <table class="ba-table">
+    <div class="rsg-table-wrap rsg-fade">
+      <table class="rsg-table">
         <thead>
           <tr>
             <th>US Size</th>
-            <th>Diameter (mm)</th>
-            <th>Diameter (in)</th>
-            <th>Circumference (mm)</th>
+            <th>Diameter&nbsp;(mm)</th>
+            <th>Diameter&nbsp;(in)</th>
+            <th>Circumference&nbsp;(mm)</th>
             <th>UK / AU</th>
             <th>EU</th>
             <th>Japan</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>3</td><td>14.1</td><td>0.554</td><td>44.2</td><td>F</td><td>44</td><td>4</td></tr>
-          <tr><td>3.25</td><td>14.3</td><td>0.562</td><td>44.8</td><td>F&frac12;</td><td>44.5</td><td>&mdash;</td></tr>
-          <tr><td>3.5</td><td>14.5</td><td>0.570</td><td>45.5</td><td>G</td><td>45.5</td><td>5</td></tr>
-          <tr><td>3.75</td><td>14.7</td><td>0.578</td><td>46.1</td><td>G&frac12;</td><td>46</td><td>&mdash;</td></tr>
-          <tr class="ba-table__highlight"><td>4</td><td>14.9</td><td>0.586</td><td>46.8</td><td>H</td><td>47</td><td>7</td></tr>
-          <tr><td>4.5</td><td>15.3</td><td>0.602</td><td>48.0</td><td>I</td><td>48</td><td>8</td></tr>
-          <tr class="ba-table__highlight"><td>5</td><td>15.7</td><td>0.618</td><td>49.3</td><td>J</td><td>49</td><td>9</td></tr>
-          <tr><td>5.5</td><td>16.1</td><td>0.634</td><td>50.6</td><td>K</td><td>50.5</td><td>&mdash;</td></tr>
-          <tr class="ba-table__highlight"><td>6</td><td>16.5</td><td>0.650</td><td>51.9</td><td>L</td><td>52</td><td>12</td></tr>
-          <tr><td>6.5</td><td>16.9</td><td>0.665</td><td>53.1</td><td>M</td><td>53</td><td>13</td></tr>
-          <tr class="ba-table__highlight"><td>7</td><td>17.3</td><td>0.681</td><td>54.4</td><td>N</td><td>54</td><td>14</td></tr>
-          <tr><td>7.5</td><td>17.7</td><td>0.697</td><td>55.7</td><td>O</td><td>56</td><td>15</td></tr>
-          <tr class="ba-table__highlight"><td>8</td><td>18.1</td><td>0.713</td><td>57.0</td><td>P</td><td>57</td><td>16</td></tr>
-          <tr><td>8.5</td><td>18.5</td><td>0.728</td><td>58.3</td><td>Q</td><td>58</td><td>17</td></tr>
-          <tr class="ba-table__highlight"><td>9</td><td>19.0</td><td>0.748</td><td>59.5</td><td>R</td><td>59.5</td><td>19</td></tr>
-          <tr><td>9.5</td><td>19.4</td><td>0.764</td><td>60.8</td><td>S</td><td>61</td><td>20</td></tr>
-          <tr class="ba-table__highlight"><td>10</td><td>19.8</td><td>0.780</td><td>62.1</td><td>T</td><td>62</td><td>22</td></tr>
-          <tr><td>10.5</td><td>20.2</td><td>0.795</td><td>63.4</td><td>U</td><td>63.5</td><td>23</td></tr>
-          <tr class="ba-table__highlight"><td>11</td><td>20.6</td><td>0.811</td><td>64.6</td><td>V</td><td>65</td><td>24</td></tr>
-          <tr><td>11.5</td><td>21.0</td><td>0.827</td><td>65.9</td><td>W</td><td>66</td><td>25</td></tr>
-          <tr class="ba-table__highlight"><td>12</td><td>21.4</td><td>0.843</td><td>67.2</td><td>X</td><td>67</td><td>26</td></tr>
-          <tr><td>12.5</td><td>21.8</td><td>0.858</td><td>68.5</td><td>Y</td><td>68.5</td><td>27</td></tr>
-          <tr class="ba-table__highlight"><td>13</td><td>22.2</td><td>0.874</td><td>69.7</td><td>Z</td><td>70</td><td>28</td></tr>
-          <tr class="ba-table__highlight"><td>14</td><td>23.0</td><td>0.906</td><td>72.3</td><td>Z+2</td><td>72.5</td><td>&mdash;</td></tr>
+          {sizes.map(row => (
+            <tr class={commonSizes.has(row.us) ? 'rsg-table__common' : ''}>
+              <td class="rsg-table__us">{row.us}</td>
+              <td>{row.dia_mm}</td>
+              <td>{row.dia_in}</td>
+              <td>{row.circ}</td>
+              <td>{row.uk}</td>
+              <td>{row.eu}</td>
+              <td>{row.jp}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
+      <p class="rsg-table__note">Shaded rows indicate the most common sizes for women&rsquo;s rings.</p>
     </div>
+  </div>
+</section>
 
-    <p><strong>Note:</strong> This chart is for reference only. For the most precise sizing, we recommend a professional fitting. Eternity rings cannot be resized — an accurate measurement is especially important for these pieces.</p>
-  </section>
+<!-- CTA -->
+<section class="ba-cta">
+  <span class="ba-cta__eyebrow">The Ring Collection</span>
+  <h2 class="ba-cta__title">Every Ring, Made to Order</h2>
+  <p class="ba-cta__body">Each piece is designed and finished in the Los Angeles atelier. View the ring collection online, or arrange a private viewing at 611 Wilshire by appointment.</p>
+  <a href="/jewelry/rings" class="ba-cta__btn">Discover Our Rings</a>
+</section>
 
-  <section class="ba-cta">
-    <span class="ba-cta__eyebrow">The Ring Collection</span>
-    <h2 class="ba-cta__title">Every Ring, Made to Order</h2>
-    <p class="ba-cta__body">Each piece is designed and finished in the Los Angeles atelier. View the ring collection online, or arrange a private viewing at 611 Wilshire by appointment.</p>
-    <a href="/jewelry/rings" class="ba-cta__btn">Discover Our Rings</a>
-  </section>
 </Layout>
+
+<style is:global>
+/* ── RING SIZE GUIDE ─────────────────────────────────────────── */
+
+/* Hero — dark, shorter than full-page heroes */
+.rsg-hero {
+  min-height: 72vh;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(7rem, 12vw, 10rem) clamp(1.5rem, 6vw, 6rem) clamp(5rem, 8vw, 7rem);
+  text-align: center;
+}
+.rsg-hero__ambient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 45% at 50% 60%, rgba(149,130,107,.14) 0%, transparent 70%);
+  pointer-events: none;
+}
+.rsg-hero__content { position: relative; z-index: 1; max-width: 680px; }
+.rsg-hero__eyebrow {
+  display: block;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2.5rem;
+}
+.rsg-hero__title {
+  font-family: var(--prose);
+  font-size: clamp(48px, 9vw, 100px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--white);
+  line-height: 1.05;
+  margin: 0 0 3rem;
+}
+.rsg-hero__rule {
+  width: 40px;
+  height: 1px;
+  background: var(--accent);
+  margin: 0 auto 3rem;
+}
+.rsg-hero__lede {
+  font-family: var(--prose);
+  font-size: clamp(15px, 1.7vw, 17px);
+  line-height: 1.85;
+  color: rgba(255,255,255,.6);
+  max-width: 42ch;
+  margin: 0 auto;
+}
+
+/* Fade-in */
+.rsg-fade {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.rsg-fade.in-view { opacity: 1; transform: none; }
+
+/* Shared typography */
+.rsg-eyebrow {
+  display: block;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.25rem;
+}
+.rsg-heading {
+  font-family: var(--prose);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.12;
+  margin-bottom: 1.5rem;
+}
+.rsg-intro {
+  font-family: var(--prose);
+  font-size: clamp(15px, 1.5vw, 17px);
+  line-height: 1.85;
+  color: var(--ink-soft);
+}
+
+/* Measure section */
+.rsg-measure {
+  padding: clamp(5rem, 9vw, 9rem) clamp(1.5rem, 6vw, 6rem);
+  border-top: 1px solid rgba(0,0,0,.07);
+}
+.rsg-measure__inner { max-width: var(--max-w, 1200px); margin: 0 auto; }
+.rsg-measure__header { max-width: 600px; margin-bottom: clamp(3rem, 6vw, 5rem); }
+
+/* Methods */
+.rsg-methods {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+  margin-bottom: clamp(4rem, 7vw, 6rem);
+  padding-bottom: clamp(4rem, 7vw, 6rem);
+  border-bottom: 1px solid rgba(0,0,0,.07);
+}
+.rsg-method__divider { background: rgba(0,0,0,.08); }
+.rsg-method__num {
+  font-family: var(--prose);
+  font-size: clamp(48px, 6vw, 72px);
+  font-weight: 200;
+  font-style: italic;
+  color: var(--accent);
+  opacity: .35;
+  line-height: .9;
+  margin-bottom: 1.5rem;
+}
+.rsg-method__title {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
+.rsg-method__steps {
+  font-family: var(--prose);
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+  padding-left: 1.25rem;
+  margin: 0;
+}
+.rsg-method__steps li { margin-bottom: .5rem; }
+.rsg-method__steps li:last-child { margin-bottom: 0; }
+
+/* Tips */
+.rsg-tips { }
+.rsg-tips-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem clamp(2rem, 5vw, 5rem);
+  margin-top: 2rem;
+}
+.rsg-tip { }
+.rsg-tip__rule { width: 24px; height: 1px; background: var(--accent); margin-bottom: 1rem; opacity: .5; }
+.rsg-tip p { font-family: var(--prose); font-size: 15px; line-height: 1.75; color: var(--ink-soft); margin: 0; }
+
+/* Eternity note — accent standout */
+.rsg-eternity {
+  background: var(--paper);
+  border-top: 1px solid rgba(0,0,0,.07);
+  border-bottom: 1px solid rgba(0,0,0,.07);
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 6vw, 6rem);
+}
+.rsg-eternity__inner {
+  max-width: var(--max-w, 1200px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1.5rem clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+.rsg-eternity__label {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--ink);
+  padding: .35rem .9rem;
+  white-space: nowrap;
+}
+.rsg-eternity__text {
+  font-family: var(--prose);
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--ink-soft);
+  margin: 0;
+}
+.rsg-eternity__cta {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+  white-space: nowrap;
+  transition: color .2s;
+}
+.rsg-eternity__cta:hover { color: var(--accent); }
+
+/* Chart section */
+.rsg-chart-section {
+  padding: clamp(5rem, 9vw, 9rem) clamp(1.5rem, 6vw, 6rem);
+  background: var(--white);
+}
+.rsg-chart-section__inner { max-width: var(--max-w, 1200px); margin: 0 auto; }
+.rsg-chart-header { max-width: 600px; margin-bottom: clamp(3rem, 6vw, 5rem); }
+
+/* Table */
+.rsg-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.rsg-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--prose);
+  font-size: 15px;
+  color: var(--ink-soft);
+  min-width: 600px;
+}
+.rsg-table thead tr {
+  border-bottom: 2px solid rgba(0,0,0,.12);
+}
+.rsg-table th {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  text-align: left;
+  padding: .75rem 1rem .75rem 0;
+  white-space: nowrap;
+}
+.rsg-table th:first-child { color: var(--ink); }
+.rsg-table tbody tr {
+  border-bottom: 1px solid rgba(0,0,0,.05);
+  transition: background .15s;
+}
+.rsg-table tbody tr:hover { background: rgba(149,130,107,.04); }
+.rsg-table td {
+  padding: .75rem 1rem .75rem 0;
+  line-height: 1;
+}
+.rsg-table__us {
+  font-family: var(--prose);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--ink);
+}
+.rsg-table__common {
+  background: rgba(149,130,107,.05);
+}
+.rsg-table__common .rsg-table__us {
+  color: var(--accent);
+  font-style: italic;
+}
+.rsg-table__note {
+  font-family: var(--prose);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-muted);
+  margin-top: 1.5rem;
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  .rsg-methods { grid-template-columns: 1fr; }
+  .rsg-method__divider { display: none; }
+  .rsg-eternity__inner { grid-template-columns: 1fr; gap: 1rem; }
+  .rsg-eternity__label { width: fit-content; }
+}
+@media (max-width: 540px) {
+  .rsg-tips-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+<script>
+  var rsgFades = document.querySelectorAll('.rsg-fade');
+  var rsgObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('in-view'); rsgObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+  rsgFades.forEach(function(el) { rsgObs.observe(el); });
+</script>
