@@ -2,10 +2,6 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
-export async function getStaticPaths() {
-  return Object.keys(COLLECTIONS).map(slug => ({ params: { slug } }));
-}
-
 interface Spotlight {
   pieceSlug: string;
   heading: string;
@@ -22,40 +18,43 @@ interface CollectionMeta {
   spotlights: Spotlight[];
 }
 
-const COLLECTIONS: Record<string, CollectionMeta> = {
-  bloom: {
-    name: 'The Bloom Collection',
-    title: 'The Bloom Collection — Bez Ambar',
-    description: 'One-stone pieces. Each ring built around a single exceptional diamond — the bloom rendered in a single petal of light. By Bez Ambar, Los Angeles.',
-    lede: 'One stone. Each ring built around a single exceptional diamond.',
-    quote: 'Every bloom begins with one stone. The setting exists only to make that stone breathe.',
-    quoteAttr: 'Bez Ambar',
-    spotlights: [
-      {
-        pieceSlug: 'calla',
-        heading: 'The Petal\nSetting',
-        body: 'Beneath the 13-carat D-flawless pear, a ring of marquise-cut diamonds opens like petals around the pavilion, passing fire upward into the stone from below. The bloom is structural. The light is the design.',
-      },
-      {
-        pieceSlug: 'camelia',
-        heading: 'Color\nInside Colorless',
-        body: 'A 25-carat D VS2 colorless oval, cut without bowtie, framed entirely in fancy intense pink diamonds with matching pave down the split shank. The contrast is the design. The stone sets its own condition.',
-      },
-    ],
-  },
-  dentelle: {
-    name: 'Dentelle Collection',
-    title: 'Dentelle Collection — Bez Ambar',
-    description: 'Lace in diamond. Each piece rendered in fine baguettes and brilliant-cut stones — structure as ornament, precision as poetry. By Bez Ambar, Los Angeles.',
-    lede: 'Lace in diamond. Structure as ornament, precision as poetry.',
-    quote: 'Lace exists at the edge of structure and dissolution. We made it in diamond.',
-    quoteAttr: 'Bez Ambar',
-    spotlights: [],
-  },
-};
+export async function getStaticPaths() {
+  const COLS: Record<string, CollectionMeta> = {
+    bloom: {
+      name: 'The Bloom Collection',
+      title: 'The Bloom Collection — Bez Ambar',
+      description: 'One-stone pieces. Each ring built around a single exceptional diamond — the bloom rendered in a single petal of light. By Bez Ambar, Los Angeles.',
+      lede: 'One stone. Each ring built around a single exceptional diamond.',
+      quote: 'Every bloom begins with one stone. The setting exists only to make that stone breathe.',
+      quoteAttr: 'Bez Ambar',
+      spotlights: [
+        {
+          pieceSlug: 'calla',
+          heading: 'The Petal\nSetting',
+          body: 'Beneath the 13-carat D-flawless pear, a ring of marquise-cut diamonds opens like petals around the pavilion, passing fire upward into the stone from below. The bloom is structural. The light is the design.',
+        },
+        {
+          pieceSlug: 'camelia',
+          heading: 'Color\nInside Colorless',
+          body: 'A 25-carat D VS2 colorless oval, cut without bowtie, framed entirely in fancy intense pink diamonds with matching pave down the split shank. The contrast is the design. The stone sets its own condition.',
+        },
+      ],
+    },
+    dentelle: {
+      name: 'Dentelle Collection',
+      title: 'Dentelle Collection — Bez Ambar',
+      description: 'Lace in diamond. Each piece rendered in fine baguettes and brilliant-cut stones — structure as ornament, precision as poetry. By Bez Ambar, Los Angeles.',
+      lede: 'Lace in diamond. Structure as ornament, precision as poetry.',
+      quote: 'Lace exists at the edge of structure and dissolution. We made it in diamond.',
+      quoteAttr: 'Bez Ambar',
+      spotlights: [],
+    },
+  };
+  return Object.keys(COLS).map(slug => ({ params: { slug }, props: { col: COLS[slug] } }));
+}
 
 const { slug } = Astro.params;
-const col = COLLECTIONS[slug];
+const { col } = Astro.props as { col: CollectionMeta };
 
 const allProducts = await getCollection('products', ({ data }) => data.status === 'live');
 const colProducts = allProducts.filter(p => p.data.collection === slug);
