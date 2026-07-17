@@ -50,7 +50,17 @@ const cuts = [
 
 <!-- HERO — dark cinematic -->
 <section class="ec-hero">
-  <div class="ec-hero__ambient"></div>
+  <video
+    class="ec-hero__bg"
+    autoplay
+    muted
+    loop
+    playsinline
+    aria-hidden="true"
+  >
+    <source src="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Rings/C0728_4K_1_smndkz.mp4" type="video/mp4">
+  </video>
+  <div class="ec-hero__overlay"></div>
   <div class="ec-hero__content">
     <p class="ec-hero__eyebrow">The Elysian Cut&trade;</p>
     <h1 class="ec-hero__title">A Family<br>of Cuts</h1>
@@ -136,7 +146,7 @@ const cuts = [
 </div>
 
 <!-- CTA -->
-<section class="ba-cta">
+<section class="ba-cta ba-cta--paper">
   <span class="ba-cta__eyebrow">Commission a Piece</span>
   <h2 class="ba-cta__title">See the Elysian Cut&trade; in Person</h2>
   <p class="ba-cta__body">Each piece is built to order from calibrated Elysian Cut&trade; stones. Arrange a private consultation at the Los Angeles atelier to view the full family.</p>
@@ -161,10 +171,24 @@ const cuts = [
   padding: clamp(6rem, 12vw, 10rem) clamp(1.5rem, 6vw, 6rem) clamp(5rem, 8vw, 7rem);
   text-align: center;
 }
-.ec-hero__ambient {
+.ec-hero__bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 60% 45% at 50% 60%, rgba(149,130,107,.16) 0%, transparent 70%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.38;
+}
+.ec-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(20,18,15,.65) 0%,
+    rgba(20,18,15,.32) 45%,
+    rgba(20,18,15,.72) 100%
+  );
   pointer-events: none;
 }
 .ec-hero__content { position: relative; z-index: 1; max-width: 820px; }
