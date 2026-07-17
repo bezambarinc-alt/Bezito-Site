@@ -3,14 +3,6 @@ import Layout from '../layouts/Layout.astro';
 import '../styles/templates/editorial.css';
 ---
 
-<style>
-  svg text {
-    font-family: var(--sans);
-    text-transform: var(--sans-transform, none);
-    letter-spacing: var(--sans-letter-spacing, normal);
-  }
-</style>
-
 <Layout
   title="Diamond Education — The 4Cs, Shapes &amp; Anatomy | Bez Ambar"
   description="Master the fundamentals of diamond quality. Learn the 4Cs (cut, color, clarity, carat), diamond shapes, anatomy, and how to select your perfect stone. From the Bez Ambar atelier, Los Angeles."
@@ -18,11 +10,14 @@ import '../styles/templates/editorial.css';
   headerLight={true}
 >
 
-<section class="ba-inner-hero--light ba-inner-hero ba-inner-hero--narrow">
-  <h1>Diamond Education</h1>
-  <p class="ba-inner-hero__intro">Master the fundamentals of diamond quality. Learn the 4Cs, shapes, anatomy, and everything you need to make an informed choice.</p>
+<!-- Hero -->
+<section class="de-hero">
+  <p class="de-hero__eyebrow">Diamond Education</p>
+  <h1 class="de-hero__title">The Language of Light</h1>
+  <p class="de-hero__lede">Four characteristics determine a diamond's quality. Understanding them is the difference between buying a certificate and choosing a stone you will wear for a lifetime.</p>
 </section>
 
+<!-- Sticky tab navigation -->
 <div class="ba-tab-bar" id="deTabs">
   <div class="ba-tab-bar__inner">
     <button class="ba-tab active" data-section="four-cs">The 4Cs</button>
@@ -35,280 +30,795 @@ import '../styles/templates/editorial.css';
   </div>
 </div>
 
-<div class="ba-prose-well">
-
-  <section class="ba-prose-section" id="four-cs">
-    <h2>The Four Cs</h2>
-    <p>Diamond quality is universally measured by four key characteristics: Cut, Color, Clarity, and Carat Weight. Together, the 4Cs form an objective standard for evaluating and comparing diamonds, allowing you to make an informed decision that suits your preferences and budget.</p>
-    <p>Each C plays a distinct role in a diamond's beauty and value. While all four are important, they affect a diamond differently. Understanding how they work together will help you find the perfect stone.</p>
-
-    <div class="four-cs-grid">
-      <div class="four-c-card">
-        <div class="four-c-icon">✂</div>
-        <h3>Cut</h3>
-        <p>How well the diamond is shaped and faceted. Determines light reflection and sparkle.</p>
+<!-- 4Cs Overview -->
+<section class="de-section" id="four-cs">
+  <div class="de-section__inner">
+    <div class="de-section-header">
+      <span class="de-eyebrow">Where to Begin</span>
+      <h2 class="de-heading">The Four Cs</h2>
+      <p class="de-intro">Diamond quality is universally measured by four characteristics. Each plays a distinct role in the stone's beauty. Understanding how they interact will help you find the right stone at the right price.</p>
+    </div>
+    <div class="de-four-cs">
+      <div class="de-c-card">
+        <div class="de-c-letter">C</div>
+        <div class="de-c-body">
+          <h3 class="de-c-name">Cut</h3>
+          <p class="de-c-desc">How precisely the diamond is faceted. Determines how light enters, reflects, and exits. The most important of the four characteristics — a poor cut will dull even the finest stone.</p>
+        </div>
       </div>
-      <div class="four-c-card">
-        <div class="four-c-icon">◐</div>
-        <h3>Color</h3>
-        <p>The absence of color in a diamond. Ranges from colorless to light yellow or brown.</p>
+      <div class="de-c-card">
+        <div class="de-c-letter">C</div>
+        <div class="de-c-body">
+          <h3 class="de-c-name">Color</h3>
+          <p class="de-c-desc">The absence of color in a white diamond. The GIA grades from D (colorless) to Z (light yellow). In the near-colorless range — G through J — color is invisible to the naked eye.</p>
+        </div>
       </div>
-      <div class="four-c-card">
-        <div class="four-c-icon">◊</div>
-        <h3>Clarity</h3>
-        <p>The absence of internal and external imperfections. Grades range from Flawless to Included.</p>
+      <div class="de-c-card">
+        <div class="de-c-letter">C</div>
+        <div class="de-c-body">
+          <h3 class="de-c-name">Clarity</h3>
+          <p class="de-c-desc">The absence of internal inclusions and surface blemishes. Most are microscopic and invisible without magnification. "Eye-clean" stones at VS2 or SI1 are excellent value.</p>
+        </div>
       </div>
-      <div class="four-c-card">
-        <div class="four-c-icon">⬤</div>
-        <h3>Carat</h3>
-        <p>Weight measurement of the diamond. Affects size and price exponentially.</p>
+      <div class="de-c-card">
+        <div class="de-c-letter">C</div>
+        <div class="de-c-body">
+          <h3 class="de-c-name">Carat</h3>
+          <p class="de-c-desc">Weight, not size. One carat equals 200 milligrams. Larger stones are rarer, so price increases exponentially — a 2-carat stone of equal quality costs significantly more than twice a 1-carat.</p>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="ba-prose-section" id="cut">
-    <h2>Cut</h2>
-    <p><strong>Cut is the most important of the 4Cs</strong> because it directly determines how light interacts with your diamond. A well-cut diamond will reflect light brilliantly and display exceptional sparkle, while a poorly cut diamond may appear dull despite excellent color and clarity.</p>
-
-    <h3>What Cut Measures</h3>
-    <p>Diamond cut is not about the shape — it refers to the quality of how the diamond is faceted. Cut evaluates:</p>
-    <ul>
-      <li><strong>Proportions:</strong> The relationship between the diamond's table, depth, crown angle, and pavilion angle</li>
-      <li><strong>Symmetry:</strong> How precisely the facets are aligned and how uniform they are</li>
-      <li><strong>Polish:</strong> The smoothness of the diamond's surface; microscopic scratches affect light return</li>
-    </ul>
-
-    <h3>Cut Grades</h3>
-    <p>The Gemological Institute of America (GIA) grades cut on a five-point scale:</p>
-    <div class="grading-scale">
-      <span class="scale-label">Cut Grade Scale</span>
-      <div class="scale-bar">
-        <div class="scale-segment seg-excellent">Excellent</div>
-        <div class="scale-segment seg-verygood">Very Good</div>
-        <div class="scale-segment seg-good">Good</div>
-        <div class="scale-segment seg-fair">Fair</div>
-        <div class="scale-segment seg-poor">Poor</div>
-      </div>
+<!-- Cut -->
+<section class="de-section de-section--paper" id="cut">
+  <div class="de-section__inner">
+    <div class="de-section-header">
+      <span class="de-eyebrow">The Most Important C</span>
+      <h2 class="de-heading">Cut</h2>
+      <p class="de-intro">Cut is not the shape of a diamond — it is the quality of its faceting. A diamond's ability to reflect light depends entirely on the precision of its proportions, symmetry, and polish. Two diamonds of identical color and clarity can look dramatically different if one is better cut.</p>
     </div>
 
-    <h3>Understanding Cut Quality</h3>
-    <ul>
-      <li><strong>Excellent:</strong> Maximum light reflection and brilliance. Optimal facet proportions and polish.</li>
-      <li><strong>Very Good:</strong> Excellent light performance with minor variations in proportions.</li>
-      <li><strong>Good:</strong> Good light reflection but with more noticeable proportional differences.</li>
-      <li><strong>Fair:</strong> Moderate light return; more significant proportional compromises.</li>
-      <li><strong>Poor:</strong> Minimal light reflection due to poor proportions and faceting.</li>
-    </ul>
-    <p>For maximum brilliance and sparkle, we recommend selecting a diamond with an Excellent or Very Good cut grade.</p>
-  </section>
+    <div class="de-prose">
+      <h3 class="de-subheading">What Cut Measures</h3>
+      <p>The GIA evaluates cut on three dimensions: <strong>proportions</strong> — the relationship between table size, crown height, and pavilion depth; <strong>symmetry</strong> — how precisely the facets align; and <strong>polish</strong> — the condition of the surface at a microscopic level.</p>
+    </div>
 
-  <section class="ba-prose-section" id="color">
-    <h2>Color</h2>
-    <p>Diamond color refers to the absence of color in a diamond. The less color present, the more valuable the diamond. The GIA color scale grades diamonds from D (colorless) to Z (light color).</p>
-
-    <h3>The Color Grading Scale</h3>
-    <div class="grading-scale">
-      <span class="scale-label">Standard Color Scale: D to Z</span>
-      <div class="color-grid">
-        {['D','E','F','G','J','K','M','R','Z'].map((g, i) => (
-          <div class="color-sample" style={`opacity: ${1 - (i * 0.08)}`}>{g}</div>
+    <div class="de-grade-scale">
+      <span class="de-scale-label">GIA Cut Grade Scale</span>
+      <div class="de-grade-rows">
+        {[
+          ['Excellent', 'Maximum light reflection. Optimal proportions and polish. The standard we recommend.', 5],
+          ['Very Good', 'Excellent light performance with minor proportional variations. Strong value.', 4],
+          ['Good', 'Good light return but with more notable proportional differences.', 3],
+          ['Fair', 'Moderate light return. Significant proportional compromise.', 2],
+          ['Poor', 'Minimal light reflection. Avoid unless budget is the only consideration.', 1],
+        ].map(([grade, desc, weight]) => (
+          <div class="de-grade-row">
+            <div class="de-grade-name">{grade}</div>
+            <div class="de-grade-bar-wrap">
+              <div class="de-grade-bar" style={`width: ${weight * 20}%`}></div>
+            </div>
+            <div class="de-grade-desc">{desc}</div>
+          </div>
         ))}
       </div>
-      <div class="scale-legend">
-        <div class="scale-legend-item">
-          <div class="scale-legend-dot" style="background:#fff;border:1px solid #ccc;"></div>
-          <span>Colorless (D-F)</span>
+    </div>
+  </div>
+</section>
+
+<!-- Cut pull quote -->
+<div class="de-pull-quote">
+  <p class="de-pull-quote__text">"A well-cut diamond of modest color and clarity will outshine a poorly cut stone with a superior certificate."</p>
+  <span class="de-pull-quote__attr">Bez Ambar — Los Angeles Atelier</span>
+</div>
+
+<!-- Color -->
+<section class="de-section" id="color">
+  <div class="de-section__inner">
+    <div class="de-section-header">
+      <span class="de-eyebrow">Colorless to Light</span>
+      <h2 class="de-heading">Color</h2>
+      <p class="de-intro">In white diamonds, value increases with the absence of color. The GIA scale runs from D — perfectly colorless — to Z, where a faint yellow is visible to the naked eye. The difference between adjacent grades is subtle; the difference between D and J is not.</p>
+    </div>
+
+    <div class="de-color-scale">
+      <div class="de-color-groups">
+        <div class="de-color-group">
+          <div class="de-color-swatches">
+            {['D','E','F'].map(g => <div class="de-color-swatch de-color-swatch--colorless"><span>{g}</span></div>)}
+          </div>
+          <div class="de-color-group-label">Colorless</div>
+          <div class="de-color-group-note">Rarest. No color detectable under any conditions.</div>
         </div>
-        <div class="scale-legend-item">
-          <div class="scale-legend-dot" style="background:#fcfcfc;border:1px solid #ccc;"></div>
-          <span>Near Colorless (G-J)</span>
+        <div class="de-color-group">
+          <div class="de-color-swatches">
+            {['G','H','I','J'].map(g => <div class="de-color-swatch de-color-swatch--near"><span>{g}</span></div>)}
+          </div>
+          <div class="de-color-group-label">Near Colorless</div>
+          <div class="de-color-group-note">Color not visible to the naked eye. Excellent value range.</div>
         </div>
-        <div class="scale-legend-item">
-          <div class="scale-legend-dot" style="background:#faf5e0;border:1px solid #ccc;"></div>
-          <span>Faint to Light (K-Z)</span>
+        <div class="de-color-group">
+          <div class="de-color-swatches">
+            {['K','L','M'].map(g => <div class="de-color-swatch de-color-swatch--faint"><span>{g}</span></div>)}
+          </div>
+          <div class="de-color-group-label">Faint</div>
+          <div class="de-color-group-note">Slight warmth detectable by a trained eye.</div>
+        </div>
+        <div class="de-color-group">
+          <div class="de-color-swatches">
+            {['N–R'].map(g => <div class="de-color-swatch de-color-swatch--vlight"><span>{g}</span></div>)}
+          </div>
+          <div class="de-color-group-label">Very Light</div>
+          <div class="de-color-group-note">Color visible to the naked eye.</div>
+        </div>
+        <div class="de-color-group">
+          <div class="de-color-swatches">
+            {['S–Z'].map(g => <div class="de-color-swatch de-color-swatch--light"><span>{g}</span></div>)}
+          </div>
+          <div class="de-color-group-label">Light</div>
+          <div class="de-color-group-note">Noticeable color. Significantly more affordable.</div>
         </div>
       </div>
     </div>
 
-    <h3>Color Categories</h3>
-    <ul>
-      <li><strong>Colorless (D, E, F):</strong> Completely free of color. The rarest and most valuable.</li>
-      <li><strong>Near Colorless (G, H, I, J):</strong> Color not visible to the naked eye but detectable under magnification. Excellent value.</li>
-      <li><strong>Faint (K, L, M):</strong> Slight color visible to the trained eye.</li>
-      <li><strong>Very Light (N, O, P, Q, R):</strong> Light color visible to the naked eye.</li>
-      <li><strong>Light (S through Z):</strong> Noticeable color. More affordable but with visible hue.</li>
-    </ul>
+    <div class="de-prose">
+      <h3 class="de-subheading">Fancy Colored Diamonds</h3>
+      <p>Beyond the standard scale, diamonds can display intense yellows, pinks, blues, and greens. These <em>fancy colored</em> diamonds are graded separately and prized for the strength and purity of their hue — the opposite of the standard white diamond scale.</p>
+      <p><strong>Our recommendation:</strong> For white diamonds, the G–J range offers exceptional beauty without color visible to the naked eye, at a significant price advantage over D–F.</p>
+    </div>
+  </div>
+</section>
 
-    <h3>Fancy Colored Diamonds</h3>
-    <p>Beyond the standard D-Z scale, diamonds can exhibit fancy colors such as intense yellows, pinks, and blues. These rare diamonds are graded separately on a Fancy Color scale and often command premium prices.</p>
-    <p><strong>For most buyers:</strong> We recommend selecting a diamond in the Near Colorless range (G-J) for exceptional value without visible color differences to the naked eye.</p>
-  </section>
-
-  <section class="ba-prose-section" id="clarity">
-    <h2>Clarity</h2>
-    <p>Diamond clarity measures the absence of inclusions (internal imperfections) and blemishes (surface flaws). Most diamonds contain tiny imperfections; finding "eye-clean" diamonds at a reasonable price is possible at various clarity levels.</p>
-
-    <h3>The Clarity Grading Scale</h3>
-    <p>The GIA clarity scale consists of 11 grades, ranging from Flawless to Included:</p>
-    <div class="clarity-scale">
-      {[
-        ['FL', 'Flawless. No visible inclusions or blemishes.'],
-        ['IF', 'Internally Flawless. No inclusions visible; minor surface flaws only.'],
-        ['VVS1', 'Very Very Slightly Included. Minute inclusions barely visible under magnification.'],
-        ['VVS2', 'Very Very Slightly Included. Minute inclusions visible under magnification.'],
-        ['VS1', 'Very Slightly Included. Minor inclusions barely visible under magnification.'],
-        ['VS2', 'Very Slightly Included. Minor inclusions visible under magnification.'],
-        ['SI1', 'Slightly Included. Inclusions visible under magnification, often eye-clean.'],
-        ['SI2', 'Slightly Included. Inclusions visible under magnification; may be visible to the eye.'],
-        ['I1', 'Included. Inclusions visible to the naked eye; may affect transparency.'],
-        ['I2', 'Included. Obvious inclusions affecting transparency and brilliance.'],
-        ['I3', 'Included. Significant inclusions affecting durability and transparency.'],
-      ].map(([grade, desc]) => (
-        <div class="clarity-item">
-          <div class="clarity-grade">{grade}</div>
-          <div class="clarity-desc">{desc}</div>
-        </div>
-      ))}
+<!-- Clarity -->
+<section class="de-section de-section--paper" id="clarity">
+  <div class="de-section__inner">
+    <div class="de-section-header">
+      <span class="de-eyebrow">Inclusions &amp; Blemishes</span>
+      <h2 class="de-heading">Clarity</h2>
+      <p class="de-intro">Nearly all diamonds contain minute inclusions — tiny crystals, feathers, or clouds formed during the stone's growth. Clarity measures how few and how minor these imperfections are. For most buyers, the objective is <em>eye-clean</em>: no inclusions visible at normal viewing distance without magnification.</p>
     </div>
 
-    <h3>Types of Inclusions</h3>
-    <ul>
-      <li><strong>Crystals:</strong> Tiny mineral crystals trapped within the diamond.</li>
-      <li><strong>Feathers:</strong> Internal fractures that resemble feathers under magnification.</li>
-      <li><strong>Clouds:</strong> Groups of tiny particles creating a hazy area.</li>
-      <li><strong>Needles:</strong> Thin, needle-like inclusions.</li>
-      <li><strong>Pinpoints:</strong> Very small dots of mineral crystals.</li>
-    </ul>
-
-    <h3>Eye-Clean Diamonds</h3>
-    <p>"Eye-clean" means the diamond shows no visible inclusions when viewed by the naked eye at normal viewing distance. Many VS1, SI1, and even some SI2 diamonds are eye-clean, allowing you to save significantly while maintaining visual perfection.</p>
-    <p><strong>For best value:</strong> Consider VS2 or SI1 clarity grades, where many stones are eye-clean and offer excellent value without compromising appearance.</p>
-  </section>
-
-  <section class="ba-prose-section" id="carat">
-    <h2>Carat</h2>
-    <p>Carat weight is the measurement of a diamond's weight, not its size. One carat equals 200 milligrams (0.2 grams). Its impact on price is more complex than the others — larger diamonds are rarer, so price does not scale linearly with weight.</p>
-
-    <h3>How Carat Weight Works</h3>
-    <p>Carat weight is measured with precision scales accurate to one one-hundredth of a carat. A diamond of 0.50 carats is referred to as a "half carat," while 0.75 carats is a "three-quarter carat."</p>
-
-    <h3>Carat and Price: The Exponential Relationship</h3>
-    <p>Price does not increase linearly with carat weight. A 2-carat diamond costs significantly more than twice the price of a 1-carat diamond of similar quality, because larger stones are rarer.</p>
-    <ul>
-      <li>A 1.0 carat diamond might cost $5,000</li>
-      <li>A 1.5 carat diamond of similar quality might cost $12,000</li>
-      <li>A 2.0 carat diamond of similar quality might cost $20,000+</li>
-    </ul>
-
-    <h3>Carat Weight and Visual Size</h3>
-    <p>A diamond's visual size depends not just on carat weight but also on its cut and shape. A well-cut diamond may appear larger than a poorly cut diamond of the same weight.</p>
-    <ul>
-      <li>0.5 carat round diamond: approximately 5.2mm diameter</li>
-      <li>1.0 carat round diamond: approximately 6.5mm diameter</li>
-      <li>1.5 carat round diamond: approximately 7.4mm diameter</li>
-      <li>2.0 carat round diamond: approximately 8.2mm diameter</li>
-    </ul>
-
-    <h3>Finding Your Sweet Spot</h3>
-    <p>Rather than focusing solely on carat weight, consider how cut, color, and clarity also affect your diamond's beauty. A well-cut 1.2-carat VS1 diamond may be more beautiful and a better investment than a poorly cut 1.5-carat SI2 diamond of the same price.</p>
-  </section>
-
-  <section class="ba-prose-section" id="shapes">
-    <h2>Diamond Shapes</h2>
-    <p>Diamond shape refers to the outline and facet arrangement of the stone. Each shape has distinct characteristics that affect light performance, visual appearance, and personal preference.</p>
-
-    <div class="shapes-grid">
+    <div class="de-clarity-scale">
       {[
-        { shape: <circle cx="50" cy="50" r="45"/>, name: 'Round Brilliant', note: 'Classic and timeless' },
-        { shape: <path d="M50 10 L90 50 L50 90 L10 50 Z"/>, name: 'Princess', note: 'Invented by Bez Ambar' },
-        { shape: <path d="M20 30 L80 30 L85 50 L80 70 L20 70 L15 50 Z"/>, name: 'Cushion', note: 'Soft, romantic shape' },
-        { shape: <ellipse cx="50" cy="50" rx="45" ry="35"/>, name: 'Oval', note: 'Flattering and elegant' },
-        { shape: <path d="M20 25 L80 25 L80 75 L20 75 Z"/>, name: 'Emerald', note: 'Sophisticated step-cut' },
-        { shape: <path d="M50 15 L85 35 L85 65 L50 85 L15 65 L15 35 Z"/>, name: 'Pear', note: 'Feminine and distinctive' },
-        { shape: <path d="M25 50 L50 15 L75 50 L50 85 Z"/>, name: 'Marquise', note: 'Bold and striking' },
-        { shape: <path d="M25 35 L75 35 L75 65 L25 65 Z"/>, name: 'Asscher', note: 'Art deco elegance' },
-        { shape: <path d="M25 50 L50 15 L75 50 L50 85 Z"/>, name: 'Radiant', note: 'Brilliant and faceted' },
-        { shape: <path d="M50 20 L70 45 L85 50 L70 55 L50 80 L30 55 L15 50 L30 45 Z"/>, name: 'Heart', note: 'Romantic and unique' },
-        { shape: <path d="M50 10 L75 35 L50 90 L25 35 Z"/>, name: 'Blaze®', note: 'Bez Ambar proprietary' },
-        { shape: <path d="M50 12 L88 38 L88 62 L50 88 L12 62 L12 38 Z"/>, name: 'Divine', note: 'Bez Ambar proprietary' },
-      ].map(item => (
-        <div class="shape-item">
-          <div class="shape-visual">
-            <svg class="diamond-shape" viewBox="0 0 100 100"
-              style="fill:#f5f3f0;stroke:#1a1a1a;stroke-width:1.5;stroke-linejoin:round;">
-              {item.shape}
-            </svg>
+        ['FL', 'Flawless', 'No inclusions or blemishes under 10× magnification. Exceedingly rare.'],
+        ['IF', 'Internally Flawless', 'No internal inclusions. Minor surface features only. Very rare.'],
+        ['VVS1–VVS2', 'Very Very Slightly Included', 'Minute inclusions barely detectable under magnification by a skilled grader.'],
+        ['VS1–VS2', 'Very Slightly Included', 'Minor inclusions visible under magnification. Virtually always eye-clean.'],
+        ['SI1–SI2', 'Slightly Included', 'Inclusions visible under magnification. SI1 is usually eye-clean; SI2 sometimes is.'],
+        ['I1–I3', 'Included', 'Inclusions visible to the naked eye. May affect brilliance and durability.'],
+      ].map(([grade, name, desc]) => (
+        <div class="de-clarity-row">
+          <div class="de-clarity-grade">{grade}</div>
+          <div class="de-clarity-right">
+            <div class="de-clarity-name">{name}</div>
+            <div class="de-clarity-desc">{desc}</div>
           </div>
-          <div class="shape-name">{item.name}</div>
-          <div class="shape-note">{item.note}</div>
         </div>
       ))}
     </div>
 
-    <h3>Shape vs. Cut</h3>
-    <p>"Shape" and "cut" are different. Shape is the outline of the diamond, while cut refers to the quality of faceting and light performance. A diamond's shape doesn't determine its cut grade.</p>
-  </section>
+    <div class="de-prose">
+      <h3 class="de-subheading">Common Inclusion Types</h3>
+      <p><strong>Crystals</strong> — tiny mineral crystals trapped during formation. <strong>Feathers</strong> — internal fractures. <strong>Clouds</strong> — clusters of minute particles creating a hazy zone. <strong>Needles</strong> — thin, rod-like inclusions. <strong>Pinpoints</strong> — very small crystals, often appearing as dots.</p>
+      <p><strong>Our recommendation:</strong> VS2 or SI1 for best value — the vast majority of stones in these grades are eye-clean and the price premium for FL or IF rarely translates into visible difference.</p>
+    </div>
+  </div>
+</section>
 
-  <section class="ba-prose-section" id="anatomy">
-    <h2>Diamond Anatomy</h2>
-    <p>Understanding the structure of a diamond helps you appreciate how faceting affects its beauty and performance. Here are the key anatomical terms and measurements that jewelers and gemologists use:</p>
+<!-- Carat -->
+<section class="de-section" id="carat">
+  <div class="de-section__inner">
+    <div class="de-section-header">
+      <span class="de-eyebrow">Weight &amp; Rarity</span>
+      <h2 class="de-heading">Carat</h2>
+      <p class="de-intro">Carat measures weight, not size. One carat equals 200 milligrams. A diamond's visual size also depends on its cut and shape — a well-cut stone will often appear larger than a poorly cut stone of the same weight.</p>
+    </div>
 
-    <div class="anatomy-grid">
-      <div class="anatomy-diagram">
-        <svg width="200" height="280" viewBox="0 0 200 280" style="fill:none;stroke:#1a1a1a;stroke-width:1.5;">
-          <path d="M100 20 L150 80 L160 140 L100 240 L40 140 L50 80 Z"/>
-          <line x1="100" y1="20" x2="100" y2="240" stroke="#999" stroke-width="1" stroke-dasharray="3,3"/>
-          <line x1="100" y1="80" x2="150" y2="80" stroke="#999" stroke-width="1" stroke-dasharray="3,3"/>
-          <text x="160" y="50" font-size="11" fill="#666" >Crown</text>
-          <text x="165" y="140" font-size="11" fill="#666" >Girdle</text>
-          <text x="145" y="220" font-size="11" fill="#666" >Pavilion</text>
-          <text x="65" y="38" font-size="11" fill="#666" >Table</text>
+    <div class="de-carat-stats">
+      {[
+        ['0.5 ct', '~5.2 mm', 'Half carat. Popular for accent stones and petite engagement rings.'],
+        ['1.0 ct', '~6.5 mm', 'The benchmark carat weight. Strong demand means premium pricing at this threshold.'],
+        ['1.5 ct', '~7.4 mm', 'A noticeable step up. Typically costs more than double a comparable 1.0 ct stone.'],
+        ['2.0 ct', '~8.2 mm', 'Substantial presence. Rare at high quality; price escalates sharply.'],
+      ].map(([ct, mm, note]) => (
+        <div class="de-carat-stat">
+          <div class="de-carat-stat__weight">{ct}</div>
+          <div class="de-carat-stat__mm">{mm} diameter</div>
+          <div class="de-carat-stat__note">{note}</div>
+        </div>
+      ))}
+    </div>
+
+    <div class="de-prose">
+      <h3 class="de-subheading">The Exponential Price Relationship</h3>
+      <p>Price does not scale linearly with weight. Larger stones are exponentially rarer, so a 2-carat diamond of comparable quality costs three to four times the price of a 1-carat. This is why a well-cut 1.2-carat at VS1 may be a wiser and more beautiful choice than a 1.5-carat at SI2 for the same budget.</p>
+      <h3 class="de-subheading">Just Below Key Weights</h3>
+      <p>A diamond weighing 0.98 carats will appear nearly identical to a 1.0 carat stone — and may cost 20–30% less. The same logic applies at 1.48 vs 1.5, and 1.98 vs 2.0. These are among the practical strategies our clients use to maximize stone quality within budget.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Shapes -->
+<section class="de-section de-section--paper" id="shapes">
+  <div class="de-section__inner">
+    <div class="de-section-header">
+      <span class="de-eyebrow">Outline &amp; Character</span>
+      <h2 class="de-heading">Diamond Shapes</h2>
+      <p class="de-intro">Shape is the outline of the stone. Each shape has distinct proportions, facet arrangements, and optical characteristics. Shape preference is personal — but each choice carries aesthetic and practical implications.</p>
+    </div>
+
+    <div class="de-shapes-grid">
+      <div class="de-shape">
+        <div class="de-shape__visual">
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+            <circle cx="50" cy="50" r="38"/>
+            <line x1="50" y1="12" x2="50" y2="88" stroke-width="0.5" stroke-dasharray="2,3"/>
+            <line x1="12" y1="50" x2="88" y2="50" stroke-width="0.5" stroke-dasharray="2,3"/>
+          </svg>
+        </div>
+        <div class="de-shape__name">Round Brilliant</div>
+        <div class="de-shape__note">58 facets. Maximum light return. The classic standard.</div>
+      </div>
+      <div class="de-shape">
+        <div class="de-shape__visual">
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+            <path d="M50 15 L85 50 L50 85 L15 50 Z"/>
+          </svg>
+        </div>
+        <div class="de-shape__name">Princess</div>
+        <div class="de-shape__note">Invented by Bez Ambar. Square, brilliant-cut. Modern and architectural.</div>
+      </div>
+      <div class="de-shape">
+        <div class="de-shape__visual">
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+            <ellipse cx="50" cy="50" rx="40" ry="28"/>
+          </svg>
+        </div>
+        <div class="de-shape__name">Oval</div>
+        <div class="de-shape__note">Elongates the finger. Brilliant-cut. High fire and scintillation.</div>
+      </div>
+      <div class="de-shape">
+        <div class="de-shape__visual">
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+            <path d="M50 18 L72 30 L80 50 L72 70 L50 82 L28 70 L20 50 L28 30 Z"/>
+          </svg>
+        </div>
+        <div class="de-shape__name">Cushion</div>
+        <div class="de-shape__note">Square with rounded corners. Romantic and soft. Strong dispersion.</div>
+      </div>
+      <div class="de-shape">
+        <div class="de-shape__visual">
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+            <rect x="22" y="28" width="56" height="44" rx="2"/>
+            <line x1="22" y1="38" x2="78" y2="38" stroke-width="0.5"/>
+            <line x1="22" y1="62" x2="78" y2="62" stroke-width="0.5"/>
+          </svg>
+        </div>
+        <div class="de-shape__name">Emerald</div>
+        <div class="de-shape__note">Step-cut. Rectangular facets create a hall-of-mirrors effect. Sophisticated.</div>
+      </div>
+      <div class="de-shape">
+        <div class="de-shape__visual">
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+            <path d="M50 85 L20 28 Q35 12 50 14 Q65 12 80 28 Z"/>
+          </svg>
+        </div>
+        <div class="de-shape__name">Pear</div>
+        <div class="de-shape__note">Brilliant-cut teardrop. Point worn toward knuckle. Feminine and distinctive.</div>
+      </div>
+      <div class="de-shape">
+        <div class="de-shape__visual">
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+            <path d="M50 18 L82 50 L50 82 L18 50 Z"/>
+            <line x1="50" y1="18" x2="50" y2="82" stroke-width="0.5" stroke-dasharray="2,3"/>
+          </svg>
+        </div>
+        <div class="de-shape__name">Marquise</div>
+        <div class="de-shape__note">Elongated boat shape. Maximizes carat weight face-up. Bold and striking.</div>
+      </div>
+      <div class="de-shape">
+        <div class="de-shape__visual">
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+            <path d="M22 28 L50 22 L78 28 L84 50 L78 72 L50 78 L22 72 L16 50 Z"/>
+          </svg>
+        </div>
+        <div class="de-shape__name">Asscher</div>
+        <div class="de-shape__note">Step-cut square. Art Deco in origin. Deep, geometric facets.</div>
+      </div>
+      <div class="de-shape">
+        <div class="de-shape__visual">
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+            <path d="M22 26 L50 20 L78 26 L82 50 L78 74 L50 80 L22 74 L18 50 Z"/>
+          </svg>
+        </div>
+        <div class="de-shape__name">Radiant</div>
+        <div class="de-shape__note">Brilliant-cut rectangle. High sparkle. Combines emerald shape with round brilliance.</div>
+      </div>
+      <div class="de-shape">
+        <div class="de-shape__visual">
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+            <path d="M50 15 L72 35 L75 50 L50 82 L25 50 L28 35 Z"/>
+          </svg>
+        </div>
+        <div class="de-shape__name">Blaze®</div>
+        <div class="de-shape__note">Bez Ambar proprietary. Patented faceting for maximum light dispersion.</div>
+      </div>
+      <div class="de-shape">
+        <div class="de-shape__visual">
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+            <path d="M50 20 Q68 20 75 35 Q82 50 50 82 Q18 50 25 35 Q32 20 50 20 Z"/>
+          </svg>
+        </div>
+        <div class="de-shape__name">Heart</div>
+        <div class="de-shape__note">Brilliant-cut. A romantic choice requiring skilled symmetry to look balanced.</div>
+      </div>
+    </div>
+
+    <div class="de-prose">
+      <h3 class="de-subheading">Shape vs. Cut</h3>
+      <p>Shape and cut are distinct. Shape is the outline; cut is the quality of faceting. An oval can be Excellent or Poor cut — the shape does not determine the cut grade. All shapes can be cut to maximize their optical performance.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Anatomy -->
+<section class="de-section" id="anatomy">
+  <div class="de-section__inner">
+    <div class="de-section-header">
+      <span class="de-eyebrow">Structure &amp; Proportion</span>
+      <h2 class="de-heading">Diamond Anatomy</h2>
+      <p class="de-intro">The terms below define the parts of a diamond that determine its light performance. Understanding them helps you read a GIA certificate and understand why proportions matter.</p>
+    </div>
+
+    <div class="de-anatomy">
+      <div class="de-anatomy__diagram">
+        <svg viewBox="0 0 320 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Diamond outline -->
+          <path d="M160 36 L248 128 L260 196 L160 356 L60 196 L72 128 Z" stroke="#1a1a1a" stroke-width="1.5" stroke-linejoin="round"/>
+          <!-- Table top line -->
+          <line x1="100" y1="36" x2="220" y2="36" stroke="#1a1a1a" stroke-width="1.5"/>
+          <!-- Crown / girdle / pavilion lines -->
+          <line x1="60" y1="196" x2="260" y2="196" stroke="#95826b" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="72" y1="128" x2="248" y2="128" stroke="#95826b" stroke-width="1" stroke-dasharray="3,3"/>
+          <!-- Centerline -->
+          <line x1="160" y1="36" x2="160" y2="356" stroke="#ccc" stroke-width="0.75" stroke-dasharray="4,4"/>
+
+          <!-- Callout lines + labels (right side) -->
+          <!-- Table -->
+          <line x1="220" y1="36" x2="272" y2="22" stroke="#ccc" stroke-width="0.75"/>
+          <text x="276" y="25" font-size="12" fill="#888" font-family="var(--sans)">Table</text>
+          <!-- Crown -->
+          <line x1="248" y1="82" x2="272" y2="74" stroke="#ccc" stroke-width="0.75"/>
+          <text x="276" y="77" font-size="12" fill="#888" font-family="var(--sans)">Crown</text>
+          <!-- Girdle -->
+          <line x1="260" y1="196" x2="272" y2="196" stroke="#ccc" stroke-width="0.75"/>
+          <text x="276" y="199" font-size="12" fill="#888" font-family="var(--sans)">Girdle</text>
+          <!-- Pavilion -->
+          <line x1="240" y1="268" x2="272" y2="276" stroke="#ccc" stroke-width="0.75"/>
+          <text x="276" y="279" font-size="12" fill="#888" font-family="var(--sans)">Pavilion</text>
+          <!-- Culet -->
+          <line x1="163" y1="356" x2="272" y2="346" stroke="#ccc" stroke-width="0.75"/>
+          <text x="276" y="349" font-size="12" fill="#888" font-family="var(--sans)">Culet</text>
         </svg>
       </div>
 
-      <dl class="anatomy-list">
+      <dl class="de-anatomy__terms">
         {[
-          ['Table', 'The largest facet on the diamond\'s top surface. Light enters primarily through the table.'],
-          ['Crown', 'The upper portion of the diamond above the girdle. Facets in the crown direct light into the diamond.'],
-          ['Girdle', 'The widest part of the diamond, separating the crown and pavilion. Sets the diamond\'s outline.'],
-          ['Pavilion', 'The lower portion below the girdle. These facets reflect light back out through the crown.'],
-          ['Culet', 'The small facet (or point) at the bottom tip of the diamond. A small culet is preferred to prevent chipping.'],
+          ['Table', 'The large flat facet on the very top of the diamond. Light enters primarily through the table; its size as a percentage of total width is a key cut quality indicator.'],
+          ['Crown', 'The upper portion of the diamond between the table and the girdle. Crown facets bend incoming light to create the stone's fire and scintillation.'],
+          ['Girdle', 'The widest point of the diamond — the boundary between crown and pavilion. Sets the stone's diameter. Graded from extremely thin to extremely thick.'],
+          ['Pavilion', 'The lower portion below the girdle. Pavilion facets act as mirrors, reflecting light back up through the crown. Pavilion depth and angle are critical to brilliance.'],
+          ['Culet', 'The very bottom of the diamond. On modern stones, ideally a sharp point or a very small facet. A large culet was common in antique cuts and appears as a dark circle.'],
         ].map(([term, def]) => (
-          <div class="anatomy-term">
-            <dt>{term}</dt>
-            <dd>{def}</dd>
+          <div class="de-term">
+            <dt class="de-term__name">{term}</dt>
+            <dd class="de-term__def">{def}</dd>
           </div>
         ))}
       </dl>
     </div>
 
-    <h3>Key Measurements &amp; Angles</h3>
-    <ul>
-      <li><strong>Depth:</strong> The measurement from the table to the culet, expressed as a percentage of the diamond's width. Optimal depth is typically 58-62% for round brilliants.</li>
-      <li><strong>Table %:</strong> The width of the table facet compared to the overall width. Ideal range is 52-62% for round brilliant diamonds.</li>
-      <li><strong>Crown Angle:</strong> Typically 34-35° for optimal light performance in round brilliant diamonds.</li>
-      <li><strong>Pavilion Angle:</strong> Typically 40-41° for optimal light performance in round brilliant diamonds.</li>
-      <li><strong>Polish:</strong> The quality of the diamond's surface. Evaluated as Excellent, Very Good, Good, Fair, or Poor.</li>
-      <li><strong>Symmetry:</strong> How precisely the facets align. Also graded Excellent to Poor.</li>
-      <li><strong>Fluorescence:</strong> Some diamonds glow under ultraviolet light. Strong fluorescence may affect the diamond's color appearance.</li>
-    </ul>
+    <div class="de-measurements">
+      <h3 class="de-subheading">Key Proportions for Round Brilliants</h3>
+      <div class="de-measure-grid">
+        {[
+          ['Depth %', '58–62%', 'Total depth as percentage of diameter. Outside this range, light leaks or becomes trapped.'],
+          ['Table %', '52–62%', 'Table width as percentage of diameter. Affects balance between brilliance and fire.'],
+          ['Crown Angle', '34–35°', 'Angle of crown facets. Controls dispersion of light and fire intensity.'],
+          ['Pavilion Angle', '40–41°', 'Angle of pavilion facets. Determines the primary path of light reflection.'],
+        ].map(([param, ideal, note]) => (
+          <div class="de-measure-item">
+            <div class="de-measure-param">{param}</div>
+            <div class="de-measure-ideal">{ideal}</div>
+            <div class="de-measure-note">{note}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
 
-    <h3>Facets</h3>
-    <p>A round brilliant diamond typically has 58 facets: 1 table, 8 crown facets, 8 star facets, 16 girdle facets, 8 pavilion facets, and 8 lower girdle facets. Each facet is precisely angled to optimize light reflection and refraction, creating the diamond's sparkle and fire.</p>
-  </section>
-
-</div>
-
+<!-- CTA -->
 <section class="ba-cta--paper ba-cta">
   <span class="ba-cta__eyebrow">The Collection</span>
   <h2 class="ba-cta__title">Diamonds Chosen for Their Character of Light</h2>
-  <p class="ba-cta__body">Every stone in the collection is selected for what it does with light &mdash; not for its certificate alone. View the collection online, or by private appointment at the Los Angeles atelier.</p>
+  <p class="ba-cta__body">Every stone in the collection is selected for what it does with light — not for its certificate alone. View the collection online, or by private appointment at the Los Angeles atelier.</p>
   <a href="/collection" class="ba-cta__btn">Discover the Collection</a>
 </section>
 
+</Layout>
+
+<style is:global>
+/* ── DIAMOND EDUCATION — PAGE STYLES ─────────────────────────── */
+
+.de-hero {
+  padding: clamp(120px, 16vw, 200px) clamp(1.5rem, 6vw, 6rem) clamp(5rem, 8vw, 8rem);
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.de-hero__eyebrow {
+  display: block;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2rem;
+}
+.de-hero__title {
+  font-family: var(--prose);
+  font-size: clamp(40px, 7vw, 80px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.1;
+  margin-bottom: 2rem;
+}
+.de-hero__lede {
+  font-family: var(--prose);
+  font-size: clamp(16px, 1.8vw, 20px);
+  line-height: 1.7;
+  color: var(--ink-soft);
+  max-width: 52ch;
+  margin: 0 auto;
+}
+
+/* Section shell */
+.de-section {
+  padding: clamp(4rem, 8vw, 8rem) clamp(1.5rem, 6vw, 6rem);
+  border-top: 1px solid rgba(0,0,0,.07);
+}
+.de-section--paper { background: var(--paper); }
+.de-section__inner { max-width: var(--max-w, 1200px); margin: 0 auto; }
+.de-section-header { max-width: 640px; margin-bottom: clamp(3rem, 6vw, 5rem); }
+
+.de-eyebrow {
+  display: block;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+.de-heading {
+  font-family: var(--prose);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+.de-intro {
+  font-family: var(--prose);
+  font-size: clamp(15px, 1.5vw, 17px);
+  line-height: 1.75;
+  color: var(--ink-soft);
+}
+.de-subheading {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin: 2.5rem 0 1rem;
+}
+.de-prose p {
+  font-family: var(--prose);
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+  margin-bottom: 1.2rem;
+}
+.de-prose strong { color: var(--ink); font-weight: 500; }
+
+/* 4Cs grid */
+.de-four-cs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: rgba(0,0,0,.07);
+  border: 1px solid rgba(0,0,0,.07);
+}
+.de-c-card {
+  background: var(--white);
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 0;
+  padding: clamp(2rem, 4vw, 3.5rem) clamp(2rem, 4vw, 3.5rem);
+  align-items: start;
+}
+.de-section--paper .de-c-card { background: var(--paper); }
+.de-c-letter {
+  font-family: var(--prose);
+  font-size: clamp(60px, 7vw, 90px);
+  font-weight: 200;
+  font-style: italic;
+  color: var(--accent);
+  line-height: 0.9;
+  user-select: none;
+}
+.de-c-name {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+  margin-top: 0.25rem;
+}
+.de-c-desc {
+  font-family: var(--prose);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* Cut grade scale */
+.de-grade-scale { margin: 3rem 0; }
+.de-scale-label {
+  display: block;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 1.5rem;
+}
+.de-grade-rows { display: flex; flex-direction: column; gap: 0; }
+.de-grade-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 1fr;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+.de-grade-name {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.de-grade-bar-wrap { background: rgba(0,0,0,.06); height: 3px; }
+.de-grade-bar { height: 3px; background: var(--accent); transition: width 0.5s ease; }
+.de-grade-desc {
+  font-family: var(--prose);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-muted);
+}
+
+/* Pull quote */
+.de-pull-quote {
+  padding: clamp(4rem, 8vw, 7rem) 2rem;
+  background: var(--ink);
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.de-pull-quote__text {
+  font-family: var(--prose);
+  font-style: italic;
+  font-size: clamp(18px, 2.5vw, 28px);
+  line-height: 1.55;
+  color: var(--white);
+  max-width: 28ch;
+  margin: 0 auto 2rem;
+}
+.de-pull-quote__attr {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+}
+
+/* Color scale */
+.de-color-groups {
+  display: flex;
+  gap: 1px;
+  background: rgba(0,0,0,.07);
+  border: 1px solid rgba(0,0,0,.07);
+  margin: 0 0 3rem;
+}
+.de-color-group {
+  background: var(--white);
+  flex: 1;
+  padding: 2rem 1.5rem;
+}
+.de-color-swatches { display: flex; gap: 4px; margin-bottom: 1rem; flex-wrap: wrap; }
+.de-color-swatch {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  border: 1px solid rgba(0,0,0,.12);
+}
+.de-color-swatch--colorless { background: #fff; color: #1a1a1a; }
+.de-color-swatch--near { background: #fdfcf8; color: #1a1a1a; }
+.de-color-swatch--faint { background: #fbf7eb; color: #1a1a1a; }
+.de-color-swatch--vlight { background: #f7f0d0; color: #1a1a1a; }
+.de-color-swatch--light { background: #f0e4a8; color: #1a1a1a; }
+.de-color-group-label {
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+.de-color-group-note {
+  font-family: var(--prose); font-size: 13px; line-height: 1.55; color: var(--ink-muted);
+}
+
+/* Clarity scale */
+.de-clarity-scale { margin: 0 0 3rem; }
+.de-clarity-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  align-items: start;
+}
+.de-clarity-grade {
+  font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--accent); padding-top: 2px;
+}
+.de-clarity-name {
+  font-family: var(--sans); font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 4px;
+}
+.de-clarity-desc {
+  font-family: var(--prose); font-size: 14px; line-height: 1.6; color: var(--ink-muted);
+}
+
+/* Carat stats */
+.de-carat-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(0,0,0,.07);
+  border: 1px solid rgba(0,0,0,.07);
+  margin-bottom: 3rem;
+}
+.de-carat-stat {
+  background: var(--white);
+  padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem);
+}
+.de-carat-stat__weight {
+  font-family: var(--prose); font-size: clamp(32px, 4vw, 52px); font-weight: 200;
+  font-style: italic; color: var(--accent); line-height: 1; margin-bottom: 0.4rem;
+}
+.de-carat-stat__mm {
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); margin-bottom: 1rem;
+}
+.de-carat-stat__note {
+  font-family: var(--prose); font-size: 14px; line-height: 1.6; color: var(--ink-muted);
+}
+
+/* Shapes grid */
+.de-shapes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem);
+  margin-bottom: 3rem;
+}
+.de-shape { text-align: center; }
+.de-shape__visual {
+  width: 72px; height: 72px;
+  margin: 0 auto 1rem;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink);
+}
+.de-shape__visual svg { width: 72px; height: 72px; }
+.de-shape__name {
+  font-family: var(--sans); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.06em; color: var(--ink); margin-bottom: 0.35rem;
+}
+.de-shape__note {
+  font-family: var(--prose); font-size: 13px; line-height: 1.55; color: var(--ink-muted);
+}
+
+/* Anatomy */
+.de-anatomy {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+  margin-bottom: 3rem;
+}
+.de-anatomy__diagram svg { width: 100%; height: auto; }
+.de-anatomy__terms { list-style: none; margin: 0; padding: 0; }
+.de-term {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+.de-term__name {
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;
+}
+.de-term__def {
+  font-family: var(--prose); font-size: 15px; line-height: 1.7; color: var(--ink-soft); margin: 0;
+}
+
+/* Measurements grid */
+.de-measure-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: rgba(0,0,0,.07);
+  border: 1px solid rgba(0,0,0,.07);
+  margin-top: 2rem;
+}
+.de-measure-item {
+  background: var(--paper);
+  padding: 2rem;
+}
+.de-measure-param {
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 0.5rem;
+}
+.de-measure-ideal {
+  font-family: var(--prose); font-size: clamp(22px, 2.5vw, 30px); font-weight: 200;
+  font-style: italic; color: var(--accent); margin-bottom: 0.75rem; line-height: 1;
+}
+.de-measure-note {
+  font-family: var(--prose); font-size: 14px; line-height: 1.6; color: var(--ink-muted);
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────── */
+@media (max-width: 1000px) {
+  .de-anatomy { grid-template-columns: 1fr; }
+  .de-anatomy__diagram { max-width: 320px; margin: 0 auto; }
+}
+@media (max-width: 800px) {
+  .de-four-cs { grid-template-columns: 1fr; }
+  .de-carat-stats { grid-template-columns: repeat(2, 1fr); }
+  .de-color-groups { flex-direction: column; }
+}
+@media (max-width: 680px) {
+  .de-c-card { grid-template-columns: 60px 1fr; }
+  .de-c-letter { font-size: 50px; }
+  .de-grade-row { grid-template-columns: 90px 1fr; }
+  .de-grade-desc { display: none; }
+  .de-clarity-row { grid-template-columns: 90px 1fr; }
+  .de-measure-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 540px) {
+  .de-carat-stats { grid-template-columns: 1fr; }
+  .de-shapes-grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem 1rem; }
+}
+</style>
+
 <script>
   const tabs = document.querySelectorAll('.ba-tab');
-  const sections = document.querySelectorAll('.ba-prose-section');
+  const sections = document.querySelectorAll('.de-section, section[id]');
 
   tabs.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -318,7 +828,7 @@ import '../styles/templates/editorial.css';
   });
 
   function updateActiveTab() {
-    const scrollY = window.scrollY + 180;
+    const scrollY = window.scrollY + 200;
     sections.forEach((sec, i) => {
       if (scrollY >= sec.offsetTop && scrollY < sec.offsetTop + sec.offsetHeight) {
         tabs.forEach(t => t.classList.remove('active'));
@@ -328,5 +838,3 @@ import '../styles/templates/editorial.css';
   }
   window.addEventListener('scroll', updateActiveTab, { passive: true });
 </script>
-
-</Layout>
