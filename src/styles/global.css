@@ -825,6 +825,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
   font-family: var(--prose);
   font-size: 15px;
   font-style: italic;
+  text-transform: none;
   color: var(--ink-soft);
   margin: 0 0 4px;
   line-height: 1.5;
@@ -873,9 +874,10 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 .ba-footer__chevron { display: none; }
 .ba-footer__col a {
   display: block;
-  font-family: var(--prose);
+  font-family: var(--sans);
   font-size: 15px;
   font-weight: 400;
+  text-transform: none;
   color: var(--ink-soft);
   text-decoration: none;
   line-height: 2.0;
@@ -883,9 +885,10 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 }
 .ba-footer__col a:hover { color: var(--accent); }
 .ba-footer__address-block {
-  font-family: var(--prose);
+  font-family: var(--sans);
   font-size: 15px;
   font-style: normal;
+  text-transform: none;
   line-height: 1.8;
   color: var(--ink-soft);
   margin: 0 0 12px;
@@ -893,8 +896,9 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 }
 .ba-footer__contact-link {
   display: block;
-  font-family: var(--prose);
+  font-family: var(--sans);
   font-size: 15px;
+  text-transform: none;
   color: var(--ink-soft);
   text-decoration: none;
   line-height: 2.0;
