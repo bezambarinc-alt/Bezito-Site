@@ -926,7 +926,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
   gap: 16px;
 }
 .ba-footer__copy {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 12px;
   color: var(--ink-muted);
   margin: 0;
@@ -940,7 +940,7 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
   justify-content: center;
 }
 .ba-footer__legal a {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 12px;
   color: var(--ink-muted);
   text-decoration: none;
