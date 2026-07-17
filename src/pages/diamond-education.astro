@@ -43,7 +43,7 @@ import '../styles/templates/editorial.css';
         <div class="de-c-letter">C</div>
         <div class="de-c-body">
           <h3 class="de-c-name">Cut</h3>
-          <p class="de-c-desc">How precisely the diamond is faceted. Determines how light enters, reflects, and exits. The most important of the four characteristics — a poor cut will dull even the finest stone.</p>
+          <p class="de-c-desc">How precisely the diamond is faceted. Determines how light enters, reflects, and exits. The most important of the four — a poor cut will dull even the finest stone.</p>
         </div>
       </div>
       <div class="de-c-card">
@@ -57,7 +57,7 @@ import '../styles/templates/editorial.css';
         <div class="de-c-letter">C</div>
         <div class="de-c-body">
           <h3 class="de-c-name">Clarity</h3>
-          <p class="de-c-desc">The absence of internal inclusions and surface blemishes. Most are microscopic and invisible without magnification. "Eye-clean" stones at VS2 or SI1 are excellent value.</p>
+          <p class="de-c-desc">The absence of internal inclusions and surface blemishes. Most are microscopic and invisible without magnification. Eye-clean stones at VS2 or SI1 are excellent value.</p>
         </div>
       </div>
       <div class="de-c-card">
@@ -88,21 +88,31 @@ import '../styles/templates/editorial.css';
     <div class="de-grade-scale">
       <span class="de-scale-label">GIA Cut Grade Scale</span>
       <div class="de-grade-rows">
-        {[
-          ['Excellent', 'Maximum light reflection. Optimal proportions and polish. The standard we recommend.', 5],
-          ['Very Good', 'Excellent light performance with minor proportional variations. Strong value.', 4],
-          ['Good', 'Good light return but with more notable proportional differences.', 3],
-          ['Fair', 'Moderate light return. Significant proportional compromise.', 2],
-          ['Poor', 'Minimal light reflection. Avoid unless budget is the only consideration.', 1],
-        ].map(([grade, desc, weight]) => (
-          <div class="de-grade-row">
-            <div class="de-grade-name">{grade}</div>
-            <div class="de-grade-bar-wrap">
-              <div class="de-grade-bar" style={`width: ${weight * 20}%`}></div>
-            </div>
-            <div class="de-grade-desc">{desc}</div>
-          </div>
-        ))}
+        <div class="de-grade-row">
+          <div class="de-grade-name">Excellent</div>
+          <div class="de-grade-bar-wrap"><div class="de-grade-bar" style="width:100%"></div></div>
+          <div class="de-grade-desc">Maximum light reflection. Optimal proportions and polish. The standard we recommend.</div>
+        </div>
+        <div class="de-grade-row">
+          <div class="de-grade-name">Very Good</div>
+          <div class="de-grade-bar-wrap"><div class="de-grade-bar" style="width:80%"></div></div>
+          <div class="de-grade-desc">Excellent light performance with minor proportional variations. Strong value.</div>
+        </div>
+        <div class="de-grade-row">
+          <div class="de-grade-name">Good</div>
+          <div class="de-grade-bar-wrap"><div class="de-grade-bar" style="width:60%"></div></div>
+          <div class="de-grade-desc">Good light return but with more notable proportional differences.</div>
+        </div>
+        <div class="de-grade-row">
+          <div class="de-grade-name">Fair</div>
+          <div class="de-grade-bar-wrap"><div class="de-grade-bar" style="width:40%"></div></div>
+          <div class="de-grade-desc">Moderate light return. Significant proportional compromise.</div>
+        </div>
+        <div class="de-grade-row">
+          <div class="de-grade-name">Poor</div>
+          <div class="de-grade-bar-wrap"><div class="de-grade-bar" style="width:20%"></div></div>
+          <div class="de-grade-desc">Minimal light reflection. Avoid unless budget is the only consideration.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -110,8 +120,8 @@ import '../styles/templates/editorial.css';
 
 <!-- Cut pull quote -->
 <div class="de-pull-quote">
-  <p class="de-pull-quote__text">"A well-cut diamond of modest color and clarity will outshine a poorly cut stone with a superior certificate."</p>
-  <span class="de-pull-quote__attr">Bez Ambar — Los Angeles Atelier</span>
+  <p class="de-pull-quote__text">&ldquo;A well-cut diamond of modest color and clarity will outshine a poorly cut stone with a superior certificate.&rdquo;</p>
+  <span class="de-pull-quote__attr">Bez Ambar &mdash; Los Angeles Atelier</span>
 </div>
 
 <!-- Color -->
@@ -123,50 +133,55 @@ import '../styles/templates/editorial.css';
       <p class="de-intro">In white diamonds, value increases with the absence of color. The GIA scale runs from D — perfectly colorless — to Z, where a faint yellow is visible to the naked eye. The difference between adjacent grades is subtle; the difference between D and J is not.</p>
     </div>
 
-    <div class="de-color-scale">
-      <div class="de-color-groups">
-        <div class="de-color-group">
-          <div class="de-color-swatches">
-            {['D','E','F'].map(g => <div class="de-color-swatch de-color-swatch--colorless"><span>{g}</span></div>)}
-          </div>
-          <div class="de-color-group-label">Colorless</div>
-          <div class="de-color-group-note">Rarest. No color detectable under any conditions.</div>
+    <div class="de-color-groups">
+      <div class="de-color-group">
+        <div class="de-color-swatches">
+          <div class="de-color-swatch de-color-swatch--colorless"><span>D</span></div>
+          <div class="de-color-swatch de-color-swatch--colorless"><span>E</span></div>
+          <div class="de-color-swatch de-color-swatch--colorless"><span>F</span></div>
         </div>
-        <div class="de-color-group">
-          <div class="de-color-swatches">
-            {['G','H','I','J'].map(g => <div class="de-color-swatch de-color-swatch--near"><span>{g}</span></div>)}
-          </div>
-          <div class="de-color-group-label">Near Colorless</div>
-          <div class="de-color-group-note">Color not visible to the naked eye. Excellent value range.</div>
+        <div class="de-color-group-label">Colorless</div>
+        <div class="de-color-group-note">Rarest. No color detectable under any conditions.</div>
+      </div>
+      <div class="de-color-group">
+        <div class="de-color-swatches">
+          <div class="de-color-swatch de-color-swatch--near"><span>G</span></div>
+          <div class="de-color-swatch de-color-swatch--near"><span>H</span></div>
+          <div class="de-color-swatch de-color-swatch--near"><span>I</span></div>
+          <div class="de-color-swatch de-color-swatch--near"><span>J</span></div>
         </div>
-        <div class="de-color-group">
-          <div class="de-color-swatches">
-            {['K','L','M'].map(g => <div class="de-color-swatch de-color-swatch--faint"><span>{g}</span></div>)}
-          </div>
-          <div class="de-color-group-label">Faint</div>
-          <div class="de-color-group-note">Slight warmth detectable by a trained eye.</div>
+        <div class="de-color-group-label">Near Colorless</div>
+        <div class="de-color-group-note">Color not visible to the naked eye. Excellent value range.</div>
+      </div>
+      <div class="de-color-group">
+        <div class="de-color-swatches">
+          <div class="de-color-swatch de-color-swatch--faint"><span>K</span></div>
+          <div class="de-color-swatch de-color-swatch--faint"><span>L</span></div>
+          <div class="de-color-swatch de-color-swatch--faint"><span>M</span></div>
         </div>
-        <div class="de-color-group">
-          <div class="de-color-swatches">
-            {['N–R'].map(g => <div class="de-color-swatch de-color-swatch--vlight"><span>{g}</span></div>)}
-          </div>
-          <div class="de-color-group-label">Very Light</div>
-          <div class="de-color-group-note">Color visible to the naked eye.</div>
+        <div class="de-color-group-label">Faint</div>
+        <div class="de-color-group-note">Slight warmth detectable by a trained eye.</div>
+      </div>
+      <div class="de-color-group">
+        <div class="de-color-swatches">
+          <div class="de-color-swatch de-color-swatch--vlight"><span>N&ndash;R</span></div>
         </div>
-        <div class="de-color-group">
-          <div class="de-color-swatches">
-            {['S–Z'].map(g => <div class="de-color-swatch de-color-swatch--light"><span>{g}</span></div>)}
-          </div>
-          <div class="de-color-group-label">Light</div>
-          <div class="de-color-group-note">Noticeable color. Significantly more affordable.</div>
+        <div class="de-color-group-label">Very Light</div>
+        <div class="de-color-group-note">Color visible to the naked eye.</div>
+      </div>
+      <div class="de-color-group">
+        <div class="de-color-swatches">
+          <div class="de-color-swatch de-color-swatch--light"><span>S&ndash;Z</span></div>
         </div>
+        <div class="de-color-group-label">Light</div>
+        <div class="de-color-group-note">Noticeable color. Significantly more affordable.</div>
       </div>
     </div>
 
     <div class="de-prose">
       <h3 class="de-subheading">Fancy Colored Diamonds</h3>
-      <p>Beyond the standard scale, diamonds can display intense yellows, pinks, blues, and greens. These <em>fancy colored</em> diamonds are graded separately and prized for the strength and purity of their hue — the opposite of the standard white diamond scale.</p>
-      <p><strong>Our recommendation:</strong> For white diamonds, the G–J range offers exceptional beauty without color visible to the naked eye, at a significant price advantage over D–F.</p>
+      <p>Beyond the standard scale, diamonds can display intense yellows, pinks, blues, and greens. These <em>fancy colored</em> diamonds are graded separately and prized for the strength and purity of their hue — the opposite logic of the standard white diamond scale.</p>
+      <p><strong>Our recommendation:</strong> For white diamonds, the G&ndash;J range offers exceptional beauty without color visible to the naked eye, at a significant price advantage over D&ndash;F.</p>
     </div>
   </div>
 </section>
@@ -181,28 +196,54 @@ import '../styles/templates/editorial.css';
     </div>
 
     <div class="de-clarity-scale">
-      {[
-        ['FL', 'Flawless', 'No inclusions or blemishes under 10× magnification. Exceedingly rare.'],
-        ['IF', 'Internally Flawless', 'No internal inclusions. Minor surface features only. Very rare.'],
-        ['VVS1–VVS2', 'Very Very Slightly Included', 'Minute inclusions barely detectable under magnification by a skilled grader.'],
-        ['VS1–VS2', 'Very Slightly Included', 'Minor inclusions visible under magnification. Virtually always eye-clean.'],
-        ['SI1–SI2', 'Slightly Included', 'Inclusions visible under magnification. SI1 is usually eye-clean; SI2 sometimes is.'],
-        ['I1–I3', 'Included', 'Inclusions visible to the naked eye. May affect brilliance and durability.'],
-      ].map(([grade, name, desc]) => (
-        <div class="de-clarity-row">
-          <div class="de-clarity-grade">{grade}</div>
-          <div class="de-clarity-right">
-            <div class="de-clarity-name">{name}</div>
-            <div class="de-clarity-desc">{desc}</div>
-          </div>
+      <div class="de-clarity-row">
+        <div class="de-clarity-grade">FL</div>
+        <div class="de-clarity-right">
+          <div class="de-clarity-name">Flawless</div>
+          <div class="de-clarity-desc">No inclusions or blemishes under 10&times; magnification. Exceedingly rare.</div>
         </div>
-      ))}
+      </div>
+      <div class="de-clarity-row">
+        <div class="de-clarity-grade">IF</div>
+        <div class="de-clarity-right">
+          <div class="de-clarity-name">Internally Flawless</div>
+          <div class="de-clarity-desc">No internal inclusions. Minor surface features only. Very rare.</div>
+        </div>
+      </div>
+      <div class="de-clarity-row">
+        <div class="de-clarity-grade">VVS1&ndash;2</div>
+        <div class="de-clarity-right">
+          <div class="de-clarity-name">Very Very Slightly Included</div>
+          <div class="de-clarity-desc">Minute inclusions barely detectable under magnification by a skilled grader.</div>
+        </div>
+      </div>
+      <div class="de-clarity-row">
+        <div class="de-clarity-grade">VS1&ndash;2</div>
+        <div class="de-clarity-right">
+          <div class="de-clarity-name">Very Slightly Included</div>
+          <div class="de-clarity-desc">Minor inclusions visible under magnification. Virtually always eye-clean.</div>
+        </div>
+      </div>
+      <div class="de-clarity-row">
+        <div class="de-clarity-grade">SI1&ndash;2</div>
+        <div class="de-clarity-right">
+          <div class="de-clarity-name">Slightly Included</div>
+          <div class="de-clarity-desc">Inclusions visible under magnification. SI1 is usually eye-clean; SI2 sometimes is.</div>
+        </div>
+      </div>
+      <div class="de-clarity-row">
+        <div class="de-clarity-grade">I1&ndash;3</div>
+        <div class="de-clarity-right">
+          <div class="de-clarity-name">Included</div>
+          <div class="de-clarity-desc">Inclusions visible to the naked eye. May affect brilliance and durability.</div>
+        </div>
+      </div>
     </div>
 
     <div class="de-prose">
       <h3 class="de-subheading">Common Inclusion Types</h3>
       <p><strong>Crystals</strong> — tiny mineral crystals trapped during formation. <strong>Feathers</strong> — internal fractures. <strong>Clouds</strong> — clusters of minute particles creating a hazy zone. <strong>Needles</strong> — thin, rod-like inclusions. <strong>Pinpoints</strong> — very small crystals, often appearing as dots.</p>
-      <p><strong>Our recommendation:</strong> VS2 or SI1 for best value — the vast majority of stones in these grades are eye-clean and the price premium for FL or IF rarely translates into visible difference.</p>
+      <p><strong>Our recommendation:</strong> VS2 or SI1 for best value — the vast majority of stones in these grades are eye-clean, and the premium for FL or IF rarely translates into visible difference.</p>
     </div>
   </div>
 </section>
@@ -217,25 +258,33 @@ import '../styles/templates/editorial.css';
     </div>
 
     <div class="de-carat-stats">
-      {[
-        ['0.5 ct', '~5.2 mm', 'Half carat. Popular for accent stones and petite engagement rings.'],
-        ['1.0 ct', '~6.5 mm', 'The benchmark carat weight. Strong demand means premium pricing at this threshold.'],
-        ['1.5 ct', '~7.4 mm', 'A noticeable step up. Typically costs more than double a comparable 1.0 ct stone.'],
-        ['2.0 ct', '~8.2 mm', 'Substantial presence. Rare at high quality; price escalates sharply.'],
-      ].map(([ct, mm, note]) => (
-        <div class="de-carat-stat">
-          <div class="de-carat-stat__weight">{ct}</div>
-          <div class="de-carat-stat__mm">{mm} diameter</div>
-          <div class="de-carat-stat__note">{note}</div>
-        </div>
-      ))}
+      <div class="de-carat-stat">
+        <div class="de-carat-stat__weight">0.5 ct</div>
+        <div class="de-carat-stat__mm">~5.2 mm diameter</div>
+        <div class="de-carat-stat__note">Half carat. Popular for accent stones and petite engagement rings.</div>
+      </div>
+      <div class="de-carat-stat">
+        <div class="de-carat-stat__weight">1.0 ct</div>
+        <div class="de-carat-stat__mm">~6.5 mm diameter</div>
+        <div class="de-carat-stat__note">The benchmark carat weight. Strong demand means premium pricing at this threshold.</div>
+      </div>
+      <div class="de-carat-stat">
+        <div class="de-carat-stat__weight">1.5 ct</div>
+        <div class="de-carat-stat__mm">~7.4 mm diameter</div>
+        <div class="de-carat-stat__note">A noticeable step up. Typically costs more than double a comparable 1.0 ct stone.</div>
+      </div>
+      <div class="de-carat-stat">
+        <div class="de-carat-stat__weight">2.0 ct</div>
+        <div class="de-carat-stat__mm">~8.2 mm diameter</div>
+        <div class="de-carat-stat__note">Substantial presence. Rare at high quality; price escalates sharply.</div>
+      </div>
     </div>
 
     <div class="de-prose">
       <h3 class="de-subheading">The Exponential Price Relationship</h3>
-      <p>Price does not scale linearly with weight. Larger stones are exponentially rarer, so a 2-carat diamond of comparable quality costs three to four times the price of a 1-carat. This is why a well-cut 1.2-carat at VS1 may be a wiser and more beautiful choice than a 1.5-carat at SI2 for the same budget.</p>
+      <p>Price does not scale linearly with weight. Larger stones are exponentially rarer, so a 2-carat diamond of comparable quality costs three to four times the price of a 1-carat. A well-cut 1.2-carat at VS1 may be a wiser and more beautiful choice than a 1.5-carat at SI2 for the same budget.</p>
       <h3 class="de-subheading">Just Below Key Weights</h3>
-      <p>A diamond weighing 0.98 carats will appear nearly identical to a 1.0 carat stone — and may cost 20–30% less. The same logic applies at 1.48 vs 1.5, and 1.98 vs 2.0. These are among the practical strategies our clients use to maximize stone quality within budget.</p>
+      <p>A diamond weighing 0.98 carats will appear nearly identical to a 1.0 carat stone — and may cost 20&ndash;30% less. The same logic applies at 1.48 vs 1.5, and 1.98 vs 2.0. These are among the practical strategies our clients use to maximize stone quality within budget.</p>
     </div>
   </div>
 </section>
@@ -306,17 +355,16 @@ import '../styles/templates/editorial.css';
           </svg>
         </div>
         <div class="de-shape__name">Pear</div>
-        <div class="de-shape__note">Brilliant-cut teardrop. Point worn toward knuckle. Feminine and distinctive.</div>
+        <div class="de-shape__note">Brilliant-cut teardrop. Feminine and distinctive.</div>
       </div>
       <div class="de-shape">
         <div class="de-shape__visual">
           <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
             <path d="M50 18 L82 50 L50 82 L18 50 Z"/>
-            <line x1="50" y1="18" x2="50" y2="82" stroke-width="0.5" stroke-dasharray="2,3"/>
           </svg>
         </div>
         <div class="de-shape__name">Marquise</div>
-        <div class="de-shape__note">Elongated boat shape. Maximizes carat weight face-up. Bold and striking.</div>
+        <div class="de-shape__note">Elongated boat shape. Maximizes carat face-up. Bold and striking.</div>
       </div>
       <div class="de-shape">
         <div class="de-shape__visual">
@@ -325,7 +373,7 @@ import '../styles/templates/editorial.css';
           </svg>
         </div>
         <div class="de-shape__name">Asscher</div>
-        <div class="de-shape__note">Step-cut square. Art Deco in origin. Deep, geometric facets.</div>
+        <div class="de-shape__note">Step-cut square. Art Deco origin. Deep, geometric facets.</div>
       </div>
       <div class="de-shape">
         <div class="de-shape__visual">
@@ -342,7 +390,7 @@ import '../styles/templates/editorial.css';
             <path d="M50 15 L72 35 L75 50 L50 82 L25 50 L28 35 Z"/>
           </svg>
         </div>
-        <div class="de-shape__name">Blaze®</div>
+        <div class="de-shape__name">Blaze&reg;</div>
         <div class="de-shape__note">Bez Ambar proprietary. Patented faceting for maximum light dispersion.</div>
       </div>
       <div class="de-shape">
@@ -352,7 +400,7 @@ import '../styles/templates/editorial.css';
           </svg>
         </div>
         <div class="de-shape__name">Heart</div>
-        <div class="de-shape__note">Brilliant-cut. A romantic choice requiring skilled symmetry to look balanced.</div>
+        <div class="de-shape__note">Brilliant-cut. Romantic. Requires skilled symmetry to look balanced.</div>
       </div>
     </div>
 
@@ -375,66 +423,71 @@ import '../styles/templates/editorial.css';
     <div class="de-anatomy">
       <div class="de-anatomy__diagram">
         <svg viewBox="0 0 320 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Diamond outline -->
           <path d="M160 36 L248 128 L260 196 L160 356 L60 196 L72 128 Z" stroke="#1a1a1a" stroke-width="1.5" stroke-linejoin="round"/>
-          <!-- Table top line -->
           <line x1="100" y1="36" x2="220" y2="36" stroke="#1a1a1a" stroke-width="1.5"/>
-          <!-- Crown / girdle / pavilion lines -->
           <line x1="60" y1="196" x2="260" y2="196" stroke="#95826b" stroke-width="1" stroke-dasharray="3,3"/>
           <line x1="72" y1="128" x2="248" y2="128" stroke="#95826b" stroke-width="1" stroke-dasharray="3,3"/>
-          <!-- Centerline -->
           <line x1="160" y1="36" x2="160" y2="356" stroke="#ccc" stroke-width="0.75" stroke-dasharray="4,4"/>
-
-          <!-- Callout lines + labels (right side) -->
-          <!-- Table -->
           <line x1="220" y1="36" x2="272" y2="22" stroke="#ccc" stroke-width="0.75"/>
           <text x="276" y="25" font-size="12" fill="#888" font-family="var(--sans)">Table</text>
-          <!-- Crown -->
           <line x1="248" y1="82" x2="272" y2="74" stroke="#ccc" stroke-width="0.75"/>
           <text x="276" y="77" font-size="12" fill="#888" font-family="var(--sans)">Crown</text>
-          <!-- Girdle -->
           <line x1="260" y1="196" x2="272" y2="196" stroke="#ccc" stroke-width="0.75"/>
           <text x="276" y="199" font-size="12" fill="#888" font-family="var(--sans)">Girdle</text>
-          <!-- Pavilion -->
           <line x1="240" y1="268" x2="272" y2="276" stroke="#ccc" stroke-width="0.75"/>
           <text x="276" y="279" font-size="12" fill="#888" font-family="var(--sans)">Pavilion</text>
-          <!-- Culet -->
           <line x1="163" y1="356" x2="272" y2="346" stroke="#ccc" stroke-width="0.75"/>
           <text x="276" y="349" font-size="12" fill="#888" font-family="var(--sans)">Culet</text>
         </svg>
       </div>
 
       <dl class="de-anatomy__terms">
-        {[
-          ['Table', 'The large flat facet on the very top of the diamond. Light enters primarily through the table; its size as a percentage of total width is a key cut quality indicator.'],
-          ['Crown', 'The upper portion of the diamond between the table and the girdle. Crown facets bend incoming light to create the stone's fire and scintillation.'],
-          ['Girdle', 'The widest point of the diamond — the boundary between crown and pavilion. Sets the stone's diameter. Graded from extremely thin to extremely thick.'],
-          ['Pavilion', 'The lower portion below the girdle. Pavilion facets act as mirrors, reflecting light back up through the crown. Pavilion depth and angle are critical to brilliance.'],
-          ['Culet', 'The very bottom of the diamond. On modern stones, ideally a sharp point or a very small facet. A large culet was common in antique cuts and appears as a dark circle.'],
-        ].map(([term, def]) => (
-          <div class="de-term">
-            <dt class="de-term__name">{term}</dt>
-            <dd class="de-term__def">{def}</dd>
-          </div>
-        ))}
+        <div class="de-term">
+          <dt class="de-term__name">Table</dt>
+          <dd class="de-term__def">The large flat facet on the very top of the diamond. Light enters primarily through the table; its size as a percentage of total width is a key cut quality indicator.</dd>
+        </div>
+        <div class="de-term">
+          <dt class="de-term__name">Crown</dt>
+          <dd class="de-term__def">The upper portion between the table and the girdle. Crown facets bend incoming light to create the stone's fire and scintillation.</dd>
+        </div>
+        <div class="de-term">
+          <dt class="de-term__name">Girdle</dt>
+          <dd class="de-term__def">The widest point of the diamond — the boundary between crown and pavilion. Sets the stone's diameter. Graded from extremely thin to extremely thick.</dd>
+        </div>
+        <div class="de-term">
+          <dt class="de-term__name">Pavilion</dt>
+          <dd class="de-term__def">The lower portion below the girdle. Pavilion facets act as mirrors, reflecting light back up through the crown. Pavilion depth and angle are critical to brilliance.</dd>
+        </div>
+        <div class="de-term">
+          <dt class="de-term__name">Culet</dt>
+          <dd class="de-term__def">The very bottom of the diamond. On modern stones, ideally a sharp point or a very small facet. A large culet was common in antique cuts and appears as a dark circle when viewed face-up.</dd>
+        </div>
       </dl>
     </div>
 
     <div class="de-measurements">
       <h3 class="de-subheading">Key Proportions for Round Brilliants</h3>
       <div class="de-measure-grid">
-        {[
-          ['Depth %', '58–62%', 'Total depth as percentage of diameter. Outside this range, light leaks or becomes trapped.'],
-          ['Table %', '52–62%', 'Table width as percentage of diameter. Affects balance between brilliance and fire.'],
-          ['Crown Angle', '34–35°', 'Angle of crown facets. Controls dispersion of light and fire intensity.'],
-          ['Pavilion Angle', '40–41°', 'Angle of pavilion facets. Determines the primary path of light reflection.'],
-        ].map(([param, ideal, note]) => (
-          <div class="de-measure-item">
-            <div class="de-measure-param">{param}</div>
-            <div class="de-measure-ideal">{ideal}</div>
-            <div class="de-measure-note">{note}</div>
-          </div>
-        ))}
+        <div class="de-measure-item">
+          <div class="de-measure-param">Depth %</div>
+          <div class="de-measure-ideal">58&ndash;62%</div>
+          <div class="de-measure-note">Total depth as percentage of diameter. Outside this range, light leaks or becomes trapped.</div>
+        </div>
+        <div class="de-measure-item">
+          <div class="de-measure-param">Table %</div>
+          <div class="de-measure-ideal">52&ndash;62%</div>
+          <div class="de-measure-note">Table width as percentage of diameter. Affects balance between brilliance and fire.</div>
+        </div>
+        <div class="de-measure-item">
+          <div class="de-measure-param">Crown Angle</div>
+          <div class="de-measure-ideal">34&ndash;35&deg;</div>
+          <div class="de-measure-note">Angle of crown facets. Controls dispersion of light and fire intensity.</div>
+        </div>
+        <div class="de-measure-item">
+          <div class="de-measure-param">Pavilion Angle</div>
+          <div class="de-measure-ideal">40&ndash;41&deg;</div>
+          <div class="de-measure-note">Angle of pavilion facets. Determines the primary path of light reflection.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -444,14 +497,14 @@ import '../styles/templates/editorial.css';
 <section class="ba-cta--paper ba-cta">
   <span class="ba-cta__eyebrow">The Collection</span>
   <h2 class="ba-cta__title">Diamonds Chosen for Their Character of Light</h2>
-  <p class="ba-cta__body">Every stone in the collection is selected for what it does with light — not for its certificate alone. View the collection online, or by private appointment at the Los Angeles atelier.</p>
+  <p class="ba-cta__body">Every stone in the collection is selected for what it does with light &mdash; not for its certificate alone. View the collection online, or by private appointment at the Los Angeles atelier.</p>
   <a href="/collection" class="ba-cta__btn">Discover the Collection</a>
 </section>
 
 </Layout>
 
 <style is:global>
-/* ── DIAMOND EDUCATION — PAGE STYLES ─────────────────────────── */
+/* ── DIAMOND EDUCATION ────────────────────────────────────────── */
 
 .de-hero {
   padding: clamp(120px, 16vw, 200px) clamp(1.5rem, 6vw, 6rem) clamp(5rem, 8vw, 8rem);
@@ -487,7 +540,6 @@ import '../styles/templates/editorial.css';
   margin: 0 auto;
 }
 
-/* Section shell */
 .de-section {
   padding: clamp(4rem, 8vw, 8rem) clamp(1.5rem, 6vw, 6rem);
   border-top: 1px solid rgba(0,0,0,.07);
@@ -550,8 +602,7 @@ import '../styles/templates/editorial.css';
   background: var(--white);
   display: grid;
   grid-template-columns: 80px 1fr;
-  gap: 0;
-  padding: clamp(2rem, 4vw, 3.5rem) clamp(2rem, 4vw, 3.5rem);
+  padding: clamp(2rem, 4vw, 3.5rem);
   align-items: start;
 }
 .de-section--paper .de-c-card { background: var(--paper); }
@@ -594,7 +645,7 @@ import '../styles/templates/editorial.css';
   color: var(--ink-muted);
   margin-bottom: 1.5rem;
 }
-.de-grade-rows { display: flex; flex-direction: column; gap: 0; }
+.de-grade-rows { display: flex; flex-direction: column; }
 .de-grade-row {
   display: grid;
   grid-template-columns: 110px 1fr 1fr;
@@ -610,7 +661,7 @@ import '../styles/templates/editorial.css';
   color: var(--ink);
 }
 .de-grade-bar-wrap { background: rgba(0,0,0,.06); height: 3px; }
-.de-grade-bar { height: 3px; background: var(--accent); transition: width 0.5s ease; }
+.de-grade-bar { height: 3px; background: var(--accent); }
 .de-grade-desc {
   font-family: var(--prose);
   font-size: 14px;
@@ -623,7 +674,6 @@ import '../styles/templates/editorial.css';
   padding: clamp(4rem, 8vw, 7rem) 2rem;
   background: var(--ink);
   text-align: center;
-  border-top: 1px solid rgba(255,255,255,.06);
 }
 .de-pull-quote__text {
   font-family: var(--prose);
@@ -666,12 +716,11 @@ import '../styles/templates/editorial.css';
 .de-color-swatch--colorless { background: #fff; color: #1a1a1a; }
 .de-color-swatch--near { background: #fdfcf8; color: #1a1a1a; }
 .de-color-swatch--faint { background: #fbf7eb; color: #1a1a1a; }
-.de-color-swatch--vlight { background: #f7f0d0; color: #1a1a1a; }
-.de-color-swatch--light { background: #f0e4a8; color: #1a1a1a; }
+.de-color-swatch--vlight { background: #f7f0d0; color: #1a1a1a; width: auto; padding: 0 8px; }
+.de-color-swatch--light { background: #f0e4a8; color: #1a1a1a; width: auto; padding: 0 8px; }
 .de-color-group-label {
   font-family: var(--sans); font-size: 11px; font-weight: 600;
-  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink);
-  margin-bottom: 0.5rem;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); margin-bottom: 0.5rem;
 }
 .de-color-group-note {
   font-family: var(--prose); font-size: 13px; line-height: 1.55; color: var(--ink-muted);
@@ -681,7 +730,7 @@ import '../styles/templates/editorial.css';
 .de-clarity-scale { margin: 0 0 3rem; }
 .de-clarity-row {
   display: grid;
-  grid-template-columns: 110px 1fr;
+  grid-template-columns: 90px 1fr;
   gap: 1.5rem;
   padding: 1.25rem 0;
   border-bottom: 1px solid rgba(0,0,0,.06);
@@ -755,10 +804,7 @@ import '../styles/templates/editorial.css';
 }
 .de-anatomy__diagram svg { width: 100%; height: auto; }
 .de-anatomy__terms { list-style: none; margin: 0; padding: 0; }
-.de-term {
-  padding: 1.25rem 0;
-  border-bottom: 1px solid rgba(0,0,0,.06);
-}
+.de-term { padding: 1.25rem 0; border-bottom: 1px solid rgba(0,0,0,.06); }
 .de-term__name {
   font-family: var(--sans); font-size: 11px; font-weight: 600;
   letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;
@@ -767,7 +813,7 @@ import '../styles/templates/editorial.css';
   font-family: var(--prose); font-size: 15px; line-height: 1.7; color: var(--ink-soft); margin: 0;
 }
 
-/* Measurements grid */
+/* Measurements */
 .de-measure-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -776,10 +822,7 @@ import '../styles/templates/editorial.css';
   border: 1px solid rgba(0,0,0,.07);
   margin-top: 2rem;
 }
-.de-measure-item {
-  background: var(--paper);
-  padding: 2rem;
-}
+.de-measure-item { background: var(--paper); padding: 2rem; }
 .de-measure-param {
   font-family: var(--sans); font-size: 11px; font-weight: 600;
   letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 0.5rem;
@@ -792,7 +835,7 @@ import '../styles/templates/editorial.css';
   font-family: var(--prose); font-size: 14px; line-height: 1.6; color: var(--ink-muted);
 }
 
-/* ── RESPONSIVE ──────────────────────────────────────────────── */
+/* Responsive */
 @media (max-width: 1000px) {
   .de-anatomy { grid-template-columns: 1fr; }
   .de-anatomy__diagram { max-width: 320px; margin: 0 auto; }
@@ -807,7 +850,6 @@ import '../styles/templates/editorial.css';
   .de-c-letter { font-size: 50px; }
   .de-grade-row { grid-template-columns: 90px 1fr; }
   .de-grade-desc { display: none; }
-  .de-clarity-row { grid-template-columns: 90px 1fr; }
   .de-measure-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 540px) {
@@ -817,21 +859,21 @@ import '../styles/templates/editorial.css';
 </style>
 
 <script>
-  const tabs = document.querySelectorAll('.ba-tab');
-  const sections = document.querySelectorAll('.de-section, section[id]');
+  var tabs = document.querySelectorAll('.ba-tab');
+  var sections = document.querySelectorAll('.de-section');
 
-  tabs.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = document.getElementById(btn.dataset.section);
+  tabs.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var target = document.getElementById(btn.dataset.section);
       if (target) target.scrollIntoView({ behavior: 'smooth' });
     });
   });
 
   function updateActiveTab() {
-    const scrollY = window.scrollY + 200;
-    sections.forEach((sec, i) => {
+    var scrollY = window.scrollY + 200;
+    sections.forEach(function(sec, i) {
       if (scrollY >= sec.offsetTop && scrollY < sec.offsetTop + sec.offsetHeight) {
-        tabs.forEach(t => t.classList.remove('active'));
+        tabs.forEach(function(t) { t.classList.remove('active'); });
         if (tabs[i]) tabs[i].classList.add('active');
       }
     });
