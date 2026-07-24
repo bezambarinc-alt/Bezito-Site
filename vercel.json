@@ -102,12 +102,12 @@
     },
     {
       "source": "/bez-ambar-jewelry-design-videos-2",
-      "destination": "/video-gallery",
+      "destination": "/journal",
       "permanent": true
     },
     {
       "source": "/bez-ambar-jewelry-design-videos-2/",
-      "destination": "/video-gallery",
+      "destination": "/journal",
       "permanent": true
     },
     {
@@ -562,12 +562,12 @@
     },
     {
       "source": "/ruby-engagement-rings-custom-red-rubies-diamonds",
-      "destination": "/blog/ruby-engagement-rings-custom-red-rubies-diamonds",
+      "destination": "/blog",
       "permanent": true
     },
     {
       "source": "/ruby-engagement-rings-custom-red-rubies-diamonds/",
-      "destination": "/blog/ruby-engagement-rings-custom-red-rubies-diamonds",
+      "destination": "/blog",
       "permanent": true
     },
     {
@@ -582,12 +582,12 @@
     },
     {
       "source": "/wedding-bands-for-women-eternity-rings",
-      "destination": "/blog/wedding-bands-for-women-eternity-rings",
+      "destination": "/blog",
       "permanent": true
     },
     {
       "source": "/wedding-bands-for-women-eternity-rings/",
-      "destination": "/blog/wedding-bands-for-women-eternity-rings",
+      "destination": "/blog",
       "permanent": true
     },
     {
@@ -652,12 +652,12 @@
     },
     {
       "source": "/radiant-cushion-cut-engagement-rings",
-      "destination": "/blog/radiant-cushion-cut-engagement-rings",
+      "destination": "/blog",
       "permanent": true
     },
     {
       "source": "/radiant-cushion-cut-engagement-rings/",
-      "destination": "/blog/radiant-cushion-cut-engagement-rings",
+      "destination": "/blog",
       "permanent": true
     },
     {
@@ -862,12 +862,12 @@
     },
     {
       "source": "/difference-yellow-gold-white-gold-rose-gold",
-      "destination": "/blog/difference-yellow-gold-white-gold-rose-gold",
+      "destination": "/blog",
       "permanent": true
     },
     {
       "source": "/difference-yellow-gold-white-gold-rose-gold/",
-      "destination": "/blog/difference-yellow-gold-white-gold-rose-gold",
+      "destination": "/blog",
       "permanent": true
     },
     {
