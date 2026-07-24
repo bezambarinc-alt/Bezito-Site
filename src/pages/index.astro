@@ -108,8 +108,8 @@ const structuredData = [
 
       <section class="hero" data-i="0">
         <div class="hero__media">
-          <video autoplay muted loop playsinline>
-            <source src="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.mp4" type="video/mp4">
+          <video id="hero-vid-0" muted loop playsinline preload="auto">
+            <source src="https://res.cloudinary.com/dlg2mou53/video/upload/h_1080,c_limit,f_auto,q_auto/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.mp4" type="video/mp4">
           </video>
         </div>
         <div class="hero__overlay"></div>
@@ -123,7 +123,7 @@ const structuredData = [
       <section class="hero" data-i="1">
         <div class="hero__media">
           <video id="hero-vid-1" muted loop playsinline preload="none">
-            <source src="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Bands/4k_ovalcut_band_6_v1_rllzya.mp4" type="video/mp4">
+            <source src="https://res.cloudinary.com/dlg2mou53/video/upload/h_1080,c_limit,f_auto,q_auto/Jewelry%20Videos/Bands/4k_ovalcut_band_6_v1_rllzya.mp4" type="video/mp4">
           </video>
         </div>
         <div class="hero__overlay"></div>
@@ -225,8 +225,8 @@ const structuredData = [
 
       <section class="cinematic" data-i="0">
         <div class="cinematic__media">
-          <video autoplay muted loop playsinline>
-            <source src="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Bracelets/4k_pearshape_bracelet_v1_awqjfc.mp4" type="video/mp4">
+          <video id="cine-vid-0" muted loop playsinline preload="none">
+            <source src="https://res.cloudinary.com/dlg2mou53/video/upload/h_1080,c_limit,f_auto,q_auto/Jewelry%20Videos/Bracelets/4k_pearshape_bracelet_v1_awqjfc.mp4" type="video/mp4">
           </video>
         </div>
         <div class="cinematic__overlay"></div>
@@ -240,7 +240,7 @@ const structuredData = [
       <section class="cinematic" data-i="1">
         <div class="cinematic__media">
           <video id="cine-vid-1" muted loop playsinline preload="none">
-            <source src="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Bands/Pearshape_HD_hlvl8l.mp4" type="video/mp4">
+            <source src="https://res.cloudinary.com/dlg2mou53/video/upload/h_1080,c_limit,f_auto,q_auto/Jewelry%20Videos/Bands/Pearshape_HD_hlvl8l.mp4" type="video/mp4">
           </video>
         </div>
         <div class="cinematic__overlay"></div>
@@ -396,9 +396,35 @@ const structuredData = [
     var dots = dotsNav ? dotsNav.querySelectorAll('.hero-dots__dot') : [];
     if (!stack || !heroes.length) return;
 
-    var vid0 = (heroes[0] as HTMLElement).querySelector('video') as HTMLVideoElement | null;
+    var vid0 = document.getElementById('hero-vid-0') as HTMLVideoElement | null;
     var vid1 = document.getElementById('hero-vid-1') as HTMLVideoElement | null;
     var prevActiveI = 0;
+    var stackInView = false;
+
+    function playActive(i: number) {
+      if (!stackInView) return;
+      if (i === 0) {
+        vid1?.pause();
+        vid0?.play().catch(function(){});
+      } else {
+        vid0?.pause();
+        if (vid1 && vid1.readyState === 0) vid1.load();
+        vid1?.play().catch(function(){});
+      }
+    }
+
+    // Only play when hero stack is on screen
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        stackInView = e.isIntersecting;
+        if (stackInView) {
+          playActive(prevActiveI);
+        } else {
+          vid0?.pause();
+          vid1?.pause();
+        }
+      });
+    }, { threshold: 0.1 }).observe(stack);
 
     var ticking = false;
     function update() {
@@ -411,13 +437,7 @@ const structuredData = [
       dots.forEach(function (d, idx) { d.classList.toggle('is-active', idx === activeI); });
       if (activeI !== prevActiveI) {
         prevActiveI = activeI;
-        if (activeI === 1) {
-          vid0?.pause();
-          if (vid1) { vid1.load(); vid1.play().catch(function(){}); }
-        } else {
-          vid1?.pause();
-          if (vid0) { vid0.play().catch(function(){}); }
-        }
+        playActive(activeI);
       }
     }
     function onScroll() {
@@ -457,9 +477,36 @@ const structuredData = [
     var dotsNav = document.getElementById('cinematic-dots');
     var dots = dotsNav ? dotsNav.querySelectorAll('.hero-dots__dot') : [];
 
-    var cvid0 = (panes[0] as HTMLElement).querySelector('video') as HTMLVideoElement | null;
+    var cvid0 = document.getElementById('cine-vid-0') as HTMLVideoElement | null;
     var cvid1 = document.getElementById('cine-vid-1') as HTMLVideoElement | null;
     var prevActiveI = 0;
+    var stackInView = false;
+
+    function playActive(i: number) {
+      if (!stackInView) return;
+      if (i === 0) {
+        cvid1?.pause();
+        cvid0?.play().catch(function(){});
+      } else {
+        cvid0?.pause();
+        if (cvid1 && cvid1.readyState === 0) cvid1.load();
+        cvid1?.play().catch(function(){});
+      }
+    }
+
+    // Only play when cinematic stack is on screen
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        stackInView = e.isIntersecting;
+        if (stackInView) {
+          if (cvid0 && cvid0.readyState === 0) cvid0.load();
+          playActive(prevActiveI);
+        } else {
+          cvid0?.pause();
+          cvid1?.pause();
+        }
+      });
+    }, { threshold: 0.1 }).observe(stack);
 
     var ticking = false;
     function update() {
@@ -472,13 +519,7 @@ const structuredData = [
       dots.forEach(function (d, idx) { d.classList.toggle('is-active', idx === activeI); });
       if (activeI !== prevActiveI) {
         prevActiveI = activeI;
-        if (activeI === 1) {
-          cvid0?.pause();
-          if (cvid1) { cvid1.load(); cvid1.play().catch(function(){}); }
-        } else {
-          cvid1?.pause();
-          if (cvid0) { cvid0.play().catch(function(){}); }
-        }
+        playActive(activeI);
       }
     }
     function onScroll() {
