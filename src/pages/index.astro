@@ -108,10 +108,9 @@ const structuredData = [
 
       <section class="hero" data-i="0">
         <div class="hero__media">
-          <iframe src="https://player.vimeo.com/video/1192444919?background=1&autoplay=1&loop=1&muted=1&controls=0&autopause=0"
-                  allow="autoplay; fullscreen; picture-in-picture"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  title="The Elysian 4k"></iframe>
+          <video autoplay muted loop playsinline>
+            <source src="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.mp4" type="video/mp4">
+          </video>
         </div>
         <div class="hero__overlay"></div>
         <div class="hero__content">
@@ -123,10 +122,9 @@ const structuredData = [
 
       <section class="hero" data-i="1">
         <div class="hero__media">
-          <iframe data-src="https://player.vimeo.com/video/1193154076?background=1&autoplay=1&loop=1&muted=1&controls=0&autopause=0&playsinline=1"
-                  allow="autoplay; fullscreen; picture-in-picture"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  title="4k OvalCut Band"></iframe>
+          <video autoplay muted loop playsinline>
+            <source src="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Bands/4k_ovalcut_band_6_v1_rllzya.mp4" type="video/mp4">
+          </video>
         </div>
         <div class="hero__overlay"></div>
         <div class="hero__content">
@@ -227,10 +225,9 @@ const structuredData = [
 
       <section class="cinematic" data-i="0">
         <div class="cinematic__media">
-          <iframe data-src="https://player.vimeo.com/video/1193140625?background=1&autoplay=1&loop=1&muted=1&controls=0&autopause=0&playsinline=1"
-                  allow="autoplay; fullscreen; picture-in-picture"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  title="The Elysian Pear — Coming Soon"></iframe>
+          <video autoplay muted loop playsinline>
+            <source src="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Bracelets/4k_pearshape_bracelet_v1_awqjfc.mp4" type="video/mp4">
+          </video>
         </div>
         <div class="cinematic__overlay"></div>
         <div class="cinematic__content">
@@ -242,10 +239,9 @@ const structuredData = [
 
       <section class="cinematic" data-i="1">
         <div class="cinematic__media">
-          <iframe data-src="https://player.vimeo.com/video/1193149437?background=1&autoplay=1&loop=1&muted=1&controls=0&autopause=0&playsinline=1"
-                  allow="autoplay; fullscreen; picture-in-picture"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  title="The Elysian Pear Band"></iframe>
+          <video autoplay muted loop playsinline>
+            <source src="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Bands/Pearshape_HD_hlvl8l.mp4" type="video/mp4">
+          </video>
         </div>
         <div class="cinematic__overlay"></div>
         <div class="cinematic__content">
@@ -392,13 +388,6 @@ const structuredData = [
 </Layout>
 
 <script>
-  function loadIframe(el: Element | null) {
-    if (!el) return;
-    const iframe = el as HTMLIFrameElement;
-    const s = iframe.dataset.src;
-    if (s) { iframe.src = s; delete iframe.dataset.src; }
-  }
-
   // ---- Hero stack scroll animation ----
   (function () {
     var stack = document.getElementById('hero-stack');
@@ -406,8 +395,6 @@ const structuredData = [
     var dotsNav = document.getElementById('hero-dots-nav');
     var dots = dotsNav ? dotsNav.querySelectorAll('.hero-dots__dot') : [];
     if (!stack || !heroes.length) return;
-
-    var slide1Loaded = false;
 
     var ticking = false;
     function update() {
@@ -418,11 +405,6 @@ const structuredData = [
       (heroes[1] as HTMLElement).style.transform = 'translateY(' + ((1 - progress) * 100) + '%)';
       var activeI = progress < 0.5 ? 0 : 1;
       dots.forEach(function (d, idx) { d.classList.toggle('is-active', idx === activeI); });
-      // Load slide 1 video when 30% scrolled into the stack
-      if (!slide1Loaded && progress >= 0.3) {
-        loadIframe(heroes[1].querySelector('iframe'));
-        slide1Loaded = true;
-      }
     }
     function onScroll() {
       if (!ticking) { requestAnimationFrame(update); ticking = true; }
@@ -431,11 +413,9 @@ const structuredData = [
     window.addEventListener('resize', onScroll);
     update();
 
-    // Dot click — jump scroll, ensure target iframe is loaded first
     dots.forEach(function (d) {
       d.addEventListener('click', function () {
         var i = +(d as HTMLElement).dataset.i!;
-        if (i === 1 && !slide1Loaded) { loadIframe(heroes[1].querySelector('iframe')); slide1Loaded = true; }
         var r = stack!.getBoundingClientRect();
         var stackTopAbs = window.scrollY + r.top;
         var scrollable = stack!.offsetHeight - window.innerHeight;
@@ -463,17 +443,6 @@ const structuredData = [
     var dotsNav = document.getElementById('cinematic-dots');
     var dots = dotsNav ? dotsNav.querySelectorAll('.hero-dots__dot') : [];
 
-    var slide0Loaded = false;
-    var slide1Loaded = false;
-
-    // Load cinematic slide 0 when the section is 200px from entering the viewport
-    new IntersectionObserver(function (entries) {
-      if (entries[0].isIntersecting && !slide0Loaded) {
-        loadIframe(panes[0].querySelector('iframe'));
-        slide0Loaded = true;
-      }
-    }, { rootMargin: '200px 0px' }).observe(stack);
-
     var ticking = false;
     function update() {
       ticking = false;
@@ -483,11 +452,6 @@ const structuredData = [
       (panes[1] as HTMLElement).style.transform = 'translateY(' + ((1 - progress) * 100) + '%)';
       var activeI = progress < 0.5 ? 0 : 1;
       dots.forEach(function (d, idx) { d.classList.toggle('is-active', idx === activeI); });
-      // Load slide 1 video when 30% scrolled into the cinematic stack
-      if (!slide1Loaded && progress >= 0.3) {
-        loadIframe(panes[1].querySelector('iframe'));
-        slide1Loaded = true;
-      }
     }
     function onScroll() {
       if (!ticking) { requestAnimationFrame(update); ticking = true; }
@@ -499,8 +463,6 @@ const structuredData = [
     dots.forEach(function (d) {
       d.addEventListener('click', function () {
         var i = +(d as HTMLElement).dataset.i!;
-        if (i === 0 && !slide0Loaded) { loadIframe(panes[0].querySelector('iframe')); slide0Loaded = true; }
-        if (i === 1 && !slide1Loaded) { loadIframe(panes[1].querySelector('iframe')); slide1Loaded = true; }
         var r = stack!.getBoundingClientRect();
         var stackTopAbs = window.scrollY + r.top;
         var scrollable = stack!.offsetHeight - window.innerHeight;
