@@ -122,7 +122,7 @@ const structuredData = [
 
       <section class="hero" data-i="1">
         <div class="hero__media">
-          <video autoplay muted loop playsinline>
+          <video id="hero-vid-1" muted loop playsinline preload="none">
             <source src="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Bands/4k_ovalcut_band_6_v1_rllzya.mp4" type="video/mp4">
           </video>
         </div>
@@ -239,7 +239,7 @@ const structuredData = [
 
       <section class="cinematic" data-i="1">
         <div class="cinematic__media">
-          <video autoplay muted loop playsinline>
+          <video id="cine-vid-1" muted loop playsinline preload="none">
             <source src="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Bands/Pearshape_HD_hlvl8l.mp4" type="video/mp4">
           </video>
         </div>
@@ -396,6 +396,10 @@ const structuredData = [
     var dots = dotsNav ? dotsNav.querySelectorAll('.hero-dots__dot') : [];
     if (!stack || !heroes.length) return;
 
+    var vid0 = (heroes[0] as HTMLElement).querySelector('video') as HTMLVideoElement | null;
+    var vid1 = document.getElementById('hero-vid-1') as HTMLVideoElement | null;
+    var prevActiveI = 0;
+
     var ticking = false;
     function update() {
       ticking = false;
@@ -405,6 +409,16 @@ const structuredData = [
       (heroes[1] as HTMLElement).style.transform = 'translateY(' + ((1 - progress) * 100) + '%)';
       var activeI = progress < 0.5 ? 0 : 1;
       dots.forEach(function (d, idx) { d.classList.toggle('is-active', idx === activeI); });
+      if (activeI !== prevActiveI) {
+        prevActiveI = activeI;
+        if (activeI === 1) {
+          vid0?.pause();
+          if (vid1) { vid1.load(); vid1.play().catch(function(){}); }
+        } else {
+          vid1?.pause();
+          if (vid0) { vid0.play().catch(function(){}); }
+        }
+      }
     }
     function onScroll() {
       if (!ticking) { requestAnimationFrame(update); ticking = true; }
@@ -443,6 +457,10 @@ const structuredData = [
     var dotsNav = document.getElementById('cinematic-dots');
     var dots = dotsNav ? dotsNav.querySelectorAll('.hero-dots__dot') : [];
 
+    var cvid0 = (panes[0] as HTMLElement).querySelector('video') as HTMLVideoElement | null;
+    var cvid1 = document.getElementById('cine-vid-1') as HTMLVideoElement | null;
+    var prevActiveI = 0;
+
     var ticking = false;
     function update() {
       ticking = false;
@@ -452,6 +470,16 @@ const structuredData = [
       (panes[1] as HTMLElement).style.transform = 'translateY(' + ((1 - progress) * 100) + '%)';
       var activeI = progress < 0.5 ? 0 : 1;
       dots.forEach(function (d, idx) { d.classList.toggle('is-active', idx === activeI); });
+      if (activeI !== prevActiveI) {
+        prevActiveI = activeI;
+        if (activeI === 1) {
+          cvid0?.pause();
+          if (cvid1) { cvid1.load(); cvid1.play().catch(function(){}); }
+        } else {
+          cvid1?.pause();
+          if (cvid0) { cvid0.play().catch(function(){}); }
+        }
+      }
     }
     function onScroll() {
       if (!ticking) { requestAnimationFrame(update); ticking = true; }
