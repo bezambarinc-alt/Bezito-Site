@@ -21,15 +21,15 @@ function thumb(url: string = '') {
 ---
 
 <Layout
-  title="Blog — Diamond Education & Insights | Bez Ambar"
-  description="Expert insights on diamonds, gemstones, and fine jewelry from master jeweler Bez Ambar. Guides on engagement rings, diamond cuts, colored stones, and more."
+  title="Journal — Craft & Stone | Bez Ambar"
+  description="Writing on diamonds, cuts, stones, and fine jewelry from the Bez Ambar atelier in Los Angeles."
   canonical="https://bezambar.com/blog"
 >
 
-<section class="ba-inner-hero">
-  <span class="ba-inner-hero__eyebrow">Diamond Education & Insights</span>
-  <h1>The Bez Ambar Blog</h1>
-  <p class="ba-inner-hero__intro">Expert guides on diamonds, gemstones, and fine jewelry from a master jeweler with over 40 years of experience.</p>
+<section class="ba-inner-hero ba-inner-hero--light">
+  <span class="ba-inner-hero__eyebrow">From the Atelier</span>
+  <h1>The Journal</h1>
+  <p class="ba-inner-hero__intro">Writing on stones, cuts, and the craft of fine jewelry — from the studio at 611 Wilshire.</p>
 </section>
 
 <div class="blog-featured">
@@ -39,7 +39,6 @@ function thumb(url: string = '') {
     </div>
     <div class="featured-content">
       <p class="featured-content__date">{fmtDate(featured.data.date)}</p>
-      <span class="featured-content__tag">{fmtCat(featured.data.category)}</span>
       <h2>{featured.data.title}</h2>
       <p class="featured-content__excerpt">{featured.data.excerpt}</p>
       <span class="featured-content__read-more">Read Article</span>
@@ -49,38 +48,17 @@ function thumb(url: string = '') {
 
 <hr class="blog-divider">
 
-<div class="blog-filter">
-  <button class="blog-filter__btn active" onclick="filterBlog('all', this)">All</button>
-  <button class="blog-filter__btn" onclick="filterBlog('engagement-rings', this)">Engagement Rings</button>
-  <button class="blog-filter__btn" onclick="filterBlog('diamonds', this)">Diamonds</button>
-  <button class="blog-filter__btn" onclick="filterBlog('colored-stones', this)">Colored Stones</button>
-  <button class="blog-filter__btn" onclick="filterBlog('earrings', this)">Earrings</button>
-  <button class="blog-filter__btn" onclick="filterBlog('guides', this)">Guides</button>
-</div>
-
-<div class="blog-grid" id="blogGrid">
+<div class="blog-grid">
   {gridPosts.map(post => (
-    <a href={`/blog/${post.slug}`} class="blog-card" data-cat={post.data.category}>
+    <a href={`/blog/${post.slug}`} class="blog-card">
       <div class="blog-card__img">
         <img src={thumb(post.data.heroImage)} alt={post.data.title} loading="lazy">
       </div>
-      <p class="blog-card__cat">{fmtCat(post.data.category)}</p>
       <h3 class="blog-card__title">{post.data.title}</h3>
       <p class="blog-card__date">{fmtDate(post.data.date)}</p>
       <p class="blog-card__excerpt">{post.data.excerpt}</p>
     </a>
   ))}
 </div>
-
-<script>
-  function filterBlog(cat: string, btn: HTMLButtonElement) {
-    document.querySelectorAll('.blog-filter__btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll<HTMLElement>('.blog-card').forEach(card => {
-      const match = cat === 'all' || card.dataset.cat === cat;
-      card.style.display = match ? '' : 'none';
-    });
-  }
-</script>
 
 </Layout>
