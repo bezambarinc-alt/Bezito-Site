@@ -31,7 +31,8 @@
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
 }
-.hero__media iframe {
+.hero__media iframe,
+.hero__media video {
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
@@ -39,6 +40,7 @@
   height: max(100vh, 56.25vw);
   border: 0;
   pointer-events: none;
+  object-fit: cover;
 }
 .hero__overlay {
   position: absolute; inset: 0;
@@ -297,7 +299,8 @@
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
 }
-.cinematic__media iframe {
+.cinematic__media iframe,
+.cinematic__media video {
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
@@ -305,6 +308,7 @@
   height: max(100vh, 56.25vw);
   border: 0;
   pointer-events: none;
+  object-fit: cover;
 }
 .cinematic__overlay {
   position: absolute; inset: 0;

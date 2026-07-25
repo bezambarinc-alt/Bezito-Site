@@ -110,8 +110,9 @@ const sdArray = [orgSchema, ...pageSchemas];
   <link rel="preconnect" href="https://webfonts.fontstand.com" crossorigin>
   <link rel="dns-prefetch" href="https://maps.google.com">
 
-  <!-- Lyon Text Regular — Fontstand web font (licensed to bezambar.com) -->
-  <link rel="stylesheet" href="https://webfonts.fontstand.com/WF-099839-d89c1d499f0c1f40d1e6d7330af17f97.css" type="text/css">
+  <!-- Lyon Text Regular — Fontstand web font (licensed to bezambar.com) — async to avoid render-block -->
+  <link rel="preload" href="https://webfonts.fontstand.com/WF-099839-d89c1d499f0c1f40d1e6d7330af17f97.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://webfonts.fontstand.com/WF-099839-d89c1d499f0c1f40d1e6d7330af17f97.css"></noscript>
 
   <!-- JSON-LD structured data -->
   {sdArray.map(sd => (

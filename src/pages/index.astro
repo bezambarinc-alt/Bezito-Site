@@ -108,28 +108,30 @@ const structuredData = [
 
       <section class="hero" data-i="0">
         <div class="hero__media">
-          <video id="hero-vid-0" muted loop playsinline preload="auto">
+          <video id="hero-vid-0" muted loop playsinline preload="metadata"
+            poster="https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.jpg">
             <source src="https://res.cloudinary.com/dlg2mou53/video/upload/h_1080,c_limit,f_auto,q_auto/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.mp4" type="video/mp4">
           </video>
         </div>
         <div class="hero__overlay"></div>
         <div class="hero__content">
           <p class="hero__eyebrow">The Elysian Cut&trade;</p>
-          <h1 class="hero__headline">A Game of Angles</h1>
+          <h2 class="hero__headline">A Game of Angles</h2>
           <p class="hero__sub">Crown meets pavilion. Stone meets stone. Light becomes a line.</p>
         </div>
       </section>
 
       <section class="hero" data-i="1">
         <div class="hero__media">
-          <video id="hero-vid-1" muted loop playsinline preload="none">
+          <video id="hero-vid-1" muted loop playsinline preload="none"
+            poster="https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bands/4k_ovalcut_band_6_v1_rllzya.jpg">
             <source src="https://res.cloudinary.com/dlg2mou53/video/upload/h_1080,c_limit,f_auto,q_auto/Jewelry%20Videos/Bands/4k_ovalcut_band_6_v1_rllzya.mp4" type="video/mp4">
           </video>
         </div>
         <div class="hero__overlay"></div>
         <div class="hero__content">
           <p class="hero__eyebrow">The Elysian Oval Band</p>
-          <h1 class="hero__headline">Worn on the Finger, Worn as Light</h1>
+          <h2 class="hero__headline">Worn on the Finger, Worn as Light</h2>
           <p class="hero__sub">Every angle catches the next. The line never breaks.</p>
         </div>
       </section>
@@ -225,28 +227,30 @@ const structuredData = [
 
       <section class="cinematic" data-i="0">
         <div class="cinematic__media">
-          <video id="cine-vid-0" muted loop playsinline preload="none">
+          <video id="cine-vid-0" muted loop playsinline preload="none"
+            poster="https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bracelets/4k_pearshape_bracelet_v1_awqjfc.jpg">
             <source src="https://res.cloudinary.com/dlg2mou53/video/upload/h_1080,c_limit,f_auto,q_auto/Jewelry%20Videos/Bracelets/4k_pearshape_bracelet_v1_awqjfc.mp4" type="video/mp4">
           </video>
         </div>
         <div class="cinematic__overlay"></div>
         <div class="cinematic__content">
           <p class="hero__eyebrow">Coming Soon</p>
-          <h1 class="hero__headline">The Elysian Pear</h1>
+          <h2 class="hero__headline">The Elysian Pear</h2>
           <p class="hero__sub">A teardrop, reborn &mdash; the next chapter in the line of brilliance.</p>
         </div>
       </section>
 
       <section class="cinematic" data-i="1">
         <div class="cinematic__media">
-          <video id="cine-vid-1" muted loop playsinline preload="none">
+          <video id="cine-vid-1" muted loop playsinline preload="none"
+            poster="https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bands/Pearshape_HD_hlvl8l.jpg">
             <source src="https://res.cloudinary.com/dlg2mou53/video/upload/h_1080,c_limit,f_auto,q_auto/Jewelry%20Videos/Bands/Pearshape_HD_hlvl8l.mp4" type="video/mp4">
           </video>
         </div>
         <div class="cinematic__overlay"></div>
         <div class="cinematic__content">
           <p class="hero__eyebrow">The Elysian Pear Band</p>
-          <h1 class="hero__headline">Pear Cut. Continuous Line.</h1>
+          <h2 class="hero__headline">Pear Cut. Continuous Line.</h2>
           <p class="hero__sub">Each teardrop calibrated to the next, until light becomes the band itself.</p>
         </div>
       </section>
@@ -443,9 +447,11 @@ const structuredData = [
     function onScroll() {
       if (!ticking) { requestAnimationFrame(update); ticking = true; }
     }
+    var resizeTimer: ReturnType<typeof setTimeout>;
+    function onResize() { clearTimeout(resizeTimer); resizeTimer = setTimeout(onScroll, 120); }
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    update();
+    window.addEventListener('resize', onResize);
+    requestAnimationFrame(update);
 
     dots.forEach(function (d) {
       d.addEventListener('click', function () {
@@ -525,9 +531,11 @@ const structuredData = [
     function onScroll() {
       if (!ticking) { requestAnimationFrame(update); ticking = true; }
     }
+    var resizeTimer2: ReturnType<typeof setTimeout>;
+    function onResize2() { clearTimeout(resizeTimer2); resizeTimer2 = setTimeout(onScroll, 120); }
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    update();
+    window.addEventListener('resize', onResize2);
+    requestAnimationFrame(update);
 
     dots.forEach(function (d) {
       d.addEventListener('click', function () {
