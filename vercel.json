@@ -2512,7 +2512,9 @@
     { "source": "/retailers/london-jewelers-glen-cove",         "destination": "/retailers/london-jewelers-long-island","permanent": true },
     { "source": "/retailers/london-jewelers-glen-cove/",        "destination": "/retailers/london-jewelers-long-island","permanent": true },
     { "source": "/retailers/los-angeles-custom-jewelry-designer-jewelry-store",  "destination": "/about-bez-ambar",  "permanent": true },
-    { "source": "/retailers/los-angeles-custom-jewelry-designer-jewelry-store/", "destination": "/about-bez-ambar",  "permanent": true }
+    { "source": "/retailers/los-angeles-custom-jewelry-designer-jewelry-store/", "destination": "/about-bez-ambar",  "permanent": true },
+    { "source": "/retailers/fred-brown-jewelers-com",  "destination": "/retailers", "permanent": true },
+    { "source": "/retailers/fred-brown-jewelers-com/", "destination": "/retailers", "permanent": true }
   ],
   "rewrites": [
     {
