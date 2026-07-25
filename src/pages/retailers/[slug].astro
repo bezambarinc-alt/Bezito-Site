@@ -1,0 +1,525 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Layout from '../../layouts/Layout.astro';
+import retailers from '../../data/retailers.json';
+
+export const getStaticPaths = (() => {
+  return retailers.map(r => ({
+    params: { slug: r.slug },
+    props: { retailer: r },
+  }));
+}) satisfies GetStaticPaths;
+
+const { retailer } = Astro.props;
+
+// Build JSON-LD for each location
+const locationSchemas = retailer.locations.map(loc => ({
+  '@context': 'https://schema.org',
+  '@type': ['JewelryStore', 'LocalBusiness'],
+  name: retailer.name,
+  url: retailer.website ?? undefined,
+  telephone: loc.phone ?? undefined,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: loc.address,
+    addressLocality: loc.city,
+    addressRegion: loc.state,
+    postalCode: loc.zip,
+    addressCountry: 'US',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: loc.lat,
+    longitude: loc.lng,
+  },
+  openingHours: loc.hours,
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Bez Ambar Diamond Jewelry',
+    url: 'https://bezambar.com/collections',
+  },
+}));
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://bezambar.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Authorized Retailers', item: 'https://bezambar.com/retailers' },
+    { '@type': 'ListItem', position: 3, name: retailer.name, item: `https://bezambar.com/retailers/${retailer.slug}` },
+  ],
+};
+
+const allSchemas = [breadcrumb, ...locationSchemas];
+const hasMultiple = retailer.locations.length > 1;
+---
+
+<Layout
+  title={retailer.seoTitle}
+  description={retailer.seoDescription}
+  canonical={`https://bezambar.com/retailers/${retailer.slug}`}
+  headerLight={true}
+  structuredData={allSchemas}
+>
+  <div class="rd-page">
+
+    <!-- Hero -->
+    <section class="rd-hero">
+      <div class="rd-hero__bg"></div>
+      <div class="rd-hero__content">
+        <nav class="rd-breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Bez Ambar</a>
+          <span aria-hidden="true"> / </span>
+          <a href="/retailers">Retailers</a>
+          <span aria-hidden="true"> / </span>
+          <span>{retailer.shortName}</span>
+        </nav>
+        <p class="rd-hero__eyebrow">{retailer.city}, {retailer.state} · Authorized Retailer</p>
+        <h1 class="rd-hero__title">{retailer.name}</h1>
+      </div>
+    </section>
+
+    <!-- Body -->
+    <div class="rd-body">
+
+      <!-- About + First Location -->
+      <div class="rd-intro">
+        <div class="rd-intro__copy">
+          <p class="rd-intro__eyebrow">About This Partner</p>
+          <p class="rd-intro__text">{retailer.description}</p>
+          {retailer.website && (
+            <a class="rd-intro__link" href={retailer.website} target="_blank" rel="noopener noreferrer">
+              Visit {retailer.shortName} →
+            </a>
+          )}
+        </div>
+        <div class="rd-intro__divider"></div>
+        <div class="rd-intro__badge">
+          <p class="rd-intro__badge-label">Authorized Bez Ambar Retailer</p>
+          <img
+            class="rd-intro__badge-logo"
+            src="/logo.svg"
+            alt="Bez Ambar"
+            width="140"
+            height="42"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <!-- Locations -->
+      <section class="rd-locations">
+        <h2 class="rd-locations__title">{hasMultiple ? 'Showroom Locations' : 'Visit the Showroom'}</h2>
+
+        <div class={`rd-locs-grid${hasMultiple ? ' rd-locs-grid--multi' : ''}`}>
+          {retailer.locations.map(loc => (
+            <div class="rd-loc">
+              {loc.label && <p class="rd-loc__label">{loc.label}</p>}
+              <div class="rd-loc__map-wrap">
+                <iframe
+                  class="rd-loc__map"
+                  src={loc.mapEmbed}
+                  width="600"
+                  height="340"
+                  style="border:0;"
+                  allowfullscreen={true}
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  title={`Map for ${retailer.name}${loc.label ? ` ${loc.label}` : ''}`}
+                ></iframe>
+              </div>
+              <div class="rd-loc__info">
+                <div class="rd-loc__block">
+                  <p class="rd-loc__block-label">Address</p>
+                  <address class="rd-loc__address">
+                    {loc.address}<br>
+                    {loc.city}, {loc.state} {loc.zip}
+                  </address>
+                </div>
+                {loc.phone && (
+                  <div class="rd-loc__block">
+                    <p class="rd-loc__block-label">Phone</p>
+                    <a class="rd-loc__phone" href={`tel:${loc.phone.replace(/\D/g,'')}`}>{loc.phone}</a>
+                  </div>
+                )}
+                {loc.hours && (
+                  <div class="rd-loc__block">
+                    <p class="rd-loc__block-label">Hours</p>
+                    <p class="rd-loc__hours">{loc.hours}</p>
+                  </div>
+                )}
+                <a
+                  class="rd-loc__directions"
+                  href={`https://maps.google.com/?q=${encodeURIComponent(`${loc.address}, ${loc.city}, ${loc.state} ${loc.zip}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Get Directions
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- What to Expect -->
+      <section class="rd-expect">
+        <h2 class="rd-expect__title">What to Expect</h2>
+        <div class="rd-expect__grid">
+          <div class="rd-expect__item">
+            <p class="rd-expect__num">01</p>
+            <h3 class="rd-expect__head">The Full Collection</h3>
+            <p class="rd-expect__body">This authorized showroom carries Bez Ambar diamond jewelry, including the Princess Cut originals and the Elysian Cut™ — the square-brilliant patented by Bez Ambar.</p>
+          </div>
+          <div class="rd-expect__item">
+            <p class="rd-expect__num">02</p>
+            <h3 class="rd-expect__head">Expert Guidance</h3>
+            <p class="rd-expect__body">Authorized retailers are trained on the Bez Ambar collection and can walk you through cut performance, setting options, and custom sizing.</p>
+          </div>
+          <div class="rd-expect__item">
+            <p class="rd-expect__num">03</p>
+            <h3 class="rd-expect__head">Authenticity Guaranteed</h3>
+            <p class="rd-expect__body">Every Bez Ambar piece sold by an authorized retailer carries the full manufacturer warranty and certificate of authenticity.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Footer CTA -->
+    <section class="rd-cta">
+      <div class="rd-cta__inner">
+        <p class="rd-cta__eyebrow">Not near {retailer.city}?</p>
+        <h2 class="rd-cta__title">See All Authorized Retailers</h2>
+        <div class="rd-cta__btns">
+          <a class="rd-cta__btn rd-cta__btn--primary" href="/retailers">View All Locations</a>
+          <a class="rd-cta__btn rd-cta__btn--ghost" href="/contact">Contact the Atelier</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>
+
+<style>
+  /* ─── Hero ─── */
+  .rd-hero {
+    position: relative;
+    min-height: 46vh;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 4rem;
+    overflow: hidden;
+    background: #0f0f0f;
+  }
+  .rd-hero__bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.72) 100%),
+      url('https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto:good,w_1400/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg')
+      center / cover no-repeat;
+  }
+  .rd-hero__content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    color: #fff;
+  }
+  .rd-breadcrumb {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 1.5rem;
+  }
+  .rd-breadcrumb a {
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .rd-breadcrumb a:hover { color: var(--accent); }
+  .rd-hero__eyebrow {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 1rem;
+  }
+  .rd-hero__title {
+    font-family: var(--serif, 'Cormorant Garamond', serif);
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
+
+  /* ─── Body ─── */
+  .rd-body {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  /* ─── Intro ─── */
+  .rd-intro {
+    display: grid;
+    grid-template-columns: 1fr 1px 200px;
+    gap: 3rem;
+    align-items: start;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #e8e4de;
+    margin-bottom: 4rem;
+  }
+  .rd-intro__eyebrow {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 1rem;
+  }
+  .rd-intro__text {
+    font-family: var(--sans);
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #3a3530;
+    margin: 0 0 1.5rem;
+  }
+  .rd-intro__link {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    color: #1a1a1a;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    transition: color 0.2s;
+  }
+  .rd-intro__link:hover { color: var(--accent); }
+  .rd-intro__divider {
+    background: #e8e4de;
+    align-self: stretch;
+  }
+  .rd-intro__badge {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .rd-intro__badge-label {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #5a5248;
+    margin: 0;
+  }
+  .rd-intro__badge-logo { opacity: 0.85; }
+
+  /* ─── Locations ─── */
+  .rd-locations__title {
+    font-family: var(--serif, 'Cormorant Garamond', serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 300;
+    color: #1a1a1a;
+    margin: 0 0 2.5rem;
+  }
+  .rd-locs-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .rd-locs-grid--multi {
+    grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+  }
+  .rd-loc { display: flex; flex-direction: column; gap: 0; }
+  .rd-loc__label {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 0.75rem;
+  }
+  .rd-loc__map-wrap {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #e8e4de;
+    overflow: hidden;
+  }
+  .rd-loc__map {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .rd-loc__info {
+    padding: 1.75rem 0 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+  .rd-loc__block { display: flex; flex-direction: column; gap: 0.4rem; }
+  .rd-loc__block-label {
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #9c9188;
+    margin: 0;
+  }
+  .rd-loc__address {
+    font-family: var(--sans);
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: #1a1a1a;
+    font-style: normal;
+    margin: 0;
+  }
+  .rd-loc__phone {
+    font-family: var(--sans);
+    font-size: 0.875rem;
+    color: #1a1a1a;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .rd-loc__phone:hover { color: var(--accent); }
+  .rd-loc__hours {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: #3a3530;
+    margin: 0;
+  }
+  .rd-loc__directions {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    align-self: start;
+    transition: color 0.2s;
+  }
+  .rd-loc__directions:hover { color: var(--accent); }
+
+  /* ─── What to Expect ─── */
+  .rd-expect {
+    margin-top: 5rem;
+    padding-top: 4rem;
+    border-top: 1px solid #e8e4de;
+  }
+  .rd-expect__title {
+    font-family: var(--serif, 'Cormorant Garamond', serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 300;
+    margin: 0 0 3rem;
+  }
+  .rd-expect__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+  .rd-expect__num {
+    font-family: var(--serif, 'Cormorant Garamond', serif);
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #e8e4de;
+    margin: 0 0 0.75rem;
+    line-height: 1;
+  }
+  .rd-expect__head {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    margin: 0 0 0.75rem;
+  }
+  .rd-expect__body {
+    font-family: var(--sans);
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: #5a5248;
+    margin: 0;
+  }
+
+  /* ─── Footer CTA ─── */
+  .rd-cta {
+    background: #0f0f0f;
+    padding: 6rem 2rem;
+  }
+  .rd-cta__inner {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    color: #fff;
+  }
+  .rd-cta__eyebrow {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 1rem;
+  }
+  .rd-cta__title {
+    font-family: var(--serif, 'Cormorant Garamond', serif);
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 300;
+    margin: 0 0 2.5rem;
+    line-height: 1.1;
+  }
+  .rd-cta__btns {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .rd-cta__btn {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.9rem 2rem;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .rd-cta__btn--primary {
+    background: var(--accent);
+    color: #0f0f0f;
+  }
+  .rd-cta__btn--primary:hover { background: #b09a82; }
+  .rd-cta__btn--ghost {
+    border: 1px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.8);
+  }
+  .rd-cta__btn--ghost:hover {
+    border-color: rgba(255,255,255,0.7);
+    color: #fff;
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 900px) {
+    .rd-intro {
+      grid-template-columns: 1fr;
+    }
+    .rd-intro__divider { display: none; }
+    .rd-intro__badge { flex-direction: row; align-items: center; }
+    .rd-locs-grid--multi { grid-template-columns: 1fr; }
+    .rd-expect__grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+  @media (max-width: 600px) {
+    .rd-loc__info { grid-template-columns: 1fr 1fr; }
+    .rd-loc__directions { grid-column: 1 / -1; }
+    .rd-body { padding: 3rem 1.25rem; }
+    .rd-hero { min-height: 40vh; padding-bottom: 2.5rem; }
+  }
+</style>
