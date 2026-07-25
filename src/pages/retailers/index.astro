@@ -2,6 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 import retailers from '../../data/retailers.json';
 
+const CDN = 'https://res.cloudinary.com/dlg2mou53/image/upload';
+
 const regions = ['Northeast', 'Mid-Atlantic', 'Midwest', 'South', 'West'];
 
 const byRegion = regions.reduce((acc, region) => {
@@ -54,10 +56,23 @@ const breadcrumb = {
     <div class="rl-body">
       {regions.filter(r => byRegion[r]?.length).map(region => (
         <section class="rl-region" id={region.toLowerCase().replace(/ /, '-')}>
-          <h2 class="rl-region__title">{region}</h2>
+          <div class="rl-region__header">
+            <h2 class="rl-region__title">{region}</h2>
+            <span class="rl-region__count">{byRegion[region].length} {byRegion[region].length === 1 ? 'showroom' : 'showrooms'}</span>
+          </div>
           <div class="rl-grid">
             {byRegion[region].map(retailer => (
               <a class="rl-card" href={`/retailers/${retailer.slug}`}>
+                <div class="rl-card__img-wrap">
+                  <img
+                    class="rl-card__img"
+                    src={`${CDN}/c_fill,ar_3:2,w_720,g_center,f_auto,q_auto/${retailer.image}`}
+                    alt={retailer.name}
+                    loading="lazy"
+                    width="720"
+                    height="480"
+                  />
+                </div>
                 <div class="rl-card__inner">
                   <div class="rl-card__meta">
                     <p class="rl-card__city">{retailer.city}, {retailer.state}</p>
@@ -75,6 +90,40 @@ const breadcrumb = {
           </div>
         </section>
       ))}
+    </div>
+
+    <!-- Editorial break -->
+    <div class="rl-editorial">
+      <div class="rl-editorial__inner">
+        <p class="rl-editorial__eyebrow">The Bez Ambar Collection</p>
+        <p class="rl-editorial__body">
+          From the original Princess Cut to the Elysian Cut™ — every piece is cut for light, crafted by hand, and certified authentic at every authorized showroom.
+        </p>
+        <a class="rl-editorial__link" href="/collections">Explore the Collection →</a>
+      </div>
+      <div class="rl-editorial__imgs">
+        <img
+          src={`${CDN}/c_fill,ar_1:1,w_480,g_center,f_auto,q_auto/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg`}
+          alt="The Princess Cut diamond by Bez Ambar"
+          loading="lazy"
+          width="480"
+          height="480"
+        />
+        <img
+          src={`${CDN}/c_fill,ar_1:1,w_480,g_center,f_auto,q_auto/v1775549202/Jewelry%20Images/Rings/C0625_Baguette_band_Master_e4azkj.jpg`}
+          alt="Bez Ambar diamond band"
+          loading="lazy"
+          width="480"
+          height="480"
+        />
+        <img
+          src={`${CDN}/c_fill,ar_1:1,w_480,g_center,f_auto,q_auto/Jewelry%20Images/Necklaces/single-row-lifestyle.jpg`}
+          alt="Bez Ambar diamond necklace"
+          loading="lazy"
+          width="480"
+          height="480"
+        />
+      </div>
     </div>
 
     <!-- Closing CTA -->
@@ -97,10 +146,10 @@ const breadcrumb = {
   /* ─── Hero ─── */
   .rl-hero {
     position: relative;
-    min-height: 52vh;
+    min-height: 56vh;
     display: flex;
     align-items: flex-end;
-    padding-bottom: 5rem;
+    padding-bottom: 5.5rem;
     overflow: hidden;
     background: #0f0f0f;
   }
@@ -108,7 +157,7 @@ const breadcrumb = {
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.65) 100%),
+      linear-gradient(to bottom, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.72) 100%),
       url('https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto:good,w_1800/Jewelry%20Images/Atelier/designer-portrait-2026.jpg')
       center 30% / cover no-repeat;
   }
@@ -125,24 +174,24 @@ const breadcrumb = {
   .rl-hero__eyebrow {
     font-family: var(--sans);
     font-size: 0.72rem;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--accent);
-    margin: 0 0 1.2rem;
+    margin: 0 0 1.4rem;
   }
   .rl-hero__title {
     font-family: var(--serif, 'Cormorant Garamond', serif);
-    font-size: clamp(2.6rem, 6vw, 4.5rem);
+    font-size: clamp(2.8rem, 6.5vw, 5rem);
     font-weight: 300;
-    line-height: 1.08;
+    line-height: 1.05;
     letter-spacing: 0.02em;
-    margin: 0 0 1.4rem;
+    margin: 0 0 1.6rem;
   }
   .rl-hero__lede {
     font-family: var(--sans);
     font-size: 0.95rem;
-    line-height: 1.7;
-    color: rgba(255,255,255,0.78);
+    line-height: 1.75;
+    color: rgba(255,255,255,0.75);
     max-width: 56ch;
     margin: 0 auto;
   }
@@ -167,8 +216,8 @@ const breadcrumb = {
   .rl-region-nav__inner::-webkit-scrollbar { display: none; }
   .rl-region-nav__link {
     font-family: var(--sans);
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: #5a5248;
     text-decoration: none;
@@ -184,31 +233,44 @@ const breadcrumb = {
 
   /* ─── Body ─── */
   .rl-body {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 5rem 2rem;
+    padding: 5.5rem 2rem;
   }
 
   /* ─── Region Section ─── */
   .rl-region {
-    margin-bottom: 5rem;
+    margin-bottom: 6rem;
+  }
+  .rl-region__header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid #e8e4de;
   }
   .rl-region__title {
     font-family: var(--sans);
-    font-size: 0.7rem;
-    letter-spacing: 0.22em;
+    font-size: 0.68rem;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
     color: var(--accent);
-    margin: 0 0 2rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid #e8e4de;
+    margin: 0;
+  }
+  .rl-region__count {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    color: #b0a89e;
+    text-transform: lowercase;
   }
 
   /* ─── Grid ─── */
   .rl-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2px;
     background: #e8e4de;
     border: 1px solid #e8e4de;
   }
@@ -217,105 +279,199 @@ const breadcrumb = {
   .rl-card {
     background: #fff;
     text-decoration: none;
-    display: block;
+    display: flex;
+    flex-direction: column;
     transition: background 0.2s;
+    overflow: hidden;
   }
   .rl-card:hover { background: #faf8f5; }
+
+  .rl-card__img-wrap {
+    width: 100%;
+    overflow: hidden;
+    background: #1a1a1a;
+  }
+  .rl-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.55s ease;
+  }
+  .rl-card:hover .rl-card__img {
+    transform: scale(1.04);
+  }
+
   .rl-card__inner {
-    padding: 2rem 2rem 1.75rem;
+    padding: 1.75rem 2rem 1.75rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 160px;
+    flex: 1;
+    min-height: 140px;
   }
   .rl-card__meta { flex: 1; }
   .rl-card__city {
     font-family: var(--sans);
-    font-size: 0.68rem;
-    letter-spacing: 0.16em;
+    font-size: 0.66rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--accent);
-    margin: 0 0 0.4rem;
+    margin: 0 0 0.45rem;
   }
   .rl-card__name {
     font-family: var(--serif, 'Cormorant Garamond', serif);
-    font-size: 1.35rem;
+    font-size: 1.5rem;
     font-weight: 400;
     color: #1a1a1a;
     margin: 0 0 0.5rem;
-    line-height: 1.2;
+    line-height: 1.18;
+    letter-spacing: 0.01em;
   }
   .rl-card__locations {
     font-family: var(--sans);
-    font-size: 0.82rem;
-    color: #6b6258;
+    font-size: 0.8rem;
+    color: #7a7068;
     margin: 0;
-    line-height: 1.4;
+    line-height: 1.45;
   }
   .rl-card__cta {
     font-family: var(--sans);
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     color: #1a1a1a;
-    margin-top: 1.25rem;
+    margin-top: 1.4rem;
     display: block;
     transition: color 0.2s;
   }
   .rl-card:hover .rl-card__cta { color: var(--accent); }
 
+  /* ─── Editorial Break ─── */
+  .rl-editorial {
+    background: #0f0f0f;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 400px;
+  }
+  .rl-editorial__inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 4rem 5rem 6rem;
+    color: #fff;
+    max-width: 560px;
+  }
+  .rl-editorial__eyebrow {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 1.6rem;
+  }
+  .rl-editorial__body {
+    font-family: var(--serif, 'Cormorant Garamond', serif);
+    font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+    font-weight: 300;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.88);
+    margin: 0 0 2.5rem;
+  }
+  .rl-editorial__link {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 0.2rem;
+    align-self: flex-start;
+    transition: opacity 0.2s;
+  }
+  .rl-editorial__link:hover { opacity: 0.7; }
+  .rl-editorial__imgs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    overflow: hidden;
+  }
+  .rl-editorial__imgs img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(20%) brightness(0.85);
+  }
+
   /* ─── Closing CTA ─── */
   .rl-closing {
-    background: #0f0f0f;
+    background: #fff;
     padding: 7rem 2rem;
+    border-top: 1px solid #e8e4de;
   }
   .rl-closing__inner {
-    max-width: 660px;
+    max-width: 620px;
     margin: 0 auto;
     text-align: center;
-    color: #fff;
   }
   .rl-closing__eyebrow {
     font-family: var(--sans);
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--accent);
     margin: 0 0 1.2rem;
   }
   .rl-closing__title {
     font-family: var(--serif, 'Cormorant Garamond', serif);
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2rem, 4vw, 3.2rem);
     font-weight: 300;
     margin: 0 0 1.4rem;
     line-height: 1.1;
+    color: #1a1a1a;
+    letter-spacing: 0.01em;
   }
   .rl-closing__body {
     font-family: var(--sans);
     font-size: 0.95rem;
-    line-height: 1.7;
-    color: rgba(255,255,255,0.72);
-    margin: 0 0 2.5rem;
+    line-height: 1.75;
+    color: #5a5248;
+    margin: 0 0 2.8rem;
   }
   .rl-closing__btn {
     display: inline-block;
     font-family: var(--sans);
-    font-size: 0.72rem;
-    letter-spacing: 0.16em;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #0f0f0f;
-    background: var(--accent);
-    padding: 1rem 2.5rem;
+    color: #fff;
+    background: #1a1a1a;
+    padding: 1.1rem 2.8rem;
     text-decoration: none;
-    transition: background 0.2s, color 0.2s;
+    transition: background 0.2s;
   }
-  .rl-closing__btn:hover {
-    background: #b09a82;
-  }
+  .rl-closing__btn:hover { background: var(--accent); }
 
+  /* ─── Responsive ─── */
+  @media (max-width: 1024px) {
+    .rl-editorial {
+      grid-template-columns: 1fr;
+    }
+    .rl-editorial__inner {
+      padding: 4rem 3rem;
+      max-width: 100%;
+    }
+    .rl-editorial__imgs {
+      min-height: 260px;
+    }
+  }
   @media (max-width: 640px) {
     .rl-grid { grid-template-columns: 1fr; }
-    .rl-hero { min-height: 45vh; padding-bottom: 3rem; }
-    .rl-body { padding: 3rem 1.25rem; }
+    .rl-hero { min-height: 48vh; padding-bottom: 3.5rem; }
+    .rl-body { padding: 3.5rem 1.25rem; }
     .rl-region-nav__link { padding: 1rem 1rem; }
+    .rl-editorial__inner { padding: 3rem 1.5rem; }
+    .rl-editorial__imgs { min-height: 200px; }
   }
 </style>

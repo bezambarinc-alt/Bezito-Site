@@ -6,6 +6,7 @@
     "city": "Grosse Pointe Woods",
     "state": "MI",
     "region": "Midwest",
+    "image": "Jewelry%20Images/Rings/C0625_Baguette_band_Master_e4azkj.jpg",
     "description": "Family jeweler serving greater Detroit since 1947. An authorized Bez Ambar destination for over two decades, Ahee brings the precision of the Elysian Cut™ to the Grosse Pointe community.",
     "locations": [
       {
@@ -33,6 +34,7 @@
     "city": "Cleveland",
     "state": "OH",
     "region": "Midwest",
+    "image": "Jewelry%20Images/legacy/5-carat-emerald-cut-engagement-ring-christina-ring.jpg",
     "description": "Cleveland's preeminent fine jewelry destination and authorized Rolex jeweler. Alson carries Bez Ambar's distinctive diamond designs, from the Princess Cut originals to the Elysian Cut™, in their Chagrin Boulevard showroom.",
     "locations": [
       {
@@ -59,7 +61,8 @@
     "shortName": "Ascot Diamonds",
     "city": "Dallas & Washington D.C.",
     "state": "TX / VA",
-    "region": "South / Mid-Atlantic",
+    "region": "South",
+    "image": "Jewelry%20Images/Stones/Elysian_cut_emerald_a1l5gv.jpg",
     "description": "By-appointment diamond specialists with showrooms in Dallas and Washington D.C. Ascot focuses on custom engagement rings and precision-cut loose diamonds — a natural fit for the Bez Ambar atelier's approach to light performance.",
     "locations": [
       {
@@ -99,6 +102,7 @@
     "city": "Naples",
     "state": "FL",
     "region": "South",
+    "image": "Jewelry%20Images/legacy/bouquet-of-light-oval-diamond-center-engagement-ring-1bol-ov.jpg",
     "description": "Naples, Florida's destination for fine jewelry and an authorized Bez Ambar showroom. Bigham serves the Gulf Coast's discerning clientele with an edited selection of diamond jewelry from the Bez Ambar collection.",
     "locations": [
       {
@@ -126,6 +130,7 @@
     "city": "Dallas",
     "state": "TX",
     "region": "South",
+    "image": "Golden_Hour_C0895_W_Camera_Raw_filter_m4grbg",
     "description": "Dallas's premier jeweler since 1963. Located at NorthPark Center — one of the finest shopping destinations in the American Southwest — Eiseman Jewels carries Bez Ambar alongside an exceptional collection of luxury timepieces and fine jewelry.",
     "locations": [
       {
@@ -153,6 +158,7 @@
     "city": "Washington",
     "state": "DC",
     "region": "Mid-Atlantic",
+    "image": "Jewelry%20Images/Stones/Elysian_cut_marquise_boraiy.jpg",
     "description": "Washington D.C.'s intimate atelier for estate and fine jewelry since 1981. By appointment, I. Gorman offers a curated perspective on diamond design — including select pieces from the Bez Ambar collection — from their K Street studio.",
     "locations": [
       {
@@ -180,6 +186,7 @@
     "city": "Scottsdale",
     "state": "AZ",
     "region": "West",
+    "image": "Jewelry%20Images/Stones/Elysian_cut_octagon_bucoa5.jpg",
     "description": "Scottsdale's most refined private jewelry showroom. James Elliot combines deep gemological expertise with a personal, appointment-driven experience — the same philosophy that defines the Bez Ambar atelier.",
     "locations": [
       {
@@ -207,6 +214,7 @@
     "city": "Portland",
     "state": "OR",
     "region": "West",
+    "image": "Jewelry%20Images/Necklaces/single-row-lifestyle.jpg",
     "description": "The Pacific Northwest's premier fine jewelry retailer, with three locations across Greater Portland and the Oregon coast. Kassab Jewelers is an authorized Bez Ambar destination serving a clientele that prizes craftsmanship over volume.",
     "locations": [
       {
@@ -258,6 +266,7 @@
     "city": "New York",
     "state": "NY",
     "region": "Northeast",
+    "image": "Jewelry%20Images/Rings/ceylon-sapphire-1130-model",
     "description": "New York's iconic luxury jeweler, serving five generations of discerning clients across Long Island and the Hamptons. London Jewelers carries Bez Ambar's most celebrated designs — including the originator of the Princess Cut — in their landmark showrooms.",
     "locations": [
       {
@@ -333,6 +342,7 @@
     "city": "Baltimore",
     "state": "MD",
     "region": "Mid-Atlantic",
+    "image": "Jewelry%20Images/legacy/1-Carat-Diamond-Engagement-Ring-French-Paloma-white.jpg",
     "description": "Maryland's trusted fine jewelry retailer with showrooms in Pikesville and Towson. Radcliffe Jewelers brings the Bez Ambar collection to the greater Baltimore community, offering the full range of diamond designs with personal service.",
     "locations": [
       {
@@ -372,6 +382,7 @@
     "city": "Andover",
     "state": "MA",
     "region": "Northeast",
+    "image": "Jewelry%20Images/legacy/Baguettes-Drop-earrings.jpg",
     "description": "Andover's premier fine jewelry destination, Royal Jewelers has served New England for decades with an elegant Main Street showroom. An authorized Bez Ambar retailer bringing the atelier's diamond artistry to the greater Boston area.",
     "locations": [
       {
@@ -399,6 +410,7 @@
     "city": "Shreveport",
     "state": "LA",
     "region": "South",
+    "image": "Jewelry%20Images/Stones/Elysian_cut_oval_qcdt5r.jpg",
     "description": "Shreveport's landmark diamond destination. Sid Potts has been an authorized Bez Ambar retailer since the early years of the collection, bringing princess-cut and fine diamond jewelry to the Gulf South with the expertise of a multi-generational jeweler.",
     "locations": [
       {
@@ -426,6 +438,7 @@
     "city": "Las Vegas",
     "state": "NV",
     "region": "West",
+    "image": "Jewelry%20Images/Stones/Elysian_cut_pear_sng4kq.jpg",
     "description": "Las Vegas's destination for fine and estate diamond jewelry. T-Bird Jewels brings a collector's eye to an exceptional inventory that includes Bez Ambar designs alongside vintage and rare pieces for the discerning buyer.",
     "locations": [
       {

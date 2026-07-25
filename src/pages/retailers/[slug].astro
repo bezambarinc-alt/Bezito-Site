@@ -3,6 +3,8 @@ import type { GetStaticPaths } from 'astro';
 import Layout from '../../layouts/Layout.astro';
 import retailers from '../../data/retailers.json';
 
+const CDN = 'https://res.cloudinary.com/dlg2mou53/image/upload';
+
 export const getStaticPaths = (() => {
   return retailers.map(r => ({
     params: { slug: r.slug },
@@ -52,6 +54,8 @@ const breadcrumb = {
 
 const allSchemas = [breadcrumb, ...locationSchemas];
 const hasMultiple = retailer.locations.length > 1;
+
+const heroImg = `${CDN}/f_auto,q_auto:good,w_1600,c_fill,g_center/${retailer.image}`;
 ---
 
 <Layout
@@ -64,7 +68,7 @@ const hasMultiple = retailer.locations.length > 1;
   <div class="rd-page">
 
     <!-- Hero -->
-    <section class="rd-hero">
+    <section class="rd-hero" style={`--hero-img: url('${heroImg}')`}>
       <div class="rd-hero__bg"></div>
       <div class="rd-hero__content">
         <nav class="rd-breadcrumb" aria-label="Breadcrumb">
@@ -74,7 +78,7 @@ const hasMultiple = retailer.locations.length > 1;
           <span aria-hidden="true"> / </span>
           <span>{retailer.shortName}</span>
         </nav>
-        <p class="rd-hero__eyebrow">{retailer.city}, {retailer.state} · Authorized Retailer</p>
+        <p class="rd-hero__eyebrow">{retailer.city}, {retailer.state}&ensp;·&ensp;Authorized Retailer</p>
         <h1 class="rd-hero__title">{retailer.name}</h1>
       </div>
     </section>
@@ -82,7 +86,7 @@ const hasMultiple = retailer.locations.length > 1;
     <!-- Body -->
     <div class="rd-body">
 
-      <!-- About + First Location -->
+      <!-- About + badge -->
       <div class="rd-intro">
         <div class="rd-intro__copy">
           <p class="rd-intro__eyebrow">About This Partner</p>
@@ -104,6 +108,9 @@ const hasMultiple = retailer.locations.length > 1;
             height="42"
             loading="lazy"
           />
+          <p class="rd-intro__badge-note">
+            Every authorized location is personally selected and trained on the Bez Ambar collection.
+          </p>
         </div>
       </div>
 
@@ -162,29 +169,81 @@ const hasMultiple = retailer.locations.length > 1;
         </div>
       </section>
 
-      <!-- What to Expect -->
-      <section class="rd-expect">
-        <h2 class="rd-expect__title">What to Expect</h2>
+    </div>
+
+    <!-- From the Collection — full-width dark editorial strip -->
+    <section class="rd-collection">
+      <div class="rd-collection__inner">
+        <p class="rd-collection__eyebrow">From the Collection</p>
+        <h2 class="rd-collection__title">The Bez Ambar Difference</h2>
+      </div>
+      <div class="rd-collection__strip">
+        <div class="rd-collection__item">
+          <img
+            src={`${CDN}/c_fill,ar_3:4,w_600,g_center,f_auto,q_auto/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg`}
+            alt="The Princess Cut diamond — the original patented by Bez Ambar"
+            loading="lazy"
+            width="600"
+            height="800"
+          />
+          <div class="rd-collection__caption">
+            <p class="rd-collection__caption-title">The Princess Cut</p>
+            <p class="rd-collection__caption-body">The original — created by Bez Ambar in 1979. Precision-cut for maximum brilliance in a square form.</p>
+          </div>
+        </div>
+        <div class="rd-collection__item">
+          <img
+            src={`${CDN}/c_fill,ar_3:4,w_600,g_center,f_auto,q_auto/v1775549202/Jewelry%20Images/Rings/C0625_Baguette_band_Master_e4azkj.jpg`}
+            alt="Bez Ambar diamond baguette band"
+            loading="lazy"
+            width="600"
+            height="800"
+          />
+          <div class="rd-collection__caption">
+            <p class="rd-collection__caption-title">Diamond Bands</p>
+            <p class="rd-collection__caption-body">Eternity and anniversary bands set with the same precision that defines every Bez Ambar piece.</p>
+          </div>
+        </div>
+        <div class="rd-collection__item">
+          <img
+            src={`${CDN}/c_fill,ar_3:4,w_600,g_center,f_auto,q_auto/Jewelry%20Images/legacy/10-carat-emerald-cut-diamond-ring-with-blaze.jpg`}
+            alt="Bez Ambar statement diamond ring with Blaze® cut"
+            loading="lazy"
+            width="600"
+            height="800"
+          />
+          <div class="rd-collection__caption">
+            <p class="rd-collection__caption-title">Statement Pieces</p>
+            <p class="rd-collection__caption-body">Significant diamonds deserving significant design. Each setting engineered to let light speak first.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What to Expect — dark panel -->
+    <section class="rd-expect">
+      <div class="rd-expect__inner">
+        <p class="rd-expect__eyebrow">What to Expect</p>
+        <h2 class="rd-expect__title">At Every Authorized Showroom</h2>
         <div class="rd-expect__grid">
           <div class="rd-expect__item">
             <p class="rd-expect__num">01</p>
             <h3 class="rd-expect__head">The Full Collection</h3>
-            <p class="rd-expect__body">This authorized showroom carries Bez Ambar diamond jewelry, including the Princess Cut originals and the Elysian Cut™ — the square-brilliant patented by Bez Ambar.</p>
+            <p class="rd-expect__body">This authorized showroom carries Bez Ambar diamond jewelry — including the Princess Cut originals and the Elysian Cut™, the square-brilliant cut patented by Bez Ambar.</p>
           </div>
           <div class="rd-expect__item">
             <p class="rd-expect__num">02</p>
             <h3 class="rd-expect__head">Expert Guidance</h3>
-            <p class="rd-expect__body">Authorized retailers are trained on the Bez Ambar collection and can walk you through cut performance, setting options, and custom sizing.</p>
+            <p class="rd-expect__body">Authorized retailers are trained on the Bez Ambar collection and can walk you through cut performance, setting options, and custom sizing for any piece.</p>
           </div>
           <div class="rd-expect__item">
             <p class="rd-expect__num">03</p>
             <h3 class="rd-expect__head">Authenticity Guaranteed</h3>
-            <p class="rd-expect__body">Every Bez Ambar piece sold by an authorized retailer carries the full manufacturer warranty and certificate of authenticity.</p>
+            <p class="rd-expect__body">Every Bez Ambar piece sold by an authorized retailer carries the full manufacturer warranty and certificate of authenticity directly from the atelier.</p>
           </div>
         </div>
-      </section>
-
-    </div>
+      </div>
+    </section>
 
     <!-- Footer CTA -->
     <section class="rd-cta">
@@ -205,10 +264,10 @@ const hasMultiple = retailer.locations.length > 1;
   /* ─── Hero ─── */
   .rd-hero {
     position: relative;
-    min-height: 46vh;
+    min-height: 52vh;
     display: flex;
     align-items: flex-end;
-    padding-bottom: 4rem;
+    padding-bottom: 4.5rem;
     overflow: hidden;
     background: #0f0f0f;
   }
@@ -216,45 +275,45 @@ const hasMultiple = retailer.locations.length > 1;
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.72) 100%),
-      url('https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto:good,w_1400/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg')
-      center / cover no-repeat;
+      linear-gradient(to bottom, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0.76) 100%),
+      var(--hero-img) center / cover no-repeat;
   }
   .rd-hero__content {
     position: relative;
     z-index: 1;
     width: 100%;
-    max-width: 900px;
+    max-width: 960px;
     margin: 0 auto;
     padding: 0 2rem;
     color: #fff;
   }
   .rd-breadcrumb {
     font-family: var(--sans);
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     letter-spacing: 0.08em;
-    color: rgba(255,255,255,0.55);
-    margin-bottom: 1.5rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 1.8rem;
   }
   .rd-breadcrumb a {
-    color: rgba(255,255,255,0.55);
+    color: rgba(255,255,255,0.5);
     text-decoration: none;
     transition: color 0.2s;
   }
   .rd-breadcrumb a:hover { color: var(--accent); }
+  .rd-breadcrumb span[aria-hidden] { padding: 0 0.3rem; }
   .rd-hero__eyebrow {
     font-family: var(--sans);
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--accent);
-    margin: 0 0 1rem;
+    margin: 0 0 1.2rem;
   }
   .rd-hero__title {
     font-family: var(--serif, 'Cormorant Garamond', serif);
-    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-size: clamp(2.4rem, 5.5vw, 4.2rem);
     font-weight: 300;
-    line-height: 1.1;
+    line-height: 1.08;
     letter-spacing: 0.02em;
     margin: 0;
   }
@@ -263,33 +322,33 @@ const hasMultiple = retailer.locations.length > 1;
   .rd-body {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 5rem 2rem;
+    padding: 5.5rem 2rem;
   }
 
   /* ─── Intro ─── */
   .rd-intro {
     display: grid;
-    grid-template-columns: 1fr 1px 200px;
-    gap: 3rem;
+    grid-template-columns: 1fr 1px 220px;
+    gap: 3.5rem;
     align-items: start;
-    padding-bottom: 4rem;
+    padding-bottom: 5rem;
     border-bottom: 1px solid #e8e4de;
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
   }
   .rd-intro__eyebrow {
     font-family: var(--sans);
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
+    font-size: 0.66rem;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--accent);
-    margin: 0 0 1rem;
+    margin: 0 0 1.1rem;
   }
   .rd-intro__text {
     font-family: var(--sans);
-    font-size: 1rem;
-    line-height: 1.75;
+    font-size: 1.02rem;
+    line-height: 1.78;
     color: #3a3530;
-    margin: 0 0 1.5rem;
+    margin: 0 0 1.6rem;
   }
   .rd-intro__link {
     font-family: var(--sans);
@@ -308,43 +367,54 @@ const hasMultiple = retailer.locations.length > 1;
   .rd-intro__badge {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.1rem;
     align-items: flex-start;
   }
   .rd-intro__badge-label {
     font-family: var(--sans);
-    font-size: 0.68rem;
-    letter-spacing: 0.15em;
+    font-size: 0.66rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: #5a5248;
     margin: 0;
   }
-  .rd-intro__badge-logo { opacity: 0.85; }
+  .rd-intro__badge-logo { opacity: 0.8; }
+  .rd-intro__badge-note {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: #9c9188;
+    margin: 0;
+    border-top: 1px solid #e8e4de;
+    padding-top: 1rem;
+  }
 
   /* ─── Locations ─── */
   .rd-locations__title {
     font-family: var(--serif, 'Cormorant Garamond', serif);
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
     font-weight: 300;
     color: #1a1a1a;
-    margin: 0 0 2.5rem;
+    margin: 0 0 3rem;
+    letter-spacing: 0.01em;
   }
   .rd-locs-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 4rem;
   }
   .rd-locs-grid--multi {
     grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+    gap: 3rem;
   }
-  .rd-loc { display: flex; flex-direction: column; gap: 0; }
+  .rd-loc { display: flex; flex-direction: column; }
   .rd-loc__label {
     font-family: var(--sans);
-    font-size: 0.7rem;
-    letter-spacing: 0.18em;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--accent);
-    margin: 0 0 0.75rem;
+    margin: 0 0 0.9rem;
   }
   .rd-loc__map-wrap {
     width: 100%;
@@ -358,25 +428,25 @@ const hasMultiple = retailer.locations.length > 1;
     display: block;
   }
   .rd-loc__info {
-    padding: 1.75rem 0 0;
+    padding: 2rem 0 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
     align-items: start;
   }
-  .rd-loc__block { display: flex; flex-direction: column; gap: 0.4rem; }
+  .rd-loc__block { display: flex; flex-direction: column; gap: 0.5rem; }
   .rd-loc__block-label {
     font-family: var(--sans);
-    font-size: 0.65rem;
-    letter-spacing: 0.18em;
+    font-size: 0.63rem;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: #9c9188;
+    color: #b0a89e;
     margin: 0;
   }
   .rd-loc__address {
     font-family: var(--sans);
     font-size: 0.875rem;
-    line-height: 1.55;
+    line-height: 1.6;
     color: #1a1a1a;
     font-style: normal;
     margin: 0;
@@ -392,90 +462,175 @@ const hasMultiple = retailer.locations.length > 1;
   .rd-loc__hours {
     font-family: var(--sans);
     font-size: 0.82rem;
-    line-height: 1.5;
+    line-height: 1.55;
     color: #3a3530;
     margin: 0;
   }
   .rd-loc__directions {
     font-family: var(--sans);
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: #1a1a1a;
     text-decoration: none;
     border-bottom: 1px solid currentColor;
     align-self: start;
+    padding-bottom: 0.1rem;
     transition: color 0.2s;
   }
   .rd-loc__directions:hover { color: var(--accent); }
 
+  /* ─── From the Collection ─── */
+  .rd-collection {
+    background: #0f0f0f;
+    padding: 5.5rem 0 0;
+  }
+  .rd-collection__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem 3.5rem;
+    color: #fff;
+  }
+  .rd-collection__eyebrow {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 1.2rem;
+  }
+  .rd-collection__title {
+    font-family: var(--serif, 'Cormorant Garamond', serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 300;
+    margin: 0;
+    letter-spacing: 0.01em;
+    color: #fff;
+  }
+  .rd-collection__strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: #1a1a1a;
+  }
+  .rd-collection__item {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .rd-collection__item img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    filter: brightness(0.88);
+    transition: filter 0.4s;
+  }
+  .rd-collection__item:hover img { filter: brightness(1); }
+  .rd-collection__caption {
+    padding: 1.8rem 2rem 2.5rem;
+    background: #0f0f0f;
+    flex: 1;
+  }
+  .rd-collection__caption-title {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 0.6rem;
+  }
+  .rd-collection__caption-body {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.6);
+    margin: 0;
+  }
+
   /* ─── What to Expect ─── */
   .rd-expect {
-    margin-top: 5rem;
-    padding-top: 4rem;
-    border-top: 1px solid #e8e4de;
+    background: #0f0f0f;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .rd-expect__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5.5rem 2rem 6rem;
+  }
+  .rd-expect__eyebrow {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 1.2rem;
   }
   .rd-expect__title {
     font-family: var(--serif, 'Cormorant Garamond', serif);
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
     font-weight: 300;
-    margin: 0 0 3rem;
+    color: #fff;
+    margin: 0 0 4rem;
+    letter-spacing: 0.01em;
   }
   .rd-expect__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
+    gap: 3.5rem;
   }
   .rd-expect__num {
     font-family: var(--serif, 'Cormorant Garamond', serif);
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 300;
-    color: #e8e4de;
-    margin: 0 0 0.75rem;
+    color: rgba(255,255,255,0.1);
+    margin: 0 0 1rem;
     line-height: 1;
+    letter-spacing: 0.02em;
   }
   .rd-expect__head {
     font-family: var(--sans);
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     font-weight: 600;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #1a1a1a;
-    margin: 0 0 0.75rem;
+    color: rgba(255,255,255,0.9);
+    margin: 0 0 0.9rem;
   }
   .rd-expect__body {
     font-family: var(--sans);
     font-size: 0.875rem;
-    line-height: 1.65;
-    color: #5a5248;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.5);
     margin: 0;
   }
 
   /* ─── Footer CTA ─── */
   .rd-cta {
-    background: #0f0f0f;
-    padding: 6rem 2rem;
+    background: #fff;
+    padding: 6.5rem 2rem;
+    border-top: 1px solid #e8e4de;
   }
   .rd-cta__inner {
-    max-width: 600px;
+    max-width: 580px;
     margin: 0 auto;
     text-align: center;
-    color: #fff;
   }
   .rd-cta__eyebrow {
     font-family: var(--sans);
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--accent);
-    margin: 0 0 1rem;
+    margin: 0 0 1.1rem;
   }
   .rd-cta__title {
     font-family: var(--serif, 'Cormorant Garamond', serif);
-    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
     font-weight: 300;
-    margin: 0 0 2.5rem;
+    margin: 0 0 2.8rem;
     line-height: 1.1;
+    letter-spacing: 0.01em;
+    color: #1a1a1a;
   }
   .rd-cta__btns {
     display: flex;
@@ -485,41 +640,49 @@ const hasMultiple = retailer.locations.length > 1;
   }
   .rd-cta__btn {
     font-family: var(--sans);
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     text-decoration: none;
-    padding: 0.9rem 2rem;
+    padding: 1rem 2.2rem;
     transition: background 0.2s, color 0.2s, border-color 0.2s;
   }
   .rd-cta__btn--primary {
-    background: var(--accent);
-    color: #0f0f0f;
+    background: #1a1a1a;
+    color: #fff;
   }
-  .rd-cta__btn--primary:hover { background: #b09a82; }
+  .rd-cta__btn--primary:hover { background: var(--accent); }
   .rd-cta__btn--ghost {
-    border: 1px solid rgba(255,255,255,0.3);
-    color: rgba(255,255,255,0.8);
+    border: 1px solid #ccc6be;
+    color: #3a3530;
   }
   .rd-cta__btn--ghost:hover {
-    border-color: rgba(255,255,255,0.7);
-    color: #fff;
+    border-color: #1a1a1a;
+    color: #1a1a1a;
   }
 
   /* ─── Responsive ─── */
+  @media (max-width: 1024px) {
+    .rd-collection__strip { grid-template-columns: 1fr; }
+    .rd-collection__item img { max-height: 420px; }
+  }
   @media (max-width: 900px) {
     .rd-intro {
       grid-template-columns: 1fr;
     }
     .rd-intro__divider { display: none; }
-    .rd-intro__badge { flex-direction: row; align-items: center; }
+    .rd-intro__badge { flex-direction: row; align-items: center; flex-wrap: wrap; }
+    .rd-intro__badge-note { width: 100%; flex-basis: 100%; }
     .rd-locs-grid--multi { grid-template-columns: 1fr; }
-    .rd-expect__grid { grid-template-columns: 1fr; gap: 2rem; }
+    .rd-expect__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .rd-collection__strip { grid-template-columns: 1fr; }
   }
   @media (max-width: 600px) {
     .rd-loc__info { grid-template-columns: 1fr 1fr; }
     .rd-loc__directions { grid-column: 1 / -1; }
-    .rd-body { padding: 3rem 1.25rem; }
-    .rd-hero { min-height: 40vh; padding-bottom: 2.5rem; }
+    .rd-body { padding: 3.5rem 1.25rem; }
+    .rd-hero { min-height: 44vh; padding-bottom: 3rem; }
+    .rd-expect__inner { padding: 4rem 1.25rem; }
+    .rd-collection__inner { padding-left: 1.25rem; padding-right: 1.25rem; }
   }
 </style>
