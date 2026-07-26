@@ -4,7 +4,8 @@ date: 2019-04-14
 updatedDate: 2026-07-08
 category: earrings
 excerpt: "The huggie sits at the intersection of stud and hoop — close to the ear, secure, and capable of carrying considerably more design complexity than its compact size suggests."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540135/Jewelry%20Images/Legacy/hoop-earrings-with-blaze-cut-diamonds-large-stones-by-bez-ambar-los-angeles.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/earrings/pear-ashoka-model-hero.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/videos/earrings/3hoop30rb-2026.mp4"
 heroImageAlt: "Fine diamond hoop earrings by Bez Ambar Los Angeles showing large diamond stations"
 author: Bez Ambar
 status: live

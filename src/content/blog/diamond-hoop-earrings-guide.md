@@ -4,7 +4,8 @@ date: 2018-07-19
 updatedDate: 2026-07-08
 category: earrings
 excerpt: "Your overall look mostly depends on the clothes, makeup, and the jewelry you wear. Making sure all of these elements go well with one another, and suit you best, is the key to a great look. The choice of earrings is especially important to a woman's overall look."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540135/Jewelry%20Images/Legacy/hoop-earrings-with-blaze-cut-diamonds-large-stones-by-bez-ambar-los-angeles.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/earrings/pear-ashoka-model-hero.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/videos/earrings/3hoop30rb-2026.mp4"
 heroImageAlt: "Diamond hoop earrings with large Blaze® cut stones by Bez Ambar Los Angeles"
 author: Bez Ambar
 status: live

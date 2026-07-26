@@ -4,7 +4,7 @@ date: 2020-01-15
 updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "Pave diamonds multiply a ring's brilliance without adding bulk — but only if the setting is done right and maintained."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540138/Jewelry%20Images/Legacy/ring-of-fire-flower-with-bands-and-t2.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1778811676/Jewelry%20Images/Rings/crossover-ashoka-white-hand.jpg"
 heroImageAlt: "Bez Ambar pave diamond engagement ring with flower motif and matching bands"
 author: Bez Ambar
 status: live

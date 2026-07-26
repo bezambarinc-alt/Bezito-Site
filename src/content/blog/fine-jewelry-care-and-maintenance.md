@@ -4,7 +4,7 @@ date: 2021-08-30
 updatedDate: 2026-07-08
 category: guides
 excerpt: "Fine jewelry does not maintain itself — an annual inspection and service routine catches problems before they become losses and keeps pieces performing as intended."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540141/Jewelry%20Images/Legacy/1rol-5r-model-mb-k.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/atelier/designer-portrait-2026.jpg"
 heroImageAlt: "Diamond ring at professional inspection showing prong examination with loupe"
 author: Bez Ambar
 status: live

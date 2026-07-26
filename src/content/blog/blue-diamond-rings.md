@@ -4,7 +4,7 @@ date: 2018-05-10
 updatedDate: 2026-07-08
 category: colored-stones
 excerpt: "Natural blue diamonds get their color from boron atoms in the crystal lattice. They represent less than 0.1% of all mined diamonds and command prices that reflect that rarity."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540130/Jewelry%20Images/Legacy/fancy-intense-blue-diamond-ring.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/pages/ceylon-sapphire-1130-hero.jpg"
 heroImageAlt: "Fancy Intense blue diamond ring, Bez Ambar Los Angeles"
 author: Bez Ambar
 status: live

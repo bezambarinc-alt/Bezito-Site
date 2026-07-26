@@ -4,7 +4,7 @@ date: 2022-09-01
 updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "Moissanite and diamond look nearly identical in a photo — the differences that matter show up only when you know where to look."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540137/Jewelry%20Images/Legacy/fancy-colored-diamond-jewelry.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1779074065/Jewelry%20Images/Stones/Elysian_cut_oval_qcdt5r.jpg"
 heroImageAlt: "Close-up of fancy colored diamond jewelry set in yellow gold"
 author: Bez Ambar
 status: live

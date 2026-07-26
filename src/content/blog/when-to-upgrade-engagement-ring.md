@@ -4,7 +4,7 @@ date: 2022-12-14
 updatedDate: 2026-07-08
 category: guides
 excerpt: "Upgrading an engagement ring is a legitimate choice — knowing the difference between a structural reason and an impulse reason determines whether you end up with something better or just something newer."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540138/Jewelry%20Images/Legacy/ring-of-fire-flower-with-bands-and-t2.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1778811676/Jewelry%20Images/Rings/crossover-ashoka-white-hand.jpg"
 heroImageAlt: "Diamond engagement ring showing before and after upgrade comparison with larger center stone"
 author: Bez Ambar
 status: live

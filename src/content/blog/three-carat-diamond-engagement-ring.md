@@ -4,7 +4,7 @@ date: 2024-05-08
 updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "Three carats marks the point where a diamond ring stops being noticed and starts commanding the room — and where the economics of diamond buying shift decisively."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540138/Jewelry%20Images/Legacy/ring-of-fire-flower-with-bands-and-t2.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1779074065/Jewelry%20Images/Stones/Elysian_cut_oval_qcdt5r.jpg"
 heroImageAlt: "Three-carat diamond engagement ring with halo setting showing substantial center stone"
 author: Bez Ambar
 status: live

@@ -4,7 +4,7 @@ date: 2020-04-08
 updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "A bezel setting wraps your center stone in solid metal — and for active hands, that's not a compromise, it's the smartest decision you can make."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540131/Jewelry%20Images/Legacy/engagement-ring-of-fire-blue-sapphire-oval.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1778811676/Jewelry%20Images/Rings/crossover-ashoka-white-hand.jpg"
 heroImageAlt: "Oval blue sapphire engagement ring with bezel setting on a neutral background"
 author: Bez Ambar
 status: live

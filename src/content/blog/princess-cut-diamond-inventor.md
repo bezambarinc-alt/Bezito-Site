@@ -4,7 +4,7 @@ date: 2014-10-17
 updatedDate: 2026-07-11
 category: diamonds
 excerpt: "The Princess Cut, the world's second most popular diamond shape, was invented by Bez Ambar in 1979 and originally called the Quadrillion Cut. This is that story."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540140/Jewelry%20Images/Legacy/ring-of-fire-princess-earrings.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg"
 heroImageAlt: "Bez Ambar princess cut diamond earrings, from the inventor of the Princess Cut"
 author: Bez Ambar
 status: live

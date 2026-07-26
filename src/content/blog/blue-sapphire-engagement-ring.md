@@ -5,7 +5,7 @@ updatedDate: 2026-07-08
 category: colored-stones
 excerpt: "Blue sapphires have been used in royal engagement rings for centuries. What makes them genuinely suitable for daily wear, and what to know before buying one, is a different conversation from the romance."
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/videos/bracelets/blue-sapphire-single-row-flex-c0825-2026.mp4"
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540131/Jewelry%20Images/Legacy/engagement-ring-of-fire-blue-sapphire-oval.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Real%20Stones/sapphire_537ct_oval_ceylon_agl_hero.jpg"
 heroImageAlt: "Blue sapphire diamond jewelry in motion, Bez Ambar"
 author: Bez Ambar
 status: live

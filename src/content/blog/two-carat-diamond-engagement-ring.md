@@ -4,7 +4,7 @@ date: 2024-03-11
 updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "Two carats is the first size threshold where a diamond commands significant attention on the hand — and where pricing starts to diverge sharply from one-carat norms."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540139/Jewelry%20Images/Legacy/oval-ring-custom-three-arms-revery1.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1779074065/Jewelry%20Images/Stones/Elysian_cut_oval_qcdt5r.jpg"
 heroImageAlt: "Two-carat oval diamond engagement ring in platinum setting"
 author: Bez Ambar
 status: live

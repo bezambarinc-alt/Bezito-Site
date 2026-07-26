@@ -4,7 +4,7 @@ date: 2021-05-12
 updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "The split shank turns a ring's band into a design statement — and once you understand how, you'll never look at a plain shank the same way."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540128/Jewelry%20Images/Legacy/flower-of-light-diamond-engagement-ring-with-knife-edge-bands.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1778811676/Jewelry%20Images/Rings/crossover-ashoka-white-hand.jpg"
 heroImageAlt: "Diamond engagement ring with split knife-edge band flanking the center stone"
 author: Bez Ambar
 status: live

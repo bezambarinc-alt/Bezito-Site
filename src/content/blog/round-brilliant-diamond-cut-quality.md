@@ -4,7 +4,7 @@ date: 2016-11-10
 updatedDate: 2026-07-08
 category: diamonds
 excerpt: "A poorly cut two-carat stone can look smaller and deader than a well-cut one-carat — cut is the only C you control after the diamond leaves the earth."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540138/Jewelry%20Images/Legacy/ring-of-fire-flower-with-bands-and-t2.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1779074065/Jewelry%20Images/Stones/Elysian_cut_oval_qcdt5r.jpg"
 heroImageAlt: "Round brilliant diamond ring with floral halo and side bands"
 author: Bez Ambar
 status: live

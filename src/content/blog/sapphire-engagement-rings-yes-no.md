@@ -4,7 +4,7 @@ date: 2017-07-05
 updatedDate: 2026-07-08
 category: colored-stones
 excerpt: "Sapphire engagement rings are not a compromise or an alternative. They are a genuine choice with real advantages and real considerations. Here is a direct assessment."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540131/Jewelry%20Images/Legacy/engagement-ring-of-fire-blue-sapphire-oval.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/pages/ceylon-sapphire-1130-hero.jpg"
 heroImageAlt: "Blue sapphire oval engagement ring by Bez Ambar"
 author: Bez Ambar
 status: live

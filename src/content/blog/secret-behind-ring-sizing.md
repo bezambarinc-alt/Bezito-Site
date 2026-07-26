@@ -4,7 +4,7 @@ date: 2017-06-06
 updatedDate: 2026-07-08
 category: guides
 excerpt: "Sizing a ring is one of the most common jeweler's services requested. What actually happens in the process, and when it is not possible, is worth knowing before you need it."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540144/Jewelry%20Images/Legacy/unique-mens-wedding-band-bez-ambar-los-angeles.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/atelier/designer-portrait-2026.jpg"
 heroImageAlt: "Unique men's wedding band by Bez Ambar, Los Angeles"
 author: Bez Ambar
 status: live

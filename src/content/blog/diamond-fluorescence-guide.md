@@ -4,7 +4,7 @@ date: 2017-08-30
 updatedDate: 2026-07-08
 category: diamonds
 excerpt: "Diamond fluorescence divides buyers and dealers alike. Understanding what it actually does — and when it helps versus hurts — resolves the confusion."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1783540127/Jewelry%20Images/Legacy/designer-diamond-engagement-rings-los-angeles.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg"
 heroImageAlt: "Diamonds photographed under ultraviolet light showing strong blue fluorescence"
 author: Bez Ambar
 status: live
