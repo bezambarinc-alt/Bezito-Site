@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: earrings
 excerpt: "Rose gold is not a trend that arrived in 2012 and will leave — it is a copper-rich gold alloy with a history in fine jewelry going back to nineteenth-century Russia, and it has proven itself in every context it has entered."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/earrings/pear-ashoka-model-hero.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Earrings/c0845-hd"
 heroImageAlt: "Fine diamond stud earrings by Bez Ambar showing exceptional brilliance and craftsmanship"
 author: Bez Ambar
 status: live

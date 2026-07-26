@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "Bez Ambar's patented Blaze® halo eliminates the gaps other jewelers cannot solve, creating an unbroken ring of light that fuses with the center stone."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1778811676/Jewelry%20Images/Rings/crossover-ashoka-white-hand.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/C0895_1C3S_HD_wz0ssk"
 heroImageAlt: "Bez Ambar Ring of Fire halo engagement ring with matching rose gold bands"
 author: Bez Ambar
 status: live

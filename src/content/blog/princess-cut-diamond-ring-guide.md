@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: diamonds
 excerpt: "The princess cut is the most popular fancy shape diamond — a square brilliant that delivers maximum light return in a geometric package, with specific setting requirements buyers need to understand."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/Duet_Ashoka_jbgz8i"
 heroImageAlt: "Princess cut diamond engagement ring showing square brilliant face-up with pointed corners"
 author: Bez Ambar
 status: live

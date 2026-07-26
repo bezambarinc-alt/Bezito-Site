@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: colored-stones
 excerpt: "Emeralds are the most heavily treated of all major gemstones, and the treatment scale is the single most important variable buyers rarely ask about."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/earrings/pear_emerald_drop_earring.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/Pink_Oval_Ring_C0747_2026_1080p"
 heroImageAlt: "Pear shaped emerald drop earring set in gold by Bez Ambar"
 author: Bez Ambar
 status: live

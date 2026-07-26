@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: earrings
 excerpt: "The ear climber occupies a position in earring design that no prior form held — it uses the ear's anatomy as a compositional element, letting the jewelry follow the natural curve of the ear from lobe to helix."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/earrings/pear-ashoka-model-hero.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Earrings/C0513_HD_juellw"
 heroImageAlt: "Fine diamond earrings by Bez Ambar shown on model demonstrating elegant ear-following design"
 author: Bez Ambar
 status: live

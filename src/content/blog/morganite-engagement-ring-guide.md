@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "Morganite costs a fraction of a diamond, looks stunning in rose gold, and fades — here is what to know before you buy."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/study-in-ruby/frame_ovals.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/Pink_Oval_Ring_C0747_2026_1080p"
 heroImageAlt: "Oval pink gemstone rings displayed on a neutral surface in warm light"
 author: Bez Ambar
 status: live

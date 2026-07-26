@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: earrings
 excerpt: "Drop earrings work because they move — but that movement comes with weight, and the balance between visual impact and wearable comfort is the design problem every pair has to solve."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/earrings/pear_emerald_drop_earring.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Earrings/c0845-hd"
 heroImageAlt: "Pear shaped gemstone drop earring by Bez Ambar showing elegant elongated silhouette"
 author: Bez Ambar
 status: live

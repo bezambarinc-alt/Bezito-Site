@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: necklaces
 excerpt: "A bezel setting wraps the diamond in a continuous metal wall — the result is more protection, a cleaner silhouette, and a piece that ages better than prong-set alternatives."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/necklaces/premiere-25ct-oval-hero.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Pendants/C0826_HD_ifianq"
 heroImageAlt: "Oval diamond bezel pendant in 18k yellow gold on delicate chain"
 author: Bez Ambar
 status: live

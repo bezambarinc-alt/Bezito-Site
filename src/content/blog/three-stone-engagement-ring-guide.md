@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "The three-stone ring is not a trend — it is a structural argument about love, time, and the weight of a stone chosen to last."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1778811675/Jewelry%20Images/Rings/crossover-ashoka-yellow-stack.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/c0752-ring-2026"
 heroImageAlt: "Woman's hand wearing a platinum three-stone diamond engagement ring"
 author: Bez Ambar
 status: live

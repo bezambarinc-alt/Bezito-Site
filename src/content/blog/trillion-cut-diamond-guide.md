@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: diamonds
 excerpt: "The trillion cut is a triangular diamond shape with specific optical properties and structural limitations — understanding both is essential before using it as a center stone or accent."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1779091372/Jewelry%20Images/Stones/Elysian_cut_marquise_boraiy.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/c0752-ring-2026"
 heroImageAlt: "Trillion cut diamond showing triangular outline with brilliant faceting"
 author: Bez Ambar
 status: live

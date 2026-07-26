@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: earrings
 excerpt: "Watch our exclusive video showcasing the beauty of cushion cut diamond earrings. See how light dances through the facets of these exquisite pieces from our collection."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/earrings/pear-ashoka-model-hero.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/C0895_1C3S_HD_wz0ssk"
 heroImageAlt: "Cushion cut diamond stud earrings with Blaze® halo frame by Bez Ambar"
 author: Bez Ambar
 status: live

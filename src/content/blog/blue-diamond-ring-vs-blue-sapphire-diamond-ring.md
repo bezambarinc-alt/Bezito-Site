@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: colored-stones
 excerpt: "Blue diamonds and blue sapphires are not variations on the same thing. They are different minerals, different optical experiences, and different markets. Comparing them directly produces a clearer picture of which suits you."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/pages/ceylon-sapphire-1130-hero.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/Pink_Oval_Ring_C0747_2026_1080p"
 heroImageAlt: "Fancy blue diamond ring by Bez Ambar — blue diamond vs blue sapphire"
 author: Bez Ambar
 status: live

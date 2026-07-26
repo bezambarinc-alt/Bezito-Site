@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: guides
 excerpt: "Online jewelry retail has matured substantially. Some categories of fine jewelry are genuinely well-suited to online purchase. Others are not. Knowing which is which saves money and prevents disappointment."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/atelier/designer-portrait-2026.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/c0752-ring-2026"
 heroImageAlt: "Bez Ambar master jeweler and designer, Los Angeles atelier"
 author: Bez Ambar
 status: live

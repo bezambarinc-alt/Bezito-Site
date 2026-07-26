@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "The oval cut delivers more visible diamond per carat than almost any other shape — and most buyers don't know why until they see one on the hand."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry/Jewelry%20Images/Rings/C0723_Oval_Eternity_Band_awpedb.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Bands/Dentelle_Oval_Cut_2026_1080p"
 heroImageAlt: "Oval diamond eternity band set in polished gold on a woman's hand"
 author: Bez Ambar
 status: live

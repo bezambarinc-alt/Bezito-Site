@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: guides
 excerpt: "Most jewelry damage happens in storage, not during wear — the way a piece is stored when it is not on a person determines how it looks in five years."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/atelier/designer-portrait-2026.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/c0752-ring-2026"
 heroImageAlt: "Fine jewelry collection organized in velvet-lined jewelry box showing proper compartmentalized storage"
 author: Bez Ambar
 status: live

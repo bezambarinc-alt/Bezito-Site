@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: colored-stones
 excerpt: "Morganite entered the fine jewelry mainstream in the 2010s and stayed — the combination of accessible pricing, excellent clarity, and a flattering pink-peach palette is difficult to argue with."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/study-in-ruby/frame_ovals.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/Pink_Oval_Ring_C0747_2026_1080p"
 heroImageAlt: "Oval pink-peach gemstone ring showing the warm saturation characteristic of quality morganite"
 author: Bez Ambar
 status: live

@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: earrings
 excerpt: "Chandelier earrings are a commitment — to the occasion, to the design, to carrying weight at the ear for hours — and the choices made in design determine whether that commitment is joyful or regretted by ten o'clock."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/earrings/pear_emerald_drop_earring.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Earrings/c0845-hd"
 heroImageAlt: "Fine gemstone drop earring by Bez Ambar showing the elegant cascade of a formal chandelier design"
 author: Bez Ambar
 status: live

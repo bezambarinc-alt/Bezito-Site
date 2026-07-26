@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: bracelets
 excerpt: "A flex bracelet moves with the wrist because its linked construction articulates independently — that engineering is what separates a comfortable piece from one that fights you all day."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry/Jewelry%20Images/Rings/3rows_round_Flex_ring_mucrzv.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Bracelets/emerald-cut-flex-bracelet-c0834-2026"
 heroImageAlt: "Three-row diamond flex bracelet in 18k white gold showing articulated link movement"
 author: Bez Ambar
 status: live

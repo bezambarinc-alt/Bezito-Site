@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "The marquise cut makes fingers look longer, stones look larger, and jewelers look like they know something you don't — here's what they know."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/study-in-ruby/frame_marquise_fan.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/c0752-ring-2026"
 heroImageAlt: "Marquise cut diamond ring displayed against a dark velvet surface"
 author: Bez Ambar
 status: live

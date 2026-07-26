@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: colored-stones
 excerpt: "Brown diamonds were once sorted out of gem-quality inventory. Rebranded as chocolate and champagne in the 1990s, they became a legitimate jewelry category with a genuine aesthetic identity."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1778811675/Jewelry%20Images/Rings/crossover-ashoka-yellow-stack.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/Pink_Oval_Ring_C0747_2026_1080p"
 heroImageAlt: "Chocolate brown diamond ring in rose gold setting, Bez Ambar"
 author: Bez Ambar
 status: live

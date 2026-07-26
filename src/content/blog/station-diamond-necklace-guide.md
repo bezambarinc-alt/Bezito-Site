@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: necklaces
 excerpt: "A station necklace places diamonds at measured intervals along a fine chain — the result is more movement, more versatility, and a piece that earns daily wear."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/necklaces/single-row-lifestyle.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Necklaces/baguette-by-the-yard-2026"
 heroImageAlt: "Diamond station necklace in 18k white gold with bezel-set round brilliants"
 author: Bez Ambar
 status: live

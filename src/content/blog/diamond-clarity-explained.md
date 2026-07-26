@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: diamonds
 excerpt: "Diamond clarity grades measure microscopic features most buyers will never see — but understanding the scale tells you exactly where to save and where not to."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1779074065/Jewelry%20Images/Stones/Elysian_cut_oval_qcdt5r.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/C0895_1C3S_HD_wz0ssk"
 heroImageAlt: "Diamond under magnification showing clarity characteristics on grading report"
 author: Bez Ambar
 status: live

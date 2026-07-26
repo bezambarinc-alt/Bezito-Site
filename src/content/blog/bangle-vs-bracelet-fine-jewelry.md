@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: bracelets
 excerpt: "Bangles and bracelets solve different design problems — understanding what each does well prevents buying the wrong one for the intended use."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry/Jewelry%20Images/Rings/3rows_round_Flex_ring_mucrzv.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Bracelets/emerald-cut-flex-bracelet-c0834-2026"
 heroImageAlt: "Gold bangle and flex bracelet displayed together showing structural contrast"
 author: Bez Ambar
 status: live

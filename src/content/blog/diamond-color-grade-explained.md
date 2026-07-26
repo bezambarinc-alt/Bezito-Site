@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: diamonds
 excerpt: "The GIA diamond color scale runs from D to Z. Most buyers focus on the wrong part of it, and understanding the whole scale changes how you spend your budget."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1779091372/Jewelry%20Images/Stones/Elysian_cut_emerald_a1l5gv.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/C0895_1C3S_HD_wz0ssk"
 heroImageAlt: "Diamond being examined for color grading under controlled laboratory lighting"
 author: Bez Ambar
 status: live

@@ -5,6 +5,7 @@ updatedDate: 2026-07-11
 category: jewelry-care
 excerpt: "A chipped diamond is not automatically ruined. Depending on where the chip is and how severe it is, there are several options, some better than you expect."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1779074065/Jewelry%20Images/Stones/Elysian_cut_oval_qcdt5r.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/C0895_1C3S_HD_wz0ssk"
 heroImageAlt: "Diamond ring being inspected by a master jeweler, examining stone integrity and prong security"
 author: Bez Ambar
 status: live

@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: necklaces
 excerpt: "Layering necklaces is not about stacking everything you own. It is about proportion, negative space, and knowing when to stop."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/necklaces/baguette-line-lifestyle.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Necklaces/baguette-by-the-yard-2026"
 heroImageAlt: "Three layered fine jewelry necklaces in yellow gold at varying lengths"
 author: Bez Ambar
 status: live

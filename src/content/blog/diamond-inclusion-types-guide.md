@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: diamonds
 excerpt: "Not all diamond inclusions are equal — a colorless cloud near the girdle and a dark crystal under the table can share the same clarity grade while behaving completely differently in a ring."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1779074065/Jewelry%20Images/Stones/Elysian_cut_oval_qcdt5r.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/C0895_1C3S_HD_wz0ssk"
 heroImageAlt: "Diamond under 10x magnification showing various inclusion types in VS2 clarity"
 author: Bez Ambar
 status: live

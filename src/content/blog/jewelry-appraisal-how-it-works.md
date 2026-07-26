@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: guides
 excerpt: "A jewelry appraisal produces a number that almost nobody fully understands — here is what the appraised value actually represents and why it differs from market value."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/atelier/fifty-years-portrait-2026.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/C0895_1C3S_HD_wz0ssk"
 heroImageAlt: "Jeweler examining diamond ring with loupe during appraisal process"
 author: Bez Ambar
 status: live

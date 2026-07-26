@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "A 1-carat diamond costs a fraction of what a 2-carat costs. The Blaze® halo closes most of that visual gap. Here is the math behind the decision."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/C0895_1C3S_HD_wz0ssk"
 heroImageAlt: "Bez Ambar Flower of Light diamond engagement ring with Blaze halo and knife-edge bands"
 author: Bez Ambar
 status: live

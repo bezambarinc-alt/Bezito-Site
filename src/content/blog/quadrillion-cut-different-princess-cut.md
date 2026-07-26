@@ -5,6 +5,7 @@ updatedDate: 2026-07-11
 category: diamonds
 excerpt: "The Quadrillion Cut and the Princess Cut are the same stone, but only one of those names belongs to Bez Ambar, who invented it. Here is the full story."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/Duet_Ashoka_jbgz8i"
 heroImageAlt: "Quadrillion cut diamond, the original square brilliant invented by Bez Ambar"
 author: Bez Ambar
 status: live

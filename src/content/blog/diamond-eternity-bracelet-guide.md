@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: bracelets
 excerpt: "An eternity bracelet carries diamonds through its full circumference with no break — the visual effect is complete, the fabrication demands are unforgiving."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry/Jewelry%20Images/Rings/C0723_Oval_Eternity_Band_awpedb.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Bracelets/asscher-cut-double-row-bracelet-c0754-2026"
 heroImageAlt: "Diamond eternity bracelet in 18k white gold with oval brilliant stones set continuously"
 author: Bez Ambar
 status: live

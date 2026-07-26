@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: guides
 excerpt: "Platinum and white gold look identical at a glance — they are not the same material, do not wear the same way, and do not cost the same to maintain over a decade."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1778811676/Jewelry%20Images/Rings/crossover-ashoka-white-hand.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Bands/Dentelle_Oval_Cut_2026_1080p"
 heroImageAlt: "Platinum engagement ring and white gold ring side by side showing comparable appearance"
 author: Bez Ambar
 status: live

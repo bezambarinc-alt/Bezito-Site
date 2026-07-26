@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: diamonds
 excerpt: "The Kimberley Process certification is the industry standard for conflict-free origin, but it has documented limitations that every buyer should understand before relying on it as a complete ethical assurance."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1779091372/Jewelry%20Images/Stones/Elysian_cut_emerald_a1l5gv.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Necklaces/r09073-necklace-2026"
 heroImageAlt: "Rough diamond being inspected for conflict-free certification before export"
 author: Bez Ambar
 status: live

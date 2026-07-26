@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: colored-stones
 excerpt: "The Argyle mine in Western Australia closed in October 2020, removing the world's primary source of pink diamonds from production. Understanding the stone, and the market, matters more now than it did before."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/Pink_Oval_Ring_C0747_2026_1080p"
 heroImageAlt: "Custom oval ring with three-arm setting, Bez Ambar"
 author: Bez Ambar
 status: live

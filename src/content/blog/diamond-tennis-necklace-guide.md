@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: necklaces
 excerpt: "A diamond tennis necklace is the most technically demanding piece in fine jewelry. Here is what controls quality, fit, and price."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/necklaces/single-row-lifestyle.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Necklaces/baguette-by-the-yard-2026"
 heroImageAlt: "Diamond tennis necklace in 18k white gold displayed on neck"
 author: Bez Ambar
 status: live

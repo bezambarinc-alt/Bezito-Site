@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: diamonds
 excerpt: "Most diamonds sold at retail will never return what you paid — here is what actually drives value and when a stone can hold its own."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/atelier/fifty-years-portrait-2026.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/C0895_1C3S_HD_wz0ssk"
 heroImageAlt: "Fancy intense blue diamond ring set in platinum prong setting"
 author: Bez Ambar
 status: live

@@ -5,6 +5,7 @@ updatedDate: 2026-07-08
 category: necklaces
 excerpt: "A birthstone necklace is only as meaningful as the stone is genuine — here is how to tell the difference between fine quality and colored glass on a chain."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Necklaces/baguette-by-the-yard-2026"
 heroImageAlt: "Ruby and diamond pendant necklace in 18k yellow gold, birthstone fine jewelry"
 author: Bez Ambar
 status: live
