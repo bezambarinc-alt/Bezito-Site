@@ -18,6 +18,12 @@ function fmtCat(c: string) {
 function thumb(url: string = '') {
   return url.replace('ar_16:9,g_auto,w_1400', 'ar_4:3,g_auto,w_800');
 }
+// Derive a still-frame thumbnail from a Cloudinary video URL
+function vidThumb(url: string = '') {
+  return url
+    .replace('/video/upload/', '/video/upload/so_0,q_auto,f_jpg,c_fill,ar_4:3,g_auto,w_800/')
+    + '.jpg';
+}
 ---
 
 <Layout
@@ -35,7 +41,10 @@ function thumb(url: string = '') {
 <div class="blog-featured">
   <a href={`/blog/${featured.slug}`} class="featured-card">
     <div class="featured-img">
-      <img src={featured.data.heroImage} alt={featured.data.title} loading="eager">
+      {featured.data.heroVideo
+        ? <video src={featured.data.heroVideo} poster={vidThumb(featured.data.heroVideo)} autoplay muted loop playsinline></video>
+        : <img src={featured.data.heroImage} alt={featured.data.title} loading="eager">
+      }
     </div>
     <div class="featured-content">
       <p class="featured-content__date">{fmtDate(featured.data.date)}</p>
@@ -62,7 +71,10 @@ function thumb(url: string = '') {
   {gridPosts.map(post => (
     <a href={`/blog/${post.slug}`} class="blog-card" data-cat={post.data.category}>
       <div class="blog-card__img">
-        <img src={thumb(post.data.heroImage)} alt={post.data.title} loading="lazy">
+        {post.data.heroVideo
+          ? <video src={post.data.heroVideo} poster={vidThumb(post.data.heroVideo)} autoplay muted loop playsinline></video>
+          : <img src={thumb(post.data.heroImage)} alt={post.data.title} loading="lazy">
+        }
       </div>
       <p class="blog-card__cat">{fmtCat(post.data.category)}</p>
       <h3 class="blog-card__title">{post.data.title}</h3>
