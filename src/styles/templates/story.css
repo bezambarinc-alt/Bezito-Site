@@ -1,0 +1,453 @@
+/* ============================================================
+   story.css — /the-story page template
+   Verdura-style vertical scrolling timeline
+   ============================================================ */
+
+/* ── Variables ─────────────────────────────────────────── */
+:root {
+  --story-gold: #95826b;
+  --story-ink: #1a1a1a;
+  --story-muted: #7a7166;
+  --story-cream: #faf7f4;
+  --story-paper: #f3ede6;
+  --story-vline: rgba(149, 130, 107, 0.35);
+  --story-year-w: 200px;
+  --story-nav-w: 160px;
+}
+
+/* ── Fade-in animation ─────────────────────────────────── */
+.fadein-el {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.fadein-el.is-visible {
+  opacity: 1;
+  transform: none;
+}
+.fadein-el:nth-child(2) { transition-delay: 0.1s; }
+.fadein-el:nth-child(3) { transition-delay: 0.2s; }
+.fadein-el:nth-child(4) { transition-delay: 0.3s; }
+
+/* ── Hero banner ───────────────────────────────────────── */
+.story-hero {
+  position: relative;
+  width: 100%;
+  height: 62vh;
+  min-height: 380px;
+  overflow: hidden;
+  background: var(--story-ink);
+}
+.story-hero img,
+.story-hero video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+}
+.story-hero__text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  color: #fff;
+}
+.story-hero__eyebrow {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--story-gold);
+  margin: 0 0 1rem;
+}
+.story-hero__title {
+  font-family: 'Lyon Text', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0 0 1.25rem;
+  max-width: 16ch;
+}
+.story-hero__lede {
+  font-family: 'Open Sans', sans-serif;
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  color: rgba(255,255,255,0.8);
+  max-width: 44ch;
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ── Intro section ─────────────────────────────────────── */
+.story-intro {
+  max-width: 680px;
+  margin: 5rem auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+.story-intro p {
+  font-family: 'Lyon Text', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  line-height: 1.75;
+  color: var(--story-muted);
+  margin: 0 0 1.4em;
+}
+.story-intro p:last-child { margin-bottom: 0; }
+.story-scroll-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 3rem auto 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--story-gold);
+}
+.story-scroll-hint::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 48px;
+  background: var(--story-gold);
+  opacity: 0.5;
+}
+
+/* ── Timeline wrapper ──────────────────────────────────── */
+.story-timeline-outer {
+  position: relative;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 2rem 6rem;
+  display: grid;
+  grid-template-columns: var(--story-nav-w) 1fr;
+  gap: 0 3rem;
+  align-items: start;
+}
+
+/* ── Sticky year nav ───────────────────────────────────── */
+.story-year-nav {
+  position: sticky;
+  top: 90px;
+  align-self: start;
+  padding-top: 1rem;
+}
+.story-year-nav__title {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--story-muted);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--story-vline);
+}
+.story-year-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.story-year-nav__list li {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: rgba(26,26,26,0.35);
+  cursor: pointer;
+  padding: 0.45rem 0;
+  border-left: 2px solid transparent;
+  padding-left: 0.75rem;
+  transition: color 0.25s, border-color 0.25s;
+  letter-spacing: 0.04em;
+}
+.story-year-nav__list li:hover {
+  color: var(--story-ink);
+}
+.story-year-nav__list li.is-active {
+  color: var(--story-gold);
+  border-left-color: var(--story-gold);
+  font-weight: 600;
+}
+
+/* ── Chapters container ────────────────────────────────── */
+.story-chapters {
+  min-width: 0;
+}
+
+/* ── Individual chapter (tl-year) ──────────────────────── */
+.tl-year {
+  position: relative;
+  padding: 0 0 5rem 2.5rem;
+  border-left: 1px solid var(--story-vline);
+}
+.tl-year:last-child {
+  padding-bottom: 2rem;
+}
+
+/* The gold dot on the timeline line */
+.tl-year::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 1.1rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--story-gold);
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px var(--story-gold);
+}
+
+/* Year number */
+.tl-ynum {
+  font-family: 'Lyon Text', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.4rem, 4vw, 3.5rem);
+  font-weight: 300;
+  color: rgba(149, 130, 107, 0.25);
+  line-height: 1;
+  margin: 0 0 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+/* Chapter headline */
+.tl-headline {
+  font-family: 'Lyon Text', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.35rem, 2.5vw, 1.9rem);
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--story-ink);
+  margin: 0 0 1rem;
+}
+
+/* Body copy */
+.tl-body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: #4a4540;
+  max-width: 58ch;
+  margin: 0 0 1.5rem;
+}
+.tl-body p { margin: 0 0 0.9em; }
+.tl-body p:last-child { margin-bottom: 0; }
+
+/* ── Layout: normal (text only or text + media below) ─── */
+.tl-year--normal .tl-media {
+  margin-top: 2rem;
+  max-width: 520px;
+}
+
+/* ── Layout: 50/50 (image + text side by side) ────────── */
+.tl-year--split .tl-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+.tl-year--split.reverse .tl-inner {
+  direction: rtl;
+}
+.tl-year--split.reverse .tl-inner > * {
+  direction: ltr;
+}
+
+/* ── Layout: horz (year stamp + text, no image) ───────── */
+.tl-year--horz .tl-inner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 2rem;
+  align-items: start;
+}
+.tl-year--horz .tl-ynum {
+  margin-bottom: 0;
+  padding-top: 0.2rem;
+}
+
+/* ── Media blocks ──────────────────────────────────────── */
+.tl-media img,
+.tl-media video {
+  width: 100%;
+  display: block;
+  border-radius: 2px;
+}
+.tl-media figcaption {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.7rem;
+  color: var(--story-muted);
+  letter-spacing: 0.06em;
+  margin-top: 0.6rem;
+  font-style: italic;
+}
+
+/* ── Pull quote ────────────────────────────────────────── */
+.tl-pullquote {
+  border-left: 2px solid var(--story-gold);
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  margin: 2rem 0;
+  font-family: 'Lyon Text', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--story-muted);
+}
+
+/* ── Full-width chapter break ──────────────────────────── */
+.tl-fullwidth {
+  margin: 0 0 5rem -2.5rem; /* compensate for left padding */
+  padding-left: 0;
+  width: calc(100% + 2.5rem);
+  position: relative;
+}
+.tl-fullwidth img,
+.tl-fullwidth video {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Newsletter CTA ────────────────────────────────────── */
+.story-newsletter {
+  background: var(--story-ink);
+  color: #fff;
+  text-align: center;
+  padding: 5rem 2rem;
+}
+.story-newsletter h2 {
+  font-family: 'Lyon Text', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  font-weight: 400;
+  margin: 0 0 0.75rem;
+}
+.story-newsletter p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.6);
+  max-width: 42ch;
+  margin: 0 auto 2.5rem;
+  line-height: 1.65;
+}
+.story-newsletter-form {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  max-width: 440px;
+  margin: 0 auto;
+}
+.story-newsletter-form input[type="email"] {
+  flex: 1;
+  padding: 0.85rem 1.25rem;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.07);
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.85rem;
+  outline: none;
+  border-radius: 0;
+  border-right: none;
+}
+.story-newsletter-form input[type="email"]::placeholder {
+  color: rgba(255,255,255,0.35);
+}
+.story-newsletter-form button {
+  padding: 0.85rem 1.75rem;
+  background: var(--story-gold);
+  color: #fff;
+  border: none;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.story-newsletter-form button:hover {
+  background: #7a6b58;
+}
+.story-newsletter__or {
+  margin-top: 2rem;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.35);
+}
+.story-newsletter__cta {
+  display: inline-block;
+  margin-top: 0.75rem;
+  color: var(--story-gold);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(149,130,107,0.4);
+  padding-bottom: 2px;
+  transition: border-color 0.2s;
+}
+.story-newsletter__cta:hover {
+  border-color: var(--story-gold);
+}
+
+/* ── Responsive ────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .story-timeline-outer {
+    grid-template-columns: 1fr;
+  }
+  .story-year-nav {
+    display: none; /* hidden on mobile — year dots on vline serve as nav */
+  }
+  .tl-year--split .tl-inner {
+    grid-template-columns: 1fr;
+    direction: ltr;
+  }
+  .tl-year--horz .tl-inner {
+    grid-template-columns: 1fr;
+  }
+  .tl-year--horz .tl-ynum {
+    margin-bottom: 1rem;
+  }
+  .tl-fullwidth {
+    width: 100%;
+    margin-left: 0;
+  }
+  .story-newsletter-form {
+    flex-direction: column;
+  }
+  .story-newsletter-form input[type="email"],
+  .story-newsletter-form button {
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 540px) {
+  .story-hero {
+    height: 50vh;
+  }
+  .tl-year {
+    padding-left: 1.5rem;
+  }
+  .tl-fullwidth {
+    margin-left: -1.5rem;
+    width: calc(100% + 1.5rem);
+  }
+  .tl-fullwidth img,
+  .tl-fullwidth video {
+    height: 260px;
+  }
+}

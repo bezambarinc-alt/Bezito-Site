@@ -1,0 +1,340 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/templates/story.css';
+
+const chapters = [
+  {
+    year: '1955',
+    layout: 'horz',
+    headline: 'Born in Jerusalem.',
+    body: `Bez Ambar is born in Jerusalem to a family with deep roots in the trade districts of the Old City. He grows up surrounded by craftsmen — goldsmiths, silversmiths, stonecutters — learning to read materials the way other children learn to read words. The obsession starts here.`,
+  },
+  {
+    year: '1972',
+    layout: 'normal',
+    headline: 'First Stones.',
+    body: `At seventeen, Bez begins working with rough diamonds in Tel Aviv, apprenticing under senior cutters who still plan facets by hand. He learns that a diamond is not a fixed object — it is potential waiting to be released. The difference between a diamond that dies in the light and one that lives in it is entirely in how it is cut.`,
+  },
+  {
+    year: '1979',
+    layout: 'split',
+    headline: 'Los Angeles. The Beginning.',
+    body: `Bez Ambar arrives in Los Angeles and founds Ambar Diamonds Inc. He comes as a cutter, not a retailer — his clients are the jewelers, not the public. Working out of a small studio on 611 Wilshire Blvd, he begins pushing the boundaries of what a square diamond can do. The industry knows him as the man who will not cut a stone the conventional way.`,
+    img: {
+      src: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg',
+      alt: 'Quadrillion stone — the square brilliant that launched the Princess Cut lineage',
+    },
+  },
+  {
+    year: '1982',
+    layout: 'normal',
+    headline: 'The Princess Cut.',
+    body: `The Quadrillion® cut is introduced: a square brilliant with chevron facets that direct light inward and back up through the table. It becomes the most commercially successful new diamond cut of the twentieth century. Jewelers across the world adopt it. It is later widely known as the Princess Cut — Bez's cut, under a different name.`,
+    pullquote: `"The square was considered a compromise. I wanted to prove it was a statement."`,
+    img: {
+      src: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg',
+      alt: 'The Quadrillion® — the original Princess Cut',
+    },
+  },
+  {
+    year: '1985',
+    layout: 'horz',
+    headline: 'The De Beers Award.',
+    body: `Bez receives the De Beers Diamond Award for Innovation — recognition from the most powerful institution in the diamond trade that a cutter working independently in Los Angeles has changed the industry. It is one of the most prestigious honors in the field, and he is among the youngest recipients in the award's history.`,
+  },
+  {
+    year: '1988',
+    layout: 'split',
+    reverse: true,
+    headline: 'The Laserset® Setting.',
+    body: `Precision laser-cut channels allow diamonds to be set directly into metal with no prong interference, no bezel wall — nothing between the stone and the light. The Laserset® setting gives Bez's pieces their signature floating quality: stones suspended in metal as if held by tension alone. It becomes the structural language of the entire Bez Ambar collection.`,
+    img: {
+      src: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1782876014/Jewelry%20Images/Necklaces/single-row-lifestyle.jpg',
+      alt: 'Single row flex bracelet — Laserset® channel setting',
+    },
+  },
+  {
+    year: '1992',
+    layout: 'normal',
+    headline: 'The Boundless Setting.',
+    body: `Continuous channel setting — stone after stone, edge to edge, with no visible interruption — becomes commercially viable through Bez's manufacturing breakthroughs. The result is what the trade calls "seamless" flex work: lines of diamonds that move like fabric. The Boundless setting defines the flex bracelet form that becomes a Bez Ambar signature across four decades.`,
+  },
+  {
+    year: '1999',
+    layout: 'split',
+    headline: 'Micro-Pavé.',
+    body: `Bez introduces micro-pavé setting to the Los Angeles market — a technique requiring stones smaller than 1mm, set under magnification with hand-cut prongs barely visible to the naked eye. The effect is a continuous field of light rather than individual stones. The technique redefines what delicate means in fine jewelry.`,
+    img: {
+      src: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1775549202/Jewelry%20Images/Rings/C0625_Baguette_band_Master_e4azkj.jpg',
+      alt: 'Baguette band — micro-pavé and channel setting combined',
+    },
+  },
+  {
+    year: '2003',
+    layout: 'split',
+    reverse: true,
+    headline: 'The Blaze®.',
+    body: `The Blaze® accent stone is introduced — a patent-pending triangular brilliant cut designed to nestle against channel-set stones and amplify their collective light output. Where previous accent cuts sat passively between main stones, the Blaze® interacts with them, redirecting light across the setting. It becomes a registered trademark and a protected design innovation.`,
+    video: {
+      src: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1782855871/Jewelry%20Videos/Bracelets/emerald-cut-flex-bracelet-c0834-2026.mp4',
+      poster: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1782876014/Jewelry%20Images/Necklaces/single-row-lifestyle.jpg',
+    },
+  },
+  {
+    year: '2015',
+    layout: 'split',
+    headline: 'The Elysian Cut™.',
+    body: `The Elysian Cut™ — a new square brilliant variant engineered for maximum face-up brilliance in the modern era. More facets. Tighter tolerances. Built for the way light behaves at this scale when precision manufacturing finally makes it possible. The Elysian Cut™ represents four decades of refinement distilled into a single geometry.`,
+    img: {
+      src: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg',
+      alt: 'Elysian Cut™ — the latest evolution of the square brilliant',
+    },
+  },
+  {
+    year: '2026',
+    layout: 'normal',
+    headline: 'Still Cutting.',
+    body: `Forty-seven years after arriving in Los Angeles with a set of cutting tools and an argument about square diamonds, Bez Ambar is still in the studio. The collection today spans single-row flex bracelets, channel-set rings, Asscher and emerald-cut pieces, and bespoke commissions for clients who understand that a piece of jewelry is not bought — it is acquired. The work continues.`,
+    pullquote: `"The cut is not a style. It is a solution."`,
+    video: {
+      src: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1783061546/Jewelry%20Videos/Rings/c0747-hd-2026.mp4',
+      poster: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1775549202/Jewelry%20Images/Rings/C0625_Baguette_band_Master_e4azkj.jpg',
+    },
+  },
+];
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'The Story — Bez Ambar',
+  url: 'https://bezambar.com/the-story',
+  description: 'The history of Bez Ambar: from Jerusalem to Los Angeles, from the Princess Cut to the Elysian Cut™. Four decades of independent diamond design.',
+  about: {
+    '@type': 'Person',
+    name: 'Bez Ambar',
+    jobTitle: 'Diamond Designer',
+    birthPlace: { '@type': 'Place', name: 'Jerusalem, Israel' },
+    alumniOf: [],
+    award: 'De Beers Diamond Award for Innovation, 1985',
+  },
+};
+---
+
+<Layout
+  title="The Story — Bez Ambar"
+  description="The history of Bez Ambar: from Jerusalem to Los Angeles, from the Princess Cut to the Elysian Cut™. Four decades of independent diamond design."
+  canonical="https://bezambar.com/the-story"
+  ogImage="https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,w_1200,h_630,g_auto,f_auto,q_auto/v1782876014/Jewelry%20Images/Necklaces/single-row-lifestyle.jpg"
+  structuredData={pageSchema}
+  headerLight={true}
+>
+
+  <!-- ─── Hero ─────────────────────────────────────────────── -->
+  <section class="story-hero" aria-label="The Story hero">
+    <img
+      src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1600/v1782876014/Jewelry%20Images/Necklaces/single-row-lifestyle.jpg"
+      alt=""
+      role="presentation"
+      width="1600"
+      height="900"
+      fetchpriority="high"
+    />
+    <div class="story-hero__text">
+      <p class="story-hero__eyebrow fadein-el">Bez Ambar · Est. 1979</p>
+      <h1 class="story-hero__title fadein-el">The Story</h1>
+      <p class="story-hero__lede fadein-el">
+        From Jerusalem to Los Angeles. From a single diamond to four decades of independent design.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── Intro ─────────────────────────────────────────────── -->
+  <section class="story-intro">
+    <p class="fadein-el">
+      Every Bez Ambar piece carries a lineage. Not a brand story — an actual history of invention: cuts that changed the market, settings that changed how diamonds behave in metal, techniques adopted by the industry and attributed to everyone except the man who developed them.
+    </p>
+    <p class="fadein-el">
+      This is that history, told in order.
+    </p>
+    <div class="story-scroll-hint fadein-el" aria-hidden="true">Scroll</div>
+  </section>
+
+  <!-- ─── Timeline ──────────────────────────────────────────── -->
+  <div class="story-timeline-outer" id="story-timeline">
+
+    <!-- Sticky year nav — populated by JS -->
+    <nav class="story-year-nav" aria-label="Jump to year">
+      <div class="story-year-nav__title">Timeline</div>
+      <ol class="story-year-nav__list" id="year-nav-list"></ol>
+    </nav>
+
+    <!-- Chapters -->
+    <div class="story-chapters">
+      {chapters.map((ch) => (
+        <div
+          class={[
+            'tl-year',
+            `tl-year--${ch.layout}`,
+            ch.reverse ? 'reverse' : '',
+          ].filter(Boolean).join(' ')}
+          data-year={ch.year}
+          id={`year-${ch.year}`}
+        >
+          {ch.layout === 'horz' ? (
+            <div class="tl-inner">
+              <div class="tl-ynum fadein-el">{ch.year}</div>
+              <div>
+                <h2 class="tl-headline fadein-el">{ch.headline}</h2>
+                <div class="tl-body fadein-el"><p>{ch.body}</p></div>
+                {ch.pullquote && (
+                  <blockquote class="tl-pullquote fadein-el">{ch.pullquote}</blockquote>
+                )}
+              </div>
+            </div>
+          ) : ch.layout === 'split' ? (
+            <>
+              <div class="tl-ynum fadein-el">{ch.year}</div>
+              <div class="tl-inner">
+                <div>
+                  <h2 class="tl-headline fadein-el">{ch.headline}</h2>
+                  <div class="tl-body fadein-el"><p>{ch.body}</p></div>
+                  {ch.pullquote && (
+                    <blockquote class="tl-pullquote fadein-el">{ch.pullquote}</blockquote>
+                  )}
+                </div>
+                <figure class="tl-media fadein-el">
+                  {ch.video ? (
+                    <video
+                      src={ch.video.src}
+                      poster={ch.video.poster}
+                      autoplay
+                      muted
+                      loop
+                      playsinline
+                      preload="none"
+                    />
+                  ) : ch.img ? (
+                    <img
+                      src={ch.img.src}
+                      alt={ch.img.alt}
+                      loading="lazy"
+                      decoding="async"
+                      width="600"
+                      height="400"
+                    />
+                  ) : null}
+                </figure>
+              </div>
+            </>
+          ) : (
+            /* normal layout */
+            <>
+              <div class="tl-ynum fadein-el">{ch.year}</div>
+              <h2 class="tl-headline fadein-el">{ch.headline}</h2>
+              <div class="tl-body fadein-el"><p>{ch.body}</p></div>
+              {ch.pullquote && (
+                <blockquote class="tl-pullquote fadein-el">{ch.pullquote}</blockquote>
+              )}
+              {(ch.img || ch.video) && (
+                <figure class="tl-media fadein-el">
+                  {ch.video ? (
+                    <video
+                      src={ch.video.src}
+                      poster={ch.video.poster}
+                      autoplay
+                      muted
+                      loop
+                      playsinline
+                      preload="none"
+                    />
+                  ) : ch.img ? (
+                    <img
+                      src={ch.img.src}
+                      alt={ch.img.alt}
+                      loading="lazy"
+                      decoding="async"
+                      width="600"
+                      height="400"
+                    />
+                  ) : null}
+                </figure>
+              )}
+            </>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- ─── Newsletter CTA ───────────────────────────────────── -->
+  <section class="story-newsletter" aria-label="Stay connected">
+    <h2 class="fadein-el">Stay in the atelier.</h2>
+    <p class="fadein-el">
+      New work, private previews, and first access to bespoke commissions — for those who want to know before the public does.
+    </p>
+    <form class="story-newsletter-form fadein-el" action="#" method="post" aria-label="Email signup">
+      <input
+        type="email"
+        name="email"
+        placeholder="your@email.com"
+        required
+        autocomplete="email"
+        aria-label="Email address"
+      />
+      <button type="submit">Join</button>
+    </form>
+    <p class="story-newsletter__or fadein-el">or</p>
+    <a href="/contact" class="story-newsletter__cta fadein-el">Inquire about a bespoke commission →</a>
+  </section>
+
+</Layout>
+
+<script>
+  // ─── Fade-in observer ────────────────────────────────────
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+  document.querySelectorAll('.fadein-el').forEach((el) => io.observe(el));
+
+  // ─── Sticky year nav ────────────────────────────────────
+  const navList = document.getElementById('year-nav-list');
+  const yearEls = Array.from(document.querySelectorAll('[data-year]'));
+
+  if (navList && yearEls.length) {
+    yearEls.forEach((el) => {
+      const year = el.getAttribute('data-year');
+      const li = document.createElement('li');
+      li.textContent = year;
+      li.setAttribute('data-nav-year', year);
+      li.addEventListener('click', () => {
+        document.getElementById('year-' + year)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      navList.appendChild(li);
+    });
+
+    // Scroll-driven active state
+    const navItems = Array.from(navList.querySelectorAll('li'));
+    const yearIo = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const activeYear = entry.target.getAttribute('data-year');
+            navItems.forEach((li) => {
+              li.classList.toggle('is-active', li.getAttribute('data-nav-year') === activeYear);
+            });
+          }
+        });
+      },
+      { rootMargin: '-30% 0px -60% 0px' }
+    );
+    yearEls.forEach((el) => yearIo.observe(el));
+  }
+</script>
