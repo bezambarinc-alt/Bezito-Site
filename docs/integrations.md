@@ -146,9 +146,13 @@ Transformations are applied via URL parameters — never transform at upload tim
 
 ### Folder Structure
 
-- `archive/` — archive videos (562 entries, sourced in `public/archive-data.json`)
-- `videos/<piece-type>/` — active product videos (e.g. `videos/bracelets/`, `videos/rings/`)
-- `inspirations/rings/` — design reference images for internal Inspirations gallery
+See `memory/cloudinary-folder-structure.md` for the full canonical map. Short version:
+
+- `Jewelry Images/<Category>/` — product photos (Rings, Bracelets, Earrings, Necklaces, Pendants, Bands, Stones, Atelier)
+- `Jewelry Videos/<Category>/` — active product videos (same category list)
+- `Studio/prompt-creations/<category>/` — AI-generated images (rings, necklaces, earrings, tools)
+- `Inspirations/<designer>/` — design reference mood boards (sfj, glen-spiro, choppard, taffin, rings)
+- `Archive/` — legacy GIFs (559) + pre-2026 video masters (546)
 
 ### CSP
 
