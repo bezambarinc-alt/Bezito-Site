@@ -5,31 +5,7 @@
 
 /* ── Blog / Journal ──────────────────────────────────────── */
 
-/* ── Motion tokens — single source of truth ──────────────────
-   Easing: expo-out for entrances (decisive deceleration)
-           ease-in-out-cubic for wipes (ceremonial weight)
-   All reveal classes injected via JS → no-JS sees everything.
-   ─────────────────────────────────────────────────────────── */
-:root {
-  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-wipe:   cubic-bezier(0.77, 0, 0.175, 1);
-  --dur-reveal:  0.9s;
-  --travel:      48px;
-}
-@media (max-width: 768px) {
-  :root { --dur-reveal: 0.65s; --travel: 24px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    transition-duration: 0.001ms !important;
-  }
-  .ba-reveal, .ba-reveal-wipe, .ba-post-img img {
-    opacity: 1 !important;
-    transform: none !important;
-    clip-path: none !important;
-  }
-}
+/* Motion tokens + .ba-reveal / .ba-reveal-img live in global.css */
 
 /* ── BLOG INDEX ──────────────────────────────────────────── */
 .blog-featured {
@@ -477,38 +453,7 @@
   text-transform: inherit;
 }
 
-/* ── Scroll reveals ─────────────────────────────────────────── */
-/* Fade + rise — text, headings, CTA */
-.ba-reveal {
-  opacity: 0;
-  transform: translateY(var(--travel));
-  transition:
-    opacity var(--dur-reveal) var(--ease-luxury),
-    transform var(--dur-reveal) var(--ease-luxury);
-}
-.ba-reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
-.ba-reveal-d1 { transition-delay: 0.08s; }
-.ba-reveal-d2 { transition-delay: 0.16s; }
-.ba-reveal-d3 { transition-delay: 0.24s; }
-
-/* Scale-settle — for full-bleed images and video
-   Starts very slightly zoomed (1.04) and fades in; no lateral movement.
-   Same quiet confidence Patek uses on editorial imagery. */
-.ba-reveal-img {
-  opacity: 0;
-  transform: scale(1.04);
-  transition:
-    opacity 1.1s var(--ease-luxury),
-    transform 1.1s var(--ease-luxury);
-  will-change: opacity, transform;
-}
-.ba-reveal-img.is-visible {
-  opacity: 1;
-  transform: scale(1);
-}
+/* .ba-reveal / .ba-reveal-img — defined in global.css */
 
 /* ── IN-ARTICLE CTA ── */
 .ba-post-cta {
