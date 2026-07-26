@@ -4,7 +4,7 @@ date: 2022-02-20
 updatedDate: 2026-07-08
 category: guides
 excerpt: "A jeweler who cannot or will not answer direct questions about metal content, stone quality, and service terms is telling you something important before you spend anything."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/atelier/designer-portrait-2026.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Atelier/designer-portrait-2026"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/c0752-ring-2026"
 heroImageAlt: "Jeweler in consultation with client examining diamond ring at atelier desk"
 author: Bez Ambar

@@ -4,7 +4,7 @@ date: 2021-02-25
 updatedDate: 2026-07-08
 category: diamonds
 excerpt: "Carat weight is a mass measurement. Face-up size is what you see on the hand. A buyer who understands the difference shops fundamentally differently."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Stones/Elysian_cut_Hex_ywlwno"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/C0895_1C3S_HD_wz0ssk"
 heroImageAlt: "Two diamonds of equal carat weight showing different face-up sizes due to cut and shape"
 author: Bez Ambar

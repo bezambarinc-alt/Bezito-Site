@@ -4,7 +4,7 @@ date: 2022-06-25
 updatedDate: 2026-07-08
 category: colored-stones
 excerpt: "Opal engagement rings are possible, but the conversation about durability has to happen first — a client who understands what opal needs will keep a beautiful ring for life; a client who does not will be disappointed within years."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/plisse-collection/plisse_hero.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/plisse/plisse_hero"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/Pink_Oval_Ring_C0747_2026_1080p"
 heroImageAlt: "Fine colored gemstone jewelry by Bez Ambar showing exceptional play of color and craftsmanship"
 author: Bez Ambar

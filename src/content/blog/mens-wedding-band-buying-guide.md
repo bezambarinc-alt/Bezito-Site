@@ -4,7 +4,7 @@ date: 2024-04-22
 updatedDate: 2026-07-08
 category: guides
 excerpt: "Men's wedding bands are often bought in thirty minutes without the same attention given to the engagement ring — the piece is worn every day for the rest of a life and deserves better than a fast decision."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1775549202/Jewelry%20Images/Rings/C0625_Baguette_band_Master_e4azkj.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Bands/elysian-on-hand_sjn5ys"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Bands/Dentelle_Oval_Cut_2026_1080p"
 heroImageAlt: "Men's custom wedding band in platinum with hand-finished surface texture and clean profile"
 author: Bez Ambar

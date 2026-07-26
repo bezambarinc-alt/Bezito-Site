@@ -4,7 +4,7 @@ date: 2023-02-08
 updatedDate: 2026-07-08
 category: colored-stones
 excerpt: "Amethyst was among the most valued gemstones in the ancient world — before large Brazilian deposits made it widely available, it traded alongside ruby and sapphire. The finest material still justifies serious treatment."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/Pink-Ice_luevbt"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/Pink_Oval_Ring_C0747_2026_1080p"
 heroImageAlt: "Deep purple gemstone ring by Bez Ambar showing rich amethyst color in a fine setting"
 author: Bez Ambar

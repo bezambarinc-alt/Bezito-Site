@@ -4,7 +4,7 @@ date: 2019-04-14
 updatedDate: 2026-07-08
 category: earrings
 excerpt: "The huggie sits at the intersection of stud and hoop — close to the ear, secure, and capable of carrying considerably more design complexity than its compact size suggests."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/earrings/pear-ashoka-model-hero.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Earrings/goldberg-giant-earrings-2_ew5gj1"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/videos/earrings/3hoop30rb-2026.mp4"
 heroImageAlt: "Fine diamond hoop earrings by Bez Ambar Los Angeles showing large diamond stations"
 author: Bez Ambar

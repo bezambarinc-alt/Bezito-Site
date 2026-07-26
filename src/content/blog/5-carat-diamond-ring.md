@@ -4,7 +4,7 @@ date: 2015-05-06
 updatedDate: 2026-07-11
 category: diamonds
 excerpt: "A 5 carat diamond ring is a significant purchase. The decisions you make about cut, shape, and setting have a larger impact at this size than at one carat, and the mistakes are more expensive."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/C0746_Cushion_Cut_White_eowaqf"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/C0895_1C3S_HD_wz0ssk"
 heroImageAlt: "5 carat emerald cut diamond engagement ring, large center stone in an elegant solitaire setting"
 author: Bez Ambar

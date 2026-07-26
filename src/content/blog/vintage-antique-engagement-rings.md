@@ -4,7 +4,7 @@ date: 2020-08-17
 updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "The ring was made a century ago — knowing exactly what you're buying takes about four things."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/saul-ring-1778553023"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/c0536-2026"
 heroImageAlt: "Antique rose-cut diamond engagement ring on a pale velvet surface"
 author: Bez Ambar

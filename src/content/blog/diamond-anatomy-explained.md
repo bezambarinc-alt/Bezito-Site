@@ -4,7 +4,7 @@ date: 2018-06-14
 updatedDate: 2026-07-08
 category: diamonds
 excerpt: "Every part of a diamond's cut geometry has a name and a function. Knowing the anatomy tells you why a well-cut stone performs differently from a poorly cut one."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Stones/Elysian_cut_pear_sng4kq"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/C0895_1C3S_HD_wz0ssk"
 heroImageAlt: "Diamond diagram showing crown, pavilion, table, girdle, and culet labeled"
 author: Bez Ambar

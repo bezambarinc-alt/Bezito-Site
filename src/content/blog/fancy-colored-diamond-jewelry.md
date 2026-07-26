@@ -4,7 +4,7 @@ date: 2016-12-20
 updatedDate: 2026-07-08
 category: colored-stones
 excerpt: "Colored diamonds are graded on a different scale than white diamonds. Understanding that scale is the first step to making sense of what you are actually buying."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/pages/tourmaline-zircon-shank-blaze.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/tourmaline-zircon-shank-blaze"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/Pink_Oval_Ring_C0747_2026_1080p"
 heroImageAlt: "Fancy colored diamond jewelry, Bez Ambar Los Angeles"
 author: Bez Ambar

@@ -4,7 +4,7 @@ date: 2023-06-12
 updatedDate: 2026-07-08
 category: bracelets
 excerpt: "Buying a gold bracelet well means understanding karat, weight, and link construction before you see the price tag — here is what each of those variables actually controls."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry/Jewelry%20Images/Rings/C0625_Baguette_band_Master_e4azkj.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Bracelets/5FLX30-on-black"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Bracelets/b5993-bracelet-2026"
 heroImageAlt: "18k yellow gold baguette bracelet showing substantial link construction and finish quality"
 author: Bez Ambar

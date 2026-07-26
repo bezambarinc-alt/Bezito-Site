@@ -4,7 +4,7 @@ date: 2023-04-22
 updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "Alexandrite is the rarest color-change gemstone on earth. Here is what you need to know before choosing it for an engagement ring."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/plisse-collection/plisse_hero.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/plisse/plisse_front"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/Pink_Oval_Ring_C0747_2026_1080p"
 heroImageAlt: "Alexandrite engagement ring showing dramatic color shift from green to red"
 author: Bez Ambar

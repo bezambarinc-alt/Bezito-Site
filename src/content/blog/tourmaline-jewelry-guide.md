@@ -4,7 +4,7 @@ date: 2021-04-07
 updatedDate: 2026-07-08
 category: colored-stones
 excerpt: "Tourmaline produces more distinct colors than any other gem mineral — from the electric neon of Paraíba to the deep chrome green of Nigerian material and the bicolored watermelon that has no equivalent anywhere in nature."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/pages/tourmaline-zircon-shank-blaze.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/tourmaline-zircon-shank-pave"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/Pink_Oval_Ring_C0747_2026_1080p"
 heroImageAlt: "Fine tourmaline and diamond ring by Bez Ambar showing vivid colored stone set in a brilliant diamond shank"
 author: Bez Ambar

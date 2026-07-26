@@ -4,7 +4,7 @@ date: 2024-01-20
 updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "The right-hand ring is a self-purchase without social convention to guide it — which means the decisions are entirely yours, and that freedom is worth understanding."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1778811675/Jewelry%20Images/Rings/crossover-ashoka-yellow-stack.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/Cala_Ring_Hero_iglcjd"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/c0752-ring-2026"
 heroImageAlt: "Diamond right-hand ring with colored center stone worn on right ring finger"
 author: Bez Ambar

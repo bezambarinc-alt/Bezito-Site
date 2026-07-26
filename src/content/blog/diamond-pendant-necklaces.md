@@ -5,7 +5,7 @@ updatedDate: 2026-07-08
 category: necklaces
 excerpt: "A diamond pendant necklace is defined by two things that are often underspecified: the chain length and the pendant's relationship to that length. Getting both right matters more than the pendant design itself."
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/videos/pendants/c0346-hd.mp4"
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/necklaces/baguette-line-lifestyle.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Necklaces/baguette-line-lifestyle"
 heroImageAlt: "Diamond baguette necklace by Bez Ambar, Los Angeles atelier"
 author: Bez Ambar
 status: live

@@ -4,7 +4,7 @@ date: 2017-11-30
 updatedDate: 2026-07-08
 category: guides
 excerpt: "Custom jewelry is not faster or cheaper than buying off a shelf — it is the process of making something that does not exist yet, and it has specific stages that clients should understand before starting."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/atelier/designer-portrait-2026.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Atelier/fifty-years-portrait-2026"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/c0752-ring-2026"
 heroImageAlt: "Jeweler sketching custom ring design at atelier workbench"
 author: Bez Ambar

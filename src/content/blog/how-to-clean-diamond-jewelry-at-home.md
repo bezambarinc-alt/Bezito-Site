@@ -4,7 +4,7 @@ date: 2020-02-03
 updatedDate: 2026-07-08
 category: guides
 excerpt: "Diamond jewelry accumulates skin oil, lotion, and soap film that kills its brilliance — cleaning it at home correctly takes ten minutes and the right materials."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/atelier/designer-portrait-2026.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/C0731_Round_Cut_ka9ykl"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/C0895_1C3S_HD_wz0ssk"
 heroImageAlt: "Diamond stud earrings before and after cleaning showing brilliance restoration"
 author: Bez Ambar

@@ -4,7 +4,7 @@ date: 2020-08-05
 updatedDate: 2026-07-08
 category: necklaces
 excerpt: "The bar necklace is architecture reduced to a single line — its staying power comes from proportion and finish, not from decoration."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/necklaces/single-row-lifestyle.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Necklaces/single-row-lifestyle"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Necklaces/baguette-by-the-yard-2026"
 heroImageAlt: "Gold bar necklace in 18k yellow gold on delicate chain, minimal fine jewelry"
 author: Bez Ambar

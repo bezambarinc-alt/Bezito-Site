@@ -4,7 +4,7 @@ date: 2021-03-15
 updatedDate: 2026-07-08
 category: necklaces
 excerpt: "Gold chain type determines how a necklace drapes, how it wears over time, and whether it can hold a pendant without distorting — here is how to read the differences."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/necklaces/goldberg-necklace-oval.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Necklaces/goldberg-necklace-oval"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Necklaces/baguette-by-the-yard-2026"
 heroImageAlt: "Assorted gold chain types displayed side by side showing link structure differences"
 author: Bez Ambar

@@ -4,7 +4,7 @@ date: 2018-10-10
 updatedDate: 2026-07-08
 category: bracelets
 excerpt: "A diamond tennis bracelet is the most structurally complex piece in a fine jewelry wardrobe — buying one well requires understanding setting mechanics, stone matching, and clasp engineering."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/necklaces/single-row-lifestyle.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Bracelets/5FLX45-on-hand"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Bracelets/ruby-bracelet-c0779-2026"
 heroImageAlt: "Diamond tennis bracelet in 18k white gold on wrist showing full-circle setting"
 author: Bez Ambar

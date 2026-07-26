@@ -4,7 +4,7 @@ date: 2015-02-09
 updatedDate: 2026-07-11
 category: diamonds
 excerpt: "The Blaze® is a proprietary diamond cut developed by Bez Ambar that produces color dispersion, fire, unlike any standard brilliant cut. Here is how it works and what sets it apart."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/crossover-ashoka-yellow-3q"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/Duet_Ashoka_jbgz8i"
 heroImageAlt: "Bez Ambar Blaze cut diamond engagement ring showing exceptional fire and color dispersion"
 author: Bez Ambar

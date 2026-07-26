@@ -4,7 +4,7 @@ date: 2022-05-10
 updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "Lab grown diamonds are real diamonds — but whether one belongs on her finger is a question only your priorities can answer."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1779074065/Jewelry%20Images/Stones/Elysian_cut_oval_qcdt5r.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/C0731_Round_Cut_ka9ykl"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/C0895_1C3S_HD_wz0ssk"
 heroImageAlt: "Designer diamond engagement ring displayed on a jeweler's bench in Los Angeles"
 author: Bez Ambar

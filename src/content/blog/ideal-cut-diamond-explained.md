@@ -4,7 +4,7 @@ date: 2024-02-06
 updatedDate: 2026-07-08
 category: diamonds
 excerpt: "The 'ideal cut' grade from AGS and the 'Excellent' grade from GIA identify the same category of optical performance — and understanding what both actually measure clarifies when the top grade matters and when it does not."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1779074065/Jewelry%20Images/Stones/Elysian_cut_oval_qcdt5r.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/Atallier-round-diamond-center_rneipf"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/C0895_1C3S_HD_wz0ssk"
 heroImageAlt: "Ideal cut round brilliant diamond showing hearts and arrows pattern under gemscope"
 author: Bez Ambar

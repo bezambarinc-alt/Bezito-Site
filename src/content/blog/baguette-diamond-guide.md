@@ -4,7 +4,7 @@ date: 2022-11-28
 updatedDate: 2026-07-08
 category: diamonds
 excerpt: "Baguette diamonds are not accent stones that happen to be rectangular — they are a specific optical tradition with strict requirements for quality and placement that most buyers are not taught."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry/Jewelry%20Images/Rings/C0625_Baguette_band_Master_e4azkj.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/C0625_Baguette_band_Master_e4azkj"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Necklaces/baguette-by-the-yard-2026"
 heroImageAlt: "Baguette diamond band showing matched rectangular step-cut stones in platinum"
 author: Bez Ambar

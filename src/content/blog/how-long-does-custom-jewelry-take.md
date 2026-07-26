@@ -4,7 +4,7 @@ date: 2018-05-16
 updatedDate: 2026-07-08
 category: guides
 excerpt: "Custom jewelry takes longer than buying from stock — the honest answer on timeline depends on the piece's complexity, stone sourcing requirements, and the queue ahead of it."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/atelier/fifty-years-portrait-2026.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Atelier/fifty-years-portrait-2026"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/c0752-ring-2026"
 heroImageAlt: "Goldsmith at bench during custom jewelry fabrication showing precision handwork"
 author: Bez Ambar

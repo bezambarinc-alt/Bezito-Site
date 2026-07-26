@@ -4,7 +4,7 @@ date: 2023-09-07
 updatedDate: 2026-07-08
 category: guides
 excerpt: "Metal color is not a neutral backdrop for a stone — it changes how the diamond reads, how the piece sits against skin, and how the design ages over twenty years."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1778811675/Jewelry%20Images/Rings/crossover-ashoka-yellow-stack.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/crossover-ashoka-yellow-3q"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Bands/Dentelle_Oval_Cut_2026_1080p"
 heroImageAlt: "Three ring designs in yellow gold, rose gold, and white gold showing metal color contrast"
 author: Bez Ambar

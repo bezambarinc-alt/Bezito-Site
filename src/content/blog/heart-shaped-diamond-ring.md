@@ -4,7 +4,7 @@ date: 2019-02-10
 updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "Heart shaped diamonds reward buyers who understand cut quality — here is exactly what to look for before you spend a dollar."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/study-in-ruby/frame_hearts.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/Kashmir-Elegance-pear-Shape-ring_xux7o8"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/c0752-ring-2026"
 heroImageAlt: "Close-up of a heart shaped diamond ring on a woman's hand"
 author: Bez Ambar

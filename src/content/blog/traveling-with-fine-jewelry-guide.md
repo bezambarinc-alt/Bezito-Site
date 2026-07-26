@@ -4,7 +4,7 @@ date: 2021-04-19
 updatedDate: 2026-07-08
 category: guides
 excerpt: "Travel is the highest-risk situation for fine jewelry — understanding which pieces to bring, how to carry them, and what documentation you need prevents both loss and complications at borders."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/necklaces/single-row-lifestyle.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/windows/windows_three_rows"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/c0752-ring-2026"
 heroImageAlt: "Compact jewelry travel roll with compartments showing diamond necklace and ring storage for travel"
 author: Bez Ambar

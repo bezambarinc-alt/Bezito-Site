@@ -4,7 +4,7 @@ date: 2019-07-08
 updatedDate: 2026-07-08
 category: necklaces
 excerpt: "A solitaire diamond pendant is the most honest piece of jewelry you can own. The stone and the setting have nowhere to hide."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/necklaces/goldberg-necklace-oval.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Necklaces/goldberg-necklace-oval"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Pendants/C0826_HD_ifianq"
 heroImageAlt: "Oval diamond solitaire pendant on delicate white gold chain"
 author: Bez Ambar

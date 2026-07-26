@@ -4,7 +4,7 @@ date: 2020-02-28
 updatedDate: 2026-07-08
 category: colored-stones
 excerpt: "Aquamarine's blue clarity is deceptive — what looks simple to buy has more quality variables than most buyers anticipate, and the market rewards those who understand them."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/pages/ceylon-sapphire-1130-hero.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/ceylon-sapphire-1130-model"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/Pink_Oval_Ring_C0747_2026_1080p"
 heroImageAlt: "Deep blue gemstone jewelry by Bez Ambar demonstrating fine aquamarine clarity and color"
 author: Bez Ambar

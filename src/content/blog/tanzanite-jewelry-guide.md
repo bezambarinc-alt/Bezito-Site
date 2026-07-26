@@ -4,7 +4,7 @@ date: 2019-05-30
 updatedDate: 2026-07-08
 category: colored-stones
 excerpt: "Tanzanite comes from one place on earth, and that place has a finite supply. Understanding what makes a fine stone separates buyers who will be satisfied from those who will not."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/plisse-collection/plisse_hero.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/plisse/plisse_macro"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Bracelets/blue-sapphire-single-row-flex-c0825-2026"
 heroImageAlt: "Fine colored gemstone jewelry by Bez Ambar showcasing deep saturation"
 author: Bez Ambar

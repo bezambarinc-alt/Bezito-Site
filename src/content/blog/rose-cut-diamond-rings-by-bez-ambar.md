@@ -4,7 +4,7 @@ date: 2017-04-25
 updatedDate: 2026-07-08
 category: diamonds
 excerpt: "The rose cut was designed for candlelight in the sixteenth century. Its domed profile and large flat facets captured ambient light in a way the modern brilliant cut was not designed for."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/study-in-ruby/frame_ovals.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/saul-ring-1778553023"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/c0536-2026"
 heroImageAlt: "Rose cut diamond engagement ring, antique-inspired setting, Bez Ambar Los Angeles"
 author: Bez Ambar

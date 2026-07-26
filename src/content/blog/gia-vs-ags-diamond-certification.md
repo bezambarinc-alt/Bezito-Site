@@ -4,7 +4,7 @@ date: 2018-02-08
 updatedDate: 2026-07-08
 category: diamonds
 excerpt: "GIA and AGS are the two laboratory certifications that serious buyers should accept. Here is what separates them and when each one matters more."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1779074065/Jewelry%20Images/Stones/Elysian_cut_oval_qcdt5r.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/plisse/plisse_front"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/C0895_1C3S_HD_wz0ssk"
 heroImageAlt: "GIA and AGS diamond grading reports beside a certified diamond"
 author: Bez Ambar

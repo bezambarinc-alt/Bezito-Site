@@ -4,7 +4,7 @@ date: 2019-10-11
 updatedDate: 2026-07-08
 category: colored-stones
 excerpt: "Alexandrite shows green in daylight and red under incandescent light — the quality of that color change, not simply its existence, is what determines the stone's value."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/study-in-ruby/frame_ovals.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/tourmaline-zircon-shank-blaze"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/Pink_Oval_Ring_C0747_2026_1080p"
 heroImageAlt: "Oval colored gemstone showcasing the depth and saturation found in fine alexandrite"
 author: Bez Ambar

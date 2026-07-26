@@ -4,7 +4,7 @@ date: 2019-07-22
 updatedDate: 2026-07-08
 category: diamonds
 excerpt: "Fancy yellow diamonds occupy a separate market from white diamonds entirely — graded on different criteria and priced by logic that most buyers are not familiar with."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1778811675/Jewelry%20Images/Rings/crossover-ashoka-yellow-stack.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/big-yellow_zv2ooe"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/Pink_Oval_Ring_C0747_2026_1080p"
 heroImageAlt: "Fancy yellow diamond ring in yellow gold and platinum setting showing vivid color"
 author: Bez Ambar

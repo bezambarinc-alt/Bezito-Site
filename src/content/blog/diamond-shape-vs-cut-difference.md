@@ -4,7 +4,7 @@ date: 2019-11-15
 updatedDate: 2026-07-08
 category: diamonds
 excerpt: "Shape is what the diamond looks like from above. Cut is how well that shape was executed. They are not interchangeable, and confusing them costs buyers real money."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/study-in-ruby/frame_ovals.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Stones/Elysian_cut_marquise_boraiy"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/C0895_1C3S_HD_wz0ssk"
 heroImageAlt: "Multiple diamond shapes — round, oval, emerald, pear — arranged to show shape variation"
 author: Bez Ambar

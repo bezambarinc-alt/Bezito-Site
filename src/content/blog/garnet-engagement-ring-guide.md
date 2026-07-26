@@ -4,7 +4,7 @@ date: 2020-11-03
 updatedDate: 2026-07-08
 category: colored-stones
 excerpt: "Garnet is not one stone — it is a mineral group with more color variety than any other gem category, including stones that rival ruby, tsavorite that competes with emerald, and demantoid that outsparkles diamond."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/RUBY_WITH_PEAR_HALO_joqxqi"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/Pink_Oval_Ring_C0747_2026_1080p"
 heroImageAlt: "Deep red gemstone ring by Bez Ambar showing the rich color depth of fine garnet"
 author: Bez Ambar

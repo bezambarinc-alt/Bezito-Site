@@ -4,7 +4,7 @@ date: 2019-08-26
 updatedDate: 2026-07-08
 category: earrings
 excerpt: "The pear shape was designed for pendants before it was adapted for rings — it is intrinsically a hanging shape, and drop earrings are where it performs best."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/earrings/pear-ashoka-model-hero.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Earrings/pear_emerald_drop_earring"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Earrings/R08854_HD_bjowr0"
 heroImageAlt: "Pear shaped diamond drop earrings by Bez Ambar showing elegant teardrop silhouette on model"
 author: Bez Ambar

@@ -4,7 +4,7 @@ date: 2018-09-05
 updatedDate: 2026-07-08
 category: colored-stones
 excerpt: "Forty years of buying rubies has taught me that most buyers overpay for the wrong color and underpay attention to origin certificates. Here is what actually matters."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/study-in-ruby/ballerina_view_b"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Bracelets/ruby-bracelet-c0779-2026"
 heroImageAlt: "Deep red ruby ring set in platinum by Bez Ambar"
 author: Bez Ambar

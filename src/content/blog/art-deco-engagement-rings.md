@@ -4,7 +4,7 @@ date: 2021-01-28
 updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "Art Deco didn't just change jewelry design — it drew a line between decoration and architecture, and engagement rings were never the same."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/study-in-ruby/frame_baguette_ruby_halo.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/saul-ring-1778553023"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/c0536-2026"
 heroImageAlt: "Baguette ruby halo ring with geometric Art Deco frame, white gold setting"
 author: Bez Ambar

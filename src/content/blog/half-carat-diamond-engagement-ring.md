@@ -4,7 +4,7 @@ date: 2024-07-01
 updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "A half-carat diamond rewards buyers who prioritize cut quality over size — and in the right setting, it reads as a complete and considered ring, not a compromise."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/C0731_Round_Cut_ka9ykl"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/c0752-ring-2026"
 heroImageAlt: "Half-carat diamond engagement ring in platinum with excellent cut round brilliant"
 author: Bez Ambar

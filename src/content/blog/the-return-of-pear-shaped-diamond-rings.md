@@ -4,7 +4,7 @@ date: 2018-05-15
 updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "The pear shape has been in and out of fashion since Lodewyk van Bercken developed the first complex faceted cuts in 1475. Its current moment is earned rather than accidental."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/heros/pear-shaped-necklace-hero2.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Necklaces/pear-shaped-necklace-hero2"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Bands/Dentelle_Pear_Cut_2026_1080p"
 heroImageAlt: "Pear-shaped diamond necklace by Bez Ambar, Los Angeles"
 author: Bez Ambar

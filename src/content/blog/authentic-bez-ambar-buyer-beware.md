@@ -4,7 +4,7 @@ date: 2014-11-02
 updatedDate: 2026-07-11
 category: brand
 excerpt: "Bez Ambar pieces are sold through authorized retailers only. Knowing what genuine pieces look like, and where they are sold, protects your investment and ensures you receive the craftsmanship you are paying for."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/atelier/designer-portrait-2026.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/NOUS-DEUX-Ahoka_wxiqzv"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/Duet_Ashoka_jbgz8i"
 heroImageAlt: "Bez Ambar in his Downtown Los Angeles studio, every authentic Bez Ambar piece is made here"
 author: Bez Ambar

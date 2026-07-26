@@ -4,7 +4,7 @@ date: 2022-01-12
 updatedDate: 2026-07-08
 category: colored-stones
 excerpt: "Sri Lanka has produced fine sapphires for over two thousand years — the cornflower blue associated with Ceylon origin is not a marketing designation, it is a specific optical character that collectors pay for."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/pages/ceylon-sapphire-1130-hero.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/ceylon-sapphire-1130-detail"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/Pink_Oval_Ring_C0747_2026_1080p"
 heroImageAlt: "Fine oval Ceylon sapphire with deep cornflower blue color certified by AGL origin report"
 author: Bez Ambar

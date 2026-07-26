@@ -4,7 +4,7 @@ date: 2020-07-22
 updatedDate: 2026-07-08
 category: earrings
 excerpt: "Yellow gold with diamonds was the default for most of jewelry's history — the combination was displaced by the platinum era, and the current revival reflects not trend-chasing but a genuine re-appreciation of what yellow gold does for a diamond."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/earrings/pear-ashoka-model-hero.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Earrings/model_for_drop_down_earrings_bfb2zz"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Earrings/c0845-hd"
 heroImageAlt: "Cushion cut diamond earrings set in gold by Bez Ambar showing rich warm contrast"
 author: Bez Ambar

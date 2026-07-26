@@ -4,7 +4,7 @@ date: 2019-06-05
 updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "The solitaire endures not because it is simple, but because nothing else focuses a stone's beauty with the same ruthless clarity."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1779074065/Jewelry%20Images/Stones/Elysian_cut_oval_qcdt5r.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/Cala_Ring_Hero_iglcjd"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/c0752-ring-2026"
 heroImageAlt: "Single round brilliant diamond solitaire ring against a soft neutral background"
 author: Bez Ambar

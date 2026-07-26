@@ -4,7 +4,7 @@ date: 2018-01-10
 updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "The radiant cut is the only diamond shape that delivers a round's fire inside a rectangle's frame — and that tension is exactly what makes it extraordinary."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1779091372/Jewelry%20Images/Stones/Elysian_cut_emerald_a1l5gv.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/C0723_Oval_Eternity_Band_awpedb"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Bands/Dentelle_Oval_Cut_2026_1080p"
 heroImageAlt: "Custom three-arm engagement ring with elongated diamond set in platinum"
 author: Bez Ambar

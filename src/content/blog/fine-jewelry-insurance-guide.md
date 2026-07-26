@@ -4,7 +4,7 @@ date: 2019-09-14
 updatedDate: 2026-07-08
 category: guides
 excerpt: "A homeowner's policy and a scheduled jewelry rider are not the same coverage — understanding the difference before you need to file a claim is the only protection that matters."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/atelier/fifty-years-portrait-2026.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/saul-ring-1778553023"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/C0895_1C3S_HD_wz0ssk"
 heroImageAlt: "Fine diamond jewelry collection on display including rings, necklaces, and bracelets"
 author: Bez Ambar

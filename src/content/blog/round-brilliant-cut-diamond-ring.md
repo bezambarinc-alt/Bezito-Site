@@ -4,7 +4,7 @@ date: 2017-02-14
 updatedDate: 2026-07-08
 category: engagement-rings
 excerpt: "After more than a century of competing cuts, the round brilliant still outsells every other diamond shape — and the reasons run deeper than tradition."
-heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg"
+heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/C0737_Round_Cut_tm5oal"
 heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Rings/C0895_1C3S_HD_wz0ssk"
 heroImageAlt: "Round brilliant diamond engagement ring surrounded by floral gold band details"
 author: Bez Ambar
