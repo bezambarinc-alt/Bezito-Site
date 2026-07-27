@@ -60,6 +60,9 @@ const blog = defineCollection({
   }).refine(
     (d) => !d.heroImage || !!d.heroImageAlt,
     { message: 'Blog post with heroImage must also provide heroImageAlt.' },
+  ).refine(
+    (d) => d.heroVideo !== undefined || d.heroImage !== undefined,
+    { message: 'Blog post must have at least one of heroVideo or heroImage.' },
   ),
 });
 

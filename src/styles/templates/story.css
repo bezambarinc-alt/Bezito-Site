@@ -1,19 +1,8 @@
 /* ============================================================
    story.css — /the-story page template
    Verdura-style vertical scrolling timeline
+   Tokens (--story-*) live in global.css
    ============================================================ */
-
-/* ── Variables ─────────────────────────────────────────── */
-:root {
-  --story-gold: #95826b;
-  --story-ink: #1a1a1a;
-  --story-muted: #7a7166;
-  --story-cream: #faf7f4;
-  --story-paper: #f3ede6;
-  --story-vline: rgba(149, 130, 107, 0.35);
-  --story-year-w: 200px;
-  --story-nav-w: 160px;
-}
 
 /* ── Fade-in animation ─────────────────────────────────── */
 .fadein-el {
@@ -60,7 +49,7 @@
   color: #fff;
 }
 .story-hero__eyebrow {
-  font-family: 'Open Sans', sans-serif;
+  font-family: var(--sans);
   font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -69,15 +58,17 @@
   margin: 0 0 1rem;
 }
 .story-hero__title {
-  font-family: 'Lyon Text', 'Cormorant Garamond', Georgia, serif;
+  font-family: var(--sans);
+  text-transform: none;
+  letter-spacing: -0.02em;
   font-size: clamp(2.4rem, 6vw, 5rem);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.1;
   margin: 0 0 1.25rem;
   max-width: 16ch;
 }
 .story-hero__lede {
-  font-family: 'Open Sans', sans-serif;
+  font-family: var(--sans);
   font-size: clamp(0.85rem, 1.5vw, 1rem);
   font-weight: 300;
   letter-spacing: 0.03em;
@@ -95,7 +86,7 @@
   text-align: center;
 }
 .story-intro p {
-  font-family: 'Lyon Text', 'Cormorant Garamond', Georgia, serif;
+  font-family: var(--serif);
   font-size: clamp(1.05rem, 1.6vw, 1.2rem);
   line-height: 1.75;
   color: var(--story-muted);
@@ -108,7 +99,7 @@
   align-items: center;
   gap: 0.6rem;
   margin: 3rem auto 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: var(--sans);
   font-size: 0.68rem;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -144,7 +135,7 @@
   padding-top: 1rem;
 }
 .story-year-nav__title {
-  font-family: 'Open Sans', sans-serif;
+  font-family: var(--sans);
   font-size: 0.62rem;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -163,7 +154,7 @@
   gap: 0;
 }
 .story-year-nav__list li {
-  font-family: 'Open Sans', sans-serif;
+  font-family: var(--sans);
   font-size: 0.72rem;
   font-weight: 400;
   color: rgba(26,26,26,0.35);
@@ -212,9 +203,9 @@
   box-shadow: 0 0 0 1px var(--story-gold);
 }
 
-/* Year number */
+/* Year number — decorative display, intentionally serif */
 .tl-ynum {
-  font-family: 'Lyon Text', 'Cormorant Garamond', Georgia, serif;
+  font-family: var(--serif);
   font-size: clamp(2.4rem, 4vw, 3.5rem);
   font-weight: 300;
   color: rgba(149, 130, 107, 0.25);
@@ -223,20 +214,22 @@
   letter-spacing: -0.02em;
 }
 
-/* Chapter headline */
+/* Chapter headline (h2) */
 .tl-headline {
-  font-family: 'Lyon Text', 'Cormorant Garamond', Georgia, serif;
+  font-family: var(--sans);
+  text-transform: none;
+  letter-spacing: -0.01em;
   font-size: clamp(1.35rem, 2.5vw, 1.9rem);
-  font-weight: 400;
-  line-height: 1.25;
+  font-weight: 700;
+  line-height: 1.2;
   color: var(--story-ink);
   margin: 0 0 1rem;
 }
 
 /* Body copy */
 .tl-body {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 0.92rem;
+  font-family: var(--serif);
+  font-size: 1rem;
   line-height: 1.75;
   color: #4a4540;
   max-width: 58ch;
@@ -285,7 +278,7 @@
   border-radius: 2px;
 }
 .tl-media figcaption {
-  font-family: 'Open Sans', sans-serif;
+  font-family: var(--sans);
   font-size: 0.7rem;
   color: var(--story-muted);
   letter-spacing: 0.06em;
@@ -298,7 +291,7 @@
   border-left: 2px solid var(--story-gold);
   padding: 0.5rem 0 0.5rem 1.5rem;
   margin: 2rem 0;
-  font-family: 'Lyon Text', 'Cormorant Garamond', Georgia, serif;
+  font-family: var(--serif);
   font-size: clamp(1rem, 1.8vw, 1.25rem);
   font-style: italic;
   line-height: 1.5;
@@ -328,13 +321,15 @@
   padding: 5rem 2rem;
 }
 .story-newsletter h2 {
-  font-family: 'Lyon Text', 'Cormorant Garamond', Georgia, serif;
+  font-family: var(--sans);
+  text-transform: none;
+  letter-spacing: -0.02em;
   font-size: clamp(1.8rem, 3.5vw, 3rem);
-  font-weight: 400;
+  font-weight: 700;
   margin: 0 0 0.75rem;
 }
 .story-newsletter p {
-  font-family: 'Open Sans', sans-serif;
+  font-family: var(--sans);
   font-size: 0.88rem;
   color: rgba(255,255,255,0.6);
   max-width: 42ch;
@@ -354,7 +349,7 @@
   border: 1px solid rgba(255,255,255,0.2);
   background: rgba(255,255,255,0.07);
   color: #fff;
-  font-family: 'Open Sans', sans-serif;
+  font-family: var(--sans);
   font-size: 0.85rem;
   outline: none;
   border-radius: 0;
@@ -368,7 +363,7 @@
   background: var(--story-gold);
   color: #fff;
   border: none;
-  font-family: 'Open Sans', sans-serif;
+  font-family: var(--sans);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -381,7 +376,7 @@
 }
 .story-newsletter__or {
   margin-top: 2rem;
-  font-family: 'Open Sans', sans-serif;
+  font-family: var(--sans);
   font-size: 0.75rem;
   color: rgba(255,255,255,0.35);
 }
@@ -389,7 +384,7 @@
   display: inline-block;
   margin-top: 0.75rem;
   color: var(--story-gold);
-  font-family: 'Open Sans', sans-serif;
+  font-family: var(--sans);
   font-size: 0.78rem;
   font-weight: 500;
   letter-spacing: 0.08em;

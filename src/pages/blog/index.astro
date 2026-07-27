@@ -6,7 +6,11 @@ import { getCollection } from 'astro:content';
 const allPosts = (await getCollection('blog', p => p.data.status === 'live'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-const featured = allPosts.find(p => p.slug === 'diamond-hoop-earrings-guide') || allPosts[0];
+if (allPosts.length === 0) {
+  return Astro.redirect('/');
+}
+
+const featured = allPosts.find(p => p.slug === 'diamond-hoop-earrings-guide') ?? allPosts[0];
 const picks    = allPosts.filter(p => p.slug !== featured.slug).slice(0, 2);
 const gridPosts = allPosts.filter(p => p.slug !== featured.slug).slice(2);
 

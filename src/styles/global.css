@@ -48,6 +48,16 @@
   --ease-wipe:   cubic-bezier(0.77, 0, 0.175, 1);
   --dur-reveal:  0.9s;
   --travel:      48px;
+
+  /* Story page (/the-story) */
+  --story-gold:   #95826b;
+  --story-ink:    #1a1a1a;
+  --story-muted:  #7a7166;
+  --story-cream:  #faf7f4;
+  --story-paper:  #f3ede6;
+  --story-vline:  rgba(149, 130, 107, 0.35);
+  --story-year-w: 200px;
+  --story-nav-w:  160px;
 }
 @media (max-width: 768px) {
   :root { --dur-reveal: 0.65s; --travel: 24px; }
