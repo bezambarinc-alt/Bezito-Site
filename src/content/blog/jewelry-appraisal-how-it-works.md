@@ -37,7 +37,7 @@ Diamond grading in an appraisal context uses the same 4C framework as a laborato
 The value conclusion comes from the appraiser's knowledge of the current market for comparable pieces. A qualified appraiser tracks market prices through dealer contacts, auction results, and retail survey data. An appraiser who has not actively updated their market knowledge within the past twelve months should be presenting current appraisal values with caution.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/atelier/fifty-years-portrait-2026.jpg" alt="Appraisal documentation with diamond grading loupe and jewelry piece in background">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/atelier/fifty-years-portrait-2026.jpg" alt="Appraisal documentation with diamond grading loupe and jewelry piece in background">
 </figure>
 
 ### The Appraiser

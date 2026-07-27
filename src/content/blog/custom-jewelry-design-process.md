@@ -37,7 +37,7 @@ Sketching is the first development tool. A hand sketch communicates proportion, 
 Computer-aided design produces a precise three-dimensional model that can be rendered in accurate material simulations. CAD models are used for pieces where dimensional precision before fabrication is critical — complex settings with multiple stone sizes, pieces that must integrate with an existing piece, or designs where small proportion changes have large visual consequences. The model can be printed in wax or resin for physical review before metal is committed.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/atelier/fifty-years-portrait-2026.jpg" alt="Custom jewelry design process showing sketch and finished piece comparison">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/atelier/fifty-years-portrait-2026.jpg" alt="Custom jewelry design process showing sketch and finished piece comparison">
 </figure>
 
 ### The Fabrication

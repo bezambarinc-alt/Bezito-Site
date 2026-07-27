@@ -40,7 +40,7 @@ The natural supply of fine alexandrite is genuinely constrained. Most alexandrit
 Laboratory-grown alexandrite is optically and chemically identical to natural alexandrite. The color-change mechanism is the same. For buyers who want the visual experience at a fraction of the cost, it is a legitimate choice. For buyers who want a natural stone with rarity value, laboratory-grown is a different product. The price difference between a well-documented natural alexandrite with strong color change and a synthetic of comparable visual quality is not small — it can be 10 to 30 times. Know what you are buying.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/pages/ceylon-sapphire-1130-model.jpg" alt="Fine color-change gemstone ring showing the vivid saturation characteristic of quality alexandrite">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/Rings/ceylon-sapphire-1130-model" alt="Fine color-change gemstone ring showing the vivid saturation characteristic of quality alexandrite">
 </figure>
 
 ### Brazilian, Sri Lankan, and East African Sources

@@ -40,7 +40,7 @@ Heat treatment is standard in aquamarine, but it differs from the complex treatm
 There are no major deceptive treatments in aquamarine to guard against at the level that glass filling affects ruby or oiling affects emerald. The main risk is simply misrepresentation of color quality, size-to-color relationships, or — more rarely — blue topaz sold as aquamarine. Blue topaz is not a lesser stone, but it is a different stone worth considerably less per carat. If you are making a significant purchase, a GIA identification report takes the guesswork out of species.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/pages/ceylon-sapphire-1130-model.jpg" alt="Deep blue gemstone ring on hand demonstrating the rich ocean-blue color of fine aquamarine">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/Rings/ceylon-sapphire-1130-model" alt="Deep blue gemstone ring on hand demonstrating the rich ocean-blue color of fine aquamarine">
 </figure>
 
 ### Size and Setting Strategy

@@ -39,7 +39,7 @@ Gold in 14k or 18k is the traditional precious metal choice. Yellow gold reads r
 Titanium, tungsten, and cobalt chrome are marketed as durable alternatives that are harder than precious metals and available at significantly lower price points. They are genuinely harder than gold. They are also not resizable — resizing precious metal bands is a routine bench operation, but titanium and tungsten bands cannot be resized and must be replaced if the finger size changes. For a ring worn every day for decades, this is a significant practical constraint.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/atelier/fifty-years-portrait-2026.jpg" alt="Men's wedding band collection showing various finishes and widths including brushed and high polish">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/atelier/fifty-years-portrait-2026.jpg" alt="Men's wedding band collection showing various finishes and widths including brushed and high polish">
 </figure>
 
 ### The Finish

@@ -37,7 +37,7 @@ We source stones in parcels and sort by eye before any instrument confirms a mat
 The total carat weight stated for a tennis necklace is cumulative — the sum of all stones. Five carats distributed across seventy-five stones reads very differently from five carats across twenty-five larger stones. The per-stone size changes the visual weight, the price per carat, and the fabrication time. Be precise about which total weight and stone count you are comparing when you evaluate price across vendors.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/necklaces/single-row-lifestyle.jpg" alt="Close view of matched diamond tennis necklace links in white gold">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/necklaces/single-row-lifestyle.jpg" alt="Close view of matched diamond tennis necklace links in white gold">
 </figure>
 
 ### The Price

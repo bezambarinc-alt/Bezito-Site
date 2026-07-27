@@ -40,7 +40,7 @@ Nearly all commercial rubies are heat-treated. The process removes silk inclusio
 The price differential between a quality heated ruby and a comparable glass-filled stone should be enormous. If a deal seems too good, glass filling is the first explanation to investigate. Any ruby you are considering at a significant price point deserves a laboratory report that addresses treatment status explicitly.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/pages/ceylon-sapphire-1130-model.jpg" alt="Vivid colored gemstone ring shown on hand, demonstrating fine stone quality">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/Rings/ceylon-sapphire-1130-model" alt="Vivid colored gemstone ring shown on hand, demonstrating fine stone quality">
 </figure>
 
 ### Price Benchmarks

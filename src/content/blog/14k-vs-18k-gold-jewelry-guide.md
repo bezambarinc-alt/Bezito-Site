@@ -37,7 +37,7 @@ Setting construction for stones presents a different balance. Prong tips and bez
 For pieces worn occasionally rather than daily — a statement bracelet worn once a month, a special-occasion necklace, a cocktail ring — the hardness advantage of 14k has less practical relevance because the piece does not accumulate daily wear fast enough for the hardness difference to manifest over a reasonable observation period. In occasional-wear applications, the choice between 14k and 18k is primarily about color preference and budget.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/atelier/fifty-years-portrait-2026.jpg" alt="Gold karat stamp marks on jewelry showing 14K and 18K hallmarks close up">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/atelier/fifty-years-portrait-2026.jpg" alt="Gold karat stamp marks on jewelry showing 14K and 18K hallmarks close up">
 </figure>
 
 ### The Value

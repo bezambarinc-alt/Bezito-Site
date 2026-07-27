@@ -37,7 +37,7 @@ Ask whether white gold will require rhodium plating and if so, what the expected
 Ask what happens if the metal needs repair — who performs the service, what the turnaround time is, and whether the repair is covered under any warranty. A piece with no stated service policy is a piece with no accountability after the sale.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/atelier/fifty-years-portrait-2026.jpg" alt="Client review of jewelry documentation including laboratory certificate and appraisal">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/atelier/fifty-years-portrait-2026.jpg" alt="Client review of jewelry documentation including laboratory certificate and appraisal">
 </figure>
 
 ### The Service Questions

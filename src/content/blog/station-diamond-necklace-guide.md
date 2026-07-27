@@ -37,7 +37,7 @@ Bezel settings are the most practical choice for station necklaces worn daily. T
 Station stones can be matched in size across the full necklace or graduated from smaller stones at the ends to a larger center stone. Matched stations read as more contemporary and linear. Graduated stations read as more traditional, closer in character to a riviera necklace. The number of stations also matters: five stations feel spare and architectural, nine to eleven stations feel abundant and continuous.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/necklaces/single-row-lifestyle.jpg" alt="Diamond station necklace showing even spacing and bezel settings on white gold chain">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/necklaces/single-row-lifestyle.jpg" alt="Diamond station necklace showing even spacing and bezel settings on white gold chain">
 </figure>
 
 ### The Wear

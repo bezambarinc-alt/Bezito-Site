@@ -37,7 +37,7 @@ A bezel setting wraps a continuous wall of metal around the girdle of the diamon
 A partial bezel, or semi-bezel, covers the stone at two opposing points and leaves the sides open. This is a useful middle position: more protection than four prongs, more light than a full bezel. It also reads as a more modern silhouette than either of the traditional options.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/necklaces/single-row-lifestyle.jpg" alt="Solitaire pendant detail showing prong setting and chain bail construction">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/necklaces/single-row-lifestyle.jpg" alt="Solitaire pendant detail showing prong setting and chain bail construction">
 </figure>
 
 ### The Chain

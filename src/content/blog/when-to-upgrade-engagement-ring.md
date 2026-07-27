@@ -37,7 +37,7 @@ A related poor reason is upgrading to chase a current trend in ring design. Soli
 The financial logic of upgrades also deserves honest treatment. Fine diamond jewelry does not appreciate in value the way many clients expect. The secondary market for used fine jewelry prices below the original retail cost. The stone from an existing ring, traded toward an upgrade, will be credited at secondary market value rather than its original retail cost. This means the financial exchange in an upgrade is almost always less favorable than the client anticipates. Knowing this in advance prevents the upgrade from feeling like an unwelcome financial surprise.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/atelier/fifty-years-portrait-2026.jpg" alt="Original engagement ring alongside upgraded custom design showing design evolution">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/atelier/fifty-years-portrait-2026.jpg" alt="Original engagement ring alongside upgraded custom design showing design evolution">
 </figure>
 
 ### The Process

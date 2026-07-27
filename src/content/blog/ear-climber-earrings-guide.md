@@ -40,7 +40,7 @@ Because the climber's upper element rests against the ear without a second pierc
 The implication is that ear climbers, particularly fine ones with significant diamond content, benefit from being selected and if necessary adjusted to the specific wearer's ear rather than purchased as standardized products. A jeweler who works with climbers regularly can assess fit, adjust the post curve if necessary, and confirm that the upper element rests against the ear properly before the purchase is completed. This is a category where trying the earring on is not optional — it is essential.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/earrings/pear-ashoka-model-hero.jpg" alt="Fine diamond earrings shown on model demonstrating how a climber design follows the ear's natural contour upward">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/earrings/pear-ashoka-model-hero.jpg" alt="Fine diamond earrings shown on model demonstrating how a climber design follows the ear's natural contour upward">
 </figure>
 
 ### Diamond and Stone Work in Climbers

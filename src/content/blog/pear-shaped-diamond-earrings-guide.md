@@ -40,7 +40,7 @@ Earrings demand matched pairs in a way that is easy to state and difficult to ac
 Professional matching of pear pairs for earrings above one carat each is a service that requires access to broader stone inventory than most single-jeweler operations can provide. At Bez Ambar, stones for matched pairs are sourced specifically for visual match, not just carat weight match. A pair where one stone is noticeably lighter in color or has a different pattern of light return from the other will look asymmetric in a way that undermines the earring.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/earrings/pear-ashoka-model-hero.jpg" alt="Pear shaped diamond drop earrings shown on model demonstrating the elegant elongated teardrop silhouette and light performance">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/earrings/pear-ashoka-model-hero.jpg" alt="Pear shaped diamond drop earrings shown on model demonstrating the elegant elongated teardrop silhouette and light performance">
 </figure>
 
 ### Setting Options for Pear Drops

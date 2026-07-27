@@ -39,7 +39,7 @@ Airport security screening requires you to remove jewelry that may trigger metal
 International travel with fine jewelry requires attention to customs regulations. Bringing personal jewelry in and out of most countries for personal use is not subject to duty, but the distinction between "personal jewelry" and "goods for sale" depends on quantity and value. Very large quantities of fine jewelry, or carrying pieces without wearing them, can invite customs scrutiny. Keep documentation of original purchase for any high-value piece traveling internationally, and be prepared to demonstrate that the pieces are for personal use.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/atelier/fifty-years-portrait-2026.jpg" alt="Fine jewelry travel organization showing compact pouch and documentation">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/atelier/fifty-years-portrait-2026.jpg" alt="Fine jewelry travel organization showing compact pouch and documentation">
 </figure>
 
 ### The Hotel

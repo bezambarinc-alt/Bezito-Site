@@ -40,7 +40,7 @@ Any reputable seller — and the FTC regulations in the United States — requir
 The practical risk for buyers is purchasing from sources that do not disclose clearly — estate sales, online marketplaces, international vendors operating outside robust regulatory frameworks. A GIA or AGL report on any significant sapphire will state whether the stone is natural or synthetic without ambiguity. That report is the buyer's protection, and the cost of obtaining one is trivial relative to the price of any significant stone.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/pages/ceylon-sapphire-1130-model.jpg" alt="Natural oval sapphire ring shown on hand demonstrating the deep vivid blue achievable in fine natural Ceylon material">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/Rings/ceylon-sapphire-1130-model" alt="Natural oval sapphire ring shown on hand demonstrating the deep vivid blue achievable in fine natural Ceylon material">
 </figure>
 
 ### Making the Right Choice for Your Situation

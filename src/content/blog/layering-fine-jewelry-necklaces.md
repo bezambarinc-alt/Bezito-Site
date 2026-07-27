@@ -37,7 +37,7 @@ The practical test is this: lay the pieces on a flat surface at their intended l
 Metal mixing has become standard practice in fine jewelry, and it works. Yellow gold and white gold together read as intentional contrast. Yellow gold and rose gold together read as tonal harmony. What rarely works is mixing high-polish and matte finishes across layers, because the light return values clash and the combination looks unfinished rather than considered.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/necklaces/single-row-lifestyle.jpg" alt="Layered necklace arrangement showing length separation and proportion balance">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/necklaces/single-row-lifestyle.jpg" alt="Layered necklace arrangement showing length separation and proportion balance">
 </figure>
 
 ### The Anchor

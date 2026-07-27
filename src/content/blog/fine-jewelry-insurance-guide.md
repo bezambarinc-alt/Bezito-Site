@@ -37,7 +37,7 @@ Photographs are frequently overlooked in the insurance documentation process. A 
 The appraisal value should be current. Most insurers and insurance professionals recommend reappraisal every three to five years because metal prices and diamond market values change. An insurance settlement is calculated against the stated appraisal value, not against current market replacement cost. If your diamond has increased in replacement value since your last appraisal and your policy carries the outdated value, you will receive less than full replacement at the time of a claim.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/atelier/fifty-years-portrait-2026.jpg" alt="Fine jewelry documentation and appraisal papers representing proper insurance preparation">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/atelier/fifty-years-portrait-2026.jpg" alt="Fine jewelry documentation and appraisal papers representing proper insurance preparation">
 </figure>
 
 ### The Claim

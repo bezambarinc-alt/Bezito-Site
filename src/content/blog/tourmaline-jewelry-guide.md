@@ -40,7 +40,7 @@ Rubellite is the trade name for tourmaline that maintains its red-pink color und
 Chrome tourmaline, colored by chromium rather than iron, produces a vivid, warm green with a slight yellow undertone that distinguishes it from the cooler, more bluish green of indicolite. Fine chrome tourmaline from Tanzania approaches the visual impression of a slightly yellower tsavorite garnet and is one of the most undervalued greens in the gem market. The stone is genuinely difficult to find in large sizes with strong saturation, and buyers who encounter it at a credible seller should take it seriously.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/pages/ceylon-sapphire-1130-model.jpg" alt="Vivid colored gemstone ring on hand showing the saturation and brilliance characteristic of fine tourmaline">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/Rings/ceylon-sapphire-1130-model" alt="Vivid colored gemstone ring on hand showing the saturation and brilliance characteristic of fine tourmaline">
 </figure>
 
 ### Treatment and Transparency in Tourmaline

@@ -40,7 +40,7 @@ Metal weight, stone weight, and the vertical distribution of that mass all deter
 The ear fitting itself contributes to comfort. Lever-back closures distribute the earring's weight more evenly across the lobe than a standard butterfly back on a thin post. For heavier drop earrings, a lever-back or threaded screw back reduces the tendency for the earring to tilt or rotate outward over the course of an evening.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/earrings/pear-ashoka-model-hero.jpg" alt="Diamond drop earrings shown on model demonstrating the elegant movement and light performance of a fine pendant design">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/earrings/pear-ashoka-model-hero.jpg" alt="Diamond drop earrings shown on model demonstrating the elegant movement and light performance of a fine pendant design">
 </figure>
 
 ### Occasion Calibration

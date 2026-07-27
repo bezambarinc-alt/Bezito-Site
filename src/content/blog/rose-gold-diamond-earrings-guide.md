@@ -40,7 +40,7 @@ Copper is harder than gold, which means rose gold alloys are inherently more dur
 The copper content also means rose gold does not require rhodium plating to maintain its color, which white gold typically does. White gold is naturally grayish-yellow and is rhodium-plated to appear white — that plating wears away with use and requires periodic re-application. Rose gold's color is inherent to the alloy and does not change with wear or require maintenance to sustain.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/earrings/pear-ashoka-model-hero.jpg" alt="Fine diamond earrings shown on model demonstrating the warm rose and diamond combination in elegant jewelry">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/earrings/pear-ashoka-model-hero.jpg" alt="Fine diamond earrings shown on model demonstrating the warm rose and diamond combination in elegant jewelry">
 </figure>
 
 ### Design Considerations in Rose Gold Earrings

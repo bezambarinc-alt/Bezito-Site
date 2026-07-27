@@ -37,7 +37,7 @@ Fill a small bowl with warm water — not hot, because thermal shock can stress 
 Remove the piece and use a soft-bristled toothbrush to gently scrub the stone and setting. Pay particular attention to the areas behind and beneath the stone where the most contamination accumulates, especially in prong settings where the skin-contact areas are most active. Use short, light strokes — the point is to dislodge loosened contamination, not to scrub mechanically. Rinse thoroughly under running warm water, covering the drain with a cloth or stopper in case the piece slips. Dry with a clean lint-free cloth or allow to air dry on a soft surface.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/atelier/fifty-years-portrait-2026.jpg" alt="Diamond ring cleaning process with soft brush and warm soapy water">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/atelier/fifty-years-portrait-2026.jpg" alt="Diamond ring cleaning process with soft brush and warm soapy water">
 </figure>
 
 ### What Not to Do

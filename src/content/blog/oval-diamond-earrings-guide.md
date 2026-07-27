@@ -40,7 +40,7 @@ Oval diamonds appear in earrings in two primary configurations. As a stud, the o
 In a drop configuration, the oval pendant hangs from a connector element — a short diamond pavé link, a single station diamond, or a metal loop. The vertical orientation of the oval in the pendant position is natural and elegant. The drop configuration allows the shape to be seen in motion and at greater distance from the viewer, which changes the quality calculus somewhat: movement scintillation becomes more important than face-up clarity details.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/earrings/pear-ashoka-model-hero.jpg" alt="Fine oval diamond earrings shown on model demonstrating the elongated silhouette and flattering proportion at the face">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/earrings/pear-ashoka-model-hero.jpg" alt="Fine oval diamond earrings shown on model demonstrating the elongated silhouette and flattering proportion at the face">
 </figure>
 
 ### Selecting Matched Ovals for Earrings

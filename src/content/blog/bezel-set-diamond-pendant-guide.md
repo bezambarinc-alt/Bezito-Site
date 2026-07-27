@@ -37,7 +37,7 @@ Round brilliants work well in bezels. The circular bezel wall is the most natura
 Pear shapes in bezels require the most precise fabrication because the point of the pear must be fully enclosed in the bezel wall at the most tapering part of the outline. A pear bezel done correctly frames the stone's point cleanly without excessive metal at the tip. Done incorrectly, the point appears blunted or the metal bunches at the cusp. This is where fabrication quality separates comparable pieces.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/necklaces/single-row-lifestyle.jpg" alt="Bezel pendant detail showing metal wall thickness and stone face presentation">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/necklaces/single-row-lifestyle.jpg" alt="Bezel pendant detail showing metal wall thickness and stone face presentation">
 </figure>
 
 ### The Wear

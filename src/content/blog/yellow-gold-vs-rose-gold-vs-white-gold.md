@@ -37,7 +37,7 @@ Rose gold's relationship to colored stones is the most nuanced of the three meta
 Rose gold work-hardens more readily than yellow or white gold because copper alloys are more prone to this metallurgical behavior. Work-hardening makes the metal more brittle over time in areas of repeated mechanical stress — ring shanks, hinge mechanisms, and prong junctions. This does not make rose gold a poor choice for jewelry, but it does make competent fabrication more important. Well-fabricated rose gold pieces are annealed appropriately during production to prevent premature brittleness.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/atelier/fifty-years-portrait-2026.jpg" alt="Three ring designs showing yellow gold, rose gold, and white gold settings with diamonds">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/atelier/fifty-years-portrait-2026.jpg" alt="Three ring designs showing yellow gold, rose gold, and white gold settings with diamonds">
 </figure>
 
 ### White Gold

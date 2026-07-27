@@ -40,7 +40,7 @@ Pure gold is 24 karats and too soft for most jewelry applications. Most fine yel
 22k gold, common in Indian and Middle Eastern jewelry traditions, has a deep, almost orange-yellow color that is distinctive and intentional. It is softer and less appropriate for prong settings holding significant diamonds, but for textured, high-gold-content designs it produces a color quality that lower-karat alloys cannot replicate.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/earrings/pear-ashoka-model-hero.jpg" alt="Diamond earrings in yellow gold shown on model demonstrating the warm contrast between white diamonds and gold setting">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/earrings/pear-ashoka-model-hero.jpg" alt="Diamond earrings in yellow gold shown on model demonstrating the warm contrast between white diamonds and gold setting">
 </figure>
 
 ### Design Traditions in Yellow Gold Earrings

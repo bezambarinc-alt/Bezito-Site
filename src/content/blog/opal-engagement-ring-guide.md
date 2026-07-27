@@ -40,7 +40,7 @@ The opal market includes three categories of stone: solids, doublets, and triple
 Solid opals with strong, vivid color play — particularly Lightning Ridge black opals above two carats — are among the most individually spectacular objects in the gem world. They are also among the most expensive per carat in their finest examples. A well-documented Australian black opal with full-face red fire can command prices comparable to fine ruby. Solid crystal opals and Ethiopian opals with strong color are more accessible, with excellent stones available in the $500 to $3,000 per carat range depending on the intensity and breadth of the color play.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/pages/ceylon-sapphire-1130-model.jpg" alt="Vivid gemstone ring on model hand showing the individual character that makes each fine opal unique">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/Rings/ceylon-sapphire-1130-model" alt="Vivid gemstone ring on model hand showing the individual character that makes each fine opal unique">
 </figure>
 
 ### Setting Design for Opal

@@ -40,7 +40,7 @@ Huggie earrings require a post diameter that matches the wearer's existing pierc
 The click closure of a quality huggie should engage with a definite snap and require slight lateral pressure to open. A hinge that opens too easily is a security risk — the earring can work open during the day without the wearer noticing. A hinge that is too stiff is frustrating to operate. The right tension is a minor engineering detail that separates well-made huggies from mass-market production.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/earrings/pear-ashoka-model-hero.jpg" alt="Fine diamond earrings shown on model demonstrating elegant fit close to the ear in the huggie style">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/earrings/pear-ashoka-model-hero.jpg" alt="Fine diamond earrings shown on model demonstrating elegant fit close to the ear in the huggie style">
 </figure>
 
 ### Stacking and the Huggie's Role

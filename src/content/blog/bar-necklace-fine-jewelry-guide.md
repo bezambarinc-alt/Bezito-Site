@@ -37,7 +37,7 @@ The choice of finish is not purely aesthetic — it is also a maintenance decisi
 Metal selection matters more for bar necklaces than for gemstone-forward pieces. 18k yellow gold is the strongest visual choice — the warm color of 18k reads richer than 14k in direct comparison. Platinum bars are exceptional in durability but the cooler tone reads less dramatically against most skin tones than yellow gold. 18k white gold is a viable choice, but the piece will need rhodium replating over time to maintain its white color, which is a maintenance consideration worth stating upfront.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/necklaces/single-row-lifestyle.jpg" alt="Bar necklace detail showing beveled edge finish and chain attachment points">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/necklaces/single-row-lifestyle.jpg" alt="Bar necklace detail showing beveled edge finish and chain attachment points">
 </figure>
 
 ### The Diamond Option

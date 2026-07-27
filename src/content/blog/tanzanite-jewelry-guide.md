@@ -40,7 +40,7 @@ Tanzanite scores 6 to 7 on the Mohs hardness scale, which places it below sapphi
 Setting matters enormously for tanzanite durability. A bezel or semi-bezel setting that protects the girdle is preferable to a high prong setting that leaves the stone exposed. If you want a tanzanite in a ring that will be worn every day, invest in a protective setting design. If you want maximum visual impact with less protection, reserve that ring for evenings and occasions.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/pages/ceylon-sapphire-1130-model.jpg" alt="Deep violet-blue gemstone ring showing rich saturation typical of fine tanzanite">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/Rings/ceylon-sapphire-1130-model" alt="Deep violet-blue gemstone ring showing rich saturation typical of fine tanzanite">
 </figure>
 
 ### Size and Value

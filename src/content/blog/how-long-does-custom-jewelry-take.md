@@ -37,7 +37,7 @@ These are bench time estimates — they do not include the queue of commissions 
 Quality benchmarks also take time. After casting, metal must be finished before setting. Finishing — removing casting marks, achieving the correct surface state, checking all dimensions — is not a fast step. After setting, every prong tip is inspected individually, every stone is tested for security, and the piece is cleaned and polished to its final state. The inspection-to-delivery sequence requires one to two business days minimum. Any jeweler who skips it is skipping the quality confirmation step.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/atelier/fifty-years-portrait-2026.jpg" alt="Finished custom commission rings at final inspection stage before client delivery">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/atelier/fifty-years-portrait-2026.jpg" alt="Finished custom commission rings at final inspection stage before client delivery">
 </figure>
 
 ### The Calendar

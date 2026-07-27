@@ -40,7 +40,7 @@ As with aquamarine, morganite grows under conditions that favor good clarity, an
 Clarity matters more in larger stones and step-cut shapes, where the viewer's eye travels through the interior of the stone. In brilliant cuts, minor inclusions are largely obscured by the faceting. In an emerald-cut or oval morganite above five carats, clarity is visible and should be clean.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/pages/ceylon-sapphire-1130-model.jpg" alt="Pink-peach gemstone ring on model hand showing the warm flattering tones of fine morganite">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/Rings/ceylon-sapphire-1130-model" alt="Pink-peach gemstone ring on model hand showing the warm flattering tones of fine morganite">
 </figure>
 
 ### Size, Setting, and the Rose Gold Question

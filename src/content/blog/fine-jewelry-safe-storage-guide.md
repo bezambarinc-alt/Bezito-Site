@@ -37,7 +37,7 @@ The interior lining material matters. Velvet is the traditional jewelry box lini
 Necklace and bracelet storage requires particular attention because chain entanglement is the other major storage damage mechanism. A chain that has knotted itself will sustain mechanical stress at the knot when you try to unknot it, and a fine chain knotted tightly enough can break at that stress point. Store necklaces hanging — from hooks in a cabinet, from a wall-mounted bar, or suspended from individual pins in a lined drawer. For pieces that must be stored flat, each piece in its own sealed pouch prevents entanglement with its neighbors.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/atelier/fifty-years-portrait-2026.jpg" alt="Organized jewelry storage with individual compartments and velvet lining">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/atelier/fifty-years-portrait-2026.jpg" alt="Organized jewelry storage with individual compartments and velvet lining">
 </figure>
 
 ### The Environment

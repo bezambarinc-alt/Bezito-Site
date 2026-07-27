@@ -42,7 +42,7 @@ Amethyst at 7 on the Mohs hardness scale is harder than tanzanite and opal but s
 One property of amethyst that is worth knowing: prolonged exposure to strong sunlight can cause color fading. This is not a risk with normal wearing — the UV component of ambient light is not intense enough to cause meaningful fading in practical timescales. Direct, prolonged positioning in strong sunlight (in a display window, for example) over months can cause perceptible color loss. Store the stone away from extended direct light exposure.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/pages/ceylon-sapphire-1130-model.jpg" alt="Deep purple gemstone ring on model hand showing the rich violet hue of fine quality amethyst">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/Rings/ceylon-sapphire-1130-model" alt="Deep purple gemstone ring on model hand showing the rich violet hue of fine quality amethyst">
 </figure>
 
 ### Value and Pricing

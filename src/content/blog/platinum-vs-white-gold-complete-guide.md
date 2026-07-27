@@ -37,7 +37,7 @@ Platinum is extremely resistant to material loss. A platinum ring worn daily for
 White gold loses material through normal abrasion — gold alloy is softer than platinum and scratches remove actual metal from the surface. The rate of material loss depends on the gold karat and the specific alloy composition, but over decades, high-wear areas of a white gold ring will show measurable metal reduction. In addition to this underlying wear, the rhodium plating coating the white gold wears through to the base alloy, revealing the grayish-yellow tone of the underlying white gold. Replating restores the white color and is necessary every two to five years for a ring worn daily, depending on the wear rate.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/atelier/fifty-years-portrait-2026.jpg" alt="Platinum and white gold ring shanks examined under close lighting showing surface characteristics">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/atelier/fifty-years-portrait-2026.jpg" alt="Platinum and white gold ring shanks examined under close lighting showing surface characteristics">
 </figure>
 
 ### The Cost

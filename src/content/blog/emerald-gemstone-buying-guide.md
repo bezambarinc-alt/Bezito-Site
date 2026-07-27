@@ -40,7 +40,7 @@ Colombian emeralds from the Muzo and Chivor mines remain the global benchmark. T
 Zambian emeralds from the Kafubu district have a slightly cooler, more bluish-green tone and often show better clarity than Colombian material. They trade at a discount to Colombian stones of equal apparent quality, which makes them excellent value for buyers who prefer the cooler green. Brazilian emeralds vary widely; Belmont material has been producing stones with strong color and decent clarity, but the origin carries less cache in the collector market.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/pages/ceylon-sapphire-1130-model.jpg" alt="Fine colored gemstone ring shown on model demonstrating deep saturation and brilliance">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/Rings/ceylon-sapphire-1130-model" alt="Fine colored gemstone ring shown on model demonstrating deep saturation and brilliance">
 </figure>
 
 ### Setting Considerations

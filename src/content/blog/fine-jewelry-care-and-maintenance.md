@@ -39,7 +39,7 @@ Home cleaning is still necessary between annual professional service visits. The
 Pieces that should receive professional inspection more than once per year include any ring worn daily in an active environment, tennis bracelets, any piece with pave or micro-pave settings, and any piece that has experienced an impact or unusual stress event. Pave and micro-pave settings involve very small prong tips or beaded prongs in high volume, and the individual tips are small enough that wear can proceed below visibility before the failure event. Semi-annual inspection of heavily pave-set pieces is the responsible standard.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/atelier/fifty-years-portrait-2026.jpg" alt="Jeweler performing annual inspection and service on fine diamond ring">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/atelier/fifty-years-portrait-2026.jpg" alt="Jeweler performing annual inspection and service on fine diamond ring">
 </figure>
 
 ### The Schedule

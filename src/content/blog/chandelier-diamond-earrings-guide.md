@@ -44,7 +44,7 @@ Chandelier earrings are viewed at a distance. The cascade elements, particularly
 This means chandelier earrings are an appropriate application for lower color and clarity grades in the diamonds themselves, provided the cutting quality is maintained for brilliance and fire. H-I color and SI1-SI2 clarity, executed in well-cut round brilliants or princess cuts, creates the same visual cascade effect as more expensive material at the same distance. The investment in a chandelier earring should go to design complexity, craftsmanship quality, and total diamond weight rather than to per-carat quality premiums that will not be perceived in the wearing context.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/earrings/pear-ashoka-model-hero.jpg" alt="Fine diamond earrings shown on model demonstrating the cascade and movement characteristic of chandelier design">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/earrings/pear-ashoka-model-hero.jpg" alt="Fine diamond earrings shown on model demonstrating the cascade and movement characteristic of chandelier design">
 </figure>
 
 ### Color and Texture in Chandelier Design

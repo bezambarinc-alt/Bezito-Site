@@ -40,7 +40,7 @@ Most garnet species are hard enough for regular jewelry wear. Tsavorite, demanto
 The deep red varieties — pyrope, rhodolite, almandine — are typically available in sizes large enough for a center stone at prices that are genuinely accessible. A three-carat rhodolite with good color and clarity is a fraction of the price of a comparable pink sapphire. The difference is durability, rarity, and the depth of the collector market behind it. For buyers who value color and presence over investment potential, garnet makes an honest argument.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/pages/ceylon-sapphire-1130-model.jpg" alt="Deep red gemstone ring on model hand showing the rich wine-red hue characteristic of fine rhodolite garnet">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/Rings/ceylon-sapphire-1130-model" alt="Deep red gemstone ring on model hand showing the rich wine-red hue characteristic of fine rhodolite garnet">
 </figure>
 
 ### Spessartine and the Orange Category

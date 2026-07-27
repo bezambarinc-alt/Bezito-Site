@@ -54,7 +54,7 @@ A four-prong setting, one at each corner, is the standard for cushion studs. It 
 For cushion cuts set inside a Blaze® frame, the setting becomes secondary to the frame itself. The frame holds the center and defines the overall silhouette. The combination of a cushion center inside an unbroken square of accent diamonds produces something architecturally distinct, geometric at the outer edge, soft at the center.
 
 <video autoplay muted loop playsinline>
-  <source src="https://res.cloudinary.com/dlg2mou53/video/upload/videos/earrings/c0366-hd.mp4" type="video/mp4">
+  <source src="https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/earrings/c0366-hd.mp4" type="video/mp4">
 </video>
 
 [Explore the collection](/jewelry/stud-earrings-earrings/) or [contact us](/contact) to discuss cushion cut options.

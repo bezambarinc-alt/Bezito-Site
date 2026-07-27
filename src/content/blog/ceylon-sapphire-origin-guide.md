@@ -40,7 +40,7 @@ Origin determination for sapphire requires sophisticated testing — trace eleme
 A Ceylon origin determination from one of these laboratories adds meaningful value to a fine stone and provides the buyer with the documentation needed to substantiate the premium they paid. Without a report, "Ceylon origin" is a claim that cannot be verified and should not be priced at a Ceylon premium. Buying significant natural sapphires without origin documentation from a recognized laboratory is a risk that sophisticated buyers do not take.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/pages/ceylon-sapphire-1130-model.jpg" alt="Oval Ceylon sapphire ring on model hand showing the vivid cornflower blue characteristic of fine Sri Lankan origin">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/Rings/ceylon-sapphire-1130-model" alt="Oval Ceylon sapphire ring on model hand showing the vivid cornflower blue characteristic of fine Sri Lankan origin">
 </figure>
 
 ### Heat Treatment in Ceylon Sapphire

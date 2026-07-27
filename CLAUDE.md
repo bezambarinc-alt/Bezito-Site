@@ -62,7 +62,7 @@ Reference implementation: `src/pages/jewelry/` — look at existing product page
 ## Key URLs
 - Production (canonical target): `bezambar.com` (cutover planned early Aug 2026)
 - Current live preview: `bez-ambar-[hash]-bezambarinc-alts-projects.vercel.app`
-- Galleries worker: `https://galleries.bezambarinc.workers.dev`
+- Galleries worker: `https://bezito.co`
 
 ## Repos Under bezambarinc-alt (as of 2026-07-17)
 - `Bezito-Site` — **this repo, active**
@@ -74,4 +74,4 @@ Bezito (the AI) has full context on this project. If you need:
 - Cloudinary asset URLs → ask Bezito
 - Plytix product data → ask Bezito
 - Deploy status / Vercel logs → ask Bezito
-- Bez × Kevin working page → `https://galleries.bezambarinc.workers.dev/page/bez-kevin` (PW: `1465`)
+- Bez × Kevin working page → `https://bezito.co/page/bez-kevin` (PW: `1465`)

@@ -71,7 +71,7 @@ Every halo ring we make is built around a specific stone. The Blaze® is enginee
 If you have a stone, or are looking for one, we would like to talk about what surrounds it.
 
 <video autoplay muted loop playsinline>
-  <source src="https://res.cloudinary.com/dlg2mou53/video/upload/videos/rings/elliot-cushion-ring-2026.mp4" type="video/mp4">
+  <source src="https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/rings/elliot-cushion-ring-2026.mp4" type="video/mp4">
 </video>
 
 [Explore the collection](/collection) or [reach out directly](/contact) to begin.

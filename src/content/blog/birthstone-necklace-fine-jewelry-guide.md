@@ -37,7 +37,7 @@ Yellow gold amplifies warm-toned stones — rubies, garnets, citrines, topazes, 
 Bezel settings are the most protective choice for birthstones in pendant applications, particularly for stones on the softer or more included end of the hardness scale. The continuous metal wall takes impact that would otherwise land on the stone's girdle or culet. For hard, included-free stones like sapphire and diamond, prong settings open the stone to maximum light and are equally appropriate.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/necklaces/single-row-lifestyle.jpg" alt="Ruby pendant necklace in yellow gold showing bezel setting and chain detail">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/necklaces/single-row-lifestyle.jpg" alt="Ruby pendant necklace in yellow gold showing bezel setting and chain detail">
 </figure>
 
 ### The Quality Markers

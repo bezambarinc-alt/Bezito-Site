@@ -39,7 +39,7 @@ Rope chain twists multiple strands of wire into a helical structure that mimics 
 Figaro chain alternates between long oval links and two or three round links in a repeating pattern. The rhythm of the Figaro link is distinctive and slightly informal — it reads as a chain worn for its own sake rather than as a pendant support. It is a casual chain in the fine jewelry context, associated more with everyday personal wear than with presenting a stone or pendant element.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/necklaces/single-row-lifestyle.jpg" alt="Fine gold chain detail showing link construction and clasp mechanism">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/necklaces/single-row-lifestyle.jpg" alt="Fine gold chain detail showing link construction and clasp mechanism">
 </figure>
 
 ### The Decision
