@@ -99,6 +99,13 @@ const structuredData = [
   ogImage="https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,w_1200,h_630,g_auto,f_auto,q_auto/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg"
   structuredData={structuredData}
 >
+  <!-- Preload hero poster so first paint shows immediately before video decodes -->
+  <link
+    rel="preload"
+    as="image"
+    href="https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.jpg"
+    slot="head"
+  />
 
   <!-- ============================================================
        HERO STACK — slide-up reveal driven by scroll position
@@ -108,7 +115,7 @@ const structuredData = [
 
       <section class="hero" data-i="0">
         <div class="hero__media">
-          <video id="hero-vid-0" muted loop playsinline preload="metadata"
+          <video id="hero-vid-0" muted loop playsinline preload="auto"
             poster="https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.jpg">
             <source src="https://res.cloudinary.com/dlg2mou53/video/upload/h_1080,c_limit,f_auto,q_auto/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.mp4" type="video/mp4">
           </video>
@@ -417,12 +424,15 @@ const structuredData = [
       }
     }
 
-    // Only play when hero stack is on screen
+    // Only play when hero stack is on screen.
+    // Also kick off vid1 buffering immediately so it's ready before the user scrolls to it.
     new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         stackInView = e.isIntersecting;
         if (stackInView) {
           playActive(prevActiveI);
+          // Pre-buffer slide-2 video in the background while slide-1 plays
+          if (vid1 && vid1.readyState === 0) vid1.load();
         } else {
           vid0?.pause();
           vid1?.pause();
@@ -500,12 +510,14 @@ const structuredData = [
       }
     }
 
-    // Only play when cinematic stack is on screen
+    // Only play when cinematic stack is on screen.
+    // Pre-buffer BOTH cinematic videos as soon as the section enters the viewport.
     new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         stackInView = e.isIntersecting;
         if (stackInView) {
           if (cvid0 && cvid0.readyState === 0) cvid0.load();
+          if (cvid1 && cvid1.readyState === 0) cvid1.load();
           playActive(prevActiveI);
         } else {
           cvid0?.pause();
