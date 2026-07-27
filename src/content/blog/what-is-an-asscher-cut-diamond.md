@@ -4,7 +4,7 @@ date: 2020-02-21
 updatedDate: 2026-07-08
 category: diamonds
 excerpt: "The Asscher cut was invented in 1902 and revived for Art Deco jewelry in the 1920s. Its step-cut facets produce a completely different visual experience than a brilliant cut."
-heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/videos/bracelets/asscher-cut-double-row-bracelet-c0754-2026.mp4"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Bracelets/asscher-cut-double-row-bracelet-c0754-2026"
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Stones/Elysian_cut_octagon_bucoa5"
 heroImageAlt: "Asscher cut double row diamond flex bracelet by Bez Ambar, Los Angeles"
 author: Bez Ambar
@@ -43,7 +43,7 @@ On the hand, the square Asscher reads as compact and graphic. The rectangular em
 Clarity is more critical in step-cut diamonds than in brilliant cuts. The large, transparent facets make inclusions and blemishes more visible than in a round brilliant of the same clarity grade. For Asscher cuts, VS2 is generally the practical minimum for a stone that reads clean to the naked eye. The specific stone always needs to be evaluated in person.
 
 <video autoplay muted loop playsinline>
-  <source src="https://res.cloudinary.com/dlg2mou53/video/upload/videos/bracelets/asscher-cut-double-row-bracelet-c0754-2026.mp4" type="video/mp4">
+  <source src="https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Bracelets/asscher-cut-double-row-bracelet-c0754-2026" type="video/mp4">
 </video>
 
 ### Art Deco

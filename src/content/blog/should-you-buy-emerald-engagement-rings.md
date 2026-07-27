@@ -4,7 +4,7 @@ date: 2017-09-21
 updatedDate: 2026-07-08
 category: colored-stones
 excerpt: "Emeralds are the greenest thing in fine jewelry, and they are also the most requiring. Understanding what they are and how they behave is the honest basis for the decision."
-heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/videos/bracelets/emerald-cut-flex-bracelet-c0834-2026.mp4"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Bracelets/emerald-cut-flex-bracelet-c0834-2026"
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/R09017_Emerald_Cut__no8fzo"
 heroImageAlt: "Emerald cut diamond jewelry in motion, Bez Ambar"
 author: Bez Ambar
@@ -48,7 +48,7 @@ Cedar oil, resin, and epoxy treatments to fill surface-reaching fractures and im
 Cedar oil treatment is the most traditional and accepted. Resin treatments that introduce artificial color are less accepted and should be avoided. A GIA or AGL report on a significant emerald purchase will specify the type and extent of enhancement.
 
 <video autoplay muted loop playsinline>
-  <source src="https://res.cloudinary.com/dlg2mou53/video/upload/videos/bracelets/emerald-cut-flex-bracelet-c0834-2026.mp4" type="video/mp4">
+  <source src="https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Bracelets/emerald-cut-flex-bracelet-c0834-2026" type="video/mp4">
 </video>
 
 ### The Care

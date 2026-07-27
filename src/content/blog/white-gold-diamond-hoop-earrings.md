@@ -4,7 +4,7 @@ date: 2017-03-27
 updatedDate: 2026-07-08
 category: earrings
 excerpt: "White gold diamond hoops are the most versatile fine jewelry earring in production. The reasons are structural, not sentimental."
-heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/videos/earrings/3hoop30rb-2026.mp4"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Earrings/3hoop30rb-2026"
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Earrings/goldberg-giant-earrings-2_ew5gj1"
 heroImageAlt: "Bez Ambar Light Hoops diamond earrings in white gold, Los Angeles"
 author: Bez Ambar
@@ -47,7 +47,7 @@ Eternity hoops, set fully around the circumference, combine both effects. They a
 For Bez Ambar's Light Hoops, the Blaze® accent stones on the inner facing create the characteristic inside-set effect: an earring that appears to glow from within as it catches light at different angles of movement.
 
 <video autoplay muted loop playsinline>
-  <source src="https://res.cloudinary.com/dlg2mou53/video/upload/videos/earrings/3hoop30rb-2026.mp4" type="video/mp4">
+  <source src="https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Earrings/3hoop30rb-2026" type="video/mp4">
 </video>
 
 ### Diameter

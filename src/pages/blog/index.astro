@@ -20,7 +20,8 @@ function thumb(url: string = '') {
 }
 // Derive a still-frame thumbnail from a Cloudinary video URL
 function vidThumb(url: string = '') {
-  return url
+  const noExt = url.replace(/\.(mp4|webm|mov|avi)$/i, '');
+  return noExt
     .replace('/video/upload/', '/video/upload/so_0,q_auto,f_jpg,c_fill,ar_4:3,g_auto,w_800/')
     + '.jpg';
 }

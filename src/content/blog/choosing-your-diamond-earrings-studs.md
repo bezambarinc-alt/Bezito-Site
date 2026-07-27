@@ -5,7 +5,7 @@ updatedDate: 2026-07-08
 category: earrings
 excerpt: "Diamond stud earrings are a timeless essential in every jewelry collection. Learn how to choose the perfect pair based on cut, clarity, setting, and your personal style."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Earrings/pear-ashoka-model-hero"
-heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/videos/earrings/c0211-hd.mp4"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Earrings/c0211-hd"
 heroImageAlt: "Platinum diamond stud earrings with Blaze® cut diamond frame by Bez Ambar"
 author: Bez Ambar
 status: live
@@ -64,7 +64,7 @@ With studs, there is no setting to hide behind. The stone is the piece. This mak
 Eye-clean is the standard to hold for studs regardless of what the certificate says. The shape that delivers the most forgiveness is the round brilliant: its facet pattern disperses light in a way that masks small inclusions well. Cushion and princess cuts require more care in selection because their larger open facets are less forgiving.
 
 <video autoplay muted loop playsinline>
-  <source src="https://res.cloudinary.com/dlg2mou53/video/upload/videos/earrings/c0211-hd.mp4" type="video/mp4">
+  <source src="https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Earrings/c0211-hd" type="video/mp4">
 </video>
 
 [Explore stud earrings](/jewelry/stud-earrings-earrings/) or [contact us](/contact) to discuss your stone and setting options.

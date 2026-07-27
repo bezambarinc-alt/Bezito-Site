@@ -5,7 +5,7 @@ updatedDate: 2026-07-08
 category: earrings
 excerpt: "Your overall look mostly depends on the clothes, makeup, and the jewelry you wear. Making sure all of these elements go well with one another, and suit you best, is the key to a great look. The choice of earrings is especially important to a woman's overall look."
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Earrings/goldberg-giant-earrings-2_ew5gj1"
-heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/videos/earrings/3hoop30rb-2026.mp4"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Earrings/3hoop30rb-2026"
 heroImageAlt: "Diamond hoop earrings with large Blaze® cut stones by Bez Ambar Los Angeles"
 author: Bez Ambar
 status: live
@@ -61,7 +61,7 @@ The huggie and the full hoop are both hoops in construction, a tube that passes 
 For those who want to wear diamond hoops daily without adjustment or thought, the huggie is often the right answer. It is comfortable to forget, secure, and appropriate across a wider range of situations. The full hoop, particularly at 25mm or above, makes itself known.
 
 <video autoplay muted loop playsinline>
-  <source src="https://res.cloudinary.com/dlg2mou53/video/upload/videos/earrings/3hoop30rb-2026.mp4" type="video/mp4">
+  <source src="https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Earrings/3hoop30rb-2026" type="video/mp4">
 </video>
 
 Bez Ambar's hoop earrings incorporate the Blaze® cut accent stones in place of standard round brilliants, delivering a different quality of fire and color dispersion. [Explore hoop earrings](/jewelry/hoop-earrings/) or [contact us](/contact) to discuss the right diameter and setting for your situation.

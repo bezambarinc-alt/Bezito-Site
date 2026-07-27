@@ -4,7 +4,7 @@ date: 2017-05-04
 updatedDate: 2026-07-08
 category: wedding-rings
 excerpt: "Wedding rings, anniversary rings, and eternity rings each mark a different chapter. Understanding the distinctions helps you choose something that actually means what you intend it to."
-heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/videos/bands/oval-eternity-band-hd.mp4"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Bands/oval-eternity-band-hd"
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry/Jewelry%20Images/Rings/C0723_Oval_Eternity_Band_awpedb.jpg"
 heroImageAlt: "Bez Ambar diamond eternity band and wedding ring set in rose gold"
 author: Bez Ambar
@@ -52,7 +52,7 @@ A true eternity band cannot be resized, because cutting the shank to add or remo
 Eternity bands in pavé, channel, and bead settings each have a different texture. Pavé has the most light return because each stone sits high and exposed. Channel-set eternity bands have a lower, smoother profile. Bead-set bands, where each stone is held by small raised beads of metal rather than prongs or rails, have a distinctive handmade quality.
 
 <video autoplay muted loop playsinline>
-  <source src="https://res.cloudinary.com/dlg2mou53/video/upload/videos/bands/oval-eternity-band-hd.mp4" type="video/mp4">
+  <source src="https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Bands/oval-eternity-band-hd" type="video/mp4">
 </video>
 
 Bez Ambar makes eternity bands in oval, round, and Asscher-cut stones depending on what the client is after. An oval eternity band has a different visual rhythm than a round one: the elongated shapes create a more continuous line of light rather than individual points of brilliance.

@@ -4,7 +4,7 @@ date: 2018-04-05
 updatedDate: 2026-07-08
 category: earrings
 excerpt: "The princess cut's square geometry reads differently in earrings than in rings. Understanding the differences shapes better decisions about size, setting, and pairing."
-heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/videos/earrings/c0211-hd.mp4"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Earrings/c0211-hd"
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Earrings/pear-ashoka-mechanism-plate"
 heroImageAlt: "Bez Ambar Ring of Fire princess cut diamond earrings"
 author: Bez Ambar
@@ -34,7 +34,7 @@ In earrings, a princess cut is viewed in slight perspective from different angle
 This motion effect is why earrings tend to show cut quality very well. A poorly cut stone in a stud that faces forward toward the observer has nowhere to hide its deficiencies in light performance. A well-cut princess cut in an earring generates strong, clean flashes that are immediately apparent.
 
 <video autoplay muted loop playsinline>
-  <source src="https://res.cloudinary.com/dlg2mou53/video/upload/videos/earrings/c0211-hd.mp4" type="video/mp4">
+  <source src="https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Earrings/c0211-hd" type="video/mp4">
 </video>
 
 ### Size

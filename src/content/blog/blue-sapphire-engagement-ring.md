@@ -4,7 +4,7 @@ date: 2016-07-26
 updatedDate: 2026-07-08
 category: colored-stones
 excerpt: "Blue sapphires have been used in royal engagement rings for centuries. What makes them genuinely suitable for daily wear, and what to know before buying one, is a different conversation from the romance."
-heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/videos/bracelets/blue-sapphire-single-row-flex-c0825-2026.mp4"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Bracelets/blue-sapphire-single-row-flex-c0825-2026"
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/ceylon-sapphire-1130-hero"
 heroImageAlt: "Blue sapphire diamond jewelry in motion, Bez Ambar"
 author: Bez Ambar
@@ -54,7 +54,7 @@ What is not acceptable: beryllium diffusion treatment, where beryllium is diffus
 For a stone of significant value, always require gemological documentation.
 
 <video autoplay muted loop playsinline>
-  <source src="https://res.cloudinary.com/dlg2mou53/video/upload/videos/bracelets/blue-sapphire-single-row-flex-c0825-2026.mp4" type="video/mp4">
+  <source src="https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Bracelets/blue-sapphire-single-row-flex-c0825-2026" type="video/mp4">
 </video>
 
 ---

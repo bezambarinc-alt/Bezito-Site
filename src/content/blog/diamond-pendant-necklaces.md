@@ -4,7 +4,7 @@ date: 2016-07-29
 updatedDate: 2026-07-08
 category: necklaces
 excerpt: "A diamond pendant necklace is defined by two things that are often underspecified: the chain length and the pendant's relationship to that length. Getting both right matters more than the pendant design itself."
-heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/videos/pendants/c0346-hd.mp4"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Pendants/c0346-hd"
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Necklaces/baguette-line-lifestyle"
 heroImageAlt: "Diamond baguette necklace by Bez Ambar, Los Angeles atelier"
 author: Bez Ambar
@@ -45,7 +45,7 @@ A halo pendant surrounds the center stone with smaller accent diamonds, using th
 A station necklace, also called "by the yard," has diamonds set at intervals along the chain rather than gathered into a single pendant. The Baguette By the Yard design features baguette-cut diamonds at regular intervals, creating a line of light along the neck and chest. This design reads as understated at any one point on the necklace but creates a strong overall visual effect from a short distance.
 
 <video autoplay muted loop playsinline>
-  <source src="https://res.cloudinary.com/dlg2mou53/video/upload/videos/pendants/c0346-hd.mp4" type="video/mp4">
+  <source src="https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Pendants/c0346-hd" type="video/mp4">
 </video>
 
 ### Chain Weight

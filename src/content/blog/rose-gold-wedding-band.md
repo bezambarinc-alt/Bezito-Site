@@ -4,7 +4,7 @@ date: 2016-07-29
 updatedDate: 2026-07-08
 category: wedding-rings
 excerpt: "Rose gold has moved from Victorian novelty to enduring choice for wedding bands. The reasons have more to do with metallurgy and skin tone than with trend cycles."
-heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/videos/bands/oval-eternity-band-hd.mp4"
+heroVideo: "https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Bands/oval-eternity-band-hd"
 heroImage: "https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_16:9,g_auto,w_1400/v1778182500/Jewelry%20Images/Bands/2ELS-25_hero_slbeeo.jpg"
 heroImageAlt: "Bez Ambar three-row diamond window band in rose gold"
 author: Bez Ambar
@@ -54,7 +54,7 @@ A yellow gold engagement ring with a rose gold wedding band creates a warm, tona
 Bez Ambar's rose gold bands are designed with this in mind. The Three-Row Window band, with its diamond-set windows cut through the shank, works in rose gold because the warm metal frames the diamond light in a way that reads differently than the same design in white gold: softer, more intimate.
 
 <video autoplay muted loop playsinline>
-  <source src="https://res.cloudinary.com/dlg2mou53/video/upload/videos/bands/oval-eternity-band-hd.mp4" type="video/mp4">
+  <source src="https://res.cloudinary.com/dlg2mou53/video/upload/Jewelry%20Videos/Bands/oval-eternity-band-hd" type="video/mp4">
 </video>
 
 ### What Lasts
