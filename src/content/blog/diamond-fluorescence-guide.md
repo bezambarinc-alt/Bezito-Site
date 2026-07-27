@@ -44,7 +44,7 @@ For D, E, and F colorless stones, the conventional market wisdom reverses: Stron
 Not all colorless fluorescent stones exhibit haziness. A D-Very Strong-fluorescent stone without haziness is a normal stone that happens to glow blue under UV. The problem is that haziness cannot be predicted from the fluorescence grade alone — it requires physical examination of the stone in question. GIA has studied the phenomenon and found that it affects a minority of Very Strong fluorescent colorless stones, but that minority is large enough that the trade applies a blanket discount.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Diamond fluorescence comparison showing blue glow under UV versus appearance in daylight">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Diamond fluorescence comparison showing blue glow under UV versus appearance in daylight">
 </figure>
 
 The practical guidance for colorless stones is to examine any Strong or Very Strong fluorescent D-F stone in person before purchase and verify that no haziness is present. If you cannot examine the stone in person, request a video under both normal lighting and UV to assess. A non-hazy, colorless Strong-fluorescent stone is a legitimate buy at a discount to non-fluorescent equivalents.

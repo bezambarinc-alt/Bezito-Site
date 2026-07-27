@@ -44,7 +44,7 @@ For a right-hand diamond ring, the familiar 4Cs framework still applies, but the
 A well-cut smaller stone will bring you more daily pleasure than a larger stone with a mediocre cut, and on the right hand, where the size pressure of the engagement ring market does not apply, you can act on that preference without explanation.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Right-hand diamond ring with fancy colored center stone set in yellow gold">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Right-hand diamond ring with fancy colored center stone set in yellow gold">
 </figure>
 
 Metal choice on the right hand is often more personal than on the left. Yellow gold pairs well with colored stones and creates warmth against most skin tones. Rose gold has been popular for right-hand rings because the color registers as distinct from traditional engagement ring metals. Platinum and white gold remain the best choices for colorless or near-colorless diamonds, where the metal's neutrality lets the stone's own color grading show clearly.

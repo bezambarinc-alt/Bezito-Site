@@ -37,7 +37,7 @@ The classic tool for evaluating light performance in fancy shapes is an ASET (An
 Bow-tie shadows are common in elongated fancy shapes — ovals, pears, marquises — and hearts are not immune. A faint bow-tie is acceptable and nearly unavoidable. A pronounced dark bow-tie running across the center of the stone is a sign the crown angles were not correctly optimized, and no setting will fix it.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Heart shaped diamond engagement ring photographed against a clean white background showing light performance">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Heart shaped diamond engagement ring photographed against a clean white background showing light performance">
 </figure>
 
 ### Setting Choices

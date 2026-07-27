@@ -33,7 +33,7 @@ This is where the conversation gets technical, and where buyers are most frequen
 Under direct sunlight or stage lighting, a moissanite will broadcast more colored fire than a diamond of identical cut and size. Some buyers love this. Others find it excessive, particularly in larger stones above two carats. A diamond's light return tends to read as white brilliance, which many people associate with the look of a fine engagement ring. Neither is wrong. They are genuinely different optical characters, and you should see both in person before deciding.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Bez Ambar fine gemstone ring showcasing precision stone setting and craftsmanship">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Bez Ambar fine gemstone ring showcasing precision stone setting and craftsmanship">
 </figure>
 
 ### The Hardness

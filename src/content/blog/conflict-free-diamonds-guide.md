@@ -44,7 +44,7 @@ Some mining companies and retailers have implemented chain-of-custody tracking t
 Individual retailers who have committed to specific origin traceability beyond KPCS certification — providing mine-of-origin documentation for specific stones — offer meaningfully stronger assurance than KPCS certification alone. These programs exist but are less prevalent than the industry's general marketing around "conflict-free" would suggest, which often conflates KPCS compliance with a broader ethical standard that the KPCS does not actually represent.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Diamond supply chain transparency documentation showing mine-of-origin certification">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Diamond supply chain transparency documentation showing mine-of-origin certification">
 </figure>
 
 Lab-grown diamonds offer a different form of ethical assurance. They bypass the mining supply chain entirely, eliminating all concerns about mining conditions, geographic origin, and government-violence exclusions from the KPCS definition. The trade-off is that the economic contribution to mining communities in producing countries is also bypassed — a choice with its own social consequences. Neither choice is free of ethical considerations; they simply carry different ones.

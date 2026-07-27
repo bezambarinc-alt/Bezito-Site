@@ -44,7 +44,7 @@ A yellow diamond's color is the center of the ring's visual experience, and the 
 The conventional setting for a major fancy yellow center stone is a mix of yellow gold prongs holding the stone and a platinum or white gold band, creating contrast at the base while supporting the stone in a warm color. This combination is popular because it lets the stone read against a neutral background (the white hand) while the yellow gold prongs visually extend the stone's color into the mount.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Fancy vivid yellow diamond center stone with yellow gold prongs and diamond halo">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Fancy vivid yellow diamond center stone with yellow gold prongs and diamond halo">
 </figure>
 
 Cut design for fancy yellow diamonds differs from white diamond cutting practice. The goal in white diamonds is maximum light return to produce brightness and scintillation. The goal in fancy yellow diamonds is maximum color saturation as seen in the face-up view. Cutters sacrifice some brilliance to achieve this, using modified brilliant cuts and cushion shapes that distribute color evenly across the table rather than creating the light-and-dark contrast pattern that produces scintillation. The radiant cut — a rectangular brilliant — was developed specifically for fancy color diamonds and remains the most common shape because it delivers both good color face-up and reasonable light return.

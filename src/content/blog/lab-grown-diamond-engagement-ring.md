@@ -35,7 +35,7 @@ Lab grown diamonds have dropped in price roughly 80 percent since 2018. The traj
 That is not a reason to dismiss lab grown diamonds. It is a reason to be clear-eyed about what you are buying. If your priority is maximizing the visual quality of the center stone within a fixed budget — more carats, better color, higher clarity — a lab grown diamond delivers that trade-off honestly. If you are thinking of the ring as an heirloom that accumulates meaning and some residual market value across generations, the calculus changes.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Bez Ambar custom engagement ring showcasing precision stone setting and handcrafted metalwork">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Bez Ambar custom engagement ring showcasing precision stone setting and handcrafted metalwork">
 </figure>
 
 ### The Setting

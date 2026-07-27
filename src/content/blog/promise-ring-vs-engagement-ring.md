@@ -44,7 +44,7 @@ The most common mistake I see is mismatching the ring to the moment. A partner w
 The solution is to be clear about what the ring means before it is given. If the conversation has been "we are serious but not ready to be engaged," a promise ring fits the moment. If the conversation has been "I want to marry you," the engagement ring is the right object. The ring should confirm a conversation that has already happened, not initiate a conversation the giver is afraid to have directly.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Custom engagement ring with diamond center stone alongside a simple promise band">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Custom engagement ring with diamond center stone alongside a simple promise band">
 </figure>
 
 Budget is a real factor, and promise rings are often chosen partly because an engagement-ring-quality center stone is not yet within reach. That is a completely legitimate reason. A well-designed promise ring in the $300 to $1,500 range can be genuinely beautiful and meaningful. If the intention is eventually to upgrade to an engagement ring, communicate that clearly so the promise ring does not read as the permanent statement when it is meant to be the preliminary one.

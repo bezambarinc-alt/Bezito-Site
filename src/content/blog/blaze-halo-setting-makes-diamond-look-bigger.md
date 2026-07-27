@@ -43,7 +43,7 @@ In a conventional pavé halo, small round diamonds sit in prong settings. Betwee
 A standard pavé halo adds roughly 0.20 to 0.25 carats of perceived size to the center stone. Better than nothing, but not the full potential.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Cushion center stone with continuous baguette halo setting, Bez Ambar">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Cushion center stone with continuous baguette halo setting, Bez Ambar">
 </figure>
 
 ### No Gaps

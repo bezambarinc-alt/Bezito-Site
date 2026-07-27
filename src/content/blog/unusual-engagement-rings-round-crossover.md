@@ -30,7 +30,7 @@ In a standard solitaire, the center stone sits atop a single shank that wraps ar
 The crossing can be subtle, where the shanks barely overlap, or pronounced, where they sweep past each other dramatically. The angle of the crossing affects how the ring wears: a tighter crossing sits lower on the hand; a more open crossing raises the stone and creates more space.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/frame_crescent_inner.jpg" alt="Crescent inner halo frame, Bez Ambar Study in Ruby collection">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/frame_crescent_inner.jpg" alt="Crescent inner halo frame, Bez Ambar Study in Ruby collection">
 </figure>
 
 The center stone in a crossover ring is typically set in a way that references the architecture of the shanks. A round brilliant works naturally here because its symmetry does not compete with the asymmetry of the crossing shanks. An oval or marquise set with its length running parallel to the crossing creates a specific tension between the elongated stone and the sweeping metal. Both are intentional compositional choices.

@@ -37,7 +37,7 @@ Flawless and Internally Flawless diamonds trade at extraordinary premiums — of
 The eye-clean threshold by shape and size follows predictable patterns. Round brilliants are the most forgiving shape for clarity: the brilliant-cut facet pattern masks inclusions efficiently, and SI1 rounds are frequently eye-clean. In SI2 territory, round brilliants can sometimes still be eye-clean, but this requires individual evaluation — the grade alone is not sufficient assurance. Fancy shapes with large open tables — emerald and asscher cuts, specifically — reveal inclusions more directly and typically require VS2 or better to be reliably eye-clean. Ovals, pears, and marquise shapes fall between these poles.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Diamond clarity grade comparison from FL to SI1 under standard viewing conditions">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Diamond clarity grade comparison from FL to SI1 under standard viewing conditions">
 </figure>
 
 ### Inclusion Types

@@ -35,7 +35,7 @@ A princess cut or an emerald cut can be beautiful, but their corner geometry cre
 This is not jewelry marketing language. It is physics.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Bez Ambar diamond ring showcasing brilliant light return in a platinum setting">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Bez Ambar diamond ring showcasing brilliant light return in a platinum setting">
 </figure>
 
 ### The Setting Advantage

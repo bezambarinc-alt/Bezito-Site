@@ -37,7 +37,7 @@ A chipped corner on a princess cut is one of the most common ring damage events 
 The preventive solution is the setting. Princess cuts require corner prongs — prongs placed directly at the four corners that protect the most vulnerable points of the stone. V-shaped corner prongs, also called V-tips, are the preferred solution because they cup the corner geometry rather than simply sitting adjacent to it. The prong configuration is not optional. A princess cut in a setting that leaves corners exposed or underprotected is a maintenance problem waiting to happen.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Princess cut diamond showing V-tip corner prongs protecting pointed corners in platinum setting">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Princess cut diamond showing V-tip corner prongs protecting pointed corners in platinum setting">
 </figure>
 
 ### Cut Quality in Princess Cuts

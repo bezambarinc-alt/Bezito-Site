@@ -39,7 +39,7 @@ GIA's (Gemological Institute of America) cut grading for round brilliant diamond
 For fancy shapes, GIA does not issue an overall Cut grade. This is the critical gap that creates risk for fancy-shape buyers who assume shape and cut are the same question. An oval diamond has no GIA Cut grade — it has Polish and Symmetry grades, which are necessary but not sufficient. Two GIA-certified ovals with identical Excellent Polish and Symmetry grades can still differ substantially in light performance, bow-tie effect severity, and overall visual quality. Evaluating fancy shape cut requires looking at the stone, not just the certificate.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Round brilliant diamond beside oval diamond showing shape difference at equivalent weights">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Round brilliant diamond beside oval diamond showing shape difference at equivalent weights">
 </figure>
 
 ### The Bow-Tie and Other Shape-Specific Cut Issues

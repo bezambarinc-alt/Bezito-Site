@@ -35,7 +35,7 @@ The full bezel encloses the stone on all sides. The partial bezel, sometimes cal
 The distinction matters most when choosing a stone shape. Round brilliants, ovals, and cushions suit a full bezel without reservation. Marquise and pear shapes often benefit from a partial bezel that keeps the pointed ends secure while opening the design. An emerald cut in a full bezel reads as architectural and deliberate — the right choice for a client who wants geometry, not flash.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Close-up of a bezel-set ruby ring showing the clean metal rim against the gemstone girdle">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Close-up of a bezel-set ruby ring showing the clean metal rim against the gemstone girdle">
 </figure>
 
 ### Metal Matters

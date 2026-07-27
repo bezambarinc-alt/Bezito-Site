@@ -41,7 +41,7 @@ This emotional dimension does not require the ring to look antique. Many heirloo
 There is also a practical argument for the heirloom: if the stone is of good quality, you are acquiring a diamond at no cost beyond the setting. The total spend on the ring can be significantly less than starting from scratch at equivalent quality.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/frame_crescent_outer.jpg" alt="Crescent outer halo frame setting, Bez Ambar Study in Ruby">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/frame_crescent_outer.jpg" alt="Crescent outer halo frame setting, Bez Ambar Study in Ruby">
 </figure>
 
 ### When New

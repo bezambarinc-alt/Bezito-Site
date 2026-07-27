@@ -37,7 +37,7 @@ The classical proportion rule places each side stone at roughly 50 to 60 percent
 Shape matters as much as size. A round brilliant center pairs naturally with half-moon or trillion side stones because the curved girdle of the side stone echoes the center's geometry. An elongated center — an oval, a pear, a cushion — reads better with tapered baguettes or matching fancy shapes that follow its axis. These are not aesthetic preferences. They are rules derived from how the eye resolves competing geometries at close range.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Close view of a Bez Ambar three-stone ring showing center ruby flanked by two brilliant-cut diamonds">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Close view of a Bez Ambar three-stone ring showing center ruby flanked by two brilliant-cut diamonds">
 </figure>
 
 ### Metal and Setting

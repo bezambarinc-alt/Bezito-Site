@@ -32,7 +32,7 @@ The length-to-width ratio of a pear typically runs between 1.45 and 1.75, with m
 The elongation is the pear's most practical advantage. On the hand, it creates the illusion of a longer, more slender finger, which is why the shape suits a wide range of hand types. Where a round brilliant reads as a centered point of light, a pear creates a line of light across the finger: a different kind of presence.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/frame_pear_marquise_corners.jpg" alt="Pear and marquise corner halo frame, Bez Ambar Study in Ruby">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/frame_pear_marquise_corners.jpg" alt="Pear and marquise corner halo frame, Bez Ambar Study in Ruby">
 </figure>
 
 ### The Bow-Tie

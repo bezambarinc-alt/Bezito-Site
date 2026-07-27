@@ -32,7 +32,7 @@ The hue alone does not determine value. The modifier matters. A yellowish-orange
 Color in diamonds comes from different sources. Yellow results from nitrogen atoms displacing carbon in the crystal lattice. Blue comes from boron. Pink and red result from plastic deformation of the crystal structure during formation. Green results from natural irradiation over geological time. Each color has its own geological story.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/frame_squares_four_corners.jpg" alt="Square geometric halo frame design, Bez Ambar Study in Ruby">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/frame_squares_four_corners.jpg" alt="Square geometric halo frame design, Bez Ambar Study in Ruby">
 </figure>
 
 ### How GIA

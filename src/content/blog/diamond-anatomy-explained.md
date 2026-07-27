@@ -37,7 +37,7 @@ Girdle thickness is reported in qualitative terms on GIA certificates — from E
 The girdle is also where the GIA certificate number is laser-inscribed on certified stones. The inscription is readable under 10x magnification and serves as the permanent identification link between the physical stone and its documentation.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Diamond cross-section diagram showing all anatomical parts with proportions labeled">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Diamond cross-section diagram showing all anatomical parts with proportions labeled">
 </figure>
 
 ### The Pavilion and Culet

@@ -42,7 +42,7 @@ Clarity is more nuanced. The table surface of a two-carat stone is larger, which
 A two-carat center stone has enough visual mass to carry a more elaborate setting without looking cluttered. The pavé-set halo that might overwhelm a one-carat stone is proportionate at two carats. A cathedral setting lifts the stone further off the finger, which increases its apparent size even more. Thin, delicate bands can work, but the size of the stone relative to the band matters — a very thin shank under a two-carat stone can appear structurally fragile even when it is not.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Two-carat oval diamond engagement ring showing finger coverage in platinum halo setting">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Two-carat oval diamond engagement ring showing finger coverage in platinum halo setting">
 </figure>
 
 Prong count for a round two-carat stone follows the same logic as at any size: four prongs maximize the stone's exposed surface and light entry, six prongs add security at the cost of slightly more coverage. For shapes with corners — princess, asscher, radiant — corner prongs are non-negotiable because those points are the most vulnerable to chipping.

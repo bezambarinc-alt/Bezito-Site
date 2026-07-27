@@ -37,7 +37,7 @@ Trillions also exhibit more fire — spectral color dispersion — than rounds o
 The triangular outline's three points are the same vulnerability in trillions that corners are in princess cuts. The points concentrate mechanical stress in the diamond's most acute geometric features, and impacts at the point tips can chip the stone. Good trillion settings use V-tip prongs at all three corners, identical in function to the corner prongs used for princess cuts. Settings that leave the points exposed are invitations to damage.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Trillion cut diamond set as side stone pair flanking a round brilliant center stone">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Trillion cut diamond set as side stone pair flanking a round brilliant center stone">
 </figure>
 
 ### Primary Uses

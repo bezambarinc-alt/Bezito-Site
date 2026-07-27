@@ -37,7 +37,7 @@ The bow-tie is the feature most buyers fear and most jewelers fail to explain ho
 Look at the stone under diffuse light, under point-source light, and in natural daylight before you commit. The bow-tie that disappears in one environment and reappears as a dark stripe under a ceiling spotlight is a stone with an optical problem that no setting will fix.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Close-up of a marquise diamond showing facet symmetry and light return across the stone">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Close-up of a marquise diamond showing facet symmetry and light return across the stone">
 </figure>
 
 ### Setting Choices

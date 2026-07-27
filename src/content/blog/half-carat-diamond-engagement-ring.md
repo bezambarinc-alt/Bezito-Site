@@ -44,7 +44,7 @@ The half-carat price range — typically $1,000 to $4,500 for the stone alone, d
 Clarity in a half-carat stone is forgiving. Inclusions that would be visible in a one-carat stone are often invisible at this size because the table surface is smaller. VS2 and even some VS1 (very slightly included) stones in the SI1 range can be purchased with complete confidence at half a carat, provided the inclusions are not centrally located under the table. An experienced jeweler can evaluate the specific stone and tell you definitively whether any inclusion is visible face-up.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Half-carat diamond engagement ring with excellent cut showing fire and scintillation">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Half-carat diamond engagement ring with excellent cut showing fire and scintillation">
 </figure>
 
 ### Setting Design

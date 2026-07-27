@@ -37,7 +37,7 @@ What morganite does not offer is rarity or investment value. The stone is mined 
 The mounting matters here too. Morganite pairs beautifully with 14-karat or 18-karat rose gold. White gold and platinum create a cooler contrast that some buyers prefer. The metal choice is aesthetic, not structural — both protect the stone equally well, assuming the prongs are well-formed and checked annually.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Oval pink gemstone set in a gold ring, shown close-up against a soft background">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Oval pink gemstone set in a gold ring, shown close-up against a soft background">
 </figure>
 
 ### Cut and Color

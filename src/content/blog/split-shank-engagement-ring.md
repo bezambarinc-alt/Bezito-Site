@@ -35,7 +35,7 @@ The taper matters too. Shanks that split abruptly look mechanical. The ones that
 Rail thickness is the last variable most designers underweight. Thin rails look delicate on paper and fragile in person. For a ring intended for daily wear, each rail should carry enough metal to survive a decade of use without deforming. Gold below a certain gauge will spread. Platinum will scratch but hold its shape. Know what you are specifying before you sign off on the wax.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Close view of a split shank ring showing how the two rails frame a vivid center stone">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Close view of a split shank ring showing how the two rails frame a vivid center stone">
 </figure>
 
 ### Stone Pairing

@@ -44,7 +44,7 @@ Within any shape, the depth of the cut controls what proportion of the stone's w
 A stone at 63 percent total depth versus one at 67 percent of the same carat weight will differ by roughly 0.3 to 0.4 mm in face-up diameter. That difference is worth knowing about: 0.3 mm in a one-carat stone means the difference between a stone that looks like a 0.90-carat stone and one that looks like a true one-carat stone in terms of face-up diameter.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Diagram showing same carat weight in different depth proportions and their different face-up diameters">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Diagram showing same carat weight in different depth proportions and their different face-up diameters">
 </figure>
 
 For buyers of round brilliants with GIA Excellent cut grades, this issue is largely managed by the cut grade itself — the Excellent grade excludes stones with excessive depth. For fancy shapes, where no cut grade exists, checking the actual measurements stated on the certificate and calculating the face-up area is the correct approach. The certificate lists the millimeter dimensions; use those numbers, not just the carat weight.

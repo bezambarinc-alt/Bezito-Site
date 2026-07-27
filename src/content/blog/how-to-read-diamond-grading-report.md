@@ -46,7 +46,7 @@ The clarity plot is a schematic diagram showing the position of all inclusions a
 The clarity plot reveals something the grade alone cannot: where the inclusions are. An SI1 clarity grade tells you that inclusions are noticeable at 10x magnification but gives you no information about whether they are centrally located under the table (where they are most visible face-up) or near the girdle (where they are least visible). The plot shows you directly. A cluster of small inclusions near the girdle at the 4 o'clock position in the face-up view is fundamentally different from a large crystal centered under the table, even if both stones receive the same clarity grade.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="GIA clarity plot diagram showing inclusion locations in a VS1 round brilliant diamond">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="GIA clarity plot diagram showing inclusion locations in a VS1 round brilliant diamond">
 </figure>
 
 Reading the plot requires knowing the symbol conventions. A green symbol indicates a surface-reaching blemish; a red symbol indicates an internal characteristic. The plot also shows whether inclusions are light-colored (open symbols) or dark (filled symbols). A dark crystal inclusion under the table creates a visible dark spot in the face-up view at much higher clarity grades than a colorless cloud inclusion in the same position.

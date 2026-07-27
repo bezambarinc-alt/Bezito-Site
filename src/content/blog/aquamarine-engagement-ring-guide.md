@@ -42,7 +42,7 @@ Aquamarine reads differently in different light conditions, and the setting can 
 Step cuts are the natural match for aquamarine. The emerald cut in particular suits the stone's transparency and its geometric regularity; the long parallel facets of an emerald cut create a depth effect in clear material that brilliant cuts do not. Oval and cushion brilliant cuts are also popular and produce more light return than step cuts, which is useful if the stone is lighter in color and needs visual brightness to appear vibrant. Round brilliant is less common in aquamarine simply because the stone's rectangular or hexagonal crystal habit makes other shapes more efficient to cut.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Aquamarine engagement ring set in platinum with emerald-cut stone">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Aquamarine engagement ring set in platinum with emerald-cut stone">
 </figure>
 
 ### Size and Pricing

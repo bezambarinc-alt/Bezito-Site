@@ -37,7 +37,7 @@ This is why Art Deco engagement rings remain viable as new purchases, not just a
 The stones that dominated this period also matter. The emerald cut — a rectangle with cropped corners and step-cut facets — is the canonical Art Deco stone shape. It was developed, in part, because it fit the era's aesthetic: long, clean lines, no scatter, pure transparency. The Asscher cut operates on the same principle with a square geometry. Both stones reward quality over size because their open facet structure hides nothing. A fine stone in an Art Deco setting is twice as visible as the same stone in a brilliant-cut pavé mounting. That's not a metaphor — it's optics.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Step-cut center stone in platinum Art Deco mounting with baguette side stones and milgrain detail">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Step-cut center stone in platinum Art Deco mounting with baguette side stones and milgrain detail">
 </figure>
 
 ### Color and Contrast

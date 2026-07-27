@@ -35,7 +35,7 @@ Every diamond shape is a theory about how light should behave inside a stone. Th
 Modern cutters have developed two distinct cushion families. The first — sometimes called the chunky cushion — retains the large facets of the old mine cut and produces the classic, romantic fire. The second, often called the crushed ice cushion, adds additional facets that create a sparkling, granular pattern closer to what you see in a radiant cut. Both are legitimate. They suit different people and different settings. A client who wants warmth and history should choose the chunky variety. A client who wants brilliance closer to a round should consider the crushed ice.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Bez Ambar cushion-cut diamond ring showing characteristic fire and depth in a close-up atelier view">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Bez Ambar cushion-cut diamond ring showing characteristic fire and depth in a close-up atelier view">
 </figure>
 
 ### Choosing Well

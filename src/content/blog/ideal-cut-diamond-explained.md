@@ -46,7 +46,7 @@ The second situation is smaller stones, where the face-up surface area is limite
 The third is step-cut shapes — emerald and asscher cuts — where cutting precision and pavilion flatness are the primary determinants of the stone's characteristic depth, reflective quality, and "Hall of Mirrors" effect. These shapes do not have GIA cut grades, but the consequences of poor cutting are even more immediately visible in step cuts than in brilliant cuts, because the open table exposes the interior directly rather than breaking the view into scintillating facets.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Ideal cut round brilliant diamond showing organized scintillation pattern in face-up view">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Ideal cut round brilliant diamond showing organized scintillation pattern in face-up view">
 </figure>
 
 ### When the Top Grade Premium Is and Is Not Worth It

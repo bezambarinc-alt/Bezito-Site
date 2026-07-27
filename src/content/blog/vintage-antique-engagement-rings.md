@@ -35,7 +35,7 @@ The single most misunderstood issue in antique ring buying is the old mine cut a
 What matters for condition is the girdle — the thin edge where the crown and pavilion meet. Old cuts were often polished to a very thin girdle, which chips. Examine the girdle under 10x magnification before purchasing any piece. Chips there are not always catastrophic, but they need to be factored into the price and may require recutting, which will reduce carat weight.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Vintage-inspired ruby and diamond ring showing hand-set stones in a fine yellow gold mounting">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Vintage-inspired ruby and diamond ring showing hand-set stones in a fine yellow gold mounting">
 </figure>
 
 ### Metal and Marks

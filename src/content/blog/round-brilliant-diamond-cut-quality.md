@@ -35,7 +35,7 @@ The AGS (American Gem Society) laboratories use a ray-tracing model called the P
 What neither grade captures fully is the human eye's response to a specific stone under specific light. This is why I have always insisted that clients look at finalists side by side, face up, under a single overhead source. The numbers tell you the stone has the right architecture. The eye tells you which one speaks.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Diamond halo ring showing light return and facet pattern">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Diamond halo ring showing light return and facet pattern">
 </figure>
 
 ### Polish, Symmetry, and

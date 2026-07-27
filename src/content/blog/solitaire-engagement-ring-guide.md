@@ -33,7 +33,7 @@ Buyers often arrive focused on carat weight, which is understandable — size is
 Color and clarity follow cut in importance. For a solitaire in white gold or platinum, color is more visible than it would be in yellow gold, which warms and masks tints naturally. A range of G through I color, paired with a clarity of VS2 or better, will produce a stone that reads clean to the naked eye without requiring the premium attached to the highest grades.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Close-up of a brilliant-cut gemstone showing facet depth and light return in a solitaire setting">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Close-up of a brilliant-cut gemstone showing facet depth and light return in a solitaire setting">
 </figure>
 
 ### The Setting

@@ -43,7 +43,7 @@ What is not standard, and what requires careful disclosure, is fracture filling.
 Ask specifically: is this stone fracture-filled? Require a laboratory report. GIA will note "indications of lead glass filling" if it is present.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Bez Ambar ruby ring collection, cushion cut ruby in handcrafted gold setting">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Bez Ambar ruby ring collection, cushion cut ruby in handcrafted gold setting">
 </figure>
 
 ### Ruby's Place

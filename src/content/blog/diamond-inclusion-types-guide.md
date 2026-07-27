@@ -37,7 +37,7 @@ Inclusions in the lower pavilion — below the girdle, in the bottom half of the
 The clarity plot on a GIA report shows inclusion positions schematically. Reading the plot to determine whether the key inclusion is centrally placed or peripheral requires practice but is entirely learnable. Any jeweler can walk you through a plot and explain the positional significance of what it shows. Asking for this explanation before purchasing a VS2 or SI1 stone is simply good buying practice.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Diamond clarity plot showing crystal inclusion position in the lower pavilion versus under the table">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Diamond clarity plot showing crystal inclusion position in the lower pavilion versus under the table">
 </figure>
 
 ### Inclusions to Avoid Regardless of Grade

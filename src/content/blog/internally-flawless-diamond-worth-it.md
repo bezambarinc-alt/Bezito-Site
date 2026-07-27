@@ -44,7 +44,7 @@ The argument for Internally Flawless is not visual — it is positional. IF diam
 For certified investment diamonds, IF and FL grades are preferred by sophisticated buyers because they carry the clearest quality story and retain the most value in resale markets. A GIA-certified three-carat D-IF stone is one of the most portable stores of value in the fine jewelry market, and the IF grade is part of what makes that true.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Internally flawless diamond certificate with GIA report showing IF clarity grade">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Internally flawless diamond certificate with GIA report showing IF clarity grade">
 </figure>
 
 In very large stones — above three carats — IF clarity becomes more meaningful because the face-up table is large enough that VS1 inclusions, which are easily invisible in smaller stones, may be more visible. A five-carat VS1 might show its key inclusion to careful examination; a five-carat IF cannot. The grade's practical value increases with stone size in a way that makes the premium more justifiable for major specimens.

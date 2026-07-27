@@ -37,7 +37,7 @@ Clarity grading at three carats requires stricter attention as well. VS1 and abo
 Cut quality at three carats has greater impact on pricing than at smaller sizes. An Excellent or AGS Ideal cut stone at three carats may cost 25 to 40 percent more than the same weight and grade in a Good cut, and that premium is entirely justified. The difference in light performance between a well-cut and a poorly cut three-carat stone is immediately apparent to any observer — the face-up surface is too large to hide cutting deficiencies.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Three-carat diamond ring on hand showing scale and presence">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Three-carat diamond ring on hand showing scale and presence">
 </figure>
 
 ### Setting Design

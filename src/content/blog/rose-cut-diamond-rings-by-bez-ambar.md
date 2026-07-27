@@ -32,7 +32,7 @@ Because the base is flat, a rose cut diamond does not require the pointed pavili
 The flat base also means that the weight of a rose cut concentrates in the dome rather than splitting between crown and pavilion. For a given carat weight, a rose cut faces up significantly larger than a brilliant cut of the same weight: more of the mass spreads horizontally across the table. A 1.00-carat rose cut can face up 10 to 20 percent larger than a 1.00-carat round brilliant.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/ballerina_view_b.jpg" alt="Ballerina-style ring setting with rose cut center stone, Bez Ambar Study in Ruby">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/ballerina_view_b.jpg" alt="Ballerina-style ring setting with rose cut center stone, Bez Ambar Study in Ruby">
 </figure>
 
 ### The Light

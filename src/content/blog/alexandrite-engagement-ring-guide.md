@@ -44,7 +44,7 @@ The mount itself should be simple. Alexandrite's color change is the drama — t
 For center-stone size, alexandrite commands its best prices in the two-to-three carat range, where the color change is vivid and the face-up surface is large enough to appreciate the full shift. Stones under one carat are more accessible in price, but the color transition can look subtle in smaller faces. If budget is the constraint, a well-cut one-carat stone with a strong change is better than a larger stone with a weak one.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Custom engagement ring with vivid color-change alexandrite center stone">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Custom engagement ring with vivid color-change alexandrite center stone">
 </figure>
 
 ### Origins and Pricing

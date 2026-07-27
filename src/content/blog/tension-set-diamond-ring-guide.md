@@ -35,7 +35,7 @@ This is why tension settings cannot be resized the way a standard prong ring can
 The cutting of the stone also carries more weight here than in most other setting styles. A round brilliant or princess cut with a slightly irregular girdle — a variation that would go unnoticed under four prongs — becomes a liability in a tension setting. The girdle must be consistent in thickness all the way around. This is one reason why tension set rings demand stones with more rigorous quality control at the cutting stage.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Close-up of a gemstone set without prongs, demonstrating the open light exposure of a tension-style mounting">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Close-up of a gemstone set without prongs, demonstrating the open light exposure of a tension-style mounting">
 </figure>
 
 ### Light and Drama

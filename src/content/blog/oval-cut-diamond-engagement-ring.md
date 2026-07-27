@@ -37,7 +37,7 @@ A skilled cutter minimizes the bowtie by optimizing depth percentage, table size
 The lesson: do not shop for an oval by specifications alone. Look at the stone face-up in mixed lighting. If the center goes dark when you shift the ring, the cut was optimized for weight, not beauty.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Close-up of a brilliant-cut gemstone ring showing facet patterning and light return in a gold setting">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Close-up of a brilliant-cut gemstone ring showing facet patterning and light return in a gold setting">
 </figure>
 
 ### Setting the Stone

@@ -46,7 +46,7 @@ The area where AGS distinctly outperforms GIA is in cut grading for fancy shapes
 AGS's performance-based cut grading system — called the AGS Ideal 0 grade — has been extended to certain fancy shapes including ovals and cushions through their Light Performance grading system. An AGS Ideal 0 oval diamond has been objectively evaluated for light return, leakage, and contrast patterns in a way that GIA does not provide for ovals. For fancy-shape buyers who prioritize cutting performance, an AGS certificate offers information that GIA's report does not.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Close-up of GIA diamond grading report with proportions diagram and grade fields">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Close-up of GIA diamond grading report with proportions diagram and grade fields">
 </figure>
 
 ### Choosing Between the Two

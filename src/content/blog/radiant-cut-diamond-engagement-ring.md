@@ -35,7 +35,7 @@ Ratios above 1.40 exist but require careful evaluation. A very elongated radiant
 Color grading behaves differently in a radiant than in a round brilliant. The crushed-ice faceting pattern retains warmth toward the center of the stone. A stone graded G in a round may read as white; the same G in a large radiant may show a faint cream tone near the table. For stones above two carats, moving to F or E in color repays the investment visibly.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Close-up of faceted gemstone in a custom Bez Ambar setting showing light dispersion">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Close-up of faceted gemstone in a custom Bez Ambar setting showing light dispersion">
 </figure>
 
 ### Setting the Stone

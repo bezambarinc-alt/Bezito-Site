@@ -30,7 +30,7 @@ Diamond pricing operates on what the industry calls "magic sizes": 0.50, 0.75, 1
 This concentration of demand at magic sizes is a genuine market phenomenon. People have been told that 1 carat is the standard for decades, and collective belief creates collective pricing. If you want a 1.00-carat diamond specifically because you want to own one, that is a valid reason. If you are indifferent to the round number and care only about what the ring looks like, the logic points elsewhere.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Bez Ambar diamond engagement ring collection, studio photograph">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Bez Ambar diamond engagement ring collection, studio photograph">
 </figure>
 
 <figure>

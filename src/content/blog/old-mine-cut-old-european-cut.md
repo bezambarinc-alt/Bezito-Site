@@ -42,7 +42,7 @@ Sizing differences matter for buyers considering replacement settings or resizin
 Old mine and old European cut diamonds are found primarily through estate dealers, auction houses, and antique jewelry specialists. They are not routinely available from new jewelry retailers because they are not currently being produced — modern manufacturers cut diamonds to modern brilliant specifications, and the old cut inventory exists only in estate pieces and individual stones removed from antique settings.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Old mine cut diamond showing cushion outline, high crown, and characteristic fire in warm light">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Old mine cut diamond showing cushion outline, high crown, and characteristic fire in warm light">
 </figure>
 
 Pricing for old cuts is complex. A quality old European cut of equivalent color and clarity to a modern round brilliant typically trades at a 20 to 40 percent discount, because the modern market undervalues the optical character of antique cuts relative to modern brilliant performance. The "fire" that old cuts produce is a feature that buyers educated about antique diamonds value highly; buyers unfamiliar with the aesthetic see a less bright stone and price it down accordingly.

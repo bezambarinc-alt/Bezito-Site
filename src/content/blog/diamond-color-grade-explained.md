@@ -44,7 +44,7 @@ Approximately 30 percent of natural diamonds exhibit fluorescence — an emissio
 In colorless D-E-F stones, strong blue fluorescence can make the stone appear slightly hazy or oily under UV-rich conditions like outdoor daylight or club lighting with black lights. This haziness reduces value in colorless stones with strong fluorescence, even though colorless is the most desirable body-color grade. In I-J-K range stones with noticeable warm body color, strong blue fluorescence counteracts the yellow and makes the stone appear whiter in sunlight than its color grade would predict. This effect actually adds value in near-colorless to faint-yellow stones.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Diamond color comparison showing D through J range under controlled lighting">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Diamond color comparison showing D through J range under controlled lighting">
 </figure>
 
 The practical guidance is to be aware of the fluorescence grade on the certificate and understand which direction it works. Strong fluorescence in an H stone is often an advantage; strong fluorescence in a D stone is usually a minor deficit. GIA reports fluorescence as None, Faint, Medium, Strong, or Very Strong, and notes the fluorescence color (almost always blue).

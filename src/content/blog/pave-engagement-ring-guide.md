@@ -37,7 +37,7 @@ Forty years of setting pave has taught me that the critical variable is depth co
 For engagement rings specifically, the shank curvature matters as much as the flat surface. Diamonds set on a curved surface must be cut to a slightly smaller diameter than those on the same ring's flat sections, or they will seat at subtly different angles. Experienced pave setters account for this automatically. Inexperienced ones do not.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Close view of a Bez Ambar pave band showing diamond depth consistency and metal bead prongs">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/gallery_hero_middle_tighter.jpg" alt="Close view of a Bez Ambar pave band showing diamond depth consistency and metal bead prongs">
 </figure>
 
 ### Caring for Pave

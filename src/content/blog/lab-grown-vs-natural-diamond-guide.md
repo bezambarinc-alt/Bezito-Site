@@ -44,7 +44,7 @@ The argument for lab-grown diamonds on ethical grounds is often framed around co
 The more complete ethical picture is more complicated. Natural diamond mining is the primary formal-sector economic activity in several southern African nations. It employs hundreds of thousands of people in Botswana, Namibia, South Africa, and elsewhere. A shift away from natural diamonds reduces economic demand for those mining operations, which has human consequences in communities where the diamond industry is the primary path to formal employment. This does not make natural diamonds ethically superior — it means the ethical calculation is not resolved simply by choosing lab-grown.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Natural diamond rough beside polished lab-grown diamond showing identical appearance">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Natural diamond rough beside polished lab-grown diamond showing identical appearance">
 </figure>
 
 The environmental comparison also lacks a clear winner. CVD production is energy-intensive and typically powered by grid electricity; the environmental cost depends entirely on the energy source. HPHT is similarly energy-intensive. Natural diamond mining has land disturbance and water use impacts but also operates under increasingly strict reclamation regulations in most major producing countries. Neither origin is free of environmental cost.

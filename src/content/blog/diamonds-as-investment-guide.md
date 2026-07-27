@@ -37,7 +37,7 @@ Cut quality matters because it is the one variable that separates a stone that l
 What does not hold value well: commercial-grade one-carat rounds in the G–H, VS1–VS2 range, regardless of what you paid. That segment is a commodity. Supply is plentiful, thousands of stones match the grade, and price is set at the margin by global diamond production, not by your particular stone.
 
 <figure>
-  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Baguette and halo diamond ring demonstrating fine gem setting craftsmanship">
+  <img src="https://res.cloudinary.com/dlg2mou53/image/upload/c_limit,w_1400/Jewelry%20Images/study-in-ruby/frame_baguette_ruby_halo.jpg" alt="Baguette and halo diamond ring demonstrating fine gem setting craftsmanship">
 </figure>
 
 ### The Exception
