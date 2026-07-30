@@ -5,6 +5,7 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import SearchOverlay from '../components/SearchOverlay.astro';
 import InquiryDrawer from '../components/InquiryDrawer.astro';
+import ConciergeDrawer from '../components/ConciergeDrawer.astro';
 import '../styles/global.css';
 import '@fontsource/open-sans/300.css';
 import '@fontsource/open-sans/400.css';
@@ -158,6 +159,7 @@ const sdArray = [orgSchema, ...pageSchemas];
   <Nav />
   <SearchOverlay />
   <InquiryDrawer />
+  <ConciergeDrawer />
 
   <main data-pagefind-body>
     <slot />

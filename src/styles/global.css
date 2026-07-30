@@ -1113,6 +1113,26 @@ body.menu-open { overflow: hidden; }
 }
 .menu-cta:hover { border-color: var(--accent); color: var(--accent); }
 
+.menu-cta-item--concierge { padding-top: 12px; padding-bottom: 36px; }
+.menu-concierge {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--accent);
+  background: none;
+  border: none;
+  padding: 10px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.menu-concierge:hover { color: var(--ink); }
+
 .menu-section-label {
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
