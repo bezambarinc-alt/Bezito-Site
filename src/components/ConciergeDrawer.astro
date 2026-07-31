@@ -119,9 +119,9 @@
   right: 0;
   height: 100%;
   width: min(400px, 100vw);
-  background: #faf8f5;
+  background: var(--paper);
   transform: translateX(100%);
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.35s var(--ease-luxury);
   overflow-y: auto;
   padding: 2.5rem 2.25rem 3rem;
   box-shadow: -2px 0 32px rgba(0,0,0,0.06);
@@ -135,11 +135,11 @@
   justify-content: center;
   width: 30px;
   height: 30px;
-  border: 1px solid rgba(0,0,0,0.18);
+  border: 1px solid var(--border-warm);
   border-radius: 50%;
   background: none;
   cursor: pointer;
-  color: #555;
+  color: var(--ink-muted);
   transition: border-color 0.15s, color 0.15s;
   margin-bottom: 2rem;
 }
@@ -160,8 +160,8 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  border-top: 1px solid rgba(0,0,0,0.08);
-  border-bottom: 1px solid rgba(0,0,0,0.08);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
 /* Rows */
@@ -172,7 +172,7 @@
   width: 100%;
   padding: 1rem 0;
   border: none;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
+  border-bottom: 1px solid var(--border);
   background: none;
   cursor: pointer;
   text-decoration: none;
@@ -200,9 +200,10 @@
 .cg-row__label {
   flex: 1;
   font-family: var(--sans);
-  font-size: 12px;
+  text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
+  font-size: 11px;
   font-weight: 400;
-  letter-spacing: 0.04em;
   color: inherit;
   text-align: left;
 }
@@ -210,13 +211,15 @@
 .cg-row__chevron {
   font-family: var(--serif);
   font-size: 1.125rem;
-  color: rgba(0,0,0,0.2);
+  color: var(--ink-muted);
+  opacity: 0.4;
   line-height: 1;
-  transition: transform 0.15s, color 0.15s;
+  transition: transform 0.15s, color 0.15s, opacity 0.15s;
 }
 .cg-row:hover .cg-row__chevron {
   transform: translateX(2px);
   color: var(--accent);
+  opacity: 1;
 }
 
 /* ── Appointment sub-menu ──────────────────────────────── */
@@ -233,8 +236,8 @@
   margin: 0;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.25s ease;
-  background: rgba(0,0,0,0.025);
+  transition: max-height 0.25s var(--ease-luxury);
+  background: var(--light-bg);
 }
 .cg-appt-sub.is-open {
   max-height: 160px;
@@ -245,11 +248,11 @@
   padding-left: calc(18px + 0.875rem + 0.75rem);
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-  border-bottom: 1px solid rgba(0,0,0,0.04);
+  border-bottom: 1px solid var(--border);
   font-size: 11px;
 }
 .cg-appt-sub li:last-child .cg-row--sub {
-  border-bottom: 1px solid rgba(0,0,0,0.06);
+  border-bottom: 1px solid var(--border);
 }
 </style>
 
