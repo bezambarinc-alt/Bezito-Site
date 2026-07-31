@@ -259,16 +259,24 @@
   display: inline-block;
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
-  letter-spacing: var(--sans-letter-spacing, normal);
-  font-size: 15px;
-  font-weight: 600;
+  letter-spacing: 0.1em;
+  font-size: 12px;
+  font-weight: 500;
   color: var(--ink);
-  border-bottom: 1px solid var(--ink);
-  padding-bottom: 4px;
+  background: transparent;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  padding: 12px 30px;
   text-decoration: none;
-  transition: all 0.3s;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
 }
-.segment__cta:hover { color: var(--accent); border-color: var(--accent); }
+.segment__cta:hover {
+  background: var(--ink);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(26,26,26,0.12);
+}
 .segment.segment--centered {
   display: block;
   padding: 120px clamp(40px,5vw,80px) clamp(6rem,10vw,9rem);
