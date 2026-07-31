@@ -241,8 +241,8 @@
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
   letter-spacing: var(--sans-letter-spacing, normal);
-  font-size: clamp(1.8rem, 3.5vw, 3rem);
-  font-weight: 200;
+  font-size: clamp(1.5rem, 2.8vw, 2.5rem);
+  font-weight: 300;
   line-height: 1.15;
   color: var(--accent);
   margin-bottom: 24px;
