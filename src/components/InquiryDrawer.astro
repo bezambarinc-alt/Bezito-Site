@@ -20,19 +20,67 @@ import SocialLinks from './SocialLinks.astro';
       <p class="ba-drawer__subhead">We respond personally within one business day.</p>
 
       <form id="drawer-form" novalidate>
-        <!-- Intent, piece title, and SKU are set programmatically — hidden from the user -->
-        <input type="hidden" id="d-intent" name="intent">
 
         <div class="ba-drawer__fields">
-          <div class="inq-form__field">
-            <label class="inq-form__label" for="d-name">Your Name</label>
-            <input class="inq-form__input" type="text" id="d-name" name="name" placeholder="First and Last" required autocomplete="name">
+
+          <!-- Row 1: Name + Email -->
+          <div class="inq-form__row">
+            <div class="inq-form__field">
+              <label class="inq-form__label" for="d-name">Your Name</label>
+              <input class="inq-form__input" type="text" id="d-name" name="name" placeholder="First and Last" required autocomplete="name">
+            </div>
+            <div class="inq-form__field">
+              <label class="inq-form__label" for="d-email">Email Address</label>
+              <input class="inq-form__input" type="email" id="d-email" name="email" placeholder="you@email.com" required autocomplete="email">
+            </div>
           </div>
 
-          <div class="inq-form__field">
-            <label class="inq-form__label" for="d-email">Email Address</label>
-            <input class="inq-form__input" type="email" id="d-email" name="email" placeholder="you@email.com" required autocomplete="email">
+          <!-- Row 2: Phone + How Can We Help -->
+          <div class="inq-form__row">
+            <div class="inq-form__field">
+              <label class="inq-form__label" for="d-phone">Phone <span class="form-optional">(optional)</span></label>
+              <input class="inq-form__input" type="tel" id="d-phone" name="phone" placeholder="(xxx) xxx-xxxx" autocomplete="tel">
+            </div>
+            <div class="inq-form__field inq-form__field--select">
+              <label class="inq-form__label" for="d-intent">How Can We Help</label>
+              <select class="inq-form__input inq-form__select" id="d-intent" name="intent" required>
+                <option value="">Select…</option>
+                <option value="commission a piece">Commission a Piece</option>
+                <option value="consultation">Private Consultation</option>
+                <option value="atelier visit">Visit the Atelier</option>
+                <option value="collection piece">A Piece from the Collection</option>
+                <option value="repairs">Repair &amp; Cleaning</option>
+                <option value="resize">Ring Resizing</option>
+              </select>
+            </div>
           </div>
+
+          <!-- Message (default, hidden for resize) -->
+          <div class="inq-form__field" id="d-message-wrap">
+            <label class="inq-form__label" for="d-message">Message <span class="form-optional">(optional)</span></label>
+            <textarea class="inq-form__input inq-form__textarea" id="d-message" name="message" rows="3" placeholder="Tell us what you have in mind…"></textarea>
+          </div>
+
+          <!-- Preferred Date (visit only) -->
+          <div class="inq-form__field" id="d-date-wrap" style="display:none">
+            <label class="inq-form__label" for="d-date">Preferred Date <span class="form-optional">(optional)</span></label>
+            <input class="inq-form__input" type="text" id="d-date" name="preferred_date" placeholder="e.g. Mon or Tue afternoon">
+          </div>
+
+          <!-- Ring Resizing fields (resize only) -->
+          <div id="d-resize-wrap" style="display:none">
+            <div class="inq-form__row">
+              <div class="inq-form__field">
+                <label class="inq-form__label" for="d-size-current">Current Ring Size</label>
+                <input class="inq-form__input" type="text" id="d-size-current" name="current_ring_size" placeholder="e.g. 6">
+              </div>
+              <div class="inq-form__field">
+                <label class="inq-form__label" for="d-size-desired">Desired Ring Size</label>
+                <input class="inq-form__input" type="text" id="d-size-desired" name="desired_ring_size" placeholder="e.g. 6.5">
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <p class="form-privacy">Your enquiry is private and handled directly by Bez's team.</p>
@@ -288,6 +336,37 @@ a.ba-drawer__contact-value:hover { color: var(--ink); }
   let drawerPieceTitle = '';
   let drawerPieceSku   = '';
 
+  const intentSelect  = document.getElementById('d-intent')   as HTMLSelectElement;
+  const messageWrap   = document.getElementById('d-message-wrap') as HTMLElement;
+  const dateWrap      = document.getElementById('d-date-wrap')    as HTMLElement;
+  const resizeWrap    = document.getElementById('d-resize-wrap')  as HTMLElement;
+  const drawerHeading = document.getElementById('ba-drawer-heading') as HTMLElement;
+
+  const HEADING_MAP: Record<string, string> = {
+    'commission a piece': 'Commission a Piece',
+    'consultation':       'Private Consultation',
+    'atelier visit':      'Visit the Atelier',
+    'collection piece':   'A Piece from the Collection',
+    'repairs':            'Repair &amp; Cleaning',
+    'resize':             'Ring Resizing',
+  };
+
+  function updateFormFields() {
+    const val = intentSelect?.value || '';
+    const isResize = val === 'resize';
+    const isVisit  = val === 'atelier visit';
+
+    if (messageWrap) messageWrap.style.display = isResize ? 'none' : '';
+    if (resizeWrap)  resizeWrap.style.display  = isResize ? '' : 'none';
+    if (dateWrap)    dateWrap.style.display    = isVisit  ? '' : 'none';
+
+    if (drawerHeading) {
+      drawerHeading.innerHTML = HEADING_MAP[val] || 'Connect with the Atelier';
+    }
+  }
+
+  intentSelect?.addEventListener('change', updateFormFields);
+
   function openDrawer(opts: { title?: string; sku?: string; intent?: string } = {}) {
     drawerPieceTitle = opts.title || '';
     drawerPieceSku   = opts.sku   || '';
@@ -299,23 +378,20 @@ a.ba-drawer__contact-value:hover { color: var(--ink); }
       contextEl.hidden = true;
     }
 
-    if (intentInput) {
-      intentInput.value = opts.intent || '';
-    }
-
     // reset form state
     form.style.display = '';
     successEl.style.display = 'none';
     errorEl.style.display = 'none';
     form.reset();
-    // re-apply intent after reset (reset clears hidden inputs too)
-    if (intentInput) intentInput.value = opts.intent || '';
+
+    // pre-select intent and update fields
+    if (intentSelect) intentSelect.value = opts.intent || '';
+    updateFormFields();
 
     drawer.hidden = false;
     requestAnimationFrame(() => drawer.classList.add('is-open'));
     document.body.style.overflow = 'hidden';
 
-    // focus name input
     const nameInput = form.querySelector('#d-name') as HTMLInputElement | null;
     setTimeout(() => nameInput?.focus(), 60);
   }
@@ -349,13 +425,28 @@ a.ba-drawer__contact-value:hover { color: var(--ink); }
     const firstName = spaceIdx > -1 ? fullName.slice(0, spaceIdx) : fullName;
     const lastName  = spaceIdx > -1 ? fullName.slice(spaceIdx + 1) : '';
 
+    const intent        = (data.get('intent') as string) || '';
+    const currentSize   = (data.get('current_ring_size') as string) || '';
+    const desiredSize   = (data.get('desired_ring_size') as string) || '';
+    const preferredDate = (data.get('preferred_date')    as string) || '';
+    let   message       = (data.get('message')           as string) || '';
+
+    // For resize: build message from size fields
+    if (intent === 'resize' && (currentSize || desiredSize)) {
+      message = `Current size: ${currentSize || 'not provided'}. Desired size: ${desiredSize || 'not provided'}.`;
+    }
+    // For atelier visit: prepend preferred date if provided
+    if (intent === 'atelier visit' && preferredDate) {
+      message = `Preferred date/time: ${preferredDate}${message ? '\n' + message : ''}`;
+    }
+
     const payload = {
       firstName,
       lastName,
       email:      data.get('email') as string,
-      phone:      '',
-      intent:     (data.get('intent') as string) || '',
-      message:    '',
+      phone:      (data.get('phone') as string) || '',
+      intent,
+      message,
       pieceTitle: drawerPieceTitle,
       pieceSku:   drawerPieceSku,
       utmSource:   sessionStorage.getItem('utm_source')   || '',
