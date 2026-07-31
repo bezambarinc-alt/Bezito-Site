@@ -209,8 +209,8 @@
   display: block;
 }
 .segment__media--inset-square video {
-  position: absolute;
-  inset: clamp(14px, 2.3vw, 32px); /* matches container padding */
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
