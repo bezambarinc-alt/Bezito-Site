@@ -245,45 +245,47 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
 /* ── 6. BUTTONS ───────────────────────────────────────────── */
 .btn {
   display: inline-block;
-  padding: 16px 40px;
+  padding: 13px 32px;
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
-  letter-spacing: var(--sans-letter-spacing, normal);
-  font-size: 15px;
-  font-weight: 600;
+  letter-spacing: 0.1em;
+  font-size: 12px;
+  font-weight: 500;
   text-decoration: none;
-  border: none;
+  border: 1px solid transparent;
+  border-radius: 999px;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
 }
-.btn-primary { background: var(--ink); color: var(--accent); }
-.btn-primary:hover { background: #2a2a2a; }
+.btn-primary { background: var(--ink); color: #fff; border-color: var(--ink); }
+.btn-primary:hover { background: #2a2a2a; border-color: #2a2a2a; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(26,26,26,0.15); }
 .btn-secondary {
   background: transparent;
   color: var(--accent);
-  border: 1.5px solid var(--accent);
+  border: 1px solid var(--accent);
 }
-.btn-secondary:hover { background: var(--accent); color: var(--ink); }
-.btn-white { background: var(--white); color: var(--ink); }
-.btn-white:hover { background: var(--paper); }
+.btn-secondary:hover { background: var(--accent); color: #fff; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(149,130,107,0.2); }
+.btn-white { background: #fff; color: var(--ink); border-color: #fff; }
+.btn-white:hover { background: var(--paper); border-color: var(--paper); transform: translateY(-1px); }
 
 /* Solid ink button — dark CTA sections */
 .btn-ink {
   display: inline-block;
-  padding: 15px 36px;
+  padding: 13px 32px;
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
-  letter-spacing: var(--sans-letter-spacing, normal);
-  font-size: 15px;
-  font-weight: 600;
+  letter-spacing: 0.1em;
+  font-size: 12px;
+  font-weight: 500;
   text-decoration: none;
   background: var(--ink);
-  color: var(--accent);
-  border: none;
+  color: #fff;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
 }
-.btn-ink:hover { background: #2a2a2a; }
+.btn-ink:hover { background: #2a2a2a; border-color: #2a2a2a; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(26,26,26,0.15); }
 
 /* Ghost border button — works on both light and dark */
 .btn-ghost {
@@ -291,17 +293,18 @@ body.page-header-light .ba-header.is-solid { background: var(--white); color: va
   padding: 13px 32px;
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
-  letter-spacing: var(--sans-letter-spacing, normal);
-  font-size: 15px;
-  font-weight: 600;
+  letter-spacing: 0.1em;
+  font-size: 12px;
+  font-weight: 500;
   text-decoration: none;
   background: transparent;
   color: inherit;
   border: 1px solid currentColor;
+  border-radius: 999px;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
 }
-.btn-ghost:hover { background: rgba(255,255,255,0.1); }
+.btn-ghost:hover { background: rgba(255,255,255,0.12); transform: translateY(-1px); }
 
 /* ── 6. ANNOUNCEMENT BAR ──────────────────────────────────── */
 .announcement-bar {
