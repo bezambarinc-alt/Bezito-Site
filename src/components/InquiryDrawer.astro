@@ -8,6 +8,10 @@ import SocialLinks from './SocialLinks.astro';
   <div class="ba-drawer__backdrop" id="drawerBackdrop"></div>
   <div class="ba-drawer__panel">
 
+    <button class="ba-drawer__back" id="drawerBack" aria-label="Back to concierge" style="display:none">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Back</span>
+    </button>
     <button class="ba-drawer__close" id="drawerClose" aria-label="Close inquiry panel">&#x2715;</button>
 
     <div class="ba-drawer__context" id="drawerContext" hidden>
@@ -45,9 +49,9 @@ import SocialLinks from './SocialLinks.astro';
               <label class="inq-form__label" for="d-intent">How Can We Help</label>
               <select class="inq-form__input inq-form__select" id="d-intent" name="intent" required>
                 <option value="">Select…</option>
+                <option value="atelier visit">In Person Appointment</option>
+                <option value="virtual appointment">Virtual Appointment</option>
                 <option value="commission a piece">Commission a Piece</option>
-                <option value="consultation">Private Consultation</option>
-                <option value="atelier visit">Visit the Atelier</option>
                 <option value="collection piece">A Piece from the Collection</option>
                 <option value="repairs">Repair &amp; Cleaning</option>
                 <option value="resize">Ring Resizing</option>
@@ -158,6 +162,25 @@ import SocialLinks from './SocialLinks.astro';
 .ba-drawer.is-open .ba-drawer__panel {
   transform: translateX(0);
 }
+.ba-drawer__back {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--ink-muted);
+  font-family: var(--sans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  padding: 0.375rem 0.25rem;
+  transition: color 0.15s;
+  line-height: 1;
+}
+.ba-drawer__back:hover { color: var(--ink); }
 .ba-drawer__close {
   position: absolute;
   top: 1.25rem;
@@ -325,6 +348,7 @@ a.ba-drawer__contact-value:hover { color: var(--ink); }
   const drawer    = document.getElementById('inquiry-drawer') as HTMLElement;
   const backdrop  = document.getElementById('drawerBackdrop') as HTMLElement;
   const closeBtn  = document.getElementById('drawerClose') as HTMLButtonElement;
+  const backBtn   = document.getElementById('drawerBack') as HTMLButtonElement;
   const contextEl = document.getElementById('drawerContext') as HTMLElement;
   const contextTitleEl = document.getElementById('drawerContextTitle') as HTMLElement;
   const intentInput    = document.getElementById('d-intent') as HTMLInputElement;
@@ -343,18 +367,18 @@ a.ba-drawer__contact-value:hover { color: var(--ink); }
   const drawerHeading = document.getElementById('ba-drawer-heading') as HTMLElement;
 
   const HEADING_MAP: Record<string, string> = {
-    'commission a piece': 'Commission a Piece',
-    'consultation':       'Private Consultation',
-    'atelier visit':      'Visit the Atelier',
-    'collection piece':   'A Piece from the Collection',
-    'repairs':            'Repair &amp; Cleaning',
-    'resize':             'Ring Resizing',
+    'atelier visit':        'In Person Appointment',
+    'virtual appointment':  'Virtual Appointment',
+    'commission a piece':   'Commission a Piece',
+    'collection piece':     'A Piece from the Collection',
+    'repairs':              'Repair &amp; Cleaning',
+    'resize':               'Ring Resizing',
   };
 
   function updateFormFields() {
     const val = intentSelect?.value || '';
     const isResize = val === 'resize';
-    const isVisit  = val === 'atelier visit';
+    const isVisit  = val === 'atelier visit' || val === 'virtual appointment';
 
     if (messageWrap) messageWrap.style.display = isResize ? 'none' : '';
     if (resizeWrap)  resizeWrap.style.display  = isResize ? '' : 'none';
@@ -367,7 +391,7 @@ a.ba-drawer__contact-value:hover { color: var(--ink); }
 
   intentSelect?.addEventListener('change', updateFormFields);
 
-  function openDrawer(opts: { title?: string; sku?: string; intent?: string } = {}) {
+  function openDrawer(opts: { title?: string; sku?: string; intent?: string; fromConcierge?: boolean } = {}) {
     drawerPieceTitle = opts.title || '';
     drawerPieceSku   = opts.sku   || '';
 
@@ -392,6 +416,8 @@ a.ba-drawer__contact-value:hover { color: var(--ink); }
     requestAnimationFrame(() => drawer.classList.add('is-open'));
     document.body.style.overflow = 'hidden';
 
+    if (backBtn) backBtn.style.display = opts.fromConcierge ? '' : 'none';
+
     const nameInput = form.querySelector('#d-name') as HTMLInputElement | null;
     setTimeout(() => nameInput?.focus(), 60);
   }
@@ -404,6 +430,10 @@ a.ba-drawer__contact-value:hover { color: var(--ink); }
 
   closeBtn.addEventListener('click', closeDrawer);
   backdrop.addEventListener('click', closeDrawer);
+  backBtn?.addEventListener('click', () => {
+    closeDrawer();
+    setTimeout(() => (window as any).openConciergeDrawer?.(), 200);
+  });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && drawer.classList.contains('is-open')) closeDrawer();
   });

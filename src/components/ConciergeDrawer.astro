@@ -15,87 +15,56 @@
 
     <h2 class="cg-drawer__heading">Contact Us</h2>
 
-    <!-- Reach Us -->
-    <p class="cg-cat">Reach Us</p>
     <ul class="cg-list" role="list">
+
+      <!-- Atelier Chat -->
       <li>
         <button class="cg-row" data-action="chat">
           <span class="cg-row__icon" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M15 2H3a1 1 0 00-1 1v9a1 1 0 001 1h3.5l2.5 2.5 2.5-2.5H15a1 1 0 001-1V3a1 1 0 00-1-1z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>
           </span>
-          <span class="cg-row__label">Chat Online</span>
+          <span class="cg-row__label">Atelier Chat</span>
           <span class="cg-row__chevron" aria-hidden="true">›</span>
         </button>
       </li>
+
+      <!-- Call Us -->
       <li>
-        <a class="cg-row" href="tel:2136299191">
+        <button class="cg-row" data-action="call">
           <span class="cg-row__icon" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 2.5c-.3 0-.5.1-.7.3L2.1 4c-.8.8-.8 2 0 2.9 1.3 2 3 3.7 5 5 1 .7 2.3.7 3.1-.1l1.2-1.2c.4-.4.4-1 0-1.4L9.8 7.6c-.4-.4-1-.4-1.4 0l-.5.5c-.2.2-.4.2-.6 0C6.5 7.4 5.8 6.7 5.4 6c-.2-.2-.2-.4 0-.6l.5-.5c.4-.4.4-1 0-1.4L4.7 2.8c-.2-.2-.4-.3-.7-.3z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>
           </span>
           <span class="cg-row__label">Call Us</span>
           <span class="cg-row__chevron" aria-hidden="true">›</span>
-        </a>
-      </li>
-      <li>
-        <button class="cg-row" data-action="message">
-          <span class="cg-row__icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="10" rx="1.2" stroke="currentColor" stroke-width="1.1"/><path d="M2 5l7 5 7-5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
-          </span>
-          <span class="cg-row__label">Send a Message</span>
-          <span class="cg-row__chevron" aria-hidden="true">›</span>
         </button>
       </li>
-    </ul>
 
-    <!-- Visit -->
-    <p class="cg-cat">Visit</p>
-    <ul class="cg-list" role="list">
-      <li>
-        <button class="cg-row" data-action="appointment">
+      <!-- Book an Appointment — expandable -->
+      <li class="cg-appt-wrap">
+        <button class="cg-row cg-appt-trigger" id="cgApptTrigger" aria-expanded="false">
           <span class="cg-row__icon" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="14" height="12" rx="1.2" stroke="currentColor" stroke-width="1.1"/><path d="M2 8h14" stroke="currentColor" stroke-width="1.1"/><path d="M6 2v3M12 2v3" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/><circle cx="6.5" cy="12" r=".9" fill="currentColor"/><circle cx="9" cy="12" r=".9" fill="currentColor"/><circle cx="11.5" cy="12" r=".9" fill="currentColor"/></svg>
           </span>
           <span class="cg-row__label">Book an Appointment</span>
-          <span class="cg-row__chevron" aria-hidden="true">›</span>
+          <span class="cg-row__chevron cg-appt-chevron" aria-hidden="true">›</span>
         </button>
+        <ul class="cg-appt-sub" id="cgApptSub" role="list">
+          <li>
+            <button class="cg-row cg-row--sub" data-action="appointment">
+              <span class="cg-row__label">In Person</span>
+              <span class="cg-row__chevron" aria-hidden="true">›</span>
+            </button>
+          </li>
+          <li>
+            <button class="cg-row cg-row--sub" data-action="virtual">
+              <span class="cg-row__label">Virtual</span>
+              <span class="cg-row__chevron" aria-hidden="true">›</span>
+            </button>
+          </li>
+        </ul>
       </li>
-      <li>
-        <button class="cg-row" data-action="virtual">
-          <span class="cg-row__icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="5" width="11" height="8" rx="1.2" stroke="currentColor" stroke-width="1.1"/><path d="M13 8l3-2v6l-3-2V8z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>
-          </span>
-          <span class="cg-row__label">Book a Virtual Appointment</span>
-          <span class="cg-row__chevron" aria-hidden="true">›</span>
-        </button>
-      </li>
-    </ul>
 
-    <!-- Bespoke -->
-    <p class="cg-cat">Bespoke</p>
-    <ul class="cg-list" role="list">
-      <li>
-        <button class="cg-row" data-action="commission">
-          <span class="cg-row__icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2l1.8 3.6 4 .6-2.9 2.8.7 4-3.6-1.9-3.6 1.9.7-4L3.2 6.2l4-.6L9 2z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>
-          </span>
-          <span class="cg-row__label">Commission a Piece</span>
-          <span class="cg-row__chevron" aria-hidden="true">›</span>
-        </button>
-      </li>
-      <li>
-        <button class="cg-row" data-action="consultation">
-          <span class="cg-row__icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="7" r="3.5" stroke="currentColor" stroke-width="1.1"/><path d="M2.5 16c0-3 2.9-5 6.5-5s6.5 2 6.5 5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
-          </span>
-          <span class="cg-row__label">Private Consultation</span>
-          <span class="cg-row__chevron" aria-hidden="true">›</span>
-        </button>
-      </li>
-    </ul>
-
-    <!-- Services -->
-    <p class="cg-cat">Services</p>
-    <ul class="cg-list cg-list--last" role="list">
+      <!-- Repair & Cleaning -->
       <li>
         <button class="cg-row" data-action="repairs">
           <span class="cg-row__icon" aria-hidden="true">
@@ -105,6 +74,8 @@
           <span class="cg-row__chevron" aria-hidden="true">›</span>
         </button>
       </li>
+
+      <!-- Ring Resizing -->
       <li>
         <button class="cg-row" data-action="resize">
           <span class="cg-row__icon" aria-hidden="true">
@@ -114,6 +85,7 @@
           <span class="cg-row__chevron" aria-hidden="true">›</span>
         </button>
       </li>
+
     </ul>
 
   </div>
@@ -180,26 +152,14 @@
   margin-bottom: 2rem;
 }
 
-/* Category label */
-.cg-cat {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 0.75rem;
-  font-weight: 400;
-  color: var(--accent);
-  letter-spacing: 0.06em;
-  margin: 1.5rem 0 0;
-  opacity: 0.8;
-}
-
 /* List */
 .cg-list {
   list-style: none;
   padding: 0;
-  margin: 0.5rem 0 0;
+  margin: 0;
   border-top: 1px solid rgba(0,0,0,0.08);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
 }
-.cg-list--last { border-bottom: 1px solid rgba(0,0,0,0.08); }
 
 /* Rows */
 .cg-row {
@@ -219,7 +179,7 @@
   font-size: inherit;
   line-height: inherit;
 }
-.cg-list--last li:last-child .cg-row { border-bottom: none; }
+.cg-list > li:last-child > .cg-row { border-bottom: none; }
 .cg-row:hover { color: var(--accent); }
 
 .cg-row__icon {
@@ -241,6 +201,7 @@
   font-weight: 400;
   letter-spacing: 0.04em;
   color: inherit;
+  text-align: left;
 }
 
 .cg-row__chevron {
@@ -254,12 +215,48 @@
   transform: translateX(2px);
   color: var(--accent);
 }
+
+/* ── Appointment sub-menu ──────────────────────────────── */
+.cg-appt-chevron {
+  transition: transform 0.25s ease, color 0.15s !important;
+}
+.cg-appt-wrap.is-open .cg-appt-chevron {
+  transform: rotate(90deg) !important;
+}
+
+.cg-appt-sub {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+  background: rgba(0,0,0,0.025);
+}
+.cg-appt-sub.is-open {
+  max-height: 160px;
+}
+
+/* Sub-rows: indented past icon + gap */
+.cg-row--sub {
+  padding-left: calc(18px + 0.875rem + 0.75rem);
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  font-size: 11px;
+}
+.cg-appt-sub li:last-child .cg-row--sub {
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
 </style>
 
 <script>
-  const cgDrawer   = document.getElementById('concierge-drawer') as HTMLElement;
-  const cgBackdrop = document.getElementById('cgBackdrop') as HTMLElement;
-  const cgClose    = document.getElementById('cgClose') as HTMLButtonElement;
+  const cgDrawer      = document.getElementById('concierge-drawer') as HTMLElement;
+  const cgBackdrop    = document.getElementById('cgBackdrop') as HTMLElement;
+  const cgClose       = document.getElementById('cgClose') as HTMLButtonElement;
+  const cgApptTrigger = document.getElementById('cgApptTrigger') as HTMLButtonElement;
+  const cgApptSub     = document.getElementById('cgApptSub') as HTMLElement;
+  const cgApptWrap    = cgApptTrigger?.closest('.cg-appt-wrap') as HTMLElement | null;
 
   function openConciergeDrawer() {
     cgDrawer.hidden = false;
@@ -273,6 +270,20 @@
     setTimeout(() => { cgDrawer.hidden = true; }, 360);
   }
 
+  // Appointment expand / collapse
+  cgApptTrigger?.addEventListener('click', () => {
+    const isOpen = cgApptWrap?.classList.contains('is-open');
+    if (isOpen) {
+      cgApptWrap?.classList.remove('is-open');
+      cgApptSub?.classList.remove('is-open');
+      cgApptTrigger.setAttribute('aria-expanded', 'false');
+    } else {
+      cgApptWrap?.classList.add('is-open');
+      cgApptSub?.classList.add('is-open');
+      cgApptTrigger.setAttribute('aria-expanded', 'true');
+    }
+  });
+
   cgClose.addEventListener('click', closeConciergeDrawer);
   cgBackdrop.addEventListener('click', closeConciergeDrawer);
   document.addEventListener('keydown', (e) => {
@@ -280,13 +291,10 @@
   });
 
   const ACTION_INTENTS: Record<string, string> = {
-    message:      '',
-    appointment:  'atelier visit',
-    virtual:      'consultation',
-    commission:   'commission a piece',
-    consultation: 'consultation',
-    repairs:      'repairs',
-    resize:       'resize',
+    appointment: 'atelier visit',
+    virtual:     'virtual appointment',
+    repairs:     'repairs',
+    resize:      'resize',
   };
 
   cgDrawer.querySelectorAll<HTMLElement>('[data-action]').forEach(btn => {
@@ -294,20 +302,23 @@
       const action = btn.dataset.action || '';
 
       if (action === 'chat') {
-        // Freshchat — open widget when available, else fall back to message form
+        closeConciergeDrawer();
         if ((window as any).fcWidget?.isOpen !== undefined) {
-          closeConciergeDrawer();
           (window as any).fcWidget.open();
         } else {
-          closeConciergeDrawer();
-          setTimeout(() => (window as any).openInquiryDrawer?.({ intent: '' }), 200);
+          setTimeout(() => (window as any).openInquiryDrawer?.({ intent: '', fromConcierge: true }), 200);
         }
+        return;
+      }
+
+      if (action === 'call') {
+        window.location.href = 'tel:2136299191';
         return;
       }
 
       const intent = ACTION_INTENTS[action] ?? '';
       closeConciergeDrawer();
-      setTimeout(() => (window as any).openInquiryDrawer?.({ intent }), 200);
+      setTimeout(() => (window as any).openInquiryDrawer?.({ intent, fromConcierge: true }), 200);
     });
   });
 
