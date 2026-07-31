@@ -200,7 +200,8 @@
   padding: clamp(14px, 2.3vw, 32px);
   box-sizing: border-box;
 }
-.segment__media--inset-square img {
+.segment__media--inset-square img,
+.segment__media--inset-square video {
   position: relative;
   inset: unset;
   width: 100%;
