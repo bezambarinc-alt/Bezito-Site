@@ -197,7 +197,7 @@
 /* Inset square variant — image sits inside white breathing room */
 .segment__media--inset-square {
   aspect-ratio: 1 / 1;
-  padding: clamp(24px, 4vw, 56px);
+  padding: clamp(14px, 2.3vw, 32px);
   box-sizing: border-box;
 }
 .segment__media--inset-square img {
