@@ -1,16 +1,17 @@
 {
   "slug": "vega",
-  "sku": null,
+  "sku": "VEGA",
   "title": "Vega",
-  "subtitle": null,
   "category": "rings",
   "collection": null,
   "status": "live",
-  "refCode": null,
-  "stone": null,
-  "metal": null,
+  "refCode": "VEGA",
+  "stone": {
+    "shape": "Round brilliant",
+    "carats": "TBD"
+  },
+  "metal": "18K white gold",
   "description": "Vega — The Three-Stone Ring — Bezito",
-  "editorial": null,
   "heroVideo": "https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Julio_Ring_hfbs7f.mp4",
   "heroImage": "https://res.cloudinary.com/dlg2mou53/image/upload/v1785447359/Julios_Ring_Cushion_Ruby_OnHAND_we8vn7.avif",
   "images": [

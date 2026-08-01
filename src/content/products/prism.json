@@ -2,20 +2,16 @@
   "slug": "prism",
   "sku": "C0493",
   "title": "Prism",
-  "subtitle": null,
   "category": "bracelets",
   "collection": null,
   "status": "live",
   "refCode": "C0493",
   "stone": {
     "shape": "Emerald cut",
-    "carats": null,
-    "color": null,
-    "origin": null
+    "carats": "TBD"
   },
-  "metal": null,
+  "metal": "18K white gold",
   "description": "Prism — The Emerald-Cut Bracelet — Bezito",
-  "editorial": null,
   "heroVideo": "https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/C0493_8K_qys2yw.mp4",
   "heroImage": "https://res.cloudinary.com/dlg2mou53/image/upload/v1785459602/C0493_Bracelet_Emerald_ON_HAND_vkm7nx.avif",
   "images": [

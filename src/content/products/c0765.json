@@ -7,10 +7,13 @@
   "collection": null,
   "status": "live",
   "refCode": "C0765",
-  "stone": null,
-  "metal": null,
+  "stone": {
+    "shape": "Round brilliant",
+    "carats": "TBD",
+    "origin": "Description coming soon."
+  },
+  "metal": "18K white gold",
   "description": "Description coming soon.",
-  "editorial": null,
   "heroVideo": "https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/f_auto,q_auto/Jewelry%20Videos/Rings/c0765-hd.mp4",
   "heroImage": "https://res.cloudinary.com/dlg2mou53/video/upload/so_2.0,f_jpg,w_1200,c_fit/f_auto,q_auto/Jewelry%20Videos/Rings/c0765-hd.jpg",
   "images": [
