@@ -1,9 +1,9 @@
 {
   "slug": "4hsr21",
   "sku": "4HSR21",
-  "title": "4HSR21",
-  "subtitle": "Twenty-one natural rubies set alongside brilliant-cut pavé diamonds — 2.71 carats total weight across 53 stones, each hand-selected and hand-set in 18K white gold.",
-  "category": "rings",
+  "title": "Twenty-One Rubies",
+  "subtitle": "Twenty-one rubies gathered among pavé, until the red reads as one field of colour.",
+  "category": "pendants",
   "collection": null,
   "status": "live",
   "refCode": "4HSR21",
@@ -13,12 +13,12 @@
     "color": "Natural ruby + white diamond pavé"
   },
   "metal": "18K white gold",
-  "description": "Twenty-one natural rubies set alongside brilliant-cut pavé diamonds — 2.71 carats total weight across 53 stones, each hand-selected and hand-set in 18K white gold.",
+  "description": "Twenty-one natural rubies, set close among white pavé so the red gathers into a single field rather than scattering. Every stone hand-selected, every stone set by hand, in 18K white gold.",
   "heroVideo": "https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Pendants/b5062-hd.mp4",
   "heroImage": "https://res.cloudinary.com/dlg2mou53/video/upload/so_2.0,f_jpg,w_1200,c_fit/Jewelry%20Videos/Pendants/b5062-hd.jpg",
   "images": [
     "https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Pendants/b5062-hd.mp4"
   ],
   "inquirySubject": "4HSR21 — Ruby & Diamond ref. 4HSR21",
-  "prettyUrl": "/jewelry/rings/4hsr21"
+  "prettyUrl": "/jewelry/pendants/4hsr21"
 }
