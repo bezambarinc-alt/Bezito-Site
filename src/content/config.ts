@@ -66,4 +66,22 @@ const blog = defineCollection({
   ),
 });
 
-export const collections = { products, blog };
+const collections_content = defineCollection({
+  type: 'data',
+  schema: z.object({
+    name: z.string(),
+    title: z.string(),
+    description: z.string(),
+    lede: z.string(),
+    quote: z.string(),
+    quoteAttr: z.string().default('Bez Ambar'),
+    status: z.enum(['live', 'draft']).default('live'),
+    spotlights: z.array(z.object({
+      pieceSlug: z.string(),
+      heading: z.string(),
+      body: z.string(),
+    })).default([]),
+  }),
+});
+
+export const collections = { products, blog, collections: collections_content };

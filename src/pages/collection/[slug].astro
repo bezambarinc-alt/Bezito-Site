@@ -2,64 +2,21 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
-interface Spotlight {
-  pieceSlug: string;
-  heading: string;
-  body: string;
-}
-
-interface CollectionMeta {
-  name: string;
-  title: string;
-  description: string;
-  lede: string;
-  quote: string;
-  quoteAttr: string;
-  spotlights: Spotlight[];
-}
-
 export async function getStaticPaths() {
-  const COLS: Record<string, CollectionMeta> = {
-    bloom: {
-      name: 'The Bloom Collection',
-      title: 'The Bloom Collection — Bez Ambar',
-      description: 'One-stone pieces. Each ring built around a single exceptional diamond — the bloom rendered in a single petal of light. By Bez Ambar, Los Angeles.',
-      lede: 'One stone. Each ring built around a single exceptional diamond.',
-      quote: 'Every bloom begins with one stone. The setting exists only to make that stone breathe.',
-      quoteAttr: 'Bez Ambar',
-      spotlights: [
-        {
-          pieceSlug: 'calla',
-          heading: 'The Petal\nSetting',
-          body: 'Beneath the 13-carat D-flawless pear, a ring of marquise-cut diamonds opens like petals around the pavilion, passing fire upward into the stone from below. The bloom is structural. The light is the design.',
-        },
-        {
-          pieceSlug: 'camelia',
-          heading: 'Color\nInside Colorless',
-          body: 'A 25-carat D VS2 colorless oval, cut without bowtie, framed entirely in fancy intense pink diamonds with matching pave down the split shank. The contrast is the design. The stone sets its own condition.',
-        },
-      ],
-    },
-    dentelle: {
-      name: 'Dentelle Collection',
-      title: 'Dentelle Collection — Bez Ambar',
-      description: 'Lace in diamond. Each piece rendered in fine baguettes and brilliant-cut stones — structure as ornament, precision as poetry. By Bez Ambar, Los Angeles.',
-      lede: 'Lace in diamond. Structure as ornament, precision as poetry.',
-      quote: 'Lace exists at the edge of structure and dissolution. We made it in diamond.',
-      quoteAttr: 'Bez Ambar',
-      spotlights: [],
-    },
-  };
-  return Object.keys(COLS).map(slug => ({ params: { slug }, props: { col: COLS[slug] } }));
+  const allCollections = await getCollection('collections', ({ data }) => data.status === 'live');
+  return allCollections.map(col => ({
+    params: { slug: col.id },
+    props: { col: col.data },
+  }));
 }
 
 const { slug } = Astro.params;
-const { col } = Astro.props as { col: CollectionMeta };
+const { col } = Astro.props;
 
 const allProducts = await getCollection('products', ({ data }) => data.status === 'live');
 const colProducts = allProducts.filter(p => p.data.collection === slug);
 
-const spotlightProducts = col.spotlights.map(s => ({
+const spotlightProducts = col.spotlights.map((s: { pieceSlug: string; heading: string; body: string }) => ({
   meta: s,
   product: colProducts.find(p => p.data.slug === s.pieceSlug),
 }));
@@ -110,7 +67,7 @@ const structuredData = [
 </section>
 
 <!-- ── SPOTLIGHT MODULES ── -->
-{spotlightProducts.map(({ meta, product }, i) => product && (
+{spotlightProducts.map(({ meta, product }: { meta: { pieceSlug: string; heading: string; body: string }; product: any }, i: number) => product && (
   <div class={`ba-segment${i % 2 === 1 ? ' ba-segment--reverse' : ''}`}>
     <div class="ba-segment__media">
       {product.data.heroVideo
@@ -120,7 +77,7 @@ const structuredData = [
     </div>
     <div class="ba-segment__text">
       <span class="ba-eyebrow">{product.data.title} &nbsp;&middot;&nbsp; ref. {product.data.refCode}</span>
-      <h2 class="ba-segment__heading">{meta.heading.split('\n').map((line, j) => j > 0 ? <><br />{line}</> : line)}</h2>
+      <h2 class="ba-segment__heading">{meta.heading.split('\n').map((line: string, j: number) => j > 0 ? <><br />{line}</> : line)}</h2>
       <p class="ba-segment__ref">{product.data.stone?.carats} ct {product.data.stone?.color} {product.data.stone?.clarity} &middot; {product.data.stone?.shape} &middot; {product.data.metal}</p>
       <p class="ba-segment__body">{meta.body}</p>
       <a class="ba-segment__link" href={product.data.prettyUrl}>View {product.data.title}</a>
