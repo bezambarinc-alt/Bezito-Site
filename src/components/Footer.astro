@@ -13,7 +13,6 @@ import SocialLinks from './SocialLinks.astro';
         <p class="ba-footer__tagline">Inventor of the Princess Cut</p>
         <p class="ba-footer__estab">Los Angeles &middot; Est. 1979</p>
         <SocialLinks class="ba-footer__social" />
-        <p class="ba-footer__featuring">Featuring the Blaze&reg; Cut</p>
       </div>
 
       <!-- Shop -->
@@ -64,11 +63,9 @@ import SocialLinks from './SocialLinks.astro';
           </svg>
         </button>
         <div class="ba-footer__col-links">
-          <a href="/contact">Contact Us</a>
-          <a href="/contact" onclick="openInquiryDrawer({intent:'commission a piece'}); return false;">Bespoke Design</a>
-          <a href="/contact" onclick="openInquiryDrawer({intent:'repairs'}); return false;">Repairs &amp; Cleaning</a>
-          <a href="/contact" onclick="openInquiryDrawer({intent:'resize'}); return false;">Ring Resizing</a>
-          <a href="/warranty">Warranty</a>
+          <button class="ba-footer__concierge-link" type="button" onclick="openConciergeDrawer()">Atelier Concierge</button>
+          <a href="/contact">Contact</a>
+          <a href="/warranty">Warranty &amp; Policies</a>
         </div>
       </div>
 
@@ -85,10 +82,8 @@ import SocialLinks from './SocialLinks.astro';
             611 Wilshire Blvd<br>
             Los Angeles, CA 90017
           </address>
-          <a href="tel:2136299191" class="ba-footer__contact-link">(213) 629-9191</a>
-          <a href="mailto:bez@bezambar.com" class="ba-footer__contact-link">bez@bezambar.com</a>
-          <p class="ba-footer__hours">Mon &ndash; Fri, 10am &ndash; 6pm PT</p>
-          <p class="ba-footer__appt">By appointment only</p>
+          <p class="ba-footer__appt">Private atelier &middot; by appointment</p>
+          <button class="ba-footer__arrange-link" type="button" onclick="openConciergeDrawer()">Arrange a Visit &rsaquo;</button>
         </div>
       </div>
 
@@ -104,6 +99,32 @@ import SocialLinks from './SocialLinks.astro';
     </div>
   </div>
 </footer>
+
+<style>
+.ba-footer__concierge-link,
+.ba-footer__arrange-link {
+  display: block;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.ba-footer__concierge-link:hover,
+.ba-footer__arrange-link:hover { color: var(--accent); }
+
+.ba-footer__arrange-link {
+  margin-top: 0.75rem;
+  letter-spacing: 0.04em;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+</style>
 
 <script>
   document.querySelectorAll<HTMLElement>('.ba-footer__toggle').forEach(btn => {
