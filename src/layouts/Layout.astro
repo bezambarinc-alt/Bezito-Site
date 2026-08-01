@@ -124,28 +124,15 @@ const sdArray = [orgSchema, ...pageSchemas];
     <script type="application/ld+json" set:html={JSON.stringify(sd)} />
   ))}
 
-  <!-- Freshsales CRM tracking pixel — sitewide visitor identification & page-view tracking -->
+  <!-- Freshsales CRM — visitor identification & page-view tracking -->
   <script>
-    (function createFreshsalesTracker() {
-      function createTempFunction(fn) {
-        (window.freshsales)[fn] = function () {
-          (window.freshsales).push([fn].concat(Array.prototype.slice.call(arguments, 0)));
-        };
-      }
-      (function (url, app_token) {
-        window.assets_url = '//d952cmcgwqsjf.cloudfront.net';
-        window.freshsales = window.freshsales || [];
-        var fns = 'init identify trackPageView trackEvent set'.split(' ');
-        for (var i = 0; i < fns.length; i++) { createTempFunction(fns[i]); }
-        var s = document.createElement('script');
-        s.async = 1;
-        s.src = window.assets_url + '/assets/analytics.js';
-        var f = document.getElementsByTagName('script')[0];
-        f.parentNode.insertBefore(s, f);
-        window.freshsales.init(url, app_token);
-      })('bezambar.myfreshworks.com', 'mUZ478kC1dElILQosait7g');
-    })();
+    window.freshsales = window.freshsales || [];
+    ['init','identify','trackPageView','trackEvent','set'].forEach(function(m){
+      window.freshsales[m] = function(){ window.freshsales.push([m].concat(Array.prototype.slice.call(arguments))); };
+    });
+    window.freshsales.init('bezambar.myfreshworks.com', 'mUZ478kC1dElILQosait7g');
   </script>
+  <script async src="https://d952cmcgwqsjf.cloudfront.net/assets/analytics.js"></script>
 
   <!-- GTM — wire container ID here when ready (replace GTM-XXXXXXX) -->
   <!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-XXXXXXX');</script> -->
