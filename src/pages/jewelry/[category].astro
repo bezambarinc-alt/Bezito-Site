@@ -170,7 +170,7 @@ const structuredData = [
 <!-- ── PRODUCT GRID ── -->
 {products.length > 0 ? (
   <section class="ba-product-grid">
-    {products.map(p => (
+    {products.filter(p => !featured.includes(p)).map(p => (
       <a class="ba-card" href={p.data.prettyUrl}>
         <div class="ba-card__media">
           {p.data.heroVideo
