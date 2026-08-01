@@ -254,6 +254,27 @@
 .cg-appt-sub li:last-child .cg-row--sub {
   border-bottom: 1px solid var(--border);
 }
+
+@media (max-width: 480px) {
+  .cg-drawer__panel {
+    padding: 1.75rem 1.25rem 2.5rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  /* Larger touch target on mobile */
+  .cg-drawer__close {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 1.25rem;
+  }
+  /* Slightly taller rows for easier tapping */
+  .cg-row {
+    padding: 1.125rem 0;
+  }
+  .cg-row--sub {
+    padding-top: 0.875rem;
+    padding-bottom: 0.875rem;
+  }
+}
 </style>
 
 <script>

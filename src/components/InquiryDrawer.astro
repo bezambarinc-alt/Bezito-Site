@@ -334,6 +334,32 @@ a.ba-drawer__contact-value:hover { color: var(--ink); }
   color: var(--ink-muted);
   line-height: 1.6;
 }
+
+@media (max-width: 480px) {
+  .ba-drawer__panel {
+    padding: 2rem 1.25rem 2.5rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  /* Larger touch target: expand padding, keep visual position */
+  .ba-drawer__close {
+    padding: 0.75rem;
+    top: 0.75rem;
+    right: 0.75rem;
+    font-size: 1.25rem;
+  }
+  .ba-drawer__back {
+    top: 0.75rem;
+    left: 0.75rem;
+    padding: 0.625rem 0.25rem;
+  }
+  /* Stack form rows already handled by global.css @768px — no change needed */
+  .ba-drawer__heading {
+    font-size: 1.375rem;
+  }
+  .ba-drawer__fields {
+    gap: 22px;
+  }
+}
 </style>
 
 <script>
