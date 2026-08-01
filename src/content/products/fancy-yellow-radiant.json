@@ -9,7 +9,7 @@
   "refCode": "C0878",
   "stone": {
     "shape": "Radiant (centre) + Cadillac cut (sides)",
-    "carats": "10.04",
+    "carats": 10.04,
     "color": "Fancy Yellow",
     "origin": "Centre: 10.04 ct Fancy Yellow radiant-cut diamond. Two white Cadillac-cut side stones."
   },
@@ -18,7 +18,9 @@
   "editorial": "A 10.04-carat Fancy Yellow radiant in yellow gold double-claw prongs, flanked by two white Cadillac-cut diamonds and a micro-pavé diamond band. The Cadillac cut — trapezoidal, step-faceted, architectural — leads the eye from the shoulder of the shank up into the centre stone. The radiant holds its colour across sixty-plus facets. The Cadillacs hold their line.",
   "heroVideo": "https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1784837176/C0878_zocjks.mp4",
   "heroImage": "https://res.cloudinary.com/dlg2mou53/video/upload/so_2.0,f_jpg,w_1200,c_fit/v1784837176/C0878_zocjks.jpg",
-  "images": ["https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1784837176/C0878_zocjks.mp4"],
+  "images": [
+    "https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1784837176/C0878_zocjks.mp4"
+  ],
   "inquirySubject": "Fancy Yellow Radiant ref. C0878 — Cadillac sides",
   "prettyUrl": "/jewelry/rings/fancy-yellow-radiant"
 }
