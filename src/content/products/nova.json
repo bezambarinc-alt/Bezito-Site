@@ -1,0 +1,27 @@
+{
+  "slug": "nova",
+  "sku": "R09014",
+  "title": "Nova",
+  "subtitle": null,
+  "category": "rings",
+  "collection": null,
+  "status": "live",
+  "refCode": "R09014",
+  "stone": {
+    "shape": null,
+    "carats": null,
+    "color": "Fancy Yellow",
+    "origin": null
+  },
+  "metal": null,
+  "description": "Nova — The Fancy Yellow Ring — Bezito",
+  "editorial": null,
+  "heroVideo": "https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/R09014_website_Video_qhmp3s.mp4",
+  "heroImage": "https://res.cloudinary.com/dlg2mou53/image/upload/v1785449728/R09014_FANCY_YELLOW_RADIANT_ON_HAND_copy_kxbkjf.avif",
+  "images": [
+    "https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/R09014_website_Video_qhmp3s.mp4",
+    "https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto:best,w_1200/R09014_FANCY_YELLOW_RADIANT_ON_HAND_copy_kxbkjf.avif"
+  ],
+  "inquirySubject": "Nova — The Fancy Yellow Ring ref. R09014",
+  "prettyUrl": "/jewelry/rings/nova"
+}

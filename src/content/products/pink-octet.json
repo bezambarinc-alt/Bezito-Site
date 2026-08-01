@@ -1,0 +1,21 @@
+{
+  "slug": "pink-octet",
+  "sku": "C0863",
+  "title": "The Pink Octet",
+  "subtitle": null,
+  "category": "earrings",
+  "collection": null,
+  "status": "live",
+  "refCode": "C0863",
+  "stone": null,
+  "metal": null,
+  "description": "The Pink Octet — Bezito",
+  "editorial": null,
+  "heroVideo": "https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Earrings/C0863_oorcvi.mp4",
+  "heroImage": "https://res.cloudinary.com/dlg2mou53/video/upload/so_2.0,f_jpg,w_1200,c_fit/Jewelry%20Videos/Earrings/C0863_oorcvi.jpg",
+  "images": [
+    "https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Earrings/C0863_oorcvi.mp4"
+  ],
+  "inquirySubject": "The Pink Octet ref. C0863",
+  "prettyUrl": "/jewelry/earrings/pink-octet"
+}

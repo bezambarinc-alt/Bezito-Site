@@ -17,7 +17,10 @@
   "description": "Three-stone Fancy Yellow diamond ring by Bez Ambar. 6.06-ct lab-grown oval centre with two Fancy Intense Yellow pear-shape sides (0.85 + 0.89 ct). 7.80 ct total, matched saturation. 18K gold or platinum. Ref C0536.",
   "heroVideo": "https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1783061899/Jewelry%20Videos/Rings/c0536-2026.mp4",
   "heroImage": "https://res.cloudinary.com/dlg2mou53/video/upload/so_2.0,f_jpg,w_1200,c_fit/v1783061899/Jewelry%20Videos/Rings/c0536-2026.jpg",
-  "images": ["https://res.cloudinary.com/dlg2mou53/image/upload/v1784341303/Fancy_Yellow_Three-Stone_C0536_copy_oq2ycv.avif"],
+  "images": [
+    "https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1783061899/Jewelry%20Videos/Rings/c0536-2026.mp4",
+    "https://res.cloudinary.com/dlg2mou53/image/upload/v1784341303/Fancy_Yellow_Three-Stone_C0536_copy_oq2ycv.avif"
+  ],
   "inquirySubject": "Fancy Yellow Three-Stone ref. C0536",
   "prettyUrl": "/jewelry/rings/fancy-yellow-three-stone"
 }
