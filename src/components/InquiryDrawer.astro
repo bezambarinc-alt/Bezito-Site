@@ -89,7 +89,7 @@ import SocialLinks from './SocialLinks.astro';
 
         <p class="form-privacy">Your enquiry is private and handled directly by Bez's team.</p>
 
-        <button type="submit" class="ba-drawer__submit" id="drawer-submit-btn">
+        <button type="submit" class="btn btn-primary ba-drawer__submit" id="drawer-submit-btn">
           <span class="btn-label">Send Inquiry</span>
           <span class="btn-loading" aria-hidden="true" style="display:none">Sending…</span>
         </button>
@@ -205,7 +205,7 @@ import SocialLinks from './SocialLinks.astro';
   font-family: var(--sans);
   text-transform: var(--sans-transform, none);
   letter-spacing: var(--sans-letter-spacing, normal);
-  font-size: 0.6875rem;
+  font-size: 11px;
   color: var(--ink-muted);
   margin-bottom: 0.2rem;
 }
@@ -241,24 +241,12 @@ import SocialLinks from './SocialLinks.astro';
   gap: 28px;
   margin-bottom: 1.75rem;
 }
+/* Submit — extends global .btn.btn-primary; drawer-specific overrides only */
 .ba-drawer__submit {
   width: 100%;
-  font-family: var(--sans);
-  text-transform: var(--sans-transform, none);
-  letter-spacing: 0.1em;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--white);
-  background: var(--ink);
-  border: 1px solid var(--ink);
-  border-radius: 999px;
-  padding: 16px 32px;
-  cursor: pointer;
-  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
   min-height: 52px;
   -webkit-tap-highlight-color: transparent;
 }
-.ba-drawer__submit:hover { background: #2a2a2a; border-color: #2a2a2a; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(26,26,26,0.15); }
 .ba-drawer__submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
 
 /* ── Drawer contact block ─────────────────────────────────── */
