@@ -107,6 +107,24 @@
 .hero-dots__dot.is-active { background: var(--white); transform: scale(1.4); }
 
 /* ---- Atelier portrait hero image ---- */
+/* ---- Gallery break section ---- */
+.section-gallery {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+.section-gallery img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
 .hero-image {
   position: relative;
   width: 100%;
