@@ -145,7 +145,7 @@ const ogImage = product.heroImage
           <div class="tech-item__body">
             <p>
               {[
-                product.stone.carats && `${product.stone.carats} carats`,
+                typeof product.stone.carats === 'number' && `${product.stone.carats} carats`,
                 product.stone.color,
                 product.stone.clarity && `${product.stone.clarity} clarity`,
                 product.stone.shape,
