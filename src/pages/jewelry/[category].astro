@@ -84,6 +84,12 @@ const page = meta[category] ?? {
 
 const heroProduct = products.find(p => p.data.heroVideo) ?? products[0];
 
+// Category-level hero video overrides (independent of product data)
+const categoryHeroVideos: Record<string, string> = {
+  rings: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1785657183/C0895_fmqkvd.mp4',
+};
+const categoryHeroVideo = categoryHeroVideos[category] ?? heroProduct?.data.heroVideo ?? null;
+
 const structuredData = [
   {
     "@context": "https://schema.org",
@@ -114,10 +120,10 @@ const structuredData = [
 
 <!-- ── HERO ── -->
 <section class="ba-portrait-hero">
-  {heroProduct?.data.heroVideo && (
-    <video src={heroProduct.data.heroVideo} autoplay loop muted playsinline></video>
+  {categoryHeroVideo && (
+    <video src={categoryHeroVideo} autoplay loop muted playsinline></video>
   )}
-  {!heroProduct?.data.heroVideo && heroProduct?.data.heroImage && (
+  {!categoryHeroVideo && heroProduct?.data.heroImage && (
     <img src={heroProduct.data.heroImage} alt={page.label} />
   )}
   <div class="ba-portrait-hero__overlay">
