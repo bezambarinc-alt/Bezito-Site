@@ -36,6 +36,16 @@
   ],
   "redirects": [
     {
+      "source": "/jewelry/rings/1c3s",
+      "destination": "https://bezito.co/page/golden-hour",
+      "permanent": true
+    },
+    {
+      "source": "/jewelry/rings/1c3s/",
+      "destination": "https://bezito.co/page/golden-hour",
+      "permanent": true
+    },
+    {
       "source": "/catalogs",
       "destination": "/collection",
       "permanent": true
