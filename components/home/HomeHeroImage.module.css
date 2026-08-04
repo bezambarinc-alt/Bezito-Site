@@ -1,0 +1,37 @@
+.hero {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  bottom: clamp(40px, 6vw, 80px);
+  left: clamp(40px, 6vw, 80px);
+  right: clamp(40px, 6vw, 80px);
+  z-index: 2;
+  max-width: 900px;
+}
+
+.eyebrow {
+  font-family: var(--ba-font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-family: var(--ba-font-serif);
+  font-weight: 300;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  line-height: 1;
+  margin: 0;
+}
+
+.sub {
+  font-family: var(--ba-font-editorial);
+  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+  margin-top: 0.75rem;
+}
