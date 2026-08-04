@@ -1,0 +1,81 @@
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ba-z-drawer);
+  background: rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--ba-transition), visibility var(--ba-transition);
+}
+.scrimOpen { opacity: 1; visibility: visible; }
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: calc(var(--ba-z-drawer) + 1);
+  height: 100dvh;
+  width: min(420px, 100%);
+  background: var(--ba-dark);
+  border-left: 1px solid rgba(200, 169, 110, 0.22);
+  padding: 1.75rem clamp(1.25rem, 3vw, 2.25rem) 2.5rem;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.45s var(--ba-ease-lux);
+}
+.open { transform: translateX(0); }
+
+.head { display: flex; justify-content: space-between; align-items: center; }
+.eyebrow {
+  font-family: var(--ba-font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ba-gold);
+}
+.close { font-size: 1.1rem; color: var(--ba-cream); }
+.close:hover { color: var(--ba-gold); }
+
+.title { margin: 1.5rem 0 2rem; font-size: 1.9rem; }
+
+.list { display: flex; flex-direction: column; }
+.list > li { border-top: 1px solid rgba(255, 255, 255, 0.09); }
+.list > li:last-child { border-bottom: 1px solid rgba(255, 255, 255, 0.09); }
+
+.list > li > a,
+.list > li > button {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1.15rem 0;
+  transition: padding var(--ba-transition);
+}
+.list > li > a:hover,
+.list > li > button:hover { padding-left: 0.5rem; }
+
+.label {
+  font-family: var(--ba-font-serif);
+  font-size: 1.2rem;
+  color: var(--ba-white);
+}
+.sub {
+  font-family: var(--ba-font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--ba-muted);
+}
+
+.subList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0 0 1.15rem 0.5rem;
+}
+.subList button {
+  font-family: var(--ba-font-editorial);
+  color: var(--ba-cream);
+  text-align: left;
+}
+.subList button:hover { color: var(--ba-gold); }

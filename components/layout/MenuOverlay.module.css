@@ -1,0 +1,89 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ba-z-overlay);
+  background: var(--ba-black);
+  color: var(--ba-white);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-2%);
+  transition: opacity var(--ba-transition), transform 0.45s var(--ba-ease-lux), visibility var(--ba-transition);
+  overflow: hidden;
+}
+.open { opacity: 1; visibility: visible; transform: translateY(0); }
+
+.close {
+  position: absolute;
+  top: 1.5rem;
+  right: var(--ba-gutter);
+  font-size: 1.25rem;
+  color: var(--ba-cream);
+  z-index: 2;
+}
+.close:hover { color: var(--ba-gold); }
+
+.panels {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-inline: clamp(1.5rem, 8vw, 8rem);
+}
+
+.rootPanel ul { display: flex; flex-direction: column; gap: 0.4rem; }
+
+.rootLink {
+  font-family: var(--ba-font-serif);
+  font-size: clamp(1.8rem, 4.5vw, 3.25rem);
+  color: var(--ba-white);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  transition: color var(--ba-transition), transform var(--ba-transition);
+}
+.rootLink:hover { color: var(--ba-gold); transform: translateX(8px); }
+.chev { font-size: 0.5em; color: var(--ba-gold); }
+
+.dimmed { opacity: 0.28; pointer-events: none; }
+.rootPanel { transition: opacity var(--ba-transition); }
+
+.subPanel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(520px, 90%);
+  padding: clamp(5rem, 12vh, 8rem) clamp(1.5rem, 6vw, 5rem);
+  background: var(--ba-dark);
+  border-left: 1px solid rgba(200, 169, 110, 0.2);
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.45s var(--ba-ease-lux);
+}
+.subOpen { transform: translateX(0); }
+
+.back {
+  font-family: var(--ba-font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ba-gold);
+  margin-bottom: 2rem;
+}
+
+.subGroup { margin-bottom: 2.25rem; }
+.subTitle {
+  font-family: var(--ba-font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ba-muted);
+  margin-bottom: 1rem;
+}
+.subGroup ul { display: flex; flex-direction: column; gap: 0.65rem; }
+.subGroup li a {
+  font-family: var(--ba-font-editorial);
+  font-size: 1.15rem;
+  color: var(--ba-cream);
+}
+.subGroup li a:hover { color: var(--ba-gold); }
