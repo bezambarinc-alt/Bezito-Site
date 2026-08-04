@@ -1,14 +1,12 @@
+/node_modules
+/.next/
+/out/
+/build
+.env
+.env.local
+.env.*.local
 .vercel
-node_modules/
-dist/
-.astro/
+*.tsbuildinfo
+next-env.d.ts
 *.log
-
-# Legacy pre-Astro HTML files at repo root — not part of Astro build
-/*.html
-/*.html.bak
-/*.html.backup
-/*.html.local-backup
-/*.xml
-/*.css
-robots.txt
+dist/
