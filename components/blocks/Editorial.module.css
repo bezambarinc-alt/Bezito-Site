@@ -1,0 +1,25 @@
+.editorial {
+  background: var(--ba-black);
+  padding: clamp(4rem, 10vw, 9rem) var(--ba-gutter);
+}
+.inner {
+  max-width: 780px;
+  margin-inline: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.title { margin-top: 0.5rem; }
+.subtitle {
+  font-family: var(--ba-font-editorial);
+  font-style: italic;
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  color: var(--ba-gold);
+}
+.body {
+  font-family: var(--ba-font-editorial);
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.85;
+  color: var(--ba-cream);
+}

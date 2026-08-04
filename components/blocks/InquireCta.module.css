@@ -1,0 +1,34 @@
+.cta {
+  background: var(--ba-dark);
+  border-block: 1px solid rgba(200, 169, 110, 0.18);
+  padding: clamp(4rem, 9vw, 8rem) var(--ba-gutter);
+}
+.inner {
+  max-width: 640px;
+  margin-inline: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  align-items: center;
+}
+.title { margin-top: 0.4rem; }
+.body {
+  font-family: var(--ba-font-editorial);
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.75;
+  color: var(--ba-cream);
+}
+.btn {
+  margin-top: 1rem;
+  background: var(--ba-gold);
+  color: var(--ba-black);
+  font-family: var(--ba-font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.95rem 2.5rem;
+  border-radius: var(--ba-radius);
+  transition: background var(--ba-transition);
+}
+.btn:hover { background: var(--ba-gold-light); }

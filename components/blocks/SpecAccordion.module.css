@@ -1,0 +1,45 @@
+.accordion { width: 100%; }
+.accordion > .ba-eyebrow { margin-bottom: 0.75rem; }
+
+.item { border-top: 1px solid rgba(255, 255, 255, 0.12); }
+.item:last-child { border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+
+.summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 0;
+  font-family: var(--ba-font-serif);
+  font-size: 1.15rem;
+  color: var(--ba-white);
+}
+.summary::-webkit-details-marker { display: none; }
+.summary:hover { color: var(--ba-gold); }
+
+.mark {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  flex: none;
+}
+.mark::before,
+.mark::after {
+  content: '';
+  position: absolute;
+  background: var(--ba-gold);
+  transition: transform var(--ba-transition), opacity var(--ba-transition);
+}
+.mark::before { top: 5px; left: 0; width: 12px; height: 1px; }
+.mark::after { top: 0; left: 5px; width: 1px; height: 12px; }
+.item[open] .mark::after { transform: scaleY(0); opacity: 0; }
+
+.body {
+  padding: 0 0 1.2rem;
+  font-family: var(--ba-font-editorial);
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--ba-cream);
+  animation: ba-fade 0.35s ease both;
+}

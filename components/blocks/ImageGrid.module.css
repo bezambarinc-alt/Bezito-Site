@@ -1,0 +1,33 @@
+.grid {
+  background: var(--ba-black);
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 3), 1fr);
+  gap: clamp(0.5rem, 1.5vw, 1.25rem);
+  padding: clamp(2rem, 5vw, 4rem) var(--ba-gutter);
+}
+.light { background: var(--ba-white); }
+.light .label { color: var(--ba-black); }
+
+.tile { margin: 0; }
+.frame {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--ba-dark);
+}
+.image { object-fit: cover; transition: transform 0.6s var(--ba-ease-lux); }
+.frame:hover .image { transform: scale(1.04); }
+
+.label {
+  margin-top: 0.75rem;
+  font-family: var(--ba-font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ba-cream);
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
