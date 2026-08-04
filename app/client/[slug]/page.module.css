@@ -1,0 +1,45 @@
+.gate {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ba-black);
+  padding: var(--ba-gutter);
+}
+.gateInner {
+  max-width: 420px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+.gateTitle { margin-top: 0.5rem; }
+.gateBody { font-family: var(--ba-font-editorial); color: var(--ba-cream); }
+
+.gateForm {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+.gateForm input {
+  flex: 1;
+  background: var(--ba-dark);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--ba-radius);
+  padding: 0.85rem 1rem;
+  color: var(--ba-white);
+}
+.gateForm input:focus { outline: none; border-color: var(--ba-gold); }
+.gateForm button {
+  background: var(--ba-gold);
+  color: var(--ba-black);
+  font-family: var(--ba-font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0 1.5rem;
+  border-radius: var(--ba-radius);
+}
+.gateForm button:hover { background: var(--ba-gold-light); }
