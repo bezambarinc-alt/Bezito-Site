@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation'
 import { sql } from '@/lib/db'
 
+export const dynamic = 'force-dynamic'
+
 interface Page {
   slug: string
   title: string

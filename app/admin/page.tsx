@@ -1,5 +1,7 @@
 import { sql } from '@/lib/db'
 
+export const dynamic = 'force-dynamic'
+
 export default async function AdminPage() {
   const pages = await sql<{ slug: string; title: string; status: string; updated_at: string }>(
     `SELECT slug, title, status, updated_at FROM pages ORDER BY updated_at DESC`,
