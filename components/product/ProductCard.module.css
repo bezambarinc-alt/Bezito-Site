@@ -1,0 +1,37 @@
+.card { display: block; color: inherit; }
+.frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--ba-dark);
+}
+.image { object-fit: cover; transition: transform 0.7s var(--ba-ease-lux); }
+.card:hover .image { transform: scale(1.05); }
+.placeholder {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #171717, #101010);
+}
+
+.meta { padding: 1rem 0.25rem 0; }
+.name {
+  font-family: var(--ba-font-serif);
+  font-size: 1.15rem;
+  color: var(--ba-white);
+}
+.card:hover .name { color: var(--ba-gold); }
+.gem {
+  margin-top: 0.3rem;
+  font-family: var(--ba-font-editorial);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--ba-gold);
+}
+.ref {
+  margin-top: 0.25rem;
+  font-family: var(--ba-font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ba-muted);
+}

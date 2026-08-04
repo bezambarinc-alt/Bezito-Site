@@ -1,0 +1,49 @@
+.panel {
+  background: var(--ba-black);
+  padding: clamp(3.5rem, 8vw, 7rem) var(--ba-gutter);
+  text-align: center;
+}
+.breadcrumb {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  font-family: var(--ba-font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ba-muted);
+  margin-bottom: 1.5rem;
+}
+.breadcrumb a:hover { color: var(--ba-gold); }
+
+.title { max-width: 900px; margin-inline: auto; }
+.subtitle {
+  margin-top: 1rem;
+  font-family: var(--ba-font-editorial);
+  font-style: italic;
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  color: var(--ba-gold);
+}
+.lede {
+  max-width: 640px;
+  margin: 1.5rem auto 0;
+  font-family: var(--ba-font-editorial);
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.8;
+  color: var(--ba-cream);
+}
+
+.secondary {
+  background: var(--ba-black);
+}
+.secondary video {
+  width: 100%;
+  height: clamp(420px, 70vh, 820px);
+  object-fit: cover;
+}
+
+.specs {
+  background: var(--ba-black);
+  padding: clamp(3rem, 7vw, 6rem) var(--ba-gutter);
+}
+.specsInner { max-width: 720px; margin-inline: auto; }

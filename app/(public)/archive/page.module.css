@@ -1,0 +1,13 @@
+.layout {
+  max-width: var(--ba-maxw);
+  margin-inline: auto;
+  padding: 0 var(--ba-gutter) clamp(4rem, 9vw, 8rem);
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+}
+.gridCol { min-width: 0; }
+
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; }
+}
