@@ -36,7 +36,24 @@
 .close { font-size: 1.1rem; color: var(--ba-cream); }
 .close:hover { color: var(--ba-gold); }
 
-.title { margin: 1.5rem 0 2rem; font-size: 1.9rem; }
+/* Astro: "Book a Private Consultation" heading — serif, intimate scale */
+.title {
+  margin: 1.5rem 0 0.75rem;
+  font-family: var(--ba-font-editorial);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--ba-white);
+}
+
+/* Astro: the intro copy from the "Book a Private Consultation" panel */
+.intro {
+  font-family: var(--ba-font-editorial);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--ba-cream);
+  opacity: 0.75;
+  margin-bottom: 1.75rem;
+}
 
 .list { display: flex; flex-direction: column; }
 .list > li { border-top: 1px solid rgba(255, 255, 255, 0.09); }
