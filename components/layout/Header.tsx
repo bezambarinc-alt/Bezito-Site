@@ -26,29 +26,25 @@ export default function Header() {
       id="baHeader"
       className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}
     >
-      <div className={styles.inner}>
+      {/* Left: hamburger + "Menu" label — no .inner wrapper, exact Astro structure */}
+      <button className={styles.menuBtn} aria-label="Open menu" onClick={openMenu}>
+        <HamburgerIcon />
+        <span className={styles.menuLabel}>Menu</span>
+      </button>
 
-        {/* Left: hamburger + "Menu" label */}
-        <button className={styles.menuBtn} aria-label="Open menu" onClick={openMenu}>
-          <HamburgerIcon />
-          <span className={styles.menuLabel}>Menu</span>
+      {/* Center: wordmark — absolutely positioned same as Astro .ba-header__logo */}
+      <Link href="/" className={styles.wordmark} aria-label="Bez Ambar — home">
+        Bez Ambar
+      </Link>
+
+      {/* Right: search + concierge */}
+      <div className={styles.actions}>
+        <button className={styles.iconBtn} aria-label="Search" onClick={openSearch}>
+          <SearchIcon />
         </button>
-
-        {/* Center: wordmark */}
-        <Link href="/" className={styles.wordmark} aria-label="Bez Ambar — home">
-          Bez Ambar
-        </Link>
-
-        {/* Right: search + concierge */}
-        <div className={styles.actions}>
-          <button className={styles.iconBtn} aria-label="Search" onClick={openSearch}>
-            <SearchIcon />
-          </button>
-          <button className={styles.iconBtn} aria-label="Concierge" onClick={openConcierge}>
-            <ConciergeIcon />
-          </button>
-        </div>
-
+        <button className={styles.iconBtn} aria-label="Concierge" onClick={openConcierge}>
+          <ConciergeIcon />
+        </button>
       </div>
     </header>
   )

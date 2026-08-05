@@ -42,7 +42,7 @@
   --ba-radius:       2px;
 
   /* Layout */
-  --ba-header-h: 72px;
+  --ba-header-h: 64px;          /* Astro: height: 64px (was 72px — bug) */
   --ba-gutter:   clamp(1.25rem, 4vw, 4rem);
   --ba-maxw:     1200px;
   --ba-maxw-xl:  1440px;

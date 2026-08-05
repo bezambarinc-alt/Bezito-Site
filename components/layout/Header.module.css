@@ -1,29 +1,21 @@
 /* ============================================================
    Header — transparent on dark hero → solid white on scroll
    Exact match to Astro .ba-header / .ba-header.is-solid
+   No inner wrapper div — direct flex children, same as Astro
    ============================================================ */
 
 .header {
   position: fixed;
   inset: 0 0 auto 0;
   z-index: var(--ba-z-header);
-  height: var(--ba-header-h);          /* 72px */
+  height: 64px;                          /* Astro: height: 64px (was 72px — bug) */
   display: flex;
   align-items: center;
+  justify-content: space-between;        /* Astro: justify-content: space-between */
+  padding: 0 2rem;                       /* Astro: padding: 0 2rem (was clamp — bug) */
   color: #ffffff;
   background: transparent;
   transition: background var(--ba-transition), color var(--ba-transition), box-shadow var(--ba-transition);
-}
-
-/* Gradient scrim — fades dark hero edge, hidden when solid */
-.header::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.45), transparent);
-  opacity: 1;
-  transition: opacity var(--ba-transition);
-  pointer-events: none;
 }
 
 /* Solid state (scrollY > 20px) — white bg, ink text */
@@ -32,82 +24,72 @@
   color: var(--ba-ink);
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
 }
-.scrolled::after { opacity: 0; }
-
-/* Inner: 3-col grid (left menu | center wordmark | right actions) */
-.inner {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: var(--ba-maxw-xl);
-  margin-inline: auto;
-  padding-inline: var(--ba-gutter);
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-}
 
 /* ── Left: Menu button ────────────────────────────────────── */
 
 .menuBtn {
-  justify-self: start;
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 8px;                              /* Astro: .ba-header__menu { gap: 8px } */
   color: inherit;
   min-height: 44px;
   min-width: 44px;
+  user-select: none;
   transition: opacity 0.2s;
 }
 .menuBtn:hover { opacity: 0.5; }
 
 .menuLabel {
   font-family: var(--ba-font-sans);
-  font-size: 0.9375rem;   /* 15px */
+  font-size: 0.9375rem;                  /* 15px */
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0;
 }
 
-/* ── Center: Wordmark ─────────────────────────────────────── */
+/* ── Center: Wordmark — absolutely positioned, same as Astro ─ */
 
 .wordmark {
-  justify-self: center;
+  position: absolute;                    /* Astro: position: absolute; left: 50%; transform: translate(-50%) */
+  left: 50%;
+  transform: translate(-50%);
   font-family: var(--ba-font-sans);
-  font-size: 0.9375rem;
+  font-size: 0.9375rem;                  /* 15px */
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0;
   color: inherit;
-  transition: color 0.2s;
+  white-space: nowrap;
+  transition: opacity 0.2s;
 }
-.wordmark:hover { color: var(--ba-gold); }
+.wordmark:hover { opacity: 0.5; }
 
 /* ── Right: icon buttons ──────────────────────────────────── */
 
 .actions {
-  justify-self: end;
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 4px;                              /* Astro: .ba-header__right { gap: 4px } */
 }
 
 .iconBtn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 40px;                           /* Astro: .ba-header__icon { width: 40px; height: 40px } */
+  height: 40px;
   color: inherit;
-  min-height: 44px;
-  min-width: 44px;
+  flex-shrink: 0;
   transition: opacity 0.2s;
 }
 .iconBtn:hover { opacity: 0.5; }
 
 /* ── Responsive ───────────────────────────────────────────── */
 
+@media (max-width: 768px) {
+  .menuLabel  { display: none; }        /* Astro: @media (max-width: 768px) — was 640px bug */
+}
+
 @media (max-width: 640px) {
-  .menuLabel  { display: none; }
-  .wordmark   { font-size: 0.875rem; }
-  .actions    { gap: 0.9rem; }
-  .menuBtn    { gap: 0; }
+  .header { padding: 0 1.25rem; }      /* Astro: @media (max-width: 640px) */
 }
