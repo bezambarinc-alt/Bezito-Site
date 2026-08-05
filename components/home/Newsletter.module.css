@@ -33,7 +33,7 @@
 
 .input {
   border: none;
-  border-bottom: 1px solid rgba(200, 169, 110, 0.4);
+  border-bottom: 1px solid rgba(149, 130, 107, 0.4);
   background: transparent;
   color: var(--ba-white);
   font-family: var(--ba-font-editorial);

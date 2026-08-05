@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Playfair_Display } from 'next/font/google'
+import { Cormorant_Garamond, Open_Sans } from 'next/font/google'
 import './globals.css'
 
 import { DrawerProvider } from '@/components/layout/DrawerContext'
@@ -10,12 +10,19 @@ import InquiryDrawer from '@/components/layout/InquiryDrawer'
 import ConciergeDrawer from '@/components/layout/ConciergeDrawer'
 import SearchOverlay from '@/components/layout/SearchOverlay'
 
-const playfair = Playfair_Display({
+const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
+  weight: ['300', '400', '500', '600', '700'],
   style: ['normal', 'italic'],
   display: 'swap',
-  variable: '--font-playfair',
+  variable: '--font-cormorant',
+})
+
+const openSans = Open_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  display: 'swap',
+  variable: '--font-opensans',
 })
 
 export const metadata: Metadata = {
@@ -37,7 +44,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={playfair.variable}>
+    <html lang="en" className={`${cormorant.variable} ${openSans.variable}`}>
       <body>
         <DrawerProvider>
           <Header />

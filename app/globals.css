@@ -4,19 +4,20 @@
    ============================================================ */
 
 :root {
-  /* Palette */
-  --ba-black: #0c0c0c;
-  --ba-dark: #141414;
-  --ba-gold: #c8a96e;
-  --ba-gold-light: #d4b97e;
-  --ba-white: #f5f0e8;
-  --ba-cream: #e8e0d0;
+  /* Palette — mirrors Astro site exactly */
+  --ba-black: #0d0d0d;        /* --dark-bg in Astro */
+  --ba-dark: #141414;          /* --dark-surface in Astro */
+  --ba-gold: #95826b;          /* --accent in Astro (warm brown-gold) */
+  --ba-gold-light: #b09880;
+  --ba-white: #faf7f2;         /* --paper in Astro */
+  --ba-cream: #ede9e0;
+  --ba-ink: #1a1a1a;           /* --ink in Astro */
   --ba-muted: #888880;
 
-  /* Typography — Playfair Display injected via next/font as --font-playfair */
-  --ba-font-serif: var(--font-playfair), 'Playfair Display', Georgia, 'Times New Roman', serif;
-  --ba-font-editorial: Georgia, 'Times New Roman', serif;
-  --ba-font-sans: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* Typography — Cormorant Garamond (serif) + Open Sans (sans) — injected via next/font */
+  --ba-font-serif: var(--font-cormorant), 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --ba-font-editorial: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  --ba-font-sans: var(--font-opensans), 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
   /* Motion + shape */
   --ba-transition: 0.3s ease;
