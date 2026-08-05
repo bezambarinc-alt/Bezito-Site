@@ -1,4 +1,5 @@
-/* HomeHeroImage — full-bleed editorial image with text overlay */
+/* HomeHeroImage — full-bleed editorial image with centered text overlay
+   Matches Astro .hero-image (home.css): centered, flex-end positioning */
 
 .hero {
   position: relative;
@@ -6,39 +7,61 @@
   overflow: hidden;
 }
 
+/* Astro: overlay is flex column, justify-content: flex-end, align-items: center, centered text */
 .overlay {
   position: absolute;
-  bottom: clamp(40px, 6vw, 80px);
-  left: clamp(40px, 6vw, 80px);
-  right: clamp(40px, 6vw, 80px);
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+  padding: 0 24px 40px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0) 25%,
+    rgba(0, 0, 0, 0) 65%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
   z-index: 2;
-  max-width: 900px;
+  pointer-events: none;
 }
 
-/* Eyebrow: Open Sans, 15px, weight 600, uppercase, no tracking */
+/* Astro .hero-image__eyebrow: 15px, weight 500, paper color */
 .eyebrow {
   font-family: var(--ba-font-sans);
-  font-size: 0.9375rem;
-  font-weight: 600;
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0;
-  margin-bottom: 0.5rem;
+  margin-bottom: 20px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-/* Title: Open Sans, weight 300, uppercase — matches brand heading register */
+/* Astro .hero-image__title: clamp(28px, 4vw, 44px), weight 200 — NOT huge */
 .title {
   font-family: var(--ba-font-sans);
-  font-weight: 300;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 200;
   text-transform: uppercase;
   letter-spacing: 0;
-  font-size: clamp(3rem, 8vw, 7rem);
-  line-height: 1;
-  margin: 0;
+  line-height: 1.15;
+  margin: 0 auto 18px;
+  max-width: 24ch;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
-/* Sub: Cormorant Garamond, prose register */
+/* Astro .hero-image__sub: 15px, weight 300, accent-warm */
 .sub {
-  font-family: var(--ba-font-editorial);
-  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
-  margin-top: 0.75rem;
+  font-family: var(--ba-font-sans);
+  font-size: 0.9375rem;
+  font-weight: 300;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 900px) {
+  .overlay {
+    padding-bottom: 15vh;
+  }
 }

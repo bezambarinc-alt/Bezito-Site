@@ -1,19 +1,24 @@
 /* HomeSegment — two-column editorial segment
-   Light background sections: white bg, ink text — matches Astro .ba-segment */
+   Contained row: max-width 1300px, centered, portrait media
+   Matches Astro .segment (src/styles/templates/home.css) */
 
 .segment {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 560px;
-  background: var(--ba-white);
+  align-items: center;
+  gap: clamp(40px, 6vw, 100px);
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: clamp(12px, 1.6vw, 24px) clamp(40px, 5vw, 80px);
 }
 
 .media {
   position: relative;
-  min-height: 520px;
-  order: 1;
+  width: 100%;
+  max-width: 540px;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
-  background: var(--ba-cream);
+  justify-self: end;
 }
 
 .imageWrap {
@@ -23,70 +28,81 @@
 }
 
 .text {
-  padding: clamp(2.5rem, 6vw, 5rem) clamp(2rem, 5vw, 4.5rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  order: 2;
-  background: var(--ba-white);
+  max-width: 440px;
+  justify-self: start;
 }
 
-/* Reverse: media on right, text on left */
-.reverse .media { order: 2; }
-.reverse .text  { order: 1; }
+/* Reverse: media right, content left */
+.reverse .media {
+  order: 2;
+  justify-self: start;
+}
+.reverse .text {
+  order: 1;
+  justify-self: end;
+}
 
-/* Title: Open Sans, weight 300, uppercase — Astro .ba-segment__heading */
+/* Title: Open Sans, weight 300, uppercase, GOLD — Astro .segment__title color: var(--accent) */
 .title {
   font-family: var(--ba-font-sans);
-  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-size: clamp(1.5rem, 2.8vw, 2.5rem);
   font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 0;
-  color: var(--ba-ink);
-  line-height: 1.2;
-  margin: 0.75rem 0 1.25rem;
+  color: var(--ba-gold);
+  line-height: 1.15;
+  margin-bottom: 24px;
 }
 
-/* Body: Cormorant Garamond serif, muted ink — Astro .ba-segment__body */
+/* Body: serif, 20px, ink (not muted) — Astro .segment__body font-size: 20px; color: var(--ink) */
 .body {
   font-family: var(--ba-font-editorial);
-  font-size: 1.0625rem; /* 17px */
-  line-height: 1.8;
-  color: var(--ba-ink-soft);
-  margin-bottom: 1.75rem;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--ba-ink);
+  margin-bottom: 24px;
 }
 
-/* CTA link — Astro .ba-segment__link */
+/* CTA — Astro .segment__cta */
 .cta {
-  color: var(--ba-gold);
+  display: inline-block;
   font-family: var(--ba-font-sans);
-  font-size: 0.9375rem;
-  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  letter-spacing: 0.1em;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ba-ink);
+  background: transparent;
+  border: 1px solid var(--ba-ink);
+  border-radius: 999px;
+  padding: 12px 30px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
   align-self: flex-start;
-  border-bottom: 1px solid currentColor;
-  padding-bottom: 2px;
-  transition: opacity 0.3s;
 }
-.cta:hover { opacity: 0.7; }
+.cta:hover {
+  background: var(--ba-ink);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(26, 26, 26, 0.12);
+}
 
-/* No-media / centered service segment */
+/* No-media / centered segment — Astro .segment.segment--centered */
 .noMedia {
-  display: block;
-  background: var(--ba-white);
+  text-align: center;
   border-top: 1px solid rgba(149, 130, 107, 0.3);
   border-bottom: 1px solid rgba(149, 130, 107, 0.3);
 }
 
 .noMediaInner {
-  text-align: center;
-  max-width: 720px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: clamp(5rem, 10vw, 9rem) var(--ba-gutter);
+  padding: 120px clamp(40px, 5vw, 80px) clamp(6rem, 10vw, 9rem);
 }
 
 .noMediaInner .title {
@@ -94,19 +110,35 @@
   margin-right: auto;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .segment {
     grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 30px 20px;
   }
 
   .media,
-  .text,
-  .reverse .media,
-  .reverse .text {
-    order: unset;
+  .reverse .media {
+    justify-self: center;
+    max-width: 420px;
+    order: 0;
   }
 
-  .media {
-    min-height: 60vh;
+  .text,
+  .reverse .text {
+    justify-self: center;
+    max-width: 560px;
+    text-align: center;
+    order: 1;
+  }
+
+  .cta {
+    align-self: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .noMediaInner {
+    padding: 80px 20px clamp(3.5rem, 10vw, 6rem);
   }
 }

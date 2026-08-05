@@ -112,16 +112,16 @@ body.page-dark {
 
 /* ---------- Utility classes ---------- */
 
-/* Eyebrow: Open Sans, 15px, weight 600, uppercase — Astro reference */
+/* Eyebrow: Open Sans, 15px, weight 400, uppercase — Astro .segment__eyebrow / .hero__eyebrow */
 .ba-eyebrow {
   font-family: var(--ba-font-sans);
   font-size: 0.9375rem; /* 15px */
-  font-weight: 600;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0;
   color: var(--ba-gold);
   display: block;
-  margin-bottom: 12px;
+  margin-bottom: 7px;
 }
 
 .ba-serif { font-family: var(--ba-font-serif); }

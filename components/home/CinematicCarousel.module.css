@@ -67,21 +67,25 @@
   margin-bottom: 1.5rem;
 }
 
+/* Astro .ba-cinematic__headline: color: var(--accent) = GOLD, weight 200 */
 .cineHeadline {
   font-family: var(--ba-font-sans);
-  font-size: clamp(1.75rem, 3.4vw, 3rem);
-  font-weight: 300;
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  font-weight: 200;
   text-transform: uppercase;
   letter-spacing: 0;
-  color: #ffffff;
-  margin: 8px 0;
+  color: var(--ba-gold);
+  margin: 8px 0 14px;
 }
 
+/* Astro .ba-cinematic__sub: accent-warm, max-width 440px */
 .cineSub {
   font-family: var(--ba-font-editorial);
-  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
-  color: var(--ba-cream);
-  max-width: 560px;
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  line-height: 1.6;
+  color: var(--ba-gold-warm);
+  max-width: 440px;
+  margin: 0 0 28px;
 }
 
 .cineDots {

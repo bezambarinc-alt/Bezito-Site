@@ -58,23 +58,25 @@
   max-width: 640px;
 }
 
-/* Headline: Open Sans, weight 300, uppercase — Astro hero brand register */
+/* Headline: Open Sans, weight 300, uppercase, GOLD — Astro .hero__headline color: var(--accent) */
 .headline {
   font-family: var(--ba-font-sans);
   font-size: clamp(1.5rem, 2.8vw, 2.5rem);
   font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 0;
-  color: #ffffff;
-  margin: 8px 0;
+  color: var(--ba-gold);
+  margin: 8px 0 14px;
 }
 
-/* Subline: Cormorant Garamond, warm cream — body/prose register */
+/* Astro .hero__sub: white, max-width 440px, margin 0 0 28px */
 .sub {
   font-family: var(--ba-font-editorial);
-  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
-  line-height: 1.7;
-  color: var(--ba-cream);
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  line-height: 1.6;
+  color: var(--ba-white);
+  max-width: 440px;
+  margin: 0 0 28px;
 }
 
 /* Dot nav — fixed right edge */
