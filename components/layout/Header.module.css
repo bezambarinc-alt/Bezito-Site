@@ -1,11 +1,13 @@
-/* Header — transparent on hero, solid white when scrolled
-   Matches Astro .ba-header / .ba-header.is-solid behavior */
+/* ============================================================
+   Header — transparent on dark hero → solid white on scroll
+   Exact match to Astro .ba-header / .ba-header.is-solid
+   ============================================================ */
 
 .header {
   position: fixed;
   inset: 0 0 auto 0;
   z-index: var(--ba-z-header);
-  height: var(--ba-header-h);
+  height: var(--ba-header-h);          /* 72px */
   display: flex;
   align-items: center;
   color: #ffffff;
@@ -13,7 +15,7 @@
   transition: background var(--ba-transition), color var(--ba-transition), box-shadow var(--ba-transition);
 }
 
-/* Gradient overlay for transparent state on dark heroes */
+/* Gradient scrim — fades dark hero edge, hidden when solid */
 .header::after {
   content: '';
   position: absolute;
@@ -24,7 +26,7 @@
   pointer-events: none;
 }
 
-/* Solid state when scrolled — WHITE bg, ink text (matches Astro is-solid) */
+/* Solid state (scrollY > 20px) — white bg, ink text */
 .scrolled {
   background: #ffffff;
   color: var(--ba-ink);
@@ -32,6 +34,7 @@
 }
 .scrolled::after { opacity: 0; }
 
+/* Inner: 3-col grid (left menu | center wordmark | right actions) */
 .inner {
   position: relative;
   z-index: 1;
@@ -44,17 +47,43 @@
   align-items: center;
 }
 
-/* Wordmark: Open Sans, weight 600, uppercase — Astro .ba-header__logo */
+/* ── Left: Menu button ────────────────────────────────────── */
+
+.menuBtn {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: inherit;
+  min-height: 44px;
+  min-width: 44px;
+  transition: opacity 0.2s;
+}
+.menuBtn:hover { opacity: 0.5; }
+
+.menuLabel {
+  font-family: var(--ba-font-sans);
+  font-size: 0.9375rem;   /* 15px */
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+/* ── Center: Wordmark ─────────────────────────────────────── */
+
 .wordmark {
   justify-self: center;
   font-family: var(--ba-font-sans);
-  font-size: 0.9375rem; /* 15px */
+  font-size: 0.9375rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0;
   color: inherit;
+  transition: color 0.2s;
 }
 .wordmark:hover { color: var(--ba-gold); }
+
+/* ── Right: icon buttons ──────────────────────────────────── */
 
 .actions {
   justify-self: end;
@@ -66,48 +95,19 @@
 .iconBtn {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
+  justify-content: center;
   color: inherit;
-  font-family: var(--ba-font-sans);
-  font-size: 0.9375rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0;
   min-height: 44px;
   min-width: 44px;
   transition: opacity 0.2s;
 }
 .iconBtn:hover { opacity: 0.5; }
 
-/* Hamburger — 3-line CSS icon */
-.hamburger {
-  position: relative;
-  width: 22px;
-  height: 1px;
-  background: currentColor;
-}
-.hamburger::before,
-.hamburger::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  width: 22px;
-  height: 1px;
-  background: currentColor;
-}
-.hamburger::before { top: -6px; }
-.hamburger::after  { top:  6px; }
-
-.menuLabel {
-  font-family: var(--ba-font-sans);
-  font-size: 0.9375rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0;
-}
+/* ── Responsive ───────────────────────────────────────────── */
 
 @media (max-width: 640px) {
-  .menuLabel { display: none; }
-  .wordmark  { font-size: 0.875rem; }
-  .actions   { gap: 0.9rem; }
+  .menuLabel  { display: none; }
+  .wordmark   { font-size: 0.875rem; }
+  .actions    { gap: 0.9rem; }
+  .menuBtn    { gap: 0; }
 }

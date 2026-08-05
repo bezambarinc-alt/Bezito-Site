@@ -6,59 +6,90 @@ import { useDrawers } from './DrawerContext'
 import styles from './Header.module.css'
 
 /**
- * Fixed, transparent header that inverts to a solid dark bar once the visitor
- * scrolls past the first viewport of dark hero content.
+ * Fixed transparent header → solid white on scroll.
+ * All icons are exact pixel matches to the live Astro bezambar-web2026 site.
+ * Scroll threshold: > 20px (matches Astro `.is-solid` trigger exactly).
  */
 export default function Header() {
   const { openMenu, openSearch, openConcierge } = useDrawers()
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
+    const onScroll = () => setScrolled(window.scrollY > 20) // Astro: scrollY > 20
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   return (
-    <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
+    <header
+      id="baHeader"
+      className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}
+    >
       <div className={styles.inner}>
-        <button className={styles.iconBtn} aria-label="Open menu" onClick={openMenu}>
-          <span className={styles.hamburger} aria-hidden />
+
+        {/* Left: hamburger + "Menu" label */}
+        <button className={styles.menuBtn} aria-label="Open menu" onClick={openMenu}>
+          <HamburgerIcon />
           <span className={styles.menuLabel}>Menu</span>
         </button>
 
+        {/* Center: wordmark */}
         <Link href="/" className={styles.wordmark} aria-label="Bez Ambar — home">
           Bez Ambar
         </Link>
 
+        {/* Right: search + concierge */}
         <div className={styles.actions}>
           <button className={styles.iconBtn} aria-label="Search" onClick={openSearch}>
             <SearchIcon />
           </button>
           <button className={styles.iconBtn} aria-label="Concierge" onClick={openConcierge}>
-            <BellIcon />
+            <ConciergeIcon />
           </button>
         </div>
+
       </div>
     </header>
   )
 }
 
-function SearchIcon() {
+// ── Icons — exact Astro SVGs ──────────────────────────────────────────────────
+
+/** Hamburger: 3 SVG lines (22×14, stroke-width 1.5) — matches .ba-header__hamburger-icon */
+function HamburgerIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
-      <circle cx="11" cy="11" r="7" />
-      <line x1="21" y1="21" x2="16.5" y2="16.5" />
+    <svg width="22" height="14" viewBox="0 0 22 14" fill="none" aria-hidden>
+      <line x1="0" y1="1"  x2="22" y2="1"  stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="0" y1="7"  x2="22" y2="7"  stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="0" y1="13" x2="22" y2="13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   )
 }
 
-function BellIcon() {
+/** Search: 18×18 viewBox, circle cx=7.5 cy=7.5 r=5.5 — exact Astro .ba-header__icon */
+function SearchIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
-      <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
-      <path d="M13.7 21a2 2 0 0 1-3.4 0" />
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden>
+      <circle cx="7.5" cy="7.5" r="5.5" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="11.5" y1="11.5" x2="16.5" y2="16.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+/** Concierge bell: hotel desk bell SVG — exact Astro icon (not a notification bell) */
+function ConciergeIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden>
+      <path d="M9 2a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" fill="currentColor" />
+      <path d="M2 14h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M2 16h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      <path
+        d="M9 2C5.13 2 2 5.13 2 9v4a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9c0-3.87-3.13-7-7-7z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
     </svg>
   )
 }

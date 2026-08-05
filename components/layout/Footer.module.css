@@ -1,45 +1,57 @@
-/* Footer — light/white background, ink text
-   Matches Astro .ba-footer default (page-dark variant is separate) */
+/* ============================================================
+   Footer — exact match to Astro .ba-footer
+   White background, 5 columns (brand + Shop + Atelier + Service + Visit),
+   mobile accordion, SVG social icons, correct legal links.
+   ============================================================ */
 
 .footer {
   background: #ffffff;
   color: var(--ba-ink-soft);
   border-top: 1px solid rgba(0, 0, 0, 0.08);
-  padding: clamp(3.5rem, 7vw, 6rem) var(--ba-gutter) 0;
   font-family: var(--ba-font-sans);
 }
 
-.grid {
+.inner {
   max-width: var(--ba-maxw);
   margin-inline: auto;
+  padding: clamp(3.5rem, 7vw, 6rem) var(--ba-gutter) 0;
+}
+
+/* ── 5-column grid: brand(1.7fr) + 4 nav cols (1fr each) ── */
+.cols {
   display: grid;
-  grid-template-columns: 1.7fr 1fr 1fr 1fr;
-  gap: clamp(2rem, 5vw, 4rem);
+  grid-template-columns: 1.7fr 1fr 1fr 1fr 1fr;
+  gap: clamp(1.5rem, 3vw, 3rem);
   align-items: start;
 }
 
-/* Brand column */
+/* ── Brand column ──────────────────────────────────────────── */
+
+.brand {
+  padding-right: clamp(0.5rem, 2vw, 2rem);
+}
+
 .wordmark {
   font-family: var(--ba-font-sans);
-  font-size: 0.9375rem;
+  font-size: 0.9375rem;          /* 15px — matches Astro .ba-footer__wordmark */
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0;
   color: var(--ba-ink);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .tagline {
   font-family: var(--ba-font-editorial);
   font-style: italic;
   font-size: 0.9375rem;
-  text-transform: none;
   color: var(--ba-ink-soft);
   line-height: 1.5;
   margin-bottom: 4px;
 }
 
-.meta {
+.estab {
+  font-family: var(--ba-font-sans);
   font-size: 0.9375rem;
   text-transform: uppercase;
   letter-spacing: 0;
@@ -47,65 +59,185 @@
   margin-bottom: 24px;
 }
 
+/* Social icons row */
 .social {
   display: flex;
-  gap: 1.25rem;
-  font-size: 0.9375rem;
-  text-transform: uppercase;
-  letter-spacing: 0;
-  margin-bottom: 24px;
+  align-items: center;
+  gap: 1rem;
 }
-.social a { color: var(--ba-ink-soft); transition: color 0.2s; }
-.social a:hover { color: var(--ba-gold); }
 
-/* Nav columns */
-.colTitle {
-  font-size: 0.6875rem; /* 11px */
+.socialLink {
+  display: flex;
+  align-items: center;
+  color: var(--ba-ink-soft);
+  transition: color 0.2s;
+}
+.socialLink:hover { color: var(--ba-gold); }
+
+/* ── Nav columns common ────────────────────────────────────── */
+
+.col { /* wrapper for toggle + colLinks */ }
+
+/* Column title as button (for mobile accordion trigger) */
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-family: var(--ba-font-sans);
+  font-size: 0.6875rem;          /* 11px — matches Astro .ba-footer__toggle */
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0;
   color: var(--ba-ink);
+  text-align: left;
   margin-bottom: 1.1rem;
+  /* Not clickable on desktop — pointer-events & cursor set via media */
+  pointer-events: none;
+  cursor: default;
 }
 
-.col ul { display: flex; flex-direction: column; gap: 0; }
-.col li a {
-  display: block;
+/* Chevron — hidden on desktop */
+.chevron {
+  display: none;
+  color: var(--ba-ink);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+/* Links + inline buttons inside column */
+.colLinks {
+  display: flex;
+  flex-direction: column;
+}
+
+.colLinks a,
+.inlineBtn {
   font-family: var(--ba-font-sans);
-  font-size: 0.9375rem;
+  font-size: 0.9375rem;          /* 15px */
   font-weight: 400;
   text-transform: none;
   color: var(--ba-ink-soft);
   line-height: 2.0;
+  text-align: left;
   transition: color 0.2s;
 }
-.col li a:hover { color: var(--ba-gold); }
+.colLinks a:hover,
+.inlineBtn:hover { color: var(--ba-gold); }
 
-/* Legal bar */
-.legal {
-  max-width: var(--ba-maxw);
-  margin: clamp(3rem, 6vw, 5rem) auto 0;
+/* Address + appointment note in Visit column */
+.address {
+  font-style: normal;
+  font-family: var(--ba-font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.8;
+  color: var(--ba-ink-soft);
+  margin-bottom: 2px;
+}
+
+.appt {
+  font-family: var(--ba-font-sans);
+  font-size: 0.875rem;
+  color: var(--ba-ink-muted);
+  line-height: 1.5;
+  margin-bottom: 2px;
+}
+
+/* ── Legal bar ─────────────────────────────────────────────── */
+
+.bottom {
+  margin-top: clamp(3rem, 6vw, 5rem);
   padding: 20px 0 24px;
   border-top: 1px solid rgba(0, 0, 0, 0.07);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+}
+
+.copy {
+  font-family: var(--ba-font-sans);
   font-size: 0.75rem;
   letter-spacing: 0;
   color: var(--ba-ink-muted);
 }
 
-.legalLinks { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-.legalLinks a { color: var(--ba-ink-muted); transition: color 0.2s; }
-.legalLinks a:hover { color: var(--ba-gold); }
-
-@media (max-width: 860px) {
-  .grid { grid-template-columns: 1fr 1fr; }
-  .brandCol { grid-column: 1 / -1; }
+.legal {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
-@media (max-width: 520px) {
-  .grid { grid-template-columns: 1fr; }
-  .legal { flex-direction: column; align-items: flex-start; }
+.legal a {
+  font-family: var(--ba-font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0;
+  color: var(--ba-ink-muted);
+  transition: color 0.2s;
+}
+.legal a:hover { color: var(--ba-gold); }
+
+/* ── Responsive — tablet 860–1024 ─────────────────────────── */
+
+@media (max-width: 1024px) {
+  .cols {
+    grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* Collapse to 3-col: brand full-width + 2×2 nav grid */
+@media (max-width: 860px) {
+  .cols {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .brand {
+    grid-column: 1 / -1;
+    padding-right: 0;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* ── Mobile accordion (< 768px) ────────────────────────────── */
+
+@media (max-width: 767px) {
+  .cols {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .brand {
+    grid-column: 1;
+    margin-bottom: 2rem;
+    padding-right: 0;
+  }
+
+  /* Enable toggle as clickable */
+  .toggle {
+    pointer-events: auto;
+    cursor: pointer;
+    padding: 1rem 0;
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  /* Show chevron on mobile */
+  .chevron { display: block; }
+
+  /* Collapse links by default */
+  .colLinks {
+    display: none;
+    padding: 0.5rem 0 1rem;
+  }
+
+  /* Expanded state — .colOpen is added by React */
+  .colOpen .colLinks { display: flex; }
+  .colOpen .chevron  { transform: rotate(180deg); }
+  .colOpen .toggle   { border-bottom-color: transparent; }
+
+  .bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
