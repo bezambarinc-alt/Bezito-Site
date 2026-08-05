@@ -106,25 +106,8 @@
   letter-spacing: 0;
 }
 
-/* Contact link — Astro .site-header__right: 11px, 0.18em tracking, uppercase */
-.contactLink {
-  font-family: var(--ba-font-sans);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: inherit;
-  text-decoration: none;
-  transition: opacity 0.2s;
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-}
-.contactLink:hover { opacity: 0.5; }
-
 @media (max-width: 640px) {
-  .menuLabel    { display: none; }
-  .wordmark     { font-size: 0.875rem; }
-  .actions      { gap: 0.9rem; }
-  .contactLink  { display: none; }
+  .menuLabel { display: none; }
+  .wordmark  { font-size: 0.875rem; }
+  .actions   { gap: 0.9rem; }
 }

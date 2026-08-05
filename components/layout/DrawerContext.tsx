@@ -12,6 +12,7 @@ export interface InquiryPrefill {
   title?: string
   sku?: string
   intent?: string
+  fromConcierge?: boolean
 }
 
 type ActivePanel = 'inquiry' | 'concierge' | 'search' | 'menu' | null

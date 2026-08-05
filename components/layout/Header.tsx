@@ -29,7 +29,7 @@ export default function Header() {
         </button>
 
         <Link href="/" className={styles.wordmark} aria-label="Bez Ambar — home">
-          BEZ AMBAR
+          Bez Ambar
         </Link>
 
         <div className={styles.actions}>
@@ -39,7 +39,6 @@ export default function Header() {
           <button className={styles.iconBtn} aria-label="Concierge" onClick={openConcierge}>
             <BellIcon />
           </button>
-          <Link href="/contact" className={styles.contactLink}>Contact</Link>
         </div>
       </div>
     </header>

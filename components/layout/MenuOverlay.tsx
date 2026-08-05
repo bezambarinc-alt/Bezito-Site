@@ -5,206 +5,104 @@ import { useState } from 'react'
 import { useDrawers } from './DrawerContext'
 import styles from './MenuOverlay.module.css'
 
-// ── Nav data ──────────────────────────────────────────────────────────────────
+// ── Types ──────────────────────────────────────────────────────────────────────
 
-type NavItem =
-  | { kind: 'link';   label: string; href: string; external?: true }
-  | { kind: 'expand'; label: string; id: string }
-  | { kind: 'soon';   label: string }
+type NavEntry =
+  | { kind: 'link';    label: string; href: string }
+  | { kind: 'expand';  label: string; id: string }
+  | { kind: 'action';  label: string; target: 'concierge' | 'inquiry'; intent?: string }
+  | { kind: 'soon';    label: string }
+  | { kind: 'label';   text: string }
+  | { kind: 'divider' }
 
-interface SubCol    { id: string; items: NavItem[] }
-interface SubSubCol { id: string; items: NavItem[] }
+interface SubCol { id: string; items: NavEntry[] }
 
-const ROOT: NavItem[] = [
-  { kind: 'expand', label: 'Collection',       id: 'collection' },
-  { kind: 'expand', label: 'Manufacture',      id: 'manufacture' },
-  { kind: 'expand', label: 'Service',          id: 'service' },
-  { kind: 'expand', label: 'Editorial',        id: 'editorial' },
-  { kind: 'expand', label: 'Resources',        id: 'resources' },
-  { kind: 'expand', label: 'Signature Pieces', id: 'signature' },
+// ── Root items (matches live bezambar-web2026.vercel.app exactly) ─────────────
+
+const ROOT: NavEntry[] = [
+  { kind: 'expand', label: 'Jewelry',     id: 'jewelry' },
+  { kind: 'expand', label: 'Atelier',     id: 'atelier' },
+  { kind: 'link',   label: 'Blog',        href: '/blog' },
+  { kind: 'link',   label: 'The Archive', href: '/archive' },
+  { kind: 'action', label: 'Service',     target: 'concierge' },
 ]
+
+// ── Sub-columns ────────────────────────────────────────────────────────────────
 
 const SUB_COLS: SubCol[] = [
   {
-    id: 'collection',
+    id: 'jewelry',
     items: [
-      { kind: 'expand', label: 'Bloom Collection',  id: 'bloom' },
-      { kind: 'expand', label: 'Rings',             id: 'rings' },
-      { kind: 'expand', label: 'Engagement Rings',  id: 'engagement-rings' },
-      { kind: 'expand', label: 'Wedding Bands',     id: 'wedding-bands' },
-      { kind: 'expand', label: 'Earrings',          id: 'earrings' },
-      { kind: 'expand', label: 'Pendants',          id: 'pendants' },
-      { kind: 'expand', label: 'Necklaces',         id: 'necklaces' },
-      { kind: 'expand', label: 'Bracelets',         id: 'bracelets' },
+      { kind: 'label',  text: 'Collections' },
+      { kind: 'link',   label: 'Bloom Collection',   href: '/collection/bloom' },
+      { kind: 'soon',   label: 'Dentelle Collection' },
+      { kind: 'divider' },
+      { kind: 'label',  text: 'Browse' },
+      { kind: 'link',   label: 'Rings',         href: '/jewelry/rings' },
+      { kind: 'link',   label: 'Bands',          href: '/jewelry/wedding-bands' },
+      { kind: 'link',   label: 'Bracelets',      href: '/jewelry/bracelets' },
+      { kind: 'link',   label: 'Earrings',       href: '/jewelry/earrings' },
+      { kind: 'link',   label: 'Necklaces',      href: '/jewelry/necklaces' },
+      { kind: 'link',   label: 'Pendants',       href: '/jewelry/pendants' },
+      { kind: 'divider' },
+      { kind: 'label',  text: 'From the Atelier' },
+      { kind: 'link',   label: 'The Heart Ruby',    href: '/jewelry/bracelets/heart-ruby' },
+      { kind: 'link',   label: 'The 30-Carat Flex', href: '/jewelry/bracelets/30-carat-flex' },
+      { kind: 'link',   label: 'Elysian Band',      href: '/jewelry/wedding-bands/elysian-band-50' },
+      { kind: 'soon',   label: 'Cascata' },
+      { kind: 'soon',   label: 'Crossover Ashoka®' },
     ],
   },
   {
-    id: 'manufacture',
+    id: 'atelier',
     items: [
-      { kind: 'link', label: 'The Inventor',        href: '/about-bez-ambar' },
-      { kind: 'link', label: 'The Bez Ambar Story', href: '/the-story' },
-      { kind: 'link', label: 'Our Story',           href: '/our-story' },
-      { kind: 'link', label: 'Press',               href: '/press' },
-    ],
-  },
-  {
-    id: 'service',
-    items: [
-      { kind: 'link', label: 'Contact',            href: '/contact' },
-      { kind: 'link', label: 'Bespoke Inquiry',    href: '/contact?type=bespoke' },
-      { kind: 'link', label: 'Repairs & Cleaning', href: '/contact?type=repairs' },
-      { kind: 'link', label: 'Warranty',           href: '/warranty' },
-    ],
-  },
-  {
-    id: 'editorial',
-    items: [
-      { kind: 'link', label: 'Journal',           href: '/journal' },
-      { kind: 'link', label: 'Diamond Education', href: '/diamond-education' },
-      { kind: 'link', label: 'Video Gallery',     href: '/video-gallery' },
-    ],
-  },
-  {
-    id: 'resources',
-    items: [
-      { kind: 'link', label: 'Ring Size Chart', href: '/ring-size-chart' },
-      { kind: 'link', label: 'Catalogs',        href: '/catalogs' },
-    ],
-  },
-  {
-    id: 'signature',
-    items: [
-      { kind: 'link', label: '30-Carat Flex',    href: 'https://bezito.co/page/30-carat-flex',    external: true },
-      { kind: 'link', label: 'Flex Bracelets',   href: 'https://bezito.co/page/flex-bracelets',   external: true },
-      { kind: 'link', label: 'Elysian Cut',      href: 'https://bezito.co/page/elysian-cut',      external: true },
-      { kind: 'link', label: 'Cascata',          href: 'https://bezito.co/page/cascata',          external: true },
-      { kind: 'link', label: 'Crossover Ashoka', href: 'https://bezito.co/page/crossover-ashoka', external: true },
-      { kind: 'link', label: 'Heart Ruby',       href: 'https://bezito.co/page/heart-ruby-v2',    external: true },
-      { kind: 'link', label: 'Saul Ring',        href: 'https://bezito.co/page/saul-ring',        external: true },
+      { kind: 'link',  label: 'About Bez Ambar',  href: '/about-bez-ambar' },
+      { kind: 'link',  label: 'Elysian Cut™',     href: '/elysian-cut' },
+      { kind: 'link',  label: 'Journal',          href: '/journal' },
+      { kind: 'divider' },
+      { kind: 'label', text: 'Resources' },
+      { kind: 'link',  label: 'Diamond Education', href: '/diamond-education' },
+      { kind: 'link',  label: 'Ring Size Guide',   href: '/ring-size-chart' },
     ],
   },
 ]
 
-const SUB_SUB_COLS: SubSubCol[] = [
-  {
-    id: 'bloom',
-    items: [
-      { kind: 'link', label: 'The Calla · ref. C0728', href: '/calla' },
-      { kind: 'link', label: 'Camélia · ref. B9792',   href: '/camelia' },
-    ],
-  },
-  {
-    id: 'rings',
-    items: [
-      { kind: 'link', label: 'Fancy Yellow Three-Stone · ref. C0536',   href: '/fancy-yellow-three-stone' },
-      { kind: 'link', label: 'Fancy Deep Brownish Yellow · ref. 1C36',  href: '/fancy-deep-brownish-yellow-cushion' },
-      { kind: 'link', label: 'Fancy Very Pink Oval · ref. C0747',       href: '/fancy-very-pink-oval' },
-    ],
-  },
-  { id: 'engagement-rings', items: [{ kind: 'soon', label: 'In production' }] },
-  { id: 'wedding-bands',    items: [{ kind: 'soon', label: 'In production' }] },
-  { id: 'earrings',         items: [{ kind: 'soon', label: 'In production' }] },
-  { id: 'pendants',         items: [{ kind: 'soon', label: 'In production' }] },
-  {
-    id: 'necklaces',
-    items: [
-      { kind: 'link', label: 'The Single Row · ref. IN100',           href: '/single-row' },
-      { kind: 'link', label: 'The Baguette Line · ref. IN101',        href: '/baguette-line' },
-      { kind: 'link', label: 'The Pear Shaped Necklace · ref. C0508', href: '/pear-shaped-necklace' },
-    ],
-  },
-  {
-    id: 'bracelets',
-    items: [
-      { kind: 'link', label: 'The Double Row Asscher · ref. 5FLX33ASCH2', href: '/double-row-asscher-flex' },
-      { kind: 'link', label: 'Emerald Cut Stretch · ref. 5FLX40ECNS',     href: '/emerald-cut-stretch-bracelet' },
-      { kind: 'link', label: 'Single Row Asscher · ref. 5FLX33ASC',       href: '/single-row-asscher-cut' },
-      { kind: 'link', label: 'Blue Sapphire Flex · ref. 5FLX30R',         href: '/blue-sapphire-single-row-flex' },
-    ],
-  },
-]
-
-// ── Item renderer ─────────────────────────────────────────────────────────────
-
-function NavItemRow({
-  item,
-  isActive,
-  onClick,
-  onClose,
-}: {
-  item: NavItem
-  isActive?: boolean
-  onClick?: () => void
-  onClose: () => void
-}) {
-  if (item.kind === 'link') {
-    return (
-      <Link
-        href={item.href}
-        onClick={onClose}
-        target={item.external ? '_blank' : undefined}
-        rel={item.external ? 'noopener noreferrer' : undefined}
-        className={`${styles.item} ${item.external ? styles.external : ''}`}
-      >
-        {item.label}
-      </Link>
-    )
-  }
-  if (item.kind === 'expand') {
-    return (
-      <button
-        type="button"
-        className={`${styles.item} ${styles.hasSub} ${isActive ? styles.active : ''}`}
-        onClick={onClick}
-      >
-        {item.label}
-      </button>
-    )
-  }
-  return <span className={`${styles.item} ${styles.soon}`}>{item.label}</span>
-}
-
-// ── MenuOverlay ───────────────────────────────────────────────────────────────
+// ── MenuOverlay ────────────────────────────────────────────────────────────────
 
 export default function MenuOverlay() {
-  const { active, close } = useDrawers()
-  const open = active === 'menu'
-
-  const [level1, setLevel1] = useState<string | null>(null)
-  const [level2, setLevel2] = useState<string | null>(null)
+  const { active, close, openConcierge, openInquiryDrawer } = useDrawers()
+  const open   = active === 'menu'
+  const [sub, setSub] = useState<string | null>(null)
 
   function handleClose() {
-    setLevel1(null)
-    setLevel2(null)
+    setSub(null)
     close()
   }
 
-  function selectLevel1(id: string) {
-    if (level1 === id) return
-    setLevel1(id)
-    setLevel2(null)
+  function handleAction(target: 'concierge' | 'inquiry', intent?: string) {
+    handleClose()
+    if (target === 'concierge') openConcierge()
+    if (target === 'inquiry')   openInquiryDrawer(intent ? { intent } : {})
   }
+
+  const activeSub = SUB_COLS.find((c) => c.id === sub)
 
   const overlayClass = [
     styles.overlay,
-    open   ? styles.open      : '',
-    level1 ? styles.hasSub    : '',
-    level2 ? styles.hasSubSub : '',
+    open ? styles.open   : '',
+    sub  ? styles.hasSub : '',
   ].filter(Boolean).join(' ')
-
-  const activeSub    = SUB_COLS.find((c) => c.id === level1)
-  const activeSubSub = SUB_SUB_COLS.find((c) => c.id === level2)
 
   return (
     <>
-      {/* Dark scrim — Astro .menu-backdrop */}
+      {/* Backdrop scrim */}
       <div
         className={`${styles.backdrop} ${open ? styles.backdropOpen : ''}`}
         onClick={handleClose}
         aria-hidden
       />
 
-      {/* Left drawer — Astro .menu-overlay */}
+      {/* Slide-in nav — matches Astro .menu-overlay */}
       <nav className={overlayClass} aria-hidden={!open} aria-label="Main menu">
         <button className={styles.closeBtn} onClick={handleClose} aria-label="Close menu">
           ×
@@ -213,49 +111,102 @@ export default function MenuOverlay() {
 
         {/* Column 1 — root */}
         <ul className={styles.col}>
-          <li>
-            <Link href="/" onClick={handleClose} className={`${styles.item} ${styles.homeItem}`}>
-              Home
-            </Link>
-          </li>
-          {ROOT.map((item) =>
-            item.kind === 'expand' ? (
-              <li key={item.id}>
-                <NavItemRow
-                  item={item}
-                  isActive={level1 === item.id}
-                  onClick={() => selectLevel1(item.id)}
-                  onClose={handleClose}
-                />
+          {ROOT.map((item, i) => {
+            if (item.kind === 'expand') return (
+              <li key={i}>
+                <button
+                  type="button"
+                  className={`${styles.item} ${styles.itemExpand} ${sub === item.id ? styles.itemActive : ''}`}
+                  onClick={() => setSub(sub === item.id ? null : item.id)}
+                >
+                  {item.label}
+                </button>
               </li>
-            ) : null,
-          )}
+            )
+            if (item.kind === 'link') return (
+              <li key={i}>
+                <Link href={item.href} onClick={handleClose} className={styles.item}>
+                  {item.label}
+                </Link>
+              </li>
+            )
+            if (item.kind === 'action') return (
+              <li key={i}>
+                <button
+                  type="button"
+                  className={styles.item}
+                  onClick={() => handleAction(item.target, item.intent)}
+                >
+                  {item.label}
+                </button>
+              </li>
+            )
+            return null
+          })}
+
+          {/* CTA items — bottom of root col, matches Astro .menu-cta-item */}
+          <li className={styles.ctaItem}>
+            <button
+              type="button"
+              className={styles.ctaBtn}
+              onClick={() => { handleClose(); openInquiryDrawer({ intent: 'consultation' }) }}
+            >
+              Arrange a Private Consultation
+            </button>
+          </li>
+          <li className={styles.ctaItem}>
+            <button
+              type="button"
+              className={styles.conciergeBtn}
+              onClick={() => { handleClose(); openConcierge() }}
+            >
+              Atelier Concierge
+            </button>
+          </li>
         </ul>
 
-        {/* Column 2 — sub (shown when level1 is set) */}
+        {/* Column 2 — sub (expands drawer width) */}
         {activeSub && (
           <ul className={styles.col}>
-            {activeSub.items.map((item, i) => (
-              <li key={item.kind === 'expand' ? item.id : i}>
-                <NavItemRow
-                  item={item}
-                  isActive={item.kind === 'expand' && level2 === item.id}
-                  onClick={item.kind === 'expand' ? () => setLevel2(item.id) : undefined}
-                  onClose={handleClose}
-                />
-              </li>
-            ))}
-          </ul>
-        )}
+            {/* Back button — matches Astro .menu-back */}
+            <li className={styles.backItem}>
+              <button type="button" className={styles.backBtn} onClick={() => setSub(null)}>
+                ← Back
+              </button>
+            </li>
 
-        {/* Column 3 — sub-sub (shown when level2 is set) */}
-        {activeSubSub && (
-          <ul className={styles.col}>
-            {activeSubSub.items.map((item, i) => (
-              <li key={i}>
-                <NavItemRow item={item} onClose={handleClose} />
-              </li>
-            ))}
+            {activeSub.items.map((item, i) => {
+              if (item.kind === 'label') return (
+                <li key={i} className={styles.sectionLabel}>{item.text}</li>
+              )
+              if (item.kind === 'divider') return (
+                <li key={i} className={styles.divider} aria-hidden />
+              )
+              if (item.kind === 'link') return (
+                <li key={i}>
+                  <Link href={item.href} onClick={handleClose} className={styles.item}>
+                    {item.label}
+                  </Link>
+                </li>
+              )
+              if (item.kind === 'soon') return (
+                <li key={i}>
+                  <span className={`${styles.item} ${styles.itemSoon}`}>{item.label}</span>
+                </li>
+              )
+              if (item.kind === 'action') return (
+                <li key={i}>
+                  <button
+                    type="button"
+                    className={styles.item}
+                    onClick={() => handleAction(item.target, item.intent)}
+                  >
+                    {item.label}
+                  </button>
+                </li>
+              )
+              return null
+            })}
           </ul>
         )}
       </nav>
