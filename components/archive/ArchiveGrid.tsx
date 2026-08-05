@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { getAllProducts } from '@/lib/queries'
+import type { Product } from '@/types/products'
 import styles from './ArchiveGrid.module.css'
 
 /**
@@ -8,7 +9,7 @@ import styles from './ArchiveGrid.module.css'
  * shell + filters render immediately while the ~500-piece grid loads.
  */
 export default async function ArchiveGrid() {
-  let products
+  let products: Product[] = []
   try {
     products = await getAllProducts()
   } catch {
