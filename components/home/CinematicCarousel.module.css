@@ -1,6 +1,7 @@
 .cineStack {
   position: relative;
   height: 200vh;
+  background: var(--ba-black);
 }
 
 .cinePin {
@@ -8,6 +9,7 @@
   top: 0;
   height: 100vh;
   overflow: hidden;
+  background: var(--ba-black);
 }
 
 .cineSlide0 {
@@ -66,10 +68,12 @@
 }
 
 .cineHeadline {
-  font-family: var(--ba-font-serif);
+  font-family: var(--ba-font-sans);
   font-size: clamp(1.75rem, 3.4vw, 3rem);
   font-weight: 300;
-  color: var(--ba-white);
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: #ffffff;
   margin: 8px 0;
 }
 

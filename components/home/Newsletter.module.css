@@ -1,3 +1,5 @@
+/* Newsletter — dark section, explicit dark bg (body is now white) */
+
 .section {
   background: var(--ba-dark);
   padding: clamp(5rem, 10vw, 9rem) var(--ba-gutter);
@@ -9,16 +11,20 @@
   margin: 0 auto;
 }
 
+/* Heading: Open Sans, uppercase — dark section so color is white */
 .title {
-  font-family: var(--ba-font-serif);
+  font-family: var(--ba-font-sans);
   font-size: clamp(1.75rem, 3vw, 2.75rem);
-  font-weight: 400;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0;
   color: var(--ba-white);
   margin: 0 0 1rem;
 }
 
 .lede {
-  color: var(--ba-muted);
+  font-family: var(--ba-font-editorial);
+  color: var(--ba-ink-muted);
   margin-bottom: 2.5rem;
 }
 
@@ -26,7 +32,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0;
   flex-wrap: wrap;
   gap: 1rem;
 }
@@ -49,7 +54,7 @@
 }
 
 .input::placeholder {
-  color: var(--ba-muted);
+  color: var(--ba-ink-muted);
 }
 
 .btn {
@@ -57,17 +62,16 @@
   border: none;
   color: var(--ba-gold);
   font-family: var(--ba-font-sans);
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
+  font-size: 0.9375rem;
+  font-weight: 600;
   text-transform: uppercase;
+  letter-spacing: 0;
   cursor: pointer;
   padding: 10px 0;
   transition: opacity var(--ba-transition);
 }
 
-.btn:hover {
-  opacity: 0.7;
-}
+.btn:hover { opacity: 0.7; }
 
 .btn:disabled {
   opacity: 0.4;

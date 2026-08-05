@@ -1,86 +1,103 @@
+/* Footer — light/white background, ink text
+   Matches Astro .ba-footer default (page-dark variant is separate) */
+
 .footer {
-  background: var(--ba-black);
-  color: var(--ba-cream);
-  border-top: 1px solid rgba(200, 169, 110, 0.16);
-  padding: clamp(3.5rem, 7vw, 6rem) var(--ba-gutter) 2rem;
+  background: #ffffff;
+  color: var(--ba-ink-soft);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding: clamp(3.5rem, 7vw, 6rem) var(--ba-gutter) 0;
+  font-family: var(--ba-font-sans);
 }
 
 .grid {
   max-width: var(--ba-maxw);
   margin-inline: auto;
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  grid-template-columns: 1.7fr 1fr 1fr 1fr;
   gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
 }
 
+/* Brand column */
 .wordmark {
-  font-family: var(--ba-font-serif);
-  font-size: 1.4rem;
-  letter-spacing: 0.28em;
-  color: var(--ba-white);
+  font-family: var(--ba-font-sans);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: var(--ba-ink);
+  margin-bottom: 10px;
 }
 
 .tagline {
-  margin-top: 1rem;
   font-family: var(--ba-font-editorial);
   font-style: italic;
-  color: var(--ba-gold);
+  font-size: 0.9375rem;
+  text-transform: none;
+  color: var(--ba-ink-soft);
+  line-height: 1.5;
+  margin-bottom: 4px;
 }
 
 .meta {
-  margin-top: 0.35rem;
-  font-family: var(--ba-font-sans);
-  font-size: 0.78rem;
-  letter-spacing: 0.16em;
+  font-size: 0.9375rem;
   text-transform: uppercase;
-  color: var(--ba-muted);
+  letter-spacing: 0;
+  color: var(--ba-ink-muted);
+  margin-bottom: 24px;
 }
 
 .social {
-  margin-top: 1.75rem;
   display: flex;
   gap: 1.25rem;
-  font-family: var(--ba-font-sans);
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
+  font-size: 0.9375rem;
   text-transform: uppercase;
+  letter-spacing: 0;
+  margin-bottom: 24px;
 }
-.social a { color: var(--ba-cream); }
+.social a { color: var(--ba-ink-soft); transition: color 0.2s; }
 .social a:hover { color: var(--ba-gold); }
 
+/* Nav columns */
 .colTitle {
-  font-family: var(--ba-font-sans);
-  font-size: 0.72rem;
-  letter-spacing: 0.24em;
+  font-size: 0.6875rem; /* 11px */
+  font-weight: 600;
   text-transform: uppercase;
-  color: var(--ba-gold);
+  letter-spacing: 0;
+  color: var(--ba-ink);
   margin-bottom: 1.1rem;
 }
 
-.col ul { display: flex; flex-direction: column; gap: 0.7rem; }
+.col ul { display: flex; flex-direction: column; gap: 0; }
 .col li a {
-  font-family: var(--ba-font-editorial);
-  font-size: 0.95rem;
-  color: var(--ba-cream);
+  display: block;
+  font-family: var(--ba-font-sans);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  text-transform: none;
+  color: var(--ba-ink-soft);
+  line-height: 2.0;
+  transition: color 0.2s;
 }
 .col li a:hover { color: var(--ba-gold); }
 
+/* Legal bar */
 .legal {
   max-width: var(--ba-maxw);
   margin: clamp(3rem, 6vw, 5rem) auto 0;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 20px 0 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.07);
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   gap: 1rem;
-  font-family: var(--ba-font-sans);
   font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  color: var(--ba-muted);
+  letter-spacing: 0;
+  color: var(--ba-ink-muted);
 }
 
-.legalLinks { display: flex; gap: 1.5rem; }
+.legalLinks { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.legalLinks a { color: var(--ba-ink-muted); transition: color 0.2s; }
 .legalLinks a:hover { color: var(--ba-gold); }
 
 @media (max-width: 860px) {

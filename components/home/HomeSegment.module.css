@@ -1,12 +1,19 @@
+/* HomeSegment — two-column editorial segment
+   Light background sections: white bg, ink text — matches Astro .ba-segment */
+
 .segment {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  min-height: 560px;
+  background: var(--ba-white);
 }
 
 .media {
   position: relative;
   min-height: 520px;
   order: 1;
+  overflow: hidden;
+  background: var(--ba-cream);
 }
 
 .imageWrap {
@@ -16,54 +23,63 @@
 }
 
 .text {
-  padding: clamp(3rem, 6vw, 6rem);
+  padding: clamp(2.5rem, 6vw, 5rem) clamp(2rem, 5vw, 4.5rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
   order: 2;
+  background: var(--ba-white);
 }
 
 /* Reverse: media on right, text on left */
-.reverse .media {
-  order: 2;
-}
+.reverse .media { order: 2; }
+.reverse .text  { order: 1; }
 
-.reverse .text {
-  order: 1;
-}
-
+/* Title: Open Sans, weight 300, uppercase — Astro .ba-segment__heading */
 .title {
-  font-family: var(--ba-font-serif);
-  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  font-family: var(--ba-font-sans);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
   font-weight: 300;
-  color: var(--ba-white);
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: var(--ba-ink);
   line-height: 1.2;
   margin: 0.75rem 0 1.25rem;
 }
 
+/* Body: Cormorant Garamond serif, muted ink — Astro .ba-segment__body */
 .body {
   font-family: var(--ba-font-editorial);
-  font-size: clamp(1rem, 1.2vw, 1.1rem);
-  line-height: 1.75;
-  color: var(--ba-cream);
+  font-size: 1.0625rem; /* 17px */
+  line-height: 1.8;
+  color: var(--ba-ink-soft);
+  margin-bottom: 1.75rem;
 }
 
+/* CTA link — Astro .ba-segment__link */
 .cta {
   color: var(--ba-gold);
   font-family: var(--ba-font-sans);
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
+  font-size: 0.9375rem;
+  font-weight: 600;
   text-transform: uppercase;
-  margin-top: 2rem;
+  letter-spacing: 0;
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  align-self: flex-start;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  transition: opacity 0.3s;
 }
+.cta:hover { opacity: 0.7; }
 
 /* No-media / centered service segment */
 .noMedia {
-  border-top: 1px solid rgba(200, 169, 110, 0.3);
-  border-bottom: 1px solid rgba(200, 169, 110, 0.3);
+  display: block;
+  background: var(--ba-white);
+  border-top: 1px solid rgba(149, 130, 107, 0.3);
+  border-bottom: 1px solid rgba(149, 130, 107, 0.3);
 }
 
 .noMediaInner {
