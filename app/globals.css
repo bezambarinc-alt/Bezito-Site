@@ -116,7 +116,7 @@ body.page-dark {
 .ba-eyebrow {
   font-family: var(--ba-font-sans);
   font-size: 0.9375rem; /* 15px */
-  font-weight: 400;
+  font-weight: 600;     /* Astro: font-weight: 600 (was 400 — bug) */
   text-transform: uppercase;
   letter-spacing: 0;
   color: var(--ba-gold);

@@ -68,7 +68,7 @@ function FooterCol({ title, children }: { title: string; children: React.ReactNo
   const [open, setOpen] = useState(false)
 
   function handleToggle() {
-    // Matches Astro: if (window.innerWidth >= 768) return;
+    // Matches Astro: accordion only on mobile (< 768px)
     if (typeof window !== 'undefined' && window.innerWidth >= 768) return
     setOpen((o) => !o)
   }
@@ -162,23 +162,25 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* ── Shop ── */}
+          {/* ── Shop — matches Astro Footer.astro exactly ── */}
           <FooterCol title="Shop">
+            <Link href="/collection/bloom">Bloom Collection</Link>
             <Link href="/jewelry/rings">Rings</Link>
-            <Link href="/jewelry/wedding-bands">Bands</Link>
-            <Link href="/jewelry/bracelets">Bracelets</Link>
+            <Link href="/jewelry/engagement-rings">Engagement Rings</Link>
+            <Link href="/jewelry/wedding-bands">Wedding Bands</Link>
             <Link href="/jewelry/earrings">Earrings</Link>
+            <Link href="/jewelry/bracelets">Bracelets</Link>
             <Link href="/jewelry/necklaces">Necklaces</Link>
             <Link href="/jewelry/pendants">Pendants</Link>
-            <Link href="/collection/bloom">Bloom Collection</Link>
-            <Link href="/archive">The Archive</Link>
           </FooterCol>
 
-          {/* ── Atelier ── */}
-          <FooterCol title="Atelier">
+          {/* ── Discover — Astro calls this column "Discover" not "Atelier" ── */}
+          <FooterCol title="Discover">
             <Link href="/about-bez-ambar">About Bez Ambar</Link>
             <Link href="/elysian-cut">Elysian Cut™</Link>
             <Link href="/journal">Journal</Link>
+            <Link href="/blog">Blog</Link>
+            <Link href="/archive">The Archive</Link>
             <Link href="/diamond-education">Diamond Education</Link>
             <Link href="/ring-size-chart">Ring Size Guide</Link>
           </FooterCol>
@@ -205,7 +207,7 @@ export default function Footer() {
             <p className={styles.appt}>Private atelier · by appointment</p>
             <button
               type="button"
-              className={styles.inlineBtn}
+              className={styles.arrangeBtn}
               onClick={openConcierge}
             >
               Arrange a Visit ›

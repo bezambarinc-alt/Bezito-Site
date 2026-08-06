@@ -40,7 +40,6 @@ export default function SearchOverlay() {
     >
       <div className={styles.panel} onClick={(e) => e.stopPropagation()}>
         <button className={styles.close} onClick={close} aria-label="Close search">✕</button>
-        <p className={styles.eyebrow}>Search the Maison</p>
         <div className={styles.inputRow}>
           <input
             ref={inputRef}

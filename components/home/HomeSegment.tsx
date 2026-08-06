@@ -3,25 +3,29 @@ import styles from './HomeSegment.module.css'
 import ConciergeCtaButton from './ConciergeCtaButton'
 
 export interface HomeSegmentProps {
+  id?: string             // maps to section id= (scroll anchors like #segment-foundation)
   eyebrow: string
   title: string
   body: string
   imageUrl?: string
   videoUrl?: string
   reverse?: boolean
+  insetSquare?: boolean   // Astro: .segment__media--inset-square — 1:1 ratio with inner padding
   ctaLabel?: string
   ctaHref?: string
-  openConcierge?: boolean // true for "Arrange a Private Consultation"
-  noMedia?: boolean // true for "service" segment
+  openConcierge?: boolean // opens Concierge drawer
+  noMedia?: boolean       // centered text-only segment (no media column)
 }
 
 export default function HomeSegment({
+  id,
   eyebrow,
   title,
   body,
   imageUrl,
   videoUrl,
   reverse = false,
+  insetSquare = false,
   ctaLabel,
   ctaHref,
   openConcierge = false,
@@ -44,27 +48,34 @@ export default function HomeSegment({
 
   if (noMedia) {
     return (
-      <section className={styles.noMedia}>
+      <section id={id} className={styles.noMedia}>
         <div className={styles.noMediaInner}>{textBlock}</div>
       </section>
     )
   }
 
+  const mediaClass = [
+    styles.media,
+    insetSquare ? styles.insetSquare : '',
+  ].filter(Boolean).join(' ')
+
   return (
-    <section className={`${styles.segment} ${reverse ? styles.reverse : ''}`}>
-      <div className={styles.media}>
+    <section id={id} className={`${styles.segment} ${reverse ? styles.reverse : ''}`}>
+      <div className={mediaClass}>
         {videoUrl ? (
+          // Video fills content area (respects inset padding automatically)
           <video
             autoPlay
             muted
             loop
             playsInline
             preload="none"
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
           >
             <source src={videoUrl} type="video/mp4" />
           </video>
         ) : imageUrl ? (
+          // imageWrap is the positioned parent for Next.js Image fill
           <div className={styles.imageWrap}>
             <Image
               src={imageUrl}

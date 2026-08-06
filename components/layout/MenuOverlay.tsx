@@ -107,7 +107,8 @@ export default function MenuOverlay() {
         <button className={styles.closeBtn} onClick={handleClose} aria-label="Close menu">
           ×
         </button>
-        <div className={styles.logo}>BEZ AMBAR</div>
+        {/* Logo links back to home and closes menu — Astro uses <a> not <div> */}
+        <Link href="/" className={styles.logo} onClick={handleClose}>BEZ AMBAR</Link>
 
         {/* Column 1 — root */}
         <ul className={styles.col}>

@@ -1,16 +1,25 @@
-/* HomeHeroImage — full-bleed editorial image with centered text overlay
-   Matches Astro .hero-image (home.css): centered, flex-end positioning */
+/* HomeHeroImage — full-bleed editorial image with centered overlay
+   Matches Astro .hero-image (src/styles/templates/home.css)
+
+   Color defaults (light text on dark image):
+     eyebrow → var(--ba-white) = #faf7f2  (Astro: var(--paper))
+     title   → #fff            (Astro: var(--white) = pure white)
+     sub     → var(--ba-gold-warm) = #c9b896  (Astro: var(--accent-warm))
+
+   .textDark overrides all three → var(--ba-ink) for light-bg images (SHHH). */
 
 .hero {
   position: relative;
   width: 100%;
   overflow: hidden;
+  /* height is set via inline style from the component (600px / 700px) */
 }
 
-/* Astro: overlay is flex column, justify-content: flex-end, align-items: center, centered text */
+/* Gradient scrim + flex column for text positioning */
 .overlay {
   position: absolute;
   inset: 0;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -24,22 +33,24 @@
     rgba(0, 0, 0, 0) 65%,
     rgba(0, 0, 0, 0.5) 100%
   );
-  z-index: 2;
   pointer-events: none;
 }
 
-/* Astro .hero-image__eyebrow: 15px, weight 500, paper color */
+/* ── Text elements — light defaults ────────────────────────── */
+
+/* Astro .hero-image__eyebrow: 15px, weight 500, color: var(--paper) */
 .eyebrow {
   font-family: var(--ba-font-sans);
-  font-size: 0.9375rem; /* 15px */
+  font-size: 0.9375rem;                    /* 15px */
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0;
+  color: var(--ba-white);                  /* #faf7f2 = Astro var(--paper) */
   margin-bottom: 20px;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-/* Astro .hero-image__title: clamp(28px, 4vw, 44px), weight 200 — NOT huge */
+/* Astro .hero-image__title: clamp(28px, 4vw, 44px), weight 200, color: var(--white) */
 .title {
   font-family: var(--ba-font-sans);
   font-size: clamp(28px, 4vw, 44px);
@@ -47,21 +58,32 @@
   text-transform: uppercase;
   letter-spacing: 0;
   line-height: 1.15;
+  color: #ffffff;                          /* Astro: var(--white) = #ffffff (pure white) */
   margin: 0 auto 18px;
   max-width: 24ch;
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
-/* Astro .hero-image__sub: 15px, weight 300, accent-warm */
+/* Astro .hero-image__sub: 15px, weight 300, color: var(--accent-warm) */
 .sub {
   font-family: var(--ba-font-sans);
   font-size: 0.9375rem;
   font-weight: 300;
+  color: var(--ba-gold-warm);              /* #c9b896 = Astro var(--accent-warm) */
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
+/* ── Dark text override (SHHH section — light image) ────────── */
+
+.textDark .eyebrow,
+.textDark .title,
+.textDark .sub {
+  color: var(--ba-ink);                    /* #1a1a1a — Astro uses inline style="color:#1a1a1a" */
+  text-shadow: none;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+
 @media (max-width: 900px) {
-  .overlay {
-    padding-bottom: 15vh;
-  }
+  .overlay { padding-bottom: 15vh; }       /* Astro: padding-bottom: 15vh on mobile */
 }

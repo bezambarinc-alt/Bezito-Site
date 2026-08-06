@@ -1,53 +1,61 @@
 /* ============================================================
-   Footer — exact match to Astro .ba-footer
-   White background, 5 columns (brand + Shop + Atelier + Service + Visit),
-   mobile accordion, SVG social icons, correct legal links.
+   Footer — exact match to Astro .ba-footer (src/styles/global.css §15)
+   White bg, 5 columns (brand 1.7fr + Shop + Discover + Service + Visit),
+   mobile accordion with smooth max-height transition, SVG social icons.
    ============================================================ */
 
+/* ── Outer element ─────────────────────────────────────────── */
+
 .footer {
-  background: #ffffff;
-  color: var(--ba-ink-soft);
+  background: var(--ba-white);               /* Astro: var(--white) = #ffffff */
   border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 72px 24px 0;                      /* Astro: padding: 72px 24px 0 (fixed) */
   font-family: var(--ba-font-sans);
+  color: var(--ba-ink-soft);
 }
+
+/* ── Inner container ───────────────────────────────────────── */
 
 .inner {
-  max-width: var(--ba-maxw);
+  max-width: var(--ba-maxw);                 /* 1200px — matches Astro --max-w */
   margin-inline: auto;
-  padding: clamp(3.5rem, 7vw, 6rem) var(--ba-gutter) 0;
 }
 
-/* ── 5-column grid: brand(1.7fr) + 4 nav cols (1fr each) ── */
+/* ── 5-column grid ─────────────────────────────────────────── */
+
 .cols {
   display: grid;
   grid-template-columns: 1.7fr 1fr 1fr 1fr 1fr;
-  gap: clamp(1.5rem, 3vw, 3rem);
+  gap: 40px 48px;                            /* Astro: gap: 40px 48px */
+  margin-bottom: 56px;                       /* Astro: margin-bottom: 56px */
   align-items: start;
 }
 
 /* ── Brand column ──────────────────────────────────────────── */
 
 .brand {
-  padding-right: clamp(0.5rem, 2vw, 2rem);
+  padding-right: 24px;                       /* Astro: padding-right: 24px (fixed) */
+  border-right: 1px solid rgba(0, 0, 0, 0.07); /* Astro vertical divider */
 }
 
 .wordmark {
   font-family: var(--ba-font-sans);
-  font-size: 0.9375rem;          /* 15px — matches Astro .ba-footer__wordmark */
+  font-size: 0.9375rem;                      /* 15px */
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0;
   color: var(--ba-ink);
-  margin-bottom: 8px;
+  margin: 0 0 10px;                          /* Astro: margin: 0 0 10px */
 }
 
 .tagline {
   font-family: var(--ba-font-editorial);
   font-style: italic;
+  text-transform: none;
   font-size: 0.9375rem;
   color: var(--ba-ink-soft);
   line-height: 1.5;
-  margin-bottom: 4px;
+  margin: 0 0 4px;
 }
 
 .estab {
@@ -56,56 +64,58 @@
   text-transform: uppercase;
   letter-spacing: 0;
   color: var(--ba-ink-muted);
-  margin-bottom: 24px;
+  margin: 0 0 24px;                          /* Astro: margin: 0 0 24px */
 }
 
 /* Social icons row */
 .social {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 18px;                                 /* Astro: .ba-footer__social { gap: 18px } */
+  margin-bottom: 24px;
 }
 
 .socialLink {
   display: flex;
   align-items: center;
-  color: var(--ba-ink-soft);
+  color: var(--ba-ink-soft);                 /* Astro: .social-links__icon { color: var(--ink-soft) } */
   transition: color 0.2s;
+  -webkit-tap-highlight-color: transparent;
 }
 .socialLink:hover { color: var(--ba-gold); }
 
-/* ── Nav columns common ────────────────────────────────────── */
+/* ── Nav columns ───────────────────────────────────────────── */
 
-.col { /* wrapper for toggle + colLinks */ }
-
-/* Column title as button (for mobile accordion trigger) */
+/* Column heading — button that doubles as mobile accordion trigger */
 .toggle {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   font-family: var(--ba-font-sans);
-  font-size: 0.6875rem;          /* 11px — matches Astro .ba-footer__toggle */
+  font-size: 0.6875rem;                      /* 11px — Astro: font-size: 11px */
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0;
   color: var(--ba-ink);
   text-align: left;
-  margin-bottom: 1.1rem;
-  /* Not clickable on desktop — pointer-events & cursor set via media */
+  margin-bottom: 16px;                       /* Astro: margin: 0 0 16px */
+  /* Not interactive on desktop */
   pointer-events: none;
   cursor: default;
 }
 
-/* Chevron — hidden on desktop */
+/* Chevron — hidden on desktop, shown on mobile */
 .chevron {
   display: none;
-  color: var(--ba-ink);
-  transition: transform 0.2s ease;
+  color: var(--ba-ink-muted);
   flex-shrink: 0;
+  transition: transform 0.25s ease;
 }
+.colOpen .chevron { transform: rotate(180deg); }
 
-/* Links + inline buttons inside column */
+/* ── Links inside column ───────────────────────────────────── */
+
 .colLinks {
   display: flex;
   flex-direction: column;
@@ -114,130 +124,204 @@
 .colLinks a,
 .inlineBtn {
   font-family: var(--ba-font-sans);
-  font-size: 0.9375rem;          /* 15px */
+  font-size: 0.9375rem;                      /* 15px */
   font-weight: 400;
   text-transform: none;
   color: var(--ba-ink-soft);
-  line-height: 2.0;
+  line-height: 2.0;                          /* Astro: line-height: 2.0 */
   text-align: left;
-  transition: color 0.2s;
+  transition: color 0.2s ease;
+  display: block;
 }
 .colLinks a:hover,
 .inlineBtn:hover { color: var(--ba-gold); }
 
-/* Address + appointment note in Visit column */
+/* ── Visit-column specifics ────────────────────────────────── */
+
 .address {
   font-style: normal;
   font-family: var(--ba-font-sans);
   font-size: 0.9375rem;
   line-height: 1.8;
   color: var(--ba-ink-soft);
-  margin-bottom: 2px;
+  margin: 0 0 12px;
+  display: block;
 }
 
 .appt {
   font-family: var(--ba-font-sans);
-  font-size: 0.875rem;
-  color: var(--ba-ink-muted);
-  line-height: 1.5;
-  margin-bottom: 2px;
+  font-size: 0.9375rem;
+  color: var(--ba-gold);                     /* Astro: .ba-footer__appt { color: var(--accent) } */
+  margin: 0;
+  line-height: 2.0;
 }
+
+/* Arrange a Visit button — same as .inlineBtn but uppercased, smaller */
+.arrangeBtn {
+  font-family: var(--ba-font-sans);
+  font-size: 0.75rem;                        /* Astro: .ba-footer__arrange-link { font-size: 0.75rem } */
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ba-ink-soft);
+  line-height: 2.0;
+  margin-top: 0.75rem;
+  display: block;
+  text-align: left;
+  transition: color 0.2s;
+}
+.arrangeBtn:hover { color: var(--ba-gold); }
 
 /* ── Legal bar ─────────────────────────────────────────────── */
 
 .bottom {
-  margin-top: clamp(3rem, 6vw, 5rem);
-  padding: 20px 0 24px;
   border-top: 1px solid rgba(0, 0, 0, 0.07);
+  padding: 20px 0 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 16px;
 }
 
 .copy {
   font-family: var(--ba-font-sans);
-  font-size: 0.75rem;
-  letter-spacing: 0;
+  font-size: 0.75rem;                        /* 12px */
   color: var(--ba-ink-muted);
+  margin: 0;
 }
 
 .legal {
   display: flex;
-  gap: 1.5rem;
+  align-items: center;
+  gap: 20px;                                 /* Astro: gap: 20px */
+  flex-shrink: 0;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .legal a {
   font-family: var(--ba-font-sans);
   font-size: 0.75rem;
-  letter-spacing: 0;
   color: var(--ba-ink-muted);
+  white-space: nowrap;
   transition: color 0.2s;
 }
 .legal a:hover { color: var(--ba-gold); }
 
-/* ── Responsive — tablet 860–1024 ─────────────────────────── */
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Tablet: 2-col grid, brand spans full width ────────────── */
+/* Astro: @media (max-width: 1024px) */
 
 @media (max-width: 1024px) {
   .cols {
-    grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
-    gap: 1.5rem;
-  }
-}
-
-/* Collapse to 3-col: brand full-width + 2×2 nav grid */
-@media (max-width: 860px) {
-  .cols {
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    gap: 40px 32px;                          /* Astro: gap: 40px 32px at 1024px */
   }
   .brand {
     grid-column: 1 / -1;
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
     padding-right: 0;
-    margin-bottom: 0.5rem;
+    padding-bottom: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 32px;
+    row-gap: 8px;
   }
+  /* Tighten spacing inside the inline brand row */
+  .wordmark  { margin-bottom: 0; }
+  .estab     { margin-bottom: 0; }
+  .social    { margin-bottom: 0; }
 }
 
-/* ── Mobile accordion (< 768px) ────────────────────────────── */
+/* ── Mobile accordion (≤768px) ─────────────────────────────── */
+/* Astro: @media (max-width: 768px) */
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
+  .footer   { padding: 40px 0 0; }          /* Astro: padding: 40px 0 0 */
+
   .cols {
     grid-template-columns: 1fr;
     gap: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.07);
+    margin-bottom: 0;
   }
 
   .brand {
     grid-column: 1;
-    margin-bottom: 2rem;
-    padding-right: 0;
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+    padding: 36px 24px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
+  .social { justify-content: center; }
 
-  /* Enable toggle as clickable */
+  /* Col rows become accordion items */
+  .col { border-bottom: 1px solid rgba(0, 0, 0, 0.07); }
+
+  /* Toggle becomes tappable */
   .toggle {
+    padding: 18px 24px;
+    margin-bottom: 0;
     pointer-events: auto;
     cursor: pointer;
-    padding: 1rem 0;
-    margin-bottom: 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   }
 
-  /* Show chevron on mobile */
   .chevron { display: block; }
 
-  /* Collapse links by default */
+  /* Smooth accordion — max-height transition (matches Astro) */
   .colLinks {
-    display: none;
-    padding: 0.5rem 0 1rem;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.32s ease;
+    padding: 0 24px;
+  }
+  .colOpen .colLinks {
+    max-height: 480px;                       /* Astro: max-height: 480px */
+    padding-bottom: 20px;
   }
 
-  /* Expanded state — .colOpen is added by React */
-  .colOpen .colLinks { display: flex; }
-  .colOpen .chevron  { transform: rotate(180deg); }
-  .colOpen .toggle   { border-bottom-color: transparent; }
+  .colLinks a,
+  .inlineBtn { line-height: 2.4; }          /* Astro: line-height: 2.4 on mobile */
+  .address   { margin-bottom: 4px; }
+  .appt      { margin-top: 4px; }
 
   .bottom {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    gap: 12px;
+    padding: 24px 24px 32px;
   }
+  .legal { flex-wrap: wrap; gap: 14px; justify-content: center; }
+}
+
+/* ── Small mobile (≤640px) — back to 2-col accordion ───────── */
+/* Astro: @media (max-width: 640px) */
+
+@media (max-width: 640px) {
+  .footer { padding: 48px 20px 0; }
+  .cols   { grid-template-columns: 1fr 1fr; gap: 32px 20px; }
+  .bottom { flex-direction: column; align-items: center; gap: 10px; padding: 20px 0 28px; }
+  .legal  { flex-wrap: wrap; gap: 14px; justify-content: center; }
+}
+
+/* ── Very small (≤480px) — single column ───────────────────── */
+/* Astro: @media (max-width: 480px) */
+
+@media (max-width: 480px) {
+  .footer { padding: 40px 16px 0; }
+  .cols   { grid-template-columns: 1fr; gap: 24px; }
+  .bottom { padding: 16px 0 24px; }
+}
+
+/* ── Micro (≤380px) ────────────────────────────────────────── */
+
+@media (max-width: 380px) {
+  .footer { padding: 36px 12px 0; }
 }

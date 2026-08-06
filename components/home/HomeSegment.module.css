@@ -1,41 +1,57 @@
 /* HomeSegment — two-column editorial segment
-   Contained row: max-width 1300px, centered, portrait media
-   Matches Astro .segment (src/styles/templates/home.css) */
+   Matches Astro .segment (src/styles/templates/home.css)
+   Two variants: default (4:5 portrait) and insetSquare (1:1 with inner padding) */
+
+/* ── Base segment grid ────────────────────────────────────── */
 
 .segment {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: clamp(40px, 6vw, 100px);
-  max-width: 1300px;
+  gap: clamp(40px, 6vw, 100px);            /* Astro: gap: clamp(40px, 6vw, 100px) */
+  max-width: 1300px;                        /* Astro: max-width: 1300px */
   margin: 0 auto;
   padding: clamp(12px, 1.6vw, 24px) clamp(40px, 5vw, 80px);
 }
+
+/* ── Media column ─────────────────────────────────────────── */
 
 .media {
   position: relative;
   width: 100%;
   max-width: 540px;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 4 / 5;                     /* Astro default: 4:5 portrait */
   overflow: hidden;
   justify-self: end;
 }
 
+/* imageWrap: positioned parent required for Next.js Image fill */
 .imageWrap {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  max-width: 440px;
-  justify-self: start;
+/* ── Inset-square variant (Astro: .segment__media--inset-square) ─────────
+   ALL editorial segments on the home page use this.
+   Image / video floats inside a white breathing-room square.           */
+
+.insetSquare {
+  aspect-ratio: 1 / 1;                     /* Astro: aspect-ratio: 1 / 1 */
+  padding: clamp(14px, 2.3vw, 32px);       /* Astro: padding: clamp(14px, 2.3vw, 32px) */
+  box-sizing: border-box;
+  /* overflow:hidden clips media to the outer square */
 }
 
-/* Reverse: media right, content left */
+/* Next.js Image fill within insetSquare fills the padded content area */
+.insetSquare .imageWrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Reverse layout (media right) ────────────────────────── */
+
 .reverse .media {
   order: 2;
   justify-self: start;
@@ -45,29 +61,39 @@
   justify-self: end;
 }
 
-/* Title: Open Sans, weight 300, uppercase, GOLD — Astro .segment__title color: var(--accent) */
+/* ── Text column ──────────────────────────────────────────── */
+
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 440px;
+  justify-self: start;
+}
+
+/* Title: Open Sans, weight 300, uppercase, GOLD — Astro .segment__title */
 .title {
   font-family: var(--ba-font-sans);
   font-size: clamp(1.5rem, 2.8vw, 2.5rem);
   font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 0;
-  color: var(--ba-gold);
+  color: var(--ba-gold);                    /* Astro: color: var(--accent) */
   line-height: 1.15;
   margin-bottom: 24px;
 }
 
-/* Body: serif, 20px, ink (not muted) — Astro .segment__body font-size: 20px; color: var(--ink) */
+/* Body: serif 20px ink — Astro .segment__body */
 .body {
   font-family: var(--ba-font-editorial);
-  font-size: 20px;
+  font-size: 20px;                          /* Astro: font-size: 20px */
   font-weight: 400;
   line-height: 1.65;
-  color: var(--ba-ink);
+  color: var(--ba-ink);                     /* Astro: color: var(--ink) — not muted */
   margin-bottom: 24px;
 }
 
-/* CTA — Astro .segment__cta */
+/* CTA pill — Astro .segment__cta */
 .cta {
   display: inline-block;
   font-family: var(--ba-font-sans);
@@ -92,11 +118,12 @@
   box-shadow: 0 4px 16px rgba(26, 26, 26, 0.12);
 }
 
-/* No-media / centered segment — Astro .segment.segment--centered */
+/* ── No-media variant (centered text only) ────────────────── */
+/* Astro: .segment.segment--centered — white bg, no borders */
+
 .noMedia {
   text-align: center;
-  border-top: 1px solid rgba(149, 130, 107, 0.3);
-  border-bottom: 1px solid rgba(149, 130, 107, 0.3);
+  /* Astro has NO border-top or border-bottom on this section */
 }
 
 .noMediaInner {
@@ -110,6 +137,8 @@
   margin-right: auto;
 }
 
+/* ── Responsive ───────────────────────────────────────────── */
+
 @media (max-width: 900px) {
   .segment {
     grid-template-columns: 1fr;
@@ -117,6 +146,7 @@
     padding: 30px 20px;
   }
 
+  /* Reset all ordering — natural DOM order on mobile */
   .media,
   .reverse .media {
     justify-self: center;
@@ -132,9 +162,7 @@
     order: 1;
   }
 
-  .cta {
-    align-self: center;
-  }
+  .cta { align-self: center; }
 }
 
 @media (max-width: 640px) {
