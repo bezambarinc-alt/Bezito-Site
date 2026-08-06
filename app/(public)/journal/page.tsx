@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import CuratorFeed from './CuratorFeed'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
@@ -24,22 +25,10 @@ export default function JournalPage() {
       {/* ── Instagram feed section ── */}
       <section className={styles.feedSection}>
         <div className={styles.feedWrap}>
-          {/* Curator.io embed — loads async, no SSR needed */}
-          <div className={styles.curatorFeed}>
-            {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-            <a
-              href="https://curator.io"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.curatorBranding}
-            >
-              Powered by Curator.io
-            </a>
-            <div
-              id="curator-feed-default-feed-layout"
-              className={styles.curatorContainer}
-            />
-          </div>
+          {/* Feed target div — server-rendered, Curator script fills it client-side */}
+          <div id="curator-feed-default-feed-layout" className={styles.curatorContainer} />
+          {/* Loads Curator.io script deferred via Next.js <Script strategy="lazyOnload"> */}
+          <CuratorFeed />
         </div>
 
         {/* Fallback grid — always visible */}

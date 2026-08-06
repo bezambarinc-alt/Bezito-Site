@@ -1,206 +1,355 @@
-/* The Story page — vertical timeline RSC */
+/* The Story — Verdura-style vertical scrolling timeline
+   Ported from Astro story.css; tokens match global.css --story-* vars */
 
-/* ── Hero ── */
+/* ── Story-specific tokens ─────────────────────────────── */
+:root {
+  --story-gold:   #95826b;
+  --story-ink:    #1a1a1a;
+  --story-muted:  #7a7166;
+  --story-cream:  #faf7f4;
+  --story-paper:  #f3ede6;
+  --story-vline:  rgba(149, 130, 107, 0.35);
+  --story-nav-w:  160px;
+}
+
+/* ── Hero ──────────────────────────────────────────────── */
+
 .hero {
-  background: var(--ba-ink);
-  color: #fff;
-  padding: calc(64px + clamp(5rem, 10vw, 9rem)) clamp(1.25rem, 5vw, 4rem) clamp(3rem, 6vw, 5rem);
-  text-align: center;
   position: relative;
+  width: 100%;
+  height: 62vh;
+  min-height: 380px;
+  overflow: hidden;
+  background: var(--story-ink);
+}
+
+.heroText {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: calc(64px + 2rem) 2rem 2rem;
+}
+
+.heroInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .heroEyebrow {
   font-family: var(--ba-font-sans);
-  font-size: 0.9375rem;
-  font-weight: 600;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--ba-gold);
-  margin-bottom: 1.5rem;
-  display: block;
+  color: var(--story-gold);
+  margin: 0 0 1rem;
 }
 
 .heroTitle {
   font-family: var(--ba-font-sans);
-  font-size: clamp(3.5rem, 8vw, 7rem);
-  font-weight: 200;
-  text-transform: uppercase;
+  text-transform: none;
+  letter-spacing: -0.02em;
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  font-weight: 700;
+  line-height: 1.1;
   color: #fff;
-  margin: 0 0 2rem;
-  line-height: 0.9;
+  margin: 0 0 1.25rem;
 }
 
 .heroLede {
-  font-family: var(--ba-font-editorial);
-  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-family: var(--ba-font-sans);
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 44ch;
+  margin: 0;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.65);
-  max-width: 52ch;
-  margin: 0 auto;
-  font-style: italic;
 }
 
-.heroScroll {
+/* ── Intro ─────────────────────────────────────────────── */
+
+.intro {
+  max-width: 680px;
+  margin: 5rem auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.intro p {
+  font-family: var(--ba-font-editorial);
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  line-height: 1.75;
+  color: var(--story-muted);
+  margin: 0 0 1.4em;
+}
+
+.scrollHint {
   display: flex;
-  justify-content: center;
-  margin-top: 3rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 3rem auto 0;
+  font-family: var(--ba-font-sans);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--story-gold);
 }
 
-.heroScrollLine {
+.scrollLine {
   width: 1px;
   height: 48px;
-  background: linear-gradient(to bottom, var(--ba-gold), transparent);
+  background: var(--story-gold);
+  opacity: 0.5;
 }
 
-/* ── Intro ── */
-.introSection {
-  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.25rem, 5vw, 4rem);
-  max-width: 760px;
+/* ── Timeline outer — 2-col: nav | chapters ─────────────── */
+
+.timelineOuter {
+  position: relative;
+  max-width: 1160px;
   margin: 0 auto;
-  border-bottom: 1px solid rgba(0,0,0,0.08);
+  padding: 0 2rem 6rem;
+  display: grid;
+  grid-template-columns: var(--story-nav-w) 1fr;
+  gap: 0 3rem;
+  align-items: start;
 }
 
-.introPara {
-  font-family: var(--ba-font-editorial);
-  font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
-  line-height: 1.75;
-  color: var(--ba-ink-soft);
+/* ── Sticky year nav ─────────────────────────────────────── */
+
+.yearNav {
+  position: sticky;
+  top: calc(64px + 1.5rem);
+  align-self: start;
+  padding-top: 1rem;
+}
+
+.navTitle {
+  font-family: var(--ba-font-sans);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--story-muted);
   margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--story-vline);
 }
-.introPara:last-child { margin-bottom: 0; }
 
-/* ── Timeline ── */
-.timeline {
-  max-width: var(--ba-maxw);
-  margin: 0 auto;
-  padding: clamp(2rem, 5vw, 4rem) clamp(1.25rem, 5vw, 4rem);
+.navList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
 }
+
+.navItem {
+  font-family: var(--ba-font-sans);
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: rgba(26, 26, 26, 0.35);
+  cursor: pointer;
+  padding: 0.45rem 0 0.45rem 0.75rem;
+  border-left: 2px solid transparent;
+  transition: color 0.25s, border-color 0.25s;
+  letter-spacing: 0.04em;
+  display: block;
+  text-decoration: none;
+}
+
+.navItem:hover { color: var(--story-ink); }
+
+.navActive {
+  color: var(--story-gold);
+  border-left-color: var(--story-gold);
+  font-weight: 600;
+}
+
+/* ── Chapters wrapper ────────────────────────────────────── */
+
+.chapters { min-width: 0; }
+
+/* ── Individual chapter ──────────────────────────────────── */
 
 .chapter {
-  display: grid;
-  grid-template-columns: 140px 1fr;
-  gap: 0 clamp(2rem, 4vw, 5rem);
-  border-top: 1px solid rgba(0,0,0,0.08);
-  padding: clamp(2.5rem, 5vw, 4rem) 0;
+  position: relative;
+  padding: 0 0 5rem 2.5rem;
+  border-left: 1px solid var(--story-vline);
 }
-.chapter:last-child { border-bottom: 1px solid rgba(0,0,0,0.08); }
+.chapter:last-child { padding-bottom: 2rem; }
 
-.chapterYear {
-  font-family: var(--ba-font-sans);
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  font-weight: 200;
-  color: var(--ba-gold);
+/* Gold dot on timeline */
+.chapter::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 1.1rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--story-gold);
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px var(--story-gold);
+}
+
+/* Year display */
+.ynum {
+  font-family: var(--ba-font-editorial);
+  font-size: clamp(2.4rem, 4vw, 3.5rem);
+  font-weight: 300;
+  color: rgba(149, 130, 107, 0.25);
   line-height: 1;
-  padding-top: 4px;
-  flex-shrink: 0;
+  margin: 0 0 1.5rem;
+  letter-spacing: -0.02em;
 }
 
-.chapterHeadline {
+/* Chapter headline */
+.headline {
   font-family: var(--ba-font-sans);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: var(--ba-ink);
-  margin: 0 0 0.75rem;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  font-size: clamp(1.35rem, 2.5vw, 1.9rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--story-ink);
+  margin: 0 0 1rem;
 }
 
-.chapterBody {
+/* Body text */
+.body {
   font-family: var(--ba-font-editorial);
   font-size: 1rem;
-  line-height: 1.8;
-  color: var(--ba-ink-soft);
-  margin-bottom: 0.5rem;
-  max-width: 68ch;
+  line-height: 1.75;
+  color: #4a4540;
+  max-width: 58ch;
+  margin: 0 0 1.5rem;
 }
+.body p { margin: 0 0 0.9em; }
+.body p:last-child { margin-bottom: 0; }
 
-.chapterNote {
-  font-family: var(--ba-font-sans);
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  color: var(--ba-gold);
-  letter-spacing: 0.06em;
-  margin: 0.5rem 0 0;
-}
-
-/* ── Pull quote ── */
-.quote {
-  background: var(--ba-white);
-  text-align: center;
-  padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 4rem);
-  border-top: 1px solid rgba(0,0,0,0.08);
-}
-
-.quoteText {
+/* Pull quote */
+.pullquote {
+  border-left: 2px solid var(--story-gold);
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  margin: 2rem 0;
   font-family: var(--ba-font-editorial);
-  font-size: clamp(1.25rem, 2.5vw, 1.875rem);
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
   font-style: italic;
   line-height: 1.5;
-  color: var(--ba-ink);
-  max-width: 680px;
-  margin: 0 auto 1.5rem;
+  color: var(--story-muted);
 }
 
-.quoteAttr {
-  font-family: var(--ba-font-sans);
-  font-size: 0.875rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: var(--ba-ink-muted);
-  font-style: normal;
+/* Media */
+.media {
+  margin: 0;
+}
+.media img,
+.media video {
+  width: 100%;
+  display: block;
+  border-radius: 2px;
 }
 
-/* ── CTA ── */
+.mediaBelow { margin-top: 2rem; max-width: 520px; }
+
+/* ── Layout: horz — year + text horizontal ─────────────── */
+
+.layout_horz .inner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 2rem;
+  align-items: start;
+}
+.layout_horz .ynum { margin-bottom: 0; padding-top: 0.2rem; }
+
+/* ── Layout: split — text + media side by side ─────────── */
+
+.layout_split .inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+.layout_split.reverse .inner {
+  direction: rtl;
+}
+.layout_split.reverse .inner > * {
+  direction: ltr;
+}
+
+/* ── CTA section ────────────────────────────────────────── */
+
 .cta {
-  background: var(--ba-ink);
+  background: var(--story-ink);
   color: #fff;
   text-align: center;
-  padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 4rem);
-}
-
-.ctaEyebrow {
-  font-family: var(--ba-font-sans);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: var(--ba-gold-warm);
-  margin-bottom: 1rem;
-  display: block;
+  padding: 5rem 2rem;
 }
 
 .ctaTitle {
   font-family: var(--ba-font-sans);
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
-  font-weight: 200;
-  text-transform: uppercase;
+  text-transform: none;
+  letter-spacing: -0.02em;
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  font-weight: 700;
+  margin: 0 0 0.75rem;
   color: #fff;
-  margin-bottom: 1rem;
 }
 
 .ctaBody {
-  font-family: var(--ba-font-editorial);
-  font-size: 1rem;
-  line-height: 1.75;
-  color: rgba(255,255,255,0.7);
-  max-width: 50ch;
-  margin: 0 auto 2rem;
-}
-
-.ctaBtn {
-  display: inline-block;
   font-family: var(--ba-font-sans);
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--ba-gold);
-  border: 1px solid var(--ba-gold);
-  border-radius: 999px;
-  padding: 13px 32px;
-  transition: background 0.25s, color 0.25s;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 42ch;
+  margin: 0 auto 2.5rem;
+  line-height: 1.65;
 }
-.ctaBtn:hover { background: var(--ba-gold); color: var(--ba-ink); }
 
-/* ── Responsive ── */
-@media (max-width: 640px) {
-  .chapter { grid-template-columns: 70px 1fr; gap: 0 1rem; }
+.ctaLink {
+  display: inline-block;
+  color: var(--story-gold);
+  font-family: var(--ba-font-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(149, 130, 107, 0.4);
+  padding-bottom: 2px;
+  transition: border-color 0.2s;
+}
+.ctaLink:hover { border-color: var(--story-gold); }
+
+/* ── Responsive ─────────────────────────────────────────── */
+
+@media (max-width: 860px) {
+  .timelineOuter {
+    grid-template-columns: 1fr;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .yearNav { display: none; }
+
+  .layout_split .inner,
+  .layout_split.reverse .inner,
+  .layout_horz .inner {
+    grid-template-columns: 1fr;
+    direction: ltr;
+  }
+  .layout_horz .ynum { margin-bottom: 1rem; }
+}
+
+@media (max-width: 540px) {
+  .hero { height: 50vh; }
+  .chapter { padding-left: 1.5rem; }
+  .cta { padding: 3rem 1.5rem; }
 }

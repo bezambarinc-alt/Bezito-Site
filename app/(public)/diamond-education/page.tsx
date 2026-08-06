@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import ScrollSpyTabs from './ScrollSpyTabs'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
@@ -43,18 +44,8 @@ export default function DiamondEducationPage() {
         </div>
       </section>
 
-      {/* ── Sticky anchor tab bar — pure CSS/HTML, no JS needed ── */}
-      <nav className={styles.tabBar} aria-label="Diamond education sections">
-        <div className={styles.tabBarInner}>
-          <a href="#four-cs"   className={styles.tab}>The 4Cs</a>
-          <a href="#cut"       className={styles.tab}>Cut</a>
-          <a href="#color"     className={styles.tab}>Color</a>
-          <a href="#clarity"   className={styles.tab}>Clarity</a>
-          <a href="#carat"     className={styles.tab}>Carat</a>
-          <a href="#shapes"    className={styles.tab}>Shapes</a>
-          <a href="#anatomy"   className={styles.tab}>Anatomy</a>
-        </div>
-      </nav>
+      {/* Scroll-spy tab bar — 'use client' component tracks active section via IntersectionObserver */}
+      <ScrollSpyTabs />
 
       {/* ── Editorial intro ── */}
       <div className={styles.introEditorial}>
