@@ -1,0 +1,376 @@
+/* Diamond Education page — anchor-based navigation, no client JS */
+
+/* ── Hero ── */
+
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  background: #0d0d0d;
+}
+
+.heroVideo {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: max(100vw, 177.78vh);
+  height: max(100vh, 56.25vw);
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.7) 100%);
+}
+
+.heroContent {
+  position: absolute;
+  left: clamp(40px, 6vw, 80px);
+  bottom: clamp(60px, 8vw, 110px);
+  max-width: 560px;
+  color: #fff;
+  padding-top: 64px;
+}
+
+.heroEyebrow {
+  font-family: var(--ba-font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--ba-gold);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.heroTitle {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 200;
+  text-transform: uppercase;
+  color: var(--ba-gold);
+  line-height: 1;
+  margin: 0 0 1.25rem;
+}
+
+.heroRule {
+  width: 48px; height: 1px;
+  background: var(--ba-gold);
+  margin-bottom: 1.5rem;
+}
+
+.heroLede {
+  font-family: var(--ba-font-editorial);
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.65;
+  color: rgba(255,255,255,0.85);
+  max-width: 46ch;
+}
+
+/* ── Sticky anchor tab bar ── */
+
+.tabBar {
+  position: sticky;
+  top: 64px;
+  z-index: 50;
+  background: #fff;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.tabBarInner {
+  display: flex;
+  max-width: var(--ba-maxw);
+  margin: 0 auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.tabBarInner::-webkit-scrollbar { display: none; }
+
+.tab {
+  flex-shrink: 0;
+  font-family: var(--ba-font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--ba-ink-muted);
+  padding: 1rem 1.25rem;
+  border-bottom: 2px solid transparent;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.tab:hover {
+  color: var(--ba-ink);
+  border-bottom-color: var(--ba-gold);
+}
+
+/* ── Intro editorial ── */
+
+.introEditorial {
+  padding: clamp(2rem, 4vw, 3.5rem) clamp(1.25rem, 5vw, 4rem);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.introEditorialInner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.introEditorialInner p {
+  font-family: var(--ba-font-editorial);
+  font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+  line-height: 1.75;
+  color: var(--ba-ink-soft);
+}
+
+/* ── Sections — scroll-margin-top clears header + tab bar ── */
+
+.section {
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.25rem, 5vw, 4rem);
+  scroll-margin-top: calc(64px + 52px + 1rem);
+}
+
+.sectionDark {
+  background: #0d0d0d;
+  color: #fff;
+}
+
+.sectionAlt {
+  background: var(--ba-white);
+}
+
+.sectionInner {
+  max-width: var(--ba-maxw);
+  margin: 0 auto;
+}
+
+.sectionHeader {
+  margin-bottom: 2.5rem;
+  max-width: 680px;
+}
+
+.eyebrow {
+  font-family: var(--ba-font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--ba-gold);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+.eyebrowWarm { color: var(--ba-gold-warm); }
+
+.heading {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 200;
+  text-transform: uppercase;
+  color: var(--ba-ink);
+  margin: 0 0 1rem;
+}
+.headingLight { color: #fff; }
+
+.intro {
+  font-family: var(--ba-font-editorial);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--ba-ink-soft);
+  max-width: 65ch;
+}
+.introLight { color: rgba(255,255,255,0.75); }
+
+/* ── 4Cs grid ── */
+
+.fourCsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.cCard {
+  border-top: 2px solid var(--ba-gold);
+  padding-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cLetter {
+  font-family: var(--ba-font-sans);
+  font-size: 3rem;
+  font-weight: 200;
+  color: var(--ba-gold);
+  opacity: 0.35;
+  line-height: 1;
+}
+
+.cName {
+  font-family: var(--ba-font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--ba-ink);
+  margin-bottom: 0.4rem;
+}
+
+.cDesc {
+  font-family: var(--ba-font-editorial);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--ba-ink-soft);
+}
+
+/* ── Prose sections ── */
+
+.prose {
+  max-width: 680px;
+}
+
+.prose p {
+  font-family: var(--ba-font-editorial);
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--ba-ink-soft);
+  margin-bottom: 1.1rem;
+}
+
+.sectionDark .prose p { color: rgba(255,255,255,0.7); }
+.prose strong { color: var(--ba-ink); }
+.sectionDark .prose strong { color: var(--ba-gold-warm); }
+
+.subheading {
+  font-family: var(--ba-font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--ba-ink);
+  margin: 1.75rem 0 0.75rem;
+}
+.sectionDark .subheading { color: var(--ba-gold); }
+
+/* ── Shapes grid ── */
+
+.shapesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.shapeCard {
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding-top: 1rem;
+}
+
+.shapeName {
+  font-family: var(--ba-font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--ba-gold-warm);
+  margin-bottom: 0.5rem;
+}
+
+.shapeDesc {
+  font-family: var(--ba-font-editorial);
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.65);
+}
+
+/* ── Anatomy ── */
+
+.anatomyGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.anatomyPart {
+  border-top: 2px solid var(--ba-gold);
+  padding-top: 1.25rem;
+}
+
+.anatomyName {
+  font-family: var(--ba-font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--ba-ink);
+  margin-bottom: 0.75rem;
+}
+
+.anatomyDesc {
+  font-family: var(--ba-font-editorial);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--ba-ink-soft);
+}
+
+/* ── CTA ── */
+
+.cta {
+  background: var(--ba-ink);
+  color: #fff;
+  text-align: center;
+  padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 4rem);
+}
+
+.ctaEyebrow {
+  font-family: var(--ba-font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--ba-gold-warm);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.ctaTitle {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 200;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.ctaBody {
+  font-family: var(--ba-font-editorial);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.7);
+  max-width: 50ch;
+  margin: 0 auto 2rem;
+}
+
+.ctaBtn {
+  display: inline-block;
+  font-family: var(--ba-font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ba-gold);
+  border: 1px solid var(--ba-gold);
+  border-radius: 999px;
+  padding: 13px 32px;
+  transition: background 0.25s, color 0.25s;
+}
+.ctaBtn:hover { background: var(--ba-gold); color: var(--ba-ink); }
+
+/* ── Responsive ── */
+
+@media (max-width: 1024px) {
+  .fourCsGrid { grid-template-columns: repeat(2, 1fr); }
+  .shapesGrid  { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .heroContent { left: 20px; right: 20px; }
+  .fourCsGrid  { grid-template-columns: 1fr; }
+  .shapesGrid  { grid-template-columns: 1fr; }
+  .anatomyGrid { grid-template-columns: 1fr; }
+}

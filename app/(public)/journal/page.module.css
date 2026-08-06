@@ -1,0 +1,128 @@
+/* Journal page */
+
+/* ── Hero — light background ── */
+.hero {
+  background: #fff;
+  padding: calc(64px + clamp(4rem, 7vw, 6rem)) clamp(1.25rem, 5vw, 4rem) clamp(3rem, 5vw, 4rem);
+  text-align: center;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.heroEyebrow {
+  font-family: var(--ba-font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--ba-gold);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.heroTitle {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 200;
+  text-transform: uppercase;
+  color: var(--ba-ink);
+  margin: 0 0 1.25rem;
+}
+
+.heroIntro {
+  font-family: var(--ba-font-editorial);
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.7;
+  color: var(--ba-ink-soft);
+  max-width: 52ch;
+  margin: 0 auto;
+}
+
+/* ── Feed section ── */
+.feedSection {
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.25rem, 5vw, 4rem);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feedWrap {
+  min-height: 100px;
+}
+
+.curatorFeed {
+  position: relative;
+}
+
+.curatorBranding {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-family: var(--ba-font-sans);
+  font-size: 0.6875rem;
+  color: var(--ba-ink-muted);
+  opacity: 0.5;
+}
+
+.curatorContainer {
+  min-height: 200px;
+}
+
+/* ── Fallback ── */
+.fallback {
+  text-align: center;
+  padding: clamp(3rem, 6vw, 5rem) 0;
+}
+
+.fallbackMsg {
+  font-family: var(--ba-font-editorial);
+  font-size: 1rem;
+  color: var(--ba-ink-soft);
+  margin-bottom: 1.5rem;
+}
+
+.followLink {
+  font-family: var(--ba-font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--ba-ink);
+  border-bottom: 1px solid var(--ba-ink);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.followLink:hover { color: var(--ba-gold); border-color: var(--ba-gold); }
+
+/* ── Services strip ── */
+.services {
+  background: var(--ba-ink);
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.25rem, 5vw, 4rem);
+}
+
+.servicesInner {
+  max-width: var(--ba-maxw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.serviceLabel {
+  font-family: var(--ba-font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--ba-gold);
+  margin-bottom: 0.4rem;
+}
+
+.serviceText {
+  font-family: var(--ba-font-sans);
+  font-size: 0.8125rem;
+  color: var(--ba-ink-muted);
+  line-height: 1.55;
+}
+
+@media (max-width: 768px) {
+  .servicesInner { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .servicesInner { grid-template-columns: 1fr; }
+}

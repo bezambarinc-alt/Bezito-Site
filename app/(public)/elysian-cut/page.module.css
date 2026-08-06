@@ -1,0 +1,279 @@
+/* Elysian Cut page */
+
+/* ── Hero ── */
+
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  background: #0d0d0d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroVideo {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: max(100vw, 177.78vh);
+  height: max(100vh, 56.25vw);
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.65) 100%);
+}
+
+.heroContent {
+  position: absolute;
+  left: clamp(40px, 6vw, 80px);
+  bottom: clamp(60px, 8vw, 110px);
+  max-width: 560px;
+  color: #fff;
+  padding-top: 64px;
+}
+
+.heroEyebrow {
+  font-family: var(--ba-font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--ba-gold);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.heroTitle {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 200;
+  text-transform: uppercase;
+  color: var(--ba-gold);
+  line-height: 1;
+  margin: 0 0 1.25rem;
+}
+
+.heroRule {
+  width: 48px;
+  height: 1px;
+  background: var(--ba-gold);
+  margin-bottom: 1.5rem;
+}
+
+.heroLede {
+  font-family: var(--ba-font-editorial);
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.65;
+  color: rgba(255,255,255,0.85);
+  max-width: 46ch;
+}
+
+/* ── Intro ── */
+
+.intro {
+  background: #fff;
+  padding: clamp(2.5rem, 5vw, 4.5rem) clamp(1.25rem, 5vw, 4rem);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.introInner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.introInner p {
+  font-family: var(--ba-font-editorial);
+  font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+  line-height: 1.75;
+  color: var(--ba-ink-soft);
+}
+
+/* ── Philosophy ── */
+
+.philosophy {
+  background: var(--ba-white);
+  padding: clamp(3rem, 6vw, 5.5rem) clamp(1.25rem, 5vw, 4rem);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.philosophyInner {
+  max-width: var(--ba-maxw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+
+.philosophyNumber {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(5rem, 10vw, 9rem);
+  font-weight: 200;
+  color: var(--ba-gold);
+  line-height: 0.85;
+  opacity: 0.35;
+}
+
+.philosophyEyebrow {
+  font-family: var(--ba-font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--ba-gold);
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.philosophyHeading {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  font-weight: 200;
+  text-transform: uppercase;
+  color: var(--ba-ink);
+  margin-bottom: 1.5rem;
+}
+
+.philosophyBody {
+  font-family: var(--ba-font-editorial);
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--ba-ink-soft);
+  margin-bottom: 1rem;
+  max-width: 65ch;
+}
+
+/* ── Cuts grid ── */
+
+.cutsSection {
+  padding: clamp(3rem, 6vw, 5.5rem) clamp(1.25rem, 5vw, 4rem);
+}
+
+.cutsSectionHeader {
+  max-width: var(--ba-maxw);
+  margin: 0 auto 2.5rem;
+}
+
+.cutsSectionEyebrow {
+  font-family: var(--ba-font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--ba-gold);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.cutsSectionTitle {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  font-weight: 200;
+  text-transform: uppercase;
+  color: var(--ba-ink);
+}
+
+.cutsGrid {
+  max-width: var(--ba-maxw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.cutCard {
+  display: flex;
+  flex-direction: column;
+}
+
+.cutImg {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--ba-white);
+  margin-bottom: 1rem;
+}
+
+.cutName {
+  font-family: var(--ba-font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--ba-ink);
+  margin-bottom: 0.5rem;
+}
+
+.cutDesc {
+  font-family: var(--ba-font-editorial);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--ba-ink-soft);
+}
+
+/* ── CTA ── */
+
+.cta {
+  background: var(--ba-ink);
+  color: #fff;
+  text-align: center;
+  padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 4rem);
+}
+
+.ctaEyebrow {
+  font-family: var(--ba-font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--ba-gold-warm);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.ctaTitle {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 200;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.ctaBody {
+  font-family: var(--ba-font-editorial);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.7);
+  max-width: 50ch;
+  margin: 0 auto 2rem;
+}
+
+.ctaBtn {
+  display: inline-block;
+  font-family: var(--ba-font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ba-gold);
+  border: 1px solid var(--ba-gold);
+  border-radius: 999px;
+  padding: 13px 32px;
+  transition: background 0.25s, color 0.25s;
+}
+.ctaBtn:hover { background: var(--ba-gold); color: var(--ba-ink); }
+
+/* ── Responsive ── */
+
+@media (max-width: 900px) {
+  .philosophyInner { grid-template-columns: 1fr; }
+  .philosophyNumber { display: none; }
+  .cutsGrid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .cutsGrid { grid-template-columns: repeat(2, 1fr); }
+  .heroContent { left: 20px; right: 20px; }
+}
