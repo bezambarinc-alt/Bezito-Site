@@ -12,6 +12,15 @@ export const metadata: Metadata = {
   },
 }
 
+interface TimelineEntry {
+  year: string
+  title: string
+  body: string
+  note?: string
+  imgUrl?: string
+  imgAlt?: string
+}
+
 const STATS = [
   { number: '1979', label: 'Founded in Los Angeles' },
   { number: '3',    label: 'Patented Diamond Cuts' },
@@ -19,7 +28,7 @@ const STATS = [
   { number: '1982', label: 'Inventor of the Princess Cut' },
 ]
 
-const TIMELINE = [
+const TIMELINE: TimelineEntry[] = [
   {
     year: '1979',
     title: 'Los Angeles. The Beginning.',
