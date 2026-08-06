@@ -68,8 +68,8 @@ function FooterCol({ title, children }: { title: string; children: React.ReactNo
   const [open, setOpen] = useState(false)
 
   function handleToggle() {
-    // Matches Astro: accordion only on mobile (< 768px)
-    if (typeof window !== 'undefined' && window.innerWidth >= 768) return
+    // Toggle state always; CSS controls visibility on desktop
+    // (desktop: pointer-events:none on .toggle, colLinks always visible)
     setOpen((o) => !o)
   }
 

@@ -40,6 +40,30 @@
   font-family: var(--ba-font-editorial);
   font-size: 0.98rem;
   line-height: 1.7;
-  color: var(--ba-cream);
+  color: var(--ba-cream);         /* dark variant default */
   animation: ba-fade 0.35s ease both;
+}
+
+/* ── Light variant — ink text on white (Astro .technical section) —————— */
+
+.itemLight {
+  border-top-color: rgba(0, 0, 0, 0.08);
+}
+.itemLight:last-child {
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+.summaryLight {
+  font-family: var(--ba-font-sans);
+  font-size: 0.9375rem;
+  font-weight: 200;
+  color: var(--ba-ink);
+}
+.summaryLight:hover { color: var(--ba-gold); }
+
+.bodyLight {
+  font-family: var(--ba-font-editorial);
+  font-size: 1.0625rem;   /* Astro .tech-item__body: 17px */
+  line-height: 1.65;
+  color: var(--ba-ink);
 }

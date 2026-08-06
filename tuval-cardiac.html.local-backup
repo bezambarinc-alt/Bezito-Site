@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Tuval Plan — Cardiac Recovery for the Long-Stent Patient</title>
+<style>
+  @page { margin: 0.4in; size: Letter; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #1a1a1a; line-height: 1.45; max-width: 7.6in; margin: 0 auto; padding: 0; }
+  h1 { font-size: 22px; margin: 0 0 2px 0; }
+  .subtitle { font-size: 13px; color: #555; margin-bottom: 14px; border-bottom: 2px solid #1a3a6a; padding-bottom: 8px; }
+  .callout { background: #fef7e0; border-left: 4px solid #d4a700; padding: 10px 14px; margin: 12px 0; font-size: 13px; border-radius: 4px; }
+  .callout b { color: #8a5a00; }
+  .red-callout { background: #fde8e8; border-left: 4px solid #c44; padding: 10px 14px; margin: 12px 0; font-size: 13px; border-radius: 4px; }
+  .green-callout { background: #e8f5e8; border-left: 4px solid #4a7; padding: 10px 14px; margin: 12px 0; font-size: 13px; border-radius: 4px; }
+  .blue-callout { background: #e8f0fa; border-left: 4px solid #1a3a6a; padding: 10px 14px; margin: 12px 0; font-size: 13px; border-radius: 4px; }
+  .section-header { font-size: 15px; font-weight: bold; color: white; background: #1a3a6a; padding: 7px 12px; margin: 18px 0 10px 0; border-radius: 4px; }
+  .subsection { font-size: 14px; font-weight: bold; color: #1a3a6a; margin: 12px 0 6px 0; border-bottom: 1px solid #ddd; padding-bottom: 3px; }
+  table { width: 100%; border-collapse: collapse; margin: 6px 0; font-size: 13px; }
+  th { background: #1a3a6a; color: white; padding: 6px 8px; text-align: left; }
+  td { padding: 6px 8px; border-bottom: 1px solid #e5e5e5; vertical-align: top; }
+  tr:nth-child(even) td { background: #f7f7f7; }
+  ul { margin: 4px 0 8px 0; padding-left: 22px; font-size: 13px; }
+  li { margin-bottom: 3px; }
+  .pin { background: #1a3a6a; color: white; font-size: 11px; padding: 2px 8px; border-radius: 10px; margin-right: 6px; }
+  .day-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 0; }
+  .day-card { border: 1px solid #ddd; border-radius: 5px; padding: 10px 12px; font-size: 12px; page-break-inside: avoid; }
+  .day-card h4 { margin: 0 0 6px 0; font-size: 13px; color: #1a3a6a; border-bottom: 1px solid #ccc; padding-bottom: 3px; }
+  .day-card .meal { margin-bottom: 5px; }
+  .day-card .meal b { color: #444; }
+  .footer { font-size: 11px; color: #666; margin-top: 20px; padding-top: 10px; border-top: 1px solid #ccc; }
+  p { font-size: 13px; margin: 6px 0; }
+  .shop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .shop-col h4 { font-size: 13px; color: #1a3a6a; margin: 8px 0 4px 0; }
+  .shop-col ul { font-size: 12px; }
+  .fill-blank { display: inline-block; min-width: 80px; border-bottom: 1px dashed #999; padding: 0 4px; margin: 0 2px; }
+</style>
+</head>
+<body>
+
+<h1>The Tuval Plan — Cardiac Recovery for the Long-Stent Patient</h1>
+<div class="subtitle">A friend-to-friend playbook · Modified Esselstyn protocol · Post-stent baseline workup + nutrition + tracking · Built 2026-05-16</div>
+
+<div class="blue-callout">
+  <b>Tuvalito —</b> this is from Bez. The stent fixed one spot. It didn't fix the disease that put the spot there. Ten years of feeling fine while doing nothing is the dangerous combination — silent ischemia is real, and in your profile the next event is statistically more likely to be a heart attack than a warning. This document has two parts: <b>(1) the tests you need so you know where you actually stand</b>, and <b>(2) the diet and life plan that has the strongest evidence for keeping you here for another 30 years.</b> Read it, do the tests, then we talk.
+</div>
+
+<div class="section-header">PART 1 — The Tests You Need Before You Build Your Baseline</div>
+
+<p>You can't manage what you can't measure. A stent placed 10+ years ago tells you almost nothing about your arteries today. The disease has been moving the whole time. Below is the exact workup that will give you (and your cardiologist) a real picture of where you stand right now.</p>
+
+<div class="subsection">The Essential Five — Do These First</div>
+
+<table>
+  <tr><th>#</th><th>Test</th><th>Why You Need It</th><th>Your Result</th></tr>
+  <tr>
+    <td>1</td>
+    <td><b>Advanced lipid panel</b><br>LDL-C, HDL, triglycerides, total cholesterol, <b>ApoB</b>, <b>Lp(a)</b></td>
+    <td>Standard cholesterol numbers miss half the story. ApoB counts every atherogenic particle. Lp(a) is genetic — measured once in a lifetime — and a hidden cause of premature CAD if elevated. Post-stent your LDL target is &lt;55 mg/dL, ApoB &lt;60.</td>
+    <td>LDL: <span class="fill-blank"></span><br>ApoB: <span class="fill-blank"></span><br>Lp(a): <span class="fill-blank"></span></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td><b>hs-CRP</b> (high-sensitivity C-reactive protein)</td>
+    <td>Inflammation marker. Elevated hs-CRP at &gt;2 mg/L predicts future cardiac events independent of cholesterol. Target &lt;1.</td>
+    <td><span class="fill-blank"></span> mg/L</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td><b>HbA1c + fasting glucose + fasting insulin</b></td>
+    <td>Diabetes and pre-diabetes accelerate everything. Many post-stent patients are pre-diabetic and don't know it. A1c &lt;5.7 ideal, &lt;6.0 acceptable.</td>
+    <td>A1c: <span class="fill-blank"></span> %<br>Glucose: <span class="fill-blank"></span><br>Insulin: <span class="fill-blank"></span></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td><b>Coronary CT Angiography (CCTA)</b> — OR stress test if your cardiologist prefers</td>
+    <td>This is the big one. Shows you the current state of your stent, your other arteries, and any NEW lesions that have developed since the stent was placed. Cannot rely on a 10-year-old picture.</td>
+    <td>Result: <span class="fill-blank" style="min-width: 200px;"></span></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td><b>Echocardiogram</b></td>
+    <td>Heart function and structure. Ejection fraction. Wall motion abnormalities. Baseline for the next 10 years.</td>
+    <td>EF: <span class="fill-blank"></span>%<br>Notes: <span class="fill-blank" style="min-width: 150px;"></span></td>
+  </tr>
+</table>
+
+<div class="subsection">Equally Important — Don't Skip These</div>
+
+<table>
+  <tr><th>#</th><th>Test</th><th>Why</th><th>Your Result</th></tr>
+  <tr>
+    <td>6</td>
+    <td><b>Resting blood pressure</b> — home measurements, 2× per day for 1 week</td>
+    <td>One office reading is meaningless. You need a week of home readings. Target &lt;130/80 post-stent. Many patients are uncontrolled and don't know it.</td>
+    <td>Avg: <span class="fill-blank"></span> / <span class="fill-blank"></span></td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td><b>Weight, height, waist circumference</b></td>
+    <td>BMI matters but waist matters more — visceral fat drives the inflammation. Waist target &lt;40" for men.</td>
+    <td>Weight: <span class="fill-blank"></span> lbs<br>Height: <span class="fill-blank"></span><br>Waist: <span class="fill-blank"></span>"</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td><b>Kidney function</b> — eGFR, creatinine, urine albumin/creatinine ratio</td>
+    <td>Kidney disease and heart disease share the same risk factors. Albuminuria is an early warning. Also affects which BP meds are right.</td>
+    <td>eGFR: <span class="fill-blank"></span><br>UACR: <span class="fill-blank"></span></td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td><b>Sleep study</b> if any snoring, daytime fatigue, or unexplained BP</td>
+    <td>Untreated sleep apnea is a massive cardiac risk multiplier. Many post-stent patients have it and never get tested.</td>
+    <td>AHI: <span class="fill-blank"></span></td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td><b>Carotid ultrasound or CIMT</b></td>
+    <td>If your neck arteries have plaque, your heart and brain ones probably do too. Stroke risk assessment.</td>
+    <td>Result: <span class="fill-blank" style="min-width: 200px;"></span></td>
+  </tr>
+</table>
+
+<div class="subsection">Medications to Confirm With Your Cardiologist</div>
+
+<table>
+  <tr><th>Question for your doctor</th><th>Why it matters</th></tr>
+  <tr><td>Am I still on aspirin 81 mg daily? Should I be?</td><td>Most post-stent patients stay on lifelong low-dose aspirin unless specifically discontinued.</td></tr>
+  <tr><td>What is my current statin and dose? Is it high-intensity?</td><td>Post-stent the standard is Rosuvastatin 20–40 mg or Atorvastatin 40–80 mg. If you're on a low-dose or no statin at all, that's a big problem.</td></tr>
+  <tr><td>If LDL is still &gt;70, should I add ezetimibe or a PCSK9 inhibitor?</td><td>These add another 20–60% LDL reduction on top of a statin. Insurance covers them for secondary prevention.</td></tr>
+  <tr><td>Am I on an ACE inhibitor or ARB?</td><td>Standard of care for post-MI / post-stent patients regardless of blood pressure. Protects the heart and kidneys.</td></tr>
+  <tr><td>Beta blocker?</td><td>Usually indicated after stent for the first year+, depending on the indication. Confirm if you're still on one and whether you should be.</td></tr>
+</table>
+
+<div class="callout">
+  <b>How to ask for all of this:</b> "I had a stent placed [year]. I want to update my cardiac risk profile. Can you order a lipid panel with ApoB and Lp(a), hs-CRP, HbA1c, fasting insulin, kidney function with UACR, an echocardiogram, and either a coronary CTA or a stress test? I'd also like to review my current meds — aspirin, statin, ACE/ARB." That sentence handles 90% of the workup in one visit.
+</div>
+
+<div class="section-header">PART 2 — The Diet &amp; Life Plan (Modified Esselstyn)</div>
+
+<p>This is the same evidence-based protocol Bez is on. It's built around <b>Dr. Caldwell Esselstyn</b>'s peer-reviewed whole-food plant-based protocol from the Cleveland Clinic, modified to be sustainable in real life — Mediterranean-friendly, allows coffee and a glass of red wine, and leaves room for fish.</p>
+
+<div class="callout">
+  <b>The deal:</b> Esselstyn's strict protocol works (peer-reviewed, decades of data) but it's brutal. This version keeps 80% of the cardiac benefit and is sustainable in real life. <b>Pair this with a high-intensity statin to push LDL &lt;55 and ApoB &lt;60. For a post-stent patient, diet alone is not enough.</b>
+</div>
+
+<div class="section-header">The Rules — Modified Esselstyn</div>
+
+<div class="subsection">Always (the non-negotiables)</div>
+<ul>
+  <li><b>No red meat, no processed meat.</b> Zero. This is the single biggest move.</li>
+  <li><b>No dairy.</b> No milk, cheese, butter, yogurt, ice cream. Use unsweetened soy or oat milk.</li>
+  <li><b>No fried foods.</b> Anything fried — out.</li>
+  <li><b>6 servings of leafy greens per day.</b> Spinach, arugula, kale, chard, romaine, parsley. Big handful counts as one.</li>
+  <li><b>Beans or lentils every day.</b> Hummus counts (made with minimal oil).</li>
+  <li><b>Whole grains only.</b> No white bread, no white rice, no white pasta. Whole-wheat pita, brown rice, freekeh, bulgur, quinoa, oats.</li>
+</ul>
+
+<div class="subsection">Allowed (where this differs from strict Esselstyn)</div>
+<ul>
+  <li><b>Olive oil — 1 tablespoon per day max.</b> Strict Esselstyn says zero. The PREDIMED trial (8,000 patients, 5 years) showed Mediterranean diet with olive oil cut cardiac events 30%. The evidence supports moderate olive oil. Use it for finishing, not frying.</li>
+  <li><b>Nuts — small handful daily after week 2.</b> Walnuts especially. Real evidence of cardiac benefit.</li>
+  <li><b>Fish — 1–2× per week.</b> Wild salmon, sardines, mackerel. Strict Esselstyn says no. Mediterranean evidence says yes.</li>
+  <li><b>Skinless chicken breast — 1× per week max.</b> Grilled or baked only. No skin, no breading, no frying. Don't let it become the daily default — that's how it crowds out beans and lentils.</li>
+  <li><b>Eggs — 2 per week max.</b> Yolk and all.</li>
+  <li><b>Coffee — yes, 1–2 cups before noon.</b></li>
+  <li><b>Red wine — 1 glass (4–5 oz), 3–4 nights per week max.</b> Not every night.</li>
+  <li><b>Dark chocolate — 1 square (1 oz) 70%+ per day if you want.</b></li>
+</ul>
+
+<div class="subsection">Never</div>
+<ul>
+  <li>Sugar-sweetened beverages (soda, sweet drinks, sweetened iced tea)</li>
+  <li>Anything with "partially hydrogenated" on the label</li>
+  <li>Margarine, vegetable shortening, palm oil</li>
+  <li>Pastries, croissants, donuts (refined flour + fat bombs)</li>
+  <li>Deli meat, hot dogs, salami, pastrami, jerky</li>
+</ul>
+
+<div class="section-header">A Day in the Kitchen</div>
+
+<div class="day-grid">
+  <div class="day-card">
+    <h4>Breakfast — target ~20g protein</h4>
+    <div class="meal"><b>Option A:</b> Steel-cut oats + berries + walnuts + cinnamon + soy milk + 2 tbsp hemp hearts. <b>(~22g)</b></div>
+    <div class="meal"><b>Option B:</b> Whole-wheat pita + hummus (½ cup) + Israeli salad + tahini. <b>(~18g)</b></div>
+    <div class="meal"><b>Option C:</b> Green smoothie — spinach, banana, berries, 3 tbsp hemp hearts, soy milk, ground flax. <b>(~20g)</b></div>
+    <div class="meal"><b>Option D:</b> Tofu scramble (firm tofu, turmeric, spinach, tomato) + whole-grain toast. <b>(~25g)</b></div>
+    <div class="meal"><b>Drink:</b> Black coffee or green tea.</div>
+  </div>
+  <div class="day-card">
+    <h4>Lunch — target ~35g protein</h4>
+    <div class="meal"><b>Option A:</b> Bowl — brown rice or freekeh + 1 cup lentils + roasted veg + greens + tahini-lemon. <b>(~32g)</b></div>
+    <div class="meal"><b>Option B:</b> Mezze plate — hummus, baba, tabbouleh, edamame, whole-wheat pita, olives. <b>(~28g)</b></div>
+    <div class="meal"><b>Option C:</b> Lentil soup (2 cups) + big mixed salad with chickpeas + whole-grain bread. <b>(~30g)</b></div>
+    <div class="meal"><b>Option D:</b> Tempeh stir-fry (3 oz tempeh + broccoli + bell pepper + ginger-garlic) over brown rice. <b>(~30g)</b></div>
+  </div>
+  <div class="day-card">
+    <h4>Dinner — target ~35–40g protein</h4>
+    <div class="meal"><b>Option A:</b> Wild salmon (4 oz, baked) + sweet potato + sautéed kale. <b>(~30g)</b></div>
+    <div class="meal"><b>Option B:</b> Stuffed peppers — quinoa, 1 cup black beans, tomato, spinach. <b>(~25g)</b></div>
+    <div class="meal"><b>Option C:</b> Chickpea & cauliflower curry over brown rice + broccoli. <b>(~22g)</b></div>
+    <div class="meal"><b>Option D:</b> Whole-wheat pasta + marinara + 1 cup white beans + roasted veg. <b>(~28g)</b></div>
+    <div class="meal"><b>Option E:</b> Mujadara (lentils + brown rice + caramelized onion) + Israeli salad. <b>(~25g)</b></div>
+    <div class="meal"><b>Option F:</b> Grilled skinless chicken breast (4 oz) + big mixed salad + roasted vegetables + side of lentils. <b>(~45g)</b> · <i>Max 1× per week.</i></div>
+  </div>
+  <div class="day-card">
+    <h4>Snacks — target ~10–15g protein</h4>
+    <div class="meal">• Apple + 6–8 walnuts (5g)</div>
+    <div class="meal">• Carrots + ¼ cup hummus (5g)</div>
+    <div class="meal">• Edamame, 1 cup (17g) ← protein-dense</div>
+    <div class="meal">• Roasted chickpeas, ½ cup (10g)</div>
+    <div class="meal">• Hemp-heart yogurt: ½ cup soy yogurt + 2 tbsp hemp hearts (12g)</div>
+    <div class="meal">• Dark chocolate square (70%+) (1g)</div>
+  </div>
+</div>
+
+<div class="green-callout">
+  <b>Protein target: 100–130 g/day.</b> Older adults in fat-loss mode need more protein than the standard 0.8 g/kg. We aim for 1.2–1.4 g/kg of <i>goal</i> weight to preserve muscle. A typical day above (Option A breakfast + A lunch + A dinner + edamame snack) = ~104g. Easy to hit.
+</div>
+
+<div class="subsection">Protein cheat sheet</div>
+
+<table>
+  <tr><th>Food</th><th>Serving</th><th>Protein</th><th>Notes</th></tr>
+  <tr><td>Lentils, cooked</td><td>1 cup</td><td>18 g</td><td>Workhorse. Hit at lunch + dinner.</td></tr>
+  <tr><td>Black beans / chickpeas / kidney</td><td>1 cup cooked</td><td>15 g</td><td>Canned is fine — rinse to lower sodium.</td></tr>
+  <tr><td>Tofu, firm</td><td>3.5 oz</td><td>17 g</td><td>Complete protein.</td></tr>
+  <tr><td>Tempeh</td><td>3 oz</td><td>17 g</td><td>Complete protein, fermented.</td></tr>
+  <tr><td>Edamame</td><td>1 cup</td><td>17 g</td><td>Best protein-per-snack.</td></tr>
+  <tr><td>Wild salmon</td><td>4 oz</td><td>25 g</td><td>1–2× per week.</td></tr>
+  <tr><td>Skinless chicken breast</td><td>4 oz</td><td>31 g</td><td>1× per week max.</td></tr>
+  <tr><td>Egg, large</td><td>1</td><td>6 g</td><td>2 per week max.</td></tr>
+  <tr><td>Hemp hearts</td><td>3 tbsp</td><td>10 g</td><td>Sprinkle on oats, salads, soups.</td></tr>
+  <tr><td>Hummus</td><td>½ cup</td><td>10 g</td><td>From chickpeas + tahini.</td></tr>
+  <tr><td>Quinoa, cooked</td><td>1 cup</td><td>8 g</td><td>Complete plant protein.</td></tr>
+  <tr><td>Soy milk, unsweetened</td><td>1 cup</td><td>7 g</td><td>Better protein than oat/almond.</td></tr>
+</table>
+
+<div class="callout">
+  <b>Two rules to make protein automatic:</b><br>
+  &nbsp; 1) <b>Beans or lentils at lunch AND dinner</b> — that alone is 30g.<br>
+  &nbsp; 2) <b>Hemp hearts on oats every morning</b> — adds 10g effortlessly.<br>
+  Do those two and you're at 80% of your protein target without thinking.
+</div>
+
+<div class="section-header">Shopping List — One Trip Covers a Week</div>
+
+<div class="shop-grid">
+  <div class="shop-col">
+    <h4>Produce</h4>
+    <ul>
+      <li>Spinach, arugula, kale, romaine (rotate)</li>
+      <li>Parsley, cilantro, mint, basil</li>
+      <li>Tomatoes, cucumbers, red onions</li>
+      <li>Bell peppers, broccoli, cauliflower</li>
+      <li>Sweet potatoes, regular potatoes</li>
+      <li>Carrots, celery, beets</li>
+      <li>Avocado (1–2 per week)</li>
+      <li>Lemons, limes, garlic, ginger</li>
+      <li>Apples, pears, bananas, berries</li>
+      <li>Eggplant, zucchini, mushrooms</li>
+    </ul>
+    <h4>Beans &amp; Legumes</h4>
+    <ul>
+      <li>Black beans, chickpeas, kidney, white, lentils (red and green)</li>
+      <li>Edamame (frozen)</li>
+      <li>Hummus</li>
+      <li>Tofu (firm), tempeh</li>
+      <li>Hemp hearts</li>
+    </ul>
+    <h4>Whole Grains</h4>
+    <ul>
+      <li>Steel-cut or old-fashioned oats</li>
+      <li>Brown rice, freekeh, bulgur, quinoa</li>
+      <li>Whole-wheat pita, sprouted-grain bread</li>
+      <li>Whole-wheat pasta</li>
+    </ul>
+  </div>
+  <div class="shop-col">
+    <h4>Nuts, Seeds, Oils</h4>
+    <ul>
+      <li>Walnuts (priority), almonds</li>
+      <li>Ground flaxseed, chia seeds</li>
+      <li>Tahini</li>
+      <li>Extra virgin olive oil</li>
+    </ul>
+    <h4>Pantry</h4>
+    <ul>
+      <li>Unsweetened soy milk or oat milk</li>
+      <li>Low-sodium marinara, vegetable broth</li>
+      <li>Balsamic, apple cider vinegar</li>
+      <li>Dijon mustard, harissa, za'atar, sumac</li>
+      <li>Cumin, paprika, turmeric, cinnamon</li>
+      <li>Olives (kalamata, green)</li>
+    </ul>
+    <h4>Fish &amp; Eggs</h4>
+    <ul>
+      <li>Wild salmon, sardines, mackerel</li>
+      <li>Eggs (2/wk max)</li>
+    </ul>
+    <h4>Drinks</h4>
+    <ul>
+      <li>Coffee, green tea, herbal teas</li>
+      <li>Red wine (one bottle/week max)</li>
+      <li>Sparkling water</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section-header">Dining Out Playbook</div>
+
+<table>
+  <tr><th>Type of Place</th><th>Order This</th><th>Skip This</th></tr>
+  <tr><td>Israeli / Mediterranean</td><td>Hummus, baba, tabbouleh, fattoush, grilled vegetables, lentil soup, grilled fish, salads with olive oil &amp; lemon</td><td>Shawarma, kebab, schnitzel, fried falafel, cheese-stuffed anything</td></tr>
+  <tr><td>Italian</td><td>Whole-wheat pasta primavera, pasta e fagioli, minestrone, grilled fish, big salad, marinara-based</td><td>Cream sauces, cheese-heavy, pepperoni, sausage, butter-based, fried calamari</td></tr>
+  <tr><td>Japanese</td><td>Edamame, seaweed salad, miso soup, sashimi, brown-rice rolls, vegetable rolls</td><td>Tempura, deep-fried, eel sauce</td></tr>
+  <tr><td>Steakhouse / American</td><td>Big salad start, grilled fish, double vegetables, baked potato (no butter — ask for olive oil)</td><td>Steak, butter, cheese plate, dessert</td></tr>
+  <tr><td>Hotel breakfast</td><td>Oatmeal + berries + nuts, fresh fruit, whole-grain toast with tahini, coffee</td><td>Bacon, sausage, omelette with cheese, pastries, white toast</td></tr>
+</table>
+
+<div class="callout">
+  <b>One rule that handles most restaurants:</b> "Mostly plants, no fried, no cream, no melted cheese." Say it to the waiter, they'll figure it out.
+</div>
+
+<div class="section-header">The Phase-In — Don't Try to Do This All Monday</div>
+
+<table>
+  <tr><th>Week</th><th>Add</th><th>Drop</th></tr>
+  <tr><td>Week 1–2</td><td>Beans/lentils every day. 6 servings greens.</td><td>Red meat. Soda. Donuts.</td></tr>
+  <tr><td>Week 3–4</td><td>Whole grains only (no white). Plant milk in coffee.</td><td>Processed deli meat. Pastries. White bread.</td></tr>
+  <tr><td>Week 5–6</td><td>Hummus and tahini-based dressings replace mayo and butter.</td><td>Dairy. Fried foods entirely.</td></tr>
+  <tr><td>Week 7–8</td><td>Settle into 5 favorite breakfasts, 5 lunches, 5 dinners.</td><td>Anything still drifting in from the old menu.</td></tr>
+  <tr><td>Maintenance</td><td>Reassess labs at 3 and 6 months — LDL, ApoB, hs-CRP, A1c.</td><td>Anything the labs say isn't working.</td></tr>
+</table>
+
+<div class="section-header">What to Track Daily / Weekly</div>
+
+<ul>
+  <li><b>Labs at 3 months and 6 months:</b> LDL (target &lt;55), ApoB (target &lt;60), hs-CRP, A1c, fasting glucose, fasting insulin</li>
+  <li><b>Body:</b> Weight weekly. Blood pressure 2× per week (morning).</li>
+  <li><b>Daily checklist:</b> 6 servings of greens? Beans? 30 min movement?</li>
+  <li><b>Symptoms to take SERIOUSLY:</b> chest pressure, shortness of breath, jaw/arm pain on exertion, dizziness, palpitations — call cardiology same day. Don't wait.</li>
+</ul>
+
+<div class="green-callout">
+  <b>Realistic expectations.</b> This diet doesn't dissolve plaque overnight. What it reliably does: drops LDL 15–30%, drops ApoB, drops hs-CRP (inflammation), drops blood pressure, drops A1c. The plaque you already have gets <i>stabilized</i> — meaning it doesn't rupture. <b>Stabilized plaque doesn't rupture, and ruptured plaque is what causes heart attacks.</b> That's the actual win.
+</div>
+
+<div class="red-callout">
+  <b>This is not a substitute for your statin.</b> Post-stent, lifestyle alone is undertreatment. Diet drops LDL ~15–30%. A high-intensity statin drops it another 50%. You need both. If you're not on Rosuvastatin 20–40 or Atorvastatin 40–80, that's the first conversation with your cardiologist.
+</div>
+
+<div class="footer">
+  Built for Tuval · 2026-05-16 · Modified-Esselstyn protocol based on Caldwell Esselstyn (Cleveland Clinic), Dean Ornish (UCSF), and PREDIMED (Mediterranean diet trial) evidence. From a friend who wants you around for another 30 years. Not medical advice — clinical decisions belong with your cardiologist.
+</div>
+
+</body>
+</html>

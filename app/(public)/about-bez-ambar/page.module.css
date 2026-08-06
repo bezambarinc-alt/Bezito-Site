@@ -214,6 +214,17 @@
   background: var(--ba-white);
 }
 
+/* Next.js Image classes (replaces inline objectFit styles) */
+.heroPhoto {
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.tlPhoto {
+  object-fit: cover;
+  object-position: center;
+}
+
 /* ── CTA ── */
 
 .cta {

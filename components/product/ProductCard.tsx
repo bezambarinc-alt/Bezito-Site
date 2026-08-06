@@ -20,11 +20,15 @@ export default function ProductCard({ product, category }: { product: Product; c
         ) : (
           <div className={styles.placeholder} aria-hidden />
         )}
+        {/* Hover reveal — "View Piece" label on dark scrim */}
+        <div className={styles.hover} aria-hidden>
+          <span className={styles.hoverLabel}>View Piece</span>
+        </div>
       </div>
       <div className={styles.meta}>
         <h3 className={styles.name}>{product.name}</h3>
+        {/* Gem shown on card; SKU lives on the detail page only */}
         {gem && <p className={styles.gem}>{gem}</p>}
-        <p className={styles.ref}>Ref. {product.sku}</p>
       </div>
     </Link>
   )

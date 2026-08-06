@@ -197,6 +197,11 @@
   margin-bottom: 1rem;
 }
 
+.cutPhoto {
+  object-fit: cover;
+  object-position: center;
+}
+
 .cutName {
   font-family: var(--ba-font-sans);
   font-size: 0.9375rem;

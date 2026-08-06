@@ -1,0 +1,59 @@
+/* ============================================================
+   PageCta — shared dark closing CTA used on About, Elysian,
+   The Story, and any content page ending with a contact prompt.
+   Matches Astro .product-cta pattern.
+   ============================================================ */
+
+.cta {
+  background: var(--ba-ink);
+  color: #fff;
+  text-align: center;
+  padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 4rem);
+}
+
+.eyebrow {
+  font-family: var(--ba-font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--ba-gold-warm);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.title {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 200;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.body {
+  font-family: var(--ba-font-editorial);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 50ch;
+  margin: 0 auto 2rem;
+}
+
+/* Ghost pill button — matches Astro .product-cta__btn */
+.btn {
+  display: inline-block;
+  font-family: var(--ba-font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ba-gold);
+  border: 1px solid var(--ba-gold);
+  border-radius: 999px;
+  padding: 13px 32px;
+  transition: background var(--ba-transition), color var(--ba-transition);
+}
+.btn:hover {
+  background: var(--ba-gold);
+  color: var(--ba-ink);
+}

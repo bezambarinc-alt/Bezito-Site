@@ -2,19 +2,20 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getProductBySlug, getAllProductParams } from '@/lib/queries'
+import { getCategoryLabel } from '@/lib/data/categories'
 import HeroVideo from '@/components/blocks/HeroVideo'
 import SpecAccordion from '@/components/blocks/SpecAccordion'
 import InquireCta from '@/components/blocks/InquireCta'
+import ProductGallery from '@/components/product/ProductGallery'
 import ProdPill from '@/components/layout/ProdPill'
 import type { SpecItem } from '@/types/blocks'
 import styles from './page.module.css'
 
-// ISR — product pages are rebuilt from the Neon products cache at most hourly.
+// ISR — product pages rebuilt from Neon cache at most hourly.
 export const revalidate = 3600
 export const dynamicParams = true
 
 export async function generateStaticParams() {
-  // Resilient at build time: if the DB is unreachable, fall back to on-demand ISR.
   try {
     return await getAllProductParams()
   } catch {
@@ -51,20 +52,25 @@ export default async function ProductPage({
   if (!product) notFound()
 
   const s = product.specs
-  const heroVideo = s.heroVideoUrl ?? product.media.find((m) => m.type === 'video')?.url
-  const heroPoster = s.heroPosterUrl ?? product.media.find((m) => m.type === 'video')?.poster
+  const heroVideo   = s.heroVideoUrl   ?? product.media.find((m) => m.type === 'video')?.url
+  const heroPoster  = s.heroPosterUrl  ?? product.media.find((m) => m.type === 'video')?.poster
   const secondaryVideo = s.secondaryVideoUrl
 
+  const categoryLabel = getCategoryLabel(category)
+
   const specItems: SpecItem[] = [
-    s.gemStone ? { label: 'Gem Stone', body: s.gemStone } : null,
-    s.metal ? { label: 'Metal', body: s.metal } : null,
-    s.caratWeight ? { label: 'Carat Weight', body: s.caratWeight } : null,
-    { label: 'Made In', body: s.madeIn ?? 'Los Angeles' },
-    { label: 'Inquiry', body: 'Presented privately by appointment. Reference this piece when you inquire.' },
+    s.gemStone    ? { label: 'Gem Stone',     body: s.gemStone }                           : null,
+    s.metal       ? { label: 'Metal',         body: s.metal }                              : null,
+    s.caratWeight ? { label: 'Carat Weight',  body: s.caratWeight }                        : null,
+    s.color       ? { label: 'Color',         body: s.color }                              : null,
+    s.clarity     ? { label: 'Clarity',       body: s.clarity }                            : null,
+    { label: 'Made In',  body: s.madeIn ?? 'Los Angeles' },
+    { label: 'Inquiry',  body: 'Presented privately by appointment. Reference this piece when you inquire.' },
   ].filter((x): x is SpecItem => x !== null)
 
   return (
     <main>
+      {/* ── Full-viewport hero video ── */}
       {heroVideo && (
         <HeroVideo
           block={{
@@ -77,41 +83,61 @@ export default async function ProductPage({
         />
       )}
 
-      <section className={styles.panel}>
+      {/* ── Hero text — white bg, centered ── */}
+      <section className={styles.hero}>
+        {/* Breadcrumb */}
         <nav className={styles.breadcrumb} aria-label="Breadcrumb">
           <Link href="/jewelry">Jewelry</Link>
           <span aria-hidden>·</span>
-          <Link href={`/jewelry/${category}`}>{category}</Link>
+          <Link href={`/jewelry/${category}`}>{categoryLabel}</Link>
         </nav>
+
+        {/* Product identity */}
         <h1 className={styles.title}>{product.name}</h1>
         {s.subtitle && <p className={styles.subtitle}>{s.subtitle}</p>}
+        <p className={styles.refLine}>Ref. {product.sku}</p>
         {s.lede && <p className={styles.lede}>{s.lede}</p>}
       </section>
 
+      {/* ── Still photography gallery ── */}
+      <ProductGallery media={product.media} productName={product.name} />
+
+      {/* ── Secondary video ── */}
       {secondaryVideo && (
-        <section className={styles.secondary}>
+        <div className={styles.secondary}>
           <video autoPlay muted loop playsInline preload="none" poster={heroPoster}>
             <source src={secondaryVideo} type="video/mp4" />
           </video>
-        </section>
+        </div>
       )}
 
-      <section className={styles.specs}>
-        <div className={styles.specsInner}>
-          <SpecAccordion block={{ type: 'spec-accordion', title: 'Specifications', items: specItems }} />
+      {/* ── Technical accordion — 2-col matching Astro .technical ── */}
+      <section className={styles.technical}>
+        <div className={styles.technicalInner}>
+          <p className={styles.technicalLabel}>
+            {s.codeName ?? product.name}
+          </p>
+          <div className={styles.technicalAccordion}>
+            <SpecAccordion
+              block={{ type: 'spec-accordion', title: 'Specifications', items: specItems }}
+              variant="light"
+            />
+          </div>
         </div>
       </section>
 
+      {/* ── Inquire CTA (dark) ── */}
       <InquireCta
         block={{
           type: 'inquire-cta',
           title: 'Request a Private Viewing',
           pieceTitle: product.name,
           sku: product.sku,
-          btnLabel: 'Inquire About This Piece',
+          btnLabel: 'Begin a Conversation',
         }}
       />
 
+      {/* ── Floating pill ── */}
       <ProdPill title={product.name} sku={product.sku} />
     </main>
   )

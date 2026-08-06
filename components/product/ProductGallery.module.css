@@ -1,0 +1,77 @@
+/* ============================================================
+   ProductGallery — image viewer on product detail pages.
+   Layout: large main image + thumbnail strip below.
+   Matches Astro product template still-image presentation.
+   ============================================================ */
+
+.gallery {
+  background: var(--ba-white);
+  padding: 0;
+}
+
+/* ── Main image ── */
+
+.main {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: clamp(2rem, 4vw, 3.5rem) clamp(1.25rem, 5vw, 4rem);
+}
+
+.mainFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--ba-cream);
+}
+
+.mainImg {
+  object-fit: contain;
+  object-position: center;
+  transition: opacity 0.25s ease;
+}
+
+/* ── Thumbnail strip ── */
+
+.thumbs {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 0 clamp(1.25rem, 5vw, 4rem) clamp(1.5rem, 3vw, 2.5rem);
+  flex-wrap: wrap;
+}
+
+.thumb {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 1px solid transparent;
+  background: var(--ba-cream);
+  cursor: pointer;
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+  opacity: 0.55;
+}
+
+.thumb:hover {
+  opacity: 0.85;
+}
+
+.thumbActive {
+  border-color: var(--ba-ink);
+  opacity: 1;
+}
+
+.thumbImg {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 768px) {
+  .mainFrame { aspect-ratio: 1 / 1; }
+  .thumb { width: 56px; height: 56px; }
+}

@@ -31,4 +31,9 @@
   border-radius: var(--ba-radius);
   transition: background var(--ba-transition);
 }
-.btn:hover { background: var(--ba-gold-light); }
+/* Astro .product-cta__btn:hover: gold-warm border + text, no fill */
+.btn:hover {
+  background: transparent;
+  color: var(--ba-gold-warm);
+  border: 1px solid var(--ba-gold-warm);
+}

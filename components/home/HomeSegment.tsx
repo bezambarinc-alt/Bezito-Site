@@ -70,7 +70,7 @@ export default function HomeSegment({
             loop
             playsInline
             preload="none"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            className={styles.video}
           >
             <source src={videoUrl} type="video/mp4" />
           </video>
@@ -82,7 +82,7 @@ export default function HomeSegment({
               alt={title}
               fill
               sizes="50vw"
-              style={{ objectFit: 'cover' }}
+              className={styles.segmentImg}
             />
           </div>
         ) : null}

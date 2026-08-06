@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import PageCta from '@/components/common/PageCta'
+import { ELYSIAN_CUTS } from '@/lib/data/elysian-cuts'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
@@ -7,44 +9,6 @@ export const metadata: Metadata = {
   description:
     'The Elysian Cut™ is a family of original step-cut geometries engineered for calibrated precision. Seven shapes, one philosophy. By Bez Ambar, Los Angeles.',
 }
-
-const CUTS = [
-  {
-    name: 'Pear',
-    desc: 'The teardrop elongated. Step-cut crown, brilliant pavilion — fire and line held in one outline.',
-    img: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1779091383/Jewelry%20Images/Stones/Elysian_cut_pear_sng4kq.jpg',
-  },
-  {
-    name: 'Oval',
-    desc: 'The most calibration-flexible of the seven. Elongation without sacrifice of the light line.',
-    img: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1779074065/Jewelry%20Images/Stones/Elysian_cut_oval_qcdt5r.jpg',
-  },
-  {
-    name: 'Marquise',
-    desc: 'A boat-shaped prism. Maximizes face-up surface while holding Elysian proportion to the edge.',
-    img: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1779091372/Jewelry%20Images/Stones/Elysian_cut_marquise_boraiy.jpg',
-  },
-  {
-    name: 'Emerald',
-    desc: 'The original step cut, taken further. Rectangular facets at the Elysian pavilion angle.',
-    img: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1779091372/Jewelry%20Images/Stones/Elysian_cut_emerald_a1l5gv.jpg',
-  },
-  {
-    name: 'Octagon',
-    desc: 'Eight sides converging in measured symmetry. Architectural without being cold.',
-    img: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1779091373/Jewelry%20Images/Stones/Elysian_cut_octagon_bucoa5.jpg',
-  },
-  {
-    name: 'Hex',
-    desc: 'Six-sided. Rare in fine jewelry. Native to the Elysian calibration system.',
-    img: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1779091374/Jewelry%20Images/Stones/Elysian_cut_Hex_ywlwno.jpg',
-  },
-  {
-    name: 'Triangle',
-    desc: 'Three points held to Elysian proportion. Form, strictly kept, becomes its own fire.',
-    img: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1779169849/Jewelry%20Images/Stones/Elysian_cut_triangle.282_w8c4ki.avif',
-  },
-]
 
 export default function ElysianCutPage() {
   return (
@@ -62,11 +26,11 @@ export default function ElysianCutPage() {
             type="video/mp4"
           />
         </video>
-        <div className={styles.heroOverlay} />
+        <div className={styles.heroOverlay} aria-hidden />
         <div className={styles.heroContent}>
           <p className={styles.heroEyebrow}>The Elysian Cut™</p>
           <h1 className={styles.heroTitle}>A Family<br />of Cuts</h1>
-          <div className={styles.heroRule} />
+          <div className={styles.heroRule} aria-hidden />
           <p className={styles.heroLede}>
             An old idea — the step cut, centuries in the making — reborn across seven
             original geometries. Each engineered from the stone outward.
@@ -84,7 +48,7 @@ export default function ElysianCutPage() {
       {/* ── Philosophy ── */}
       <section className={styles.philosophy}>
         <div className={styles.philosophyInner}>
-          <div className={styles.philosophyNumber}>7</div>
+          <div className={styles.philosophyNumber} aria-hidden>7</div>
           <div className={styles.philosophyProse}>
             <span className={styles.philosophyEyebrow}>The Philosophy</span>
             <h2 className={styles.philosophyHeading}>Calibration is the Discipline</h2>
@@ -112,7 +76,7 @@ export default function ElysianCutPage() {
           <h2 className={styles.cutsSectionTitle}>The Elysian Family</h2>
         </div>
         <div className={styles.cutsGrid}>
-          {CUTS.map((cut) => (
+          {ELYSIAN_CUTS.map((cut) => (
             <div key={cut.name} className={styles.cutCard}>
               <div className={styles.cutImg}>
                 <Image
@@ -120,7 +84,7 @@ export default function ElysianCutPage() {
                   alt={`Elysian Cut™ ${cut.name} by Bez Ambar`}
                   fill
                   sizes="(max-width: 600px) 50vw, (max-width: 900px) 33vw, 25vw"
-                  style={{ objectFit: 'cover' }}
+                  className={styles.cutPhoto}
                 />
               </div>
               <div className={styles.cutInfo}>
@@ -133,15 +97,13 @@ export default function ElysianCutPage() {
       </section>
 
       {/* ── CTA ── */}
-      <section className={styles.cta}>
-        <p className={styles.ctaEyebrow}>The Elysian Band</p>
-        <h2 className={styles.ctaTitle}>See It on the Finger</h2>
-        <p className={styles.ctaBody}>
-          The Elysian Pear and Oval bands are available through the atelier. Arrange a
-          private viewing to experience the continuous line in person.
-        </p>
-        <a href="/contact" className={styles.ctaBtn}>Arrange a Consultation</a>
-      </section>
+      <PageCta
+        eyebrow="The Elysian Band"
+        title="See It on the Finger"
+        body="The Elysian Pear and Oval bands are available through the atelier. Arrange a private viewing to experience the continuous line in person."
+        href="/contact"
+        ctaLabel="Arrange a Consultation"
+      />
 
     </main>
   )

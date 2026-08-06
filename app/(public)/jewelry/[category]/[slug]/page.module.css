@@ -1,37 +1,86 @@
-.panel {
-  background: var(--ba-black);
-  padding: clamp(3.5rem, 8vw, 7rem) var(--ba-gutter);
+/* ============================================================
+   Product detail page — /jewelry/[category]/[slug]
+   Layout mirrors Astro product template:
+   1. Full-viewport hero video (HeroVideo block)
+   2. White-bg hero text section (title, ref, lede)
+   3. Still photography gallery (ProductGallery)
+   4. Optional secondary video
+   5. 2-col technical accordion (label left | accordion right)
+   6. Dark InquireCta
+   ============================================================ */
+
+/* ── Hero text — white bg, centered ── */
+
+.hero {
+  background: var(--ba-white);
+  max-width: 720px;
+  margin: 0 auto;
+  padding: clamp(4rem, 8vw, 6rem) clamp(1.25rem, 5vw, 4rem) clamp(3rem, 6vw, 5rem);
   text-align: center;
 }
+
+/* Breadcrumb — matches Astro .breadcrumb */
 .breadcrumb {
   display: flex;
-  gap: 0.6rem;
+  gap: 8px;
+  align-items: center;
   justify-content: center;
   font-family: var(--ba-font-sans);
-  font-size: 0.72rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ba-muted);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  text-transform: none;
+  color: var(--ba-ink-muted);
   margin-bottom: 1.5rem;
+}
+.breadcrumb a {
+  color: var(--ba-ink-muted);
+  transition: color 0.2s;
 }
 .breadcrumb a:hover { color: var(--ba-gold); }
 
-.title { max-width: 900px; margin-inline: auto; }
+/* Product title — large, gold, Open Sans weight 300 */
+.title {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  text-transform: uppercase;
+  color: var(--ba-ink);
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+/* Subtitle — italic gold — Astro .hero__subtitle */
 .subtitle {
-  margin-top: 1rem;
-  font-family: var(--ba-font-editorial);
-  font-style: italic;
-  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  font-family: var(--ba-font-sans);
+  font-size: 0.9375rem;
+  font-weight: 300;
   color: var(--ba-gold);
+  margin-bottom: 0.5rem;
 }
+
+/* Reference line — Astro .hero__ref-line */
+.refLine {
+  font-family: var(--ba-font-sans);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--ba-ink-muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+}
+
+/* Lede — editorial serif body */
 .lede {
-  max-width: 640px;
-  margin: 1.5rem auto 0;
   font-family: var(--ba-font-editorial);
-  font-size: clamp(1rem, 1.4vw, 1.2rem);
-  line-height: 1.8;
-  color: var(--ba-cream);
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.75;
+  color: var(--ba-ink-soft);
+  max-width: 60ch;
+  margin-inline: auto;
 }
+
+/* ── Secondary video ── */
 
 .secondary {
   background: var(--ba-black);
@@ -40,10 +89,57 @@
   width: 100%;
   height: clamp(420px, 70vh, 820px);
   object-fit: cover;
+  display: block;
 }
 
-.specs {
-  background: var(--ba-black);
-  padding: clamp(3rem, 7vw, 6rem) var(--ba-gutter);
+/* ── Technical accordion — 2-col, matches Astro .technical / .technical__inner ── */
+
+.technical {
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.25rem, 5vw, 4rem);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
-.specsInner { max-width: 720px; margin-inline: auto; }
+
+.technicalInner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  max-width: var(--ba-maxw-xl);
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* Left label — large gold text, matches Astro .technical__label */
+.technicalLabel {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-weight: 200;
+  text-transform: uppercase;
+  color: var(--ba-gold);
+  line-height: 1.2;
+  text-align: right;
+  padding-top: 22px;
+  position: sticky;
+  top: calc(var(--ba-header-h) + 2rem);
+}
+
+.technicalAccordion {
+  /* right column — naturally aligned with the accordion component */
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 768px) {
+  .technicalInner {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .technicalLabel {
+    text-align: left;
+    position: static;
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero { padding: 3rem 1.25rem 2.5rem; }
+}

@@ -12,6 +12,19 @@
   --story-nav-w:  160px;
 }
 
+/* Next.js Image classes (replaces inline style= on Image elements) */
+.heroBg {
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.55;
+}
+
+.chapterImg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* ── Hero ──────────────────────────────────────────────── */
 
 .hero {
