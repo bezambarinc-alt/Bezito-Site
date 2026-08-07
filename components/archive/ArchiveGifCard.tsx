@@ -1,31 +1,30 @@
 'use client'
 
 /**
- * ArchiveGifCard — one GIF tile in the masonry grid.
+ * ArchiveGifCard — one GIF tile, rendered by masonic.
  *
- * Lazy load + pause strategy:
- *   - A single IntersectionObserver per card (rootMargin: 400px) tracks visibility.
- *   - When inView → true: render <img src={gifUrl}> — GIF loads & plays.
- *   - When inView → false: render placeholder <div> — GIF unmounts, stops animating,
- *     memory is freed.
- *   - Card height is governed by the parent aspect-ratio CSS class, NOT the img,
- *     so masonry layout never shifts regardless of visibility state.
+ * masonic measures this cell's rendered height to position the grid, so the
+ * card must render at its natural (intrinsic) GIF aspect ratio. We fix the
+ * frame to a portrait 3:4 ratio for uniform rhythm; masonic handles column
+ * packing and virtualization.
  *
- * 562 observers is well within browser limits and is the cleanest React pattern
- * for this use case (no external library needed).
+ * Lazy-load / pause: an IntersectionObserver per card toggles the GIF <img>
+ * vs a placeholder. Since masonic virtualizes, only near-viewport cards mount
+ * at all — so this is now a second, cheaper layer of the same optimization.
  */
 
 import { useEffect, useRef, useState } from 'react'
-import type { ArchiveEntry, CardSize } from '@/lib/data/archive-constants'
+import type { ArchiveEntry } from '@/lib/data/archive-constants'
 import { useDrawers } from '@/components/layout/DrawerContext'
 import styles from './ArchiveGifCard.module.css'
 
 interface Props {
   entry: ArchiveEntry
-  size: CardSize
+  /** Column width from masonic (unused for layout — CSS handles it — kept for API clarity) */
+  width?: number
 }
 
-export default function ArchiveGifCard({ entry, size }: Props) {
+export default function ArchiveGifCard({ entry }: Props) {
   const cardRef = useRef<HTMLButtonElement>(null)
   const [inView, setInView] = useState(false)
   const { openArchiveDrawer } = useDrawers()
@@ -33,10 +32,9 @@ export default function ArchiveGifCard({ entry, size }: Props) {
   useEffect(() => {
     const el = cardRef.current
     if (!el) return
-
     const io = new IntersectionObserver(
       ([e]) => setInView(e.isIntersecting),
-      { rootMargin: '400px' },
+      { rootMargin: '300px' },
     )
     io.observe(el)
     return () => io.disconnect()
@@ -45,17 +43,12 @@ export default function ArchiveGifCard({ entry, size }: Props) {
   return (
     <button
       ref={cardRef}
-      className={`${styles.card} ${styles[size]}`}
+      className={styles.card}
       onClick={() =>
-        openArchiveDrawer({
-          title:  entry.title,
-          sku:    entry.sku,
-          mp4Url: entry.mp4Url,
-        })
+        openArchiveDrawer({ title: entry.title, sku: entry.sku, mp4Url: entry.mp4Url })
       }
       aria-label={`View ${entry.title}`}
     >
-      {/* Media area — always same height via aspect-ratio on .card */}
       <div className={styles.mediaWrap} aria-hidden>
         {inView && entry.gifUrl ? (
           <img
@@ -70,15 +63,15 @@ export default function ArchiveGifCard({ entry, size }: Props) {
         )}
       </div>
 
-      {/* Play icon — visible on hover */}
+      {/* Play icon — hover */}
       <span className={styles.playIcon} aria-hidden>
-        <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
           <polygon points="6,3 20,12 6,21" />
         </svg>
       </span>
 
-      {/* Caption gradient — visible on hover */}
-      <span className={styles.caption}>{entry.title}</span>
+      {/* Caption — hover. aria-hidden: title already announced by button aria-label */}
+      <span className={styles.caption} aria-hidden>{entry.title}</span>
     </button>
   )
 }

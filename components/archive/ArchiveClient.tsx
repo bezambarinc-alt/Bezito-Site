@@ -3,15 +3,20 @@
 /**
  * ArchiveClient — client-side shell for the archive page.
  *
- * Receives ALL entries from the server component (Neon query, done once at render).
- * Owns filter state in memory → instant filtering, no server round-trip.
- * Updates URL via history.replaceState so filters are shareable/bookmarkable.
+ * Receives ALL entries from the server component (Neon query, once at render).
+ * Filter state is derived DIRECTLY from the URL (useSearchParams) — the URL is
+ * the single source of truth. This keeps browser back/forward in sync: pressing
+ * back changes the URL, useSearchParams re-reads, the grid re-filters. No local
+ * useState mirror to desync.
+ *
+ * Filter writes go through router.replace (scroll:false) which updates the URL
+ * and triggers the re-render — instant, client-side, shareable/bookmarkable.
  *
  * Three filter dimensions: category · shape · color
  */
 
-import { useCallback, useMemo, useState } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useCallback, useMemo } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import type { ArchiveEntry } from '@/lib/data/archive-constants'
 import ArchiveFilterPill from './ArchiveFilterPill'
 import ArchiveGrid from './ArchiveGrid'
@@ -22,39 +27,36 @@ interface Props {
 }
 
 export default function ArchiveClient({ entries }: Props) {
-  const searchParams = useSearchParams()
+  const router = useRouter()
+  const params = useSearchParams()
 
-  // Initialise from URL params (supports direct-link + back-button)
-  const [cat,   setCat]   = useState(() => searchParams?.get('cat')   ?? 'all')
-  const [shape, setShape] = useState(() => searchParams?.get('shape') ?? 'all')
-  const [color, setColor] = useState(() => searchParams?.get('color') ?? 'all')
+  // URL is the source of truth — always in sync with back/forward
+  const cat   = params?.get('cat')   ?? 'all'
+  const shape = params?.get('shape') ?? 'all'
+  const color = params?.get('color') ?? 'all'
 
-  /** Update filter state AND push to URL — no server round-trip. */
   const handleFilterChange = useCallback(
     (nextCat: string, nextShape: string, nextColor: string) => {
-      setCat(nextCat)
-      setShape(nextShape)
-      setColor(nextColor)
-
       const sp = new URLSearchParams()
       if (nextCat   !== 'all') sp.set('cat',   nextCat)
       if (nextShape !== 'all') sp.set('shape', nextShape)
       if (nextColor !== 'all') sp.set('color', nextColor)
-
-      const qs = sp.size > 0 ? `?${sp.toString()}` : window.location.pathname
-      window.history.replaceState(null, '', qs)
+      const qs = sp.toString()
+      router.replace(qs ? `?${qs}` : '/archive', { scroll: false })
     },
-    [],
+    [router],
   )
 
-  const filtered = useMemo(() => {
-    return entries.filter(e => {
-      const catOk   = cat   === 'all' || e.category === cat
-      const shapeOk = shape === 'all' || e.shapes.includes(shape)
-      const colorOk = color === 'all' || e.colors.includes(color)
-      return catOk && shapeOk && colorOk
-    })
-  }, [entries, cat, shape, color])
+  const filtered = useMemo(
+    () =>
+      entries.filter(e => {
+        const catOk   = cat   === 'all' || e.category === cat
+        const shapeOk = shape === 'all' || e.shapes.includes(shape)
+        const colorOk = color === 'all' || e.colors.includes(color)
+        return catOk && shapeOk && colorOk
+      }),
+    [entries, cat, shape, color],
+  )
 
   const isFiltered = cat !== 'all' || shape !== 'all' || color !== 'all'
 

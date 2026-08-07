@@ -5,6 +5,7 @@
  * ⚠️  Import ONLY in Server Components or Route Handlers.
  *     Client-safe types + constants live in archive-constants.ts.
  */
+import 'server-only'
 import { sql } from '@/lib/db'
 
 // Re-export everything from constants so server code needs only one import.

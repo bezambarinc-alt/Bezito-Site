@@ -28,16 +28,20 @@
   border-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Fixed floating pill — same styles, just fixed position */
+/* Fixed floating pill — same styles, fixed position + fade/rise entry */
 .pillFixed {
   position: fixed;
   bottom: max(1.5rem, env(safe-area-inset-bottom, 1.5rem));
   left: 50%;
-  transform: translateX(-50%);
   z-index: calc(var(--ba-z-overlay) - 1);
   background: var(--ba-ink);
   border-color: rgba(255, 255, 255, 0.25);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  animation: pillRise 0.3s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+@keyframes pillRise {
+  from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
 /* Active filter badge */

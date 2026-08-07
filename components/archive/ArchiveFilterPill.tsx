@@ -35,6 +35,7 @@ export default function ArchiveFilterPill({
   const [panelOpen, setPanelOpen] = useState(false)
   const [floating,  setFloating]  = useState(false)
   const anchorRef = useRef<HTMLButtonElement>(null)
+  const panelRef  = useRef<HTMLDivElement>(null)
 
   // Floating behaviour — mirrors Astro IntersectionObserver on archivePillAnchor
   useEffect(() => {
@@ -48,9 +49,10 @@ export default function ArchiveFilterPill({
     return () => io.disconnect()
   }, [])
 
-  // Close on ESC
+  // Close on ESC + move focus into the panel when it opens (a11y)
   useEffect(() => {
     if (!panelOpen) return
+    panelRef.current?.focus()
     const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') setPanelOpen(false) }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
@@ -107,6 +109,8 @@ export default function ArchiveFilterPill({
 
       {/* ── Slide-up panel ── */}
       <div
+        ref={panelRef}
+        tabIndex={-1}
         className={`${styles.panel} ${panelOpen ? styles.panelOpen : ''}`}
         role="dialog"
         aria-modal="true"

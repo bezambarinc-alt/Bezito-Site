@@ -41,28 +41,28 @@ export default function ProductGallery({ media, productName }: Props) {
         </div>
       </div>
 
-      {/* Thumbnails — only shown when 2+ images */}
+      {/* Thumbnails — only shown when 2+ images. Semantic ul/li, no ARIA role overrides. */}
       {images.length > 1 && (
-        <div className={styles.thumbs} role="list" aria-label="Product views">
+        <ul className={styles.thumbs} aria-label="Product views">
           {images.map((img, i) => (
-            <button
-              key={i}
-              role="listitem"
-              className={`${styles.thumb} ${i === activeIdx ? styles.thumbActive : ''}`}
-              onClick={() => setActiveIdx(i)}
-              aria-label={img.label ?? `View ${i + 1}`}
-              aria-current={i === activeIdx}
-            >
-              <Image
-                src={img.url}
-                alt={img.label ?? `${productName} view ${i + 1}`}
-                fill
-                sizes="120px"
-                className={styles.thumbImg}
-              />
-            </button>
+            <li key={i}>
+              <button
+                className={`${styles.thumb} ${i === activeIdx ? styles.thumbActive : ''}`}
+                onClick={() => setActiveIdx(i)}
+                aria-label={img.label ?? `View ${i + 1}`}
+                aria-current={i === activeIdx}
+              >
+                <Image
+                  src={img.url}
+                  alt={img.label ?? `${productName} view ${i + 1}`}
+                  fill
+                  sizes="120px"
+                  className={styles.thumbImg}
+                />
+              </button>
+            </li>
           ))}
-        </div>
+        </ul>
       )}
     </div>
   )

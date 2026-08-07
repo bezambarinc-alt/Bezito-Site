@@ -1,26 +1,7 @@
 /* ============================================================
-   ArchiveGrid — CSS columns masonry (matches Astro archive grid)
-   Zero JS layout — column order is natural document flow.
-   Column count scales from 4 → 3 → 2 → 1.
+   ArchiveGrid — masonic handles the live grid layout in JS.
+   These styles only cover the hydration skeleton + empty state.
    ============================================================ */
-
-.masonry {
-  columns: 4;
-  column-gap: 10px;
-}
-
-.skeleton {
-  break-inside: avoid;
-  margin-bottom: 10px;
-  background: linear-gradient(100deg, #141414 30%, #1c1c1c 50%, #141414 70%);
-  background-size: 200% 100%;
-  animation: shimmer 1.4s ease-in-out infinite;
-}
-
-@keyframes shimmer {
-  from { background-position: 200% 0; }
-  to   { background-position: -200% 0; }
-}
 
 .empty {
   font-family: var(--ba-font-editorial);
@@ -30,6 +11,31 @@
   text-align: center;
 }
 
-@media (max-width: 1100px) { .masonry { columns: 3; } }
-@media (max-width: 720px)  { .masonry { columns: 2; } }
-@media (max-width: 420px)  { .masonry { columns: 1; } }
+/* ── Skeleton grid (shown while client component hydrates) ── */
+
+.skeletonGrid {
+  columns: 6;
+  column-gap: 12px;
+}
+@media (max-width: 1400px) { .skeletonGrid { columns: 5; } }
+@media (max-width: 1100px) { .skeletonGrid { columns: 4; } }
+@media (max-width: 820px)  { .skeletonGrid { columns: 3; } }
+@media (max-width: 560px)  { .skeletonGrid { columns: 2; } }
+
+.skeleton {
+  break-inside: avoid;
+  margin-bottom: 12px;
+  background: linear-gradient(100deg, #141414 30%, #1c1c1c 50%, #141414 70%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+/* Height variants for skeleton visual rhythm only */
+.sk1 { height: 220px; }
+.sk2 { height: 300px; }
+.sk3 { height: 260px; }
+
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
