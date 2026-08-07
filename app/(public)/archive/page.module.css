@@ -7,43 +7,46 @@
 
 .hero {
   background: var(--ba-white);
-  padding: calc(var(--ba-header-h) + clamp(3rem, 6vw, 5rem))
-           clamp(1.25rem, 5vw, 4rem)
-           clamp(2.5rem, 5vw, 3.5rem);
+  padding: 140px 2rem 56px;         /* Astro .vg-hero: padding 140px 2rem 56px */
   text-align: center;
   max-width: 680px;                 /* Astro .vg-hero max-width: 680px */
   margin: 0 auto;
 }
+@media (max-width: 768px) {
+  .hero { padding-top: 100px; padding-bottom: 40px; }
+}
+@media (max-width: 480px) {
+  .hero { padding-top: 80px; padding-bottom: 32px; }
+}
 
-/* Astro .vg-hero__eyebrow — accent (gold) */
+/* Astro .vg-hero__eyebrow — accent (gold), 15px, uppercase (--sans-transform) */
 .eyebrow {
   font-family: var(--ba-font-sans);
-  font-size: 0.9375rem;
+  font-size: 15px;
   font-weight: 500;
   text-transform: uppercase;
   color: var(--ba-gold);
-  margin-bottom: 1.25rem;
+  margin-bottom: 20px;
   display: block;
 }
 
-/* Astro .vg-hero__title — ink, weight 300 */
+/* Astro .vg-hero__title — ink, weight 300, uppercase (--sans-transform) */
 .title {
   font-family: var(--ba-font-sans);
-  font-size: clamp(2.25rem, 6vw, 3.75rem);
+  font-size: clamp(36px, 6vw, 60px);
   font-weight: 300;
   text-transform: uppercase;
   color: var(--ba-ink);
-  margin: 0 0 1.25rem;
+  margin: 0 0 20px;
   line-height: 1.1;
 }
 
-/* Astro .vg-hero__lede — ink, serif prose */
+/* Astro .vg-hero__lede — full ink, serif prose, fixed 19px, no width cap */
 .lede {
   font-family: var(--ba-font-editorial);
-  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  font-size: 19px;
   line-height: 1.65;
-  color: var(--ba-ink-soft);
-  max-width: 52ch;
+  color: var(--ba-ink);
   margin: 0 auto;
 }
 
