@@ -14,7 +14,7 @@
 /* ── Pill ── */
 .pill {
   position: relative;
-  background: var(--ba-accent);
+  background: var(--ba-gold);
   color: var(--ba-ink);
   border: none;
   border-radius: 100px;
@@ -176,7 +176,7 @@
 }
 .optActive::after {
   content: '·';
-  color: var(--ba-accent);
+  color: var(--ba-gold);
   font-size: 20px;
   line-height: 1;
   margin-left: auto;
@@ -206,7 +206,7 @@
   transition: border-color 0.2s, color 0.2s;
   -webkit-tap-highlight-color: transparent;
 }
-.results:hover { border-color: var(--ba-accent); color: var(--ba-accent); }
+.results:hover { border-color: var(--ba-gold); color: var(--ba-gold); }
 
 @media (max-width: 480px) {
   .panel { width: min(88vw, 340px); }
