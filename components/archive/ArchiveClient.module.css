@@ -1,18 +1,7 @@
-/* ArchiveClient — layout wrapper for filter controls + grid */
+/* ArchiveClient — layout wrapper for filter controls + grid.
+   No top padding: the pill's own .anchor { margin-top: 36px } is the ONLY gap
+   between the lede and the pill, exactly like Astro (anchor lives in .vg-hero). */
 
 .wrap {
-  padding-top: clamp(1.5rem, 3vw, 2.5rem);
-}
-
-.controls {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
-}
-
-.activeLabel {
-  font-family: var(--ba-font-sans);
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.4);
+  padding-top: 0;
 }
