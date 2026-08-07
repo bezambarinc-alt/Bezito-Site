@@ -1,37 +1,48 @@
 /* ============================================================
    Bez Ambar — global tokens, resets, base typography
-   Reference: src/styles/global.css (Astro)
-   Typography: Open Sans (headings/UI) · Cormorant Garamond (body/prose)
+   Reference: src/styles/global.css (Astro) — matched 1:1
+   Fonts: Open Sans (headings/UI) · Lyon Text > Cormorant (body/prose)
    "Chiseling Light." Los Angeles · Est. 1979
    ============================================================ */
 
 :root {
-  /* Palette — exact match to Astro */
-  --ba-black: #0d0d0d;        /* --dark-bg */
-  --ba-dark: #141414;          /* --dark-surface */
-  --ba-dark-raised: #1a1a1a;
-  --ba-gold: #95826b;          /* --accent */
-  --ba-gold-warm: #c9b896;     /* --accent-warm — overlays on dark */
-  --ba-white: #faf7f2;         /* --paper */
-  --ba-cream: #ede9e0;
-  --ba-ink: #1a1a1a;           /* --ink */
-  --ba-ink-soft: #4a4a4a;      /* --ink-soft */
-  --ba-ink-muted: #888888;     /* --ink-muted / --ba-muted */
-  --ba-border: rgba(0, 0, 0, 0.08);
-  --ba-dark-border: rgba(255, 255, 255, 0.08);
+  /* Palette — EXACT match to Astro global.css :root */
+  --ba-ink:        #1a1a1a;    /* --ink */
+  --ba-ink-soft:   #4a4a4a;    /* --ink-soft */
+  --ba-ink-muted:  #888888;    /* --ink-muted */
+  --ba-gold:       #95826b;    /* --accent */
+  --ba-gold-warm:  #c9b896;    /* --accent-warm — warm gold, overlays on dark */
+  --ba-paper:      #faf7f2;    /* --paper — warm off-white (accent wells, media bg) */
+  --ba-white:      #ffffff;    /* --white — PURE white (body background) */
+  --ba-cream:      #ede9e0;
 
-  /* Typography
-     Cormorant Garamond = body/prose (--font-cormorant via next/font)
-     Open Sans          = headings + UI (--font-opensans via next/font)
-     Astro convention: serif body, sans headings — all headings uppercase */
-  --ba-font-serif: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
-  --ba-font-sans:  var(--font-opensans), 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-  /* Editorial = same serif stack, used for prose/body copy */
-  --ba-font-editorial: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  /* Dark-theme surfaces */
+  --ba-black:        #0d0d0d;  /* --dark-bg */
+  --ba-dark:         #141414;  /* --dark-surface */
+  --ba-dark-raised:  #1a1a1a;  /* --dark-raised */
+  --ba-dark-border:  rgba(255, 255, 255, 0.08);
 
-  /* Sans heading style (applied globally to h1–h6, replicated in components) */
+  /* Borders */
+  --ba-border:       rgba(0, 0, 0, 0.08);  /* --border */
+  --ba-border-warm:  #e8e4de;              /* --border-warm */
+  --ba-light-bg:     #f7f5f2;              /* --light-bg */
+
+  /* Typography — font stacks (match Astro --sans / --serif / --prose)
+     next/font vars (--font-*) resolve to the loaded webfonts; Lyon Text is
+     first so it takes over automatically once the licensed files are served. */
+  --ba-font-sans:  var(--font-opensans), 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --ba-font-serif: 'Lyon Text', var(--font-cormorant), 'Cormorant GaramondVariable', 'Cormorant Garamond', Georgia, serif;
+  /* Editorial = same serif/prose stack, used for prose/body copy */
+  --ba-font-editorial: 'Lyon Text', var(--font-cormorant), 'Cormorant GaramondVariable', 'Cormorant Garamond', Georgia, serif;
+
   --ba-sans-transform:       uppercase;
   --ba-sans-letter-spacing:  0;
+
+  /* Type scale (Astro --type-*) */
+  --ba-type-display:  clamp(2.5rem, 5vw, 4rem);
+  --ba-type-heading:  clamp(1.75rem, 3vw, 2.5rem);
+  --ba-type-subhead:  clamp(1.125rem, 2vw, 1.5rem);
+  --ba-type-label:    0.9375rem;                    /* 15px */
 
   /* Motion */
   --ba-transition:   0.3s ease;
@@ -42,10 +53,10 @@
   --ba-radius:       2px;
 
   /* Layout */
-  --ba-header-h: 64px;          /* Astro: height: 64px (was 72px — bug) */
+  --ba-header-h: 64px;
   --ba-gutter:   clamp(1.25rem, 4vw, 4rem);
   --ba-maxw:     1200px;
-  --ba-maxw-xl:  1440px;
+  --ba-maxw-xl:  1400px;         /* Astro --max-w-xl: 1400px */
 
   /* Elevation */
   --ba-z-header:  100;
@@ -154,33 +165,69 @@ body.page-dark {
 
 .ba-section { padding-block: clamp(4rem, 10vw, 9rem); }
 
-/* ---------- Buttons ---------- */
+/* ---------- Buttons (match Astro global.css .btn / .btn-* exactly) ---------- */
 .btn {
   display: inline-block;
   padding: 13px 32px;
   font-family: var(--ba-font-sans);
   text-transform: uppercase;
-  letter-spacing: 0;
-  font-size: 0.8125rem; /* 13px */
+  letter-spacing: 0.1em;                 /* Astro: 0.1em (was 0 — bug) */
+  font-size: 12px;                       /* Astro: 12px (was 13px — bug) */
   font-weight: 500;
   text-decoration: none;
   border: 1px solid transparent;
   border-radius: 999px;
   cursor: pointer;
-  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
 }
-.btn-ghost {
-  background: transparent;
-  color: inherit;
-  border-color: currentColor;
-}
-.btn-ghost:hover { background: rgba(255,255,255,0.12); transform: translateY(-1px); }
+
+/* Solid ink — primary CTA */
+.btn-primary,
 .btn-ink {
   background: var(--ba-ink);
   color: #fff;
   border-color: var(--ba-ink);
 }
-.btn-ink:hover { background: #2a2a2a; transform: translateY(-1px); }
+.btn-primary:hover,
+.btn-ink:hover {
+  background: #2a2a2a;
+  border-color: #2a2a2a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(26, 26, 26, 0.15);
+}
+
+/* Gold outline — secondary */
+.btn-secondary {
+  background: transparent;
+  color: var(--ba-gold);
+  border-color: var(--ba-gold);
+}
+.btn-secondary:hover {
+  background: var(--ba-gold);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(149, 130, 107, 0.2);
+}
+
+/* White — for dark backgrounds */
+.btn-white {
+  background: #fff;
+  color: var(--ba-ink);
+  border-color: #fff;
+}
+.btn-white:hover {
+  background: var(--ba-paper);
+  border-color: var(--ba-paper);
+  transform: translateY(-1px);
+}
+
+/* Ghost border — works on light and dark */
+.btn-ghost {
+  background: transparent;
+  color: inherit;
+  border-color: currentColor;
+}
+.btn-ghost:hover { background: rgba(255, 255, 255, 0.12); transform: translateY(-1px); }
 
 /* ---------- Text link ---------- */
 .text-link {
