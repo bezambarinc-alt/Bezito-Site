@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal — Behind the Craft | Bez Ambar</title>
+    <meta name="description" content="The Bez Ambar journal — behind the atelier, the craft, the stones. Latest from @bezambar on Instagram.">
+    <link rel="canonical" href="https://bezambar.com/journal">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231a1a1a'/%3E%3Ctext x='16' y='22' font-family='serif' font-size='18' font-weight='700' fill='%23c5a258' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://webfonts.fontstand.com/WF-099839-d89c1d499f0c1f40d1e6d7330af17f97.css" type="text/css"/>
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-soft: #4a4a4a;
+            --ink-muted: #888;
+            --paper: #ffffff;
+            --paper-warm: #faf7f2;
+            --rule: #e8e4de;
+            --accent: #95826b;
+            --serif: 'Lyon Text Regular', 'EB Garamond', Georgia, serif;
+            --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--serif);
+            color: var(--ink);
+            background: var(--paper);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; height: auto; }
+
+        /* ============ HEADER ============ */
+        .site-header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--rule);
+            padding: 18px 40px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .site-header__menu, .site-header__right {
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--ink);
+            cursor: pointer;
+        }
+        .site-header__menu { user-select: none; }
+        .site-header__menu::before {
+            content: '☰';
+            margin-right: 8px;
+            font-size: 14px;
+            vertical-align: -1px;
+        }
+        .site-header__right a { color: var(--ink); text-decoration: none; font: inherit; }
+        .site-header__right a:hover { color: var(--accent); }
+        .site-header__logo {
+            font-family: var(--sans);
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 6px;
+            color: var(--ink);
+            text-transform: uppercase;
+        }
+
+        /* ============ MENU OVERLAY — Patek drill-down ============ */
+        .menu-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 320px;
+            height: 100vh;
+            background: #fff;
+            z-index: 9999;
+            display: flex;
+            overflow: hidden;
+            transform: translateX(-100%);
+            transition: transform .35s ease, width .35s ease;
+            box-shadow: 4px 0 24px rgba(0,0,0,.08);
+        }
+        .menu-overlay.is-open { transform: translateX(0); }
+        .menu-overlay.has-sub { width: 600px; max-width: 92vw; }
+        .menu-overlay.has-sub-sub { width: 900px; max-width: 96vw; }
+        .menu-overlay__close {
+            position: absolute;
+            top: 22px; left: 24px;
+            background: none; border: 0;
+            font-size: 24px; color: var(--ink);
+            cursor: pointer; line-height: 1;
+            padding: 4px 8px; z-index: 5;
+        }
+        .menu-overlay__logo {
+            position: absolute;
+            top: 28px; left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--sans);
+            font-size: 13px; font-weight: 700;
+            letter-spacing: 5px;
+            color: var(--ink);
+            text-transform: uppercase;
+            z-index: 4; white-space: nowrap;
+        }
+        .menu-col {
+            flex: 0 0 300px;
+            width: 300px;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 96px 0 40px;
+            margin: 0;
+            list-style: none;
+            border-right: 1px solid var(--rule);
+        }
+        .menu-col:last-child { border-right: 0; }
+        .menu-col--sub { display: none; }
+        .menu-col--sub.is-active { display: block; }
+        .menu-col li { list-style: none; }
+        .menu-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 13px 36px 13px 40px;
+            font-family: var(--sans);
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 0.20em;
+            text-transform: uppercase;
+            color: #888;
+            background: none;
+            border: 0;
+            cursor: pointer;
+            text-align: left;
+            text-decoration: none;
+            line-height: 1.4;
+            transition: color .15s;
+        }
+        .menu-item:hover { color: var(--ink); }
+        .menu-item.is-active {
+            color: var(--ink);
+            font-weight: 400;
+            text-decoration: underline;
+            text-underline-offset: 8px;
+            text-decoration-thickness: 1px;
+        }
+        .menu-item--home {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 16px;
+            letter-spacing: 0;
+            text-transform: none;
+            color: #aaa;
+            font-weight: 400;
+            padding-top: 6px;
+            padding-bottom: 22px;
+        }
+        .menu-item--soon { opacity: .35; pointer-events: none; font-style: italic; }
+        .menu-item--has-sub::after {
+            content: '›';
+            font-size: 20px;
+            font-weight: 300;
+            color: inherit;
+            margin-left: 12px;
+            opacity: 0.7;
+            line-height: 1;
+        }
+        .menu-item--external::after {
+            content: '↗';
+            font-size: 11px;
+            margin-left: 12px;
+            opacity: 0.55;
+        }
+        .menu-backdrop {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,.55);
+            opacity: 0; visibility: hidden;
+            transition: opacity .3s, visibility .3s;
+            z-index: 9998;
+        }
+        .menu-backdrop.is-open { opacity: 1; visibility: visible; }
+        @media (max-width: 600px) {
+            .menu-overlay { width: 88vw; }
+            .menu-overlay.has-sub { width: 92vw; }
+            .menu-overlay.has-sub-sub { width: 96vw; }
+            .menu-col { flex-basis: 50%; width: 50%; }
+        }
+
+        /* ============ PAGE HERO ============ */
+        .page-hero {
+            padding: clamp(90px, 11vw, 120px) 40px clamp(28px, 4vw, 48px);
+            text-align: center;
+            background: var(--paper);
+            border-bottom: 1px solid var(--rule);
+        }
+        .page-hero__eyebrow {
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        .page-hero__title {
+            font-family: var(--sans);
+            font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+            font-weight: 200;
+            letter-spacing: -0.01em;
+            text-transform: uppercase;
+            line-height: 1.15;
+            color: var(--accent);
+            margin-bottom: 14px;
+        }
+        .page-hero__sub {
+            font-family: var(--serif);
+            font-size: clamp(0.95rem, 1.15vw, 1.05rem);
+            line-height: 1.55;
+            color: var(--ink);
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* ============ FEED SECTION ============ */
+        .feed-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px clamp(40px, 6vw, 80px);
+        }
+        /* Tighten Curator's default look so it sits inside our Patek palette */
+        #curator-feed-default-feed-layout { background: transparent; }
+        #curator-feed-default-feed-layout .crt-feed { background: transparent !important; }
+        #curator-feed-default-feed-layout .crt-post,
+        #curator-feed-default-feed-layout .crt-grid-post { background: var(--paper) !important; }
+        #curator-feed-default-feed-layout a.crt-logo,
+        #curator-feed-default-feed-layout a.crt-logo:visited { color: var(--ink-muted) !important; }
+
+        /* ============ FOLLOW CTA ============ */
+        .follow-cta {
+            text-align: center;
+            padding: clamp(40px, 6vw, 80px) 40px clamp(80px, 10vw, 120px);
+            border-top: 1px solid var(--rule);
+        }
+        .follow-cta__handle {
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+        .follow-cta__link {
+            display: inline-block;
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--ink);
+            border-bottom: 1px solid var(--ink);
+            padding: 8px 0 4px;
+            transition: color .25s, border-color .25s;
+        }
+        .follow-cta__link:hover { color: var(--accent); border-color: var(--accent); }
+
+        /* ============ SERVICES STRIP ============ */
+        .services-strip {
+            background: var(--paper-warm);
+            border-top: 1px solid var(--rule);
+            padding: clamp(50px, 7vw, 80px) 40px;
+        }
+        .services-strip__inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+        .services-strip__item h4 {
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        .services-strip__item p {
+            font-family: var(--serif);
+            font-size: 15px;
+            color: var(--ink);
+            line-height: 1.6;
+        }
+        @media (max-width: 800px) {
+            .services-strip__inner { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+        }
+        @media (max-width: 480px) {
+            .services-strip__inner { grid-template-columns: 1fr; gap: 28px; text-align: center; }
+        }
+
+        /* ============ FOOTER ============ */
+        .site-footer {
+            background: #0d0d0d;
+            color: #777;
+            padding: 60px 40px 40px;
+            font-family: var(--sans);
+            font-size: 12px;
+        }
+        .site-footer__grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        .site-footer__col h4 {
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 18px;
+        }
+        .site-footer__col a {
+            display: block;
+            color: #aaa;
+            padding: 4px 0;
+            font-size: 13px;
+        }
+        .site-footer__col a:hover { color: #fff; }
+        .site-footer__bottom {
+            border-top: 1px solid #1f1f1f;
+            padding-top: 30px;
+            text-align: center;
+            color: #555;
+            font-size: 11px;
+            letter-spacing: 0.15em;
+        }
+        .site-footer__bottom .logo {
+            font-family: var(--sans);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+        }
+        @media (max-width: 900px) {
+            .site-footer__grid { grid-template-columns: repeat(2, 1fr); }
+            .site-header { padding: 14px 20px; }
+        }
+        @media (max-width: 520px) {
+            .site-footer__grid { grid-template-columns: 1fr; }
+            .site-header__menu, .site-header__right { display: none; }
+            .site-header { justify-content: center; }
+        }
+    
+
+
+/* ============ CANONICAL BA-FOOTER — Patek-style multi-column ============ */
+.ba-footer {
+  background: #ffffff;
+  border-top: 1px solid rgba(0,0,0,.08);
+  padding: 64px 24px 32px;
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #4a4a4a;
+}
+.ba-footer__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.ba-footer__cols {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 40px 32px;
+  margin-bottom: 56px;
+}
+.ba-footer__col h4 {
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  margin: 0 0 16px;
+}
+.ba-footer__col h4.ba-footer__col-sub { margin-top: 28px; }
+.ba-footer__col a {
+  display: block;
+  font-family: 'Lyon Text Regular', 'EB Garamond', Georgia, serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #4a4a4a;
+  text-decoration: none;
+  line-height: 2.1;
+  transition: color .2s ease;
+}
+.ba-footer__col a:hover { color: #95826b; }
+.ba-footer__bottom {
+  border-top: 1px solid rgba(0,0,0,.08);
+  padding-top: 32px;
+  text-align: center;
+}
+.ba-footer__logo {
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  color: #95826b;
+  text-transform: uppercase;
+  margin: 0 0 12px !important;
+}
+.ba-footer__address {
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  color: #4a4a4a;
+  line-height: 1.85;
+  margin: 0 0 14px !important;
+}
+.ba-footer__address a { color: #4a4a4a; text-decoration: none; }
+.ba-footer__address a:hover { color: #95826b; }
+.ba-footer__tag {
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 10px !important;
+  letter-spacing: 0.5px;
+  color: #4a4a4a;
+  margin: 0 !important;
+}
+@media (max-width: 900px) {
+  .ba-footer__cols { grid-template-columns: repeat(2, 1fr); gap: 32px 24px; }
+  .ba-footer { padding: 48px 20px 24px; }
+}
+@media (max-width: 480px) {
+  .ba-footer__cols { grid-template-columns: 1fr; gap: 24px; }
+}
+</style>
+</head>
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="site-header">
+        <div class="site-header__menu" id="menuToggle" onclick="toggleMenu()" role="button" tabindex="0" aria-label="Open menu">Menu</div>
+        <div class="site-header__logo">Bez Ambar</div>
+        <div class="site-header__right"><a href="contact.html">Contact</a></div>
+    </header>
+
+    <!-- ==================== MENU OVERLAY ==================== -->
+    <div class="menu-backdrop" id="menuBackdrop" onclick="toggleMenu()"></div>
+    <nav class="menu-overlay" id="menuOverlay" aria-hidden="true">
+        <button class="menu-overlay__close" onclick="toggleMenu()" aria-label="Close menu">&times;</button>
+        <div class="menu-overlay__logo">BEZ AMBAR</div>
+
+        <ul class="menu-col menu-col--root">
+            <li><a class="menu-item menu-item--home" href="index.html">Home</a></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="collection" type="button">Collection</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="manufacture" type="button">Manufacture</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="service" type="button">Service</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="editorial" type="button">Editorial</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="resources" type="button">Resources</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="signature" type="button">Signature Pieces</button></li>
+            <li><a class="menu-item" href="index-2.html">Reference (preview)</a></li>
+        </ul>
+
+        <ul class="menu-col menu-col--sub" data-col="collection">
+            <li><button class="menu-item menu-item--has-sub" data-target="bloom" type="button">Bloom Collection</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="rings" type="button">Rings</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="engagement-rings" type="button">Engagement Rings</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="wedding-bands" type="button">Wedding Bands</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="earrings" type="button">Earrings</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="pendants" type="button">Pendants</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="necklaces" type="button">Necklaces</button></li>
+            <li><button class="menu-item menu-item--has-sub" data-target="bracelets" type="button">Bracelets</button></li>
+        </ul>
+
+        <ul class="menu-col menu-col--sub" data-col="bloom">
+            <li><a class="menu-item" href="/calla">The Calla &middot; ref. C0728</a></li>
+            <li><a class="menu-item" href="/camelia">Camélia &middot; ref. B9792</a></li>
+        </ul>
+        <ul class="menu-col menu-col--sub" data-col="rings">
+            <li><a class="menu-item" href="/fancy-yellow-three-stone">Fancy Yellow Three-Stone &middot; ref. C0536</a></li>
+            <li><a class="menu-item" href="/fancy-deep-brownish-yellow-cushion">Fancy Deep Brownish Yellow Cushion &middot; ref. 1C36</a></li>
+            <li><a class="menu-item" href="/fancy-very-pink-oval">Fancy Very Pink Oval &middot; ref. C0747</a></li>
+        </ul>
+        <ul class="menu-col menu-col--sub" data-col="engagement-rings">
+            <li><span class="menu-item menu-item--soon">In production</span></li>
+        </ul>
+        <ul class="menu-col menu-col--sub" data-col="wedding-bands">
+            <li><span class="menu-item menu-item--soon">In production</span></li>
+        </ul>
+        <ul class="menu-col menu-col--sub" data-col="earrings">
+            <li><span class="menu-item menu-item--soon">In production</span></li>
+        </ul>
+        <ul class="menu-col menu-col--sub" data-col="pendants">
+            <li><span class="menu-item menu-item--soon">In production</span></li>
+        </ul>
+        <ul class="menu-col menu-col--sub" data-col="necklaces">
+            <li><a class="menu-item" href="/single-row">The Single Row &middot; ref. IN100</a></li>
+            <li><a class="menu-item" href="/baguette-line">The Baguette Line &middot; ref. IN101</a></li>
+            <li><a class="menu-item" href="/pear-shaped-necklace">The Pear Shaped Necklace &middot; ref. C0508</a></li>
+        </ul>
+        <ul class="menu-col menu-col--sub" data-col="bracelets">
+            <li><a class="menu-item" href="/double-row-asscher-flex">The Double Row Asscher &middot; ref. 5FLX33ASCH2</a></li>
+            <li><a class="menu-item" href="/emerald-cut-stretch-bracelet">Emerald Cut Stretch Bracelet &middot; ref. 5FLX40ECNS</a></li>
+            <li><a class="menu-item" href="/single-row-asscher-cut">Single Row Asscher Cut &middot; ref. 5FLX33ASC</a></li>
+            <li><a class="menu-item" href="/blue-sapphire-single-row-flex">Blue Sapphire Single Row Flex &middot; ref. 5FLX30R</a></li>
+        </ul>
+
+        <ul class="menu-col menu-col--sub" data-col="manufacture">
+            <li><a class="menu-item" href="about.html">The Inventor</a></li>
+            <li><a class="menu-item" href="the-bez-ambar-story.html">The Bez Ambar Story</a></li>
+            <li><a class="menu-item" href="our-story.html">Our Story</a></li>
+            <li><a class="menu-item" href="press.html">Press</a></li>
+        </ul>
+
+        <ul class="menu-col menu-col--sub" data-col="service">
+            <li><a class="menu-item" href="contact.html">Contact</a></li>
+            <li><a class="menu-item" href="contact.html?subject=bespoke">Bespoke Inquiry</a></li>
+            <li><a class="menu-item" href="contact.html?subject=repairs">Repairs &amp; Cleaning</a></li>
+            <li><a class="menu-item" href="warranty.html">Warranty</a></li>
+        </ul>
+
+        <ul class="menu-col menu-col--sub" data-col="editorial">
+            <li><a class="menu-item" href="journal.html">Journal</a></li>
+            <li><a class="menu-item" href="blog.html">Blog</a></li>
+            <li><a class="menu-item" href="diamond-education.html">Diamond Education</a></li>
+            <li><a class="menu-item" href="video-gallery.html">Video Gallery</a></li>
+        </ul>
+
+        <ul class="menu-col menu-col--sub" data-col="resources">
+            <li><a class="menu-item" href="ring-size-chart.html">Ring Size Chart</a></li>
+            <li><a class="menu-item" href="catalogs.html">Catalogs</a></li>
+        </ul>
+
+        <ul class="menu-col menu-col--sub" data-col="signature">
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/30-carat-flex" target="_blank">30-Carat Flex</a></li>
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/flex-bracelets" target="_blank">Flex Bracelets</a></li>
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/elysian-cut" target="_blank">Elysian Cut</a></li>
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/cascata" target="_blank">Cascata</a></li>
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/crossover-ashoka" target="_blank">Crossover Ashoka</a></li>
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/heart-ruby-v2" target="_blank">Heart Ruby v2</a></li>
+            <li><a class="menu-item menu-item--external" href="https://galleries.bezambarinc.workers.dev/page/saul-ring" target="_blank">Saul Ring</a></li>
+        </ul>
+    </nav>
+
+    <!-- ==================== PAGE HERO ==================== -->
+    <section class="page-hero">
+        <p class="page-hero__eyebrow">@bezambar</p>
+        <h1 class="page-hero__title">Journal</h1>
+        <p class="page-hero__sub">Behind the craft. Inside the atelier. The latest from the workbench, shared as it happens.</p>
+    </section>
+
+    <!-- ==================== INSTAGRAM FEED ==================== -->
+    <section class="feed-section">
+        <div id="curator-feed-default-feed-layout"><a href="https://curator.io" target="_blank" class="crt-logo crt-tag">Powered by Curator.io</a></div>
+    </section>
+    <script type="text/javascript">
+    /* curator-feed-default-feed-layout */
+    (function(){
+        var i,e,d=document,s="script";
+        i=d.createElement("script"); i.async=1; i.charset="UTF-8";
+        i.src="https://cdn.curator.io/published/8a90bee5-25c8-4b36-a23b-0db33a392762.js";
+        e=d.getElementsByTagName(s)[0]; e.parentNode.insertBefore(i, e);
+    })();
+    </script>
+
+    <!-- ==================== FOLLOW CTA ==================== -->
+    <section class="follow-cta">
+        <p class="follow-cta__handle">@bezambar</p>
+        <a class="follow-cta__link" href="https://www.instagram.com/bezambar/" target="_blank" rel="noopener">Follow on Instagram &rarr;</a>
+    </section>
+
+    <!-- ==================== SERVICES STRIP ==================== -->
+    <section class="services-strip">
+        <div class="services-strip__inner">
+            <div class="services-strip__item">
+                <h4>Bespoke Design</h4>
+                <p>One-of-a-kind pieces designed with you in our LA atelier.</p>
+            </div>
+            <div class="services-strip__item">
+                <h4>Complimentary Shipping</h4>
+                <p>Fully insured FedEx Priority delivery worldwide.</p>
+            </div>
+            <div class="services-strip__item">
+                <h4>Provenance Certificate</h4>
+                <p>Signed certificate of authenticity with every piece.</p>
+            </div>
+            <div class="services-strip__item">
+                <h4>LA Atelier</h4>
+                <p>Visit us by appointment. 611 Wilshire Blvd, Los Angeles.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="ba-footer" id="inquire">
+    <div class="ba-footer__inner">
+      <div class="ba-footer__cols">
+        <div class="ba-footer__col">
+          <h4>Collection</h4>
+          <a href="/bloom">Bloom Collection</a>
+          <a href="/collection?cat=rings">Rings</a>
+          <a href="/collection?cat=engagement-rings">Engagement Rings</a>
+          <a href="/collection?cat=wedding-bands">Wedding Bands</a>
+          <a href="/collection?cat=earrings">Earrings</a>
+          <a href="/collection?cat=pendants">Pendants</a>
+          <a href="/collection?cat=necklaces">Necklaces</a>
+          <a href="/collection?cat=bracelets">Bracelets</a>
+        </div>
+        <div class="ba-footer__col">
+          <h4>Manufacture</h4>
+          <a href="/about">The Inventor</a>
+          <a href="/the-bez-ambar-story">The Bez Ambar Story</a>
+          <a href="/our-story">Our Story</a>
+          <a href="/press">Press</a>
+        </div>
+        <div class="ba-footer__col">
+          <h4>Service</h4>
+          <a href="/contact">Contact</a>
+          <a href="/contact?subject=bespoke">Bespoke Inquiry</a>
+          <a href="/contact?subject=repairs">Repairs &amp; Cleaning</a>
+          <a href="/warranty">Warranty</a>
+        </div>
+        <div class="ba-footer__col">
+          <h4>Signature Pieces</h4>
+          <a href="https://galleries.bezambarinc.workers.dev/page/30-carat-flex" target="_blank" rel="noopener">30-Carat Flex</a>
+          <a href="https://galleries.bezambarinc.workers.dev/page/flex-bracelets" target="_blank" rel="noopener">Flex Bracelets</a>
+          <a href="https://galleries.bezambarinc.workers.dev/page/elysian-cut" target="_blank" rel="noopener">Elysian Cut</a>
+          <a href="https://galleries.bezambarinc.workers.dev/page/cascata" target="_blank" rel="noopener">Cascata</a>
+          <a href="https://galleries.bezambarinc.workers.dev/page/crossover-ashoka" target="_blank" rel="noopener">Crossover Ashoka</a>
+          <a href="/heart-ruby">Heart Ruby</a>
+          <a href="https://galleries.bezambarinc.workers.dev/page/saul-ring" target="_blank" rel="noopener">Saul Ring</a>
+        </div>
+        <div class="ba-footer__col">
+          <h4>Editorial</h4>
+          <a href="/journal">Journal</a>
+          <a href="/blog">Blog</a>
+          <a href="/diamond-education">Diamond Education</a>
+          <a href="/video-gallery">Video Gallery</a>
+          <h4 class="ba-footer__col-sub">Resources</h4>
+          <a href="/ring-size-chart">Ring Size Chart</a>
+          <a href="/catalogs">Catalogs</a>
+        </div>
+      </div>
+      <div class="ba-footer__bottom">
+        <p class="ba-footer__logo">Bez Ambar</p>
+        <p class="ba-footer__address">611 Wilshire Blvd, Los Angeles, CA 90017 &middot; <a href="mailto:bezambar@bezambar.com">bezambar@bezambar.com</a> &middot; <a href="tel:2136299191">(213) 629-9191</a></p>
+        <p class="ba-footer__tag">Inventor of the Princess Cut &middot; Since 1979</p>
+      </div>
+    </div>
+  </footer>
+
+    <!-- ==================== TRACKING ==================== -->
+    <img src="https://galleries.bezambarinc.workers.dev/t?p=bezito-site-journal" style="position:absolute;width:1px;height:1px;opacity:0;" alt="">
+
+    <!-- ==================== MENU JS ==================== -->
+    <script>
+        function toggleMenu() {
+            const overlay = document.getElementById('menuOverlay');
+            const backdrop = document.getElementById('menuBackdrop');
+            const isOpen = overlay.classList.toggle('is-open');
+            backdrop.classList.toggle('is-open', isOpen);
+            overlay.setAttribute('aria-hidden', String(!isOpen));
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+            if (!isOpen) resetMenuSub();
+        }
+        function resetMenuSub() {
+            const overlay = document.getElementById('menuOverlay');
+            overlay.classList.remove('has-sub');
+            overlay.classList.remove('has-sub-sub');
+            overlay.querySelectorAll('.menu-item.is-active').forEach(el => el.classList.remove('is-active'));
+            overlay.querySelectorAll('.menu-col--sub.is-active').forEach(el => el.classList.remove('is-active'));
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && document.getElementById('menuOverlay').classList.contains('is-open')) toggleMenu();
+        });
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.menu-item--has-sub');
+            if (!btn) return;
+            e.preventDefault();
+            const target = btn.dataset.target;
+            const overlay = document.getElementById('menuOverlay');
+            const inRoot = btn.closest('.menu-col--root') !== null;
+            const parentSub = btn.closest('.menu-col--sub');
+            const sub = overlay.querySelector('.menu-col--sub[data-col="' + target + '"]');
+
+            if (inRoot) {
+                overlay.querySelectorAll('.menu-col--root .menu-item').forEach(el => el.classList.remove('is-active'));
+                overlay.querySelectorAll('.menu-col--sub').forEach(el => el.classList.remove('is-active'));
+                overlay.querySelectorAll('.menu-col--sub .menu-item').forEach(el => el.classList.remove('is-active'));
+                btn.classList.add('is-active');
+                if (sub) {
+                    sub.classList.add('is-active');
+                    overlay.classList.add('has-sub');
+                    overlay.classList.remove('has-sub-sub');
+                } else {
+                    overlay.classList.remove('has-sub');
+                    overlay.classList.remove('has-sub-sub');
+                }
+            } else if (parentSub) {
+                overlay.querySelectorAll('.menu-col--sub.is-active').forEach(el => {
+                    if (el !== parentSub) el.classList.remove('is-active');
+                });
+                parentSub.querySelectorAll('.menu-item.is-active').forEach(el => el.classList.remove('is-active'));
+                btn.classList.add('is-active');
+                parentSub.classList.add('is-active');
+                if (sub) {
+                    sub.classList.add('is-active');
+                    overlay.classList.add('has-sub');
+                    overlay.classList.add('has-sub-sub');
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

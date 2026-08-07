@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SFJ</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --serif: 'EB Garamond', Georgia, serif;
+    --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-muted: #8a8a8a;
+    --paper: #faf9f6;
+    --paper-warm: #f4f0ea;
+    --rule: rgba(0,0,0,.08);
+    --rule-soft: rgba(0,0,0,.04);
+    --accent: #8b7355;
+    --accent-light: #c5a87a;
+    --charcoal: #1c1a17;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── HEADER ─── */
+  .site-header {
+    text-align: center;
+    padding: 60px 8vw 48px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--charcoal);
+    color: #fff;
+  }
+  .site-header .eyebrow {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 18px;
+  }
+  .site-header h1 {
+    font-family: var(--sans);
+    font-size: clamp(20px, 3vw, 32px);
+    font-weight: 200;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  .site-header .intro {
+    font-family: var(--serif);
+    font-size: clamp(15px, 1.6vw, 18px);
+    font-style: italic;
+    color: rgba(255,255,255,0.65);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.75;
+  }
+  .site-header .rule-ornament {
+    width: 48px;
+    height: 1px;
+    background: var(--accent-light);
+    margin: 24px auto 0;
+  }
+
+  /* ─── JEWELER CARDS ─── */
+  .jewelers-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 64px 6vw 100px;
+    display: grid;
+    gap: 0;
+  }
+
+  .jeweler-card {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+    padding: 52px 0;
+  }
+  .jeweler-card:last-child {
+    border-bottom: none;
+  }
+
+  .jeweler-card__index {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-top: 6px;
+    padding-right: 32px;
+  }
+  .jeweler-card__index .num {
+    display: block;
+    font-size: 36px;
+    font-family: var(--serif);
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--rule);
+    color: rgba(0,0,0,.1);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .jeweler-card__body {}
+  .jeweler-card__name {
+    font-family: var(--sans);
+    font-size: clamp(18px, 2vw, 22px);
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+  }
+  .jeweler-card__sub {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-style: italic;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .jeweler-card__desc {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+    max-width: 680px;
+  }
+
+  .jeweler-card__facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px 32px;
+    margin-bottom: 24px;
+  }
+  .fact {
+    border-left: 2px solid var(--accent-light);
+    padding-left: 14px;
+  }
+  .fact__label {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 3px;
+  }
+  .fact__value {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  .jeweler-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tag {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--paper-warm);
+    border: 1px solid rgba(139,115,85,.2);
+    padding: 5px 12px;
+    border-radius: 2px;
+  }
+
+  .jeweler-card__quote {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-style: italic;
+    color: var(--ink-soft);
+    border-left: 3px solid var(--accent-light);
+    padding-left: 20px;
+    margin: 20px 0;
+    max-width: 620px;
+  }
+
+  /* ─── SYNTHESIS SECTION ─── */
+  .synthesis {
+    background: var(--charcoal);
+    color: #fff;
+    padding: 64px 8vw;
+    text-align: center;
+  }
+  .synthesis .eyebrow {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 24px;
+  }
+  .synthesis h2 {
+    font-family: var(--sans);
+    font-size: clamp(16px, 2vw, 22px);
+    font-weight: 200;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 32px;
+  }
+  .synthesis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 32px 48px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .thread {
+    border-top: 1px solid rgba(255,255,255,.15);
+    padding-top: 20px;
+  }
+  .thread__label {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 8px;
+  }
+  .thread__text {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-style: italic;
+    color: rgba(255,255,255,.75);
+    line-height: 1.65;
+  }
+
+  /* ─── FOOTER ─── */
+  .site-footer {
+    text-align: center;
+    padding: 28px 8vw;
+    border-top: 1px solid var(--rule);
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  /* ─── GALLERY ─── */
+  .jeweler-gallery {
+    margin-top: 28px;
+  }
+  .jeweler-gallery__label {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 14px;
+  }
+  .jeweler-gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 8px;
+  }
+  .jeweler-gallery__grid a {
+    display: block;
+    overflow: hidden;
+    border-radius: 2px;
+    background: var(--paper-warm);
+    aspect-ratio: 1;
+  }
+  .jeweler-gallery__grid a img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease, opacity 0.25s ease;
+    opacity: 0.92;
+  }
+  .jeweler-gallery__grid a:hover img { transform: scale(1.04); opacity: 1; }
+
+  /* Lightbox */
+  .lb-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 9999;
+    background: rgba(20,18,14,0.95);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .lb-overlay.open { display: flex; }
+  .lb-overlay img {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 2px;
+  }
+  .lb-close {
+    position: absolute; top: 20px; right: 28px;
+    font-family: var(--sans); font-size: 22px; font-weight: 200;
+    color: rgba(255,255,255,.7); cursor: pointer; line-height: 1;
+    background: none; border: none;
+  }
+  .lb-close:hover { color: #fff; }
+  .lb-nav {
+    display: flex; gap: 32px; margin-top: 18px;
+  }
+  .lb-nav button {
+    font-family: var(--sans); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.24em; text-transform: uppercase;
+    color: rgba(255,255,255,.55); background: none; border: none; cursor: pointer;
+    padding: 8px 0;
+  }
+  .lb-nav button:hover { color: #fff; }
+  .lb-counter {
+    font-family: var(--sans); font-size: 10px; letter-spacing: 0.2em;
+    color: rgba(255,255,255,.35); margin-top: 12px;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 680px) {
+    .jeweler-card {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .jeweler-card__index .num { font-size: 24px; margin-bottom: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<nav style="display:flex;align-items:center;gap:24px;padding:12px 32px;background:#111;border-bottom:1px solid #222;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.15em;text-transform:uppercase;">
+  <span style="color:#e8e2d9;margin-right:auto;letter-spacing:.2em;font-weight:600;">Bez Ambar</span>
+  <a href="/page/saul-favorite-jewelers" style="color:#c5a258;border-bottom:1px solid #c5a258;padding-bottom:2px;text-decoration:none;">SFJ</a>
+  <a href="/page/sfj-designs" style="color:#888;text-decoration:none;" onmouseover="this.style.color='#c5a258'" onmouseout="this.style.color='#888'">Designs</a>
+  <a href="/page/sfj-jewelers" style="color:#888;text-decoration:none;" onmouseover="this.style.color='#c5a258'" onmouseout="this.style.color='#888'">Jewelers</a>
+  <a href="/page/inspiration-log" style="color:#888;text-decoration:none;" onmouseover="this.style.color='#c5a258'" onmouseout="this.style.color='#888'">Log</a>
+  <a href="/page/prompt-creations" style="color:#888;text-decoration:none;" onmouseover="this.style.color='#c5a258'" onmouseout="this.style.color='#888'">Prompts</a>
+</nav>
+
+<header class="site-header">
+  <div class="eyebrow">Private Reference — Bez Ambar</div>
+  <h1>SFJ</h1>
+  <p class="intro">Design projects in development · Jewelers we study for craft and market direction.</p>
+  <div class="rule-ornament"></div>
+</header>
+
+<!-- SFJ HOME -->
+<section style="max-width:1100px;margin:0 auto;padding:64px 6vw;display:grid;grid-template-columns:1fr 1fr;gap:64px;border-bottom:1px solid var(--rule);">
+
+  <!-- Projects teaser -->
+  <div>
+    <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.42em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;">Projects</div>
+    <div style="display:flex;align-items:flex-start;gap:20px;margin-bottom:20px;">
+      <img src="https://res.cloudinary.com/dlg2mou53/image/upload/w_240,h_240,c_fill/Inspirations/inspiration-log/the-ermine-hero-white-2026-07-13" style="width:90px;height:90px;object-fit:cover;border-radius:2px;flex-shrink:0;" alt="The Ermine">
+      <div>
+        <div style="font-family:var(--sans);font-size:11px;font-weight:300;letter-spacing:0.14em;text-transform:uppercase;color:var(--charcoal);margin-bottom:4px;">The Ermine</div>
+        <div style="font-family:'EB Garamond',Georgia,serif;font-size:14px;font-style:italic;color:var(--accent);margin-bottom:8px;">Oval Cognac Diamond · Platinum Pavé</div>
+        <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-muted);">Jul 13, 2026 · In Development</div>
+      </div>
+    </div>
+    <a href="/page/sfj-designs" style="font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(139,115,85,.3);padding-bottom:2px;">→ All Projects</a>
+  </div>
+
+  <!-- Jewelers teaser -->
+  <div style="border-left:1px solid var(--rule);padding-left:64px;">
+    <div style="font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.42em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;">Jewelers</div>
+    <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:20px;">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--rule-soft);padding-bottom:10px;">
+        <span style="font-family:var(--sans);font-size:11px;font-weight:300;letter-spacing:0.1em;text-transform:uppercase;color:var(--charcoal);">Glenn Spiro</span>
+        <span style="font-family:'EB Garamond',Georgia,serif;font-size:13px;font-style:italic;color:var(--ink-muted);">London · Mayfair</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--rule-soft);padding-bottom:10px;">
+        <span style="font-family:var(--sans);font-size:11px;font-weight:300;letter-spacing:0.1em;text-transform:uppercase;color:var(--charcoal);">Taffin</span>
+        <span style="font-family:'EB Garamond',Georgia,serif;font-size:13px;font-style:italic;color:var(--ink-muted);">Paris · Private</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--rule-soft);padding-bottom:10px;">
+        <span style="font-family:var(--sans);font-size:11px;font-weight:300;letter-spacing:0.1em;text-transform:uppercase;color:var(--charcoal);">Forms</span>
+        <span style="font-family:'EB Garamond',Georgia,serif;font-size:13px;font-style:italic;color:var(--ink-muted);">New York</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;">
+        <span style="font-family:var(--sans);font-size:11px;font-weight:300;letter-spacing:0.1em;text-transform:uppercase;color:var(--charcoal);">David Morris</span>
+        <span style="font-family:'EB Garamond',Georgia,serif;font-size:13px;font-style:italic;color:var(--ink-muted);">London · Mayfair</span>
+      </div>
+    </div>
+    <a href="/page/sfj-jewelers" style="font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(139,115,85,.3);padding-bottom:2px;">→ All Jewelers</a>
+  </div>
+
+</section>
+
+<footer class="site-footer">
+  Bez Ambar · Private Reference · SFJ
+</footer>
+
+<!-- Lightbox overlay -->
+<div class="lb-overlay" id="lb">
+  <button class="lb-close" id="lb-close">✕</button>
+  <img id="lb-img" src="" alt="">
+  <div class="lb-nav">
+    <button id="lb-prev">← Prev</button>
+    <button id="lb-next">Next →</button>
+  </div>
+  <div class="lb-counter" id="lb-counter"></div>
+</div>
+
+<script>
+(function() {
+  const overlay = document.getElementById('lb');
+  const lbImg = document.getElementById('lb-img');
+  const lbCounter = document.getElementById('lb-counter');
+  let images = [], current = 0;
+
+  function initGallery(gridId) {
+    const els = document.querySelectorAll('#' + gridId + ' a');
+    const galleryImgs = [];
+    els.forEach(a => { galleryImgs.push(a.dataset.full); });
+    els.forEach(a => {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        images = galleryImgs;
+        current = parseInt(this.dataset.idx, 10);
+        show(current);
+      });
+    });
+  }
+
+  function show(idx) {
+    lbImg.src = images[idx];
+    lbCounter.textContent = (idx + 1) + ' / ' + images.length;
+    overlay.classList.add('open');
+  }
+
+  document.getElementById('lb-close').addEventListener('click', () => overlay.classList.remove('open'));
+  document.getElementById('lb-prev').addEventListener('click', () => { current = (current - 1 + images.length) % images.length; show(current); });
+  document.getElementById('lb-next').addEventListener('click', () => { current = (current + 1) % images.length; show(current); });
+
+  overlay.addEventListener('click', function(e) { if (e.target === this) this.classList.remove('open'); });
+
+  document.addEventListener('keydown', function(e) {
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'Escape') overlay.classList.remove('open');
+    if (e.key === 'ArrowLeft') { current = (current - 1 + images.length) % images.length; show(current); }
+    if (e.key === 'ArrowRight') { current = (current + 1) % images.length; show(current); }
+  });
+})();
+</script>
+
+</body>
+</html>

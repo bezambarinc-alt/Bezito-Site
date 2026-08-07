@@ -1,42 +1,50 @@
 /* ============================================================
-   ArchiveFilterPill — inline + floating pill + slide-up filter panel.
-   Matches Astro archiveFilterPill / archiveFilterPanel pattern.
+   ArchiveFilterPill — inline gold pill → floating pill → LEFT drawer.
+   1:1 port of the live Astro `.ba-filter-*` styles (src/styles/global.css).
    ============================================================ */
 
-/* ── Inline + floating pill ── */
+/* ── Pill anchor — pill starts here, floats to bottom on scroll ── */
+.anchor {
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+  min-height: 48px;
+}
 
+/* ── Pill ── */
 .pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+  position: relative;
+  background: var(--ba-accent);
+  color: var(--ba-ink);
+  border: none;
+  border-radius: 100px;
+  padding: 14px 28px;
   font-family: var(--ba-font-sans);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--ba-white);
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 999px;
-  padding: 0.55rem 1.1rem;
+  text-transform: var(--ba-sans-transform, none);
+  letter-spacing: var(--ba-sans-letter-spacing, normal);
+  font-size: 11px;
   cursor: pointer;
-  transition: background var(--ba-transition), border-color var(--ba-transition);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px; /* accessible touch target */
+  z-index: 900;
+  transition: background 0.25s, box-shadow 0.25s, opacity 0.2s;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
   white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
-.pill:hover {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(255, 255, 255, 0.3);
-}
+.pill:hover { background: var(--ba-ink); color: var(--ba-white); }
+.pill svg { width: 14px; height: 10px; flex-shrink: 0; }
 
-/* Fixed floating pill — same styles, fixed position + fade/rise entry */
-.pillFixed {
+/* When pill floats to bottom after scrolling past anchor */
+.pillFloating {
   position: fixed;
-  bottom: max(1.5rem, env(safe-area-inset-bottom, 1.5rem));
+  bottom: max(24px, env(safe-area-inset-bottom, 24px));
   left: 50%;
-  z-index: calc(var(--ba-z-overlay) - 1);
-  background: var(--ba-ink);
-  border-color: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  transform: translateX(-50%);
+  box-shadow: 0 4px 28px rgba(0, 0, 0, 0.35);
   animation: pillRise 0.3s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 @keyframes pillRise {
@@ -44,204 +52,162 @@
   to   { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
-/* Active filter badge */
-.badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 18px;
-  height: 18px;
-  padding: 0 5px;
-  background: var(--ba-gold);
-  color: var(--ba-black);
-  font-family: var(--ba-font-sans);
-  font-size: 0.65rem;
-  font-weight: 700;
-  border-radius: 999px;
+@media (max-width: 480px) {
+  .pill {
+    font-size: 10px;
+    padding: 13px 22px;
+    gap: 8px;
+  }
+  .pillFloating {
+    bottom: max(20px, env(safe-area-inset-bottom, 20px));
+  }
 }
 
-/* ── Backdrop ── */
-
-.backdrop {
+/* ── Overlay ── */
+.overlay {
   position: fixed;
   inset: 0;
-  z-index: calc(var(--ba-z-overlay) + 1);
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  z-index: 1000;
 }
+.overlayActive { opacity: 1; pointer-events: auto; }
 
-/* ── Slide-up panel ── */
-
+/* ── Filter panel — mirrors nav menu drawer (slides in from LEFT) ── */
 .panel {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: calc(var(--ba-z-overlay) + 2);
-  background: #111;
-  border-radius: 16px 16px 0 0;
-  border-top: 1px solid rgba(149, 130, 107, 0.3);
-  padding: 0 1.5rem 2rem;
-  max-height: 88vh;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  transform: translateY(100%);
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.panelOpen { transform: translateY(0); }
-
-/* On desktop — fixed width centered */
-@media (min-width: 720px) {
-  .panel {
-    left: 50%;
-    right: auto;
-    bottom: 2rem;
-    transform: translateX(-50%) translateY(calc(100% + 2rem));
-    width: min(560px, 90vw);
-    border-radius: 8px;
-    border: 1px solid rgba(149, 130, 107, 0.3);
-  }
-  .panelOpen {
-    transform: translateX(-50%) translateY(0);
-  }
-}
-
-/* Panel header */
-.panelHead {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.25rem 0 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  margin-bottom: 0.5rem;
-  /* Drag handle visual hint on mobile */
-  position: sticky;
   top: 0;
-  background: #111;
-  z-index: 2;
-}
-.panelHead::before {
-  content: '';
-  position: absolute;
-  top: 0.6rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 36px;
-  height: 3px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.18);
-}
-@media (min-width: 720px) {
-  .panelHead::before { display: none; }
-}
-
-.panelTitle {
-  font-family: var(--ba-font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ba-gold);
-}
-
-.panelClose {
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.45);
-  transition: color 0.2s;
-  padding: 0.25rem;
-}
-.panelClose:hover { color: #fff; }
-
-/* ── Filter groups ── */
-
-.groups {
+  left: 0;
+  bottom: 0;
+  width: 300px;
+  background: var(--ba-white);
+  z-index: 1010;
+  transform: translateX(-100%);
+  transition: transform 0.35s ease;
+  box-shadow: 4px 0 32px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  padding: 1rem 0;
+  overflow: hidden;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
+.panelOpen { transform: translateX(0); }
 
-.group {}
+/* Close — top-left, matches menu-overlay__close */
+.panelClose {
+  position: absolute;
+  top: 22px;
+  left: 24px;
+  background: none;
+  border: 0;
+  font-size: 24px;
+  color: var(--ba-ink);
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px 8px;
+  z-index: 5;
+  transition: opacity 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.panelClose:hover { opacity: 0.45; }
 
-.groupTitle {
+/* Title — centered like menu logo */
+.panelTitle {
+  position: absolute;
+  top: 27px;
+  left: 50%;
+  transform: translateX(-50%);
   font-family: var(--ba-font-sans);
-  font-size: 0.68rem;
+  text-transform: var(--ba-sans-transform, none);
+  letter-spacing: var(--ba-sans-letter-spacing, normal);
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.4);
-  margin-bottom: 0.75rem;
+  color: var(--ba-ink);
+  white-space: nowrap;
 }
 
-.options {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+/* Body — scrollable list */
+.panelBody {
+  flex: 1;
+  overflow-y: auto;
+  padding: 88px 0 0;
+  margin: 0;
 }
 
+/* Section label — matches menu-section-label */
+.sectionLabel {
+  display: block;
+  font-family: var(--ba-font-sans);
+  text-transform: var(--ba-sans-transform, none);
+  letter-spacing: var(--ba-sans-letter-spacing, normal);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ba-ink-muted);
+  padding: 0 40px 6px;
+}
+
+/* Filter option rows — matches menu-item */
 .opt {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 11px 36px 11px 40px;
   font-family: var(--ba-font-sans);
-  font-size: 0.8rem;
-  color: var(--ba-cream);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 999px;
-  padding: 0.4rem 0.9rem;
-  transition: background var(--ba-transition), border-color var(--ba-transition), color var(--ba-transition);
+  text-transform: var(--ba-sans-transform, none);
+  letter-spacing: var(--ba-sans-letter-spacing, normal);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ba-ink-muted);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  min-height: 44px;
+  line-height: 1.4;
+  transition: color 0.15s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
-.opt:hover { border-color: var(--ba-gold); }
+.opt:hover { color: var(--ba-ink); }
 .optActive {
-  background: var(--ba-gold);
-  color: var(--ba-black);
-  border-color: var(--ba-gold);
+  color: var(--ba-ink);
+  font-weight: 500;
+}
+.optActive::after {
+  content: '·';
+  color: var(--ba-accent);
+  font-size: 20px;
+  line-height: 1;
+  margin-left: auto;
 }
 
-/* ── Panel footer ── */
-
-.panelFoot {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding-top: 1.25rem;
-  margin-top: 0.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  position: sticky;
-  bottom: 0;
-  background: #111;
-  padding-bottom: 0.25rem;
+/* Footer CTA — matches menu-cta */
+.panelFooter {
+  padding: 20px 40px 28px;
+  flex-shrink: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
-
-.count {
+.results {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
   font-family: var(--ba-font-sans);
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.4);
+  text-transform: var(--ba-sans-transform, none);
+  letter-spacing: var(--ba-sans-letter-spacing, normal);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ba-ink);
+  background: none;
+  border: 1px solid rgba(0, 0, 0, 0.22);
+  padding: 13px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  -webkit-tap-highlight-color: transparent;
 }
+.results:hover { border-color: var(--ba-accent); color: var(--ba-accent); }
 
-.footActions {
-  display: flex;
-  gap: 0.75rem;
-  align-items: center;
+@media (max-width: 480px) {
+  .panel { width: min(88vw, 340px); }
 }
-
-.resetBtn {
-  font-family: var(--ba-font-sans);
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.45);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  transition: color 0.2s;
-}
-.resetBtn:hover { color: #fff; }
-
-.applyBtn {
-  background: var(--ba-gold);
-  color: var(--ba-black);
-  font-family: var(--ba-font-sans);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 0.6rem 1.4rem;
-  border-radius: 999px;
-  transition: opacity var(--ba-transition);
-}
-.applyBtn:hover { opacity: 0.85; }

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Inspiration Log — Bez Ambar</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0d0d0d;
+  --surface: #161616;
+  --card: #1c1c1c;
+  --border: #2a2a2a;
+  --gold: #c5a258;
+  --gold-dim: #8a6e38;
+  --text: #e8e2d9;
+  --muted: #888;
+  --sender-bez: #c5a258;
+  --sender-bezito: #6fa8c5;
+  --radius: 8px;
+  --font: 'Georgia', serif;
+  --mono: 'Courier New', monospace;
+}
+body { background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh; }
+
+/* ── NAV ── */
+.site-nav {
+  display: flex; align-items: center; gap: 24px;
+  padding: 14px 32px;
+  background: #111;
+  border-bottom: 1px solid var(--border);
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.site-nav a { color: var(--muted); text-decoration: none; transition: color .2s; }
+.site-nav a:hover { color: var(--gold); }
+.site-nav a.active { color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 2px; }
+.site-nav .brand { color: var(--text); margin-right: auto; letter-spacing: .2em; font-weight: 600; }
+
+/* ── HEADER ── */
+.site-header {
+  text-align: center;
+  padding: 48px 24px 32px;
+  border-bottom: 1px solid var(--border);
+}
+.site-header .eyebrow { font-family: 'Helvetica Neue', sans-serif; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.site-header h1 { font-size: 28px; font-weight: 400; color: var(--gold); letter-spacing: .1em; margin-bottom: 8px; }
+.site-header .sub { font-size: 14px; color: var(--muted); font-family: 'Helvetica Neue', sans-serif; }
+
+/* ── MAIN ── */
+main { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+
+/* ── DAY GROUP ── */
+.day-label {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  padding: 6px 0 12px;
+  margin-top: 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+
+/* ── ENTRY ── */
+.entry {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 0 16px;
+  margin-bottom: 24px;
+}
+.entry__time {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 11px;
+  color: var(--muted);
+  padding-top: 4px;
+  text-align: right;
+  letter-spacing: .05em;
+}
+.entry__body {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.entry__meta {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 12px;
+}
+.entry__sender { font-weight: 600; }
+.entry__sender.bez { color: var(--sender-bez); }
+.entry__sender.bezito { color: var(--sender-bezito); }
+.entry__msg-link { margin-left: auto; color: var(--muted); font-size: 11px; text-decoration: none; opacity: .6; transition: opacity .2s; }
+.entry__msg-link:hover { opacity: 1; color: var(--gold); }
+
+.entry__image { width: 100%; max-height: 480px; object-fit: contain; background: #0a0a0a; display: block; cursor: zoom-in; }
+
+.entry__text {
+  padding: 12px 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text);
+  white-space: pre-wrap;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+.entry__text.prompt {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: #111;
+  color: #b8d4b8;
+  border-top: 1px solid var(--border);
+}
+.entry__label-tag {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 3px;
+  background: var(--border);
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+.entry__label-tag.prompt-tag { background: #1a2a1a; color: #6a9a6a; }
+
+/* copy button */
+.copy-btn {
+  float: right;
+  font-size: 11px;
+  padding: 3px 9px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  font-family: 'Helvetica Neue', sans-serif;
+  margin: 0 0 8px 8px;
+  transition: color .2s, border-color .2s;
+}
+.copy-btn:hover { color: var(--gold); border-color: var(--gold); }
+
+/* ── LIGHTBOX ── */
+.lb { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.92); z-index: 999; align-items: center; justify-content: center; }
+.lb.on { display: flex; }
+.lb img { max-width: 90vw; max-height: 90vh; border-radius: 4px; box-shadow: 0 0 60px rgba(0,0,0,.8); }
+.lb__x { position: absolute; top: 20px; right: 24px; background: none; border: none; color: #fff; font-size: 28px; cursor: pointer; opacity: .7; }
+.lb__x:hover { opacity: 1; }
+
+footer {
+  text-align: center;
+  padding: 24px;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 11px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  letter-spacing: .1em;
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <span class="brand">Bez Ambar</span>
+  <a href="/page/saul-favorite-jewelers">SFJ</a>
+  <a href="/page/inspiration-log" class="active">Log</a>
+  <a href="/page/prompt-creations">Prompts</a>
+</nav>
+
+<header class="site-header">
+  <div class="eyebrow">Bezito Jewelry · Insperation topic</div>
+  <h1>Inspiration Log</h1>
+  <div class="sub">Design sessions — by date &amp; time · Images, prompts, renders</div>
+</header>
+
+<main>
+
+  <!-- ══ SUNDAY JUL 12 ══ -->
+  <div class="day-label">Sunday · July 12, 2026</div>
+
+  <!-- 04:07 - Bez shares original ring + shank request -->
+  <div class="entry">
+    <div class="entry__time">04:07</div>
+    <div class="entry__body">
+      <div class="entry__meta">
+        <span class="entry__sender bez">Bez</span>
+        <span class="entry__label-tag">Image + Request</span>
+        <a class="entry__msg-link" href="https://t.me/c/3605997427/2681" target="_blank">↗ msg 2681</a>
+      </div>
+      <img class="entry__image" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783927458/Inspirations/inspiration-log/oval-cognac-matched-shank-2026-07-12.png" alt="Oval cognac diamond ring — matched shank render" onclick="lb(this.src)">
+      <div class="entry__text">prompt for photoshop to change the layer above it with image generated, to make the part of the shane the shows from the left and right sho very little from both size the size but the thicknes remais matching the frame around the diamond pave</div>
+    </div>
+  </div>
+
+  <!-- 04:08 - Bezito PS prompt: narrow shank -->
+  <div class="entry">
+    <div class="entry__time">04:08</div>
+    <div class="entry__body">
+      <div class="entry__meta">
+        <span class="entry__sender bezito">Bezito</span>
+        <span class="entry__label-tag prompt-tag">PS Prompt</span>
+      </div>
+      <div class="entry__text prompt"><button class="copy-btn" onclick="cp(this)">Copy</button>Redraw the ring shank at the shoulder points where it exits the halo at the 9 o'clock and 3 o'clock positions. Reduce the visible horizontal profile of the shank dramatically at those join points so that from a face-up view, almost no shank is visible on either side — the band should appear to tuck directly behind the halo edge and nearly disappear. The cross-section height of the shank (top to bottom) must remain exactly as thick as the border of the surrounding pavé halo frame — the thickness matches, only the visible side profile shrinks. Preserve the oxidized dark gold metal finish, the micro-pavé cognac diamond texture covering the shank, the teardrop prongs, the center oval stone, and the black studio background. Photorealistic high-end jewelry product photography.
+
+MASK: both shoulder zones at 9 + 3 o'clock, loose selection 15–20% margin.</div>
+    </div>
+  </div>
+
+  <!-- 23:50 - Bez shares ring + platinum request -->
+  <div class="entry">
+    <div class="entry__time">23:50</div>
+    <div class="entry__body">
+      <div class="entry__meta">
+        <span class="entry__sender bez">Bez</span>
+        <span class="entry__label-tag">Image + Request</span>
+        <a class="entry__msg-link" href="https://t.me/c/3605997427/2701" target="_blank">↗ msg 2701</a>
+      </div>
+      <img class="entry__image" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783927460/Inspirations/inspiration-log/oval-cognac-wider-view-2026-07-12.png" alt="Oval cognac diamond ring — wider halo view" onclick="lb(this.src)">
+      <div class="entry__text">give me a prompt that will as layer, and change the pave part to white diamond and platinum metal</div>
+    </div>
+  </div>
+
+  <!-- 23:51 - Bezito PS prompt: white diamond + platinum -->
+  <div class="entry">
+    <div class="entry__time">23:51</div>
+    <div class="entry__body">
+      <div class="entry__meta">
+        <span class="entry__sender bezito">Bezito</span>
+        <span class="entry__label-tag prompt-tag">PS Prompt · Material Swap</span>
+      </div>
+      <div class="entry__text prompt"><button class="copy-btn" onclick="cp(this)">Copy</button>Replace all pavé accent diamonds throughout the halo frame and shank band with colorless white diamonds, D-E color, VVS clarity, showing maximum brilliance and bright white sparkle. Convert all metal — the halo frame, the shank band, and the teardrop prongs — from the current oxidized dark gold to highly polished platinum, cool silver-white in tone with crisp specular highlights. The center oval fancy cognac diamond must remain completely unchanged in color, cut, and brilliance. Preserve the original camera angle, composition, ring scale, the oval halo silhouette shape, the teardrop prong style, and the black studio background. The result should feel like an icy platinum and white diamond crown around the warm cognac center stone — high contrast between the cool white setting and the warm center. Photorealistic high-end jewelry product photography, three-point softbox lighting with specular highlights on gemstones.
+
+MASK: entire halo frame + shank, exclude center stone. Loose selection 15% margin.</div>
+    </div>
+  </div>
+
+  <!-- 23:59 - Bezito corrected prompt: structure locked -->
+  <div class="entry">
+    <div class="entry__time">23:59</div>
+    <div class="entry__body">
+      <div class="entry__meta">
+        <span class="entry__sender bezito">Bezito</span>
+        <span class="entry__label-tag prompt-tag">PS Prompt · Structure Locked (corrected)</span>
+      </div>
+      <div class="entry__text prompt"><button class="copy-btn" onclick="cp(this)">Copy</button>This is a material-only color swap — do NOT change the ring's design, shape, or structure in any way. Keep the exact same thick domed oval halo frame with its deep multi-row micro-pavé coverage, the exact same matched shank width, the exact same teardrop prong style and count, the exact same camera angle and composition. Only change two things: (1) recolor all pavé accent stones from cognac brown to colorless white diamond brilliance, D-E color, icy white sparkle; (2) recolor all metal from oxidized dark gold to bright polished platinum, cool silver-white with crisp specular highlights. The center oval fancy cognac diamond stays completely identical — same color, same cut, same brightness. The halo silhouette shape, the dome depth, the pavé stone count and texture, the shank profile, the prong geometry, the black studio background — all identical to the input image. Only the stone color and metal color change. Photorealistic high-end jewelry product photography.
+
+MASK: entire halo frame + shank, exclude center stone. Loose selection 15% margin.</div>
+    </div>
+  </div>
+
+  <!-- ══ MONDAY JUL 13 ══ -->
+  <div class="day-label">Monday · July 13, 2026</div>
+
+  <!-- 00:01 - Bez shares platinum render + horizon request -->
+  <div class="entry">
+    <div class="entry__time">00:01</div>
+    <div class="entry__body">
+      <div class="entry__meta">
+        <span class="entry__sender bez">Bez</span>
+        <span class="entry__label-tag">Image + Request</span>
+        <a class="entry__msg-link" href="https://t.me/c/3605997427/2711" target="_blank">↗ msg 2711</a>
+      </div>
+      <img class="entry__image" src="https://res.cloudinary.com/dlg2mou53/image/upload/v1783927461/Inspirations/inspiration-log/oval-cognac-platinum-render-2026-07-13.png" alt="Oval cognac diamond ring — platinum + white diamond render" onclick="lb(this.src)">
+      <div class="entry__text">this looks good, but but I now want to ad a bit of an horizon to this image and fix the reflection but I don't want to change anything, in the ring or the center stone give me a layer on prompt</div>
+    </div>
+  </div>
+
+  <!-- 00:02 - Bezito PS prompt: horizon + reflection -->
+  <div class="entry">
+    <div class="entry__time">00:02</div>
+    <div class="entry__body">
+      <div class="entry__meta">
+        <span class="entry__sender bezito">Bezito</span>
+        <span class="entry__label-tag prompt-tag">PS Prompt · Background Only</span>
+      </div>
+      <div class="entry__text prompt"><button class="copy-btn" onclick="cp(this)">Copy</button>Add a subtle dark studio horizon line in the lower third of the image — a barely visible edge where a deep charcoal or near-black polished surface meets the dark background. The ring should appear to rest just above this surface. Replace the existing imperfect reflection below the ring with a clean, elegant downward mirror reflection of the ring on the polished dark surface — slightly compressed vertically, soft-edged, fading out naturally within a short distance. The reflection should show the platinum and white diamond sparkle with a warm cognac glow from the center stone. The ring itself, the center stone, the halo, the prongs, and all ring details must remain completely untouched. Only the background environment and the reflection change. Studio luxury product photography atmosphere — dark, dramatic, minimal.
+
+MASK: background only — everything except the ring. Generously exclude ring from mask.</div>
+    </div>
+  </div>
+
+  <!-- 00:06 - Bezito corrected prompt: ring size locked -->
+  <div class="entry">
+    <div class="entry__time">00:06</div>
+    <div class="entry__body">
+      <div class="entry__meta">
+        <span class="entry__sender bezito">Bezito</span>
+        <span class="entry__label-tag prompt-tag">PS Prompt · Ring Size Locked (corrected)</span>
+      </div>
+      <div class="entry__text prompt"><button class="copy-btn" onclick="cp(this)">Copy</button>Add a subtle dark studio horizon line and a clean mirror reflection of the ring in the bottom portion of the image only. The ring must remain at exactly the same scale, size, and position within the frame as in the input image — do not resize, reposition, shrink, or move the ring in any way. Only modify the lower background area: introduce a barely visible edge where a deep charcoal polished surface meets the dark backdrop, and place a natural compressed mirror reflection of the ring just below it — soft-edged, fading out downward, showing the platinum sparkle and warm cognac center glow. Everything above the horizon — the ring, the halo, the prongs, the center stone, the upper and side background — stays pixel-identical to the input. Luxury studio product photography, dark and dramatic.
+
+MASK: bottom 30% of image only — reflection zone + horizon strip. Do NOT mask upper area or sides.</div>
+    </div>
+  </div>
+
+</main>
+
+<!-- Lightbox -->
+<div class="lb" id="lb" onclick="closeLB()">
+  <button class="lb__x" onclick="closeLB()">&times;</button>
+  <img id="lbImg" src="" alt="">
+</div>
+
+<footer>Bez Ambar · Inspiration Log · Internal · Password 1465</footer>
+
+<script>
+function lb(src) {
+  document.getElementById('lbImg').src = src;
+  document.getElementById('lb').classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+function closeLB() {
+  document.getElementById('lb').classList.remove('on');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
+
+function cp(btn) {
+  const pre = btn.closest('.entry__text');
+  const text = pre.innerText.replace(/^Copy\n?/, '');
+  navigator.clipboard.writeText(text.trim()).then(() => {
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 2000);
+  });
+}
+</script>
+</body>
+</html>

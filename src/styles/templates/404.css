@@ -1,0 +1,57 @@
+/* ============================================================
+   BEZ AMBAR — 404 Page
+   ============================================================ */
+
+/* ── 35. 404 PAGE ─────────────────────────────────────────── */
+.ba-not-found {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 2rem;
+  text-align: center;
+}
+.ba-not-found__inner { max-width: 480px; }
+.ba-not-found__code {
+  font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.ba-not-found__title {
+  font-family: var(--serif);
+  font-size: clamp(36px, 6vw, 56px);
+  font-weight: 300;
+  color: var(--ink);
+  margin-bottom: 20px;
+  line-height: 1.15;
+}
+.ba-not-found__copy {
+  font-family: var(--prose);
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--ink);
+  margin-bottom: 48px;
+}
+.ba-not-found__links {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.ba-not-found__links a {
+  font-family: var(--sans);
+  text-transform: var(--sans-transform, none);
+  letter-spacing: var(--sans-letter-spacing, normal);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+  transition: color 0.2s;
+}
+.ba-not-found__links a:hover { color: var(--accent); }

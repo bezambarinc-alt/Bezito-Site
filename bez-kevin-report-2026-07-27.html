@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Report · 2026-07-27 — Bez × Kevin</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://bezito.co/page/bez-kevin-report-2026-07-27">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --serif: 'EB Garamond', Georgia, serif;
+    --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-muted: #8a8a8a;
+    --paper: #ffffff;
+    --paper-warm: #faf7f2;
+    --rule: rgba(0,0,0,.08);
+    --accent: #95826b;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); color: var(--ink); font-family: var(--serif); -webkit-font-smoothing: antialiased; }
+
+  header {
+    padding: 40px 8vw 24px;
+    border-bottom: 1px solid var(--rule);
+    text-align: center;
+  }
+  header .brand {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  header .eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 34px 0 14px;
+  }
+  header h1 {
+    font-family: var(--sans);
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 200;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  header .lede {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 620px;
+    margin: 22px auto 0;
+    line-height: 1.55;
+  }
+  header .back {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(149,130,107,.35);
+    display: inline-block;
+    margin-top: 26px;
+    padding-bottom: 2px;
+  }
+  header .back:hover { border-bottom-color: var(--accent); }
+
+  main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 60px 6vw 100px;
+  }
+
+  section { margin-bottom: 72px; }
+  section .sec-eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  section h2 {
+    font-family: var(--sans);
+    font-size: clamp(20px, 2.4vw, 26px);
+    font-weight: 200;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+  section .sec-sub {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--ink-soft);
+    max-width: 560px;
+    margin-bottom: 28px;
+    line-height: 1.55;
+  }
+  section .divider {
+    width: 42px;
+    height: 1px;
+    background: var(--accent);
+    margin-bottom: 30px;
+  }
+
+  .card {
+    border: 1px solid var(--rule);
+    padding: 26px 28px;
+    margin-bottom: 14px;
+    background: var(--paper);
+    transition: border-color .2s;
+  }
+  .card:hover { border-color: rgba(0,0,0,.18); }
+  .card .card-title {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .card .card-body {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .card a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(149,130,107,.35);
+    transition: border-color .2s;
+  }
+  .card a:hover { border-bottom-color: var(--accent); }
+  .card.todo { border-left: 3px solid var(--accent); }
+  .card.done { border-left: 3px solid #4a7a4a; background: #fafaf7; }
+  .card .card-date {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 6px;
+  }
+  .card .owner {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-top: 12px;
+    text-transform: uppercase;
+  }
+
+  footer {
+    padding: 40px 8vw;
+    border-top: 1px solid var(--rule);
+    text-align: center;
+    background: var(--paper-warm);
+  }
+  footer .brand {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  footer .contact {
+    font-family: var(--serif);
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+  footer .contact a { color: var(--ink-soft); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Bez Ambar</div>
+  <div class="eyebrow">Report · Internal</div>
+  <h1>2026 · 07 · 27</h1>
+  <p class="lede">Blog + site stability pass — CSS font audit, editorial index redesign, Opus full-site audit, 96 broken Cloudinary paths fixed, home video preloading, Vercel/GitHub infra cleanup, Alara Cut removed from llms.txt.</p>
+  <a href="https://bezito.co/page/bez-kevin" class="back">← Back to Bez × Kevin</a>
+</header>
+
+<main>
+
+  <!-- ── TO DO ───────────────────────────────────────────────── -->
+  <section id="todo">
+    <div class="sec-eyebrow">Part One</div>
+    <h2>Open Items</h2>
+    <div class="divider"></div>
+    <p class="sec-sub">What needs action, who owns the next step.</p>
+
+    <div class="card todo">
+      <div class="card-title">Double Row Asscher Flex Bracelet (c0754-2026) — Product Page</div>
+      <div class="card-body">Product page not yet built. All other products have live pages; this one is pending. Cloudinary assets exist — ready to build when Kevin queues it.</div>
+      <div class="owner">@kevin</div>
+    </div>
+
+    <div class="card todo">
+      <div class="card-title">Freshsales — Remove Sample Deals + Import Lawyers List</div>
+      <div class="card-body">Widgetz.io, Acme Inc, and other Freshsales pre-loaded demo deals still in the pipeline. Need to be deleted and replaced with real Bez Ambar pipeline stages. Lawyers list (468 Gibson Dunn LA partners) is at <code>gibson_dunn_la_partners.csv</code> in workspace — not yet imported or tagged in Freshsales. Tag: <code>lawyers-list</code>. Apollo.io paid plan still pending for enrichment.</div>
+      <div class="owner">@kevin / @bezito</div>
+    </div>
+
+    <div class="card todo">
+      <div class="card-title">Plytix → Astro Sync — Blocked on Darryl</div>
+      <div class="card-body">Plytix is the active PIM (superseded Airtable as of 2026-07-10). API is live. The Astro product content pipeline and Plytix are currently parallel — not connected. Blocked on understanding Darryl's product creation workflow before wiring them together. Need to loop Darryl in.</div>
+      <div class="owner">@darryl / @kevin</div>
+    </div>
+
+    <div class="card todo">
+      <div class="card-title">Repo Cleanup — bezambar-web + bezambar-website + elysian-cut-trade</div>
+      <div class="card-body">Three GitHub repos under <code>bezambarinc-alt</code> with unknown/inactive status. Kevin deferred — "we will check out the others." Need a call on keep / archive / delete for each.</div>
+      <div class="owner">@kevin</div>
+    </div>
+
+    <div class="card todo">
+      <div class="card-title">Vercel API Token — Rotate Before Aug 2</div>
+      <div class="card-body">Token at <code>~/.openclaw/credentials/vercel.json</code> (account <code>bezambarinc-alt</code>) expires approximately Aug 2, 2026. Generate a new one at vercel.com/account/tokens — Bezito will swap it in. Everything using it (bezito-site deploys, deploy-page.js) breaks if it expires.</div>
+      <div class="owner">@bez / @kevin</div>
+    </div>
+  </section>
+
+  <!-- ── ACCOMPLISHED ──────────────────────────────────────────── -->
+  <section id="accomplished">
+    <div class="sec-eyebrow">Part Two</div>
+    <h2>Accomplished</h2>
+    <div class="divider"></div>
+    <p class="sec-sub">Shipped today — newest first.</p>
+
+    <div class="card done">
+      <div class="card-date">2026-07-27 · commit e5050ee</div>
+      <div class="card-title">54 Blog Body Images Fixed + Alara Cut Removed from llms.txt</div>
+      <div class="card-body">
+        All 54 blog posts had inline body <code>&lt;img&gt;</code> tags referencing <code>study-in-ruby/</code> in Cloudinary without the required <code>Jewelry%20Images/</code> prefix — causing 404s and ORB browser blocks. Fixed via sed across all files in one pass.<br><br>
+        <code>llms.txt</code> (the file AI crawlers like ChatGPT/Perplexity use to understand the site) had three public mentions of the Alara Cut™ — on the intro line, in the Notable Cuts section, and in the Trademarks line. All three removed. Hard rule: no public Alara mention until USPTO patent granted. File added to <code>public/llms.txt</code> in the Astro project so Vercel now serves it at <code>bezambar.com/llms.txt</code> — previously it wasn't being served at all from the Astro site.
+      </div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026-07-27 · commit c93b249</div>
+      <div class="card-title">Home Page Video Preloading — Parallax Carousel Smoothness</div>
+      <div class="card-body">
+        Choppy video transitions on the home page parallax stack traced to two root causes: (1) hero vid-0 was set to <code>preload="metadata"</code> — browser loaded dimensions only, video frames had to download from scratch on play; (2) vid1 and cvid1 were never pre-buffered until the exact moment they needed to display. Fixed: vid-0 set to <code>preload="auto"</code>; vid1 starts loading as soon as vid0 begins playing; cvid1 loads alongside cvid0 when the cinematic section enters the viewport. Also added a <code>&lt;link rel="preload"&gt;</code> in <code>&lt;head&gt;</code> for the hero poster frame — first paint now shows the image instantly instead of black.
+      </div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026-07-27 · commit b12e400</div>
+      <div class="card-title">Full-Site Opus Audit — All Critical Findings Resolved</div>
+      <div class="card-body">
+        Opus ran a 43-tool-call audit; all critical and warning findings fixed:<br><br>
+        <strong>CRITICAL — 404 assets:</strong> 42 blog body images corrected across 4 broken Cloudinary path patterns (<code>atelier/</code>, <code>earrings/</code>, <code>necklaces/</code>, <code>pages/</code>) + 2 blog post video <code>&lt;source&gt;</code> tags + collection hero video src &amp; poster.<br><br>
+        <strong>Routing:</strong> <code>/collections</code> → <code>/collection</code> on retailers page + JSON-LD schema.<br><br>
+        <strong>CSP:</strong> <code>galleries.bezambarinc.workers.dev</code> added to <code>img-src</code> — home page tracking pixel was being blocked by the browser's Content-Security-Policy.
+      </div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026-07-27 · commit 804f3c7</div>
+      <div class="card-title">First Opus Audit Pass — story.css, Blog Schema, Null Guards, Filter Bug</div>
+      <div class="card-body">
+        <strong>story.css:</strong> Complete rewrite — <code>:root</code> block removed (tokens live in <code>global.css</code> only), all ~20 hardcoded font-family strings replaced with <code>var(--sans)</code> / <code>var(--serif)</code>. <code>--story-*</code> token block moved to global.css as single source of truth.<br><br>
+        <strong>Blog schema:</strong> Added <code>.refine()</code> guard requiring at least one of <code>heroImage</code> / <code>heroVideo</code> on every post — same guard already existed on product schema.<br><br>
+        <strong>Blog index:</strong> Empty-collection redirect guard + <code>??</code> null-safe fallback for the featured post slot.<br><br>
+        <strong>Filter buttons:</strong> <code>filterBlog()</code> was declared inside an ES module scope — inline <code>onclick</code> attrs couldn't reach it. Fixed with <code>window.filterBlog = filterBlog</code>. Was a silent <code>ReferenceError</code> that broke the Diamonds / Earrings / Guides filter entirely.
+      </div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026-07-27 · commit 2fdc60b</div>
+      <div class="card-title">Blog Index — Editorial Redesign</div>
+      <div class="card-body">
+        Main blog index page redesigned from a basic grid into a three-zone editorial layout: (1) <strong>Journal masthead</strong> — "Vol. I · Est. 1979" header, typographic, flush-left; (2) <strong>Cinematic hero card</strong> — featured article at 72vh full-bleed with heavy dark gradient overlay, category tag in gold, title in white Open Sans 700, Lyon Text excerpt; (3) <strong>Editors' Picks</strong> — two wide 16:9 cards as a visual bridge before the archive grid. Filter buttons and grid layout preserved below.
+      </div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026-07-27 · commit 804f3c7 (also prior)</div>
+      <div class="card-title">Blog CSS Font Audit — 7 Heading Violations Fixed</div>
+      <div class="card-body">
+        Full read of <code>blog.css</code> against global token rules — 7 selectors were using Lyon Text (<code>var(--serif)</code>) where the design system requires Open Sans (<code>var(--sans)</code>): featured hero h2, blog-card title, post hero h1, post content h2, CTA box h3, related section h2, related card h4. All corrected. Italic removed from headings (italic is a Lyon Text property — doesn't translate to Open Sans).
+      </div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026-07-26 · memory + MEMORY.md</div>
+      <div class="card-title">Vercel / GitHub Infra Cleanup + Memory Self-Check Protocol</div>
+      <div class="card-body">
+        Deleted: <code>bez-ambar</code> Vercel project (duplicate of active site) + <code>bezambar-web2026-legacy</code> Vercel project (dead, no domains). GitHub repo <code>bezambarinc-alt/bezambar-web2026</code> (old HTML site, May 2026) archived in memory, not deleted (PAT lacked delete_repo scope).<br><br>
+        MEMORY.md CRITICAL section restructured with a mandatory self-check before any code or deploy action, three visually distinct zones (✅ ACTIVE / ❌ DELETED / 🗄️ ARCHIVED), and an explicit table mapping repo → Vercel project → live domain so there's no stitching required across sessions.
+      </div>
+      <div class="owner">@bezito</div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <div class="brand">Bez Ambar</div>
+  <div class="contact">
+    <a href="https://bezambar.com">bezambar.com</a> · <a href="mailto:bez@bezambar.com">bez@bezambar.com</a> · +1 (213) 629-9191
+  </div>
+</footer>
+
+</body>
+</html>

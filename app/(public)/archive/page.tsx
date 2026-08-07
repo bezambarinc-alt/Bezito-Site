@@ -15,7 +15,7 @@ import styles from './page.module.css'
  * (first deploy before hitting /api/admin/seed-archive), the page
  * renders an empty-state instead of a 500.
  */
-export const revalidate = 3600
+export const dynamic = "force-dynamic"
 
 export const metadata: Metadata = {
   title: 'The Archive — Every Piece in Motion | Bez Ambar',

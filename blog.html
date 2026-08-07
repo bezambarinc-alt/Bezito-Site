@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — Diamond Education & Insights | Bez Ambar</title>
+    <meta name="description" content="Expert insights on diamonds, gemstones, and fine jewelry from master jeweler Bez Ambar. Guides on engagement rings, diamond cuts, colored stones, and more.">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Blog Listing Styles */
+        .blog-hero {
+            text-align: center;
+            padding: 140px 20px 60px;
+            background: #0d0d0d;
+        }
+        .blog-hero .eyebrow {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 16px;
+        }
+        .blog-hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            font-weight: 400;
+            color: #fff;
+            margin: 0 0 12px;
+        }
+        .blog-hero p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            color: #888;
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Featured Post */
+        .blog-featured {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px 40px;
+        }
+        .featured-card {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+        }
+        .featured-card:hover .featured-img img {
+            transform: scale(1.03);
+        }
+        .featured-img {
+            aspect-ratio: 16/10;
+            overflow: hidden;
+            background: #141414;
+        }
+        .featured-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .featured-content .eyebrow {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #b8860b;
+            margin-bottom: 16px;
+        }
+        .featured-content h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 36px;
+            font-weight: 400;
+            color: #fff;
+            margin: 0 0 16px;
+            line-height: 1.2;
+        }
+        .featured-content .excerpt {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            color: #888;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .featured-content .read-more {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
+            border-bottom: 1px solid #fff;
+            padding-bottom: 2px;
+        }
+        .featured-content .post-date {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        /* Category Filter */
+        .blog-filter {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 20px 10px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .blog-filter button {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 8px 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: transparent;
+            color: #888;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .blog-filter button:hover,
+        .blog-filter button.active {
+            background: #fff;
+            color: #0d0d0d;
+            border-color: #fff;
+        }
+
+        /* Blog Grid */
+        .blog-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px 30px;
+        }
+        .blog-card {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .blog-card:hover .blog-card-img img {
+            transform: scale(1.05);
+        }
+        .blog-card-img {
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            background: #141414;
+            margin-bottom: 16px;
+        }
+        .blog-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .blog-card-cat {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #b8860b;
+            margin-bottom: 8px;
+        }
+        .blog-card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-weight: 500;
+            color: #fff;
+            margin: 0 0 8px;
+            line-height: 1.3;
+        }
+        .blog-card-date {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            color: #888;
+        }
+        .blog-card-excerpt {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            color: #888;
+            line-height: 1.7;
+            margin-top: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Divider */
+        .blog-divider {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .featured-card { grid-template-columns: 1fr; gap: 30px; }
+            .blog-grid { grid-template-columns: repeat(2, 1fr); gap: 30px 20px; }
+            .blog-hero h1 { font-size: 36px; }
+        }
+        @media (max-width: 600px) {
+            .blog-grid { grid-template-columns: 1fr; }
+            .featured-content h2 { font-size: 28px; }
+            .blog-hero { padding: 120px 20px 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-left-group">
+                <button class="mobile-nav-toggle" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+                <span class="menu-label" onclick="toggleMobileNav()">Menu</span>
+                <button class="header-icon-btn header-search-btn" aria-label="Search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+            </div>
+            <a href="index.html" class="logo">Bez Ambar</a>
+            <div class="header-right-group">
+                <a href="contact.html" class="header-contact-link">Contact Us</a>
+                <a href="#" class="header-icon-btn" aria-label="Wishlist">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </a>
+                <a href="#" class="header-icon-btn" aria-label="Account">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </a>
+            </div>
+            <div class="mobile-nav-overlay" id="mobileNav">
+                <a href="collection.html">Collection</a>
+                <span class="mobile-cat-label">Categories</span>
+                <a href="collection.html" class="mobile-cat-link">All Jewelry</a>
+                <a href="collection.html?cat=rings" class="mobile-cat-link">Rings</a>
+                <a href="collection.html?cat=engagement-rings" class="mobile-cat-link mobile-sub-link">Engagement Rings</a>
+                <a href="collection.html?cat=wedding-bands" class="mobile-cat-link mobile-sub-link">Wedding Bands</a>
+                <a href="collection.html?cat=mens-wedding-bands" class="mobile-cat-link mobile-sub-link">Men's Wedding Bands</a>
+                <a href="collection.html?cat=pendants" class="mobile-cat-link">Pendants</a>
+                <a href="collection.html?cat=necklaces" class="mobile-cat-link">Necklaces</a>
+                <a href="collection.html?cat=earrings" class="mobile-cat-link">Earrings</a>
+                <a href="collection.html?cat=stud-earrings" class="mobile-cat-link mobile-sub-link">Stud Earrings</a>
+                <a href="collection.html?cat=hug-earrings" class="mobile-cat-link mobile-sub-link">Hug Earrings</a>
+                <a href="collection.html?cat=hoop-earrings" class="mobile-cat-link mobile-sub-link">Hoop Earrings</a>
+                <a href="collection.html?cat=bracelets" class="mobile-cat-link">Bracelets</a>
+                <a href="video-gallery.html">Video Gallery</a>
+                <a href="our-story.html" class="mobile-cat-label" style="text-decoration:none;">Our Story</a>
+                <a href="about.html" class="mobile-cat-link">The Inventor</a>
+                <a href="the-bez-ambar-story.html" class="mobile-cat-link">The Bez Ambar Story</a>
+                <a href="journal.html" class="mobile-cat-link">Journal</a>
+                <a href="blog.html" class="mobile-cat-link">Blog</a>
+                <a href="diamond-education.html" class="mobile-cat-link">Diamond Education</a>
+                <a href="ring-size-chart.html" class="mobile-cat-link">Ring Size Chart</a>
+                <a href="catalogs.html" class="mobile-cat-link">Catalogs</a>
+                <a href="warranty.html" class="mobile-cat-link">Warranty</a>
+                <a href="press.html" class="mobile-cat-link">Press</a>
+            </div>
+        </div>
+    </header>
+    <div class="nav-backdrop" id="navBackdrop"></div>
+
+    <!-- Hero -->
+    <section class="blog-hero">
+        <p class="eyebrow">Diamond Education & Insights</p>
+        <h1>The Bez Ambar Blog</h1>
+        <p>Expert guides on diamonds, gemstones, and fine jewelry from a master jeweler with over 40 years of experience.</p>
+    </section>
+
+    <!-- Featured Post -->
+    <div class="blog-featured">
+        <a href="blog-post.html?slug=diamond-hoop-earrings-guide" class="featured-card">
+            <div class="featured-img">
+                <img src="https://bezambar.wpenginepowered.com/wp-content/uploads/2015/09/hoop-earrings-with-blaze-cut-diamonds-large-stones-by-bez-ambar-los-angeles.jpg" alt="The Complete Guide to Diamond Hoop Earrings">
+            </div>
+            <div class="featured-content">
+                <p class="post-date">July 19, 2018</p>
+                <p class="eyebrow">Earrings</p>
+                <h2>The Complete Guide to Diamond Hoop Earrings</h2>
+                <p class="excerpt">Your overall look mostly depends on the clothes, makeup, and the jewelry you wear. Making sure all of these elements go well with one another, and suit you best, is the key to a great look. The choice of earrings is especially important to a woman's overall look.</p>
+                <span class="read-more">Read Article</span>
+            </div>
+        </a>
+    </div>
+
+    <hr class="blog-divider">
+
+    <!-- Category Filter -->
+    <div class="blog-filter">
+        <button class="active" onclick="filterPosts('all')">All</button>
+        <button onclick="filterPosts('engagement-rings')">Engagement Rings</button>
+        <button onclick="filterPosts('diamonds')">Diamonds</button>
+        <button onclick="filterPosts('colored-stones')">Colored Stones</button>
+        <button onclick="filterPosts('earrings')">Earrings</button>
+        <button onclick="filterPosts('guides')">Guides</button>
+    </div>
+
+    <!-- Blog Grid -->
+    <div class="blog-grid" id="blogGrid">
+        <!-- Posts injected by JS -->
+    </div>
+
+    <!-- Services + Footer -->
+    <div class="services-strip">
+        <div class="services-inner">
+            <div class="service-item"><h4>Bespoke Design</h4><p>One-of-a-kind pieces<br>designed with you</p></div>
+            <div class="service-item"><h4>Complimentary Shipping</h4><p>Fully insured FedEx<br>Priority delivery</p></div>
+            <div class="service-item"><h4>Provenance Certificate</h4><p>Signed certificate<br>with every piece</p></div>
+            <div class="service-item"><h4>LA Atelier</h4><p>Visit us by appointment<br>611 Wilshire Blvd</p></div>
+        </div>
+    </div>
+
+    <footer class="ba-footer" id="inquire">
+    <div class="ba-footer__inner">
+      <div class="ba-footer__cols">
+        <div class="ba-footer__col">
+          <h4>Collection</h4>
+          <a href="/bloom">Bloom Collection</a>
+          <a href="/collection?cat=rings">Rings</a>
+          <a href="/collection?cat=engagement-rings">Engagement Rings</a>
+          <a href="/collection?cat=wedding-bands">Wedding Bands</a>
+          <a href="/collection?cat=earrings">Earrings</a>
+          <a href="/collection?cat=pendants">Pendants</a>
+          <a href="/collection?cat=necklaces">Necklaces</a>
+          <a href="/collection?cat=bracelets">Bracelets</a>
+        </div>
+        <div class="ba-footer__col">
+          <h4>Manufacture</h4>
+          <a href="/about">The Inventor</a>
+          <a href="/the-bez-ambar-story">The Bez Ambar Story</a>
+          <a href="/our-story">Our Story</a>
+          <a href="/press">Press</a>
+        </div>
+        <div class="ba-footer__col">
+          <h4>Service</h4>
+          <a href="/contact">Contact</a>
+          <a href="/contact?subject=bespoke">Bespoke Inquiry</a>
+          <a href="/contact?subject=repairs">Repairs &amp; Cleaning</a>
+          <a href="/warranty">Warranty</a>
+        </div>
+        <div class="ba-footer__col">
+          <h4>Signature Pieces</h4>
+          <a href="https://galleries.bezambarinc.workers.dev/page/30-carat-flex" target="_blank" rel="noopener">30-Carat Flex</a>
+          <a href="https://galleries.bezambarinc.workers.dev/page/flex-bracelets" target="_blank" rel="noopener">Flex Bracelets</a>
+          <a href="https://galleries.bezambarinc.workers.dev/page/elysian-cut" target="_blank" rel="noopener">Elysian Cut</a>
+          <a href="https://galleries.bezambarinc.workers.dev/page/cascata" target="_blank" rel="noopener">Cascata</a>
+          <a href="https://galleries.bezambarinc.workers.dev/page/crossover-ashoka" target="_blank" rel="noopener">Crossover Ashoka</a>
+          <a href="/heart-ruby">Heart Ruby</a>
+          <a href="https://galleries.bezambarinc.workers.dev/page/saul-ring" target="_blank" rel="noopener">Saul Ring</a>
+        </div>
+        <div class="ba-footer__col">
+          <h4>Editorial</h4>
+          <a href="/journal">Journal</a>
+          <a href="/blog">Blog</a>
+          <a href="/diamond-education">Diamond Education</a>
+          <a href="/video-gallery">Video Gallery</a>
+          <h4 class="ba-footer__col-sub">Resources</h4>
+          <a href="/ring-size-chart">Ring Size Chart</a>
+          <a href="/catalogs">Catalogs</a>
+        </div>
+      </div>
+      <div class="ba-footer__bottom">
+        <p class="ba-footer__logo">Bez Ambar</p>
+        <p class="ba-footer__address">611 Wilshire Blvd, Los Angeles, CA 90017 &middot; <a href="mailto:bezambar@bezambar.com">bezambar@bezambar.com</a> &middot; <a href="tel:2136299191">(213) 629-9191</a></p>
+        <p class="ba-footer__tag">Inventor of the Princess Cut &middot; Since 1979</p>
+      </div>
+    </div>
+  </footer>
+
+    <script>
+    const blogPosts = [
+        {
+            slug: 'what-is-an-asscher-cut-diamond',
+            title: 'What is an Asscher Cut Diamond',
+            date: 'February 21, 2020',
+            category: 'diamonds',
+            image: '2017/08/Size_Diameter_Carat-Weight_Chart.jpg',
+            excerpt: 'The Asscher cut diamond is a unique and elegant diamond shape that combines vintage charm with modern brilliance. Learn about its history, characteristics, and why it remains a sought-after choice.'
+        },
+        {
+            slug: 'why-a-1-carat-diamond',
+            title: 'Why is a 1 Carat Diamond the Most Popular Size for an Engagement Ring?',
+            date: 'February 17, 2020',
+            category: 'engagement-rings',
+            image: '2017/08/Size_Diameter_Carat-Weight_Chart.jpg',
+            excerpt: 'The time has come to ask the question, will you marry me? One of the issues men have to deal with before they propose is what size diamond ring to buy.'
+        },
+        {
+            slug: 'the-return-of-pear-shaped-diamond-rings',
+            title: 'The Return of Pear Shaped Diamond Rings',
+            date: 'May 15, 2018',
+            category: 'engagement-rings',
+            image: '2018/01/PEAR-SHAPE-8.26-DVVS2.jpg',
+            excerpt: 'In 1475, a Flemish cutter by the name of Lodewyk van Bercken invented a diamond-polishing wheel called a scaif. His innovative polishing wheel enabled the creation of complex diamond cuts.'
+        },
+        {
+            slug: 'blue-diamond-ring-vs-blue-sapphire-diamond-ring',
+            title: 'Blue Diamond Ring vs Blue Sapphire Diamond Ring',
+            date: 'May 10, 2018',
+            category: 'colored-stones',
+            image: '2015/07/1FLO24.jpg',
+            excerpt: 'Both blue diamonds and blue sapphires are stunning choices for engagement rings. Discover the key differences in rarity, color, durability, and value between these two beautiful blue gemstones.'
+        },
+        {
+            slug: 'blue-diamond-rings',
+            title: 'Blue Diamond Rings',
+            date: 'May 10, 2018',
+            category: 'colored-stones',
+            image: '2017/03/Fancy-Intense-Blue-Diamond-Ring.jpg',
+            excerpt: 'Designed with the top material available and screams magnificent. Bez has designed stunning custom blue diamond rings and engagement rings for decades that radiate brilliance and beauty.'
+        },
+        {
+            slug: 'the-los-angeles-diamond-district',
+            title: 'The Los Angeles Diamond District',
+            date: 'April 19, 2018',
+            category: 'guides',
+            image: '2018/02/10ct-diamond-Mask-Group-7.jpg',
+            excerpt: 'The Diamond District in downtown Los Angeles is famous all over the world, comprised of nearly 5,000 businesses offering wholesale prices on the finest jewelry including diamonds and engagement rings.'
+        },
+        {
+            slug: 'princess-cut-diamond-earrings',
+            title: 'Princess Cut Diamond Earrings',
+            date: 'April 5, 2018',
+            category: 'earrings',
+            image: '2014/05/RING-OF-FIRE-PRINCESS-EARRINGS.jpg',
+            excerpt: 'Princess cut diamond earrings are a stunning and contemporary choice. The sharp geometric lines of the princess cut create a modern, architectural look perfect for any occasion.'
+        },
+        {
+            slug: 'cushion-cut-diamond-earrings-video',
+            title: 'Cushion Cut Diamond Earrings',
+            date: 'April 3, 2018',
+            category: 'earrings',
+            image: '2018/04/cushion-cut-diamond-earring-of-fire.jpg',
+            excerpt: 'Watch our exclusive video showcasing the beauty of cushion cut diamond earrings. See how light dances through the facets of these exquisite pieces from our collection.'
+        },
+        {
+            slug: 'choosing-semi-precious-stones',
+            title: 'Why Do Couples Choose Semi Precious Stones?',
+            date: 'March 29, 2018',
+            category: 'colored-stones',
+            image: '2015/07/1FLO24.jpg',
+            excerpt: 'Semi-precious stones offer vibrant colors and unique character at accessible price points. Discover why more couples are choosing these beautiful alternatives for their engagement rings.'
+        },
+        {
+            slug: 'online-jewelry-stores',
+            title: 'Why Customers Like to Buy from Online Jewelry Stores',
+            date: 'March 27, 2018',
+            category: 'guides',
+            image: '2014/10/designer-diamond-engagement-rings-los-angeles.jpg',
+            excerpt: 'The digital age has transformed how people shop for fine jewelry. Learn about the advantages and considerations of purchasing diamond jewelry from online retailers.'
+        },
+        {
+            slug: 'choosing-your-diamond-earrings-studs',
+            title: 'Choosing Your Diamond Earrings Studs',
+            date: 'February 20, 2018',
+            category: 'earrings',
+            image: '2014/12/platinum-diamond-stud-earring-with-blaze-cut-diamonds-eneoct24nc.jpg',
+            excerpt: 'Diamond stud earrings are a timeless essential in every jewelry collection. Learn how to choose the perfect pair based on cut, clarity, setting, and your personal style.'
+        },
+        {
+            slug: 'should-you-buy-emerald-engagement-rings',
+            title: 'Should You Buy Emerald Engagement Rings?',
+            date: 'September 21, 2017',
+            category: 'colored-stones',
+            image: '2014/05/Frame-of-Light-Engagement-ring-for-Emerald-Cut-Diamond.jpg',
+            excerpt: 'Emerald engagement rings offer a distinctive and luxurious look. Explore the pros and cons of choosing an emerald for your engagement ring and what to consider before purchasing.'
+        },
+        {
+            slug: 'is-a-pink-diamond-engagement-ring-right-for-you',
+            title: 'Is a Pink Diamond Engagement Ring Right For You?',
+            date: 'September 17, 2017',
+            category: 'colored-stones',
+            image: '2015/07/oval-ring-custom-three-arms-revery1.jpg',
+            excerpt: 'Pink diamonds are among the rarest and most coveted gemstones in the world. Discover what makes them special and whether a pink diamond engagement ring is the right choice for you.'
+        },
+        {
+            slug: 'black-diamond-jewelry',
+            title: 'Black Diamond Jewelry',
+            date: 'August 25, 2017',
+            category: 'diamonds',
+            image: '2014/10/designer-diamond-engagement-rings-los-angeles.jpg',
+            excerpt: 'Black diamonds are bold, dramatic, and increasingly popular in fine jewelry. Explore the unique appeal of black diamond rings, earrings, and pendants from Bez Ambar.'
+        },
+        {
+            slug: 'sapphire-engagement-rings-yes-no',
+            title: 'Sapphire Engagement Rings, Yes or No?',
+            date: 'July 5, 2017',
+            category: 'colored-stones',
+            image: '2015/07/1FLO24.jpg',
+            excerpt: 'Sapphire engagement rings have a royal pedigree and timeless beauty. Discover the advantages and considerations of choosing a sapphire for your engagement ring.'
+        },
+        {
+            slug: 'secret-behind-ring-sizing',
+            title: 'The Secret Behind Ring Sizing',
+            date: 'June 6, 2017',
+            category: 'guides',
+            image: '2017/01/unique-mens-wedding-band-bez-ambar-los-angeles.jpg',
+            excerpt: 'Getting the right ring size is crucial for the perfect proposal. A master jeweler reveals the secrets and best practices for accurate ring sizing.'
+        },
+        {
+            slug: 'chocolate-brown-diamond-rings',
+            title: 'Chocolate Brown Diamond Rings',
+            date: 'May 23, 2017',
+            category: 'colored-stones',
+            image: '2017/05/chocolate-brown-diamond-ring.jpg',
+            excerpt: 'Chocolate brown diamonds offer a warm, earthy elegance that sets them apart. Discover the beauty and value of these unique colored diamonds in Bez Ambar designs.'
+        },
+        {
+            slug: 'engagement-rings-for-women-heirloom-or-new',
+            title: 'Engagement Rings for Women: Heirloom or New?',
+            date: 'May 10, 2017',
+            category: 'engagement-rings',
+            image: '2015/02/RRFLSGLPS.jpg',
+            excerpt: 'Should you choose a family heirloom or a brand new engagement ring? Explore the emotional and practical considerations of both options.'
+        },
+        {
+            slug: 'anniversary-rings-wedding-rings-eternity-rings',
+            title: 'Anniversary Rings, Wedding Rings, and Eternity Rings',
+            date: 'May 4, 2017',
+            category: 'engagement-rings',
+            image: '2015/11/2ETF36LZ-2.jpg',
+            excerpt: 'Understanding the differences between anniversary rings, wedding bands, and eternity rings. Learn which style best celebrates your milestone.'
+        },
+        {
+            slug: 'rose-cut-diamond-rings-by-bez-ambar',
+            title: 'Rose Cut Diamond Rings',
+            date: 'April 25, 2017',
+            category: 'diamonds',
+            image: '2017/04/rose-cut-diamond-engagement-ring.jpg',
+            excerpt: 'The rose cut is one of the oldest diamond cuts, dating back to the 16th century. Discover why this vintage cut is experiencing a modern renaissance in fine jewelry.'
+        },
+        {
+            slug: 'white-gold-diamond-hoop-earrings',
+            title: 'Blaze White Gold Diamond Hoop Earrings',
+            date: 'March 27, 2017',
+            category: 'earrings',
+            image: '2017/04/Light-Hoops-Diamond-Earrings-bez-Ambar-Los-Angeles..jpg',
+            excerpt: 'White gold diamond hoop earrings featuring Bez Ambar\'s signature Blaze cut diamonds. A modern classic that adds elegance and sparkle to any look.'
+        },
+        {
+            slug: 'fancy-intense-blue-diamond-ring',
+            title: 'Fancy Blue Diamond Rings',
+            date: 'March 4, 2017',
+            category: 'colored-stones',
+            image: '2017/03/Fancy-Intense-Blue-Diamond-Ring.jpg',
+            excerpt: 'Fancy intense blue diamonds are among the rarest gems on earth. Explore the extraordinary world of natural blue diamonds and Bez Ambar\'s stunning blue diamond ring designs.'
+        },
+        {
+            slug: 'fancy-colored-diamond-jewelry',
+            title: 'The Year of the Colored Diamond',
+            date: 'December 20, 2016',
+            category: 'colored-stones',
+            image: '2019/03/fancy-colored-diamond-jewelry.jpg',
+            excerpt: 'Colored diamonds are taking the jewelry world by storm. From vivid yellows to rare pinks and blues, discover why fancy colored diamonds are the trend to watch.'
+        },
+        {
+            slug: 'unusual-engagement-rings-round-crossover',
+            title: 'Unusual Engagement Rings — Round CrossOver',
+            date: 'August 20, 2016',
+            category: 'engagement-rings',
+            image: '2015/12/Parahiba-marq-special-drawing.jpg',
+            excerpt: 'For those who dare to be different, the Round CrossOver engagement ring offers a distinctive and artistic take on the classic solitaire.'
+        },
+        {
+            slug: 'custom-ring-fire-yellow-diamonds',
+            title: 'Custom Ring of Fire with Yellow Diamonds',
+            date: 'August 9, 2016',
+            category: 'engagement-rings',
+            image: '2013/10/Fancy-yellow-Cala-Ring-1.jpg',
+            excerpt: 'A custom Ring of Fire engagement ring featuring vibrant yellow diamonds. See how Bez Ambar creates one-of-a-kind pieces that capture the essence of fire and light.'
+        },
+        {
+            slug: 'custom-ring-fire-fancy-yellow-diamond',
+            title: 'Custom Ring of Fire with Fancy Yellow Diamond',
+            date: 'August 4, 2016',
+            category: 'engagement-rings',
+            image: '2015/05/enagament-ring-of-fire-with-large-stone-blaze-halo-and-a-round-fancy-yellow-stone.jpg',
+            excerpt: 'Another stunning custom Ring of Fire creation, this time with a fancy yellow center diamond. Discover the bespoke process behind this extraordinary piece.'
+        },
+        {
+            slug: 'diamond-pendant-necklaces',
+            title: 'Diamond Pendant Necklaces',
+            date: 'July 29, 2016',
+            category: 'guides',
+            image: '2015/09/hoop-earrings-with-blaze-cut-diamonds-large-stones-by-bez-ambar-los-angeles.jpg',
+            excerpt: 'Diamond pendant necklaces are versatile pieces that transition seamlessly from day to night. Explore our guide to choosing the perfect diamond pendant.'
+        },
+        {
+            slug: 'rose-gold-wedding-band',
+            title: 'Rose Gold Wedding Band',
+            date: 'July 29, 2016',
+            category: 'engagement-rings',
+            image: '2014/10/three-row-window-diamond-band-rose-gold.jpg',
+            excerpt: 'Rose gold wedding bands offer a warm, romantic alternative to traditional white or yellow gold. Discover why rose gold continues to captivate modern couples.'
+        },
+        {
+            slug: 'blue-sapphire-engagement-ring',
+            title: 'Blue Sapphire Engagement Ring',
+            date: 'July 26, 2016',
+            category: 'colored-stones',
+            image: '2013/07/Engagement-Ring-of-Fire-Blue-Sapphire-Oval.jpg',
+            excerpt: 'Blue sapphire engagement rings carry a legacy of royalty and romance. Learn about the enduring allure of sapphires and how to choose the perfect stone.'
+        },
+        {
+            slug: 'bez-ambars-new-patented-design-divine-cut-diamond',
+            title: "Bez Ambar's New Patented Design — The Divine Cut Diamond",
+            date: 'June 28, 2016',
+            category: 'diamonds',
+            image: '2015/07/Divine-stone-alone.jpg',
+            excerpt: 'Bez Ambar introduces the Divine Cut, a revolutionary new diamond cut protected by patent. Discover the innovation behind this breakthrough in diamond cutting technology.'
+        },
+        {
+            slug: 'ring-size-guide-choosing-ring-size',
+            title: 'Ring Sizing Guide',
+            date: 'June 1, 2016',
+            category: 'guides',
+            image: '2016/05/1ROL-5R-model-mb-k.jpg',
+            excerpt: 'A comprehensive guide to finding your perfect ring size. Learn multiple methods for measuring ring size accurately, from string techniques to professional sizing tools.'
+        },
+        {
+            slug: 'pink-diamond-engagement-rings-2',
+            title: 'Pink Diamond Engagement Rings — Ring of Fire',
+            date: 'May 4, 2016',
+            category: 'engagement-rings',
+            image: '2014/05/Ring-of-fire-for-Fancy-Pink-Radiant-Cut-Diamond.jpg',
+            excerpt: 'The Ring of Fire setting with a pink diamond center creates a breathtaking engagement ring. Explore this stunning combination of Bez Ambar\'s signature design with rare pink diamonds.'
+        },
+        {
+            slug: 'halo-ring-setting',
+            title: 'Best Halo Ring Setting To Make Your Ring Look Bigger',
+            date: 'May 2, 2016',
+            category: 'engagement-rings',
+            image: '2014/04/ring-of-fire-flower-with-bands-and-t2.jpg',
+            excerpt: 'A halo ring setting can make your center diamond appear significantly larger. Learn how the right halo design maximizes the visual impact of your engagement ring.'
+        },
+        {
+            slug: 'blaze-halo-setting-makes-diamond-look-bigger',
+            title: 'The Blaze Halo Setting Makes A Diamond Look Bigger',
+            date: 'April 28, 2016',
+            category: 'diamonds',
+            image: '2014/10/Flower-of-Light-Diamond-Engagement-Ring-with-Knife-edge-Bands.jpg',
+            excerpt: 'Bez Ambar\'s signature Blaze cut diamonds in a halo setting create an extraordinary visual effect, making the center stone appear dramatically larger and more brilliant.'
+        },
+        {
+            slug: 'heart-shaped-silvet-ring-with-rubies',
+            title: 'Silver Ring with Heart Shaped Diamond and Ruby Bookends',
+            date: 'April 26, 2016',
+            category: 'colored-stones',
+            image: '2014/04/silvet-heart-with-rubies.jpg',
+            excerpt: 'A unique silver ring featuring a heart-shaped diamond flanked by vibrant ruby bookends. A romantic and colorful creation from the Bez Ambar atelier.'
+        }
+    ];
+
+    // Load images directly from WordPress
+    function getImageUrl(wpPath) {
+        return 'https://bezambar.wpenginepowered.com/wp-content/uploads/' + wpPath;
+    }
+
+    // Render posts
+    function renderPosts(category) {
+        const grid = document.getElementById('blogGrid');
+        const filtered = category === 'all' ? blogPosts : blogPosts.filter(p => p.category === category);
+
+        grid.innerHTML = filtered.map(post => `
+            <a href="blog-post.html?slug=${post.slug}" class="blog-card" data-cat="${post.category}">
+                <div class="blog-card-img">
+                    <img src="${getImageUrl(post.image)}" alt="${post.title}" onerror="this.style.display='none'">
+                </div>
+                <p class="blog-card-cat">${post.category.replace(/-/g, ' ')}</p>
+                <h3 class="blog-card-title">${post.title}</h3>
+                <p class="blog-card-date">${post.date}</p>
+                <p class="blog-card-excerpt">${post.excerpt}</p>
+            </a>
+        `).join('');
+    }
+
+    function filterPosts(category) {
+        // Update active button
+        document.querySelectorAll('.blog-filter button').forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+        renderPosts(category);
+    }
+
+    // Initial render
+    renderPosts('all');
+    </script>
+
+    <script>
+    function toggleMobileNav() {
+        var toggle = document.querySelector('.mobile-nav-toggle');
+        var nav = document.getElementById('mobileNav');
+        var backdrop = document.getElementById('navBackdrop');
+        toggle.classList.toggle('open');
+        nav.classList.toggle('open');
+        backdrop.classList.toggle('open');
+    }
+    function closeMobileNav() {
+        document.querySelector('.mobile-nav-toggle').classList.remove('open');
+        document.getElementById('mobileNav').classList.remove('open');
+        document.getElementById('navBackdrop').classList.remove('open');
+    }
+    document.getElementById('navBackdrop').addEventListener('click', closeMobileNav);
+    </script>
+</body>
+</html>

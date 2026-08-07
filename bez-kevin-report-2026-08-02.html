@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Report · 2026-08-02 — Bez × Kevin</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://bezito.co/page/bez-kevin-report-2026-08-02">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --serif: 'EB Garamond', Georgia, serif;
+    --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-muted: #8a8a8a;
+    --paper: #ffffff;
+    --paper-warm: #faf7f2;
+    --rule: rgba(0,0,0,.08);
+    --accent: #95826b;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); color: var(--ink); font-family: var(--serif); -webkit-font-smoothing: antialiased; }
+
+  header {
+    padding: 40px 8vw 24px;
+    border-bottom: 1px solid var(--rule);
+    text-align: center;
+  }
+  header .brand {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  header .eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 34px 0 14px;
+  }
+  header h1 {
+    font-family: var(--sans);
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 200;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  header .lede {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 620px;
+    margin: 22px auto 0;
+    line-height: 1.55;
+  }
+  header .back {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(149,130,107,.35);
+    display: inline-block;
+    margin-top: 26px;
+    padding-bottom: 2px;
+  }
+  header .back:hover { border-bottom-color: var(--accent); }
+
+  main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 60px 6vw 100px;
+  }
+
+  section { margin-bottom: 72px; }
+  section .sec-eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  section h2 {
+    font-family: var(--sans);
+    font-size: clamp(20px, 2.4vw, 26px);
+    font-weight: 200;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+  section .sec-sub {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--ink-soft);
+    max-width: 560px;
+    margin-bottom: 28px;
+    line-height: 1.55;
+  }
+  section .divider {
+    width: 42px;
+    height: 1px;
+    background: var(--accent);
+    margin-bottom: 30px;
+  }
+
+  .card {
+    border: 1px solid var(--rule);
+    padding: 26px 28px;
+    margin-bottom: 14px;
+    background: var(--paper);
+    transition: border-color .2s;
+  }
+  .card:hover { border-color: rgba(0,0,0,.18); }
+  .card .card-title {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .card .card-body {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .card a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(149,130,107,.35);
+    transition: border-color .2s;
+  }
+  .card a:hover { border-bottom-color: var(--accent); }
+  .card.todo { border-left: 3px solid var(--accent); }
+  .card.done { border-left: 3px solid #4a7a4a; background: #fafaf7; }
+  .card .card-date {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 6px;
+  }
+  .card .owner {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-top: 12px;
+    text-transform: uppercase;
+  }
+
+  footer {
+    padding: 40px 8vw;
+    border-top: 1px solid var(--rule);
+    text-align: center;
+    background: var(--paper-warm);
+  }
+  footer .brand {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  footer .contact {
+    font-family: var(--serif);
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+  footer .contact a { color: var(--ink-soft); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Bez Ambar</div>
+  <div class="eyebrow">Report · Internal</div>
+  <h1>2026 · 08 · 02</h1>
+  <p class="lede">Golden Hour page live. Open question: should the Vercel Astro product pages be updated to match the bezito.co split-hero template layout?</p>
+  <a href="https://bezito.co/page/bez-kevin" class="back">← Back to Bez × Kevin</a>
+</header>
+
+<main>
+
+  <!-- ── TO DO ───────────────────────────────────────────────── -->
+  <section id="todo">
+    <div class="sec-eyebrow">Part One</div>
+    <h2>Open Items</h2>
+    <div class="divider"></div>
+    <p class="sec-sub">What needs action, who owns the next step.</p>
+
+    <div class="card todo">
+      <div class="card-title">Vercel Product Pages — Align to Golden Hour Template?</div>
+      <div class="card-body">
+        Two product page systems are currently diverged:<br><br>
+        <strong>bezito.co/page/[slug]</strong> (galleries worker, D1) — split hero: video 55% left, copy right → technical accordion → Three Views → inquire footer. Canonical: bezito.co. Built from the locked template in <code>templates/product-page.html</code>.<br><br>
+        <strong>bezambar-web2026.vercel.app/jewelry/[category]/[slug]</strong> (Astro) — full-bleed hero video with ref overlay → breadcrumb + title + description below. Canonical: bezambar.com. Driven by <code>src/content/products/[slug].json</code> + <code>product.css</code>.<br><br>
+        Question from Bez: should the Vercel Astro product pages be updated to use the same split-hero layout as the Golden Hour bezito.co page? If yes, scope is: update <code>src/pages/jewelry/[category]/[slug].astro</code> + <code>src/styles/templates/product.css</code> to match. Kevin's call on direction.
+      </div>
+      <div class="owner">@kevin</div>
+    </div>
+
+  </section>
+
+  <!-- ── ACCOMPLISHED ──────────────────────────────────────────── -->
+  <section id="accomplished">
+    <div class="sec-eyebrow">Part Two</div>
+    <h2>Accomplished</h2>
+    <div class="divider"></div>
+    <p class="sec-sub">Shipped today — newest first.</p>
+
+    <div class="card done">
+      <div class="card-date">2026-08-02</div>
+      <div class="card-title">Golden Hour — Product Page Live</div>
+      <div class="card-body">
+        Golden Hour (C0895 — 8.39ct Fancy Intense Yellow Cushion, three-stone ring) is live at <a href="https://bezito.co/page/golden-hour">bezito.co/page/golden-hour</a>. Split-hero layout: video 55% left, copy right, accordion specs, Three Views section, inquire footer. Config at <code>configs/golden-hour.json</code>, content at <code>src/content/products/golden-hour.json</code>.
+      </div>
+      <div class="owner">@kevin / @bezito</div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <div class="brand">Bez Ambar</div>
+  <div class="contact">
+    <a href="https://bezambar.com">bezambar.com</a> · <a href="mailto:bez@bezambar.com">bez@bezambar.com</a> · +1 (213) 629-9191
+  </div>
+</footer>
+
+</body>
+</html>

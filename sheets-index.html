@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sheets Index — Bez Ambar</title>
+  <meta name="description" content="Index of all Google Sheets built for Bez Ambar — design system, pricing, outreach lists, dashboards, trackers.">
+  <link rel="canonical" href="https://galleries.bezambarinc.workers.dev/page/sheets-index">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23c41e3a'/%3E%3Ctext x='16' y='22' font-family='Montserrat,sans-serif' font-size='18' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://webfonts.fontstand.com/WF-099839-d89c1d499f0c1f40d1e6d7330af17f97.css" type="text/css"/>
+  <style>
+    :root {
+      --serif: 'Lyon Text Regular', 'EB Garamond', Georgia, serif;
+      --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --ink: #1a1a1a;
+      --ink-soft: #4a4a4a;
+      --paper: #ffffff;
+      --paper-warm: #faf7f2;
+      --rule: rgba(0,0,0,.08);
+      --accent: #95826b;
+      --gutter: clamp(1.25rem, 5vw, 4rem);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 17px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .ba-header {
+      position: sticky; top: 0; z-index: 100;
+      background: #ffffff;
+      border-bottom: 1px solid var(--rule);
+      padding: 18px 20px;
+      text-align: center;
+    }
+    .ba-header__logo {
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      color: var(--ink);
+      text-transform: uppercase;
+    }
+
+    .hero {
+      padding: clamp(3rem, 7vw, 5rem) var(--gutter) clamp(2rem, 4vw, 3rem);
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero__eyebrow {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .hero__title {
+      font-family: var(--sans);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 200;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .hero__lede {
+      font-family: var(--serif);
+      font-size: 16px;
+      color: var(--ink-soft);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .group {
+      padding: clamp(2rem, 4vw, 3rem) var(--gutter);
+      max-width: 1100px;
+      margin: 0 auto;
+      border-top: 1px solid var(--rule);
+    }
+    .group:first-of-type { border-top: 0; }
+    .group__eyebrow {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .sheet-list { list-style: none; padding: 0; }
+    .sheet {
+      display: block;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--rule);
+      transition: background 0.2s ease;
+    }
+    .sheet:hover { background: var(--paper-warm); padding-left: 0.5rem; padding-right: 0.5rem; }
+    .sheet:last-child { border-bottom: 0; }
+    .sheet__row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+    .sheet__name {
+      font-family: var(--serif);
+      font-size: 18px;
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .sheet__open {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    .sheet__desc {
+      font-family: var(--serif);
+      font-size: 14px;
+      color: var(--ink-soft);
+      margin-top: 0.4rem;
+      max-width: 720px;
+      line-height: 1.5;
+    }
+    .sheet__meta {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.32);
+      margin-top: 0.5rem;
+    }
+
+    .ba-footer {
+      background: #ffffff;
+      border-top: 1px solid var(--rule);
+      padding: 40px 20px 30px;
+      text-align: center;
+      margin-top: 4rem;
+    }
+    .ba-footer__logo {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .ba-footer p {
+      font-family: var(--sans);
+      font-size: 11px;
+      color: var(--ink-soft);
+      line-height: 1.85;
+      margin: 0;
+    }
+    .ba-footer a { color: var(--ink-soft); }
+    .ba-footer__tag {
+      margin-top: 14px;
+      font-size: 10px;
+      letter-spacing: 0.5px;
+      color: var(--ink-soft);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="ba-header">
+    <a href="https://galleries.bezambarinc.workers.dev/page/mission-control" class="ba-header__logo">Bez Ambar · Mission Control</a>
+  </header>
+
+  <section class="hero">
+    <p class="hero__eyebrow">Resources</p>
+    <h1 class="hero__title">Google Sheets Index</h1>
+    <p class="hero__lede">Every operational sheet built for Bez Ambar — design system, pricing, outreach lists, dashboards, and personal trackers. Grouped by purpose; current/canonical version listed first when multiple exist.</p>
+  </section>
+
+  <!-- ==================== DESIGN ==================== -->
+  <section class="group">
+    <p class="group__eyebrow">Design System</p>
+    <ul class="sheet-list">
+      <li class="sheet">
+        <div class="sheet__row">
+          <span class="sheet__name">Bez Ambar — Design System (Canonical)</span>
+          <a class="sheet__open" href="https://docs.google.com/spreadsheets/d/1A37by4nUVVfI7zN0FCVQB7CMz_kL8ffAXekqQ3RrDyQ/edit" target="_blank">Open ↗</a>
+        </div>
+        <p class="sheet__desc">All design tokens — fonts (Lyon Text + Inter), colors (--ink, --accent, etc.), eyebrow/title/footer specs. Source-of-truth read from <code>/page/30-carat-flex</code>. When in doubt about typography or color, this sheet is the answer.</p>
+        <p class="sheet__meta">Created 2026-06-07</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ==================== OPERATIONS ==================== -->
+  <section class="group">
+    <p class="group__eyebrow">Operations &amp; Dashboards</p>
+    <ul class="sheet-list">
+      <li class="sheet">
+        <div class="sheet__row">
+          <span class="sheet__name">Bezito Business — Priority Dashboard</span>
+          <a class="sheet__open" href="https://docs.google.com/spreadsheets/d/112Bc9KO42HquzgeMR6foYl8_kaVvpARgoq2qF9HyIuc/edit" target="_blank">Open ↗</a>
+        </div>
+        <p class="sheet__desc">Daily 10-priority dashboard. Drives the 8:03 AM business digest posted to the Bezito Business group every morning.</p>
+        <p class="sheet__meta">2026-06-01</p>
+      </li>
+      <li class="sheet">
+        <div class="sheet__row">
+          <span class="sheet__name">Bez Ambar — Cloudflare Pages Index</span>
+          <a class="sheet__open" href="https://docs.google.com/spreadsheets/d/1gQzYI04PoCCLju2G-CWtmUsih0zf9QM9SsYfGadtgWs/edit" target="_blank">Open ↗</a>
+        </div>
+        <p class="sheet__desc">Index of every page deployed to <code>galleries.bezambarinc.workers.dev</code> — page ID, purpose, last updated.</p>
+        <p class="sheet__meta">2026-05-23</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ==================== PRICING ==================== -->
+  <section class="group">
+    <p class="group__eyebrow">Pricing &amp; Cost Calculators</p>
+    <ul class="sheet-list">
+      <li class="sheet">
+        <div class="sheet__row">
+          <span class="sheet__name">Bez Ambar — Vendor Pricing &amp; Flex Bracelet Retail</span>
+          <a class="sheet__open" href="https://docs.google.com/spreadsheets/d/1id0d48be_7i5S7NAHGLf4GahYx2FcqjGTAE2Uo79rl8/edit" target="_blank">Open ↗</a>
+        </div>
+        <p class="sheet__desc">Master vendor pricing reference + flex bracelet retail price grid. Used for quoting and retailer conversations.</p>
+        <p class="sheet__meta">2026-05-22</p>
+      </li>
+      <li class="sheet">
+        <div class="sheet__row">
+          <span class="sheet__name">Joden Necklace — Cost Calculator</span>
+          <a class="sheet__open" href="https://docs.google.com/spreadsheets/d/1DVTKTiyJMxCdRgiI-lnvlzIt5GBTOKokbMdeB4klZ98/edit" target="_blank">Open ↗</a>
+        </div>
+        <p class="sheet__desc">Two-option layout (A no-halo + B with-halo). The master template format for every Bez Ambar piece estimate. Read-only by default, never modify without explicit instruction.</p>
+        <p class="sheet__meta">2026-05-22 · TEMPLATE</p>
+      </li>
+      <li class="sheet">
+        <div class="sheet__row">
+          <span class="sheet__name">Flexable Bracelets v4 — with retail</span>
+          <a class="sheet__open" href="https://docs.google.com/spreadsheets/d/1qRk6CiGmSLucv8oaItrYPZX8FRhyYurIhhmQXiPhSsM/edit" target="_blank">Open ↗</a>
+        </div>
+        <p class="sheet__desc">Latest priced flexable bracelet grid with retail markups.</p>
+        <p class="sheet__meta">2026-05-22</p>
+      </li>
+      <li class="sheet">
+        <div class="sheet__row">
+          <span class="sheet__name">Elysian Bands — Cost vs Retail (v3)</span>
+          <a class="sheet__open" href="https://docs.google.com/spreadsheets/d/1xdXKQNKYZXLFDdl77z-RDUdDW-FGwfsBxEbOecA4v6Q/edit" target="_blank">Open ↗</a>
+        </div>
+        <p class="sheet__desc">Cost vs retail margin analysis for Elysian Cut™ band line. Current canonical version (v2 and earlier exist but use this one).</p>
+        <p class="sheet__meta">2026-05-18 · LATEST</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ==================== SOURCING ==================== -->
+  <section class="group">
+    <p class="group__eyebrow">Sourcing &amp; Vendors</p>
+    <ul class="sheet-list">
+      <li class="sheet">
+        <div class="sheet__row">
+          <span class="sheet__name">Shivam Jewels — Elysian Pear (PMC) Stones</span>
+          <a class="sheet__open" href="https://docs.google.com/spreadsheets/d/1ZfXjoisIXGhnwTd-I3ujkbWiGoqGBv1Tx5HOI_TY9L4/edit" target="_blank">Open ↗</a>
+        </div>
+        <p class="sheet__desc">Available Elysian Pear (Patented Modified Cut) stones from Shivam Jewels — Priyank Kothari, +1 (917) 694-2505.</p>
+        <p class="sheet__meta">2026-05-18</p>
+      </li>
+      <li class="sheet">
+        <div class="sheet__row">
+          <span class="sheet__name">Shivam Jewels — Elysian Oval (OMC) Stones</span>
+          <a class="sheet__open" href="https://docs.google.com/spreadsheets/d/1jtcsUTTM4i1mgAVdAX0O7P7MXfeb3vnc_Sx5qdJKlwY/edit" target="_blank">Open ↗</a>
+        </div>
+        <p class="sheet__desc">Available Elysian Oval (Oval Modified Cut) stones from Shivam Jewels for 2ELS-25/30/50/70 band production.</p>
+        <p class="sheet__meta">2026-05-18</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ==================== OUTREACH LISTS ==================== -->
+  <section class="group">
+    <p class="group__eyebrow">Outreach &amp; Prospect Lists</p>
+    <ul class="sheet-list">
+      <li class="sheet">
+        <div class="sheet__row">
+          <span class="sheet__name">Bezito — A-List (Retailer Reactivation)</span>
+          <a class="sheet__open" href="https://docs.google.com/spreadsheets/d/1uwld7mqqDVeRjJWjQSjrhAix143YErNLP4xbEdRRxXI/edit" target="_blank">Open ↗</a>
+        </div>
+        <p class="sheet__desc">Top 1,700 retailer contacts (B2B). The active reactivation list — backbone of all retailer email campaigns.</p>
+        <p class="sheet__meta">2026-06-04</p>
+      </li>
+      <li class="sheet">
+        <div class="sheet__row">
+          <span class="sheet__name">Consumer List — Rescored 2026-05-22 (Mother's Day 538)</span>
+          <a class="sheet__open" href="https://docs.google.com/spreadsheets/d/1wXiSp5Eub_EVl7t8AMvxI8xazR1bd0pirE4i0zV6K4I/edit" target="_blank">Open ↗</a>
+        </div>
+        <p class="sheet__desc">538 consumer contacts (B2C) used for the Mother's Day 2026 campaign. Rescored from the larger consumer pool.</p>
+        <p class="sheet__meta">2026-05-23</p>
+      </li>
+      <li class="sheet">
+        <div class="sheet__row">
+          <span class="sheet__name">LA Bespoke Targets — Phase 1: Luxury RE Brokers</span>
+          <a class="sheet__open" href="https://docs.google.com/spreadsheets/d/1O7babN-XVz7aXABvjDZjxqO-EFBVqz9igSFZdG0hmbQ/edit" target="_blank">Open ↗</a>
+        </div>
+        <p class="sheet__desc">LA luxury real estate brokers — Phase 1 of bespoke commission outreach. HNW gateway list.</p>
+        <p class="sheet__meta">2026-06-05</p>
+      </li>
+      <li class="sheet">
+        <div class="sheet__row">
+          <span class="sheet__name">Bezito — Lawyers Outreach List</span>
+          <a class="sheet__open" href="https://docs.google.com/spreadsheets/d/1HWIdW3yevQrVjGu81PTWaUSeROCDSs0kD4jL4BWGe5Q/edit" target="_blank">Open ↗</a>
+        </div>
+        <p class="sheet__desc">468+ partner contacts from Gibson Dunn, Quinn Emanuel, Greenberg Traurig, Paul Hastings, Munger Tolles, WilmerHale, etc. For high-end diamond outreach.</p>
+        <p class="sheet__meta">2026-05-14</p>
+      </li>
+      <li class="sheet">
+        <div class="sheet__row">
+          <span class="sheet__name">Bezito — Rolex US Authorized Dealers</span>
+          <a class="sheet__open" href="https://docs.google.com/spreadsheets/d/14Tn9iRPJwEhmpMeB61Sk9KtySFWmCmRTqxpaLbC6A8I/edit" target="_blank">Open ↗</a>
+        </div>
+        <p class="sheet__desc">Rolex US authorized dealer network — for parallel retailer outreach (same buyer profile as Bez Ambar's target).</p>
+        <p class="sheet__meta">2026-05-14</p>
+      </li>
+      <li class="sheet">
+        <div class="sheet__row">
+          <span class="sheet__name">Rolex Dealers — Watch Buyers</span>
+          <a class="sheet__open" href="https://docs.google.com/spreadsheets/d/17xU5PT7H0gL4P-r-0LhhCQuByPqjoziwmd2lbkr1-8M/edit" target="_blank">Open ↗</a>
+        </div>
+        <p class="sheet__desc">Watch-buyer angle — contacts at Rolex dealers for cross-sell positioning.</p>
+        <p class="sheet__meta">2026-05-15</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ==================== EVENTS ==================== -->
+  <section class="group">
+    <p class="group__eyebrow">Events &amp; Trade Shows</p>
+    <ul class="sheet-list">
+      <li class="sheet">
+        <div class="sheet__row">
+          <span class="sheet__name">JCK 2026 — AGTA Visit Plan</span>
+          <a class="sheet__open" href="https://docs.google.com/spreadsheets/d/15AGa_JKhyLkxKzCE7fmi4pvgDUONmMLl8tC96RYS8iI/edit" target="_blank">Open ↗</a>
+        </div>
+        <p class="sheet__desc">Visit/meeting schedule for JCK 2026 + AGTA tradeshows in Las Vegas.</p>
+        <p class="sheet__meta">2026-05-27</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ==================== HEALTH ==================== -->
+  <section class="group">
+    <p class="group__eyebrow">Health &amp; Personal</p>
+    <ul class="sheet-list">
+      <li class="sheet">
+        <div class="sheet__row">
+          <span class="sheet__name">Bez Cardio Tracker</span>
+          <a class="sheet__open" href="https://docs.google.com/spreadsheets/d/1Z7ZPGtdz74TXOUJmNFu9zVnknFYQapAhAq9Ah9X8NaY/edit" target="_blank">Open ↗</a>
+        </div>
+        <p class="sheet__desc">Personal cardiovascular markers tracker — labs (LDL/HDL/Trigs/A1C), BP log, weight, meds. Updated with every Dr. Natour visit.</p>
+        <p class="sheet__meta">2026-05-16</p>
+      </li>
+      <li class="sheet">
+        <div class="sheet__row">
+          <span class="sheet__name">חישוב פנסיה ופיצויים — מטפלת</span>
+          <a class="sheet__open" href="https://docs.google.com/spreadsheets/d/1Hxt75oxnfp05sUQbhXCjpWgxFhvH52dq-txePnMnpYI/edit" target="_blank">Open ↗</a>
+        </div>
+        <p class="sheet__desc">Pension &amp; severance calculation for Shoshana's caretaker (Hebrew, Israeli labor law).</p>
+        <p class="sheet__meta">2026-05-31</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ==================== POLITICAL ==================== -->
+  <section class="group">
+    <p class="group__eyebrow">Political / Other</p>
+    <ul class="sheet-list">
+      <li class="sheet">
+        <div class="sheet__row">
+          <span class="sheet__name">Rotate the Court — Senate Judiciary Outreach</span>
+          <a class="sheet__open" href="https://docs.google.com/spreadsheets/d/12lOQnm7RV3pgxWn74dTSr74SFPb82Lem8QeBf3aars4/edit" target="_blank">Open ↗</a>
+        </div>
+        <p class="sheet__desc">Senate Judiciary Committee outreach list for the Rotate the Court initiative.</p>
+        <p class="sheet__meta">2026-05-18</p>
+      </li>
+    </ul>
+  </section>
+
+  <footer class="ba-footer">
+    <p class="ba-footer__logo">Bez Ambar</p>
+    <p>611 Wilshire Blvd, Los Angeles, CA 90017</p>
+    <p>
+      <a href="mailto:bezambar@bezambar.com">bezambar@bezambar.com</a> &middot;
+      <a href="tel:2136299191">(213) 629-9191</a>
+    </p>
+    <p class="ba-footer__tag">Inventor of the Princess Cut · Since 1979</p>
+  </footer>
+
+  <img src="https://galleries.bezambarinc.workers.dev/t?p=sheets-index" width="1" height="1" style="position:absolute;width:1px;height:1px;opacity:0;" alt="">
+
+</body>
+</html>

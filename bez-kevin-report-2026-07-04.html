@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Report · 2026-07-04 — Bez × Kevin</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://galleries.bezambarinc.workers.dev/page/bez-kevin-report-2026-07-04">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --serif: 'EB Garamond', Georgia, serif;
+    --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-muted: #8a8a8a;
+    --paper: #ffffff;
+    --paper-warm: #faf7f2;
+    --rule: rgba(0,0,0,.08);
+    --accent: #95826b;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); color: var(--ink); font-family: var(--serif); -webkit-font-smoothing: antialiased; }
+
+  header {
+    padding: 40px 8vw 24px;
+    border-bottom: 1px solid var(--rule);
+    text-align: center;
+  }
+  header .brand {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  header .eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 34px 0 14px;
+  }
+  header h1 {
+    font-family: var(--sans);
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 200;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  header .lede {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 620px;
+    margin: 22px auto 0;
+    line-height: 1.55;
+  }
+  header .back {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(149,130,107,.35);
+    display: inline-block;
+    margin-top: 26px;
+    padding-bottom: 2px;
+  }
+  header .back:hover { border-bottom-color: var(--accent); }
+
+  main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 60px 6vw 100px;
+  }
+
+  section {
+    margin-bottom: 72px;
+  }
+  section .sec-eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  section h2 {
+    font-family: var(--sans);
+    font-size: clamp(20px, 2.4vw, 26px);
+    font-weight: 200;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+  section .sec-sub {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--ink-soft);
+    max-width: 560px;
+    margin-bottom: 28px;
+    line-height: 1.55;
+  }
+  section .divider {
+    width: 42px;
+    height: 1px;
+    background: var(--accent);
+    margin-bottom: 30px;
+  }
+
+  .card {
+    border: 1px solid var(--rule);
+    padding: 26px 28px;
+    margin-bottom: 14px;
+    background: var(--paper);
+    transition: border-color .2s;
+  }
+  .card:hover { border-color: rgba(0,0,0,.18); }
+  .card .card-title {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .card .card-body {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .card a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(149,130,107,.35);
+    transition: border-color .2s;
+  }
+  .card a:hover { border-bottom-color: var(--accent); }
+  .card.todo {
+    border-left: 3px solid var(--accent);
+  }
+  .card.done {
+    border-left: 3px solid #4a7a4a;
+    background: #fafaf7;
+  }
+  .card .card-date {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 6px;
+  }
+  .card .owner {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-top: 8px;
+    text-transform: uppercase;
+  }
+
+  footer {
+    padding: 40px 8vw;
+    border-top: 1px solid var(--rule);
+    text-align: center;
+    background: var(--paper-warm);
+  }
+  footer .brand {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  footer .contact {
+    font-family: var(--serif);
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+  footer .contact a { color: var(--ink-soft); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Bez Ambar</div>
+  <div class="eyebrow">Report · Internal</div>
+  <h1>2026 · 07 · 04</h1>
+  <p class="lede">Snapshot of open items and shipped work as of this date. Sourced from the Bezito Sales "Dev summaries" workflow.</p>
+  <a href="https://galleries.bezambarinc.workers.dev/page/bez-kevin" class="back">← Back to Bez × Kevin</a>
+</header>
+
+<main>
+
+  <section id="todo">
+    <div class="sec-eyebrow">Part One</div>
+    <h2>To Do</h2>
+    <div class="divider"></div>
+    <p class="sec-sub">Open items — what's blocking closure, who owns it.</p>
+
+    <div class="card todo">
+      <div class="card-title">Google Search Console — claim bezambar.com</div>
+      <div class="card-body">Not just the new Vercel build — the actual domain. Required before cutover so we can submit the sitemap on Day 1.</div>
+      <div class="owner">Owner · Bez</div>
+    </div>
+
+    <div class="card todo">
+      <div class="card-title">Social profile URLs for JSON-LD sameAs</div>
+      <div class="card-body">Collect LinkedIn, Pinterest, YouTube, TikTok, and Wikipedia URLs. Currently only Instagram is wired into the structured data.</div>
+      <div class="owner">Owner · Bez</div>
+    </div>
+
+    <div class="card todo">
+      <div class="card-title">Decide: /press or /about-bez-ambar deep page</div>
+      <div class="card-body">Standalone page with historical dates + patents to feed AI crawlers a citable canonical bio source.</div>
+      <div class="owner">Owner · Bez</div>
+    </div>
+
+    <div class="card todo">
+      <div class="card-title">C0536 — center-stone color grade</div>
+      <div class="card-body">Memo doesn't state it. Needed before any customer-facing statement on the Fancy Yellow Three-Stone page.</div>
+      <div class="owner">Owner · Bez</div>
+    </div>
+
+    <div class="card todo">
+      <div class="card-title">C0536 — style number (5FLX-format)</div>
+      <div class="card-body">Not provided yet. Standard Bez Ambar SKU format for the piece.</div>
+      <div class="owner">Owner · Bez</div>
+    </div>
+
+    <div class="card todo">
+      <div class="card-title">C0536 — second hero video</div>
+      <div class="card-body">Currently duplicates the main video. Wrist / lifestyle shot needed for the secondary hero slot.</div>
+      <div class="owner">Owner · Darryl</div>
+    </div>
+
+    <div class="card todo">
+      <div class="card-title">bezambar.com cutover — target early August 2026</div>
+      <div class="card-body">DNS swap WordPress → Vercel. Same day: submit sitemap to GSC + Bing, verify 301 redirects from old WP, test AI citation ("Who is Bez Ambar" on ChatGPT / Perplexity / Claude).</div>
+      <div class="owner">Owner · Bez + Bezito</div>
+    </div>
+  </section>
+
+  <section id="accomplished">
+    <div class="sec-eyebrow">Part Two</div>
+    <h2>Accomplished</h2>
+    <div class="divider"></div>
+    <p class="sec-sub">Shipped work. Newest at the top.</p>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 04</div>
+      <div class="card-title">AI/SEO optimization pass on new Vercel build</div>
+      <div class="card-body">JSON-LD (Jeweler Organization, Person, WebSite, FAQPage) + 8 visible FAQs + Wikipedia-style footer bio + Twitter Card + fixed og:image + rich robots meta + /robots.txt (green-lights 20 AI crawlers) + /sitemap.xml (22 URLs) + /llms.txt. Canonical deliberately pointing to bezambar.com for cutover.</div>
+      <div class="owner">Bez + Bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 04</div>
+      <div class="card-title">bezambar.com cutover plan codified</div>
+      <div class="card-body">Target early August 2026 (~30 days). Pre-cutover checklist + cutover-day actions locked to <code>memory/2026-07-04-bezambar-com-cutover-plan.md</code>.</div>
+      <div class="owner">Bez + Bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 03</div>
+      <div class="card-title">"Summarize Work" workflow codified</div>
+      <div class="card-body">Kevin/Bez's named process for same-day dev recaps in the Bezito Sales "Dev summaries" topic. Includes filesystem-delta scan, three-section structure (Shipped / Codified / Open), and author labels (@bez / @kevin / @darryl / @noga / @chris / @bezito) on every bullet.</div>
+      <div class="owner">Kevin + Bez + Bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 03</div>
+      <div class="card-title">"Publish Gallery" workflow codified</div>
+      <div class="card-body">Bez's named process for translating a galleries.bezambarinc.workers.dev page into a Bezito Site product page: site chrome + galleries body + menu drawer entry + collection card + vercel routing. Full spec + template + verification checklist.</div>
+      <div class="owner">Bez + Bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 03</div>
+      <div class="card-title">Bez × Kevin working page built</div>
+      <div class="card-body">Plaintext source + encrypted variant via new <code>scripts/encrypt-bez-kevin.js</code>. Password-gated, noindex.</div>
+      <div class="owner">Kevin + Bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 03</div>
+      <div class="card-title">Fancy Deep Brownish-Yellow Cushion — galleries page</div>
+      <div class="card-body">Live at <a href="https://galleries.bezambarinc.workers.dev/page/fancy-deep-brownish-yellow-cushion" target="_blank" rel="noopener">/page/fancy-deep-brownish-yellow-cushion</a>.</div>
+      <div class="owner">Darryl (assets) + Bezito (build)</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 03</div>
+      <div class="card-title">Fancy Yellow Three-Stone (C0536) — galleries page</div>
+      <div class="card-body">6.06ct LG oval center + two FIY pear sides. Copy angle: "Matched, End to End." Live at <a href="https://galleries.bezambarinc.workers.dev/page/fancy-yellow-three-stone" target="_blank" rel="noopener">/page/fancy-yellow-three-stone</a>.</div>
+      <div class="owner">Darryl (assets) + Bezito (build)</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 03</div>
+      <div class="card-title">Baguette Line necklace (IN101) — published to Bezito Site</div>
+      <div class="card-body">Category mismatch caught mid-push (URL/copy said "bracelet," Cloudinary + intent said "necklace") — copy rewritten wrist→neck inline. Live at <a href="https://bezambar-web2026.vercel.app/baguette-line" target="_blank" rel="noopener">/baguette-line</a>.</div>
+      <div class="owner">Bez + Bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 03</div>
+      <div class="card-title">Single Row necklace (IN100) — published to Bezito Site</div>
+      <div class="card-body">First canonical example of the Publish Gallery workflow. Live at <a href="https://bezambar-web2026.vercel.app/single-row" target="_blank" rel="noopener">/single-row</a>.</div>
+      <div class="owner">Bez + Bezito</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="brand">Bez Ambar</div>
+  <div class="contact">
+    Office <a href="tel:+12136299191">213 · 629 · 9191</a> &nbsp;·&nbsp; Cell <a href="tel:+13232172778">323 · 217 · 2778</a><br>
+    <a href="mailto:ambarinccom@gmail.com">ambarinccom@gmail.com</a>
+  </div>
+</footer>
+
+</body>
+</html>

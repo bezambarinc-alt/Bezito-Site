@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Social Action Plan — Bez Ambar</title>
+<meta name="description" content="Prioritized Instagram + Facebook upgrade task list for @bezambarjewelry. Built from the social-media-promoter skill audit.">
+<link rel="canonical" href="https://galleries.bezambarinc.workers.dev/page/social-action-plan">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231a1a1a'/%3E%3Ctext x='16' y='22' font-family='Montserrat,sans-serif' font-size='18' font-weight='700' fill='%23c5a258' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --font-display: "Cormorant Garamond", Georgia, serif;
+    --font-body: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --paper: #fafaf7;
+    --paper-warm: #f3efe8;
+    --rule: #d9d4c8;
+    --accent: #c5a258;
+    --accent-soft: #e8dcc1;
+    --p1-color: #b54343;
+    --p2-color: #c89832;
+    --p3-color: #5a8a4a;
+    --p4-color: #5a7a99;
+    --gutter: clamp(1.25rem, 5vw, 4rem);
+    --max-wide: 1080px;
+    --ease: cubic-bezier(.2,.7,.2,1);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: var(--ink); border-bottom: 1px solid var(--rule); transition: border-color .25s var(--ease), color .25s var(--ease); text-decoration: none; }
+  a:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* Header */
+  .ba-header { position: sticky; top: 0; z-index: 100; background: #ffffff; border-bottom: 1px solid var(--rule); padding: 18px 20px; text-align: center; }
+  .ba-header__logo { font-family: var(--font-body); font-size: 18px; font-weight: 700; letter-spacing: 5px; color: var(--ink); text-transform: uppercase; text-decoration: none; border: 0; }
+
+  /* Hero */
+  .hero { padding: clamp(4rem, 9vw, 7rem) var(--gutter) clamp(3rem, 6vw, 5rem); text-align: center; background: var(--paper); }
+  .hero__eyebrow { font-family: var(--font-body); font-size: .72rem; font-weight: 600; letter-spacing: .32em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+  .hero__title { font-family: var(--font-display); font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 500; line-height: 1.05; max-width: 18ch; margin: 0 auto 1.25rem; }
+  .hero__title em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .hero__lede { font-family: var(--font-display); font-size: clamp(1.05rem, 1.6vw, 1.25rem); color: var(--ink-soft); margin: 0 auto; max-width: 56ch; }
+  .hero__meta { font-family: var(--font-body); font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-soft); margin-top: 2rem; }
+
+  /* Stats strip */
+  .stats { padding: clamp(2rem, 5vw, 3.5rem) var(--gutter); background: var(--paper-warm); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .stats__inner { max-width: var(--max-wide); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; text-align: center; }
+  .stat__label { font-family: var(--font-body); font-size: .65rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: .5rem; }
+  .stat__value { font-family: var(--font-display); font-size: clamp(1.4rem, 2.6vw, 1.9rem); color: var(--ink); }
+  .stat__sub { font-family: var(--font-body); font-size: .72rem; color: var(--accent); margin-top: .25rem; }
+  @media (max-width: 720px) { .stats__inner { grid-template-columns: 1fr; gap: 1.25rem; } }
+
+  /* Section */
+  .section { padding: clamp(4rem, 8vw, 6rem) var(--gutter); border-top: 1px solid var(--rule); }
+  .section__inner { max-width: var(--max-wide); margin: 0 auto; }
+  .section__header { text-align: center; margin-bottom: clamp(2rem, 4vw, 3rem); }
+  .section__eyebrow { font-family: var(--font-body); font-size: .72rem; font-weight: 600; letter-spacing: .3em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: .8rem; }
+  .section__title { font-family: var(--font-display); font-size: clamp(1.8rem, 3.4vw, 2.6rem); color: var(--ink); font-weight: 500; }
+  .section__sub { font-family: var(--font-display); font-size: clamp(1rem, 1.4vw, 1.1rem); color: var(--ink-soft); margin-top: .75rem; max-width: 56ch; margin-inline: auto; }
+
+  /* Task card */
+  .task { background: #ffffff; border: 1px solid var(--rule); padding: clamp(1.5rem, 3vw, 2.25rem); margin-bottom: 1.25rem; position: relative; transition: transform .2s var(--ease), box-shadow .2s var(--ease); }
+  .task:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.06); }
+  .task__header { display: flex; align-items: center; flex-wrap: wrap; gap: 0.85rem; margin-bottom: 0.85rem; }
+  .task__num { font-family: var(--font-display); font-size: 1.8rem; font-weight: 500; color: var(--accent); line-height: 1; min-width: 2.5rem; }
+  .task__title { font-family: var(--font-display); font-size: clamp(1.25rem, 1.9vw, 1.5rem); font-weight: 500; line-height: 1.2; flex: 1; min-width: 0; }
+  .task__meta { display: flex; flex-wrap: wrap; gap: 1.25rem; font-family: var(--font-body); font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-soft); margin: 0.5rem 0 1rem; padding-bottom: 0.85rem; border-bottom: 1px dashed var(--rule); }
+  .task__meta span strong { color: var(--ink); font-weight: 600; }
+  .task__body { font-family: var(--font-display); font-size: 1.05rem; line-height: 1.7; color: var(--ink-soft); }
+  .task__body p { margin-bottom: 0.75rem; }
+  .task__body p:last-child { margin-bottom: 0; }
+  .task__body strong { color: var(--ink); font-weight: 600; }
+  .task__body ul { margin: 0.75rem 0; padding-left: 1.25rem; }
+  .task__body li { margin-bottom: 0.35rem; }
+  .task__body a { color: var(--accent); border-bottom-color: var(--accent-soft); }
+  .task__body a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+  /* Priority pill */
+  .pill { display: inline-block; padding: 0.25rem 0.7rem; font-family: var(--font-body); font-size: .68rem; font-weight: 600; letter-spacing: .25em; text-transform: uppercase; border-radius: 0; line-height: 1.3; }
+  .pill--p1 { background: var(--p1-color); color: #ffffff; }
+  .pill--p2 { background: var(--p2-color); color: #ffffff; }
+  .pill--p3 { background: var(--p3-color); color: #ffffff; }
+  .pill--p4 { background: var(--p4-color); color: #ffffff; }
+
+  /* Mini table */
+  .mini-table { width: 100%; margin: 0.75rem 0; border-collapse: collapse; font-family: var(--font-body); font-size: .88rem; }
+  .mini-table th, .mini-table td { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--rule); }
+  .mini-table th { font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; }
+  .mini-table td { color: var(--ink); }
+
+  /* Quick-start callout */
+  .callout { background: var(--ink); color: #ffffff; padding: clamp(2rem, 5vw, 3.5rem) var(--gutter); }
+  .callout__inner { max-width: var(--max-wide); margin: 0 auto; }
+  .callout__eyebrow { font-family: var(--font-body); font-size: .72rem; font-weight: 600; letter-spacing: .3em; text-transform: uppercase; color: var(--accent); margin-bottom: .8rem; }
+  .callout__title { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.2rem); color: #ffffff; margin-bottom: 1.25rem; }
+  .callout__steps { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.5rem; }
+  .callout__step { display: flex; gap: 1rem; align-items: flex-start; }
+  .callout__step-num { font-family: var(--font-display); font-size: 1.8rem; color: var(--accent); line-height: 1; min-width: 2rem; }
+  .callout__step-text { color: #e8e8e0; font-family: var(--font-display); font-size: 1.05rem; line-height: 1.55; }
+  .callout__step-text strong { color: #ffffff; }
+
+  /* Resources */
+  .resources { padding: clamp(3rem, 6vw, 5rem) var(--gutter); background: var(--paper); border-top: 1px solid var(--rule); }
+  .resources__inner { max-width: var(--max-wide); margin: 0 auto; }
+  .resources__title { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.2rem); text-align: center; margin-bottom: 2rem; }
+  .resources__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+  .resource { background: #ffffff; border: 1px solid var(--rule); padding: 1.5rem; transition: border-color .25s var(--ease), transform .2s var(--ease); }
+  .resource:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .resource__label { font-family: var(--font-body); font-size: .65rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+  .resource__name { font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 0.35rem; }
+  .resource__desc { font-family: var(--font-body); font-size: .85rem; color: var(--ink-soft); margin-bottom: 0.75rem; line-height: 1.5; }
+  .resource__link { font-family: var(--font-body); font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--accent-soft); display: inline-block; }
+
+  /* Footer */
+  .ba-footer { background: #0d0d0d; padding: 40px 20px 30px; text-align: center; }
+  .ba-footer__logo { font-family: var(--font-body); font-size: 14px; font-weight: 700; letter-spacing: 5px; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; }
+  .ba-footer p { font-family: var(--font-body); font-size: 10px; color: #777; line-height: 1.85; margin: 0; }
+  .ba-footer a { color: #777; text-decoration: none; border: 0; }
+  .ba-footer__tag { margin-top: 14px; font-size: 9px; letter-spacing: 0.5px; color: #444; }
+</style>
+</head>
+<body>
+
+<header class="ba-header"><a class="ba-header__logo" href="/">Bez Ambar</a></header>
+
+<section class="hero">
+  <p class="hero__eyebrow">Social Media Promoter · Audit Output</p>
+  <h1 class="hero__title">Social <em>Action</em> Plan</h1>
+  <p class="hero__lede">Prioritized upgrade tasks for @bezambarjewelry — built from the social-media-promoter skill audit, modeled on Patek Philippe, Louis Vuitton, Harry Winston, Cartier, and Chanel. Most important first.</p>
+  <p class="hero__meta">Issued June 4, 2026</p>
+</section>
+
+<section class="stats">
+  <div class="stats__inner">
+    <div>
+      <p class="stat__label">Followers</p>
+      <p class="stat__value">81.1K</p>
+      <p class="stat__sub">Growing — engagement climbing</p>
+    </div>
+    <div>
+      <p class="stat__label">Story Highlights</p>
+      <p class="stat__value">4</p>
+      <p class="stat__sub">Patek 14 · LV 12 · Cartier 8</p>
+    </div>
+    <div>
+      <p class="stat__label">Avg Daily Reel Views</p>
+      <p class="stat__value">5K-10K</p>
+      <p class="stat__sub">Top hits 30-80K</p>
+    </div>
+  </div>
+</section>
+
+<!-- P1 -->
+<section class="section">
+  <div class="section__inner">
+    <header class="section__header">
+      <p class="section__eyebrow">Priority 1 · Do this week</p>
+      <h2 class="section__title">Highest leverage moves</h2>
+      <p class="section__sub">Each of these is high impact, low effort, or both. Ship in the next 7 days.</p>
+    </header>
+
+    <article class="task">
+      <header class="task__header">
+        <span class="task__num">01</span>
+        <h3 class="task__title">Build 8 missing Instagram Story Highlights</h3>
+        <span class="pill pill--p1">P1</span>
+      </header>
+      <div class="task__meta">
+        <span><strong>Owner:</strong> Darryl</span>
+        <span><strong>Time:</strong> 2-3 hours total</span>
+        <span><strong>Channel:</strong> Instagram</span>
+      </div>
+      <div class="task__body">
+        <p>Matches what Patek Philippe (14) and Louis Vuitton (12) do at the luxury house tier. Highlights are evergreen — they keep working for years.</p>
+        <table class="mini-table">
+          <thead><tr><th>Order</th><th>Highlight</th><th>Source material</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td><strong>Since 1979</strong></td><td>Bez's archive photos + voice notes about Princess Cut invention</td></tr>
+            <tr><td>2</td><td><strong>Liquid Carat™</strong></td><td>Cloudinary footage + landing page</td></tr>
+            <tr><td>3</td><td><strong>Elysian Cut™</strong></td><td>Renders + landing page</td></tr>
+            <tr><td>4</td><td><strong>30 Carat Flex</strong></td><td>C0722 video + product shots</td></tr>
+            <tr><td>5</td><td><strong>Bench / Process</strong></td><td>Phone footage from workshop</td></tr>
+            <tr><td>6</td><td><strong>Stones</strong></td><td>Existing Reels of fancy yellow, pink, paraiba, ruby</td></tr>
+            <tr><td>7</td><td><strong>Bespoke</strong></td><td>Past custom commissions (anonymized)</td></tr>
+            <tr><td>8</td><td><strong>Press</strong></td><td>Editorial features, retailer showcases</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Custom covers:</strong> consistent dark background + gold serif text (5 min each in Canva or Photoshop). Visual consistency = luxury feel.</p>
+        <p>Reference example: <a href="https://www.instagram.com/patekphilippe/" target="_blank">@patekphilippe (14 highlights — heritage house model)</a></p>
+      </div>
+    </article>
+
+    <article class="task">
+      <header class="task__header">
+        <span class="task__num">02</span>
+        <h3 class="task__title">Pin top 3 Reels to Instagram profile</h3>
+        <span class="pill pill--p1">P1</span>
+      </header>
+      <div class="task__meta">
+        <span><strong>Owner:</strong> Bez</span>
+        <span><strong>Time:</strong> 2 minutes</span>
+        <span><strong>Channel:</strong> Instagram</span>
+      </div>
+      <div class="task__body">
+        <p>Anchors the grid for new visitors. The first 3 Reels they see should be your absolute best.</p>
+        <ul>
+          <li><strong>Dec 29 2025 pear ring</strong> — 80,755 engagements (your all-time top)</li>
+          <li><strong>Pink oval w/ pear sides</strong> — 59.2K views (recent breakthrough)</li>
+          <li><strong>Emerald-cut ring</strong> — 43.5K views</li>
+        </ul>
+        <p><strong>How:</strong> tap the 3 dots on each Reel → "Pin to your profile."</p>
+      </div>
+    </article>
+
+    <article class="task">
+      <header class="task__header">
+        <span class="task__num">03</span>
+        <h3 class="task__title">Update Instagram bio with trademark callout</h3>
+        <span class="pill pill--p1">P1</span>
+      </header>
+      <div class="task__meta">
+        <span><strong>Owner:</strong> Bez/Darryl</span>
+        <span><strong>Time:</strong> 2 minutes</span>
+        <span><strong>Channel:</strong> Instagram</span>
+      </div>
+      <div class="task__body">
+        <p><strong>Current:</strong> <em>"Inventing since 1979 — Princess Cut, Blaze, new ways to set light…"</em></p>
+        <p><strong>New:</strong> <em>"Inventing since 1979 — Princess Cut, Blaze, Liquid Carat™."</em></p>
+        <p>Signals you're still inventing now, not just historically. Establishes the trademarked language in your bio for SEO + brand authority.</p>
+      </div>
+    </article>
+
+    <article class="task">
+      <header class="task__header">
+        <span class="task__num">04</span>
+        <h3 class="task__title">Add Instagram Action Buttons</h3>
+        <span class="pill pill--p1">P1</span>
+      </header>
+      <div class="task__meta">
+        <span><strong>Owner:</strong> Bez</span>
+        <span><strong>Time:</strong> 5 minutes (mobile only)</span>
+        <span><strong>Channel:</strong> Instagram</span>
+      </div>
+      <div class="task__body">
+        <p>Edit profile → Action buttons → Add:</p>
+        <ul>
+          <li><strong>Email:</strong> bezambar@bezambar.com</li>
+          <li><strong>Call:</strong> (213) 629-9191</li>
+          <li><strong>Reservations</strong> (if Calendly link exists)</li>
+        </ul>
+        <p>These show as buttons on your mobile profile and drive direct inquiries.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- P2 -->
+<section class="section" style="background: var(--paper-warm);">
+  <div class="section__inner">
+    <header class="section__header">
+      <p class="section__eyebrow">Priority 2 · Do next week</p>
+      <h2 class="section__title">Foundation work</h2>
+      <p class="section__sub">Establishes cadence + cross-platform consistency. Lower urgency, still high leverage.</p>
+    </header>
+
+    <article class="task">
+      <header class="task__header">
+        <span class="task__num">05</span>
+        <h3 class="task__title">Facebook Page audit + setup</h3>
+        <span class="pill pill--p2">P2</span>
+      </header>
+      <div class="task__meta">
+        <span><strong>Owner:</strong> Darryl</span>
+        <span><strong>Time:</strong> 1 hour</span>
+        <span><strong>Channel:</strong> Facebook</span>
+      </div>
+      <div class="task__body">
+        <p>Open <a href="https://www.facebook.com/BezAmbarJewelry" target="_blank">BEZ AMBAR The Art of Jewelry</a> Facebook Page and verify each:</p>
+        <table class="mini-table">
+          <thead><tr><th>Element</th><th>Target state</th></tr></thead>
+          <tbody>
+            <tr><td>Cover photo</td><td>High-res hero (30 Carat Flex or Heart Ruby)</td></tr>
+            <tr><td>Profile photo</td><td>Same AMBAR logo as Instagram (consistency)</td></tr>
+            <tr><td>About → Short</td><td>"Diamond jewelry mastery since 1979. Inventor of the Princess Cut, Blaze, Liquid Carat™."</td></tr>
+            <tr><td>About → Long</td><td>Expanded brand story</td></tr>
+            <tr><td>Action button</td><td>"Send Message" — leads to inbox</td></tr>
+            <tr><td>Website link</td><td>bezambar.com or galleries dashboard</td></tr>
+            <tr><td>Hours</td><td>If showroom hours exist, add</td></tr>
+            <tr><td>Featured posts</td><td>Pin top 3 best (same as IG strategy)</td></tr>
+            <tr><td>Cross-post from IG</td><td>Enable in IG → Linked accounts → Facebook</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <article class="task">
+      <header class="task__header">
+        <span class="task__num">06</span>
+        <h3 class="task__title">Daily Instagram Story cadence</h3>
+        <span class="pill pill--p2">P2</span>
+      </header>
+      <div class="task__meta">
+        <span><strong>Owner:</strong> Darryl + Bez</span>
+        <span><strong>Time:</strong> 5-10 min/day</span>
+        <span><strong>Channel:</strong> Instagram</span>
+      </div>
+      <div class="task__body">
+        <p>Target: <strong>minimum 2 Stories/day, ideally 3</strong>. Weekly rotation:</p>
+        <ul>
+          <li><strong>Mon:</strong> Stone-of-the-week close-up</li>
+          <li><strong>Tue:</strong> Behind-the-scenes / bench</li>
+          <li><strong>Wed:</strong> Repost the day's Reel as Story</li>
+          <li><strong>Thu:</strong> Poll or question sticker (e.g., "Pear or oval?")</li>
+          <li><strong>Fri:</strong> "Currently making" workshop snippet</li>
+          <li><strong>Sat:</strong> Customer wear (UGC if available)</li>
+          <li><strong>Sun:</strong> Quote / heritage moment</li>
+        </ul>
+        <p><strong>Critical:</strong> archive every Story to the matching Highlight category. Never let good content die at 24 hours.</p>
+      </div>
+    </article>
+
+    <article class="task">
+      <header class="task__header">
+        <span class="task__num">07</span>
+        <h3 class="task__title">Update Instagram display name</h3>
+        <span class="pill pill--p2">P2</span>
+      </header>
+      <div class="task__meta">
+        <span><strong>Owner:</strong> Bez</span>
+        <span><strong>Time:</strong> 2 minutes</span>
+        <span><strong>Channel:</strong> Instagram</span>
+      </div>
+      <div class="task__body">
+        <p><strong>Current:</strong> "Bez Ambar"</p>
+        <p><strong>New:</strong> "Bez Ambar | Fine Diamond Jewelry"</p>
+        <p>Instagram indexes display name for search. Adding "Fine Diamond Jewelry" makes you discoverable for those terms without sacrificing brand feel.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- P3 -->
+<section class="section">
+  <div class="section__inner">
+    <header class="section__header">
+      <p class="section__eyebrow">Priority 3 · Within 30 days</p>
+      <h2 class="section__title">Content diversification</h2>
+      <p class="section__sub">Adds the institutional signal Rahaminov has, without diluting the stone-craft aesthetic that's working.</p>
+    </header>
+
+    <article class="task">
+      <header class="task__header">
+        <span class="task__num">08</span>
+        <h3 class="task__title">One lifestyle / editorial Reel per week (max)</h3>
+        <span class="pill pill--p3">P3</span>
+      </header>
+      <div class="task__meta">
+        <span><strong>Owner:</strong> Darryl</span>
+        <span><strong>Time:</strong> 1 Reel/week</span>
+        <span><strong>Channel:</strong> Instagram + Facebook</span>
+      </div>
+      <div class="task__body">
+        <p>Mix in occasionally:</p>
+        <ul>
+          <li>Model wearing one of your pieces (on-figure shot)</li>
+          <li>Bench / process footage</li>
+          <li>Customer story (anonymized with permission)</li>
+        </ul>
+        <p><strong>Cap at 1 per week.</strong> Don't tip the 80/20 ratio of black-product to lifestyle. Your stone-craft consistency is what's working.</p>
+      </div>
+    </article>
+
+    <article class="task">
+      <header class="task__header">
+        <span class="task__num">09</span>
+        <h3 class="task__title">One educational Reel per month</h3>
+        <span class="pill pill--p3">P3</span>
+      </header>
+      <div class="task__meta">
+        <span><strong>Owner:</strong> Darryl</span>
+        <span><strong>Time:</strong> 1 Reel/month</span>
+        <span><strong>Channel:</strong> Instagram</span>
+      </div>
+      <div class="task__body">
+        <p>Your data showed pear-shape comparison Reel hit <strong>28,000 views</strong>. Educational content drives saves → algorithm boost.</p>
+        <p>Topics to test: cut comparisons (pear vs marquise vs oval), color grading, ring proportions, "what to look for in a pear shape," fancy yellow vs white diamond setting.</p>
+      </div>
+    </article>
+
+    <article class="task">
+      <header class="task__header">
+        <span class="task__num">10</span>
+        <h3 class="task__title">Facebook posting cadence (auto-cross-post)</h3>
+        <span class="pill pill--p3">P3</span>
+      </header>
+      <div class="task__meta">
+        <span><strong>Owner:</strong> Darryl</span>
+        <span><strong>Time:</strong> 5 min one-time setup</span>
+        <span><strong>Channel:</strong> Facebook</span>
+      </div>
+      <div class="task__body">
+        <p>After #5 (FB audit) is done, set Facebook to mirror Instagram via cross-posting. Facebook organic reach is ~1-2% so manual effort is low-ROI.</p>
+        <p>Add one Facebook-specific live monthly (e.g., "Tuesday workshop tour") = right time investment for that channel.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- P4 -->
+<section class="section" style="background: var(--paper-warm);">
+  <div class="section__inner">
+    <header class="section__header">
+      <p class="section__eyebrow">Priority 4 · Revisit in 60-90 days</p>
+      <h2 class="section__title">Longer plays</h2>
+      <p class="section__sub">Strategic moves to evaluate once the cadence is established.</p>
+    </header>
+
+    <article class="task">
+      <header class="task__header">
+        <span class="task__num">11</span>
+        <h3 class="task__title">Hide Instagram like/view counts (luxury house move)</h3>
+        <span class="pill pill--p4">P4</span>
+      </header>
+      <div class="task__meta">
+        <span><strong>Owner:</strong> Bez</span>
+        <span><strong>Time:</strong> 1 minute (when ready)</span>
+        <span><strong>Channel:</strong> Instagram</span>
+      </div>
+      <div class="task__body">
+        <p>Cartier, Patek Philippe, Chanel, and Harry Winston all hide counts (or never display them) publicly. Shifts brand perception from "marketing brand" → "heritage house."</p>
+        <p><strong>Current call: NOT YET.</strong> Your visible counts are climbing and serving as social proof. Revisit when daily Reel views consistently exceed 10K. Then hiding becomes a brand move, not an avoidance.</p>
+      </div>
+    </article>
+
+    <article class="task">
+      <header class="task__header">
+        <span class="task__num">12</span>
+        <h3 class="task__title">Pinterest activation</h3>
+        <span class="pill pill--p4">P4</span>
+      </header>
+      <div class="task__meta">
+        <span><strong>Owner:</strong> Bezito</span>
+        <span><strong>Status:</strong> Trial pending</span>
+        <span><strong>Channel:</strong> Pinterest</span>
+      </div>
+      <div class="task__body">
+        <p>Token saved, awaiting Pinterest's Trial approval (1-3 days from June 3). Once approved, pin performance pulls into the social-media-promoter skill automatically.</p>
+      </div>
+    </article>
+
+    <article class="task">
+      <header class="task__header">
+        <span class="task__num">13</span>
+        <h3 class="task__title">TikTok account setup</h3>
+        <span class="pill pill--p4">P4</span>
+      </header>
+      <div class="task__meta">
+        <span><strong>Owner:</strong> Darryl</span>
+        <span><strong>Time:</strong> 30 minutes</span>
+        <span><strong>Channel:</strong> TikTok</span>
+      </div>
+      <div class="task__body">
+        <p>Verify @bezambarinc TikTok is in Business mode. Then we add it to the API pipeline. TikTok is the next major channel — jewelry is performing there for sellers in your tier.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Darryl's first day -->
+<section class="callout">
+  <div class="callout__inner">
+    <p class="callout__eyebrow">Darryl's first 3 hours</p>
+    <h2 class="callout__title">If only one day this week, do these in order</h2>
+    <div class="callout__steps">
+      <div class="callout__step">
+        <span class="callout__step-num">1</span>
+        <p class="callout__step-text"><strong>1.5 hrs — Build the first 3 highlights:</strong> Since 1979, Liquid Carat™, Bench. These are the easiest to assemble from existing footage.</p>
+      </div>
+      <div class="callout__step">
+        <span class="callout__step-num">2</span>
+        <p class="callout__step-text"><strong>5 min — Bez pins top 3 Reels</strong> to the IG profile.</p>
+      </div>
+      <div class="callout__step">
+        <span class="callout__step-num">3</span>
+        <p class="callout__step-text"><strong>15 min — Bez updates IG bio + display name + Action Buttons.</strong></p>
+      </div>
+      <div class="callout__step">
+        <span class="callout__step-num">4</span>
+        <p class="callout__step-text"><strong>1 hr — Facebook Page audit + cover photo update.</strong></p>
+      </div>
+    </div>
+    <p style="margin-top: 2rem; font-family: var(--font-display); font-size: 1.1rem; font-style: italic; color: #c5c5b8;">That's 90% of the high-leverage moves in a single day.</p>
+  </div>
+</section>
+
+<!-- Resources -->
+<section class="resources">
+  <div class="resources__inner">
+    <h2 class="resources__title">References & Live Pages</h2>
+    <div class="resources__grid">
+      <div class="resource">
+        <p class="resource__label">Your Account</p>
+        <p class="resource__name">@bezambarjewelry</p>
+        <p class="resource__desc">81.1K followers. Black-product consistency aesthetic. Verified.</p>
+        <a class="resource__link" href="https://www.instagram.com/bezambarjewelry/" target="_blank">Open Instagram →</a>
+      </div>
+      <div class="resource">
+        <p class="resource__label">Benchmark · Heritage House</p>
+        <p class="resource__name">@patekphilippe</p>
+        <p class="resource__desc">2.6M followers, 14 highlights. The closest model: family-owned, generations imagery, minimalist editorial.</p>
+        <a class="resource__link" href="https://www.instagram.com/patekphilippe/" target="_blank">Study →</a>
+      </div>
+      <div class="resource">
+        <p class="resource__label">Benchmark · Editorial</p>
+        <p class="resource__name">@louisvuitton</p>
+        <p class="resource__desc">55M followers, 12 highlights. Study: high-jewelry art direction, campaign storytelling, runway crossover.</p>
+        <a class="resource__link" href="https://www.instagram.com/louisvuitton/" target="_blank">Study →</a>
+      </div>
+      <div class="resource">
+        <p class="resource__label">Benchmark · Jewelry House</p>
+        <p class="resource__name">@harrywinston</p>
+        <p class="resource__desc">1.7M followers. Study: rare stones, red-carpet wears, "ultimate jeweler" positioning.</p>
+        <a class="resource__link" href="https://www.instagram.com/harrywinston/" target="_blank">Study →</a>
+      </div>
+      <div class="resource">
+        <p class="resource__label">Benchmark · Maison</p>
+        <p class="resource__name">@cartier</p>
+        <p class="resource__desc">16.4M followers, 8 highlights. Study: multi-category mastery (jewelry, watches, leather), iconic motifs.</p>
+        <a class="resource__link" href="https://www.instagram.com/cartier/" target="_blank">Study →</a>
+      </div>
+      <div class="resource">
+        <p class="resource__label">Benchmark · Fashion House</p>
+        <p class="resource__name">@chanelofficial</p>
+        <p class="resource__desc">59M followers. Study: monochrome aesthetic, female-led design language, Métiers d'art collections.</p>
+        <a class="resource__link" href="https://www.instagram.com/chanelofficial/" target="_blank">Study →</a>
+      </div>
+      <div class="resource">
+        <p class="resource__label">Facebook Page</p>
+        <p class="resource__name">BEZ AMBAR The Art of Jewelry</p>
+        <p class="resource__desc">Mirror brand presence; cross-post target.</p>
+        <a class="resource__link" href="https://www.facebook.com/BezAmbarJewelry" target="_blank">Open Facebook →</a>
+      </div>
+      <div class="resource">
+        <p class="resource__label">Product Page</p>
+        <p class="resource__name">Liquid Carat™ Flex Bracelets</p>
+        <p class="resource__desc">Source material for Highlight #2.</p>
+        <a class="resource__link" href="https://galleries.bezambarinc.workers.dev/page/flex-bracelets" target="_blank">View page →</a>
+      </div>
+      <div class="resource">
+        <p class="resource__label">Product Page</p>
+        <p class="resource__name">Elysian Cut™</p>
+        <p class="resource__desc">Source material for Highlight #3.</p>
+        <a class="resource__link" href="https://galleries.bezambarinc.workers.dev/page/elysian-cut" target="_blank">View page →</a>
+      </div>
+      <div class="resource">
+        <p class="resource__label">Product Page</p>
+        <p class="resource__name">The 30 Carat Flex</p>
+        <p class="resource__desc">Source material for Highlight #4.</p>
+        <a class="resource__link" href="https://galleries.bezambarinc.workers.dev/page/30-carat-flex" target="_blank">View page →</a>
+      </div>
+      <div class="resource">
+        <p class="resource__label">Marketing Dashboard</p>
+        <p class="resource__name">Bez Ambar Dashboard</p>
+        <p class="resource__desc">All live pages, prices, and assets in one place.</p>
+        <a class="resource__link" href="https://galleries.bezambarinc.workers.dev/dashboard" target="_blank">Open dashboard →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="ba-footer">
+  <p class="ba-footer__logo">Bez Ambar</p>
+  <p>611 Wilshire Blvd, Los Angeles, CA 90017</p>
+  <p><a href="mailto:bezambar@bezambar.com">bezambar@bezambar.com</a> &middot; <a href="tel:2136299191">(213) 629-9191</a></p>
+  <p class="ba-footer__tag">Inventor of the Princess Cut · Since 1979</p>
+</footer>
+
+<img src="https://galleries.bezambarinc.workers.dev/t?p=social-action-plan" width="1" height="1" style="position:absolute;width:1px;height:1px;opacity:0;" alt="">
+
+</body>
+</html>

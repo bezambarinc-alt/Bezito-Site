@@ -1,0 +1,30 @@
+{
+  "slug": "golden-hour",
+  "title": "Golden Hour",
+  "titleHtml": "Golden<br>Hour",
+  "cNumber": "C0895",
+  "codeName": "1C3S",
+  "category": "Ring",
+  "metaDescription": "8.39ct Fancy Intense Yellow Cushion — a three-stone ring with warm gold prongs and contrasting trapezoid-cut diamonds. Bez Ambar, Los Angeles.",
+  "ogImage": "https://res.cloudinary.com/dlg2mou53/video/upload/so_5.0,f_jpg,w_1200,c_fit/v1785657183/C0895_fmqkvd.jpg",
+  "videoUrl": "https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1785657183/C0895_fmqkvd.mp4",
+  "onhandUrl": "https://res.cloudinary.com/dlg2mou53/image/upload/v1785815122/Jewelry%20Images/Rings/c0895-fancy-yellow-radiant-onhand-2.avif",
+  "copy": "This exceptional piece combines a fancy intense yellow cushion-cut diamond with a classic three-stone design, featuring warm gold prongs that echo the center stone's natural color. The contrasting brilliance of two colorless trapezoid-cut diamonds frames the cushion center, completing a balanced, architectural silhouette.",
+  "specs": [
+    { "label": "Center Stone", "body": "8.39 carats · Cushion cut · Fancy Intense Yellow." },
+    { "label": "Side Stones",  "body": "Matching trapezoid diamonds." },
+    { "label": "Setting",      "body": "Three-stone design · warm gold prongs echoing the center stone's natural color." },
+    { "label": "More Details", "body": "Designed and made in Los Angeles. Available by private appointment. Custom sizing on request." }
+  ],
+  "views": [
+    { "label": "Top View",      "url": "https://res.cloudinary.com/dlg2mou53/image/upload/v1785803949/Jewelry%20Images/Rings/c0895-fancy-yellow-radiant-top-square.avif" },
+    { "label": "Side View",     "url": "https://res.cloudinary.com/dlg2mou53/image/upload/v1785810190/Jewelry%20Images/Rings/c0895-fancy-yellow-radiant-side-square.avif" },
+    { "label": "Three-Quarter", "url": "https://res.cloudinary.com/dlg2mou53/image/upload/v1785810003/Jewelry%20Images/Rings/c0895-fancy-yellow-radiant-34-square.avif" }
+  ],
+  "projectFiles": [
+    { "label": "After Effects · C0895.aep",     "url": "https://www.dropbox.com/scl/fi/ek0vnkm2qmqgtbzovmwlc/C0895.aep?rlkey=xhglkfzoz4ol2l3dlo43d4992&dl=0" },
+    { "label": "Photoshop · C0895 On-Hand.psd", "url": "https://www.dropbox.com/scl/fi/h50f3b7ovfyahjd7je3jb/C0895-Fancy-Yellow-Radiant-ONHAND.psd?rlkey=gksefy1ifftwm6pe5tntzv1ad&dl=0" },
+    { "label": "Image · C0895 On-Hand.avif",    "url": "https://www.dropbox.com/scl/fi/27ulmsisz63gizqkrymqj/C0895-Fancy-Yellow-Radiant-ONHAND.avif?rlkey=fc5pxru1wnu0xk0vy8zw8e02k&dl=0" }
+  ],
+  "inquireSuffix": " · 1C3S"
+}

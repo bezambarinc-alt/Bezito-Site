@@ -1,0 +1,23 @@
+{
+  "slug": "product-in101",
+  "title": "The Baguette Line",
+  "titleHtml": "The Baguette<br>Line",
+  "cNumber": "IN101",
+  "category": "Necklace",
+  "metaDescription": "Baguette-cut diamond line necklace by Bez Ambar. Step-cut diamonds set flat and forward around the neck, matched edge-to-edge. Made to fit. G colour, VS clarity, 18K gold or platinum. Ref IN101.",
+  "ogImage": "https://res.cloudinary.com/dlg2mou53/video/upload/so_2.0,f_jpg,w_1200,c_fit/v1782853658/Jewelry%20Videos/Necklaces/baguette-by-the-yard-2026.jpg",
+  "videoUrl": "https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1782853658/Jewelry%20Videos/Necklaces/baguette-by-the-yard-2026.mp4",
+  "onhandUrl": "https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1782884502/Jewelry%20Images/Necklaces/baguette-line-lifestyle.jpg",
+  "copy": "A line of baguette diamonds around the neck — step cut, set flat, set forward, one against the next. The rhythm of a baguette in motion, held to the throat at every point. Every necklace is made to fit, measured to the millimetre of the wearer's throat, so that the line runs true from clasp to clasp and does not twist. Designed in Los Angeles by Bez Ambar — the same hand behind the first Princess, forty-seven years on.",
+  "specs": [
+    { "label": "Gem Stones",   "body": "Baguette-cut diamonds set continuously around the neck. Carat total, clarity, and colour to be confirmed at commission." },
+    { "label": "Metal",        "body": "Available in 18K white gold, yellow gold, or rose gold. Also in platinum." },
+    { "label": "Size",         "body": "Made to fit. Every Baguette Line is measured to the millimetre of the wearer's throat." },
+    { "label": "More Details", "body": "Step-cut baguettes prong-set flat and forward. Engineered so the line runs true from clasp to clasp — no twist, no gap." }
+  ],
+  "views": [
+    { "label": "Lifestyle", "url": "https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1782884502/Jewelry%20Images/Necklaces/baguette-line-lifestyle.jpg" },
+    { "label": "", "url": null },
+    { "label": "", "url": null }
+  ]
+}

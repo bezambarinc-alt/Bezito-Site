@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diamond Education — The Complete Guide | Bez Ambar</title>
+    <meta name="description" content="Learn everything about diamonds: the 4Cs, shapes, anatomy, and how to choose the perfect diamond for your jewelry.">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Diamond Education Page Styles */
+
+        .de-hero {
+            background-color: #141414;
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .de-hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 56px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: #fff;
+            margin: 0 0 20px 0;
+        }
+
+        .de-hero p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            color: #999;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Sticky Tab Navigation */
+        .de-tabs {
+            position: sticky;
+            top: 0;
+            background: #0d0d0d;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            z-index: 100;
+            padding: 0 20px;
+        }
+
+        .de-tabs-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 0;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .de-tab-btn {
+            background: none;
+            border: none;
+            padding: 16px 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: #888;
+            cursor: pointer;
+            white-space: nowrap;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .de-tab-btn:hover {
+            color: #fff;
+        }
+
+        .de-tab-btn.active {
+            color: #fff;
+            border-bottom-color: #c5a258;
+        }
+
+        /* Main Content */
+        .de-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+            background: #0d0d0d;
+        }
+
+        .de-section {
+            padding: 80px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .de-section:nth-child(even) {
+            background-color: #111;
+        }
+
+        .de-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 44px;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            color: #fff;
+            margin: 0 0 40px 0;
+        }
+
+        .de-section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: #fff;
+            margin: 40px 0 20px 0;
+        }
+
+        .de-section h3:first-of-type {
+            margin-top: 0;
+        }
+
+        .de-section p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            line-height: 1.7;
+            color: #ccc;
+            margin: 0 0 20px 0;
+        }
+
+        .de-section ul {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            line-height: 1.7;
+            color: #ccc;
+            margin: 0 0 20px 20px;
+            padding: 0;
+        }
+
+        .de-section li {
+            margin-bottom: 12px;
+        }
+
+        /* Four Cs Overview */
+        .four-cs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .four-c-card {
+            text-align: center;
+        }
+
+        .four-c-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            color: #c5a258;
+        }
+
+        .four-c-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            margin: 0 0 12px 0;
+            color: #fff;
+        }
+
+        .four-c-card p {
+            font-size: 14px;
+            text-align: center;
+            color: #ccc;
+        }
+
+        /* Grading Scales */
+        .grading-scale {
+            margin: 40px 0;
+            padding: 30px 0;
+        }
+
+        .scale-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #999;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .scale-bar {
+            display: flex;
+            height: 40px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .scale-segment {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            color: white;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            transition: opacity 0.3s ease;
+        }
+
+        .scale-segment:last-child {
+            border-right: none;
+        }
+
+        .scale-segment:hover {
+            opacity: 0.9;
+        }
+
+        .scale-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 13px;
+            color: #999;
+        }
+
+        .scale-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .scale-legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 2px;
+        }
+
+        /* Cut Grades */
+        .cut-grade-excellent { background: linear-gradient(135deg, #333 0%, #555 100%); }
+        .cut-grade-verygood { background: linear-gradient(135deg, #555 0%, #777 100%); }
+        .cut-grade-good { background: linear-gradient(135deg, #777 0%, #999 100%); }
+        .cut-grade-fair { background: linear-gradient(135deg, #999 0%, #bbb 100%); }
+        .cut-grade-poor { background: linear-gradient(135deg, #bbb 0%, #ccc 100%); color: #333; }
+
+        /* Color Scale - Colorless to Light */
+        .color-d { background: #2a2a2a; border: 1px solid rgba(255,255,255,0.08); }
+        .color-e { background: #2d2d2d; border: 1px solid rgba(255,255,255,0.08); }
+        .color-f { background: #303030; border: 1px solid rgba(255,255,255,0.08); }
+        .color-g { background: #333333; border: 1px solid rgba(255,255,255,0.08); }
+        .color-j { background: #363636; border: 1px solid rgba(255,255,255,0.08); }
+        .color-k { background: #3a3a37; border: 1px solid rgba(255,255,255,0.08); }
+        .color-m { background: #3e3e3a; border: 1px solid rgba(255,255,255,0.08); }
+        .color-r { background: #424240; border: 1px solid rgba(255,255,255,0.08); }
+        .color-z { background: #48453e; border: 1px solid rgba(255,255,255,0.08); }
+        .color-fancy { background: linear-gradient(135deg, #4a4033 0%, #5a4a33 100%); }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .color-sample {
+            height: 60px;
+            border-radius: 4px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            padding-bottom: 8px;
+            color: #ccc;
+            transition: transform 0.2s ease;
+        }
+
+        .color-sample:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Clarity Scale */
+        .clarity-scale {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 16px;
+            margin: 30px 0;
+        }
+
+        .clarity-item {
+            padding: 16px;
+            background: #111;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .clarity-grade {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .clarity-desc {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            color: #999;
+            line-height: 1.4;
+        }
+
+        /* Diamond Shapes */
+        .shapes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .shape-item {
+            text-align: center;
+        }
+
+        .shape-visual {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 16px;
+            background: #111;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .shape-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .shape-note {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            color: #999;
+            font-style: italic;
+        }
+
+        /* SVG Shapes */
+        svg.diamond-shape {
+            width: 90px;
+            height: 90px;
+            fill: rgba(255,255,255,0.08);
+            stroke: #c5a258;
+            stroke-width: 1.5;
+        }
+
+        /* Diamond Anatomy */
+        .anatomy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin: 40px 0;
+            align-items: center;
+        }
+
+        .anatomy-diagram {
+            background: #111;
+            padding: 40px;
+            border-radius: 4px;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .anatomy-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .anatomy-term {
+            border-left: 2px solid #c5a258;
+            padding-left: 20px;
+        }
+
+        .anatomy-term dt {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .anatomy-term dd {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            color: #ccc;
+            margin: 0;
+        }
+
+        /* CTA Section */
+        .de-cta-section {
+            background: #1a1a1a;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .de-cta-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 44px;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            color: white;
+            margin: 0 0 20px 0;
+        }
+
+        .de-cta-section p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            line-height: 1.7;
+            color: #ddd;
+            margin: 0 0 40px 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .de-cta-btn {
+            display: inline-block;
+            padding: 16px 40px;
+            background: transparent;
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .de-cta-btn:hover {
+            background: #fff;
+            color: #1a1a1a;
+            border-color: #fff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .de-hero h1 {
+                font-size: 36px;
+            }
+
+            .de-section h2 {
+                font-size: 32px;
+            }
+
+            .four-cs-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .shapes-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+
+            .anatomy-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .de-tabs-inner {
+                overflow-x: auto;
+            }
+
+            .de-tab-btn {
+                padding: 14px 16px;
+                font-size: 12px;
+            }
+
+            .de-section {
+                padding: 50px 0;
+            }
+
+            .de-cta-section h2 {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .de-hero {
+                padding: 60px 20px;
+            }
+
+            .de-hero h1 {
+                font-size: 28px;
+                letter-spacing: 1px;
+            }
+
+            .de-hero p {
+                font-size: 14px;
+            }
+
+            .de-section h2 {
+                font-size: 24px;
+            }
+
+            .de-section h3 {
+                font-size: 18px;
+            }
+
+            .four-cs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .shapes-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+
+            .shape-visual {
+                width: 100px;
+                height: 100px;
+            }
+
+            .clarity-scale {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .de-section {
+                padding: 40px 0;
+            }
+
+            .de-cta-section {
+                padding: 50px 20px;
+            }
+
+            .de-cta-section h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-left-group">
+                <button class="mobile-nav-toggle" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+                <span class="menu-label" onclick="toggleMobileNav()">Menu</span>
+                <button class="header-icon-btn header-search-btn" aria-label="Search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+            </div>
+            <a href="index.html" class="logo">Bez Ambar</a>
+            <div class="header-right-group">
+                <a href="contact.html" class="header-contact-link">Contact Us</a>
+                <a href="#" class="header-icon-btn" aria-label="Wishlist">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </a>
+                <a href="#" class="header-icon-btn" aria-label="Account">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </a>
+            </div>
+            <div class="mobile-nav-overlay" id="mobileNav">
+                <a href="collection.html">Collection</a>
+                <span class="mobile-cat-label">Categories</span>
+                <a href="collection.html" class="mobile-cat-link">All Jewelry</a>
+                <a href="collection.html?cat=rings" class="mobile-cat-link">Rings</a>
+                <a href="collection.html?cat=engagement-rings" class="mobile-cat-link mobile-sub-link">Engagement Rings</a>
+                <a href="collection.html?cat=wedding-bands" class="mobile-cat-link mobile-sub-link">Wedding Bands</a>
+                <a href="collection.html?cat=mens-wedding-bands" class="mobile-cat-link mobile-sub-link">Men's Wedding Bands</a>
+                <a href="collection.html?cat=pendants" class="mobile-cat-link">Pendants</a>
+                <a href="collection.html?cat=necklaces" class="mobile-cat-link">Necklaces</a>
+                <a href="collection.html?cat=earrings" class="mobile-cat-link">Earrings</a>
+                <a href="collection.html?cat=stud-earrings" class="mobile-cat-link mobile-sub-link">Stud Earrings</a>
+                <a href="collection.html?cat=hug-earrings" class="mobile-cat-link mobile-sub-link">Hug Earrings</a>
+                <a href="collection.html?cat=hoop-earrings" class="mobile-cat-link mobile-sub-link">Hoop Earrings</a>
+                <a href="collection.html?cat=bracelets" class="mobile-cat-link">Bracelets</a>
+                <a href="video-gallery.html">Video Gallery</a>
+                <a href="our-story.html" class="mobile-cat-label" style="text-decoration:none;">Our Story</a>
+                <a href="about.html" class="mobile-cat-link">The Inventor</a>
+                <a href="the-bez-ambar-story.html" class="mobile-cat-link">The Bez Ambar Story</a>
+                <a href="journal.html" class="mobile-cat-link">Journal</a>
+                <a href="blog.html" class="mobile-cat-link">Blog</a>
+                <a href="diamond-education.html" class="mobile-cat-link">Diamond Education</a>
+                <a href="ring-size-chart.html" class="mobile-cat-link">Ring Size Chart</a>
+                <a href="catalogs.html" class="mobile-cat-link">Catalogs</a>
+                <a href="warranty.html" class="mobile-cat-link">Warranty</a>
+                <a href="press.html" class="mobile-cat-link">Press</a>
+            </div>
+        </div>
+    </header>
+    <div class="nav-backdrop" id="navBackdrop"></div>
+
+    <!-- Hero Section -->
+    <section class="de-hero">
+        <h1>Diamond Education</h1>
+        <p>Master the fundamentals of diamond quality. Learn the 4Cs, shapes, anatomy, and everything you need to know to select your perfect diamond.</p>
+    </section>
+
+    <!-- Sticky Tab Navigation -->
+    <div class="de-tabs">
+        <div class="de-tabs-inner">
+            <button class="de-tab-btn active" onclick="scrollToSection('four-cs')">The 4Cs</button>
+            <button class="de-tab-btn" onclick="scrollToSection('cut')">Cut</button>
+            <button class="de-tab-btn" onclick="scrollToSection('color')">Color</button>
+            <button class="de-tab-btn" onclick="scrollToSection('clarity')">Clarity</button>
+            <button class="de-tab-btn" onclick="scrollToSection('carat')">Carat</button>
+            <button class="de-tab-btn" onclick="scrollToSection('shapes')">Shapes</button>
+            <button class="de-tab-btn" onclick="scrollToSection('anatomy')">Anatomy</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="de-content">
+        <!-- The 4Cs Section -->
+        <section class="de-section" id="four-cs">
+            <h2>The Four Cs</h2>
+            <p>Diamond quality is universally measured by four key characteristics: Cut, Color, Clarity, and Carat Weight. Together, the 4Cs form an objective standard for evaluating and comparing diamonds, allowing you to make an informed decision that suits your preferences and budget.</p>
+            <p>Each C plays a distinct role in a diamond's beauty and value. While all four are important, they affect a diamond differently. Understanding how they work together will help you find the perfect stone.</p>
+
+            <div class="four-cs-grid">
+                <div class="four-c-card">
+                    <div class="four-c-icon">✂</div>
+                    <h3>Cut</h3>
+                    <p>How well the diamond is shaped and faceted. Determines light reflection and sparkle.</p>
+                </div>
+                <div class="four-c-card">
+                    <div class="four-c-icon">◐</div>
+                    <h3>Color</h3>
+                    <p>The absence of color in a diamond. Ranges from colorless to light yellow or brown.</p>
+                </div>
+                <div class="four-c-card">
+                    <div class="four-c-icon">◊</div>
+                    <h3>Clarity</h3>
+                    <p>The absence of internal and external imperfections. Grades range from Flawless to Included.</p>
+                </div>
+                <div class="four-c-card">
+                    <div class="four-c-icon">⬤</div>
+                    <h3>Carat</h3>
+                    <p>Weight measurement of the diamond. Affects size and price exponentially.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cut Section -->
+        <section class="de-section" id="cut">
+            <h2>Cut</h2>
+            <p><strong>Cut is the most important of the 4Cs</strong> because it directly determines how light interacts with your diamond. A well-cut diamond will reflect light brilliantly and display exceptional sparkle, while a poorly cut diamond may appear dull despite excellent color and clarity.</p>
+
+            <h3>What Cut Measures</h3>
+            <p>Diamond cut is not about the shape (like round or cushion)—it refers to the quality of how the diamond is faceted. Cut evaluates:</p>
+            <ul>
+                <li><strong>Proportions:</strong> The relationship between the diamond's table, depth, crown angle, and pavilion angle</li>
+                <li><strong>Symmetry:</strong> How precisely the facets are aligned and how uniform they are</li>
+                <li><strong>Polish:</strong> The smoothness of the diamond's surface; microscopic scratches affect light return</li>
+            </ul>
+
+            <h3>Cut Grades</h3>
+            <p>The Gemological Institute of America (GIA) grades cut on a five-point scale:</p>
+
+            <div class="grading-scale">
+                <span class="scale-label">Cut Grade Scale</span>
+                <div class="scale-bar">
+                    <div class="scale-segment cut-grade-excellent">Excellent</div>
+                    <div class="scale-segment cut-grade-verygood">Very Good</div>
+                    <div class="scale-segment cut-grade-good">Good</div>
+                    <div class="scale-segment cut-grade-fair">Fair</div>
+                    <div class="scale-segment cut-grade-poor">Poor</div>
+                </div>
+            </div>
+
+            <h3>Understanding Cut Quality</h3>
+            <ul>
+                <li><strong>Excellent:</strong> Maximum light reflection and brilliance. Optimal facet proportions and polish.</li>
+                <li><strong>Very Good:</strong> Excellent light performance with minor variations in proportions.</li>
+                <li><strong>Good:</strong> Good light reflection but with more noticeable proportional differences.</li>
+                <li><strong>Fair:</strong> Moderate light return; more significant proportional compromises.</li>
+                <li><strong>Poor:</strong> Minimal light reflection due to poor proportions and faceting.</li>
+            </ul>
+
+            <p>For maximum brilliance and sparkle, we recommend selecting a diamond with an Excellent or Very Good cut grade.</p>
+        </section>
+
+        <!-- Color Section -->
+        <section class="de-section" id="color">
+            <h2>Color</h2>
+            <p>Diamond color refers to the absence of color in a diamond. The less color present, the more valuable the diamond. The GIA color scale grades diamonds from D (colorless) to Z (light color).</p>
+
+            <h3>The Color Grading Scale</h3>
+
+            <div class="grading-scale">
+                <span class="scale-label">Standard Color Scale: D to Z</span>
+                <div class="color-grid">
+                    <div class="color-sample color-d">D</div>
+                    <div class="color-sample color-e">E</div>
+                    <div class="color-sample color-f">F</div>
+                    <div class="color-sample color-g">G</div>
+                    <div class="color-sample color-j">J</div>
+                    <div class="color-sample color-k">K</div>
+                    <div class="color-sample color-m">M</div>
+                    <div class="color-sample color-r">R</div>
+                    <div class="color-sample color-z">Z</div>
+                </div>
+
+                <div class="scale-legend">
+                    <div class="scale-legend-item">
+                        <div class="scale-legend-color" style="background: #ffffff; border: 1px solid #ccc;"></div>
+                        <span>Colorless (D-F)</span>
+                    </div>
+                    <div class="scale-legend-item">
+                        <div class="scale-legend-color" style="background: #fcfcfc; border: 1px solid #ccc;"></div>
+                        <span>Near Colorless (G-J)</span>
+                    </div>
+                    <div class="scale-legend-item">
+                        <div class="scale-legend-color" style="background: #faf9f6; border: 1px solid #ccc;"></div>
+                        <span>Faint to Light (K-Z)</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Color Categories</h3>
+            <ul>
+                <li><strong>Colorless (D, E, F):</strong> Completely free of color. The rarest and most valuable.</li>
+                <li><strong>Near Colorless (G, H, I, J):</strong> Color not visible to the naked eye but detectable under magnification. Excellent value.</li>
+                <li><strong>Faint (K, L, M):</strong> Slight color visible to the trained eye.</li>
+                <li><strong>Very Light (N, O, P, Q, R):</strong> Light color visible to the naked eye.</li>
+                <li><strong>Light (S, T, U, V, W, X, Y, Z):</strong> Noticeable color. More affordable but with visible hue.</li>
+            </ul>
+
+            <h3>Fancy Colored Diamonds</h3>
+            <p>Beyond the standard D-Z scale, diamonds can exhibit fancy colors such as intense yellows, pinks, blues, and fancy vivid colors. These rare diamonds are graded separately on a Fancy Color scale. Fancy colored diamonds often command premium prices, especially vivid pinks and blues, as they are exceptionally rare in nature.</p>
+
+            <p><strong>For most buyers:</strong> We recommend selecting a diamond in the "Near Colorless" range (G-J) for exceptional value without visible color differences to the naked eye.</p>
+        </section>
+
+        <!-- Clarity Section -->
+        <section class="de-section" id="clarity">
+            <h2>Clarity</h2>
+            <p>Diamond clarity measures the absence of inclusions (internal imperfections) and blemishes (surface flaws). The clarity of a diamond directly affects its transparency and light performance. Most diamonds contain tiny imperfections; finding "eye-clean" diamonds—those with no visible flaws to the naked eye—at a reasonable price is possible at various clarity levels.</p>
+
+            <h3>The Clarity Grading Scale</h3>
+            <p>The GIA clarity scale consists of 11 grades, ranging from Flawless to Included:</p>
+
+            <div class="clarity-scale">
+                <div class="clarity-item">
+                    <div class="clarity-grade">FL</div>
+                    <div class="clarity-desc">Flawless. No visible inclusions or blemishes.</div>
+                </div>
+                <div class="clarity-item">
+                    <div class="clarity-grade">IF</div>
+                    <div class="clarity-desc">Internally Flawless. No inclusions visible; minor surface flaws only.</div>
+                </div>
+                <div class="clarity-item">
+                    <div class="clarity-grade">VVS1</div>
+                    <div class="clarity-desc">Very Very Slightly Included. Minute inclusions barely visible under magnification.</div>
+                </div>
+                <div class="clarity-item">
+                    <div class="clarity-grade">VVS2</div>
+                    <div class="clarity-desc">Very Very Slightly Included. Minute inclusions visible under magnification.</div>
+                </div>
+                <div class="clarity-item">
+                    <div class="clarity-grade">VS1</div>
+                    <div class="clarity-desc">Very Slightly Included. Minor inclusions barely visible under magnification.</div>
+                </div>
+                <div class="clarity-item">
+                    <div class="clarity-grade">VS2</div>
+                    <div class="clarity-desc">Very Slightly Included. Minor inclusions visible under magnification.</div>
+                </div>
+                <div class="clarity-item">
+                    <div class="clarity-grade">SI1</div>
+                    <div class="clarity-desc">Slightly Included. Inclusions visible under magnification, often eye-clean.</div>
+                </div>
+                <div class="clarity-item">
+                    <div class="clarity-grade">SI2</div>
+                    <div class="clarity-desc">Slightly Included. Inclusions visible under magnification; may be visible to the eye.</div>
+                </div>
+                <div class="clarity-item">
+                    <div class="clarity-grade">I1</div>
+                    <div class="clarity-desc">Included. Inclusions visible to the naked eye; may affect transparency.</div>
+                </div>
+                <div class="clarity-item">
+                    <div class="clarity-grade">I2</div>
+                    <div class="clarity-desc">Included. Obvious inclusions affecting transparency and brilliance.</div>
+                </div>
+                <div class="clarity-item">
+                    <div class="clarity-grade">I3</div>
+                    <div class="clarity-desc">Included. Significant inclusions affecting durability and transparency.</div>
+                </div>
+            </div>
+
+            <h3>Types of Inclusions</h3>
+            <p>Inclusions are natural characteristics formed during a diamond's creation deep within the earth. Common types include:</p>
+            <ul>
+                <li><strong>Crystals:</strong> Tiny mineral crystals trapped within the diamond.</li>
+                <li><strong>Feathers:</strong> Internal fractures that resemble feathers under magnification.</li>
+                <li><strong>Clouds:</strong> Groups of tiny particles creating a hazy area.</li>
+                <li><strong>Needles:</strong> Thin, needle-like inclusions.</li>
+                <li><strong>Pinpoints:</strong> Very small dots of mineral crystals.</li>
+            </ul>
+
+            <h3>Eye-Clean Diamonds</h3>
+            <p>"Eye-clean" means the diamond shows no visible inclusions when viewed by the naked eye at normal viewing distance. Many VS1, SI1, and even some SI2 diamonds are eye-clean, allowing you to save significantly while maintaining visual perfection.</p>
+
+            <p><strong>For best value:</strong> Consider VS2 or SI1 clarity grades, where many stones are eye-clean and offer excellent value without compromising appearance.</p>
+        </section>
+
+        <!-- Carat Section -->
+        <section class="de-section" id="carat">
+            <h2>Carat</h2>
+            <p>Carat weight is the measurement of a diamond's weight, not its size. One carat equals 200 milligrams (0.2 grams). Carat weight is the most straightforward of the 4Cs to understand, but its impact on price is more complex than the others.</p>
+
+            <h3>How Carat Weight Works</h3>
+            <p>Carat weight is measured with precision scales accurate to one one-hundredth of a carat (1/100). A diamond of 0.50 carats is referred to as a "half carat," while 0.75 carats is often called a "three-quarter carat."</p>
+
+            <h3>Carat and Price: The Exponential Relationship</h3>
+            <p><strong>Important:</strong> Price does not increase linearly with carat weight. A 2-carat diamond costs significantly more than twice the price of a 1-carat diamond of similar quality. This is because larger diamonds are rarer; the larger the stone, the fewer high-quality examples exist in nature.</p>
+
+            <p>For example:</p>
+            <ul>
+                <li>A 1.0 carat diamond might cost $5,000</li>
+                <li>A 1.5 carat diamond of similar quality might cost $12,000</li>
+                <li>A 2.0 carat diamond of similar quality might cost $20,000+</li>
+            </ul>
+
+            <h3>Carat Weight and Visual Size</h3>
+            <p>A diamond's visual size depends not just on carat weight but also on its cut and shape. A well-cut diamond may appear larger than a poorly cut diamond of the same weight. Shallow or deep cuts can make a diamond appear smaller than its carat weight suggests.</p>
+
+            <ul>
+                <li>0.5 carat round diamond: approximately 5.2mm diameter</li>
+                <li>1.0 carat round diamond: approximately 6.5mm diameter</li>
+                <li>1.5 carat round diamond: approximately 7.4mm diameter</li>
+                <li>2.0 carat round diamond: approximately 8.2mm diameter</li>
+            </ul>
+
+            <h3>Finding Your Sweet Spot</h3>
+            <p>Rather than focusing solely on carat weight, consider how cut, color, and clarity also affect your diamond's beauty and value. A well-cut 1.2-carat VS1 diamond may be more beautiful and a better investment than a poorly cut 1.5-carat SI2 diamond of the same price.</p>
+        </section>
+
+        <!-- Diamond Shapes Section -->
+        <section class="de-section" id="shapes">
+            <h2>Diamond Shapes</h2>
+            <p>Diamond shape refers to the outline and facet arrangement of the stone. Each shape has distinct characteristics that affect light performance, visual appearance, and personal preference. While Round Brilliant dominates the market, fancy shapes offer unique beauty and individuality.</p>
+
+            <div class="shapes-grid">
+                <div class="shape-item">
+                    <div class="shape-visual">
+                        <svg class="diamond-shape" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45"/>
+                        </svg>
+                    </div>
+                    <div class="shape-name">Round Brilliant</div>
+                    <div class="shape-note">Classic and timeless</div>
+                </div>
+
+                <div class="shape-item">
+                    <div class="shape-visual">
+                        <svg class="diamond-shape" viewBox="0 0 100 100">
+                            <path d="M50 10 L90 50 L50 90 L10 50 Z"/>
+                        </svg>
+                    </div>
+                    <div class="shape-name">Princess</div>
+                    <div class="shape-note">Invented by Bez Ambar</div>
+                </div>
+
+                <div class="shape-item">
+                    <div class="shape-visual">
+                        <svg class="diamond-shape" viewBox="0 0 100 100">
+                            <path d="M20 30 L80 30 L85 50 L80 70 L20 70 L15 50 Z"/>
+                        </svg>
+                    </div>
+                    <div class="shape-name">Cushion</div>
+                    <div class="shape-note">Soft, romantic shape</div>
+                </div>
+
+                <div class="shape-item">
+                    <div class="shape-visual">
+                        <svg class="diamond-shape" viewBox="0 0 100 100">
+                            <ellipse cx="50" cy="50" rx="45" ry="35"/>
+                        </svg>
+                    </div>
+                    <div class="shape-name">Oval</div>
+                    <div class="shape-note">Flattering and elegant</div>
+                </div>
+
+                <div class="shape-item">
+                    <div class="shape-visual">
+                        <svg class="diamond-shape" viewBox="0 0 100 100">
+                            <path d="M20 25 L80 25 L80 75 L20 75 Z"/>
+                        </svg>
+                    </div>
+                    <div class="shape-name">Emerald</div>
+                    <div class="shape-note">Sophisticated step-cut</div>
+                </div>
+
+                <div class="shape-item">
+                    <div class="shape-visual">
+                        <svg class="diamond-shape" viewBox="0 0 100 100">
+                            <path d="M50 15 L85 35 L85 65 L50 85 L15 65 L15 35 Z"/>
+                        </svg>
+                    </div>
+                    <div class="shape-name">Pear</div>
+                    <div class="shape-note">Feminine and distinctive</div>
+                </div>
+
+                <div class="shape-item">
+                    <div class="shape-visual">
+                        <svg class="diamond-shape" viewBox="0 0 100 100">
+                            <path d="M25 50 L50 15 L75 50 L50 85 Z"/>
+                        </svg>
+                    </div>
+                    <div class="shape-name">Marquise</div>
+                    <div class="shape-note">Bold and striking</div>
+                </div>
+
+                <div class="shape-item">
+                    <div class="shape-visual">
+                        <svg class="diamond-shape" viewBox="0 0 100 100">
+                            <path d="M25 35 L75 35 L75 65 L25 65 Z"/>
+                        </svg>
+                    </div>
+                    <div class="shape-name">Asscher</div>
+                    <div class="shape-note">Art deco elegance</div>
+                </div>
+
+                <div class="shape-item">
+                    <div class="shape-visual">
+                        <svg class="diamond-shape" viewBox="0 0 100 100">
+                            <path d="M50 15 L85 35 L85 65 L50 85 L15 65 L15 35 Z"/>
+                        </svg>
+                    </div>
+                    <div class="shape-name">Radiant</div>
+                    <div class="shape-note">Brilliant and faceted</div>
+                </div>
+
+                <div class="shape-item">
+                    <div class="shape-visual">
+                        <svg class="diamond-shape" viewBox="0 0 100 100">
+                            <path d="M50 20 L70 45 L85 50 L70 55 L50 80 L30 55 L15 50 L30 45 Z"/>
+                        </svg>
+                    </div>
+                    <div class="shape-name">Heart</div>
+                    <div class="shape-note">Romantic and unique</div>
+                </div>
+
+                <div class="shape-item">
+                    <div class="shape-visual">
+                        <svg class="diamond-shape" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="40" fill="none"/>
+                            <path d="M50 10 L75 35 L50 90 L25 35 Z" fill="#f5f3f0" stroke="#1a1a1a" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <div class="shape-name">Blaze</div>
+                    <div class="shape-note">Bez Ambar proprietary</div>
+                </div>
+
+                <div class="shape-item">
+                    <div class="shape-visual">
+                        <svg class="diamond-shape" viewBox="0 0 100 100">
+                            <path d="M50 12 L88 38 L88 62 L50 88 L12 62 L12 38 Z"/>
+                        </svg>
+                    </div>
+                    <div class="shape-name">Divine</div>
+                    <div class="shape-note">Bez Ambar proprietary</div>
+                </div>
+            </div>
+
+            <h3>Shape vs. Cut</h3>
+            <p>Remember: "shape" and "cut" are different. Shape is the outline of the diamond, while cut refers to the quality of faceting and light performance. A diamond's shape doesn't determine its cut grade—a round diamond can have a poor cut, and an emerald cut can be excellent.</p>
+        </section>
+
+        <!-- Diamond Anatomy Section -->
+        <section class="de-section" id="anatomy">
+            <h2>Diamond Anatomy</h2>
+            <p>Understanding the structure of a diamond helps you appreciate how faceting affects its beauty and performance. Here are the key anatomical terms and measurements that jewelers and gemologists use:</p>
+
+            <div class="anatomy-grid">
+                <div class="anatomy-diagram">
+                    <svg width="200" height="280" viewBox="0 0 200 280" style="fill: none; stroke: #1a1a1a; stroke-width: 1.5;">
+                        <!-- Diamond outline -->
+                        <path d="M100 20 L150 80 L160 140 L100 240 L40 140 L50 80 Z"/>
+                        <!-- Internal lines -->
+                        <line x1="100" y1="20" x2="100" y2="240" stroke="#999" stroke-width="1" stroke-dasharray="3,3"/>
+                        <line x1="100" y1="80" x2="150" y2="80" stroke="#999" stroke-width="1" stroke-dasharray="3,3"/>
+                        <!-- Labels with arrows -->
+                        <text x="160" y="50" font-size="11" fill="#666">Crown</text>
+                        <text x="170" y="140" font-size="11" fill="#666">Girdle</text>
+                        <text x="145" y="220" font-size="11" fill="#666">Pavilion</text>
+                        <text x="80" y="35" font-size="11" fill="#666">Table</text>
+                    </svg>
+                </div>
+
+                <div class="anatomy-list">
+                    <div class="anatomy-term">
+                        <dt>Table</dt>
+                        <dd>The largest facet on the diamond's top surface. Light enters primarily through the table.</dd>
+                    </div>
+                    <div class="anatomy-term">
+                        <dt>Crown</dt>
+                        <dd>The upper portion of the diamond above the girdle. Facets in the crown direct light into the diamond.</dd>
+                    </div>
+                    <div class="anatomy-term">
+                        <dt>Girdle</dt>
+                        <dd>The widest part of the diamond, separating the crown and pavilion. Sets the diamond's outline.</dd>
+                    </div>
+                    <div class="anatomy-term">
+                        <dt>Pavilion</dt>
+                        <dd>The lower portion below the girdle. These facets reflect light back out through the crown.</dd>
+                    </div>
+                    <div class="anatomy-term">
+                        <dt>Culet</dt>
+                        <dd>The small facet (or point) at the bottom tip of the diamond. A small culet is preferred to prevent chipping.</dd>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Key Measurements & Angles</h3>
+            <ul>
+                <li><strong>Depth:</strong> The measurement from the table to the culet, expressed as a percentage of the diamond's width. Optimal depth is typically 58-62% for round brilliants.</li>
+                <li><strong>Table %:</strong> The width of the table facet compared to the overall width of the diamond. Ideal range is 52-62% for round brilliant diamonds.</li>
+                <li><strong>Crown Angle:</strong> The angle between the crown facets and the girdle. Typically 34-35° for optimal light performance in round brilliant diamonds.</li>
+                <li><strong>Pavilion Angle:</strong> The angle between the pavilion facets and the girdle. Typically 40-41° for optimal light performance in round brilliant diamonds.</li>
+                <li><strong>Polish:</strong> The quality of the diamond's surface. Evaluated as Excellent, Very Good, Good, Fair, or Poor.</li>
+                <li><strong>Symmetry:</strong> How precisely the facets align and relate to each other. Also graded Excellent to Poor.</li>
+                <li><strong>Fluorescence:</strong> Some diamonds glow under ultraviolet light. Can be None, Faint, Medium, Strong, or Very Strong. Strong fluorescence may affect the diamond's color appearance.</li>
+            </ul>
+
+            <h3>Facets</h3>
+            <p>A round brilliant diamond typically has 58 facets (57 if the culet is a point): 1 table, 8 crown facets, 8 star facets, 16 girdle facets, 8 pavilion facets, and 8 lower girdle facets. Each facet is precisely angled to optimize light reflection and refraction, creating the diamond's sparkle and fire.</p>
+        </section>
+    </div>
+
+    <!-- CTA Section -->
+    <section class="de-cta-section">
+        <h2>Find Your Perfect Diamond</h2>
+        <p>Now that you understand the fundamentals of diamond quality, explore our collection of ethically sourced, expertly cut diamonds. Each Bez Ambar diamond is selected for exceptional beauty and value.</p>
+        <a href="collection.html" class="de-cta-btn">Browse Collection</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="ba-footer" id="inquire">
+    <div class="ba-footer__inner">
+      <div class="ba-footer__cols">
+        <div class="ba-footer__col">
+          <h4>Collection</h4>
+          <a href="/bloom">Bloom Collection</a>
+          <a href="/collection?cat=rings">Rings</a>
+          <a href="/collection?cat=engagement-rings">Engagement Rings</a>
+          <a href="/collection?cat=wedding-bands">Wedding Bands</a>
+          <a href="/collection?cat=earrings">Earrings</a>
+          <a href="/collection?cat=pendants">Pendants</a>
+          <a href="/collection?cat=necklaces">Necklaces</a>
+          <a href="/collection?cat=bracelets">Bracelets</a>
+        </div>
+        <div class="ba-footer__col">
+          <h4>Manufacture</h4>
+          <a href="/about">The Inventor</a>
+          <a href="/the-bez-ambar-story">The Bez Ambar Story</a>
+          <a href="/our-story">Our Story</a>
+          <a href="/press">Press</a>
+        </div>
+        <div class="ba-footer__col">
+          <h4>Service</h4>
+          <a href="/contact">Contact</a>
+          <a href="/contact?subject=bespoke">Bespoke Inquiry</a>
+          <a href="/contact?subject=repairs">Repairs &amp; Cleaning</a>
+          <a href="/warranty">Warranty</a>
+        </div>
+        <div class="ba-footer__col">
+          <h4>Signature Pieces</h4>
+          <a href="https://galleries.bezambarinc.workers.dev/page/30-carat-flex" target="_blank" rel="noopener">30-Carat Flex</a>
+          <a href="https://galleries.bezambarinc.workers.dev/page/flex-bracelets" target="_blank" rel="noopener">Flex Bracelets</a>
+          <a href="https://galleries.bezambarinc.workers.dev/page/elysian-cut" target="_blank" rel="noopener">Elysian Cut</a>
+          <a href="https://galleries.bezambarinc.workers.dev/page/cascata" target="_blank" rel="noopener">Cascata</a>
+          <a href="https://galleries.bezambarinc.workers.dev/page/crossover-ashoka" target="_blank" rel="noopener">Crossover Ashoka</a>
+          <a href="/heart-ruby">Heart Ruby</a>
+          <a href="https://galleries.bezambarinc.workers.dev/page/saul-ring" target="_blank" rel="noopener">Saul Ring</a>
+        </div>
+        <div class="ba-footer__col">
+          <h4>Editorial</h4>
+          <a href="/journal">Journal</a>
+          <a href="/blog">Blog</a>
+          <a href="/diamond-education">Diamond Education</a>
+          <a href="/video-gallery">Video Gallery</a>
+          <h4 class="ba-footer__col-sub">Resources</h4>
+          <a href="/ring-size-chart">Ring Size Chart</a>
+          <a href="/catalogs">Catalogs</a>
+        </div>
+      </div>
+      <div class="ba-footer__bottom">
+        <p class="ba-footer__logo">Bez Ambar</p>
+        <p class="ba-footer__address">611 Wilshire Blvd, Los Angeles, CA 90017 &middot; <a href="mailto:bezambar@bezambar.com">bezambar@bezambar.com</a> &middot; <a href="tel:2136299191">(213) 629-9191</a></p>
+        <p class="ba-footer__tag">Inventor of the Princess Cut &middot; Since 1979</p>
+      </div>
+    </div>
+  </footer>
+
+    <script>
+        function toggleMobileNav() {
+            var toggle = document.querySelector('.mobile-nav-toggle');
+            var nav = document.getElementById('mobileNav');
+            var backdrop = document.getElementById('navBackdrop');
+            toggle.classList.toggle('open');
+            nav.classList.toggle('open');
+            backdrop.classList.toggle('open');
+        }
+        function closeMobileNav() {
+            document.querySelector('.mobile-nav-toggle').classList.remove('open');
+            document.getElementById('mobileNav').classList.remove('open');
+            document.getElementById('navBackdrop').classList.remove('open');
+        }
+        document.getElementById('navBackdrop').addEventListener('click', closeMobileNav);
+
+        // Sticky tab navigation
+        function scrollToSection(sectionId) {
+            var element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+                updateActiveTabs();
+            }
+        }
+
+        function updateActiveTabs() {
+            var tabs = document.querySelectorAll('.de-tab-btn');
+            var sections = document.querySelectorAll('.de-section');
+
+            var scrollPosition = window.scrollY + 200;
+
+            sections.forEach(function(section, index) {
+                var sectionTop = section.offsetTop;
+                var sectionBottom = sectionTop + section.offsetHeight;
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    tabs.forEach(function(tab) {
+                        tab.classList.remove('active');
+                    });
+                    if (tabs[index]) {
+                        tabs[index].classList.add('active');
+                    }
+                }
+            });
+        }
+
+        // Update tabs on scroll
+        window.addEventListener('scroll', updateActiveTabs);
+    </script>
+</body>
+</html>

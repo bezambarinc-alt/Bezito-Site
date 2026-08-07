@@ -1,0 +1,27 @@
+{
+  "slug": "vega",
+  "title": "Vega",
+  "titleHtml": "Vega",
+  "cNumber": "VEGA",
+  "category": "Ring",
+  "metaDescription": "Three-stone ring — cushion-cut diamond flanked by two rubies. Clarity beside heat. Restraint beside intensity. 18K white gold. Bez Ambar, Los Angeles.",
+  "ogImage": "https://res.cloudinary.com/dlg2mou53/video/upload/so_2.0,f_jpg,w_1200,c_fit/v1785444882/Jewelry%20Videos/Rings/Julio_Ring_hfbs7f.jpg",
+  "videoUrl": "https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1785444882/Jewelry%20Videos/Rings/Julio_Ring_hfbs7f.mp4",
+  "onhandUrl": "https://res.cloudinary.com/dlg2mou53/image/upload/v1785447359/Julios_Ring_Cushion_Ruby_OnHAND_we8vn7.avif",
+  "copy": "At the centre sits a cushion-cut diamond, soft-cornered and brilliance-first — the kind of stone you notice before you understand why, built to catch light from every angle and hold it. Two rubies flank it, burning against the clear centre so the ring reads as a study in contrast: clarity beside heat, restraint beside intensity. The tension between the diamond and the rubies is the whole design, and it is not a ring that whispers. Set in eighteen-karat white gold, three stones, three registers of light.",
+  "specs": [
+    { "label": "Center Stone",  "body": "Cushion-cut diamond · brilliant faceting · selected for depth of light and softness of corner." },
+    { "label": "Side Stones",   "body": "Two rubies · matched pair · flanking the center stone with colour and heat." },
+    { "label": "Metal",         "body": "18K white gold." },
+    { "label": "More Details",  "body": "Designed and made in Los Angeles. Available by private appointment." }
+  ],
+  "projectFiles": [
+    { "label": "After Effects · Julios-Ring.aep",                  "url": "https://www.dropbox.com/scl/fi/4h7bursvv1f7hkhmblri7/Julios-Ring.aep?rlkey=chml6dcy5dqvgcn3ow09gpanj&dl=0" },
+    { "label": "Photoshop · Julio-Ring-Cushion-Rubies-Master.psd",  "url": "https://www.dropbox.com/scl/fi/idzrlciywi9jrfifim23d/Julio-Ring-Cushion-Rubies-Master.psd?rlkey=lqud9xvtb5ikco8nnl3qyllba&dl=0" }
+  ],
+  "views": [
+    { "label": "", "url": "https://res.cloudinary.com/dlg2mou53/image/upload/v1785894671/Jewelry%20Images/Rings/julio-ring-cushion-rubies-side-2.avif" },
+    { "label": "", "url": "https://res.cloudinary.com/dlg2mou53/image/upload/v1785893952/Jewelry%20Images/Rings/julio-ring-cushion-rubies-top.avif" },
+    { "label": "", "url": "https://res.cloudinary.com/dlg2mou53/image/upload/v1785893953/Jewelry%20Images/Rings/julio-ring-cushion-rubies-side-1.avif" }
+  ]
+}

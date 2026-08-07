@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Bez Ambar Story — Inventor of the Princess Cut Diamond</title>
+    <meta name="description" content="Discover the history of Bez Ambar, inventor of the Princess Cut diamond and pioneer of modern jewelry innovation since 1979. Explore decades of cutting-edge techniques and designs.">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Hero Section */
+        .story-hero {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .story-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1600/BezAmbar-OldSite/2020/11/Woman-Image-20-carat-emerald-cut-diamond.jpg') center/cover;
+            z-index: 1;
+        }
+
+        .story-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 26, 26, 0.55);
+            z-index: 2;
+        }
+
+        .story-hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 700px;
+            padding: 40px;
+        }
+
+        .story-hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 500;
+            margin: 0 0 20px 0;
+            letter-spacing: 2px;
+        }
+
+        .story-hero .subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            line-height: 1.6;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            padding: 80px 40px;
+            background: #141414;
+        }
+
+        .timeline-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Central vertical line */
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(255,255,255,0.08);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        /* Alternating left/right */
+        .timeline-item:nth-child(odd) {
+            margin-left: 0;
+            margin-right: auto;
+            padding-right: 52%;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: auto;
+            margin-right: 0;
+            padding-left: 52%;
+            text-align: left;
+        }
+
+        /* Center dot */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #c5a258;
+            border: 3px solid #141414;
+            border-radius: 50%;
+            left: 50%;
+            top: 8px;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        .timeline-content {
+            padding: 30px;
+            background: #111;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .timeline-year {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #fff;
+            margin: 0 0 12px 0;
+            letter-spacing: 1px;
+        }
+
+        .timeline-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #fff;
+            margin: 0 0 16px 0;
+        }
+
+        .timeline-description {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            color: #999;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .timeline-image {
+            margin-top: 20px;
+            max-width: 100%;
+            height: auto;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        /* CTA Section */
+        .story-cta {
+            padding: 80px 40px;
+            background: #0d0d0d;
+            text-align: center;
+        }
+
+        .story-cta h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 500;
+            color: #fff;
+            margin: 0 0 20px 0;
+            letter-spacing: 1px;
+        }
+
+        .story-cta p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            color: #888;
+            margin: 0 0 40px 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .story-cta-btn {
+            display: inline-block;
+            padding: 16px 48px;
+            border: 2px solid rgba(255,255,255,0.3);
+            background: transparent;
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+        }
+
+        .story-cta-btn:hover {
+            background: #fff;
+            color: #0d0d0d;
+            border-color: #fff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .story-hero {
+                height: 350px;
+            }
+
+            .story-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .story-hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .timeline-section {
+                padding: 60px 20px;
+            }
+
+            /* Mobile: single column, all items on the right side */
+            .timeline-container::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                margin-left: 0;
+                margin-right: 0;
+                padding-left: 80px;
+                padding-right: 0;
+                text-align: left;
+            }
+
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                margin-left: 0;
+                margin-right: 0;
+                padding-left: 80px;
+                padding-right: 0;
+                text-align: left;
+            }
+
+            .timeline-item::before {
+                left: 14px;
+            }
+
+            .timeline-year {
+                font-size: 2rem;
+            }
+
+            .timeline-title {
+                font-size: 1.3rem;
+            }
+
+            .story-cta h2 {
+                font-size: 2rem;
+            }
+
+            .timeline-section {
+                padding: 60px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .story-hero {
+                height: 280px;
+            }
+
+            .story-hero h1 {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+
+            .story-hero .subtitle {
+                font-size: 0.9rem;
+            }
+
+            .timeline-year {
+                font-size: 1.6rem;
+            }
+
+            .timeline-title {
+                font-size: 1.1rem;
+            }
+
+            .timeline-content {
+                padding: 20px;
+            }
+
+            .story-cta h2 {
+                font-size: 1.6rem;
+            }
+
+            .story-cta {
+                padding: 50px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-left-group">
+                <button class="mobile-nav-toggle" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+                <span class="menu-label" onclick="toggleMobileNav()">Menu</span>
+                <button class="header-icon-btn header-search-btn" aria-label="Search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+            </div>
+            <a href="index.html" class="logo">Bez Ambar</a>
+            <div class="header-right-group">
+                <a href="contact.html" class="header-contact-link">Contact Us</a>
+                <a href="#" class="header-icon-btn" aria-label="Wishlist">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </a>
+                <a href="#" class="header-icon-btn" aria-label="Account">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </a>
+            </div>
+            <div class="mobile-nav-overlay" id="mobileNav">
+                <a href="collection.html">Collection</a>
+                <span class="mobile-cat-label">Categories</span>
+                <a href="collection.html" class="mobile-cat-link">All Jewelry</a>
+                <a href="collection.html?cat=rings" class="mobile-cat-link">Rings</a>
+                <a href="collection.html?cat=engagement-rings" class="mobile-cat-link mobile-sub-link">Engagement Rings</a>
+                <a href="collection.html?cat=wedding-bands" class="mobile-cat-link mobile-sub-link">Wedding Bands</a>
+                <a href="collection.html?cat=mens-wedding-bands" class="mobile-cat-link mobile-sub-link">Men's Wedding Bands</a>
+                <a href="collection.html?cat=pendants" class="mobile-cat-link">Pendants</a>
+                <a href="collection.html?cat=necklaces" class="mobile-cat-link">Necklaces</a>
+                <a href="collection.html?cat=earrings" class="mobile-cat-link">Earrings</a>
+                <a href="collection.html?cat=stud-earrings" class="mobile-cat-link mobile-sub-link">Stud Earrings</a>
+                <a href="collection.html?cat=hug-earrings" class="mobile-cat-link mobile-sub-link">Hug Earrings</a>
+                <a href="collection.html?cat=hoop-earrings" class="mobile-cat-link mobile-sub-link">Hoop Earrings</a>
+                <a href="collection.html?cat=bracelets" class="mobile-cat-link">Bracelets</a>
+                <a href="video-gallery.html">Video Gallery</a>
+                <a href="our-story.html" class="mobile-cat-label" style="text-decoration:none;">Our Story</a>
+                <a href="about.html" class="mobile-cat-link">The Inventor</a>
+                <a href="the-bez-ambar-story.html" class="mobile-cat-link">The Bez Ambar Story</a>
+                <a href="journal.html" class="mobile-cat-link">Journal</a>
+                <a href="blog.html" class="mobile-cat-link">Blog</a>
+                <a href="diamond-education.html" class="mobile-cat-link">Diamond Education</a>
+                <a href="ring-size-chart.html" class="mobile-cat-link">Ring Size Chart</a>
+                <a href="catalogs.html" class="mobile-cat-link">Catalogs</a>
+                <a href="warranty.html" class="mobile-cat-link">Warranty</a>
+                <a href="press.html" class="mobile-cat-link">Press</a>
+            </div>
+        </div>
+    </header>
+    <div class="nav-backdrop" id="navBackdrop"></div>
+
+    <section class="story-hero">
+        <div class="story-hero-content">
+            <h1>The Bez Ambar Story</h1>
+            <p class="subtitle">Innovation in Diamond Cutting Since 1979</p>
+        </div>
+    </section>
+
+    <section class="timeline-section">
+        <div class="timeline-container">
+            <!-- Timeline Item 1 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">1979</div>
+                    <h3 class="timeline-title">Ambar Diamonds Founded</h3>
+                    <p class="timeline-description">Bez Ambar founds Ambar Diamonds in Los Angeles, bringing his vision of innovative diamond cutting from Israel to America. This marks the beginning of a legacy that would transform the jewelry industry.</p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 2 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">1982</div>
+                    <h3 class="timeline-title">The Quadrillion / Princess Cut</h3>
+                    <p class="timeline-description">Bez Ambar invents the Quadrillion cut — later known worldwide as the Princess Cut. This square modified brilliant cut maximizes brilliance from a square shape, becoming the second most popular diamond cut in the world.</p>
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_800/BezAmbar-OldSite/2019/08/5-carat-emerald-cut-engagement-ring-christina-ring.jpg" alt="Princess Cut Diamond Ring" class="timeline-image">
+                </div>
+            </div>
+
+            <!-- Timeline Item 3 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">1985</div>
+                    <h3 class="timeline-title">DeBeers Diamonds Today Award</h3>
+                    <p class="timeline-description">The ATW ring by Bez Ambar wins the prestigious DeBeers Diamonds Today Award, cementing his reputation in the fine jewelry world and recognizing his exceptional artistry and innovation.</p>
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_800/BezAmbar-OldSite/2017/08/1-Carat-Diamond-Engagement-Ring-French-Paloma-white.jpg" alt="Award-Winning Diamond Design" class="timeline-image">
+                </div>
+            </div>
+
+            <!-- Timeline Item 4 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">1988</div>
+                    <h3 class="timeline-title">Invisible Setting Mastered</h3>
+                    <p class="timeline-description">Bez Ambar perfects the invisible setting technique, allowing diamonds and gemstones to be set side by side with no visible metal between them — creating a seamless surface of light that showcases the brilliance of each stone.</p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 5 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">1992</div>
+                    <h3 class="timeline-title">The Boundless Setting</h3>
+                    <p class="timeline-description">Invention of the Boundless Setting — a proprietary technique that holds stones with minimal metal, maximizing the visible surface area of each stone. This revolutionary setting technique becomes a signature of Bez Ambar designs.</p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 6 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">1999</div>
+                    <h3 class="timeline-title">Micro-Pavé Pioneered</h3>
+                    <p class="timeline-description">Bez Ambar pioneers micro-pavé setting techniques, setting diamonds as small as 0.005 carats with extraordinary precision. This technique adds delicate sparkle and sophistication to pieces while requiring masterful craftsmanship.</p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 7 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">2003</div>
+                    <h3 class="timeline-title">The Blaze Cut</h3>
+                    <p class="timeline-description">Invention of the Blaze Cut diamond — a proprietary cut with 13 arrows of light visible through the table. A true revolution in diamond cutting that maximizes the unique light-play characteristics of exceptional diamonds.</p>
+                    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_800/BezAmbar-OldSite/2014/12/bouquet-of-light-oval-diamond-center-engagement-ring-1bol-ov.jpg" alt="Blaze Cut Diamond Ring" class="timeline-image">
+                </div>
+            </div>
+
+            <!-- Timeline Item 8 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">2015</div>
+                    <h3 class="timeline-title">The Divine Cut</h3>
+                    <p class="timeline-description">The latest innovation — the Divine Cut diamond, featuring a unique faceting pattern that creates unparalleled fire and brilliance. This cut represents the culmination of decades of expertise and refined understanding of light and diamond optics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="story-cta">
+        <h2>Experience the Legacy</h2>
+        <p>Discover the exceptional craftsmanship and innovation that defines every Bez Ambar piece. Explore our collection of proprietary cuts and signature settings.</p>
+        <a href="collection.html" class="story-cta-btn">Explore the Collection</a>
+    </section>
+
+    <footer class="ba-footer" id="inquire">
+    <div class="ba-footer__inner">
+      <div class="ba-footer__cols">
+        <div class="ba-footer__col">
+          <h4>Collection</h4>
+          <a href="/bloom">Bloom Collection</a>
+          <a href="/collection?cat=rings">Rings</a>
+          <a href="/collection?cat=engagement-rings">Engagement Rings</a>
+          <a href="/collection?cat=wedding-bands">Wedding Bands</a>
+          <a href="/collection?cat=earrings">Earrings</a>
+          <a href="/collection?cat=pendants">Pendants</a>
+          <a href="/collection?cat=necklaces">Necklaces</a>
+          <a href="/collection?cat=bracelets">Bracelets</a>
+        </div>
+        <div class="ba-footer__col">
+          <h4>Manufacture</h4>
+          <a href="/about">The Inventor</a>
+          <a href="/the-bez-ambar-story">The Bez Ambar Story</a>
+          <a href="/our-story">Our Story</a>
+          <a href="/press">Press</a>
+        </div>
+        <div class="ba-footer__col">
+          <h4>Service</h4>
+          <a href="/contact">Contact</a>
+          <a href="/contact?subject=bespoke">Bespoke Inquiry</a>
+          <a href="/contact?subject=repairs">Repairs &amp; Cleaning</a>
+          <a href="/warranty">Warranty</a>
+        </div>
+        <div class="ba-footer__col">
+          <h4>Signature Pieces</h4>
+          <a href="https://galleries.bezambarinc.workers.dev/page/30-carat-flex" target="_blank" rel="noopener">30-Carat Flex</a>
+          <a href="https://galleries.bezambarinc.workers.dev/page/flex-bracelets" target="_blank" rel="noopener">Flex Bracelets</a>
+          <a href="https://galleries.bezambarinc.workers.dev/page/elysian-cut" target="_blank" rel="noopener">Elysian Cut</a>
+          <a href="https://galleries.bezambarinc.workers.dev/page/cascata" target="_blank" rel="noopener">Cascata</a>
+          <a href="https://galleries.bezambarinc.workers.dev/page/crossover-ashoka" target="_blank" rel="noopener">Crossover Ashoka</a>
+          <a href="/heart-ruby">Heart Ruby</a>
+          <a href="https://galleries.bezambarinc.workers.dev/page/saul-ring" target="_blank" rel="noopener">Saul Ring</a>
+        </div>
+        <div class="ba-footer__col">
+          <h4>Editorial</h4>
+          <a href="/journal">Journal</a>
+          <a href="/blog">Blog</a>
+          <a href="/diamond-education">Diamond Education</a>
+          <a href="/video-gallery">Video Gallery</a>
+          <h4 class="ba-footer__col-sub">Resources</h4>
+          <a href="/ring-size-chart">Ring Size Chart</a>
+          <a href="/catalogs">Catalogs</a>
+        </div>
+      </div>
+      <div class="ba-footer__bottom">
+        <p class="ba-footer__logo">Bez Ambar</p>
+        <p class="ba-footer__address">611 Wilshire Blvd, Los Angeles, CA 90017 &middot; <a href="mailto:bezambar@bezambar.com">bezambar@bezambar.com</a> &middot; <a href="tel:2136299191">(213) 629-9191</a></p>
+        <p class="ba-footer__tag">Inventor of the Princess Cut &middot; Since 1979</p>
+      </div>
+    </div>
+  </footer>
+
+    <script>
+    function toggleMobileNav() {
+        var toggle = document.querySelector('.mobile-nav-toggle');
+        var nav = document.getElementById('mobileNav');
+        var backdrop = document.getElementById('navBackdrop');
+        toggle.classList.toggle('open');
+        nav.classList.toggle('open');
+        backdrop.classList.toggle('open');
+    }
+    function closeMobileNav() {
+        document.querySelector('.mobile-nav-toggle').classList.remove('open');
+        document.getElementById('mobileNav').classList.remove('open');
+        document.getElementById('navBackdrop').classList.remove('open');
+    }
+    document.getElementById('navBackdrop').addEventListener('click', closeMobileNav);
+    </script>
+</body>
+</html>

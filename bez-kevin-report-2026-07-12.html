@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Report · 2026-07-12 — Bez × Kevin</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://galleries.bezambarinc.workers.dev/page/bez-kevin-report-2026-07-12">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --serif: 'EB Garamond', Georgia, serif;
+    --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-muted: #8a8a8a;
+    --paper: #ffffff;
+    --paper-warm: #faf7f2;
+    --rule: rgba(0,0,0,.08);
+    --accent: #95826b;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); color: var(--ink); font-family: var(--serif); -webkit-font-smoothing: antialiased; }
+
+  header {
+    padding: 40px 8vw 24px;
+    border-bottom: 1px solid var(--rule);
+    text-align: center;
+  }
+  header .brand {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  header .eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 34px 0 14px;
+  }
+  header h1 {
+    font-family: var(--sans);
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 200;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  header .lede {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 620px;
+    margin: 22px auto 0;
+    line-height: 1.55;
+  }
+  header .back {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(149,130,107,.35);
+    display: inline-block;
+    margin-top: 26px;
+    padding-bottom: 2px;
+  }
+  header .back:hover { border-bottom-color: var(--accent); }
+
+  main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 60px 6vw 100px;
+  }
+
+  section { margin-bottom: 72px; }
+  section .sec-eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  section h2 {
+    font-family: var(--sans);
+    font-size: clamp(20px, 2.4vw, 26px);
+    font-weight: 200;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+  section .sec-sub {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--ink-soft);
+    max-width: 560px;
+    margin-bottom: 28px;
+    line-height: 1.55;
+  }
+  section .divider {
+    width: 42px;
+    height: 1px;
+    background: var(--accent);
+    margin-bottom: 30px;
+  }
+
+  .card {
+    border: 1px solid var(--rule);
+    padding: 26px 28px;
+    margin-bottom: 14px;
+    background: var(--paper);
+    transition: border-color .2s;
+  }
+  .card:hover { border-color: rgba(0,0,0,.18); }
+  .card .card-title {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .card .card-body {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .card a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(149,130,107,.35);
+    transition: border-color .2s;
+  }
+  .card a:hover { border-bottom-color: var(--accent); }
+  .card.todo { border-left: 3px solid var(--accent); }
+  .card.done { border-left: 3px solid #4a7a4a; background: #fafaf7; }
+  .card .card-date {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 6px;
+  }
+  .card .owner {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-top: 12px;
+    text-transform: uppercase;
+  }
+
+  table { width: 100%; border-collapse: collapse; font-family: var(--sans); font-size: 13px; margin-top: 16px; }
+  thead tr { border-bottom: 1px solid var(--rule); }
+  th { text-align: left; padding: 8px 12px 8px 0; color: var(--ink-muted); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; font-size: 10px; }
+  td { padding: 10px 12px 10px 0; color: var(--ink); border-bottom: 1px solid var(--rule); vertical-align: top; }
+  td:last-child { padding-right: 0; }
+  tr:last-child td { border-bottom: none; }
+  .tag-new { color: var(--accent); font-weight: 600; }
+  .tag-owner { color: var(--ink-muted); }
+
+  footer {
+    padding: 40px 8vw;
+    border-top: 1px solid var(--rule);
+    text-align: center;
+    background: var(--paper-warm);
+  }
+  footer .brand {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  footer .contact {
+    font-family: var(--serif);
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+  footer .contact a { color: var(--ink-soft); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Bez Ambar</div>
+  <div class="eyebrow">Report · Internal</div>
+  <h1>2026 · 07 · 12</h1>
+  <p class="lede">Freshsales CRM wired into Astro site — custom fields, inquiry pipeline, smoke tested. Site UX pass: contact page, inquiry drawer, social icons, share button. CRM deal stage architecture defined.</p>
+  <a href="https://galleries.bezambarinc.workers.dev/page/bez-kevin" class="back">← Back to Bez × Kevin</a>
+</header>
+
+<main>
+
+  <!-- ── TO DO ───────────────────────────────────────────────── -->
+  <section id="todo">
+    <div class="sec-eyebrow">Part One</div>
+    <h2>To Do</h2>
+    <div class="divider"></div>
+    <p class="sec-sub">Open items — what needs action, who owns the next step, and what's blocking what.</p>
+
+    <!-- DEAL STAGES -->
+    <div class="card todo">
+      <div class="card-title">Freshsales — Rename Deal Stages to Full Jewelry Pipeline</div>
+      <div class="card-body">
+        Freshsales ships with generic CRM stage names (New, Qualification, Discovery, Demo, Negotiation, Won, Lost). These don't map to how a bespoke jewelry atelier actually works — they're SaaS-sales language, not jewelry-sales language. Rename them to reflect the real customer journey across all channels: website inquiries, commissions, collection sales, walk-ins, repairs.<br><br>
+        <strong>Where to do it:</strong><br>
+        <code>bezambar.myfreshworks.com</code> → Admin (gear icon, top-right) → CRM → Deal Stages → click pencil on each row.<br><br>
+        <strong>Rename map:</strong>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Current (default)</th>
+              <th>Rename to</th>
+              <th>What it means</th>
+              <th>Applies to</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>New</td>
+              <td><span class="tag-new">Inquiry Received</span></td>
+              <td>First contact — any source: web form, referral, walk-in, event, phone</td>
+              <td>All channels</td>
+            </tr>
+            <tr>
+              <td>Qualification</td>
+              <td><span class="tag-new">Consultation Scheduled</span></td>
+              <td>Appointment booked — in-person or video call</td>
+              <td>All channels</td>
+            </tr>
+            <tr>
+              <td>Discovery</td>
+              <td><span class="tag-new">Consultation Complete</span></td>
+              <td>Met with client — needs understood, direction set, next step agreed</td>
+              <td>Commission, bespoke</td>
+            </tr>
+            <tr>
+              <td>Demo</td>
+              <td><span class="tag-new">Design Phase</span></td>
+              <td>Active bespoke design in progress — CADs, stone selection, revisions</td>
+              <td>Commission only</td>
+            </tr>
+            <tr>
+              <td>Negotiation</td>
+              <td><span class="tag-new">Quote Sent</span></td>
+              <td>Pricing proposal delivered to client — awaiting decision</td>
+              <td>All channels</td>
+            </tr>
+            <tr>
+              <td>—</td>
+              <td><span class="tag-new">Deposit Received</span> <em>(add new)</em></td>
+              <td>Client committed — deposit paid, piece confirmed in production queue</td>
+              <td>Commission, collection</td>
+            </tr>
+            <tr>
+              <td>—</td>
+              <td><span class="tag-new">In Production</span> <em>(add new)</em></td>
+              <td>Piece being made or stone being sourced</td>
+              <td>Commission, bespoke, some collection</td>
+            </tr>
+            <tr>
+              <td>—</td>
+              <td><span class="tag-new">Ready for Delivery</span> <em>(add new)</em></td>
+              <td>Piece complete, QC passed — awaiting pickup or shipping</td>
+              <td>All channels</td>
+            </tr>
+            <tr>
+              <td>Won</td>
+              <td><span class="tag-new">Sale Complete</span></td>
+              <td>Delivered and paid in full</td>
+              <td>All channels</td>
+            </tr>
+            <tr>
+              <td>Lost</td>
+              <td>Lost <em>(keep as-is)</em></td>
+              <td>Dead deal — no purchase</td>
+              <td>All channels</td>
+            </tr>
+            <tr>
+              <td>—</td>
+              <td><span class="tag-new">On Hold</span> <em>(add new)</em></td>
+              <td>Client paused — budget timing, life event, etc. Keep warm, follow up in 60–90 days</td>
+              <td>All channels</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <br><strong>Why this matters:</strong> Every time Bezito creates a deal from a web inquiry, it gets tagged "Inquiry Received" — which maps exactly to the worker's <code>FS_DEAL_STAGE_INQUIRY</code> constant. The stages above are just renamed display labels; the underlying IDs stay the same. Nothing in the code breaks. But now the pipeline makes sense to Bez, Kevin, and any future team member looking at the board.<br><br>
+        <strong>Three stages to ADD (not just rename):</strong> Deposit Received, In Production, Ready for Delivery. These don't exist in the default Freshsales setup. Add them via the same Deal Stages admin screen — there's an "+ Add Stage" button.
+      </div>
+      <div class="owner">Owner · @kevin (10-minute UI task)</div>
+    </div>
+
+    <!-- VIMEO VIDEOS -->
+    <div class="card todo">
+      <div class="card-title">Vimeo → Cloudinary Hero Video Swap (4 Videos)</div>
+      <div class="card-body">
+        4 homepage hero videos still load from Vimeo iframes — each one pulls ~2–3 MB of Vimeo SDK on first render even with lazy-load. Once they're on Cloudinary, the Vimeo SDK is gone entirely.<br><br>
+        <strong>Kevin's step (blocks everything else):</strong> Download these 4 videos from your Vimeo account and upload to Cloudinary (account: <code>dlg2mou53</code>, login: bezambarinc@gmail.com) into <code>videos/hero/</code>:<br><br>
+        — Vimeo 1192444919 → <code>videos/hero/elysian-cut.mp4</code><br>
+        — Vimeo 1193154076 → <code>videos/hero/oval-band.mp4</code><br>
+        — Vimeo 1193140625 → <code>videos/hero/elysian-pear-coming-soon.mp4</code><br>
+        — Vimeo 1193149437 → <code>videos/hero/elysian-pear-band.mp4</code><br><br>
+        Once those are in Cloudinary, Bezito swaps the <code>&lt;iframe&gt;</code> tags for <code>&lt;video autoplay muted loop playsinline&gt;</code> in <code>index.astro</code> and removes the Vimeo CSP entry from <code>vercel.json</code>.
+      </div>
+      <div class="owner">Owner · @kevin (download + upload) → @bezito (code swap)</div>
+    </div>
+
+    <!-- DOUBLE ROW ASSCHER -->
+    <div class="card todo">
+      <div class="card-title">Double Row Asscher Flex Bracelet (c0754-2026) — Product Page</div>
+      <div class="card-body">
+        New product page needed using the locked Bez Ambar product page template. Content is spec'd in memory; Bezito can build this as soon as Kevin confirms the product data is final (title, description, stone specs, images/video in Cloudinary).<br><br>
+        <strong>What Bezito needs from Kevin to start:</strong><br>
+        — Confirm product title (current working name: "Double Row Asscher Flex Bracelet")<br>
+        — Stone specs: carat total weight, color, clarity, cut (Asscher)<br>
+        — Metal: confirm (platinum? 18k white gold?)<br>
+        — Hero video or image URL (Cloudinary)<br>
+        — Secondary images (Cloudinary)<br>
+        — Ref code confirmation: c0754-2026<br><br>
+        Once confirmed, Bezito writes the content entry and builds the page. Should take ~30 minutes once inputs arrive.
+      </div>
+      <div class="owner">Owner · @kevin (confirm product data) → @bezito (build)</div>
+    </div>
+
+    <!-- PXM / AIRTABLE -->
+    <div class="card todo">
+      <div class="card-title">PXM / Airtable — Wire Product Data Feed into Astro</div>
+      <div class="card-body">
+        Decision locked: Airtable free tier as PXM (Product Experience Manager — the single source of truth for all ~50–200 SKUs). Feeds Astro static build, Klaviyo product catalog, and Cloudflare Workers pages. Nothing can be built until Kevin provides the API key.<br><br>
+        <strong>Kevin to provide:</strong><br>
+        — Airtable API key (Personal Access Token from airtable.com/account)<br>
+        — Base ID (from the Airtable URL when viewing the product base: <code>airtable.com/appXXXXXXXX/tblXXXXXXXX/viwXXXXXXXX</code>)<br>
+        — Confirm which fields are canonical: name, SKU, description, heroImage, images[], heroVideo, category, metal, stone specs, price (optional), status (live/draft)<br><br>
+        Once those arrive, Bezito builds <code>scripts/sync-airtable.js</code> — fetches all records, writes to <code>src/content/products/</code> as JSON, and the Astro build picks them up automatically at build time.
+      </div>
+      <div class="owner">Owner · @kevin (API key + base ID) → @bezito (integration build)</div>
+    </div>
+
+    <!-- LAWYERS LIST -->
+    <div class="card todo">
+      <div class="card-title">CRM — Lawyers List Import (468 Contacts)</div>
+      <div class="card-body">
+        Bezito has the CSV (<code>gibson_dunn_la_partners.csv</code>, 468 LA-area law firm partners from Gibson Dunn, Quinn Emanuel, Greenberg Traurig, Paul Hastings, Munger Tolles, WilmerHale, etc.) and Freshsales API access. Ready to import, dedup against existing 1,226 contacts, and tag as <code>lawyers-list</code>.<br><br>
+        <strong>Strategy note:</strong> This is not a mass blast list — it's a curated HNW outreach list. Import is step one. Step two (after import) is setting up a Freshsales sequence for personalized 1:1 outreach, not a broadcast email.<br><br>
+        Waiting on Bez's go-ahead to execute.
+      </div>
+      <div class="owner">Owner · @bezito (ready to run) — needs @bez go-ahead</div>
+    </div>
+
+    <!-- CRM PIPELINES -->
+    <div class="card todo">
+      <div class="card-title">CRM — Two Sales Pipelines + Outreach Sequences</div>
+      <div class="card-body">
+        Two distinct pipelines need to be configured in Freshsales after deal stages are renamed:<br><br>
+        <strong>Pipeline 1 — HNW Client Track (inbound / atelier)</strong><br>
+        — For web inquiries, referrals, walk-ins, and anyone who's touched the site<br>
+        — Uses the full 11-stage jewelry pipeline (Inquiry Received → Sale Complete)<br>
+        — Bezito auto-creates deals here when web forms submit<br><br>
+        <strong>Pipeline 2 — Lawyers Outreach (proactive / cold)</strong><br>
+        — For the 468-contact list and future HNW outreach campaigns<br>
+        — Stages: Identified → Contacted → Replied → Meeting Scheduled → Introduced to Bez → Active Prospect → Closed<br>
+        — Sequence: personalized intro email → 7-day follow-up → 21-day handwritten note prompt<br><br>
+        Bezito can build both via Freshsales API once Kevin confirms the stage naming (above) and Bez approves the outreach strategy.
+      </div>
+      <div class="owner">Owner · @bezito (build) — depends on deal stage rename first</div>
+    </div>
+
+  </section>
+
+  <!-- ── ACCOMPLISHED ────────────────────────────────────────── -->
+  <section id="accomplished">
+    <div class="sec-eyebrow">Part Two</div>
+    <h2>Accomplished</h2>
+    <div class="divider"></div>
+    <p class="sec-sub">Shipped today. Newest at the top.</p>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 12</div>
+      <div class="card-title">Share button — prominent across all surfaces</div>
+      <div class="card-body">Share trigger on product pages and archive modal was 10px gray text — essentially invisible. Updated to a bordered pill (1px border-warm, hover → ink border) with an upload SVG icon, 11px ink-soft type. Applied consistently to both <code>prod-share</code> (product pages) and <code>inq-share</code> (archive modal). — @bezito</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 12</div>
+      <div class="card-title">Social icons — all 5 platforms, shared component</div>
+      <div class="card-body">New <code>SocialLinks.astro</code> component with stroke SVG icons for Instagram, Pinterest, YouTube, TikTok, and LinkedIn. Replaces the Instagram-only text link in three locations: footer brand column, contact page sidebar, and inquiry drawer. Icon-only display — no handle text — hover goes to accent gold. One update to the component propagates everywhere. — @bezito</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 12</div>
+      <div class="card-title">Contact page — full Patek-style revamp</div>
+      <div class="card-body">Replaced dark gradient hero + boxed form-group layout with a white-ground Patek-style page: centered serif masthead ("Begin a Conversation"), thin gold rule, underline-only inputs, 9px small-caps labels (0.28em tracking), asymmetric 2-column grid (form left, typographic sidebar right). Sidebar: phone, email, atelier address, and social icons under a "Follow" label. Services strip restyled to match (no dark background). — @bezito</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 12</div>
+      <div class="card-title">Inquiry drawer — stripped to name + email, contact block added</div>
+      <div class="card-body">Removed phone, intent dropdown, and message textarea from the visible drawer form — stripped to two fields (name + email). Intent, piece title, and SKU still flow to Freshsales as hidden inputs. Fixed the root cause of unstyled inputs: drawer was using <code>.form-group</code> which only exists in <code>contact.css</code> (not imported by the drawer). Switched to <code>inq-form__*</code> classes already in <code>global.css</code>. Added contact block below the form (tel, atelier address, all 5 social icons) separated by a thin gold rule. — @bezito</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 12</div>
+      <div class="card-title">Freshsales — full inquiry pipeline smoke tested end-to-end</div>
+      <div class="card-body">Submitted test inquiries via the live Astro site and verified the complete pipeline: Cloudflare Worker receives POST → upserts contact in Freshsales → creates deal → links deal to contact (two-step POST + PUT — contact_ids silently ignored on creation, must PUT after) → all 6 custom fields populated correctly (<code>cf_inquiry_type: Inquiry</code>, <code>cf_piece_name: Elysian Band 50</code>, <code>cf_sku: elysian-band-50</code>, <code>cf_utm_source: instagram</code>, <code>cf_utm_medium: organic</code>, <code>cf_utm_campaign: summer26</code>). 6 smoke test contacts cleaned up. <code>qa+smoke@bezambar.com</code> retained as reference. — @bezito</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 12</div>
+      <div class="card-title">Freshsales — 6 custom contact fields created + Worker updated</div>
+      <div class="card-body">Freshsales API does not support creating custom fields via API (POST returns 404/405 — UI only, confirmed). Kevin created the 6 fields manually in Freshsales admin: <code>cf_inquiry_type</code> (Dropdown: Inquiry / Commission / Consultation / Visit / Repair / Resize), <code>cf_piece_name</code> (Single Line), <code>cf_sku</code> (Single Line), <code>cf_utm_source</code> (Single Line), <code>cf_utm_medium</code> (Single Line), <code>cf_utm_campaign</code> (Single Line). Worker updated to use confirmed internal names. — @kevin (field creation) · @bezito (Worker)</div>
+      <div class="owner">@kevin · @bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 07 · 12</div>
+      <div class="card-title">Floating inquiry pill — IntersectionObserver fixed</div>
+      <div class="card-body">Pill was hiding too early — it disappeared when the CTA section heading entered the viewport, before the "Inquire About This Piece" button was actually visible. Root cause: observer was targeting <code>#inquire</code> (the whole section) at <code>threshold: 0.2</code>. Fixed by adding <code>id="inquireBtn"</code> to the actual button element and observing that at <code>threshold: 0</code>. Pill now hides only when the button itself enters the viewport. Works correctly across product pages regardless of hero height (DOM-based trigger, not fixed pixel offset). — @bezito</div>
+      <div class="owner">@bezito</div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <div class="brand">Bez Ambar</div>
+  <div class="contact">
+    Office <a href="tel:+12136299191">213 · 629 · 9191</a> &nbsp;·&nbsp; Cell <a href="tel:+13232172778">323 · 217 · 2778</a><br>
+    <a href="mailto:ambarinccom@gmail.com">ambarinccom@gmail.com</a>
+  </div>
+</footer>
+
+</body>
+</html>

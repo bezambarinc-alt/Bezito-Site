@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Inverted Jenny — Actual Size Print</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 20mm;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: #fff;
+    color: #1a1a1a;
+  }
+
+  .page {
+    width: 170mm; /* A4 width minus 20mm margins each side */
+    padding: 0;
+  }
+
+  .header {
+    margin-bottom: 12mm;
+    border-bottom: 0.5pt solid #ccc;
+    padding-bottom: 6mm;
+  }
+  .header h1 {
+    font-size: 13pt;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+  }
+  .header p {
+    font-size: 8pt;
+    color: #888;
+    margin-top: 3px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .version-block {
+    margin-bottom: 14mm;
+  }
+
+  .version-label {
+    font-size: 7pt;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #8b7355;
+    margin-bottom: 4mm;
+  }
+
+  .pendant-wrap {
+    display: inline-block;
+    position: relative;
+    border: 0.3pt dashed #bbb;
+  }
+
+  /* ── FLAGSHIP: 55mm wide × 59mm tall ── */
+  .pendant-v1 {
+    width: 55mm;
+    height: 59mm;
+  }
+  .pendant-v1 img {
+    width: 55mm;
+    height: 59mm;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* ── V2 SMALLER: stamp 25×29mm, pendant estimated ~40×44mm ── */
+  .pendant-v2 {
+    width: 40mm;
+    height: 44mm;
+  }
+  .pendant-v2 img {
+    width: 40mm;
+    height: 44mm;
+    object-fit: contain;
+    display: block;
+  }
+
+  .dim-label {
+    font-size: 6.5pt;
+    color: #888;
+    margin-top: 3mm;
+    letter-spacing: 0.06em;
+  }
+
+  .ruler-h {
+    width: 55mm;
+    height: 2pt;
+    background: #ddd;
+    position: relative;
+    margin-top: 2mm;
+  }
+  .ruler-h::before, .ruler-h::after {
+    content: '';
+    position: absolute;
+    width: 0.5pt;
+    height: 4pt;
+    background: #999;
+    top: -1pt;
+  }
+  .ruler-h::before { left: 0; }
+  .ruler-h::after { right: 0; }
+
+  .ruler-label {
+    font-size: 6pt;
+    color: #999;
+    text-align: center;
+    margin-top: 1.5mm;
+    letter-spacing: 0.06em;
+  }
+
+  .specs {
+    margin-top: 5mm;
+    font-size: 7.5pt;
+    color: #555;
+    line-height: 1.7;
+  }
+  .specs strong {
+    color: #1a1a1a;
+    font-weight: 600;
+  }
+
+  .footer {
+    margin-top: 16mm;
+    padding-top: 5mm;
+    border-top: 0.5pt solid #eee;
+    font-size: 6.5pt;
+    color: #aaa;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .divider {
+    border: none;
+    border-top: 0.5pt dashed #ddd;
+    margin: 10mm 0;
+  }
+
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <h1>Inverted Jenny Necklace — Actual Size</h1>
+    <p>Bez Ambar Inc. · Design Exploration · July 2026 · D/VS1 · Platinum</p>
+  </div>
+
+  <!-- FLAGSHIP V1 -->
+  <div class="version-block">
+    <div class="version-label">Flagship Version · V1</div>
+
+    <div class="pendant-wrap pendant-v1">
+      <img src="https://res.cloudinary.com/dlg2mou53/image/upload/Inspirations/inspiration-log/inverted-jenny-necklace-hero-2026-07-13d.png" alt="Inverted Jenny Flagship">
+    </div>
+
+    <div class="ruler-h" style="width:55mm;"></div>
+    <div class="ruler-label">← 55 mm →</div>
+
+    <div class="dim-label">Pendant: 55mm wide · 59mm tall (approx. 2.2" × 2.3")</div>
+
+    <div class="specs">
+      <strong>Stamp:</strong> Inverted Jenny 1918 · 25×29mm ·
+      <strong>Frame inner:</strong> 28 Blaze® 4mm (~0.35ct ea) ·
+      <strong>Frame outer:</strong> 20 rounds 7.4mm (~1.5ct ea) ·
+      <strong>Bail:</strong> 1 round 12mm (~6.5ct) ·
+      <strong>Chain:</strong> 18 emerald cuts 11×7.6mm + 18 rounds 9mm ·
+      <strong>Estimated cost:</strong> ~$1,582,400
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SMALLER V2 -->
+  <div class="version-block">
+    <div class="version-label">Smaller Version · V2</div>
+
+    <div class="pendant-wrap pendant-v2">
+      <img src="https://res.cloudinary.com/dlg2mou53/image/upload/Inspirations/inspiration-log/inverted-jenny-necklace-v2-smaller-2026-07-13b.png" alt="Inverted Jenny V2 Smaller">
+    </div>
+
+    <div class="ruler-h" style="width:40mm;"></div>
+    <div class="ruler-label">← ~40 mm →</div>
+
+    <div class="dim-label">Pendant: ~40mm wide · ~44mm tall (estimated — confirm actual dimensions)</div>
+
+    <div class="specs">
+      <strong>Frame inner:</strong> 26 Blaze® · ~0.28ct ea · 7.28ct total ·
+      <strong>Frame outer:</strong> 30 rounds 5.2mm · ~0.50ct ea · 15ct total ·
+      <strong>Chain:</strong> 58 rounds 6.6mm · ~1.05ct ea · ~61ct total ·
+      <strong>Center stone:</strong> $200,000 ·
+      <strong>Estimated cost:</strong> ~$553,964
+    </div>
+  </div>
+
+  <div class="footer">
+    Bez Ambar Inc. — Private Design Brief — Not for Distribution · bezambar.com
+  </div>
+
+</div>
+</body>
+</html>

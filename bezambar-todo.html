@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bez Ambar — TODO</title>
+  <style>
+    :root {
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --dark: #0d0d0d;
+      --surface: #161616;
+      --card: #1e1e1e;
+      --border: #2a2a2a;
+      --text: #e8e8e8;
+      --muted: #666;
+      --urgent: #c0392b;
+      --done: #2ecc71;
+      --pending: #c9a84c;
+      --recurring: #8e44ad;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--dark);
+      color: var(--text);
+      font-family: 'Georgia', serif;
+      min-height: 100vh;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 32px 40px 24px;
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    header .subtitle {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-family: 'Helvetica Neue', sans-serif;
+      letter-spacing: 0.05em;
+    }
+
+    .meta-bar {
+      padding: 12px 40px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .meta-bar .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .dot-pending  { background: var(--pending); }
+    .dot-urgent   { background: var(--urgent); }
+    .dot-done     { background: var(--done); }
+    .dot-recurring{ background: var(--recurring); }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 40px 80px;
+    }
+
+    section { margin-bottom: 48px; }
+
+    section h2 {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-family: 'Helvetica Neue', sans-serif;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    .empty-state {
+      padding: 24px 20px;
+      color: var(--muted);
+      font-style: italic;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .todo-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--pending);
+      border-radius: 4px;
+      padding: 14px 18px;
+      margin-bottom: 10px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .todo-item.urgent  { border-left-color: var(--urgent); }
+    .todo-item.done    { border-left-color: var(--done); opacity: 0.6; }
+    .todo-item.recurring { border-left-color: var(--recurring); }
+
+    .todo-status {
+      font-size: 1rem;
+      line-height: 1;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .todo-body {
+      flex: 1;
+    }
+
+    .todo-task {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+
+    .todo-meta {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.72rem;
+      color: var(--muted);
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .todo-meta .chip {
+      background: #252525;
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px 20px;
+      border-top: 1px solid var(--border);
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    footer span { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Bez Ambar — TODO</h1>
+  <span class="subtitle">All groups &amp; topics · Auto-updated by Bezito</span>
+</header>
+
+<div class="meta-bar">
+  <span class="badge"><span class="dot dot-pending"></span> Pending</span>
+  <span class="badge"><span class="dot dot-urgent"></span> Urgent</span>
+  <span class="badge"><span class="dot dot-recurring"></span> Recurring</span>
+  <span class="badge"><span class="dot dot-done"></span> Done</span>
+  <span style="margin-left:auto;">Last updated: <strong id="lastUpdated">2026-08-05</strong></span>
+</div>
+
+<main>
+
+  <!-- OPEN ITEMS -->
+  <section id="open">
+    <h2>⏳ Open</h2>
+    <div id="open-list">
+      <div class="empty-state">No open items yet.</div>
+    </div>
+  </section>
+
+  <!-- URGENT -->
+  <section id="urgent-section">
+    <h2>🔴 Urgent</h2>
+    <div id="urgent-list">
+      <div class="empty-state">Nothing urgent.</div>
+    </div>
+  </section>
+
+  <!-- RECURRING -->
+  <section id="recurring-section">
+    <h2>🔁 Recurring</h2>
+    <div id="recurring-list">
+      <div class="empty-state">No recurring tasks.</div>
+    </div>
+  </section>
+
+  <!-- DONE -->
+  <section id="done-section">
+    <h2>✅ Done</h2>
+    <div id="done-list">
+      <div class="empty-state">Nothing completed yet.</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>Bez Ambar</span> · Internal Operations · Managed by Bezito AI
+</footer>
+
+</body>
+</html>

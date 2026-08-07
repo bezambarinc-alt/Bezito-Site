@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bez × Darryl — Working Page</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --serif: 'EB Garamond', Georgia, serif;
+    --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-muted: #8a8a8a;
+    --paper: #ffffff;
+    --paper-warm: #faf7f2;
+    --rule: rgba(0,0,0,.08);
+    --accent: #95826b;
+    --green: #2e7d52;
+    --amber: #b07d2e;
+    --blue: #2b5ea7;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); color: var(--ink); font-family: var(--serif); -webkit-font-smoothing: antialiased; }
+
+  header {
+    padding: 40px 8vw 28px;
+    border-bottom: 1px solid var(--rule);
+    text-align: center;
+  }
+  .brand {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-family: var(--sans);
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 200;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+  .lede {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-top: 8px;
+  }
+
+  main { max-width: 900px; margin: 0 auto; padding: 0 6vw 80px; }
+
+  .section {
+    margin-top: 52px;
+    border-top: 1px solid var(--rule);
+    padding-top: 32px;
+  }
+  .section__label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .section__label--inprogress { color: var(--amber); }
+  .section__label--next { color: var(--blue); }
+  .section__label--done { color: var(--green); }
+
+  .card {
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin-bottom: 14px;
+    background: var(--paper-warm);
+  }
+  .card__title {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .card__meta {
+    font-family: var(--sans);
+    font-size: 11px;
+    color: var(--ink-muted);
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+  .card__note {
+    font-family: var(--serif);
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+  .card__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .card__link {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border: 1px solid var(--rule);
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .card__link:hover { border-color: var(--accent); color: var(--accent); }
+  .card__link--primary {
+    background: var(--ink);
+    color: #fff;
+    border-color: var(--ink);
+  }
+  .card__link--primary:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  .tag {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-right: 6px;
+  }
+  .tag--live { background: #e8f5ee; color: var(--green); }
+  .tag--wip  { background: #fdf3e3; color: var(--amber); }
+
+  .section__label--ref { color: #6b35c2; }
+
+  .tracker-legend {
+    display: grid;
+    grid-template-columns: 1fr 60px 60px 60px 60px 60px 60px;
+    gap: 0;
+    padding: 10px 16px;
+    margin-bottom: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .tracker-legend span {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    text-align: center;
+    white-space: nowrap;
+  }
+  .tracker-legend span:first-child { text-align: left; }
+  .tracker-group { margin-top: 24px; }
+  .tracker-group__label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 10px 16px;
+    background: var(--paper-warm);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .tracker-group__label--pending {
+    color: var(--amber);
+    background: #fdf3e3;
+    border-color: rgba(176,125,46,.2);
+  }
+  .tracker-row {
+    display: grid;
+    grid-template-columns: 1fr 60px 60px 60px 60px 60px 60px;
+    align-items: center;
+    padding: 11px 16px;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+  }
+  .tracker-row:last-child { border-bottom: 1px solid var(--rule); }
+  .t-name {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .t-name:hover { color: var(--accent); }
+  .t-cell {
+    text-align: center;
+    font-size: 15px;
+    line-height: 1;
+  }
+  .t-cell a {
+    text-decoration: none;
+    font-size: 15px;
+  }
+  .t-cell a:hover { opacity: 0.7; }
+
+  footer {
+    text-align: center;
+    padding: 32px 6vw;
+    border-top: 1px solid var(--rule);
+    font-family: var(--sans);
+    font-size: 11px;
+    color: var(--ink-muted);
+    letter-spacing: 0.10em;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Bez Ambar</div>
+  <div class="eyebrow">Working Page</div>
+  <h1>Bez × Darryl</h1>
+  <p class="lede">Active projects, priorities, and shipped work.</p>
+</header>
+
+<main>
+
+  <!-- UP NEXT -->
+  <section class="section">
+    <div class="section__label section__label--next">⏭ Up Next</div>
+    <div class="card">
+      <div class="card__title">Fancy Very Pink Oval</div>
+      <div class="card__meta">bezito.co/page/fancy-very-pink-oval</div>
+      <div class="card__note">Page is live — needs review and content pass.</div>
+      <div class="card__links">
+        <a href="https://bezito.co/page/fancy-very-pink-oval" class="card__link card__link--primary" target="_blank">View Page</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DONE -->
+  <section class="section">
+    <div class="section__label section__label--done">✅ Done</div>
+
+    <div class="card">
+      <div class="card__title">Meridian — C0799 On-Model Photo Fix <span class="tag tag--live">Live</span></div>
+      <div class="card__meta">2026-08-05 · bezito.co/page/meridian · SKU C0799</div>
+      <div class="card__note">Pendant scaled to correct size on-neck relative to actual center stone dimensions.</div>
+      <div class="card__links">
+        <a href="https://bezito.co/page/meridian" class="card__link card__link--primary" target="_blank">View Live Page</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card__title">Golden Hour Ring Page — C0895 <span class="tag tag--live">Live</span></div>
+      <div class="card__meta">2026-08-05 · bezito.co/page/golden-hour · SKU C0895 · 1C3S</div>
+      <div class="card__note">Split-hero layout: CAD video left, title + copy right. Second hero: Fancy Yellow Radiant on-hand shot. Project files linked.</div>
+      <div class="card__links">
+        <a href="https://bezito.co/page/golden-hour" class="card__link card__link--primary" target="_blank">View Live Page</a>
+        <a href="https://www.dropbox.com/scl/fi/ek0vnkm2qmqgtbzovmwlc/C0895.aep?rlkey=xhglkfzoz4ol2l3dlo43d4992&dl=0" class="card__link" target="_blank">After Effects · C0895.aep</a>
+        <a href="https://www.dropbox.com/scl/fi/h50f3b7ovfyahjd7je3jb/C0895-Fancy-Yellow-Radiant-ONHAND.psd?rlkey=gksefy1ifftwm6pe5tntzv1ad&dl=0" class="card__link" target="_blank">Photoshop · On-Hand.psd</a>
+        <a href="https://www.dropbox.com/scl/fi/27ulmsisz63gizqkrymqj/C0895-Fancy-Yellow-Radiant-ONHAND.avif?rlkey=fc5pxru1wnu0xk0vy8zw8e02k&dl=0" class="card__link" target="_blank">Image · On-Hand.avif</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card__title">Golden Hour Hero Video <span class="tag tag--live">Live</span></div>
+      <div class="card__meta">2026-08-02</div>
+      <div class="card__note">Updated hero video to C0895_fmqkvd.mp4. Updated second hero to Fancy Yellow Radiant on-hand AVIF.</div>
+    </div>
+
+    <div class="card">
+      <div class="card__title">AE Background Animation <span class="tag tag--live">Live</span></div>
+      <div class="card__meta">2026-08-02</div>
+      <div class="card__note">Animated solid background from white → gray in After Effects using Fill effect + keyframes.</div>
+    </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/c0846" class="t-name" target="_blank">COUNTERPOINT. <span style="font-weight:300;color:var(--ink-muted)">C0846</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/rain" class="t-name" target="_blank">RAIN <span style="font-weight:300;color:var(--ink-muted)">C0844</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/cardinal" class="t-name" target="_blank">Cardinal <span style="font-weight:300;color:var(--ink-muted)">C0779</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/three-row-round-flex-bracelet" class="t-name" target="_blank">Three Row Round Flex <span style="font-weight:300;color:var(--ink-muted)">B5993</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/heart-ruby" class="t-name" target="_blank">The Heart Ruby <span style="font-weight:300;color:var(--ink-muted)">BA-HR-001</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+    </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/c0846" class="t-name" target="_blank">COUNTERPOINT. <span style="font-weight:300;color:var(--ink-muted)">C0846</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/rain" class="t-name" target="_blank">RAIN <span style="font-weight:300;color:var(--ink-muted)">C0844</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/cardinal" class="t-name" target="_blank">Cardinal <span style="font-weight:300;color:var(--ink-muted)">C0779</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/three-row-round-flex-bracelet" class="t-name" target="_blank">Three Row Round Flex <span style="font-weight:300;color:var(--ink-muted)">B5993</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/heart-ruby" class="t-name" target="_blank">The Heart Ruby <span style="font-weight:300;color:var(--ink-muted)">BA-HR-001</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+    </div>
+</section>
+
+  <!-- ASSET TRACKER -->
+  <section class="section">
+    <div class="section__label section__label--ref">📐 Asset Tracker — 25 Pages · 5 per Category</div>
+
+    <div class="tracker-legend">
+      <span>Page</span>
+      <span>Video</span>
+      <span>Shot</span>
+      <span>Model</span>
+      <span>Sketch</span>
+      <span>PS</span>
+      <span>AE</span>
+    </div>
+
+    <!-- RINGS -->
+    <div class="tracker-group">
+      <div class="tracker-group__label">💍 Rings</div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/golden-hour" class="t-name" target="_blank">Golden Hour <span style="font-weight:300;color:var(--ink-muted)">C0895</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">⬜</div>
+        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/h50f3b7ovfyahjd7je3jb/C0895-Fancy-Yellow-Radiant-ONHAND.psd?rlkey=gksefy1ifftwm6pe5tntzv1ad&dl=0" target="_blank">✅</a></div>
+        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/ek0vnkm2qmqgtbzovmwlc/C0895.aep?rlkey=xhglkfzoz4ol2l3dlo43d4992&dl=0" target="_blank">✅</a></div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/fancy-deep-brownish-yellow-cushion" class="t-name" target="_blank">DEEP. ECLIPSE. <span style="font-weight:300;color:var(--ink-muted)">C0752</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/fancy-very-pink-oval" class="t-name" target="_blank">ARGYLE. COURT. <span style="font-weight:300;color:var(--ink-muted)">C0747</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/fancy-yellow-three-stone" class="t-name" target="_blank">GLACIAL. FIRE. <span style="font-weight:300;color:var(--ink-muted)">C0536</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/vega" class="t-name" target="_blank">Vega</a>
+        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">⬜</div>
+        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/idzrlciywi9jrfifim23d/Julio-Ring-Cushion-Rubies-Master.psd?rlkey=lqud9xvtb5ikco8nnl3qyllba&dl=0" target="_blank">✅</a></div>
+        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/4h7bursvv1f7hkhmblri7/Julios-Ring.aep?rlkey=chml6dcy5dqvgcn3ow09gpanj&dl=0" target="_blank">✅</a></div>
+      </div>
+    </div>
+
+    <!-- EARRINGS -->
+    <div class="tracker-group">
+      <div class="tracker-group__label">✦ Earrings</div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/r09059" class="t-name" target="_blank">GOLDEN. RAMPART. <span style="font-weight:300;color:var(--ink-muted)">R09059</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/c0670" class="t-name" target="_blank">TRIAD. DROP. <span style="font-weight:300;color:var(--ink-muted)">C0670</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/c0513" class="t-name" target="_blank">YELLOW. DESCENT. <span style="font-weight:300;color:var(--ink-muted)">C0513</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/3hoop30rb" class="t-name" target="_blank">The Triple Hoop <span style="font-weight:300;color:var(--ink-muted)">3HOOP30RB</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+    </div>
+
+    <!-- BRACELETS -->
+    <div class="tracker-group">
+      <div class="tracker-group__label">◻ Bracelets</div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/obsidian" class="t-name" target="_blank">Obsidian <span style="font-weight:300;color:var(--ink-muted)">B5671</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/lexicon" class="t-name" target="_blank">The Lexicon <span style="font-weight:300;color:var(--ink-muted)">C0869</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/prism" class="t-name" target="_blank">Prism <span style="font-weight:300;color:var(--ink-muted)">C0493</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">⬜</div>
+        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/2s06ikd5xkelmz4kuvxux/C0493-Bracelet-Emerald-Master.psd?rlkey=6k3vvjgmwe47wu92cc8c8fm1a&dl=0" target="_blank">✅</a></div>
+        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/7na7ed7np065rrln6i5sy/C0493-8K.aep?rlkey=ivb3rzyxxfyqvii03dex72vom&dl=0" target="_blank">✅</a></div>
+      </div>
+    </div>
+
+    <!-- NECKLACES -->
+    <div class="tracker-group">
+      <div class="tracker-group__label">◯ Necklaces</div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/solar-empress" class="t-name" target="_blank">The Solar Empress <span style="font-weight:300;color:var(--ink-muted)">C0711</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/duetto" class="t-name" target="_blank">Duetto <span style="font-weight:300;color:var(--ink-muted)">B9925</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/c0396" class="t-name" target="_blank">Graduated Diamond <span style="font-weight:300;color:var(--ink-muted)">C0396</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/product-in101" class="t-name" target="_blank">The Baguette Line <span style="font-weight:300;color:var(--ink-muted)">IN101</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+    </div>
+
+    <!-- BANDS -->
+    <div class="tracker-group">
+      <div class="tracker-group__label">◻ Bands</div>
+      <div class="tracker-row" style="color:var(--ink-muted);font-style:italic;">
+        <span class="t-name" style="font-style:italic;color:var(--ink-muted);font-weight:300;">— pages coming —</span>
+        <div class="t-cell"></div><div class="t-cell"></div><div class="t-cell"></div><div class="t-cell"></div><div class="t-cell"></div>
+      </div>
+    </div>
+
+    <!-- PENDANTS -->
+    <div class="tracker-group">
+      <div class="tracker-group__label">◇ Pendants</div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/meridian" class="t-name" target="_blank">Meridian <span style="font-weight:300;color:var(--ink-muted)">C0799</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div>
+        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/hyo2iqrydlxb47g56ydtc/C0799-Pendant-Fancy-yellow-Round-Master.psd?rlkey=b8icwq1lz67qzi7c5tv6ma9w6&dl=0" target="_blank">✅</a></div>
+        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/zqz3kmexzlcg9wjnq72ue/C0799.aep?rlkey=lf6zyfp7pa3fe6v4ik4kwld91&dl=0" target="_blank">✅</a></div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/c0346" class="t-name" target="_blank">Devotion <span style="font-weight:300;color:var(--ink-muted)">C0346</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div>
+        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/alez1yqwmsakuq8n9lcuk/C0346-Pendant-Fancy-Yellow-Heart-Master.psd?rlkey=9qehx36dqiyx0e0endm19cls0&dl=0" target="_blank">✅</a></div>
+        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/n4zl05d6ih9y8pw1m1r40/C0346-converted.aep?rlkey=f3m6zgwl16i4o9mei8168mzhw&dl=0" target="_blank">✅</a></div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/c0785" class="t-name" target="_blank">Zenith <span style="font-weight:300;color:var(--ink-muted)">C0785</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">⬜</div>
+        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/v1155nkzz9q2bigu0iihx/C0785.aep?rlkey=p3mbwbrhdikl58ol98us54sy2&dl=0" target="_blank">✅</a></div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/c0701" class="t-name" target="_blank">Fancy Pink Pear <span style="font-weight:300;color:var(--ink-muted)">C0701</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+    </div>
+
+    <!-- PENDING -->
+    <div class="tracker-group">
+      <div class="tracker-group__label tracker-group__label--pending">⏳ Pending</div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/c0846" class="t-name" target="_blank">COUNTERPOINT. <span style="font-weight:300;color:var(--ink-muted)">C0846</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/rain" class="t-name" target="_blank">RAIN <span style="font-weight:300;color:var(--ink-muted)">C0844</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/cardinal" class="t-name" target="_blank">Cardinal <span style="font-weight:300;color:var(--ink-muted)">C0779</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/three-row-round-flex-bracelet" class="t-name" target="_blank">Three Row Round Flex <span style="font-weight:300;color:var(--ink-muted)">B5993</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+      <div class="tracker-row">
+        <a href="https://bezito.co/page/heart-ruby" class="t-name" target="_blank">The Heart Ruby <span style="font-weight:300;color:var(--ink-muted)">BA-HR-001</span></a>
+        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>Bez Ambar · Internal · bezito.co</footer>
+</body>
+</html>

@@ -3,19 +3,23 @@
 /**
  * ArchiveFilterPill — floating filter control for the archive page.
  *
- * Three filter dimensions driven by data stored in Neon text[] columns:
- *   Category  — rings | bands | bracelets | necklaces | earrings | mens
- *   Stone Shape — round | radiant | framed | oval | pear | cushion | princess | …
- *   Stone Color — emerald | sapphire | fancy-yellow | ruby | fancy-pink | tourmaline
+ * LOOK & FEEL replicates the live Astro `archiveFilterPill` / `archiveFilterPanel`
+ * exactly (src/pages/archive.astro on main):
  *
- * Behaviour (matches Astro archiveFilterPill):
- *  1. Inline "Filter" pill anchored in the page.
- *  2. Goes fixed (bottom-center) when anchor scrolls out of view.
- *  3. Clicking opens a slide-up panel overlay with all filter groups.
+ *  1. Inline gold pill anchored below the hero (`.ba-filter-pill-anchor`).
+ *  2. Pill goes fixed bottom-center when the anchor scrolls out of view
+ *     (IntersectionObserver → `is-floating`).
+ *  3. Clicking opens a LEFT-SIDE slide-in drawer (`.ba-filter-panel`, mirrors the
+ *     nav menu drawer) with a single "Collection" list of category options.
+ *  4. Active option shows a gold `·` dot; footer CTA is "Show Pieces".
+ *
+ * Underneath, the URL stays the single source of truth (cat/shape/color) — but the
+ * visible drawer only exposes the Category dimension, exactly like Astro. Shape/color
+ * are preserved in the URL but not surfaced in the UI (Astro has no such controls).
  */
 
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { CATEGORY_FILTERS, SHAPE_FILTERS, COLOR_FILTERS } from '@/lib/data/archive-constants'
+import { useEffect, useRef, useState } from 'react'
+import { CATEGORY_FILTERS } from '@/lib/data/archive-constants'
 import styles from './ArchiveFilterPill.module.css'
 
 interface Props {
@@ -32,10 +36,9 @@ export default function ArchiveFilterPill({
   filteredCount, totalCount,
   onFilterChange,
 }: Props) {
-  const [panelOpen, setPanelOpen] = useState(false)
-  const [floating,  setFloating]  = useState(false)
-  const anchorRef = useRef<HTMLButtonElement>(null)
-  const panelRef  = useRef<HTMLDivElement>(null)
+  const [open,     setOpen]     = useState(false)
+  const [floating, setFloating] = useState(false)
+  const anchorRef = useRef<HTMLDivElement>(null)
 
   // Floating behaviour — mirrors Astro IntersectionObserver on archivePillAnchor
   useEffect(() => {
@@ -49,138 +52,98 @@ export default function ArchiveFilterPill({
     return () => io.disconnect()
   }, [])
 
-  // Close on ESC + move focus into the panel when it opens (a11y)
+  // Close on ESC + lock body scroll while the drawer is open
   useEffect(() => {
-    if (!panelOpen) return
-    panelRef.current?.focus()
-    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') setPanelOpen(false) }
+    if (!open) return
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false) }
     window.addEventListener('keydown', handler)
-    return () => window.removeEventListener('keydown', handler)
-  }, [panelOpen])
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', handler)
+      document.body.style.overflow = prev
+    }
+  }, [open])
 
-  const activeCount =
-    (cat   !== 'all' ? 1 : 0) +
-    (shape !== 'all' ? 1 : 0) +
-    (color !== 'all' ? 1 : 0)
+  // Category change preserves the other two URL dimensions
+  const setCat = (v: string) => { onFilterChange(v, shape, color); setOpen(false) }
 
-  // Per-dimension setters preserve the other two dimensions
-  const setCat   = useCallback((v: string) => onFilterChange(v, shape, color), [shape, color, onFilterChange])
-  const setShape = useCallback((v: string) => onFilterChange(cat, v, color),   [cat, color, onFilterChange])
-  const setColor = useCallback((v: string) => onFilterChange(cat, shape, v),   [cat, shape, onFilterChange])
-  const reset    = useCallback(() => onFilterChange('all', 'all', 'all'),       [onFilterChange])
+  const pillLabel = cat === 'all'
+    ? 'Filter'
+    : (CATEGORY_FILTERS.find(o => o.value === cat)?.label ?? 'Filter')
 
-  const pillContent = (
-    <>
+  const Pill = ({ fixed }: { fixed?: boolean }) => (
+    <button
+      className={`${styles.pill} ${fixed ? styles.pillFloating : ''}`}
+      onClick={() => setOpen(true)}
+      aria-haspopup="dialog"
+      aria-label="Filter pieces"
+    >
       <FilterIcon />
-      <span>Filter</span>
-      {activeCount > 0 && <span className={styles.badge}>{activeCount}</span>}
-    </>
+      <span>{pillLabel}</span>
+    </button>
   )
 
   return (
     <>
-      {/* ── Inline anchor pill ── */}
-      <button
-        ref={anchorRef}
-        className={styles.pill}
-        onClick={() => setPanelOpen(true)}
-        aria-haspopup="dialog"
-        aria-label={`Filter pieces${activeCount > 0 ? ` — ${activeCount} active` : ''}`}
-      >
-        {pillContent}
-      </button>
+      {/* ── Inline anchor — pill starts here, floats to bottom on scroll ── */}
+      <div ref={anchorRef} className={styles.anchor}>
+        {!floating && <Pill />}
+      </div>
 
       {/* ── Fixed floating pill (appears when anchor scrolls out of view) ── */}
-      {floating && (
-        <button
-          className={`${styles.pill} ${styles.pillFixed}`}
-          onClick={() => setPanelOpen(true)}
-          aria-haspopup="dialog"
-          aria-label={`Filter pieces${activeCount > 0 ? ` — ${activeCount} active` : ''}`}
-        >
-          {pillContent}
-        </button>
-      )}
+      {floating && <Pill fixed />}
 
-      {/* ── Backdrop ── */}
-      {panelOpen && (
-        <div className={styles.backdrop} onClick={() => setPanelOpen(false)} aria-hidden />
-      )}
-
-      {/* ── Slide-up panel ── */}
+      {/* ── Overlay ── */}
       <div
-        ref={panelRef}
-        tabIndex={-1}
-        className={`${styles.panel} ${panelOpen ? styles.panelOpen : ''}`}
+        className={`${styles.overlay} ${open ? styles.overlayActive : ''}`}
+        onClick={() => setOpen(false)}
+        aria-hidden
+      />
+
+      {/* ── Left-side filter drawer ── */}
+      <aside
+        className={`${styles.panel} ${open ? styles.panelOpen : ''}`}
         role="dialog"
-        aria-modal="true"
-        aria-label="Filter the archive"
-        aria-hidden={!panelOpen}
+        aria-label="Filter archive"
+        aria-hidden={!open}
       >
-        <div className={styles.panelHead}>
-          <span className={styles.panelTitle}>Filter Pieces</span>
-          <button className={styles.panelClose} onClick={() => setPanelOpen(false)} aria-label="Close">✕</button>
-        </div>
+        <button className={styles.panelClose} onClick={() => setOpen(false)} aria-label="Close filters">✕</button>
+        <span className={styles.panelTitle}>Filter</span>
 
-        <div className={styles.groups}>
-          <FilterGroup title="Category"    options={CATEGORY_FILTERS} active={cat}   onSelect={setCat} />
-          <FilterGroup title="Stone Shape" options={SHAPE_FILTERS}    active={shape} onSelect={setShape} />
-          <FilterGroup title="Stone Color" options={COLOR_FILTERS}    active={color} onSelect={setColor} />
-        </div>
+        <nav className={styles.panelBody}>
+          <span className={styles.sectionLabel}>Collection</span>
+          {CATEGORY_FILTERS.map(opt => (
+            <button
+              key={opt.value}
+              className={`${styles.opt} ${cat === opt.value ? styles.optActive : ''}`}
+              data-filter={opt.value}
+              aria-pressed={cat === opt.value}
+              onClick={() => setCat(opt.value)}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </nav>
 
-        <div className={styles.panelFoot}>
-          <span className={styles.count}>
+        <div className={styles.panelFooter}>
+          <button className={styles.results} onClick={() => setOpen(false)}>
             {filteredCount === totalCount
-              ? `${totalCount} pieces`
-              : `${filteredCount} of ${totalCount} pieces`}
-          </span>
-          <div className={styles.footActions}>
-            {activeCount > 0 && (
-              <button className={styles.resetBtn} onClick={reset}>Clear all</button>
-            )}
-            <button className={styles.applyBtn} onClick={() => setPanelOpen(false)}>Apply</button>
-          </div>
+              ? `Show ${totalCount} Pieces`
+              : `Show ${filteredCount} Pieces`}
+          </button>
         </div>
-      </div>
+      </aside>
     </>
   )
 }
 
-// ── Sub-component ─────────────────────────────────────────────────────────────
-
-function FilterGroup({
-  title, options, active, onSelect,
-}: {
-  title:    string
-  options:  { value: string; label: string }[]
-  active:   string
-  onSelect: (v: string) => void
-}) {
-  return (
-    <div className={styles.group}>
-      <h3 className={styles.groupTitle}>{title}</h3>
-      <div className={styles.options}>
-        {options.map(opt => (
-          <button
-            key={opt.value}
-            className={`${styles.opt} ${active === opt.value ? styles.optActive : ''}`}
-            aria-pressed={active === opt.value}
-            onClick={() => onSelect(opt.value)}
-          >
-            {opt.label}
-          </button>
-        ))}
-      </div>
-    </div>
-  )
-}
-
-// ── Icon ──────────────────────────────────────────────────────────────────────
+// ── Icon (matches Astro's 3-line filter glyph) ────────────────────────────────
 
 function FilterIcon() {
   return (
-    <svg width="14" height="12" viewBox="0 0 14 12" fill="none" aria-hidden>
-      <path d="M1 2h12M3 6h8M5 10h4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden>
+      <path d="M1 1.5h12M3 5h8M5 8.5h4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
     </svg>
   )
 }

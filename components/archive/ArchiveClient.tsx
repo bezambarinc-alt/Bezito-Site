@@ -92,25 +92,16 @@ export default function ArchiveClient({ entries }: Props) {
     [entries, openId],
   )
 
-  const isFiltered = cat !== 'all' || shape !== 'all' || color !== 'all'
-
   return (
     <div className={styles.wrap}>
-      <div className={styles.controls}>
-        <ArchiveFilterPill
-          cat={cat}
-          shape={shape}
-          color={color}
-          filteredCount={filtered.length}
-          totalCount={entries.length}
-          onFilterChange={handleFilterChange}
-        />
-        {isFiltered && (
-          <span className={styles.activeLabel}>
-            {filtered.length} of {entries.length} pieces
-          </span>
-        )}
-      </div>
+      <ArchiveFilterPill
+        cat={cat}
+        shape={shape}
+        color={color}
+        filteredCount={filtered.length}
+        totalCount={entries.length}
+        onFilterChange={handleFilterChange}
+      />
 
       <ArchiveGrid entries={filtered} onOpen={openPiece} />
 
