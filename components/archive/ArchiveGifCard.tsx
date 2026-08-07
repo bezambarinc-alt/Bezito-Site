@@ -13,17 +13,17 @@
 
 import { useEffect, useRef, useState } from 'react'
 import type { ArchiveEntry } from '@/lib/data/archive-constants'
-import { useDrawers } from '@/components/layout/DrawerContext'
 import styles from './ArchiveGifCard.module.css'
 
 interface Props {
   entry: ArchiveEntry
+  /** Open the piece — sets ?id=<slug> in the URL (deep-link) via ArchiveClient */
+  onOpen: (slug: string) => void
 }
 
-export default function ArchiveGifCard({ entry }: Props) {
+export default function ArchiveGifCard({ entry, onOpen }: Props) {
   const cardRef = useRef<HTMLButtonElement>(null)
   const [inView, setInView] = useState(false)
-  const { openArchiveDrawer } = useDrawers()
 
   useEffect(() => {
     const el = cardRef.current
@@ -40,9 +40,7 @@ export default function ArchiveGifCard({ entry }: Props) {
     <button
       ref={cardRef}
       className={styles.card}
-      onClick={() =>
-        openArchiveDrawer({ title: entry.title, sku: entry.sku, mp4Url: entry.mp4Url })
-      }
+      onClick={() => onOpen(entry.slug)}
       aria-label={`View ${entry.title}`}
     >
       <div className={styles.mediaWrap} aria-hidden>

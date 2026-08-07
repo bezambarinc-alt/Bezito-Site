@@ -18,9 +18,11 @@ import styles from './ArchiveGrid.module.css'
 
 interface Props {
   entries: ArchiveEntry[]
+  /** Open a piece by slug — threads through to each card (sets ?id= via ArchiveClient) */
+  onOpen: (slug: string) => void
 }
 
-export default function ArchiveGrid({ entries }: Props) {
+export default function ArchiveGrid({ entries, onOpen }: Props) {
   const { containerRef, columns, ready } = useMasonryColumns(entries, {
     targetColumnWidth: 220,
     gutter: 12,
@@ -41,7 +43,7 @@ export default function ArchiveGrid({ entries }: Props) {
       {columns.map((col, ci) => (
         <div key={ci} className={styles.column}>
           {col.map((entry) => (
-            <ArchiveGifCard key={entry.slug} entry={entry} />
+            <ArchiveGifCard key={entry.slug} entry={entry} onOpen={onOpen} />
           ))}
         </div>
       ))}

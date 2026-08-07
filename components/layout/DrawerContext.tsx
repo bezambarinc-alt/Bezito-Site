@@ -18,31 +18,19 @@ export interface InquiryPrefill {
   fromConcierge?: boolean
 }
 
-// ── Archive drawer ────────────────────────────────────────────────────────────
-
-export interface ArchivePrefill {
-  title: string
-  sku: string
-  mp4Url: string
-}
-
 // ── Context shape ─────────────────────────────────────────────────────────────
 
-type ActivePanel = 'inquiry' | 'concierge' | 'search' | 'menu' | 'archive' | null
+type ActivePanel = 'inquiry' | 'concierge' | 'search' | 'menu' | null
 
 interface DrawerContextValue {
   active: ActivePanel
   inquiryPrefill: InquiryPrefill
-  archivePrefill: ArchivePrefill
   openInquiryDrawer:  (prefill?: InquiryPrefill) => void
-  openArchiveDrawer:  (entry: ArchivePrefill) => void
   openConcierge: () => void
   openSearch:    () => void
   openMenu:      () => void
   close:         () => void
 }
-
-const EMPTY_ARCHIVE: ArchivePrefill = { title: '', sku: '', mp4Url: '' }
 
 const DrawerContext = createContext<DrawerContextValue | null>(null)
 
@@ -51,16 +39,10 @@ const DrawerContext = createContext<DrawerContextValue | null>(null)
 export function DrawerProvider({ children }: { children: React.ReactNode }) {
   const [active, setActive]               = useState<ActivePanel>(null)
   const [inquiryPrefill, setInquiryPrefill] = useState<InquiryPrefill>({})
-  const [archivePrefill, setArchivePrefill] = useState<ArchivePrefill>(EMPTY_ARCHIVE)
 
   const openInquiryDrawer = useCallback((prefill: InquiryPrefill = {}) => {
     setInquiryPrefill(prefill)
     setActive('inquiry')
-  }, [])
-
-  const openArchiveDrawer = useCallback((entry: ArchivePrefill) => {
-    setArchivePrefill(entry)
-    setActive('archive')
   }, [])
 
   const openConcierge = useCallback(() => setActive('concierge'), [])
@@ -72,15 +54,13 @@ export function DrawerProvider({ children }: { children: React.ReactNode }) {
     () => ({
       active,
       inquiryPrefill,
-      archivePrefill,
       openInquiryDrawer,
-      openArchiveDrawer,
       openConcierge,
       openSearch,
       openMenu,
       close,
     }),
-    [active, inquiryPrefill, archivePrefill, openInquiryDrawer, openArchiveDrawer, openConcierge, openSearch, openMenu, close],
+    [active, inquiryPrefill, openInquiryDrawer, openConcierge, openSearch, openMenu, close],
   )
 
   return <DrawerContext.Provider value={value}>{children}</DrawerContext.Provider>
