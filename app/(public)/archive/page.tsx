@@ -1,12 +1,21 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import { getArchiveEntries } from '@/lib/data/archive'
+import type { ArchiveEntry } from '@/lib/data/archive-constants'
 import ArchiveClient from '@/components/archive/ArchiveClient'
 import { ArchiveGridSkeleton } from '@/components/archive/ArchiveGrid'
 import styles from './page.module.css'
 
-// Re-run on every request so filter URL params are honoured on direct-link.
-export const dynamic = 'force-dynamic'
+/**
+ * ISR — archive data changes rarely. Revalidate every hour.
+ * On first request after seeding: fresh Neon query.
+ * Subsequent requests within the hour: cached RSC payload.
+ *
+ * Graceful fallback: if the archive table hasn't been seeded yet
+ * (first deploy before hitting /api/admin/seed-archive), the page
+ * renders an empty-state instead of a 500.
+ */
+export const revalidate = 3600
 
 export const metadata: Metadata = {
   title: 'The Archive — Every Piece in Motion | Bez Ambar',
@@ -18,10 +27,14 @@ export const metadata: Metadata = {
   },
 }
 
-export default function ArchivePage() {
-  // Read + enrich static JSON server-side (tag parsing, normalisation).
-  // Module-level cache means this is effectively free after the first request.
-  const entries = getArchiveEntries()
+export default async function ArchivePage() {
+  // Graceful fallback if archive table not yet seeded
+  let entries: ArchiveEntry[] = []
+  try {
+    entries = await getArchiveEntries()
+  } catch {
+    // Table not yet created/seeded — hit /api/admin/seed-archive once to populate
+  }
 
   return (
     <>
@@ -35,11 +48,18 @@ export default function ArchivePage() {
         </p>
       </section>
 
-      {/* ── Filter + grid — client shell, streams in via Suspense ── */}
+      {/* ── Filter + grid ── */}
       <main className={styles.main}>
-        <Suspense fallback={<ArchiveGridSkeleton />}>
-          <ArchiveClient entries={entries} />
-        </Suspense>
+        {entries.length === 0 ? (
+          <p className={styles.unseeded}>
+            The archive is being catalogued.{' '}
+            <a href="/api/admin/seed-archive">Seed the archive →</a>
+          </p>
+        ) : (
+          <Suspense fallback={<ArchiveGridSkeleton />}>
+            <ArchiveClient entries={entries} />
+          </Suspense>
+        )}
       </main>
     </>
   )

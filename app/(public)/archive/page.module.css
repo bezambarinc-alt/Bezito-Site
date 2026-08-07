@@ -42,6 +42,21 @@
   margin: 0 auto;
 }
 
+/* ── Unseeded state — shown before /api/admin/seed-archive is called ── */
+
+.unseeded {
+  font-family: var(--ba-font-editorial);
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.4);
+  padding: 4rem 0;
+  text-align: center;
+}
+.unseeded a {
+  color: var(--ba-gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* ── Main grid area — dark background ── */
 
 .main {

@@ -1,87 +1,52 @@
 /**
- * archive.ts — SERVER-ONLY data loader for the archive feature.
- * Reads public/archive-data.json at request time, enriches with parsed tags.
+ * archive.ts — SERVER-ONLY data layer for the archive feature.
+ * Queries the Neon `archive` table (populated by /api/admin/seed-archive).
  *
  * ⚠️  Import ONLY in Server Components or Route Handlers.
- *     Client-safe types/constants live in archive-constants.ts.
+ *     Client-safe types + constants live in archive-constants.ts.
  */
-import { readFileSync } from 'fs'
-import { join } from 'path'
-import type { ArchiveEntry } from './archive-constants'
+import { sql } from '@/lib/db'
 
-// Re-export everything from constants so server components can use one import.
+// Re-export everything from constants so server code needs only one import.
 export type { ArchiveEntry, CardSize } from './archive-constants'
-export { CARD_SIZE_CYCLE, CATEGORY_FILTERS, SHAPE_FILTERS } from './archive-constants'
+export { CARD_SIZE_CYCLE, CATEGORY_FILTERS, SHAPE_FILTERS, COLOR_FILTERS } from './archive-constants'
 
-// ── Raw JSON schema ───────────────────────────────────────────────────────────
+// ── Internal row shape from Neon ──────────────────────────────────────────────
 
-interface RawEntry {
-  title: string
-  sku: string
+interface ArchiveRow {
+  slug:     string
+  title:    string
+  sku:      string
   category: string
-  htmlCategory: string
-  desc: string
-  specs: string
-  mp4Url: string
-  vimeoId: string
-  gifUrl: string
+  gif_url:  string
+  mp4_url:  string
+  shapes:   string[]
+  colors:   string[]
 }
 
-// ── Tag parsing ───────────────────────────────────────────────────────────────
+// ── Public query ──────────────────────────────────────────────────────────────
 
-const SHAPE_PATTERNS: Array<[string, RegExp]> = [
-  ['oval',         /\boval\b/i],
-  ['pear',         /\bpear\b/i],
-  ['round',        /\bround\b/i],
-  ['framed',       /\bframed\b/i],
-  ['princess',     /\bprincess\b|\bquadrillion\b/i],
-  ['emerald-cut',  /\bemerald[\s-]cut\b/i],
-  ['baguette',     /\bbaguette\b/i],
-  ['asscher',      /\basscher\b/i],
-  ['cushion',      /\bcushion\b/i],
-  ['elysian',      /\belysian\b/i],
-]
-
-function parseShapes(entry: RawEntry): string[] {
-  const text = `${entry.category} ${entry.specs} ${entry.title}`
-  return SHAPE_PATTERNS
-    .filter(([, re]) => re.test(text))
-    .map(([name]) => name)
-}
-
-function normalizeCategory(raw: string): string {
-  const lc = (raw || '').toLowerCase().trim()
-  if (lc.startsWith('ring'))     return 'rings'
-  if (lc.startsWith('band'))     return 'bands'
-  if (lc.startsWith('bracelet')) return 'bracelets'
-  if (lc.startsWith('necklace')) return 'necklaces'
-  if (lc.startsWith('earring'))  return 'earrings'
-  if (lc === 'mens' || lc.startsWith('men')) return 'mens'
-  return 'all'
-}
-
-// ── Module-level cache (static file, never changes at runtime) ────────────────
-
-let _cache: ArchiveEntry[] | null = null
-
-export function getArchiveEntries(): ArchiveEntry[] {
-  if (_cache) return _cache
-
-  const raw: Record<string, RawEntry> = JSON.parse(
-    readFileSync(join(process.cwd(), 'public/archive-data.json'), 'utf8'),
+/**
+ * Fetch all archive entries from Neon, ordered by display_order then slug.
+ * Throws if the table doesn't exist yet — callers should catch and show an
+ * empty-state rather than a 500. See archive/page.tsx for the graceful fallback.
+ */
+export async function getArchiveEntries() {
+  const rows = await sql<ArchiveRow>(
+    `SELECT slug, title, sku, category, gif_url, mp4_url, shapes, colors
+       FROM archive
+      WHERE gif_url != ''
+      ORDER BY display_order ASC, slug ASC`,
   )
 
-  _cache = Object.entries(raw)
-    .filter(([, v]) => Boolean(v.gifUrl))
-    .map(([slug, v]) => ({
-      slug,
-      title:    v.title  || '',
-      sku:      v.sku    || '',
-      gifUrl:   v.gifUrl,
-      mp4Url:   v.mp4Url || '',
-      category: normalizeCategory(v.htmlCategory || v.category),
-      shapes:   parseShapes(v),
-    }))
-
-  return _cache
+  return rows.map(row => ({
+    slug:     row.slug,
+    title:    row.title,
+    sku:      row.sku,
+    gifUrl:   row.gif_url,
+    mp4Url:   row.mp4_url,
+    category: row.category,
+    shapes:   Array.isArray(row.shapes) ? row.shapes : [],
+    colors:   Array.isArray(row.colors) ? row.colors : [],
+  }))
 }

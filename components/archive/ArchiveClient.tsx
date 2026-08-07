@@ -3,11 +3,11 @@
 /**
  * ArchiveClient — client-side shell for the archive page.
  *
- * Receives ALL entries from the server component (static JSON, parsed once).
+ * Receives ALL entries from the server component (Neon query, done once at render).
  * Owns filter state in memory → instant filtering, no server round-trip.
  * Updates URL via history.replaceState so filters are shareable/bookmarkable.
  *
- * Wrapped in <Suspense> by the server page because it uses useSearchParams.
+ * Three filter dimensions: category · shape · color
  */
 
 import { useCallback, useMemo, useState } from 'react'
@@ -24,30 +24,39 @@ interface Props {
 export default function ArchiveClient({ entries }: Props) {
   const searchParams = useSearchParams()
 
-  // Initialise from URL params (supports direct-link / back-button)
-  const [cat,   setCatState]   = useState(() => searchParams?.get('cat')   ?? 'all')
-  const [shape, setShapeState] = useState(() => searchParams?.get('shape') ?? 'all')
+  // Initialise from URL params (supports direct-link + back-button)
+  const [cat,   setCat]   = useState(() => searchParams?.get('cat')   ?? 'all')
+  const [shape, setShape] = useState(() => searchParams?.get('shape') ?? 'all')
+  const [color, setColor] = useState(() => searchParams?.get('color') ?? 'all')
 
-  /** Update both state + URL (no server round-trip, pushes to browser history). */
-  const handleFilterChange = useCallback((nextCat: string, nextShape: string) => {
-    setCatState(nextCat)
-    setShapeState(nextShape)
+  /** Update filter state AND push to URL — no server round-trip. */
+  const handleFilterChange = useCallback(
+    (nextCat: string, nextShape: string, nextColor: string) => {
+      setCat(nextCat)
+      setShape(nextShape)
+      setColor(nextColor)
 
-    const sp = new URLSearchParams()
-    if (nextCat   !== 'all') sp.set('cat',   nextCat)
-    if (nextShape !== 'all') sp.set('shape', nextShape)
+      const sp = new URLSearchParams()
+      if (nextCat   !== 'all') sp.set('cat',   nextCat)
+      if (nextShape !== 'all') sp.set('shape', nextShape)
+      if (nextColor !== 'all') sp.set('color', nextColor)
 
-    const qs = sp.size > 0 ? `?${sp.toString()}` : window.location.pathname
-    window.history.replaceState(null, '', qs)
-  }, [])
+      const qs = sp.size > 0 ? `?${sp.toString()}` : window.location.pathname
+      window.history.replaceState(null, '', qs)
+    },
+    [],
+  )
 
   const filtered = useMemo(() => {
     return entries.filter(e => {
       const catOk   = cat   === 'all' || e.category === cat
       const shapeOk = shape === 'all' || e.shapes.includes(shape)
-      return catOk && shapeOk
+      const colorOk = color === 'all' || e.colors.includes(color)
+      return catOk && shapeOk && colorOk
     })
-  }, [entries, cat, shape])
+  }, [entries, cat, shape, color])
+
+  const isFiltered = cat !== 'all' || shape !== 'all' || color !== 'all'
 
   return (
     <div className={styles.wrap}>
@@ -55,11 +64,12 @@ export default function ArchiveClient({ entries }: Props) {
         <ArchiveFilterPill
           cat={cat}
           shape={shape}
+          color={color}
           filteredCount={filtered.length}
           totalCount={entries.length}
           onFilterChange={handleFilterChange}
         />
-        {(cat !== 'all' || shape !== 'all') && (
+        {isFiltered && (
           <span className={styles.activeLabel}>
             {filtered.length} of {entries.length} pieces
           </span>

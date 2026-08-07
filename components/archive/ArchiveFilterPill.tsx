@@ -3,36 +3,33 @@
 /**
  * ArchiveFilterPill — floating filter control for the archive page.
  *
- * Behaviour (matches Astro archiveFilterPill):
- *  1. A "Filter" pill is rendered inline (in-flow) above the grid.
- *  2. An IntersectionObserver watches that inline pill. Once it scrolls
- *     out of view the same pill re-appears as a FIXED overlay at the bottom
- *     of the screen so the user can always reach the filter.
- *  3. Clicking either pill opens a slide-up panel overlay with filter groups.
- *  4. Filter state lives in the URL (history.replaceState — no server round trip).
+ * Three filter dimensions driven by data stored in Neon text[] columns:
+ *   Category  — rings | bands | bracelets | necklaces | earrings | mens
+ *   Stone Shape — round | radiant | framed | oval | pear | cushion | princess | …
+ *   Stone Color — emerald | sapphire | fancy-yellow | ruby | fancy-pink | tourmaline
  *
- * Filter groups:
- *  - Category  (htmlCategory): rings | bands | bracelets | necklaces | earrings | mens
- *  - Stone Shape (parsed tags): round | oval | pear | framed | princess | …
+ * Behaviour (matches Astro archiveFilterPill):
+ *  1. Inline "Filter" pill anchored in the page.
+ *  2. Goes fixed (bottom-center) when anchor scrolls out of view.
+ *  3. Clicking opens a slide-up panel overlay with all filter groups.
  */
 
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { CATEGORY_FILTERS, SHAPE_FILTERS } from '@/lib/data/archive-constants'
+import { CATEGORY_FILTERS, SHAPE_FILTERS, COLOR_FILTERS } from '@/lib/data/archive-constants'
 import styles from './ArchiveFilterPill.module.css'
 
 interface Props {
-  cat:           string
-  shape:         string
-  filteredCount: number
-  totalCount:    number
-  onFilterChange: (cat: string, shape: string) => void
+  cat:            string
+  shape:          string
+  color:          string
+  filteredCount:  number
+  totalCount:     number
+  onFilterChange: (cat: string, shape: string, color: string) => void
 }
 
 export default function ArchiveFilterPill({
-  cat,
-  shape,
-  filteredCount,
-  totalCount,
+  cat, shape, color,
+  filteredCount, totalCount,
   onFilterChange,
 }: Props) {
   const [panelOpen, setPanelOpen] = useState(false)
@@ -51,7 +48,7 @@ export default function ArchiveFilterPill({
     return () => io.disconnect()
   }, [])
 
-  // Close panel on ESC
+  // Close on ESC
   useEffect(() => {
     if (!panelOpen) return
     const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') setPanelOpen(false) }
@@ -59,51 +56,56 @@ export default function ArchiveFilterPill({
     return () => window.removeEventListener('keydown', handler)
   }, [panelOpen])
 
-  const activeCount = (cat !== 'all' ? 1 : 0) + (shape !== 'all' ? 1 : 0)
+  const activeCount =
+    (cat   !== 'all' ? 1 : 0) +
+    (shape !== 'all' ? 1 : 0) +
+    (color !== 'all' ? 1 : 0)
 
-  const setCat   = useCallback((v: string) => onFilterChange(v, shape), [shape, onFilterChange])
-  const setShape = useCallback((v: string) => onFilterChange(cat, v),   [cat,   onFilterChange])
-  const reset    = useCallback(() => onFilterChange('all', 'all'),       [onFilterChange])
+  // Per-dimension setters preserve the other two dimensions
+  const setCat   = useCallback((v: string) => onFilterChange(v, shape, color), [shape, color, onFilterChange])
+  const setShape = useCallback((v: string) => onFilterChange(cat, v, color),   [cat, color, onFilterChange])
+  const setColor = useCallback((v: string) => onFilterChange(cat, shape, v),   [cat, shape, onFilterChange])
+  const reset    = useCallback(() => onFilterChange('all', 'all', 'all'),       [onFilterChange])
+
+  const pillContent = (
+    <>
+      <FilterIcon />
+      <span>Filter</span>
+      {activeCount > 0 && <span className={styles.badge}>{activeCount}</span>}
+    </>
+  )
 
   return (
     <>
-      {/* ── Inline anchor pill (becomes fixed when scrolled out of view) ── */}
+      {/* ── Inline anchor pill ── */}
       <button
         ref={anchorRef}
         className={styles.pill}
         onClick={() => setPanelOpen(true)}
         aria-haspopup="dialog"
-        aria-label={`Filter pieces${activeCount > 0 ? ` (${activeCount} active)` : ''}`}
+        aria-label={`Filter pieces${activeCount > 0 ? ` — ${activeCount} active` : ''}`}
       >
-        <FilterIcon />
-        <span>Filter</span>
-        {activeCount > 0 && <span className={styles.badge}>{activeCount}</span>}
+        {pillContent}
       </button>
 
-      {/* ── Floating pill (fixed, appears when anchor scrolls out of view) ── */}
+      {/* ── Fixed floating pill (appears when anchor scrolls out of view) ── */}
       {floating && (
         <button
           className={`${styles.pill} ${styles.pillFixed}`}
           onClick={() => setPanelOpen(true)}
           aria-haspopup="dialog"
-          aria-label={`Filter pieces${activeCount > 0 ? ` (${activeCount} active)` : ''}`}
+          aria-label={`Filter pieces${activeCount > 0 ? ` — ${activeCount} active` : ''}`}
         >
-          <FilterIcon />
-          <span>Filter</span>
-          {activeCount > 0 && <span className={styles.badge}>{activeCount}</span>}
+          {pillContent}
         </button>
       )}
 
       {/* ── Backdrop ── */}
       {panelOpen && (
-        <div
-          className={styles.backdrop}
-          onClick={() => setPanelOpen(false)}
-          aria-hidden
-        />
+        <div className={styles.backdrop} onClick={() => setPanelOpen(false)} aria-hidden />
       )}
 
-      {/* ── Slide-up filter panel ── */}
+      {/* ── Slide-up panel ── */}
       <div
         className={`${styles.panel} ${panelOpen ? styles.panelOpen : ''}`}
         role="dialog"
@@ -111,40 +113,17 @@ export default function ArchiveFilterPill({
         aria-label="Filter the archive"
         aria-hidden={!panelOpen}
       >
-        {/* Panel header */}
         <div className={styles.panelHead}>
           <span className={styles.panelTitle}>Filter Pieces</span>
-          <button
-            className={styles.panelClose}
-            onClick={() => setPanelOpen(false)}
-            aria-label="Close filters"
-          >
-            ✕
-          </button>
+          <button className={styles.panelClose} onClick={() => setPanelOpen(false)} aria-label="Close">✕</button>
         </div>
 
-        {/* Filter groups */}
         <div className={styles.groups}>
-
-          {/* Category */}
-          <FilterGroup
-            title="Category"
-            options={CATEGORY_FILTERS}
-            active={cat}
-            onSelect={setCat}
-          />
-
-          {/* Stone Shape */}
-          <FilterGroup
-            title="Stone Shape"
-            options={SHAPE_FILTERS}
-            active={shape}
-            onSelect={setShape}
-          />
-
+          <FilterGroup title="Category"    options={CATEGORY_FILTERS} active={cat}   onSelect={setCat} />
+          <FilterGroup title="Stone Shape" options={SHAPE_FILTERS}    active={shape} onSelect={setShape} />
+          <FilterGroup title="Stone Color" options={COLOR_FILTERS}    active={color} onSelect={setColor} />
         </div>
 
-        {/* Panel footer — result count + clear + apply */}
         <div className={styles.panelFoot}>
           <span className={styles.count}>
             {filteredCount === totalCount
@@ -153,16 +132,9 @@ export default function ArchiveFilterPill({
           </span>
           <div className={styles.footActions}>
             {activeCount > 0 && (
-              <button className={styles.resetBtn} onClick={reset}>
-                Clear all
-              </button>
+              <button className={styles.resetBtn} onClick={reset}>Clear all</button>
             )}
-            <button
-              className={styles.applyBtn}
-              onClick={() => setPanelOpen(false)}
-            >
-              Apply
-            </button>
+            <button className={styles.applyBtn} onClick={() => setPanelOpen(false)}>Apply</button>
           </div>
         </div>
       </div>
@@ -170,17 +142,14 @@ export default function ArchiveFilterPill({
   )
 }
 
-// ── Sub-component: one labelled group of option pills ────────────────────────
+// ── Sub-component ─────────────────────────────────────────────────────────────
 
 function FilterGroup({
-  title,
-  options,
-  active,
-  onSelect,
+  title, options, active, onSelect,
 }: {
-  title: string
-  options: { value: string; label: string }[]
-  active: string
+  title:    string
+  options:  { value: string; label: string }[]
+  active:   string
   onSelect: (v: string) => void
 }) {
   return (
@@ -202,7 +171,7 @@ function FilterGroup({
   )
 }
 
-// ── Icon ─────────────────────────────────────────────────────────────────────
+// ── Icon ──────────────────────────────────────────────────────────────────────
 
 function FilterIcon() {
   return (
