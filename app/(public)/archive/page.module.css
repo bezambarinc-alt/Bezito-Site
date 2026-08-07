@@ -1,53 +1,58 @@
 /* ============================================================
-   Archive page — dark throughout (ink bg on hero, black on grid).
+   Archive page — WHITE throughout (matches Astro .vg-hero + .vg-grid).
+   Astro: .vg-grid { background: var(--white) }, hero title color: var(--ink).
    ============================================================ */
 
-/* ── Hero ── */
+/* ── Hero (Astro .vg-hero) — white bg, ink text, centered ── */
 
 .hero {
-  background: var(--ba-ink);
+  background: var(--ba-white);
   padding: calc(var(--ba-header-h) + clamp(3rem, 6vw, 5rem))
            clamp(1.25rem, 5vw, 4rem)
-           clamp(2.5rem, 5vw, 4rem);
+           clamp(2.5rem, 5vw, 3.5rem);
   text-align: center;
-  color: #fff;
+  max-width: 680px;                 /* Astro .vg-hero max-width: 680px */
+  margin: 0 auto;
 }
 
+/* Astro .vg-hero__eyebrow — accent (gold) */
 .eyebrow {
   font-family: var(--ba-font-sans);
   font-size: 0.9375rem;
-  font-weight: 600;
+  font-weight: 500;
   text-transform: uppercase;
   color: var(--ba-gold);
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   display: block;
 }
 
+/* Astro .vg-hero__title — ink, weight 300 */
 .title {
   font-family: var(--ba-font-sans);
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 200;
+  font-size: clamp(2.25rem, 6vw, 3.75rem);
+  font-weight: 300;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--ba-ink);
   margin: 0 0 1.25rem;
-  line-height: 1.05;
+  line-height: 1.1;
 }
 
+/* Astro .vg-hero__lede — ink, serif prose */
 .lede {
   font-family: var(--ba-font-editorial);
-  font-size: clamp(1rem, 1.5vw, 1.1rem);
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  line-height: 1.65;
+  color: var(--ba-ink-soft);
   max-width: 52ch;
   margin: 0 auto;
 }
 
-/* ── Unseeded state — shown before /api/admin/seed-archive is called ── */
+/* ── Unseeded state ── */
 
 .unseeded {
   font-family: var(--ba-font-editorial);
   font-style: italic;
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--ba-ink-muted);
   padding: 4rem 0;
   text-align: center;
 }
@@ -57,10 +62,10 @@
   text-underline-offset: 3px;
 }
 
-/* ── Main grid area — dark background ── */
+/* ── Main grid area (Astro .vg-grid) — WHITE bg ── */
 
 .main {
-  background: var(--ba-black);
+  background: var(--ba-white);
   min-height: 60vh;
-  padding: 0 clamp(0.75rem, 2vw, 1.5rem) clamp(4rem, 8vw, 7rem);
+  padding: clamp(1.5rem, 3vw, 2rem) clamp(1.25rem, 5vw, 4rem) clamp(4rem, 8vw, 7rem);
 }
