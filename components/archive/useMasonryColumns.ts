@@ -1,26 +1,41 @@
 'use client'
 
 /**
- * useMasonryColumns — minimal, dependency-free masonry column distributor.
+ * useMasonryColumns — dependency-free masonry column distributor.
  *
- * Distributes items into N flex columns for a masonry grid.
+ * Matches the Astro archive look: cards cycle through sm/md/lg heights
+ * (12-step pattern) and are packed shortest-column-first so the varied
+ * heights stay balanced (round-robin only works for uniform heights).
  *
  * Design:
  *  - Measures the grid container via ResizeObserver (never the browser window),
  *    so it works identically on server and client — no hydration mismatch.
- *  - Cards are a fixed 3:4 aspect ratio, so heights are uniform. With uniform
- *    heights, round-robin placement is already column-balanced AND gives correct
- *    left-to-right reading order — no per-image measurement needed.
+ *  - Each item gets a height bucket (sm/md/lg) from the 12-step cycle, then is
+ *    placed into whichever column is currently shortest → true masonry stagger.
  *  - Zero dependencies.
  *
- * Renders `ready:false` until the container is measured client-side, so the
- * grid fades in cleanly rather than reflowing.
+ * Returns `ready:false` until the container is measured client-side.
  */
 
 import { useEffect, useRef, useState, useCallback } from 'react'
 
+export type CardSize = 'sm' | 'md' | 'lg'
+
+/** Astro HEIGHTS 12-step cycle → relative weights for shortest-column packing. */
+const SIZE_CYCLE: CardSize[] = [
+  'md', 'lg', 'sm', 'md', 'sm', 'lg',
+  'md', 'sm', 'lg', 'md', 'lg', 'sm',
+]
+
+/** Relative height weights (Astro: sm 160 / md 240 / lg 340). */
+const SIZE_WEIGHT: Record<CardSize, number> = { sm: 160, md: 240, lg: 340 }
+
+export interface PlacedItem<T> {
+  item: T
+  size: CardSize
+}
+
 interface Options {
-  /** Target column width in px. Column count = floor(containerWidth / (target+gutter)). */
   targetColumnWidth?: number
   gutter?: number
   minColumns?: number
@@ -29,7 +44,7 @@ interface Options {
 
 interface Result<T> {
   containerRef: React.RefObject<HTMLDivElement | null>
-  columns: T[][]
+  columns: PlacedItem<T>[][]
   columnCount: number
   ready: boolean
 }
@@ -65,11 +80,21 @@ export function useMasonryColumns<T>(
     return () => ro.disconnect()
   }, [measure])
 
-  // Distribute items. Uniform card height → round-robin is balanced + reading-order correct.
   const count = columnCount || minColumns
-  const columns: T[][] = Array.from({ length: count }, () => [])
+
+  // Shortest-column packing with sm/md/lg height buckets → masonry stagger.
+  const columns: PlacedItem<T>[][] = Array.from({ length: count }, () => [])
+  const heights: number[] = Array.from({ length: count }, () => 0)
+
   items.forEach((item, i) => {
-    columns[i % count].push(item)
+    const size = SIZE_CYCLE[i % SIZE_CYCLE.length]
+    // find shortest column (ties → leftmost, preserves reading order)
+    let target = 0
+    for (let c = 1; c < count; c++) {
+      if (heights[c] < heights[target]) target = c
+    }
+    columns[target].push({ item, size })
+    heights[target] += SIZE_WEIGHT[size] + gutter
   })
 
   return {

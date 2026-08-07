@@ -1,16 +1,15 @@
 /* ============================================================
    ArchiveGifCard — one GIF tile in the masonry grid.
 
-   Uniform portrait 3:4 frame. Fixed aspect-ratio keeps the grid
-   calm and even, and lets the column distributor stay balanced
-   without measuring each image.
+   Staggered sm/md/lg heights (Astro .video-card--sm/md/lg:
+   160/240/340px) drive the masonry look. The grid hook packs
+   cards shortest-column-first so the varied heights stay balanced.
    ============================================================ */
 
 .card {
   display: block;
   position: relative;
   width: 100%;
-  aspect-ratio: 3 / 4;
   overflow: hidden;
   background: var(--ba-cream);   /* light tile bg — page is white */
   cursor: pointer;
@@ -18,6 +17,11 @@
   transition: opacity 0.2s;
 }
 .card:focus-visible { outline: 2px solid var(--ba-gold); outline-offset: 2px; }
+
+/* Height buckets — match Astro .video-card--sm/md/lg exactly */
+.sm { height: 160px; }
+.md { height: 240px; }
+.lg { height: 340px; }
 
 /* ── Media container — fills card absolutely ── */
 

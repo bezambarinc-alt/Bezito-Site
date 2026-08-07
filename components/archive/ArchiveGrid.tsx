@@ -42,8 +42,8 @@ export default function ArchiveGrid({ entries, onOpen }: Props) {
     <div ref={containerRef} className={styles.masonry} data-ready={ready}>
       {columns.map((col, ci) => (
         <div key={ci} className={styles.column}>
-          {col.map((entry) => (
-            <ArchiveGifCard key={entry.slug} entry={entry} onOpen={onOpen} />
+          {col.map(({ item, size }) => (
+            <ArchiveGifCard key={item.slug} entry={item} size={size} onOpen={onOpen} />
           ))}
         </div>
       ))}
