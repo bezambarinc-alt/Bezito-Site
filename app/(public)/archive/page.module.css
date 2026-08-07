@@ -1,11 +1,19 @@
-/* ── Dark hero ── */
+/* ============================================================
+   Archive page — dark throughout (ink bg on hero, black on grid).
+   ============================================================ */
+
+/* ── Hero ── */
+
 .hero {
   background: var(--ba-ink);
-  padding: calc(64px + clamp(4rem, 7vw, 6rem)) clamp(1.25rem, 5vw, 4rem) clamp(3rem, 5vw, 4rem);
+  padding: calc(var(--ba-header-h) + clamp(3rem, 6vw, 5rem))
+           clamp(1.25rem, 5vw, 4rem)
+           clamp(2.5rem, 5vw, 4rem);
   text-align: center;
   color: #fff;
 }
-.heroEyebrow {
+
+.eyebrow {
   font-family: var(--ba-font-sans);
   font-size: 0.9375rem;
   font-weight: 600;
@@ -14,33 +22,30 @@
   margin-bottom: 1rem;
   display: block;
 }
-.heroTitle {
+
+.title {
   font-family: var(--ba-font-sans);
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 200;
   text-transform: uppercase;
   color: #fff;
   margin: 0 0 1.25rem;
+  line-height: 1.05;
 }
-.heroLede {
+
+.lede {
   font-family: var(--ba-font-editorial);
-  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
   line-height: 1.7;
-  color: rgba(255,255,255,0.65);
+  color: rgba(255, 255, 255, 0.6);
   max-width: 52ch;
   margin: 0 auto;
 }
 
-.layout {
-  max-width: var(--ba-maxw);
-  margin-inline: auto;
-  padding: 0 var(--ba-gutter) clamp(4rem, 9vw, 8rem);
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: clamp(1.5rem, 4vw, 3.5rem);
-}
-.gridCol { min-width: 0; }
+/* ── Main grid area — dark background ── */
 
-@media (max-width: 860px) {
-  .layout { grid-template-columns: 1fr; }
+.main {
+  background: var(--ba-black);
+  min-height: 60vh;
+  padding: 0 clamp(0.75rem, 2vw, 1.5rem) clamp(4rem, 8vw, 7rem);
 }

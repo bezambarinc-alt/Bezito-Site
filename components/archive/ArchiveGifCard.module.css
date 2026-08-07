@@ -1,0 +1,103 @@
+/* ============================================================
+   ArchiveGifCard — one GIF tile in the masonry grid.
+
+   Card aspect-ratio controls height (not the img), so masonry
+   never shifts when the GIF lazy-loads in or out.
+
+   Size cycle (matches Astro 12-step pattern):
+     sm → aspect-ratio 1/1  (square   — short card)
+     md → aspect-ratio 3/4  (portrait — medium card)
+     lg → aspect-ratio 2/3  (portrait — tall card)
+   ============================================================ */
+
+.card {
+  display: block;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  break-inside: avoid;
+  margin-bottom: 10px;
+  background: var(--ba-dark);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.2s;
+}
+.card:focus-visible { outline: 2px solid var(--ba-gold); outline-offset: 2px; }
+
+/* ── Size variants ── */
+.sm { aspect-ratio: 1 / 1; }
+.md { aspect-ratio: 3 / 4; }
+.lg { aspect-ratio: 2 / 3; }
+
+/* ── Media container — fills card absolutely ── */
+
+.mediaWrap {
+  position: absolute;
+  inset: 0;
+}
+
+.gif {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.65s var(--ba-ease-lux);
+}
+.card:hover .gif { transform: scale(1.04); }
+
+/* Shimmer placeholder — shown while out of viewport */
+.placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(100deg, #141414 30%, #1c1c1c 50%, #141414 70%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+
+/* ── Play icon — centre, appears on hover ── */
+
+.playIcon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.9);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+  pointer-events: none;
+}
+.card:hover .playIcon { opacity: 1; }
+
+/* ── Caption — bottom gradient, appears on hover ── */
+
+.caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem 0.875rem 0.75rem;
+  font-family: var(--ba-font-serif);
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--ba-white);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.78), transparent);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  text-align: left;
+  z-index: 2;
+  pointer-events: none;
+}
+.card:hover .caption { opacity: 1; }
+
+/* ── Touch devices — always show caption ── */
+@media (hover: none) {
+  .caption { opacity: 1; }
+  .playIcon { opacity: 0.7; }
+}

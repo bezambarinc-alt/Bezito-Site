@@ -1,54 +1,52 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { getAllProducts } from '@/lib/queries'
-import type { Product } from '@/types/products'
+/**
+ * ArchiveGrid — CSS columns masonry grid of GIF cards.
+ *
+ * Receives pre-filtered entries from ArchiveClient.
+ * Pure rendering — no filter logic lives here.
+ *
+ * Layout: CSS `columns` (matches Astro, zero JS overhead, SSR-safe).
+ * Cards cycle through sm/md/lg aspect-ratios (12-step Astro pattern).
+ */
+
+import ArchiveGifCard from './ArchiveGifCard'
+import type { ArchiveEntry, CardSize } from '@/lib/data/archive-constants'
+import { CARD_SIZE_CYCLE } from '@/lib/data/archive-constants'
 import styles from './ArchiveGrid.module.css'
 
-/**
- * Async server component — streams inside a <Suspense> boundary so the archive
- * shell + filters render immediately while the ~500-piece grid loads.
- */
-export default async function ArchiveGrid() {
-  let products: Product[] = []
-  try {
-    products = await getAllProducts()
-  } catch {
-    products = []
-  }
+interface Props {
+  entries: ArchiveEntry[]
+}
 
-  if (products.length === 0) {
-    return <p className={styles.empty}>The archive is being catalogued. Please check back shortly.</p>
+export default function ArchiveGrid({ entries }: Props) {
+  if (entries.length === 0) {
+    return (
+      <p className={styles.empty}>
+        No pieces found for this filter. Try a different combination.
+      </p>
+    )
   }
 
   return (
     <div className={styles.masonry}>
-      {products.map((p) => {
-        const media = p.media[0]
-        const category = (p.specs.category ?? 'jewelry').toLowerCase()
-        return (
-          <Link key={p.sku} href={`/jewelry/${category}/${p.sku}`} className={styles.tile}>
-            {media?.type === 'video' ? (
-              <video muted loop playsInline preload="none" poster={media.poster} className={styles.media}>
-                <source src={media.url} type="video/mp4" />
-              </video>
-            ) : media?.url ? (
-              <Image src={media.url} alt={p.name} width={400} height={520} sizes="(max-width:720px) 50vw, 25vw" className={styles.media} />
-            ) : (
-              <div className={styles.placeholder} aria-hidden />
-            )}
-            <span className={styles.caption}>{p.name}</span>
-          </Link>
-        )
-      })}
+      {entries.map((entry, i) => (
+        <ArchiveGifCard
+          key={entry.slug}
+          entry={entry}
+          size={CARD_SIZE_CYCLE[i % CARD_SIZE_CYCLE.length] as CardSize}
+        />
+      ))}
     </div>
   )
 }
 
+/** Shimmer skeleton — shown while the client component hydrates */
 export function ArchiveGridSkeleton() {
+  // Heights mirror the sm/md/lg size cycle visually
+  const heights = [240, 320, 200, 260, 200, 320, 240, 200, 320, 260, 320, 200]
   return (
     <div className={styles.masonry} aria-hidden>
-      {Array.from({ length: 12 }).map((_, i) => (
-        <div key={i} className={styles.skeleton} style={{ height: `${240 + (i % 4) * 60}px` }} />
+      {heights.map((h, i) => (
+        <div key={i} className={styles.skeleton} style={{ height: `${h}px` }} />
       ))}
     </div>
   )

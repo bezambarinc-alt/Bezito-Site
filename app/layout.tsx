@@ -9,6 +9,7 @@ import MenuOverlay from '@/components/layout/MenuOverlay'
 import InquiryDrawer from '@/components/layout/InquiryDrawer'
 import ConciergeDrawer from '@/components/layout/ConciergeDrawer'
 import SearchOverlay from '@/components/layout/SearchOverlay'
+import ArchiveDrawer from '@/components/archive/ArchiveDrawer'
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -56,6 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <InquiryDrawer />
           <ConciergeDrawer />
           <SearchOverlay />
+          <ArchiveDrawer />
         </DrawerProvider>
       </body>
     </html>
