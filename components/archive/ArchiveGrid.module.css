@@ -1,12 +1,42 @@
 /* ============================================================
-   ArchiveGrid — masonic handles the live grid layout in JS.
-   These styles only cover the hydration skeleton + empty state.
+   ArchiveGrid — hand-built masonry via flex columns.
+   The useMasonryColumns hook distributes items into N arrays;
+   we render each as a flex column. No CSS `columns` (which fills
+   top-to-bottom per column) — this gives correct left-to-right
+   reading order, and every card is a fixed 3:4 so columns stay
+   balanced.
    ============================================================ */
+
+.masonry {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+}
+
+.column {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Before the container is measured client-side, the hook returns
+   ready=false and minColumns; the layout is still valid (flex),
+   so there is no collapse — just a brief re-balance on measure. */
+.masonry[data-ready='false'] {
+  opacity: 0;
+}
+.masonry[data-ready='true'] {
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
 
 .empty {
   font-family: var(--ba-font-editorial);
   font-style: italic;
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--ba-ink-muted);
   padding: 3rem 0;
   text-align: center;
 }
@@ -25,12 +55,11 @@
 .skeleton {
   break-inside: avoid;
   margin-bottom: 12px;
-  background: linear-gradient(100deg, #141414 30%, #1c1c1c 50%, #141414 70%);
+  background: linear-gradient(100deg, #ece8e0 30%, #f5f2ec 50%, #ece8e0 70%);
   background-size: 200% 100%;
   animation: shimmer 1.4s ease-in-out infinite;
 }
 
-/* Height variants for skeleton visual rhythm only */
 .sk1 { height: 220px; }
 .sk2 { height: 300px; }
 .sk3 { height: 260px; }

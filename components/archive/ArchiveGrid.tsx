@@ -1,19 +1,22 @@
 'use client'
 
 /**
- * ArchiveGrid — virtualized masonry grid of GIF cards, powered by `masonic`.
+ * ArchiveGrid — masonry grid of GIF cards.
  *
- * Why masonic (vs the previous hand-rolled CSS-columns approach):
- *  - Correct left-to-right reading order (CSS columns fill top-to-bottom per column)
- *  - Virtualization — only renders cells near the viewport, recycles the rest
- *    (matters at 560+ animated GIFs)
- *  - Battle-tested resize/measure handling
+ * Built from scratch (reference: the shortest-column technique from dream-masonry,
+ * https://dev.to/adioof/why-i-built-another-masonry-library-for-react).
  *
- * Card sizing is uniform (no sm/md/lg jitter) — masonic still produces a natural
- * masonry because each GIF's intrinsic aspect ratio drives its rendered height.
+ * WHY NOT a library: masonic collapsed under Next.js App Router — it measured the
+ * browser `window` and painted zero tiles until a manual resize. This is written
+ * against THIS stack (React 19 + Next 16 App Router), measures OUR container via
+ * ResizeObserver (never the window), and renders plain flex columns — so there is
+ * no hydration collapse and no 'window is not defined'. Zero dependencies.
+ *
+ * Cards are a fixed 3:4 aspect ratio, so heights are uniform → round-robin column
+ * distribution is both balanced and correct left-to-right reading order.
  */
 
-import { Masonry } from 'masonic'
+import { useMasonryColumns } from './useMasonryColumns'
 import ArchiveGifCard from './ArchiveGifCard'
 import type { ArchiveEntry } from '@/lib/data/archive-constants'
 import styles from './ArchiveGrid.module.css'
@@ -22,12 +25,14 @@ interface Props {
   entries: ArchiveEntry[]
 }
 
-// masonic render prop — one cell. `data` is the entry, `width` is the column width.
-function renderCard({ data, width }: { index: number; data: ArchiveEntry; width: number }) {
-  return <ArchiveGifCard entry={data} width={width} />
-}
-
 export default function ArchiveGrid({ entries }: Props) {
+  const { containerRef, columns, ready } = useMasonryColumns(entries, {
+    targetColumnWidth: 220,
+    gutter: 12,
+    minColumns: 2,
+    maxColumns: 6,
+  })
+
   if (entries.length === 0) {
     return (
       <p className={styles.empty}>
@@ -37,17 +42,15 @@ export default function ArchiveGrid({ entries }: Props) {
   }
 
   return (
-    <Masonry
-      // Re-mount the grid when the filtered set changes so positions reset cleanly
-      key={entries.length + entries[0]?.slug}
-      items={entries}
-      render={renderCard}
-      columnGutter={12}
-      columnWidth={200}
-      maxColumnCount={6}
-      overscanBy={2}
-      itemKey={(data) => data.slug}
-    />
+    <div ref={containerRef} className={styles.masonry} data-ready={ready}>
+      {columns.map((col, ci) => (
+        <div key={ci} className={styles.column}>
+          {col.map((entry) => (
+            <ArchiveGifCard key={entry.slug} entry={entry} />
+          ))}
+        </div>
+      ))}
+    </div>
   )
 }
 
