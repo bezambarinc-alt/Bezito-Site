@@ -36,31 +36,32 @@ export default async function ArchivePage() {
     // Table not yet created/seeded — hit /api/admin/seed-archive once to populate
   }
 
-  return (
-    <>
-      {/* ── Dark editorial hero ── */}
-      <section className={styles.hero}>
-        <p className={styles.eyebrow}>The Archive</p>
-        <h1 className={styles.title}>Every Piece in Motion</h1>
-        <p className={styles.lede}>
-          Over five hundred Bez Ambar pieces, filmed at the atelier in Los Angeles.
-          Watch each stone under light before you inquire.
-        </p>
-      </section>
-
-      {/* ── Filter + grid ── */}
-      <main className={styles.main}>
-        {entries.length === 0 ? (
+  // ArchiveClient now owns the hero + pill (pill is the last child of the hero,
+  // exactly like Astro). The unseeded fallback keeps its own minimal hero.
+  if (entries.length === 0) {
+    return (
+      <>
+        <section className={styles.hero}>
+          <p className={styles.eyebrow}>The Archive</p>
+          <h1 className={styles.title}>Every Piece in Motion</h1>
+          <p className={styles.lede}>
+            Over five hundred Bez Ambar pieces, filmed at the atelier in Los Angeles.
+            Watch each stone under light before you inquire.
+          </p>
+        </section>
+        <main className={styles.main}>
           <p className={styles.unseeded}>
             The archive is being catalogued.{' '}
             <a href="/api/admin/seed-archive">Seed the archive →</a>
           </p>
-        ) : (
-          <Suspense fallback={<ArchiveGridSkeleton />}>
-            <ArchiveClient entries={entries} />
-          </Suspense>
-        )}
-      </main>
-    </>
+        </main>
+      </>
+    )
+  }
+
+  return (
+    <Suspense fallback={<ArchiveGridSkeleton />}>
+      <ArchiveClient entries={entries} />
+    </Suspense>
   )
 }

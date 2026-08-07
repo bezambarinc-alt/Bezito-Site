@@ -93,19 +93,33 @@ export default function ArchiveClient({ entries }: Props) {
   )
 
   return (
-    <div className={styles.wrap}>
-      <ArchiveFilterPill
-        cat={cat}
-        shape={shape}
-        color={color}
-        filteredCount={filtered.length}
-        totalCount={entries.length}
-        onFilterChange={handleFilterChange}
-      />
+    <>
+      {/* ── Hero — pill anchor is the LAST child of the hero section,
+           exactly like Astro's .vg-hero > .ba-filter-pill-anchor. ── */}
+      <section className={styles.hero}>
+        <p className={styles.eyebrow}>The Archive</p>
+        <h1 className={styles.title}>Every Piece in Motion</h1>
+        <p className={styles.lede}>
+          Over five hundred Bez Ambar pieces, filmed at the atelier in Los Angeles.
+          Watch each stone under light before you inquire.
+        </p>
 
-      <ArchiveGrid entries={filtered} onOpen={openPiece} />
+        <ArchiveFilterPill
+          cat={cat}
+          shape={shape}
+          color={color}
+          filteredCount={filtered.length}
+          totalCount={entries.length}
+          onFilterChange={handleFilterChange}
+        />
+      </section>
+
+      {/* ── Grid ── */}
+      <div className={styles.gridWrap}>
+        <ArchiveGrid entries={filtered} onOpen={openPiece} />
+      </div>
 
       <ArchiveModal entry={openEntry} onClose={closePiece} />
-    </div>
+    </>
   )
 }
