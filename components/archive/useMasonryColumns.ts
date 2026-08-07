@@ -3,24 +3,18 @@
 /**
  * useMasonryColumns — minimal, dependency-free masonry column distributor.
  *
- * Reference: the "shortest-column placement" technique from
- * https://dev.to/adioof/why-i-built-another-masonry-library-for-react (dream-masonry),
- * adapted and simplified for our exact case.
+ * Distributes items into N flex columns for a masonry grid.
  *
- * Why hand-built (not masonic / dream-masonry):
- *  - masonic measured the browser `window` and collapsed under Next.js App Router
- *    (rendered zero tiles until a resize). This measures OUR container via
- *    ResizeObserver — never the window — so there is no hydration collapse.
- *  - Our cards are a fixed 3:4 aspect ratio, so every card's height is known
- *    (= columnWidth * 4/3). That removes the hardest part of masonry (measuring
- *    each image) — with uniform heights, round-robin placement is already
- *    perfectly column-balanced AND gives correct left-to-right reading order.
- *  - Zero dependencies, ~40 lines, provably compatible because it's written
- *    against this stack (React 19 + Next 16 App Router). No 'window is not
- *    defined', no client-only measurement gap.
+ * Design:
+ *  - Measures the grid container via ResizeObserver (never the browser window),
+ *    so it works identically on server and client — no hydration mismatch.
+ *  - Cards are a fixed 3:4 aspect ratio, so heights are uniform. With uniform
+ *    heights, round-robin placement is already column-balanced AND gives correct
+ *    left-to-right reading order — no per-image measurement needed.
+ *  - Zero dependencies.
  *
- * SSR-safe: renders `ready:false` until the container is measured client-side,
- * so the caller shows a skeleton rather than a collapsed/empty grid.
+ * Renders `ready:false` until the container is measured client-side, so the
+ * grid fades in cleanly rather than reflowing.
  */
 
 import { useEffect, useRef, useState, useCallback } from 'react'

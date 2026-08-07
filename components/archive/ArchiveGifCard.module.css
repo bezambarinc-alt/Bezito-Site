@@ -1,9 +1,9 @@
 /* ============================================================
-   ArchiveGifCard — one GIF tile, sized by masonic.
+   ArchiveGifCard — one GIF tile in the masonry grid.
 
-   Uniform portrait 3:4 frame (no sm/md/lg jitter). masonic
-   measures this rendered height to pack the columns; the fixed
-   aspect-ratio keeps the grid calm and even.
+   Uniform portrait 3:4 frame. Fixed aspect-ratio keeps the grid
+   calm and even, and lets the column distributor stay balanced
+   without measuring each image.
    ============================================================ */
 
 .card {
