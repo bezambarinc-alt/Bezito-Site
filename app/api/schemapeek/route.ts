@@ -39,5 +39,27 @@ export async function GET() {
   )
   out.skuRefColumns = skuish
 
+  // Full column list for archive + products so we see the sku columns in context
+  const acp = await sql<{ table_name: string; column_name: string; data_type: string }>(
+    `SELECT table_name, column_name, data_type
+       FROM information_schema.columns
+      WHERE table_schema='public' AND table_name IN ('archive','products')
+      ORDER BY table_name, ordinal_position`,
+  )
+  out.archiveProductsCols = acp
+
+  // All FKs in the DB so we understand how things link
+  const allFks = await sql(
+    `SELECT tc.table_name AS child_table, kcu.column_name AS child_col,
+            ccu.table_name AS parent_table, ccu.column_name AS parent_col,
+            tc.constraint_name
+       FROM information_schema.table_constraints tc
+       JOIN information_schema.key_column_usage kcu ON tc.constraint_name = kcu.constraint_name
+       JOIN information_schema.constraint_column_usage ccu ON tc.constraint_name = ccu.constraint_name
+      WHERE tc.constraint_type = 'FOREIGN KEY'
+      ORDER BY tc.table_name`,
+  )
+  out.allForeignKeys = allFks
+
   return NextResponse.json(out)
 }
