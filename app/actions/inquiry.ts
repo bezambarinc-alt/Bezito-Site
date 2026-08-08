@@ -65,24 +65,24 @@ export async function submitInquiry(
   }
 
   const d = parsed.data
+  // SKU + intent now live in dedicated `leads.sku` / `leads.intent` columns —
+  // no longer stuffed into the message text.
   const composedMessage = [
-    `Intent: ${d.intent}`,
     d.pieceTitle ? `Piece: ${d.pieceTitle}` : null,
-    d.sku ? `SKU: ${d.sku}` : null,
     d.preferredDate ? `Preferred date: ${d.preferredDate}` : null,
     d.phone ? `Phone: ${d.phone}` : null,
-    d.message ? `\n${d.message}` : null,
+    d.message ? `${d.message}` : null,
   ]
     .filter(Boolean)
-    .join('\n')
+    .join('\n') || null
 
   // 1. Durable audit copy FIRST.
   let leadId: number | null = null
   try {
     const [lead] = await sql<{ id: number }>(
-      `INSERT INTO leads(page_slug, name, email, message, crm_status)
-       VALUES ($1,$2,$3,$4,'pending') RETURNING id`,
-      [d.pageSlug || null, d.name, d.email, composedMessage],
+      `INSERT INTO leads(page_slug, sku, intent, name, email, message, crm_status)
+       VALUES ($1,$2,$3,$4,$5,$6,'pending') RETURNING id`,
+      [d.pageSlug || null, d.sku || null, d.intent, d.name, d.email, composedMessage],
     )
     leadId = lead?.id ?? null
   } catch {

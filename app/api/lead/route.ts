@@ -21,12 +21,9 @@ export async function POST(req: NextRequest) {
   // archive/newsletter callers overload with the piece SKU (e.g. "C-1234").
   const sku = body.sku ?? body.pageSlug ?? body.page_slug ?? null
 
-  // Keep intent in the message (no dedicated intent column yet). SKU now has its
-  // OWN column, so it is NOT stuffed into the message anymore.
-  const message = [
-    body.intent ? `Intent: ${body.intent}` : null,
-    body.message,
-  ].filter(Boolean).join('\n') || null
+  // Both SKU and intent now have their OWN columns — neither is stuffed into the
+  // message text anymore. The message holds only the actual free-text body.
+  const message = body.message || null
 
   if (!email || !/^[^@]+@[^@]+\.[^@]+$/.test(email)) {
     return NextResponse.json({ error: 'invalid email' }, { status: 400 })
@@ -49,11 +46,11 @@ export async function POST(req: NextRequest) {
   }
 
   // 1. Durable audit copy FIRST — lead can never be lost even if CRM fails.
-  //    SKU goes to its dedicated column; message stays clean.
+  //    SKU + intent go to their dedicated columns; message stays clean.
   const [lead] = await sql<{ id: number }>(
-    `INSERT INTO leads(page_slug, sku, name, email, message, crm_status)
-     VALUES ($1,$2,$3,$4,$5,'pending') RETURNING id`,
-    [fkPageSlug, sku, name ?? null, email, message ?? null],
+    `INSERT INTO leads(page_slug, sku, intent, name, email, message, crm_status)
+     VALUES ($1,$2,$3,$4,$5,$6,'pending') RETURNING id`,
+    [fkPageSlug, sku, intent ?? null, name ?? null, email, message ?? null],
   )
 
   // 2. Push to Freshsales (best-effort)
