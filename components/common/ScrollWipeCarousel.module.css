@@ -7,10 +7,6 @@
 
 .stack {
   position: relative;
-  z-index: 0;
-  isolation: isolate;   /* self-contained stacking layer so following .ba-reveal
-                           segments (opacity/transform) can't paint over/under
-                           the sticky pin — fixes the hero being overlapped */
   height: 200vh;
   background: var(--ba-black);
 }

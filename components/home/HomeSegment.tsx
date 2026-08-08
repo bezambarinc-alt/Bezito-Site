@@ -48,7 +48,7 @@ export default function HomeSegment({
 
   if (noMedia) {
     return (
-      <section id={id} className={`${styles.noMedia} ba-reveal`}>
+      <section id={id} className={styles.noMedia}>
         <div className={styles.noMediaInner}>{textBlock}</div>
       </section>
     )
@@ -60,7 +60,7 @@ export default function HomeSegment({
   ].filter(Boolean).join(' ')
 
   return (
-    <section id={id} className={`${styles.segment} ${reverse ? styles.reverse : ''} ba-reveal`}>
+    <section id={id} className={`${styles.segment} ${reverse ? styles.reverse : ''}`}>
       <div className={mediaClass}>
         {videoUrl ? (
           // Video fills content area (respects inset padding automatically)
