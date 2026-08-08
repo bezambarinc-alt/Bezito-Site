@@ -21,7 +21,10 @@ const cormorant = Cormorant_Garamond({
 
 const openSans = Open_Sans({
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
+  // MUST include 300 — hero titles & other display text use font-weight: 300.
+  // Astro loads @fontsource/open-sans/300.css; without it the browser synthesizes
+  // a fake-light or falls back to 400, making headings render heavier than Astro.
+  weight: ['300', '400', '500', '600', '700'],
   display: 'swap',
   variable: '--font-opensans',
 })
