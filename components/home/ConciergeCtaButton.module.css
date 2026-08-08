@@ -15,6 +15,9 @@
   transition: color 0.25s ease;
 }
 
+/* was var(--ba-gold-light) — undefined in globals.css, so the hover color
+   resolved to nothing (no color change on hover). --ba-gold-warm (#c9b896) is
+   the defined 'lighter warm gold' token, correct for a lightening hover. */
 .btn:hover {
-  color: var(--ba-gold-light);
+  color: var(--ba-gold-warm);
 }
