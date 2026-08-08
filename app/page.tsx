@@ -54,7 +54,6 @@ export default function HomePage() {
         eyebrow="The Secret"
         title="SHHH"
         sub="Bez Ambar. Los Angeles. Est. 1979."
-        textDark
       />
 
       {/* Atelier — Ring CAD video */}

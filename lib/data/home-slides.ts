@@ -39,7 +39,6 @@ export const CINEMATIC_SLIDES: [CarouselSlide, CarouselSlide] = [
       'https://res.cloudinary.com/dlg2mou53/video/upload/h_1080,c_limit,f_auto,q_auto/Jewelry%20Videos/Bracelets/4k_pearshape_bracelet_v1_awqjfc.mp4',
     posterUrl:
       'https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bracelets/4k_pearshape_bracelet_v1_awqjfc.jpg',
-    badge: 'Coming Soon',
     eyebrow: 'Coming Soon',
     headline: 'The Elysian Pear',
     sub: 'A teardrop, reborn — the next chapter in the line of brilliance.',
