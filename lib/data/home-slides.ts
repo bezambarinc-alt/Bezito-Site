@@ -6,7 +6,6 @@
 export interface CarouselSlide {
   videoUrl: string
   posterUrl: string
-  badge?: string
   eyebrow: string
   headline: string
   sub: string

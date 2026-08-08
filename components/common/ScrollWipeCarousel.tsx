@@ -121,7 +121,6 @@ export default function ScrollWipeCarousel({ slides }: Props) {
           </video>
           <div className={styles.gradient} aria-hidden />
           <div className={styles.overlayLeft}>
-            {slides[0].badge && <span className={styles.badge}>{slides[0].badge}</span>}
             <p className="ba-eyebrow">{slides[0].eyebrow}</p>
             <h2 className={styles.headline}>{slides[0].headline}</h2>
             <p className={styles.sub}>{slides[0].sub}</p>
@@ -140,7 +139,6 @@ export default function ScrollWipeCarousel({ slides }: Props) {
           </video>
           <div className={styles.gradient} aria-hidden />
           <div className={styles.overlayLeft}>
-            {slides[1].badge && <span className={styles.badge}>{slides[1].badge}</span>}
             <p className="ba-eyebrow">{slides[1].eyebrow}</p>
             <h2 className={styles.headline}>{slides[1].headline}</h2>
             <p className={styles.sub}>{slides[1].sub}</p>

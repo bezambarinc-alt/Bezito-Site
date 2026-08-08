@@ -7,8 +7,6 @@ interface HomeHeroImageProps {
   eyebrow?: string
   title: string
   sub?: string
-  /** When true, all overlay text renders in ink (#1a1a1a) — for light editorial images like SHHH */
-  textDark?: boolean
   priority?: boolean
 }
 
@@ -18,7 +16,6 @@ interface HomeHeroImageProps {
  *   - eyebrow: var(--paper) = #faf7f2 (cream, not pure white)
  *   - title:   #ffffff (pure white)
  *   - sub:     var(--accent-warm) = #c9b896 (warm gold)
- * textDark overrides all three to var(--ink) for light-bg images.
  */
 export default function HomeHeroImage({
   imageUrl,
@@ -26,12 +23,11 @@ export default function HomeHeroImage({
   eyebrow,
   title,
   sub,
-  textDark = false,
   priority = false,
 }: HomeHeroImageProps) {
   return (
     <section
-      className={`${styles.hero} ${textDark ? styles.textDark : ''}`}
+      className={styles.hero}
       style={{ height: `${height}px` }}
     >
       <Image

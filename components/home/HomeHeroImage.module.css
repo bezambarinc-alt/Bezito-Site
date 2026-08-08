@@ -6,15 +6,7 @@
      title   → #fff            (Astro: var(--white) = pure white)
      sub     → var(--ba-gold-warm) = #c9b896  (Astro: var(--accent-warm))
 
-   .textDark overrides all three → var(--ba-ink) for light-bg images (SHHH). */
-
-.hero {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  /* height is set via inline style from the component (600px / 700px) */
-}
-
+   
 /* Gradient scrim + flex column for text positioning */
 .overlay {
   position: absolute;
@@ -75,12 +67,6 @@
 
 /* ── Dark text override (SHHH section — light image) ────────── */
 
-.textDark .eyebrow,
-.textDark .title,
-.textDark .sub {
-  color: var(--ba-ink);                    /* #1a1a1a — Astro uses inline style="color:#1a1a1a" */
-  text-shadow: none;
-}
 
 /* ── Responsive ─────────────────────────────────────────────── */
 
