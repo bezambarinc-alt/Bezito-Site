@@ -50,6 +50,21 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${cormorant.variable} ${openSans.variable}`}>
+      <head>
+        {/*
+          Lyon Text Regular — Fontstand web font (licensed to bezambar.com).
+          Fontstand referrer-locks the woff2: it 403s the vercel.app referrer but
+          serves fine with NO referrer. referrerPolicy="no-referrer" makes the
+          font actually load on the Vercel domain instead of silently falling
+          back to Cormorant. Mirrors Astro's Fontstand load in Layout.astro.
+        */}
+        <link rel="preconnect" href="https://webfonts.fontstand.com" crossOrigin="" />
+        <link
+          rel="stylesheet"
+          href="https://webfonts.fontstand.com/WF-099839-d89c1d499f0c1f40d1e6d7330af17f97.css"
+          referrerPolicy="no-referrer"
+        />
+      </head>
       <body>
         <HeaderModeProvider>
           <DrawerProvider>
