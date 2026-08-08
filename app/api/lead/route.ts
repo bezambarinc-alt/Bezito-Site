@@ -7,27 +7,24 @@ export async function POST(req: NextRequest) {
     email?: string
     message?: string
     intent?: string
+    sku?: string
     // Accept BOTH key styles — REST callers (ArchiveModal, Newsletter) send
     // snake_case `page_slug`; be tolerant of camelCase `pageSlug` too.
     pageSlug?: string
     page_slug?: string
   }
 
-  const name    = body.name
-  const email   = body.email
-  const intent  = body.intent
-  // The caller's page_slug is often a piece SKU (e.g. "C-1234"), NOT a page.
-  // `leads.page_slug` has a FOREIGN KEY -> pages.slug, so inserting a non-page
-  // value throws (leads_page_slug_fkey) and 500s — losing the lead. We therefore
-  // treat this value as a "source" reference: keep it for CRM + message, but only
-  // write it to the FK column if it actually exists in `pages`.
-  const sourceRef = body.pageSlug ?? body.page_slug ?? null
+  const name  = body.name
+  const email = body.email
+  const intent = body.intent
+  // Accept an explicit `sku` too; else fall back to the page_slug field, which
+  // archive/newsletter callers overload with the piece SKU (e.g. "C-1234").
+  const sku = body.sku ?? body.pageSlug ?? body.page_slug ?? null
 
-  // Preserve intent + source ref in the stored message so nothing is lost even
-  // though there are no dedicated `intent`/`source` columns.
+  // Keep intent in the message (no dedicated intent column yet). SKU now has its
+  // OWN column, so it is NOT stuffed into the message anymore.
   const message = [
     body.intent ? `Intent: ${body.intent}` : null,
-    sourceRef ? `Ref: ${sourceRef}` : null,
     body.message,
   ].filter(Boolean).join('\n') || null
 
@@ -35,25 +32,28 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'invalid email' }, { status: 400 })
   }
 
-  // Only use sourceRef for the FK column if it's a real page slug; else NULL.
+  // `leads.page_slug` has a FK -> pages.slug. Only write it if the value is a
+  // REAL page slug; a piece SKU is not a page and would violate the FK (500 →
+  // lost lead). The SKU lives in the dedicated `leads.sku` column instead.
   let fkPageSlug: string | null = null
-  if (sourceRef) {
+  if (sku) {
     try {
       const hit = await sql<{ slug: string }>(
         `SELECT slug FROM pages WHERE slug = $1 LIMIT 1`,
-        [sourceRef],
+        [sku],
       )
-      if (hit.length > 0) fkPageSlug = sourceRef
+      if (hit.length > 0) fkPageSlug = sku
     } catch {
       fkPageSlug = null // never let this lookup break the lead save
     }
   }
 
-  // 1. Durable audit copy FIRST — lead can never be lost even if CRM fails
+  // 1. Durable audit copy FIRST — lead can never be lost even if CRM fails.
+  //    SKU goes to its dedicated column; message stays clean.
   const [lead] = await sql<{ id: number }>(
-    `INSERT INTO leads(page_slug, name, email, message, crm_status)
-     VALUES ($1,$2,$3,$4,'pending') RETURNING id`,
-    [fkPageSlug, name ?? null, email, message ?? null],
+    `INSERT INTO leads(page_slug, sku, name, email, message, crm_status)
+     VALUES ($1,$2,$3,$4,$5,'pending') RETURNING id`,
+    [fkPageSlug, sku, name ?? null, email, message ?? null],
   )
 
   // 2. Push to Freshsales (best-effort)
@@ -68,7 +68,7 @@ export async function POST(req: NextRequest) {
         contact: {
           first_name: name,
           email,
-          custom_field: { source: sourceRef ?? 'site', intent: intent ?? 'site' },
+          custom_field: { source: sku ?? 'site', intent: intent ?? 'site' },
         },
       }),
     })
