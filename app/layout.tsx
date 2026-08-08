@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Open_Sans } from 'next/font/google'
 import './globals.css'
 
 import { DrawerProvider } from '@/components/layout/DrawerContext'
+import { HeaderModeProvider } from '@/components/layout/HeaderModeContext'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import MenuOverlay from '@/components/layout/MenuOverlay'
@@ -50,18 +51,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${cormorant.variable} ${openSans.variable}`}>
       <body>
-        <DrawerProvider>
-          <Header />
-          {children}
-          <Footer />
+        <HeaderModeProvider>
+          <DrawerProvider>
+            <Header />
+            {children}
+            <Footer />
 
-          {/* Overlays present on every page */}
-          <MenuOverlay />
-          <InquiryDrawer />
-          <ConciergeDrawer />
-          <SearchOverlay />
-
-        </DrawerProvider>
+            {/* Overlays present on every page */}
+            <MenuOverlay />
+            <InquiryDrawer />
+            <ConciergeDrawer />
+            <SearchOverlay />
+          </DrawerProvider>
+        </HeaderModeProvider>
       </body>
     </html>
   )

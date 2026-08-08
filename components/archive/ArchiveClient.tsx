@@ -16,6 +16,7 @@
 import { useCallback, useMemo } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import type { ArchiveEntry } from '@/lib/data/archive-constants'
+import { useHeaderMode } from '@/components/layout/HeaderModeContext'
 import ArchiveFilterPill from './ArchiveFilterPill'
 import ArchiveGrid from './ArchiveGrid'
 import ArchiveModal from './ArchiveModal'
@@ -28,6 +29,9 @@ interface Props {
 export default function ArchiveClient({ entries }: Props) {
   const router = useRouter()
   const params = useSearchParams()
+
+  // White hero → header must render in ink (dark), like Astro's headerLight={true}.
+  useHeaderMode('light')
 
   // URL is the source of truth
   const cat    = params?.get('cat')   ?? 'all'

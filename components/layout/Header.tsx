@@ -1,29 +1,25 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useDrawers } from './DrawerContext'
+import { useHeaderModeState } from './HeaderModeContext'
 import styles from './Header.module.css'
-
-/**
- * Routes with NO dark hero — header must start in ink color (dark text) so it's
- * visible on the white background at scrollY=0. Mirrors Astro's
- * `headerLight={true}` → `body.page-header-light .ba-header { color: var(--ink) }`.
- * Without this, the transparent header renders white-on-white = invisible.
- */
-const LIGHT_HEADER_ROUTES = ['/archive']
 
 /**
  * Fixed transparent header → solid white on scroll.
  * All icons are exact pixel matches to the live Astro bezambar-web2026 site.
  * Scroll threshold: > 20px (matches Astro `.is-solid` trigger exactly).
+ *
+ * Header mode ('default' | 'light') is declared BY THE PAGE via useHeaderMode()
+ * — no route sniffing here. A white-hero page calls `useHeaderMode('light')` so
+ * the header starts in ink and is visible on the white background at scrollY=0.
+ * This mirrors Astro's per-page `headerLight={true}` prop.
  */
 export default function Header() {
   const { openMenu, openSearch, openConcierge } = useDrawers()
   const [scrolled, setScrolled] = useState(false)
-  const pathname = usePathname()
-  const light = LIGHT_HEADER_ROUTES.some(r => pathname === r || pathname?.startsWith(r + '/'))
+  const light = useHeaderModeState() === 'light'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20) // Astro: scrollY > 20
