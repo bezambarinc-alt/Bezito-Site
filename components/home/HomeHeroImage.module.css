@@ -4,9 +4,15 @@
    Color defaults (light text on dark image):
      eyebrow → var(--ba-white) = #faf7f2  (Astro: var(--paper))
      title   → #fff            (Astro: var(--white) = pure white)
-     sub     → var(--ba-gold-warm) = #c9b896  (Astro: var(--accent-warm))
+     sub     → var(--ba-gold-warm) = #c9b896  (Astro: var(--accent-warm)) */
 
-   
+/* Section — positioning context for the absolute overlay (height set inline) */
+.hero {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
 /* Gradient scrim + flex column for text positioning */
 .overlay {
   position: absolute;
@@ -64,9 +70,6 @@
   color: var(--ba-gold-warm);              /* #c9b896 = Astro var(--accent-warm) */
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
-
-/* ── Dark text override (SHHH section — light image) ────────── */
-
 
 /* ── Responsive ─────────────────────────────────────────────── */
 
