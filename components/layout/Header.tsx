@@ -1,9 +1,18 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useDrawers } from './DrawerContext'
 import styles from './Header.module.css'
+
+/**
+ * Routes with NO dark hero — header must start in ink color (dark text) so it's
+ * visible on the white background at scrollY=0. Mirrors Astro's
+ * `headerLight={true}` → `body.page-header-light .ba-header { color: var(--ink) }`.
+ * Without this, the transparent header renders white-on-white = invisible.
+ */
+const LIGHT_HEADER_ROUTES = ['/archive']
 
 /**
  * Fixed transparent header → solid white on scroll.
@@ -13,6 +22,8 @@ import styles from './Header.module.css'
 export default function Header() {
   const { openMenu, openSearch, openConcierge } = useDrawers()
   const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
+  const light = LIGHT_HEADER_ROUTES.some(r => pathname === r || pathname?.startsWith(r + '/'))
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20) // Astro: scrollY > 20
@@ -24,7 +35,7 @@ export default function Header() {
   return (
     <header
       id="baHeader"
-      className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}
+      className={`${styles.header} ${light ? styles.light : ''} ${scrolled ? styles.scrolled : ''}`}
     >
       {/* Left: hamburger + "Menu" label — no .inner wrapper, exact Astro structure */}
       <button className={styles.menuBtn} aria-label="Open menu" onClick={openMenu}>

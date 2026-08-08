@@ -18,6 +18,13 @@
   transition: background var(--ba-transition), color var(--ba-transition), box-shadow var(--ba-transition);
 }
 
+/* Light-mode pages (no dark hero) — header starts in ink so it's visible on
+   the white background at scrollY=0. Mirrors Astro
+   `body.page-header-light .ba-header { color: var(--ink) }`. */
+.light {
+  color: var(--ba-ink);
+}
+
 /* Solid state (scrollY > 20px) — white bg, ink text */
 .scrolled {
   background: #ffffff;
