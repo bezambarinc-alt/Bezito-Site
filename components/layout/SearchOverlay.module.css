@@ -49,7 +49,10 @@
   color: var(--ba-white);
 }
 .input:focus { outline: none; border-bottom-color: var(--ba-gold); }
-.input::placeholder { color: var(--ba-muted); }
+/* was var(--ba-muted) — that token is undefined in globals.css, so the
+   placeholder rendered with no color (browser default) on the dark overlay.
+   On this dark search overlay the placeholder should be a dim warm white. */
+.input::placeholder { color: rgba(237, 233, 224, 0.45); }
 
 .results { margin-top: 1.75rem; }
 .hint { color: var(--ba-cream); font-family: var(--ba-font-editorial); }
