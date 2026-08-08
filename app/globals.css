@@ -253,17 +253,36 @@ body.page-dark {
   border: 0;
 }
 
-/* ---------- Scroll reveal ---------- */
-.ba-reveal {
-  opacity: 0;
-  transform: translateY(var(--ba-travel));
-  transition: opacity var(--ba-dur-reveal) var(--ba-ease-lux),
-              transform var(--ba-dur-reveal) var(--ba-ease-lux);
+/* ---------- Scroll reveal ----------
+   Reusable site-wide fade-up-on-enter. Native CSS scroll-driven animation
+   (animation-timeline: view()) — ZERO JavaScript, runs on the compositor thread.
+
+   Supported browsers (~90%+: Chrome/Edge 115+, Safari 18+, Firefox 126+) get the
+   scroll-linked reveal. Unsupported browsers (older Firefox) fall through the
+   @supports gate and simply see content fully visible — never hidden, so nothing
+   ever disappears. `is-visible` class is still honored for any JS-driven callers. */
+.ba-reveal { opacity: 1; }
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .ba-reveal {
+      opacity: 0;
+      animation: ba-reveal-in linear both;
+      animation-timeline: view();
+      /* start revealing when the element enters, finish once it's ~35% up */
+      animation-range: entry 0% cover 35%;
+    }
+    .ba-reveal.is-visible { opacity: 1; } /* JS-toggled callers stay visible */
+    .ba-reveal-d1 { animation-range: entry 4% cover 39%; }
+    .ba-reveal-d2 { animation-range: entry 8% cover 43%; }
+    .ba-reveal-d3 { animation-range: entry 12% cover 47%; }
+  }
 }
-.ba-reveal.is-visible { opacity: 1; transform: none; }
-.ba-reveal-d1 { transition-delay: 0.08s; }
-.ba-reveal-d2 { transition-delay: 0.16s; }
-.ba-reveal-d3 { transition-delay: 0.24s; }
+
+@keyframes ba-reveal-in {
+  from { opacity: 0; transform: translateY(var(--ba-travel)); }
+  to   { opacity: 1; transform: none; }
+}
 
 /* ---------- Animation keyframes ---------- */
 @keyframes ba-fade-in {
