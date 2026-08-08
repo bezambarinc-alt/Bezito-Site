@@ -114,9 +114,11 @@ export default function ArchiveModal({ entry, onClose }: Props) {
           ) : (
             <>
               <p className={styles.eyebrow}>Inquiring about</p>
-              <p className={styles.pieceTitle}>
-                {entry.title}{entry.sku ? ` · ${entry.sku}` : ''}
-              </p>
+              {/* Title only — matches Astro (amPieceTitle = title). SKU is NOT
+                  appended here: the seeded title often already embeds the
+                  C-number/SKU, which caused a doubled ref (e.g. "… C-1234 · C-1234").
+                  The SKU still travels in the lead payload below. */}
+              <p className={styles.pieceTitle}>{entry.title}</p>
               <h2 className={styles.heading}>Connect with the Atelier</h2>
               <p className={styles.subhead}>We respond personally within one business day.</p>
 
