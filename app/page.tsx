@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
-import HeroCarousel from '@/components/home/HeroCarousel'
+import ScrollWipeCarousel from '@/components/common/ScrollWipeCarousel'
 import HomeSegment from '@/components/home/HomeSegment'
 import HomeHeroImage from '@/components/home/HomeHeroImage'
-import CinematicCarousel from '@/components/home/CinematicCarousel'
 import Newsletter from '@/components/home/Newsletter'
+import { HERO_SLIDES, CINEMATIC_SLIDES } from '@/lib/data/home-slides'
 
 export const metadata: Metadata = {
   title: 'Bez Ambar — Chiseling Light',
@@ -21,7 +21,8 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      <HeroCarousel />
+      {/* Top hero — shared scroll-wipe carousel */}
+      <ScrollWipeCarousel slides={HERO_SLIDES} />
 
       {/* Foundation — Designing Diamond Cuts Since 1979 */}
       <HomeSegment
@@ -111,7 +112,8 @@ export default function HomePage() {
         openConcierge
       />
 
-      <CinematicCarousel />
+      {/* Cinematic section — SAME component, different slides */}
+      <ScrollWipeCarousel slides={CINEMATIC_SLIDES} />
       <Newsletter />
     </>
   )
