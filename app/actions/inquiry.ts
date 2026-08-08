@@ -2,6 +2,7 @@
 
 import { z } from 'zod'
 import { sql } from '@/lib/db'
+import { INQUIRY_INTENTS } from '@/lib/data/inquiry-constants'
 
 /**
  * Inquiry Server Action — used by the InquiryDrawer and the Contact page form.
@@ -11,14 +12,9 @@ import { sql } from '@/lib/db'
  * No secrets are hardcoded — Freshsales credentials come from the environment.
  */
 
-const IntentSchema = z.enum([
-  'In Person Appointment',
-  'Virtual Appointment',
-  'Commission a Piece',
-  'A Piece from the Collection',
-  'Repair & Cleaning',
-  'Ring Resizing',
-])
+// Built from the single shared source of truth so the schema can never drift
+// from the UI (this exact duplication caused a submission-breaking bug before).
+const IntentSchema = z.enum(INQUIRY_INTENTS)
 
 const InquirySchema = z.object({
   name: z.string().trim().min(1, 'Name is required').max(120),

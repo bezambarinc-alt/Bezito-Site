@@ -3,14 +3,14 @@
 import { useActionState, useEffect, useState } from 'react'
 import { useDrawers } from './DrawerContext'
 import { submitInquiry, type InquiryState } from '@/app/actions/inquiry'
+import {
+  INQUIRY_INTENTS,
+  APPOINTMENT_INTENTS,
+  HIDE_MESSAGE_INTENTS,
+} from '@/lib/data/inquiry-constants'
 import styles from './InquiryDrawer.module.css'
 
 const initialState: InquiryState = { status: 'idle' }
-
-// Values MUST match the Zod IntentSchema enum in app/actions/inquiry.ts exactly,
-// or submitInquiry rejects every submission with a validation error.
-const APPOINTMENT_INTENTS = new Set(['In Person Appointment', 'Virtual Appointment'])
-const HIDE_MESSAGE_INTENTS = new Set(['Ring Resizing'])
 
 /** Right-panel slide-in inquiry form. Matches Astro #inquiry-drawer / .ba-drawer */
 export default function InquiryDrawer() {
@@ -135,12 +135,9 @@ export default function InquiryDrawer() {
                     required
                   >
                     <option value="">Select…</option>
-                    <option value="In Person Appointment">In Person Appointment</option>
-                    <option value="Virtual Appointment">Virtual Appointment</option>
-                    <option value="Commission a Piece">Commission a Piece</option>
-                    <option value="A Piece from the Collection">A Piece from the Collection</option>
-                    <option value="Repair & Cleaning">Repair &amp; Cleaning</option>
-                    <option value="Ring Resizing">Ring Resizing</option>
+                    {INQUIRY_INTENTS.map((i) => (
+                      <option key={i} value={i}>{i}</option>
+                    ))}
                   </select>
                 </label>
               </div>

@@ -2,23 +2,14 @@
 
 import { useActionState, useState } from 'react'
 import { submitInquiry, type InquiryState } from '@/app/actions/inquiry'
+import { INQUIRY_INTENTS, APPOINTMENT_INTENTS } from '@/lib/data/inquiry-constants'
 import styles from './ContactForm.module.css'
 
-const INTENTS = [
-  'In Person Appointment',
-  'Virtual Appointment',
-  'Commission a Piece',
-  'A Piece from the Collection',
-  'Repair & Cleaning',
-  'Ring Resizing',
-] as const
-
-const APPOINTMENT_INTENTS = new Set(['In Person Appointment', 'Virtual Appointment'])
 const initialState: InquiryState = { status: 'idle' }
 
 export default function ContactForm() {
   const [state, formAction, pending] = useActionState(submitInquiry, initialState)
-  const [intent, setIntent] = useState<string>(INTENTS[0])
+  const [intent, setIntent] = useState<string>(INQUIRY_INTENTS[0])
   const showDate = APPOINTMENT_INTENTS.has(intent)
 
   if (state.status === 'success') {
@@ -55,7 +46,7 @@ export default function ContactForm() {
         <label className={styles.field}>
           <span>How may we help?</span>
           <select name="intent" value={intent} onChange={(e) => setIntent(e.target.value)}>
-            {INTENTS.map((i) => (
+            {INQUIRY_INTENTS.map((i) => (
               <option key={i} value={i}>{i}</option>
             ))}
           </select>
