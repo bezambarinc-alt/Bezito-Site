@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useDrawers } from './DrawerContext'
+import type { InquiryIntent } from '@/lib/data/inquiry-constants'
 import styles from './ConciergeDrawer.module.css'
 
 export default function ConciergeDrawer() {
@@ -10,7 +11,10 @@ export default function ConciergeDrawer() {
   const [apptOpen, setApptOpen] = useState(false)
   const [svcOpen,  setSvcOpen]  = useState(false)
 
-  function toInquiry(intent: string) {
+  // Typed to InquiryIntent (or '' for Atelier Chat's no-preset) so any string
+  // that isn't a valid Zod intent is a COMPILE error — the duplication that
+  // caused the submission bug can't come back silently.
+  function toInquiry(intent: InquiryIntent | '') {
     close()
     openInquiryDrawer({ intent, fromConcierge: true })
   }
