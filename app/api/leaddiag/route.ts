@@ -64,5 +64,16 @@ export async function GET() {
     out.insertNullSlugError = String((e as Error)?.message ?? e)
   }
 
+  // 5. Show the most recent leads + their CRM status (verify the live flow).
+  try {
+    const recent = await sql(
+      `SELECT id, page_slug, name, email, crm_status, crm_id, created_at
+         FROM leads ORDER BY created_at DESC LIMIT 5`,
+    )
+    out.recentLeads = recent
+  } catch (e) {
+    out.recentLeadsError = String((e as Error)?.message ?? e)
+  }
+
   return NextResponse.json(out)
 }
