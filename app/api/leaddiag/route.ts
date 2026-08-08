@@ -30,20 +30,38 @@ export async function GET() {
     out.leadsSchemaError = String((e as Error)?.message ?? e)
   }
 
-  // 3. Try the exact insert /api/lead runs, then delete it (test row).
+  // 3. Inspect the FK constraint on leads.page_slug — what parent table/col?
+  try {
+    const fks = await sql(
+      `SELECT
+         tc.constraint_name,
+         kcu.column_name          AS fk_column,
+         ccu.table_name           AS parent_table,
+         ccu.column_name          AS parent_column
+       FROM information_schema.table_constraints tc
+       JOIN information_schema.key_column_usage kcu
+         ON tc.constraint_name = kcu.constraint_name
+       JOIN information_schema.constraint_column_usage ccu
+         ON tc.constraint_name = ccu.constraint_name
+       WHERE tc.table_name = 'leads' AND tc.constraint_type = 'FOREIGN KEY'`,
+    )
+    out.foreignKeys = fks
+  } catch (e) {
+    out.fkError = String((e as Error)?.message ?? e)
+  }
+
+  // 4. Insert with page_slug = NULL (should succeed — proves FK is the only blocker).
   try {
     const [row] = await sql<{ id: number }>(
       `INSERT INTO leads(page_slug, name, email, message, crm_status)
        VALUES ($1,$2,$3,$4,'pending') RETURNING id`,
-      ['DIAG-TEST', 'Diag', 'diag@bezambar.com', 'schema diag — auto-deleted'],
+      [null, 'Diag', 'diag@bezambar.com', 'schema diag — auto-deleted'],
     )
-    out.insertOk = true
-    out.insertId = row?.id
+    out.insertNullSlugOk = true
     await sql(`DELETE FROM leads WHERE id = $1`, [row.id])
-    out.cleanupOk = true
   } catch (e) {
-    out.insertOk = false
-    out.insertError = String((e as Error)?.message ?? e)
+    out.insertNullSlugOk = false
+    out.insertNullSlugError = String((e as Error)?.message ?? e)
   }
 
   return NextResponse.json(out)
