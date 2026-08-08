@@ -38,7 +38,7 @@ export default function ConciergeDrawer() {
 
             {/* Atelier Chat */}
             <li>
-              <button className={styles.row} onClick={() => toInquiry('atelier chat')}>
+              <button className={styles.row} onClick={() => toInquiry('')}>
                 <span className={styles.rowIcon} aria-hidden>
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                     <path d="M15 2H3a1 1 0 00-1 1v9a1 1 0 001 1h3.5l2.5 2.5 2.5-2.5H15a1 1 0 001-1V3a1 1 0 00-1-1z" stroke="currentColor" strokeWidth="1.1" strokeLinejoin="round" />
@@ -84,13 +84,13 @@ export default function ConciergeDrawer() {
               </button>
               <ul className={styles.subList} role="list">
                 <li>
-                  <button className={`${styles.row} ${styles.rowSub}`} onClick={() => toInquiry('atelier visit')}>
+                  <button className={`${styles.row} ${styles.rowSub}`} onClick={() => toInquiry('In Person Appointment')}>
                     <span className={styles.rowLabel}>In Person</span>
                     <span className={styles.rowChevron} aria-hidden>›</span>
                   </button>
                 </li>
                 <li>
-                  <button className={`${styles.row} ${styles.rowSub}`} onClick={() => toInquiry('virtual appointment')}>
+                  <button className={`${styles.row} ${styles.rowSub}`} onClick={() => toInquiry('Virtual Appointment')}>
                     <span className={styles.rowLabel}>Virtual</span>
                     <span className={styles.rowChevron} aria-hidden>›</span>
                   </button>
@@ -115,13 +115,13 @@ export default function ConciergeDrawer() {
               </button>
               <ul className={styles.subList} role="list">
                 <li>
-                  <button className={`${styles.row} ${styles.rowSub}`} onClick={() => toInquiry('repairs')}>
+                  <button className={`${styles.row} ${styles.rowSub}`} onClick={() => toInquiry('Repair & Cleaning')}>
                     <span className={styles.rowLabel}>Repair &amp; Cleaning</span>
                     <span className={styles.rowChevron} aria-hidden>›</span>
                   </button>
                 </li>
                 <li>
-                  <button className={`${styles.row} ${styles.rowSub}`} onClick={() => toInquiry('resize')}>
+                  <button className={`${styles.row} ${styles.rowSub}`} onClick={() => toInquiry('Ring Resizing')}>
                     <span className={styles.rowLabel}>Ring Resizing</span>
                     <span className={styles.rowChevron} aria-hidden>›</span>
                   </button>

@@ -7,8 +7,10 @@ import styles from './InquiryDrawer.module.css'
 
 const initialState: InquiryState = { status: 'idle' }
 
-const APPOINTMENT_INTENTS = new Set(['atelier visit', 'virtual appointment'])
-const HIDE_MESSAGE_INTENTS = new Set(['resize'])
+// Values MUST match the Zod IntentSchema enum in app/actions/inquiry.ts exactly,
+// or submitInquiry rejects every submission with a validation error.
+const APPOINTMENT_INTENTS = new Set(['In Person Appointment', 'Virtual Appointment'])
+const HIDE_MESSAGE_INTENTS = new Set(['Ring Resizing'])
 
 /** Right-panel slide-in inquiry form. Matches Astro #inquiry-drawer / .ba-drawer */
 export default function InquiryDrawer() {
@@ -133,12 +135,12 @@ export default function InquiryDrawer() {
                     required
                   >
                     <option value="">Select…</option>
-                    <option value="atelier visit">In Person Appointment</option>
-                    <option value="virtual appointment">Virtual Appointment</option>
-                    <option value="commission a piece">Commission a Piece</option>
-                    <option value="collection piece">A Piece from the Collection</option>
-                    <option value="repairs">Repair &amp; Cleaning</option>
-                    <option value="resize">Ring Resizing</option>
+                    <option value="In Person Appointment">In Person Appointment</option>
+                    <option value="Virtual Appointment">Virtual Appointment</option>
+                    <option value="Commission a Piece">Commission a Piece</option>
+                    <option value="A Piece from the Collection">A Piece from the Collection</option>
+                    <option value="Repair & Cleaning">Repair &amp; Cleaning</option>
+                    <option value="Ring Resizing">Ring Resizing</option>
                   </select>
                 </label>
               </div>
