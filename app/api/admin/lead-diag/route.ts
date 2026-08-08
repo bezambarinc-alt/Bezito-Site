@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server'
 import { sql } from '@/lib/db'
 
+// Public + uncached so the admin middleware doesn't 307 us to /login.
+export const dynamic = 'force-dynamic'
+
 /**
  * TEMPORARY diagnostic — checks the live `leads` table schema + Freshsales key
  * presence, and runs a dry insert/rollback so we can see the ACTUAL error
