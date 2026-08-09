@@ -76,28 +76,39 @@ export async function GET() {
   try {
     const token = await getPlytixToken()
 
-    // 1) List all product ids (search returns empty attributes, so just ids/sku).
-    const searchRes = await fetch(`${PLYTIX_BASE}/products/search`, {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        filters: [],
-        attributes: ['sku', 'label'],
-        pagination: { page: 1, page_size: 100 },
-      }),
-    })
-    const searchJson = (await searchRes.json()) as {
-      data?: { id: string; sku: string; label?: string }[]
-      msg?: string
+    // 1) List all product ids. Plytix search returns only the FIRST page by
+    //    default (docs: page_size max 100), so loop pages until we have all.
+    const PAGE_SIZE = 100
+    const ids: string[] = []
+    let page = 1
+    let totalCount = Infinity
+    while (ids.length < totalCount) {
+      const searchRes = await fetch(`${PLYTIX_BASE}/products/search`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          filters: [],
+          attributes: ['sku', 'label'],
+          pagination: { page, page_size: PAGE_SIZE },
+        }),
+      })
+      const searchJson = (await searchRes.json()) as {
+        data?: { id: string; sku: string; label?: string }[]
+        pagination?: { total_count?: number }
+        msg?: string
+      }
+      if (!searchRes.ok || !Array.isArray(searchJson.data)) {
+        return NextResponse.json(
+          { ok: false, stage: 'search', page, status: searchRes.status, msg: searchJson?.msg ?? searchJson },
+          { status: 502 },
+        )
+      }
+      totalCount = searchJson.pagination?.total_count ?? searchJson.data.length
+      ids.push(...searchJson.data.map((p) => p.id))
+      if (searchJson.data.length < PAGE_SIZE) break // last page
+      page++
+      await sleep(300) // pace between search pages (rate limit)
     }
-    if (!searchRes.ok || !Array.isArray(searchJson.data)) {
-      return NextResponse.json(
-        { ok: false, stage: 'search', status: searchRes.status, msg: searchJson?.msg ?? searchJson },
-        { status: 502 },
-      )
-    }
-
-    const ids = searchJson.data.map((p) => p.id)
     let upserted = 0
     const errors: { sku?: string; error: string }[] = []
 
