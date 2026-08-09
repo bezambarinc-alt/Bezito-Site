@@ -53,12 +53,10 @@ const str = (v: unknown): string | undefined =>
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
 
-// Plytix rate-limits rapid GET /products/{id} (429). Retry with backoff.
-async function getDetail(id: string, token: string): Promise<Response | null> {
+// Plytix rate-limits rapid GET (429). Retry with backoff. Generic fetcher.
+async function getWithRetry(url: string, token: string): Promise<Response | null> {
   for (let attempt = 0; attempt < 6; attempt++) {
-    const res = await fetch(`${PLYTIX_BASE}/products/${id}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
+    const res = await fetch(url, { headers: { Authorization: `Bearer ${token}` } })
     if (res.status === 429) {
       await sleep(1500 * (attempt + 1))
       continue
@@ -66,6 +64,26 @@ async function getDetail(id: string, token: string): Promise<Response | null> {
     return res
   }
   return null
+}
+
+const getDetail = (id: string, token: string) =>
+  getWithRetry(`${PLYTIX_BASE}/products/${id}`, token)
+
+// Plytix categories live in a TAXONOMY (not an attribute). Each product links to
+// one or more categories via /products/{id}/categories. We take the first as the
+// browse bucket (Rings / Bracelets / Earrings / Necklaces / Pendants / Wedding Bands).
+async function getCategory(id: string, token: string): Promise<string | undefined> {
+  const res = await getWithRetry(`${PLYTIX_BASE}/products/${id}/categories`, token)
+  if (!res || !res.ok) return undefined
+  const json = (await res.json().catch(() => ({}))) as {
+    data?: { name?: string; path?: string[] }[]
+  }
+  const cats = json.data ?? []
+  if (!cats.length) return undefined
+  // Prefer a specific (non-'Jewelry') category if the product is in several.
+  const specific = cats.find((c) => (c.name ?? '') !== 'Jewelry') ?? cats[0]
+  const name = specific.name ?? specific.path?.[specific.path.length - 1]
+  return name ? name.toLowerCase().replace(/\s+/g, '-') : undefined
 }
 
 function detectType(url: string): 'image' | 'video' {
@@ -122,6 +140,9 @@ export async function GET() {
         if (!p?.sku) continue
         const a = p.attributes ?? {}
 
+        // Real category from the Plytix taxonomy (not guessed).
+        const category = (await getCategory(id, token)) ?? 'jewelry'
+
         const heroVisual = str(a.hero_visual)
         const editorialVisual = str(a.editorial_visual)
 
@@ -136,7 +157,7 @@ export async function GET() {
           color: str(a.stone_color),
           clarity: str(a.stone_clarity),
           madeIn: 'Los Angeles',
-          category: str(a.category) ?? 'jewelry',
+          category,
           heroVideoUrl: heroVisual && detectType(heroVisual) === 'video' ? heroVisual : undefined,
           heroPosterUrl: editorialVisual && detectType(editorialVisual) === 'image' ? editorialVisual : undefined,
         }
