@@ -141,13 +141,12 @@
   transform: translate(-50%, -50%) rotate(45deg);
 }
 
-/* Inline figures — break out slightly past the text measure for presence */
+/* Inline figures — stay within the text measure (no breakout; breakout caused
+   horizontal overflow that shifted the whole column left). */
 .prose :global(figure) {
-  width: calc(var(--measure) + 8rem);
-  max-width: calc(100vw - 2.5rem);
-  margin: 2.75rem auto;
-  margin-left: -4rem;
-  margin-right: -4rem;
+  width: 100%;
+  max-width: 100%;
+  margin: 2.75rem 0;
 }
 .prose :global(figure img) {
   width: 100%;

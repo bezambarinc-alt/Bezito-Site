@@ -6,6 +6,7 @@
 .post {
   background: #fff;
   padding-bottom: clamp(4rem, 8vw, 7rem);
+  overflow-x: hidden;
 }
 
 .back {
@@ -57,11 +58,11 @@
 }
 .meta span { margin: 0 0.4rem; color: var(--ba-gold); }
 
-/* Hero media — full-bleed within a comfortable max, cinematic ratio */
+/* Hero media — matches the reading rail width so hero + text align. */
 .heroMedia {
-  max-width: 1100px;
+  max-width: 820px;
   margin: clamp(1rem, 3vw, 2rem) auto clamp(2rem, 5vw, 3.5rem);
-  padding: 0 clamp(0rem, 3vw, 1.5rem);
+  padding: 0 1rem;
 }
 .heroMedia img,
 .heroMedia video {
@@ -74,8 +75,10 @@
 }
 .heroVideo video { background: var(--ba-ink); }
 
-/* Body prose wrapper (BlogBody supplies typography) */
+/* Body prose wrapper (BlogBody supplies typography) — same rail as hero. */
 .content {
+  max-width: 820px;
+  margin: 0 auto;
   padding: 0 1rem;
 }
 
