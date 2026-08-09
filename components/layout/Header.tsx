@@ -19,7 +19,9 @@ import styles from './Header.module.css'
 export default function Header() {
   const { openMenu, openSearch, openConcierge } = useDrawers()
   const [scrolled, setScrolled] = useState(false)
-  const light = useHeaderModeState() === 'light'
+  // Default mode is 'light' (ink header, visible on white). Dark-hero pages opt
+  // into 'transparent'. This inversion prevents the invisible-header bug globally.
+  const transparent = useHeaderModeState() === 'transparent'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20) // Astro: scrollY > 20
@@ -31,7 +33,7 @@ export default function Header() {
   return (
     <header
       id="baHeader"
-      className={`${styles.header} ${light ? styles.light : ''} ${scrolled ? styles.scrolled : ''}`}
+      className={`${styles.header} ${transparent ? styles.transparent : styles.light} ${scrolled ? styles.scrolled : ''}`}
     >
       {/* Left: hamburger + "Menu" label — no .inner wrapper, exact Astro structure */}
       <button className={styles.menuBtn} aria-label="Open menu" onClick={openMenu}>

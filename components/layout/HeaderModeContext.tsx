@@ -15,7 +15,9 @@
 
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 
-export type HeaderMode = 'default' | 'light'
+// 'light'  = ink header, visible on white backgrounds (the SAFE default)
+// 'transparent' = white header, for dark-hero pages that opt in
+export type HeaderMode = 'light' | 'transparent'
 
 interface HeaderModeValue {
   mode: HeaderMode
@@ -25,14 +27,17 @@ interface HeaderModeValue {
 const HeaderModeContext = createContext<HeaderModeValue | null>(null)
 
 export function HeaderModeProvider({ children }: { children: React.ReactNode }) {
-  const [mode, setMode] = useState<HeaderMode>('default')
+  // SAFE DEFAULT: 'light' (ink header) so every page is visible on white unless
+  // it explicitly opts into 'transparent'. Prevents the invisible-header bug
+  // globally — pages can no longer be broken by omission.
+  const [mode, setMode] = useState<HeaderMode>('light')
   const value = useMemo(() => ({ mode, setMode }), [mode])
   return <HeaderModeContext.Provider value={value}>{children}</HeaderModeContext.Provider>
 }
 
 /** Read the current header mode (used by the Header). */
 export function useHeaderModeState(): HeaderMode {
-  return useContext(HeaderModeContext)?.mode ?? 'default'
+  return useContext(HeaderModeContext)?.mode ?? 'light'
 }
 
 /**
@@ -45,6 +50,6 @@ export function useHeaderMode(mode: HeaderMode) {
   const ctx = useContext(HeaderModeContext)
   useEffect(() => {
     ctx?.setMode(mode)
-    return () => ctx?.setMode('default')
+    return () => ctx?.setMode('light') // reset to the safe default on unmount
   }, [ctx, mode])
 }

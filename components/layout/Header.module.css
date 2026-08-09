@@ -13,16 +13,22 @@
   align-items: center;
   justify-content: space-between;        /* Astro: justify-content: space-between */
   padding: 0 2rem;                       /* Astro: padding: 0 2rem (was clamp — bug) */
-  color: #ffffff;
+  color: var(--ba-ink);
   background: transparent;
   transition: background var(--ba-transition), color var(--ba-transition), box-shadow var(--ba-transition);
 }
 
-/* Light-mode pages (no dark hero) — header starts in ink so it's visible on
-   the white background at scrollY=0. Mirrors Astro
-   `body.page-header-light .ba-header { color: var(--ink) }`. */
+/* Light mode (THE DEFAULT) — ink header, visible on white backgrounds at
+   scrollY=0. Applied unless a page opts into `.transparent`. This is the
+   global fix for the invisible-header bug: pages are visible by default. */
 .light {
   color: var(--ba-ink);
+}
+
+/* Transparent mode (opt-in) — for dark-hero pages only. White text over the
+   dark hero at scrollY=0; turns solid on scroll via `.scrolled`. */
+.transparent {
+  color: #ffffff;
 }
 
 /* Solid state (scrollY > 20px) — white bg, ink text */

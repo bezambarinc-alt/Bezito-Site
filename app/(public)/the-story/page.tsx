@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import HeaderTransparent from '@/components/layout/HeaderTransparent'
 import StoryNav from './StoryNav'
 import { ChapterReveal, AnimateChild } from './ChapterReveal'
 import { CHAPTERS, STORY_YEARS } from '@/lib/data/story-chapters'
@@ -24,6 +25,7 @@ export const metadata: Metadata = {
 export default function TheStoryPage() {
   return (
     <main>
+      <HeaderTransparent />
 
       {/* ── Hero ── */}
       <section className={styles.hero} aria-label="The Story hero">

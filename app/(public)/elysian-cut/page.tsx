@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import HeaderTransparent from '@/components/layout/HeaderTransparent'
 import PageCta from '@/components/common/PageCta'
 import { ELYSIAN_CUTS } from '@/lib/data/elysian-cuts'
 import styles from './page.module.css'
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 export default function ElysianCutPage() {
   return (
     <main>
+      <HeaderTransparent />
 
       {/* ── Dark video hero ── */}
       <section className={styles.hero}>
