@@ -13,6 +13,11 @@ import { sql } from '@/lib/db'
  * Auth returns data[0].access_token (NOT .token).
  */
 
+// Raise the function timeout — 66 sequential detail-fetches + upserts blow past
+// the default ~10s and the function was dying mid-loop (only ~19 landed).
+export const maxDuration = 300
+export const dynamic = 'force-dynamic'
+
 const PLYTIX_AUTH = 'https://auth.plytix.com/auth/api/get-token'
 const PLYTIX_BASE = 'https://pim.plytix.com/api/v1'
 
