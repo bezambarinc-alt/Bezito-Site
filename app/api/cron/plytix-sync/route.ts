@@ -61,7 +61,7 @@ export async function GET() {
       body: JSON.stringify({
         filters: [],
         attributes: ['sku', 'label'],
-        pagination: { page: 1, page_size: 200 },
+        pagination: { page: 1, page_size: 100 },
       }),
     })
     const searchJson = (await searchRes.json()) as {
