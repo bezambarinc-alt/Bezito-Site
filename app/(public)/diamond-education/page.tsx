@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import HeaderTransparent from '@/components/layout/HeaderTransparent'
 import ScrollSpyTabs from './ScrollSpyTabs'
 import styles from './page.module.css'
 
@@ -19,7 +18,6 @@ export const metadata: Metadata = {
 export default function DiamondEducationPage() {
   return (
     <main>
-      <HeaderTransparent />
 
       {/* ── Dark video hero ── */}
       <section className={styles.hero}>

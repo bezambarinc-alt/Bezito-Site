@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import HeaderTransparent from '@/components/layout/HeaderTransparent'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
@@ -42,7 +41,6 @@ const CUTS = [
 export default function CutsPage() {
   return (
     <main>
-      <HeaderTransparent />
 
       {/* ── Hero ── */}
       <section className={styles.hero}>

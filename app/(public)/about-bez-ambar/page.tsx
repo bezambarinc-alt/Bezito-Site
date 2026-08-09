@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import HeaderTransparent from '@/components/layout/HeaderTransparent'
 import PageCta from '@/components/common/PageCta'
 import { STATS, TIMELINE } from '@/lib/data/about-content'
 import styles from './page.module.css'
@@ -18,7 +17,6 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main>
-      <HeaderTransparent />
 
       {/* ── Portrait hero ── */}
       <section className={styles.hero}>

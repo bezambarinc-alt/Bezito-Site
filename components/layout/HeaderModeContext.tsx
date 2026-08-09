@@ -1,23 +1,49 @@
 'use client'
 
 /**
- * HeaderModeContext — lets any PAGE declare how the shared Header should render,
- * instead of the Header sniffing routes with usePathname (brittle, couples the
- * shared component to specific paths).
+ * HeaderModeContext — the Header's transparent-vs-visible mode, decided in ONE
+ * place (the layout, by route) instead of per-page markers.
  *
- * This is the Next.js-idiomatic equivalent of Astro's per-page prop:
- *   <Layout headerLight={true}>   ->   useHeaderMode('light')
+ * Model (locked 2026-08-08): nearly every hero on the site is a DARK hero, so:
+ *   - DEFAULT = 'transparent'  (white header over dark hero — the common case)
+ *   - EXCEPTIONS = 'light'     (ink header, for the few NON-hero white pages)
  *
- * A page with a WHITE hero calls `useHeaderMode('light')` on mount; the Header
- * reads the mode from context. When the page unmounts we reset to 'default'
- * (transparent/white text for dark-hero pages) so navigation stays correct.
+ * The exception routes live in ONE list: VISIBLE_HEADER_ROUTES below. A single
+ * <HeaderRouteMode/> in the layout reads the pathname and sets the mode. No page
+ * ever tags itself — add a route here and it's done.
  */
 
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { usePathname } from 'next/navigation'
 
-// 'light'  = ink header, visible on white backgrounds (the SAFE default)
-// 'transparent' = white header, for dark-hero pages that opt in
-export type HeaderMode = 'light' | 'transparent'
+// 'transparent' = white header over a dark hero (DEFAULT — most pages)
+// 'light'       = ink header, visible on a white/non-hero background
+export type HeaderMode = 'transparent' | 'light'
+
+/**
+ * The ONLY place header mode is configured. Any route whose pathname starts with
+ * one of these prefixes gets the ink ('light') header. Everything else is
+ * transparent by default (dark-hero pages just work — zero per-page code).
+ */
+export const VISIBLE_HEADER_ROUTES: string[] = [
+  '/blog',
+  '/contact',
+  '/privacy-policy',
+  '/terms',
+  '/warranty',
+  '/retailers',
+  '/ring-size-chart',
+  '/legal',
+]
+
+export function modeForPath(pathname: string | null): HeaderMode {
+  if (!pathname) return 'transparent'
+  return VISIBLE_HEADER_ROUTES.some(
+    (r) => pathname === r || pathname.startsWith(r + '/'),
+  )
+    ? 'light'
+    : 'transparent'
+}
 
 interface HeaderModeValue {
   mode: HeaderMode
@@ -27,29 +53,26 @@ interface HeaderModeValue {
 const HeaderModeContext = createContext<HeaderModeValue | null>(null)
 
 export function HeaderModeProvider({ children }: { children: React.ReactNode }) {
-  // SAFE DEFAULT: 'light' (ink header) so every page is visible on white unless
-  // it explicitly opts into 'transparent'. Prevents the invisible-header bug
-  // globally — pages can no longer be broken by omission.
-  const [mode, setMode] = useState<HeaderMode>('light')
+  const [mode, setMode] = useState<HeaderMode>('transparent')
   const value = useMemo(() => ({ mode, setMode }), [mode])
   return <HeaderModeContext.Provider value={value}>{children}</HeaderModeContext.Provider>
 }
 
 /** Read the current header mode (used by the Header). */
 export function useHeaderModeState(): HeaderMode {
-  return useContext(HeaderModeContext)?.mode ?? 'light'
+  return useContext(HeaderModeContext)?.mode ?? 'transparent'
 }
 
 /**
- * Declare the header mode for the current page. Call once at the top of a
- * client page/section. Resets to 'default' on unmount.
- *
- *   useHeaderMode('light')   // white-hero page — dark header
+ * HeaderRouteMode — mount ONCE in the layout. Sets header mode from the current
+ * route via the single VISIBLE_HEADER_ROUTES list. This replaces all per-page
+ * markers. Renders nothing.
  */
-export function useHeaderMode(mode: HeaderMode) {
+export function HeaderRouteMode() {
+  const pathname = usePathname()
   const ctx = useContext(HeaderModeContext)
   useEffect(() => {
-    ctx?.setMode(mode)
-    return () => ctx?.setMode('light') // reset to the safe default on unmount
-  }, [ctx, mode])
+    ctx?.setMode(modeForPath(pathname))
+  }, [ctx, pathname])
+  return null
 }

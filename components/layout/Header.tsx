@@ -7,20 +7,17 @@ import { useHeaderModeState } from './HeaderModeContext'
 import styles from './Header.module.css'
 
 /**
- * Fixed transparent header → solid white on scroll.
- * All icons are exact pixel matches to the live Astro bezambar-web2026 site.
- * Scroll threshold: > 20px (matches Astro `.is-solid` trigger exactly).
+ * Fixed header → solid white on scroll. Icons match the Astro site exactly.
+ * Scroll threshold: > 20px (matches Astro `.is-solid`).
  *
- * Header mode ('default' | 'light') is declared BY THE PAGE via useHeaderMode()
- * — no route sniffing here. A white-hero page calls `useHeaderMode('light')` so
- * the header starts in ink and is visible on the white background at scrollY=0.
- * This mirrors Astro's per-page `headerLight={true}` prop.
+ * Mode is decided in ONE place — the layout's <HeaderRouteMode/> reads the
+ * route against VISIBLE_HEADER_ROUTES (HeaderModeContext). Default is
+ * 'transparent' (dark-hero pages); non-hero white routes get 'light' (ink).
+ * No page tags itself.
  */
 export default function Header() {
   const { openMenu, openSearch, openConcierge } = useDrawers()
   const [scrolled, setScrolled] = useState(false)
-  // Default mode is 'light' (ink header, visible on white). Dark-hero pages opt
-  // into 'transparent'. This inversion prevents the invisible-header bug globally.
   const transparent = useHeaderModeState() === 'transparent'
 
   useEffect(() => {

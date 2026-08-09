@@ -78,8 +78,11 @@ export default function ArchiveModal({ entry, onClose }: Props) {
           name,
           email,
           intent: 'archive-inquiry',
-          page_slug: entry.sku || entry.slug,
-          message: `Archive inquiry — ${entry.title}${entry.sku ? ` (${entry.sku})` : ''}`,
+          // SKU goes to the dedicated leads.sku column. page_slug is the archive
+          // piece's own slug (not a page FK), left for reference only.
+          sku: entry.sku || null,
+          page_slug: entry.slug,
+          message: `Archive inquiry — ${entry.title}`,
         }),
       })
       if (!res.ok) throw new Error('Request failed')

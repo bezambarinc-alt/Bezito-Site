@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import HeaderTransparent from '@/components/layout/HeaderTransparent'
 import ScrollWipeCarousel from '@/components/common/ScrollWipeCarousel'
 import HomeSegment from '@/components/home/HomeSegment'
 import HomeHeroImage from '@/components/home/HomeHeroImage'
@@ -22,7 +21,6 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      <HeaderTransparent />
       {/* Top hero — shared scroll-wipe carousel */}
       <ScrollWipeCarousel slides={HERO_SLIDES} />
 

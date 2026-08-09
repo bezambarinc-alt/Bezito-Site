@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import HeaderTransparent from '@/components/layout/HeaderTransparent'
 import PageHeader from '@/components/layout/PageHeader'
 
 export const metadata: Metadata = {
@@ -19,7 +18,6 @@ const CATEGORIES = [
 export default function JewelryLanding() {
   return (
     <>
-      <HeaderTransparent />
       <PageHeader eyebrow="The Collections" title="Jewelry" intro="Light, chiseled into form." />
       <main className="ba-container ba-section">
         {/* TODO: implement full landing hero + collection strips */}
