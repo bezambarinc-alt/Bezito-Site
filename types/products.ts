@@ -26,6 +26,8 @@ export interface ProductSpecs {
   metal?: string
   madeIn?: string
   caratWeight?: string
+  /** Center stone weight only — if applicable (empty for tennis/eternity pieces). */
+  centerStoneWeight?: string
   color?: string
   clarity?: string
   codeName?: string

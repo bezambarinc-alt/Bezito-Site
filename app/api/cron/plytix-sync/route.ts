@@ -140,8 +140,12 @@ export async function GET() {
         if (!p?.sku) continue
         const a = p.attributes ?? {}
 
-        // Real category from the Plytix taxonomy (not guessed).
-        const category = (await getCategory(id, token)) ?? 'jewelry'
+        // Category: prefer the required single-select `category` attribute
+        // (locked model 2026-08-08); fall back to the taxonomy link, then 'jewelry'.
+        const attrCategory = str(a.category)
+        const category = attrCategory
+          ? attrCategory.toLowerCase().replace(/\s+/g, '-')
+          : (await getCategory(id, token)) ?? 'jewelry'
 
         const heroVisual = str(a.hero_visual)
         const editorialVisual = str(a.editorial_visual)
@@ -153,7 +157,8 @@ export async function GET() {
           codeName: str(p.label) ?? str(a.subtitle),
           metal: str(a.metal),
           gemStone: str(a.stone_shape),
-          caratWeight: str(a.stone_carats) ?? str(a.total_carat_weight),
+          caratWeight: str(a.total_carat_weight) ?? str(a.stone_carats),
+          centerStoneWeight: str(a.center_stone_weight),
           color: str(a.stone_color),
           clarity: str(a.stone_clarity),
           madeIn: 'Los Angeles',
