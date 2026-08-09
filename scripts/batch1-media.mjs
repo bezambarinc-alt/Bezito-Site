@@ -1,88 +1,88 @@
-// Batch-1 media — RING-ONLY, VIDEO-FIRST. Every pick VISION-VERIFIED (I looked
-// at the actual frame/image, not the filename). Rule (Kevin, 2026-08-08):
-//   - hero must be a RING and a VIDEO
-//   - exact match preferred; if none, closest suitable ring by other criteria
+// Batch-1 media — MOST SUITABLE ASSET, ANY TYPE (ring/bracelet/necklace),
+// video or image. Every pick VISION-VERIFIED (I looked at the frame/image, not
+// the filename). Rule (Kevin, 2026-08-08): best match by appearance; type-true
+// where the post is about a specific piece type (tennis→bracelet, flex→bracelet).
 const CLOUD = 'https://res.cloudinary.com/dlg2mou53'
 const vid = (id) => `${CLOUD}/video/upload/${encodeURI(id)}`
-// poster: first frame of the same ring video (keeps hero + poster consistent)
-const poster = (id) => `${CLOUD}/video/upload/so_1,c_fill,ar_16:9,w_1400/${encodeURI(id)}.jpg`
+const img = (id) => `${CLOUD}/image/upload/c_fill,ar_16:9,g_auto,w_1400/${encodeURI(id)}`
+const vposter = (id) => `${CLOUD}/video/upload/so_1,c_fill,ar_16:9,w_1400/${encodeURI(id)}.jpg`
 
 export const MEDIA = {
-  // 1-CARAT solitaire → round WHITE SOLITAIRE single-stone. C0731 verified.
+  // 1-CARAT solitaire → round WHITE SOLITAIRE single-stone (verified C0731).
   'why-a-1-carat-diamond': {
     heroVideo: vid('Jewelry Videos/Rings/b9558-hd'),
-    ring: 'C0731-class round white solitaire',
-    heroImage: `${CLOUD}/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/C0731_Round_Cut_ka9ykl`,
+    ring: 'round white solitaire',
+    heroImage: img('Jewelry Images/Rings/C0731_Round_Cut_ka9ykl'),
     heroImageAlt: 'One-carat round brilliant diamond solitaire ring, Bez Ambar',
   },
-  // TENNIS BRACELET → post is a bracelet, but rule says RING. Closest suitable:
-  // an eternity/line-of-stones RING (same "row of uniform diamonds" language).
+  // TENNIS BRACELET → actual single-row round-brilliant tennis bracelet
+  // (verified C0722_5FLX34R = textbook single-row tennis line).
   'diamond-tennis-bracelet-guide': {
-    heroVideo: vid('Jewelry Videos/Rings/R09143_2026'),
-    ring: 'eternity/line ring (tennis analog)',
-    heroImage: `${CLOUD}/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/Atallier-round-diamond-center_rneipf`,
-    heroImageAlt: 'Diamond line ring, row of round brilliants, Bez Ambar',
+    heroVideo: vid('Jewelry Videos/Bracelets/C0722_5FLX34R_4k_vuejsf'),
+    ring: 'single-row round tennis bracelet',
+    heroImage: img('Jewelry Images/Bracelets/B5671_Bracelet_Black_Rounds_ModelHand_aeajqu'),
+    heroImageAlt: 'Diamond tennis bracelet, single row of round brilliants, Bez Ambar',
   },
-  // EMERALD gemstone → ring with GREEN EMERALD center. c0765 verified emerald/green? 
-  // Verified: C0681 area. Use the emerald-center ring film (green stone).
+  // EMERALD gemstone → ring with GREEN EMERALD center (verified 4k_C0721 green).
   'emerald-gemstone-buying-guide': {
     heroVideo: vid('Jewelry Videos/Rings/4k_C0721_cwwztv'),
     ring: 'green emerald center ring',
-    heroImage: `${CLOUD}/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/emerald-trapez-diamond-ring`,
-    heroImageAlt: 'Emerald center diamond ring, vivid green gemstone, Bez Ambar',
+    heroImage: img('Jewelry Images/Rings/emerald-trapez-diamond-ring'),
+    heroImageAlt: 'Emerald center ring, vivid green gemstone, Bez Ambar',
   },
-  // RUBY engagement RING → red ruby RING (not the bracelet). C0867 verified ruby ring.
+  // RUBY engagement RING → red ruby RING (verified C0867 ruby ring).
   'ruby-engagement-ring-guide': {
     heroVideo: vid('Jewelry Videos/Rings/C0867_ev3hlv'),
     ring: 'red ruby halo ring',
-    heroImage: `${CLOUD}/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/RUBY_WITH_PEAR_HALO_joqxqi`,
-    heroImageAlt: 'Ruby engagement ring, red cushion with diamond halo, Bez Ambar',
+    heroImage: img('Jewelry Images/Rings/RUBY_WITH_PEAR_HALO_joqxqi'),
+    heroImageAlt: 'Ruby engagement ring, red center with diamond halo, Bez Ambar',
   },
-  // OVAL engagement → oval center ring. C0747 verified oval (fancy pink) + Pargon oval white.
+  // OVAL engagement → oval center ring (verified C0747 oval + Pargon oval white).
   'oval-cut-diamond-engagement-ring': {
     heroVideo: vid('Jewelry Videos/Rings/Pink_Oval_Ring_C0747_2026_1080p'),
     ring: 'oval center ring',
-    heroImage: `${CLOUD}/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/Pargon_ring_2.5_carat_center_1_b8zl0o`,
+    heroImage: img('Jewelry Images/Rings/Pargon_ring_2.5_carat_center_1_b8zl0o'),
     heroImageAlt: 'Oval cut diamond engagement ring, Bez Ambar',
   },
-  // FLEX bracelet → post is a bracelet; rule says RING. Closest: a Flex-style ring
-  // (row of stones / flexible band feel). Use the 3-rows round Flex ring image +
-  // best round-diamond ring film.
+  // FLEX bracelet (Bez's own line) → actual multi-row round-brilliant Flex
+  // bracelet (verified B5993 = multi-row flex, most sparkle).
   'diamond-flex-bracelet-guide': {
-    heroVideo: vid('Jewelry Videos/Rings/C0728_4K_epjtts'),
-    ring: 'multi-row diamond ring (Flex analog)',
-    heroImage: `${CLOUD}/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/3rows_round_Flex_ring_mucrzv`,
-    heroImageAlt: 'Flex-style multi-row diamond ring, Bez Ambar',
+    heroVideo: vid('Jewelry Videos/Bracelets/Multi_Row_Round_Diamond_Bracelet_B5993_2026_1080p_with_effects'),
+    ring: 'multi-row round Flex bracelet',
+    heroImage: img('Jewelry Images/Bracelets/5FLX40-on-black'),
+    heroImageAlt: 'Diamond Flex bracelet by Bez Ambar',
   },
-  // HALO setting → round WHITE HALO. C0737 verified halo.
+  // HALO setting → round WHITE HALO (verified C0737 halo).
   'halo-ring-setting': {
     heroVideo: vid('Jewelry Videos/Rings/C0737-_4K_b2l126'),
     ring: 'round white halo',
-    heroImage: `${CLOUD}/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/C0737_Round_Cut_tm5oal`,
+    heroImage: img('Jewelry Images/Rings/C0737_Round_Cut_tm5oal'),
     heroImageAlt: 'Halo diamond ring setting, round brilliant center, Bez Ambar',
   },
-  // THREE-STONE → verified three-stone ring. C0536 (fancy yellow 3-stone) OR
-  // C0746 white cushion three-stone. Use white three-stone for neutral.
+  // THREE-STONE → white three-stone ring (verified C0746 white cushion 3-stone;
+  // The_Staircase film = emerald-cut three-stone).
   'three-stone-engagement-ring-guide': {
     heroVideo: vid('Jewelry Videos/Rings/The_Staircase_ring_hsegrw'),
     ring: 'white three-stone ring',
-    heroImage: `${CLOUD}/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/C0746_Cushion_Cut_White_eowaqf`,
+    heroImage: img('Jewelry Images/Rings/C0746_Cushion_Cut_White_eowaqf'),
     heroImageAlt: 'Three-stone diamond engagement ring, Bez Ambar',
   },
-  // PRINCESS cut → NO true princess/square ring asset exists. Closest square-ish
-  // geometric cut = Crossover Ashoka (square-ish faceting). Best-available ring.
+  // PRINCESS/SQUARE cut → no true princess ring; best square-facet stand-in is
+  // the Asscher/square-emerald SINGLE-ROW bracelet (verified square facets
+  // read closest to princess/square). Type differs but stone-shape is the
+  // accurate signal for a "square cut" article.
   'princess-cut-diamond-ring-guide': {
-    heroVideo: vid('Jewelry Videos/Rings/Duet_Ashoka_jbgz8i'),
-    ring: 'Ashoka (square-ish) — no true princess asset; best available',
-    heroImage: `${CLOUD}/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/crossover-ashoka-white-hand`,
-    heroImageAlt: 'Square-cut diamond ring, Bez Ambar',
+    heroVideo: vid('Jewelry Videos/Bracelets/asscher-cut-single-row-bracelet-c0755-2026'),
+    ring: 'Asscher/square-cut (best square stand-in; no true princess asset)',
+    heroImage: img('Jewelry Images/Bracelets/C0754_Bracelet_Asscher_OnHand_kqsow7'),
+    heroImageAlt: 'Square-cut diamond jewelry, Bez Ambar',
   },
-  // ROSE CUT → no verified rose-cut ring film; use an elegant white ring film as
-  // best-available. C0728 pear solitaire (clean, classic).
+  // ROSE CUT → no true rose-cut asset. Best-available = clean classic white
+  // solitaire still (C0728 pear) — image, since no rose-cut video exists.
   'rose-cut-diamond-rings-by-bez-ambar': {
     heroVideo: vid('Jewelry Videos/Rings/C0728_4K_1_smndkz'),
-    ring: 'white solitaire (rose-cut analog; no rose-cut asset)',
-    heroImage: `${CLOUD}/image/upload/c_fill,ar_16:9,g_auto,w_1400/Jewelry%20Images/Rings/C0728_Pear_Cut_rjliml`,
+    ring: 'white solitaire (rose-cut stand-in; no rose-cut asset)',
+    heroImage: img('Jewelry Images/Rings/C0728_Pear_Cut_rjliml'),
     heroImageAlt: 'Rose cut style diamond ring, Bez Ambar',
   },
 }
