@@ -5,7 +5,7 @@
    ============================================================ */
 
 .prose {
-  --measure: 66ch;
+  --measure: 100%;
   max-width: var(--measure);
   margin: 0 auto;
   font-family: var(--ba-font-editorial);

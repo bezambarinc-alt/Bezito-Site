@@ -26,9 +26,9 @@
 
 /* Hero text block */
 .hero {
-  max-width: 68ch;
+  max-width: 1040px;
   margin: 0 auto;
-  padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.25rem, 5vw, 2rem) clamp(1.5rem, 3vw, 2rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem) 1rem clamp(1.5rem, 3vw, 2rem);
   text-align: center;
 }
 .cat {
