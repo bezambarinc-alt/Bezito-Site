@@ -51,6 +51,23 @@ interface PlytixDetail {
 const str = (v: unknown): string | undefined =>
   typeof v === 'string' && v.trim() ? v.trim() : undefined
 
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
+
+// Plytix rate-limits rapid GET /products/{id} (429). Retry with backoff.
+async function getDetail(id: string, token: string): Promise<Response | null> {
+  for (let attempt = 0; attempt < 6; attempt++) {
+    const res = await fetch(`${PLYTIX_BASE}/products/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    if (res.status === 429) {
+      await sleep(1500 * (attempt + 1))
+      continue
+    }
+    return res
+  }
+  return null
+}
+
 function detectType(url: string): 'image' | 'video' {
   return /\/video\/upload\//.test(url) || /\.(mp4|webm|mov)(\?|$)/i.test(url) ? 'video' : 'image'
 }
@@ -87,9 +104,8 @@ export async function GET() {
     // 2) Fetch each product's full detail + map to specs/media.
     for (const id of ids) {
       try {
-        const dRes = await fetch(`${PLYTIX_BASE}/products/${id}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
+        const dRes = await getDetail(id, token)
+        if (!dRes) { errors.push({ error: `429 exhausted for ${id}` }); continue }
         const dJson = (await dRes.json()) as { data?: PlytixDetail[] }
         const p = dJson.data?.[0]
         if (!p?.sku) continue
@@ -129,6 +145,7 @@ export async function GET() {
           [p.sku, p.id, str(p.label) ?? p.sku, JSON.stringify(specs), JSON.stringify(media)],
         )
         upserted++
+        await sleep(200) // gentle pacing between products
       } catch (e) {
         errors.push({ error: String((e as Error)?.message ?? e) })
       }
