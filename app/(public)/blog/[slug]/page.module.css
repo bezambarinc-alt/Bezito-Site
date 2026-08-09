@@ -76,7 +76,7 @@
 
 /* Body prose wrapper (BlogBody supplies typography) */
 .content {
-  padding: 0 clamp(1.25rem, 5vw, 2rem);
+  padding: 0 1rem;
 }
 
 /* Inline figures inside the prose (from markdown/HTML in body) */
