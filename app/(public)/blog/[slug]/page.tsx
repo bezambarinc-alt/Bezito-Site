@@ -113,10 +113,6 @@ export default async function BlogPost({
       )}
 
       <main className={styles.post} data-pagefind-body>
-        <div className={styles.back}>
-          <Link href="/blog">&larr; Back to Journal</Link>
-        </div>
-
         <Reveal as="header" className={styles.hero}>
           <p className={styles.cat}>{blogCategoryLabel(post.category)}</p>
           <h1 className={styles.title}>{post.title}</h1>

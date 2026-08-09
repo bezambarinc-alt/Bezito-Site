@@ -9,20 +9,7 @@
   overflow-x: hidden;
 }
 
-.back {
-  max-width: 68ch;
-  margin: 0 auto;
-  padding: calc(64px + 2rem) clamp(1.25rem, 5vw, 2rem) 0;
-}
-.back a {
-  font-family: var(--ba-font-sans);
-  font-size: 0.9rem;
-  letter-spacing: 0.02em;
-  color: var(--ba-ink-soft);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.back a:hover { color: var(--ba-gold); }
+/* (removed 'Back to Journal' link — header nav + related grid handle navigation) */
 
 /* Hero text block */
 .hero {
