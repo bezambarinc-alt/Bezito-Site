@@ -1,72 +1,171 @@
 /* ============================================================
-   BlogBody — editorial prose styling for rendered markdown.
-   Uses the site's global font tokens (no font changes). Maps the narrow
-   markdown subset (h2/h3, strong, em, p, hr) to a luxury reading rhythm.
+   BlogBody — editorial prose. Global font tokens only (no font changes).
+   Patek restraint: tight measure, drop cap lede, gold hairline accents,
+   two-line heading pairs (h3 eyebrow → h2 title), distinct FAQ rhythm.
    ============================================================ */
 
 .prose {
-  max-width: 68ch;
+  --measure: 60ch;
+  max-width: var(--measure);
   margin: 0 auto;
   font-family: var(--ba-font-editorial);
-  font-size: 1.125rem;
-  line-height: 1.75;
+  font-size: 1.09rem;
+  line-height: 1.72;
   color: var(--ba-ink);
+  letter-spacing: 0.002em;
 }
 
-/* Section headings — sans, uppercase, gold accent, generous top space */
+/* Lede — the opening italic paragraph. Larger, softer, sets the tone. */
+.prose :global(> p:first-of-type) {
+  font-size: 1.24rem;
+  line-height: 1.6;
+  color: var(--ba-ink-soft);
+}
+.prose :global(> p:first-of-type em) {
+  font-style: italic;
+  color: var(--ba-ink-soft);
+}
+
+/* Drop cap — first letter of the first body paragraph after the opening rule.
+   Reads as an editorial flourish, Patek-like. */
+.prose :global(hr:first-of-type + p::first-letter) {
+  float: left;
+  font-family: var(--ba-font-serif, var(--ba-font-editorial));
+  font-size: 3.9rem;
+  line-height: 0.82;
+  font-weight: 400;
+  padding: 0.06em 0.14em 0 0;
+  margin: 0.02em 0 0;
+  color: var(--ba-gold);
+}
+
+/* ---- Heading pairs -------------------------------------------------------
+   Source structure is an eyebrow (h3) directly followed by a title (h2):
+     <h3>Why the Number</h3><h2>Has Power</h2>
+   Style the h3 as a small gold eyebrow, the h2 as the display line, and
+   collapse the space between the pair so they read as one unit. ---------- */
 .prose :global(h2) {
   font-family: var(--ba-font-sans);
-  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
-  font-weight: 300;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
+  font-size: clamp(1.5rem, 2.8vw, 2.15rem);
+  font-weight: 200;
+  letter-spacing: -0.01em;
   color: var(--ba-ink);
-  line-height: 1.2;
-  margin: 3rem 0 1rem;
+  line-height: 1.12;
+  margin: 2.75rem 0 1.1rem;
 }
 .prose :global(h3) {
   font-family: var(--ba-font-sans);
-  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  color: var(--ba-ink);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ba-gold);
   line-height: 1.3;
-  margin: 2.25rem 0 0.75rem;
+  margin: 3.25rem 0 0;
+}
+/* h3 immediately followed by h2 = an eyebrow+title pair → tighten the gap */
+.prose :global(h3 + h2) {
+  margin-top: 0.35rem;
+}
+/* gold hairline under the display title of each pair */
+.prose :global(h3 + h2)::after {
+  content: '';
+  display: block;
+  width: 2.25rem;
+  height: 2px;
+  margin-top: 0.85rem;
+  background: var(--ba-gold);
 }
 .prose :global(h4) {
   font-family: var(--ba-font-sans);
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   font-weight: 500;
+  letter-spacing: 0.01em;
   color: var(--ba-ink);
   margin: 1.75rem 0 0.5rem;
 }
 
 /* Paragraphs */
 .prose :global(p) {
-  margin: 0 0 1.5rem;
+  margin: 0 0 1.4rem;
 }
 
-/* Bold — the FAQ question pattern (**Q?**) + emphasis. Gold-ink, slightly heavier. */
+/* Bold — emphasis + the FAQ question pattern. Sans, slightly tighter, ink. */
 .prose :global(strong) {
+  font-family: var(--ba-font-sans);
   font-weight: 600;
+  letter-spacing: 0.005em;
   color: var(--ba-ink);
 }
 
-/* Italics — the intro/lede paragraphs use these */
+/* Italics */
 .prose :global(em) {
   font-style: italic;
   color: var(--ba-ink-soft);
 }
 
-/* Horizontal rule — thin warm divider */
+/* ---- FAQ block ----------------------------------------------------------
+   In the source, the closing FAQ is a run of paragraphs that each start with
+   a bold question. Give that whole trailing region a subtle card rhythm:
+   each <p> containing a leading <strong> gets a top hairline + spacing so it
+   reads as a Q/A entry rather than plain prose. ------------------------- */
+.prose :global(p:has(> strong:first-child)) {
+  margin-top: 1.9rem;
+  padding-top: 1.9rem;
+  border-top: 1px solid var(--ba-border-warm);
+}
+.prose :global(p:has(> strong:first-child) strong) {
+  display: block;
+  font-size: 1.08rem;
+  margin-bottom: 0.55rem;
+  color: var(--ba-ink);
+}
+
+/* Horizontal rule — thin warm divider, centered gold pip */
 .prose :global(hr) {
   border: 0;
   height: 1px;
   background: var(--ba-border-warm);
-  margin: 2.5rem 0;
+  margin: 2.75rem 0;
+  position: relative;
+}
+.prose :global(hr)::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: var(--ba-gold);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
 }
 
-/* Links (rare, but sanitized-safe) — gold underline */
+/* Inline figures — break out slightly past the text measure for presence */
+.prose :global(figure) {
+  width: calc(var(--measure) + 8rem);
+  max-width: calc(100vw - 2.5rem);
+  margin: 2.75rem auto;
+  margin-left: -4rem;
+  margin-right: -4rem;
+}
+.prose :global(figure img) {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 2px;
+  box-shadow: 0 18px 44px -26px rgba(20, 16, 10, 0.45);
+}
+.prose :global(figcaption) {
+  font-family: var(--ba-font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--ba-ink-soft);
+  text-align: center;
+  margin-top: 0.7rem;
+}
+
+/* Links — gold underline */
 .prose :global(a) {
   color: var(--ba-gold);
   text-decoration: underline;
@@ -74,25 +173,34 @@
   text-decoration-thickness: 1px;
   transition: color 0.2s;
 }
-.prose :global(a:hover) { color: var(--ba-gold-warm); }
+.prose :global(a:hover) { color: var(--ba-gold-warm, #d8b98a); }
 
-/* Lists (defensive — content has none today, but sanitize-safe if added) */
+/* Lists (defensive) */
 .prose :global(ul),
 .prose :global(ol) {
-  margin: 0 0 1.5rem 1.25rem;
+  margin: 0 0 1.4rem 1.25rem;
   padding: 0;
 }
 .prose :global(li) { margin-bottom: 0.5rem; }
 
-/* Blockquote (defensive) */
+/* Blockquote / pull-quote — large, gold rule, breaks the reading rhythm */
 .prose :global(blockquote) {
-  margin: 2rem 0;
-  padding-left: 1.25rem;
+  margin: 2.5rem 0;
+  padding: 0.25rem 0 0.25rem 1.5rem;
   border-left: 2px solid var(--ba-gold);
+  font-family: var(--ba-font-editorial);
   font-style: italic;
-  color: var(--ba-ink-soft);
+  font-size: 1.35rem;
+  line-height: 1.5;
+  color: var(--ba-ink);
 }
 
 @media (max-width: 640px) {
-  .prose { font-size: 1.0625rem; }
+  .prose { font-size: 1.05rem; --measure: 100%; }
+  .prose :global(figure) {
+    width: 100%;
+    margin: 2rem 0;
+    transform: none;
+  }
+  .prose :global(hr:first-of-type + p::first-letter) { font-size: 3.2rem; }
 }
