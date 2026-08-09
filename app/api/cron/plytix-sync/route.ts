@@ -13,18 +13,37 @@ async function getPlytixToken(): Promise<string> {
       api_password: process.env.PLYTIX_API_PASSWORD,
     }),
   })
-  const data = await res.json() as { data: [{ token: string }] }
-  return data.data[0].token
+  const data = (await res.json()) as {
+    data?: [{ access_token?: string; token?: string }]
+    msg?: string
+  }
+  // Plytix returns data[0].access_token (NOT .token — that was the 500 bug).
+  const token = data?.data?.[0]?.access_token ?? data?.data?.[0]?.token
+  if (!token) {
+    throw new Error(`Plytix auth failed (${res.status}): ${data?.msg ?? JSON.stringify(data).slice(0, 200)}`)
+  }
+  return token
 }
 
 export async function GET() {
+  try {
   const token = await getPlytixToken()
 
   // Fetch all products from Plytix
   const res = await fetch(`${PLYTIX_BASE}/products?page_size=100`, {
     headers: { Authorization: `Bearer ${token}` },
   })
-  const { data } = await res.json() as { data: { id: string; sku: string; name: string; attributes: Record<string, unknown> }[] }
+  const json = (await res.json()) as {
+    data?: { id: string; sku: string; name: string; attributes: Record<string, unknown> }[]
+    msg?: string
+  }
+  if (!res.ok || !Array.isArray(json.data)) {
+    return NextResponse.json(
+      { ok: false, stage: 'products-fetch', status: res.status, msg: json?.msg ?? json },
+      { status: 502 },
+    )
+  }
+  const data = json.data
 
   let upserted = 0
   for (const p of data) {
@@ -56,4 +75,10 @@ export async function GET() {
   }
 
   return NextResponse.json({ ok: true, upserted, total: data.length })
+  } catch (e) {
+    return NextResponse.json(
+      { ok: false, stage: 'sync', error: String((e as Error)?.message ?? e) },
+      { status: 500 },
+    )
+  }
 }
