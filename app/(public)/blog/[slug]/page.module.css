@@ -1,0 +1,207 @@
+/* ============================================================
+   Blog post (detail) — editorial layout. Global font tokens only.
+   Patek restraint: generous whitespace, thin rules, gold accents.
+   ============================================================ */
+
+.post {
+  background: #fff;
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+.back {
+  max-width: 68ch;
+  margin: 0 auto;
+  padding: calc(64px + 2rem) clamp(1.25rem, 5vw, 2rem) 0;
+}
+.back a {
+  font-family: var(--ba-font-sans);
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  color: var(--ba-ink-soft);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.back a:hover { color: var(--ba-gold); }
+
+/* Hero text block */
+.hero {
+  max-width: 68ch;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.25rem, 5vw, 2rem) clamp(1.5rem, 3vw, 2rem);
+  text-align: center;
+}
+.cat {
+  font-family: var(--ba-font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ba-gold);
+  margin: 0 0 1.25rem;
+}
+.title {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(1.9rem, 4.2vw, 3rem);
+  font-weight: 200;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: var(--ba-ink);
+  margin: 0 0 1.25rem;
+}
+.meta {
+  font-family: var(--ba-font-sans);
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  color: var(--ba-ink-soft);
+  margin: 0;
+}
+.meta span { margin: 0 0.4rem; color: var(--ba-gold); }
+
+/* Hero media — full-bleed within a comfortable max, cinematic ratio */
+.heroMedia {
+  max-width: 1100px;
+  margin: clamp(1rem, 3vw, 2rem) auto clamp(2rem, 5vw, 3.5rem);
+  padding: 0 clamp(0rem, 3vw, 1.5rem);
+}
+.heroMedia img,
+.heroMedia video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  border-radius: 2px;
+  box-shadow: 0 24px 60px -28px rgba(20, 16, 10, 0.5);
+}
+.heroVideo video { background: var(--ba-ink); }
+
+/* Body prose wrapper (BlogBody supplies typography) */
+.content {
+  padding: 0 clamp(1.25rem, 5vw, 2rem);
+}
+
+/* Inline figures inside the prose (from markdown/HTML in body) */
+.content :global(figure) {
+  max-width: 900px;
+  margin: 2.5rem auto;
+}
+.content :global(figure img) {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 2px;
+  box-shadow: 0 18px 44px -26px rgba(20, 16, 10, 0.45);
+}
+.content :global(figcaption) {
+  font-family: var(--ba-font-sans);
+  font-size: 0.8rem;
+  color: var(--ba-ink-soft);
+  text-align: center;
+  margin-top: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+/* CTA box */
+.cta {
+  max-width: 68ch;
+  margin: clamp(3rem, 6vw, 5rem) auto 0;
+  padding: 0 clamp(1.25rem, 5vw, 2rem);
+}
+.ctaBox {
+  background: var(--ba-ink);
+  color: #fff;
+  padding: clamp(2rem, 4vw, 3rem);
+  text-align: center;
+  border-radius: 2px;
+}
+.ctaBox h3 {
+  font-family: var(--ba-font-sans);
+  font-weight: 200;
+  font-size: clamp(1.35rem, 2.6vw, 1.85rem);
+  letter-spacing: 0.01em;
+  margin: 0 0 1rem;
+}
+.ctaBox p {
+  font-family: var(--ba-font-editorial);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 52ch;
+  margin: 0 auto 1.75rem;
+}
+.ctaBox a {
+  display: inline-block;
+  font-family: var(--ba-font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ba-ink);
+  background: var(--ba-gold);
+  padding: 0.9rem 2rem;
+  text-decoration: none;
+  border-radius: 1px;
+  transition: background 0.25s, transform 0.25s;
+}
+.ctaBox a:hover {
+  background: var(--ba-gold-warm, #d8b98a);
+  transform: translateY(-1px);
+}
+
+/* Related */
+.related {
+  max-width: 1100px;
+  margin: clamp(4rem, 8vw, 6rem) auto 0;
+  padding: 0 clamp(1.25rem, 5vw, 2rem);
+}
+.related h2 {
+  font-family: var(--ba-font-sans);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  color: var(--ba-ink);
+  text-align: center;
+  margin: 0 0 2.5rem;
+}
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 3vw, 2rem);
+}
+.relatedCard {
+  display: block;
+  text-decoration: none;
+  color: var(--ba-ink);
+}
+.relatedImg {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--ba-border-warm, #efe8df);
+  margin-bottom: 1rem;
+}
+.relatedImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.relatedCard:hover .relatedImg img { transform: scale(1.04); }
+.relatedCard h4 {
+  font-family: var(--ba-font-sans);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.35;
+  margin: 0 0 0.4rem;
+}
+.relatedDate {
+  font-family: var(--ba-font-sans);
+  font-size: 0.8rem;
+  color: var(--ba-ink-soft);
+  margin: 0;
+}
+
+@media (max-width: 720px) {
+  .relatedGrid { grid-template-columns: 1fr; }
+}

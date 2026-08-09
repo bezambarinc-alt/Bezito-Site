@@ -1,0 +1,98 @@
+/* ============================================================
+   BlogBody — editorial prose styling for rendered markdown.
+   Uses the site's global font tokens (no font changes). Maps the narrow
+   markdown subset (h2/h3, strong, em, p, hr) to a luxury reading rhythm.
+   ============================================================ */
+
+.prose {
+  max-width: 68ch;
+  margin: 0 auto;
+  font-family: var(--ba-font-editorial);
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: var(--ba-ink);
+}
+
+/* Section headings — sans, uppercase, gold accent, generous top space */
+.prose :global(h2) {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--ba-ink);
+  line-height: 1.2;
+  margin: 3rem 0 1rem;
+}
+.prose :global(h3) {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: var(--ba-ink);
+  line-height: 1.3;
+  margin: 2.25rem 0 0.75rem;
+}
+.prose :global(h4) {
+  font-family: var(--ba-font-sans);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--ba-ink);
+  margin: 1.75rem 0 0.5rem;
+}
+
+/* Paragraphs */
+.prose :global(p) {
+  margin: 0 0 1.5rem;
+}
+
+/* Bold — the FAQ question pattern (**Q?**) + emphasis. Gold-ink, slightly heavier. */
+.prose :global(strong) {
+  font-weight: 600;
+  color: var(--ba-ink);
+}
+
+/* Italics — the intro/lede paragraphs use these */
+.prose :global(em) {
+  font-style: italic;
+  color: var(--ba-ink-soft);
+}
+
+/* Horizontal rule — thin warm divider */
+.prose :global(hr) {
+  border: 0;
+  height: 1px;
+  background: var(--ba-border-warm);
+  margin: 2.5rem 0;
+}
+
+/* Links (rare, but sanitized-safe) — gold underline */
+.prose :global(a) {
+  color: var(--ba-gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 0.2s;
+}
+.prose :global(a:hover) { color: var(--ba-gold-warm); }
+
+/* Lists (defensive — content has none today, but sanitize-safe if added) */
+.prose :global(ul),
+.prose :global(ol) {
+  margin: 0 0 1.5rem 1.25rem;
+  padding: 0;
+}
+.prose :global(li) { margin-bottom: 0.5rem; }
+
+/* Blockquote (defensive) */
+.prose :global(blockquote) {
+  margin: 2rem 0;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--ba-gold);
+  font-style: italic;
+  color: var(--ba-ink-soft);
+}
+
+@media (max-width: 640px) {
+  .prose { font-size: 1.0625rem; }
+}

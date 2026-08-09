@@ -62,3 +62,27 @@ CREATE TABLE IF NOT EXISTS audit_log (
   detail      JSONB,
   created_at  TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+
+-- 6. blog_posts: journal/blog content (migrated from Astro dist/blog).
+--    Populated by /api/blogimport. Rendered by app/(public)/blog/[slug]/page.tsx.
+CREATE TABLE IF NOT EXISTS blog_posts (
+  slug           TEXT PRIMARY KEY CHECK (slug ~ '^[a-z0-9-]+$'),
+  title          TEXT NOT NULL,
+  date           TIMESTAMPTZ NOT NULL,
+  updated_date   TIMESTAMPTZ,
+  category       TEXT NOT NULL,
+  excerpt        TEXT NOT NULL,
+  hero_image     TEXT,
+  hero_video     TEXT,
+  hero_image_alt TEXT,
+  author         TEXT NOT NULL DEFAULT 'Bez Ambar',
+  status         TEXT NOT NULL DEFAULT 'live'
+                 CHECK (status IN ('draft','live','archived')),
+  schema_type    TEXT,
+  schema_faq     BOOLEAN NOT NULL DEFAULT false,
+  body           TEXT NOT NULL,
+  display_order  INT NOT NULL DEFAULT 0,
+  created_at     TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at     TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_blog_posts_live ON blog_posts (status, date DESC);
