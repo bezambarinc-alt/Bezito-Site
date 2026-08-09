@@ -16,12 +16,12 @@
 }
 
 /* Lede — the opening italic paragraph. Larger, softer, sets the tone. */
-.prose :global(> p:first-of-type) {
+.prose :global(p:first-of-type) {
   font-size: 1.24rem;
   line-height: 1.6;
   color: var(--ba-ink-soft);
 }
-.prose :global(> p:first-of-type em) {
+.prose :global(p:first-of-type em) {
   font-style: italic;
   color: var(--ba-ink-soft);
 }
