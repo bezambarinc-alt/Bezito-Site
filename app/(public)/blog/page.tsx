@@ -27,41 +27,73 @@ function fmtDate(d: string) {
 
 export default async function BlogPage() {
   const cards = await getBlogCards()
+  const [featured, ...rest] = cards
 
   return (
     <main className={styles.page}>
-      <header className={styles.hero}>
+      {/* Editorial masthead — light, works under the ink header */}
+      <header className={styles.masthead}>
         <p className={styles.eyebrow}>From the Atelier</p>
-        <h1 className={styles.title}>Journal</h1>
+        <h1 className={styles.title}>The Journal</h1>
         <p className={styles.intro}>
-          Behind the craft. Inside the atelier. Notes on diamonds, design, and the
-          people behind the work.
+          Notes on diamonds, design, and the craft — from the Los Angeles bench.
         </p>
+        <span className={styles.mastheadRule} aria-hidden="true" />
       </header>
 
-      <div className={styles.content}>
-        {cards.length === 0 ? (
-          <div className={styles.feed}>
-            <div className={styles.feedCard}>
-              <p className={styles.feedHandle}>@bezambarjewelry</p>
-              <p className={styles.feedDesc}>
-                Follow the atelier on Instagram for new pieces, process shots, and
-                notes from the bench. Posted daily from Los Angeles.
-              </p>
-              <a
-                href="https://www.instagram.com/bezambarjewelry/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.feedLink}
-              >
-                Follow on Instagram →
-              </a>
-            </div>
+      {cards.length === 0 ? (
+        <div className={styles.emptyWrap}>
+          <div className={styles.emptyCard}>
+            <p className={styles.emptyHandle}>@bezambarjewelry</p>
+            <p className={styles.emptyDesc}>
+              Follow the atelier on Instagram for new pieces, process shots, and
+              notes from the bench.
+            </p>
+            <a
+              href="https://www.instagram.com/bezambarjewelry/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.emptyLink}
+            >
+              Follow on Instagram →
+            </a>
           </div>
-        ) : (
+        </div>
+      ) : (
+        <div className={styles.content}>
+          {/* Featured lead post — large, editorial */}
+          {featured && (
+            <Reveal>
+              <Link href={`/blog/${featured.slug}`} className={styles.feature}>
+                <div className={styles.featureMedia}>
+                  {featured.heroImage && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={featured.heroImage}
+                      alt={featured.heroImageAlt ?? featured.title}
+                    />
+                  )}
+                  <span className={styles.featureBadge}>Latest</span>
+                </div>
+                <div className={styles.featureBody}>
+                  <p className={styles.featureCat}>
+                    {blogCategoryLabel(featured.category)}
+                  </p>
+                  <h2 className={styles.featureTitle}>{featured.title}</h2>
+                  <p className={styles.featureExcerpt}>{featured.excerpt}</p>
+                  <span className={styles.featureLink}>Read the story →</span>
+                  <p className={styles.featureDate}>{fmtDate(featured.date)}</p>
+                </div>
+              </Link>
+            </Reveal>
+          )}
+
+          <div className={styles.gridRule} aria-hidden="true" />
+
+          {/* Card grid */}
           <div className={styles.grid}>
-            {cards.map((c, i) => (
-              <Reveal key={c.slug} delay={(i % 3) * 90}>
+            {rest.map((c, i) => (
+              <Reveal key={c.slug} delay={(i % 3) * 80}>
                 <Link href={`/blog/${c.slug}`} className={styles.card}>
                   <div className={styles.cardImg}>
                     {c.heroImage && (
@@ -74,15 +106,15 @@ export default async function BlogPage() {
                     )}
                   </div>
                   <p className={styles.cardCat}>{blogCategoryLabel(c.category)}</p>
-                  <h2 className={styles.cardTitle}>{c.title}</h2>
+                  <h3 className={styles.cardTitle}>{c.title}</h3>
                   <p className={styles.cardExcerpt}>{c.excerpt}</p>
                   <p className={styles.cardDate}>{fmtDate(c.date)}</p>
                 </Link>
               </Reveal>
             ))}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </main>
   )
 }
