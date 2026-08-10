@@ -52,7 +52,7 @@ export async function GET(req: NextRequest) {
     }
 
     // Invalidate catalog cache — site serves fresh data on next request
-    revalidateTag('products')
+    revalidateTag('products', 'max')
 
     await sql(
       `INSERT INTO audit_log(actor, action, target, detail)
