@@ -47,15 +47,17 @@ export default async function ProductPage({
 }: {
   params: Promise<{ category: string; slug: string }>
 }) {
-  const { category, slug } = await params
+  const { category: urlCategory, slug } = await params
   const product = await getProductBySlug(slug)
   if (!product) notFound()
 
   const s = product.specs
-  const heroVideo   = s.heroVideoUrl   ?? product.media.find((m) => m.type === 'video')?.url
-  const heroPoster  = s.heroPosterUrl  ?? product.media.find((m) => m.type === 'video')?.poster
+  const heroVideo      = s.heroVideoUrl   ?? product.media.find((m) => m.type === 'video')?.url
+  const heroPoster     = s.heroPosterUrl  ?? product.media.find((m) => m.type === 'video')?.poster
   const secondaryVideo = s.secondaryVideoUrl
 
+  // Derive category from the product's own Neon data — authoritative over URL param
+  const category      = (product.specs.category ?? urlCategory).toLowerCase()
   const categoryLabel = getCategoryLabel(category)
 
   const specItems: SpecItem[] = [
