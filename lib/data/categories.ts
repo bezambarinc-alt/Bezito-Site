@@ -18,6 +18,13 @@ export const CATEGORIES: Record<string, CategoryMeta> = {
     videoUrl:
       'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Rings/c0578_4k_v1_2160p_wwnfcz.mp4',
   },
+  bands: {
+    eyebrow: 'The Collection',
+    title: 'Bands',
+    intro: 'Eternity bands and wedding bands — one continuous line of light.',
+    videoUrl:
+      'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.mp4',
+  },
   bracelets: {
     eyebrow: 'The Collection',
     title: 'Bracelets',
@@ -34,6 +41,11 @@ export const CATEGORIES: Record<string, CategoryMeta> = {
     eyebrow: 'The Collection',
     title: 'Earrings',
     intro: 'Studs, drops, and hoops in signature Bez Ambar cuts.',
+  },
+  pendants: {
+    eyebrow: 'The Collection',
+    title: 'Pendants',
+    intro: 'Single stones and sculptural forms — light held at the throat.',
   },
   'wedding-bands': {
     eyebrow: 'The Collection',
