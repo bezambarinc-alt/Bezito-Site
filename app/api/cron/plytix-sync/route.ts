@@ -142,6 +142,7 @@ export async function GET(req: NextRequest) {
       await sleep(300) // pace between search pages (rate limit)
     }
     let upserted = 0
+    const syncedSkus: string[] = []
     const errors: { sku?: string; error: string }[] = []
 
     // 2) Fetch each product's full detail + map to specs/media.
@@ -195,6 +196,7 @@ export async function GET(req: NextRequest) {
              SET plytix_id=$2, name=$3, specs=$4, media=$5, synced_at=now()`,
           [p.sku, p.id, str(p.label) ?? p.sku, JSON.stringify(specs), JSON.stringify(media)],
         )
+        syncedSkus.push(p.sku)
         upserted++
         await sleep(200) // gentle pacing between products
       } catch (e) {
@@ -202,10 +204,21 @@ export async function GET(req: NextRequest) {
       }
     }
 
+    // 3) Delete stale rows — any SKU in Neon not returned by Plytix this run
+    let deleted = 0
+    if (syncedSkus.length > 0) {
+      const { rows } = await sql(
+        `DELETE FROM products WHERE sku <> ALL($1::text[]) RETURNING sku`,
+        [syncedSkus]
+      ) as unknown as { rows: { sku: string }[] }
+      deleted = rows.length
+      if (deleted) console.log(`Deleted stale: ${rows.map(r => r.sku).join(', ')}`)
+    }
+
     // Invalidate catalog cache so next request serves fresh data
     revalidateTag('products', 'max')
 
-    return NextResponse.json({ ok: true, listed: ids.length, upserted, errors: errors.slice(0, 5) })
+    return NextResponse.json({ ok: true, listed: ids.length, upserted, deleted, errors: errors.slice(0, 5) })
   } catch (e) {
     return NextResponse.json(
       { ok: false, stage: 'sync', error: String((e as Error)?.message ?? e) },
