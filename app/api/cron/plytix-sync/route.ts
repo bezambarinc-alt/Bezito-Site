@@ -1,4 +1,5 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
+import { revalidateTag } from 'next/cache'
 import { sql } from '@/lib/db'
 
 /**
@@ -90,7 +91,17 @@ function detectType(url: string): 'image' | 'video' {
   return /\/video\/upload\//.test(url) || /\.(mp4|webm|mov)(\?|$)/i.test(url) ? 'video' : 'image'
 }
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  // Auth: Vercel Cron injects Authorization header automatically.
+  // Bezito can also trigger manually with BEZITO_SECRET.
+  const auth = req.headers.get('authorization') ?? ''
+  if (
+    auth !== `Bearer ${process.env.CRON_SECRET}` &&
+    auth !== `Bearer ${process.env.BEZITO_SECRET}`
+  ) {
+    return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
+  }
+
   try {
     const token = await getPlytixToken()
 
@@ -105,7 +116,8 @@ export async function GET() {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          filters: [],
+          // Only sync Completed products — Drafts never hit the site
+          filters: [[{ field: 'status', operator: 'eq', value: 'Completed' }]],
           attributes: ['sku', 'label'],
           pagination: { page, page_size: PAGE_SIZE },
         }),
@@ -187,6 +199,9 @@ export async function GET() {
         errors.push({ error: String((e as Error)?.message ?? e) })
       }
     }
+
+    // Invalidate catalog cache so next request serves fresh data
+    revalidateTag('products', 'max')
 
     return NextResponse.json({ ok: true, listed: ids.length, upserted, errors: errors.slice(0, 5) })
   } catch (e) {
