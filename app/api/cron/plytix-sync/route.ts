@@ -116,8 +116,10 @@ export async function GET(req: NextRequest) {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          // Only sync Completed products — Drafts never hit the site
-          filters: [[{ field: 'status', operator: 'eq', value: 'Completed' }]],
+          // Only sync Completed + active products — per Kevin 2026-08-09
+          filters: [
+            [{ field: 'status', operator: 'eq', value: 'Completed' }],
+          ],
           attributes: ['sku', 'label'],
           pagination: { page, page_size: PAGE_SIZE },
         }),
