@@ -222,12 +222,12 @@ export async function GET(req: NextRequest) {
     // 3) Delete stale rows — any SKU in Neon not returned by Plytix this run
     let deleted = 0
     if (syncedSkus.length > 0) {
-      const { rows } = await sql(
+      const stale = await sql<{ sku: string }>(
         `DELETE FROM products WHERE sku <> ALL($1::text[]) RETURNING sku`,
         [syncedSkus]
-      ) as unknown as { rows: { sku: string }[] }
-      deleted = rows.length
-      if (deleted) console.log(`Deleted stale: ${rows.map(r => r.sku).join(', ')}`)
+      )
+      deleted = stale.length
+      if (deleted) console.log(`Deleted stale: ${stale.map(r => r.sku).join(', ')}`)
     }
 
     // Invalidate catalog cache so next request serves fresh data
