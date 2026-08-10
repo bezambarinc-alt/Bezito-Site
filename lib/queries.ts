@@ -7,10 +7,19 @@ import type { Product, ProductMedia, ProductSpecs } from '@/types/products'
  * The `specs` / `media` JSONB columns are legacy — do not query them.
  */
 
+/** Derive a Cloudinary still poster from a video URL (so cards always get a valid image). */
+function cloudinaryPoster(videoUrl: string): string {
+  return videoUrl
+    .replace('/video/upload/', '/video/upload/so_2.0,f_jpg,w_800,c_fit/')
+    .replace(/\.mp4$/i, '.jpg')
+    .replace(/\.webm$/i, '.jpg')
+}
+
 /** Map individual Neon columns → the Product view shape. */
 function rowToProduct(r: Record<string, unknown>): Product {
-  const heroVideo  = r.hero_visual  as string | null
-  const heroPoster = r.editorial_visual as string | null
+  const heroVideo  = r.hero_visual       as string | null
+  const heroPoster = (r.editorial_visual as string | null)
+    ?? (heroVideo ? cloudinaryPoster(heroVideo) : null)
 
   const media: ProductMedia[] = []
   if (heroVideo)  media.push({ url: heroVideo,  type: 'video', label: 'Hero',      poster: heroPoster ?? undefined })
