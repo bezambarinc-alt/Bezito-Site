@@ -59,11 +59,6 @@ export const CATEGORIES: Record<string, CategoryMeta> = {
     title: 'Engagement Rings',
     intro: 'Every engagement ring begins with the stone. We cut it here.',
   },
-  pendants: {
-    eyebrow: 'The Collection',
-    title: 'Pendants',
-    intro: 'Stone and metal, suspended — from the simplest to the exceptional.',
-  },
 }
 
 /** Human-readable label for breadcrumbs. */
