@@ -16,16 +16,32 @@ CREATE TABLE IF NOT EXISTS pages (
   updated_at  TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
--- 2. products: READ CACHE of Plytix — rebuilt by 4h cron, never source of truth
+-- 2. products: READ CACHE of Plytix — rebuilt by sync cron, never source of truth
 CREATE TABLE IF NOT EXISTS products (
-  sku         TEXT PRIMARY KEY,
-  plytix_id   TEXT UNIQUE NOT NULL,
-  name        TEXT NOT NULL,
-  specs       JSONB NOT NULL DEFAULT '{}'::jsonb,
-  price       NUMERIC(12,2),
-  media       JSONB NOT NULL DEFAULT '[]'::jsonb,
-  synced_at   TIMESTAMPTZ NOT NULL DEFAULT now()
+  sku                TEXT PRIMARY KEY,
+  plytix_id          TEXT UNIQUE NOT NULL,
+  name               TEXT NOT NULL,
+  category           TEXT,
+  subtitle           TEXT,
+  editorial          TEXT,
+  description        TEXT,
+  hero_visual        TEXT,         -- Cloudinary mp4 or image URL
+  editorial_visual   TEXT,         -- Cloudinary poster/thumbnail URL
+  metal              TEXT,
+  stone_shape        TEXT,
+  stone_carats       TEXT,
+  stone_clarity      TEXT,
+  stone_color        TEXT,
+  stone_notes        TEXT,
+  total_carat_weight NUMERIC(8,3),
+  active             BOOLEAN NOT NULL DEFAULT true,
+  featured           BOOLEAN NOT NULL DEFAULT false,
+  sort_order         INTEGER NOT NULL DEFAULT 0,
+  specs              JSONB NOT NULL DEFAULT '{}'::jsonb,
+  synced_at          TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+CREATE INDEX IF NOT EXISTS idx_products_active ON products (active, featured DESC, sort_order ASC);
+CREATE INDEX IF NOT EXISTS idx_products_category ON products (category);
 
 -- 3. leads: durable audit copy written BEFORE CRM call
 CREATE TABLE IF NOT EXISTS leads (
@@ -86,3 +102,22 @@ CREATE TABLE IF NOT EXISTS blog_posts (
   updated_at     TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 CREATE INDEX IF NOT EXISTS idx_blog_posts_live ON blog_posts (status, date DESC);
+
+-- 7. archive: legacy product archive (animated GIFs + video drawer)
+CREATE TABLE IF NOT EXISTS archive (
+  slug          TEXT        PRIMARY KEY,
+  title         TEXT        NOT NULL DEFAULT '',
+  sku           TEXT        NOT NULL DEFAULT '',
+  category      TEXT        NOT NULL DEFAULT 'all',
+  gif_url       TEXT        NOT NULL DEFAULT '',
+  mp4_url       TEXT        NOT NULL DEFAULT '',
+  shapes        TEXT[]      NOT NULL DEFAULT '{}',
+  colors        TEXT[]      NOT NULL DEFAULT '{}',
+  description   TEXT        NOT NULL DEFAULT '',
+  display_order INTEGER     NOT NULL DEFAULT 0,
+  synced_at     TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_archive_category ON archive (category);
+CREATE INDEX IF NOT EXISTS idx_archive_shapes   ON archive USING GIN (shapes);
+CREATE INDEX IF NOT EXISTS idx_archive_colors   ON archive USING GIN (colors);
+CREATE INDEX IF NOT EXISTS idx_archive_has_gif  ON archive (slug) WHERE gif_url != '';
