@@ -46,11 +46,13 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
         </div>
       </section>
 
-      <main className={styles.main}>
-        <Suspense fallback={<ProductGridSkeleton />}>
-          <ProductGrid category={category} />
-        </Suspense>
-      </main>
+      <div className={styles.productSection}>
+        <main className={styles.main}>
+          <Suspense fallback={<ProductGridSkeleton />}>
+            <ProductGrid category={category} />
+          </Suspense>
+        </main>
+      </div>
     </>
   )
 }

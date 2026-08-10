@@ -71,11 +71,16 @@
   margin: 0 auto;
 }
 
-/* ── Main content ── */
+/* ── Main content — dark section matching Astro site ── */
+.productSection {
+  background: var(--ba-dark);
+  width: 100%;
+}
+
 .main {
   max-width: var(--ba-maxw-xl);
   margin: 0 auto;
-  padding: 0 0 clamp(4rem, 8vw, 7rem);
+  padding: clamp(3rem, 5vw, 5rem) var(--ba-gutter) clamp(5rem, 10vw, 8rem);
 }
 
 @media (max-width: 768px) {
