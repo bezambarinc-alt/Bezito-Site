@@ -19,14 +19,17 @@ export interface ProductMedia {
  */
 export interface ProductSpecs {
   category?: string
+  /** Named collection this piece belongs to (e.g. "Bloom", "Eshed"). */
+  collection?: string
   subtitle?: string
   lede?: string
   /** Gem credit — Princess Cut / Blaze® / Elysian Cut™ only. */
   gemStone?: string
   metal?: string
   madeIn?: string
+  /** Total carat weight of all stones. Prefers total_carat_weight column; falls back to stone_carats. */
   caratWeight?: string
-  /** Center stone weight only — if applicable (empty for tennis/eternity pieces). */
+  /** Center stone weight — if applicable (empty for tennis/eternity pieces). */
   centerStoneWeight?: string
   color?: string
   clarity?: string
@@ -35,17 +38,6 @@ export interface ProductSpecs {
   heroPosterUrl?: string
   secondaryVideoUrl?: string
   [key: string]: string | undefined
-}
-
-/** Row shape as stored in Neon. `specs`/`media` are JSONB. */
-export interface ProductRow {
-  sku: string
-  plytix_id: string
-  name: string
-  specs: ProductSpecs
-  price: string | null
-  media: ProductMedia[]
-  synced_at: string
 }
 
 /** Normalized product for the view layer. */
@@ -59,14 +51,4 @@ export interface Product {
   syncedAt: string
 }
 
-export function toProduct(row: ProductRow): Product {
-  return {
-    sku: row.sku,
-    plytixId: row.plytix_id,
-    name: row.name,
-    specs: row.specs ?? {},
-    price: row.price == null ? null : Number(row.price),
-    media: Array.isArray(row.media) ? row.media : [],
-    syncedAt: row.synced_at,
-  }
-}
+// toProduct() removed — JSONB-era mapper, superseded by rowToProduct() in lib/queries.ts

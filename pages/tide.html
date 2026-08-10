@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tide — Bez Ambar</title>
+<meta name="description" content="5.95ct pear-shaped diamond eternity band in platinum. 18 stones, no beginning, no end. Bez Ambar, Los Angeles.">
+<link rel="canonical" href="https://bezito.co/page/tide">
+<meta property="og:title" content="Tide — Bez Ambar">
+<meta property="og:description" content="5.95ct pear-shaped diamond eternity band in platinum. 18 stones, no beginning, no end. Bez Ambar, Los Angeles.">
+<meta property="og:url" content="https://bezito.co/page/tide">
+<meta property="og:image" content="https://res.cloudinary.com/dlg2mou53/video/upload/so_5.0,f_jpg,w_1200,c_fit/v1786354495/Jewelry%20Videos/Rings/C0491-Website.jpg">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231a1a1a'/%3E%3Ctext x='16' y='22' font-family='Inter,sans-serif' font-size='18' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://webfonts.fontstand.com/WF-099839-d89c1d499f0c1f40d1e6d7330af17f97.css" type="text/css"/>
+<style>
+  :root {
+    --serif: 'Lyon Text Regular', 'EB Garamond', Georgia, serif;
+    --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --paper: #ffffff;
+    --paper-warm: #faf7f2;
+    --rule: rgba(0,0,0,.08);
+    --accent: #95826b;
+    --gutter: clamp(1.25rem, 5vw, 4rem);
+    --max-wide: 1200px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 20px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  img, video { display: block; max-width: 100%; height: auto; }
+
+  .ba-header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: transparent;
+    padding: 18px 20px;
+    text-align: center;
+    pointer-events: none;
+  }
+  .ba-header__logo {
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: var(--ink);
+    text-transform: uppercase;
+    text-decoration: none;
+    pointer-events: auto;
+    transition: color 0.3s ease;
+  }
+  .ba-header.over-dark .ba-header__logo { color: #ffffff; }
+
+  /* Split hero: video left, copy right */
+  .hero-split {
+    display: flex;
+    min-height: 40vh;
+    margin-top: 68px;
+    background: var(--paper);
+  }
+  .hero-split__video {
+    flex: 0 0 55%;
+    position: relative;
+    overflow: hidden;
+    background: #0d0d0d;
+  }
+  .hero-split__video video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    pointer-events: none;
+  }
+  .hero-split__text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(3rem, 5vw, 5rem) clamp(2.5rem, 5vw, 5rem);
+    border-left: 1px solid var(--rule);
+  }
+  .split-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.30em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .split-heading {
+    font-family: var(--sans);
+    font-size: clamp(30px, 3.8vw, 52px);
+    font-weight: 200;
+    letter-spacing: 0.03em;
+    line-height: 1.08;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  .split-ref {
+    font-family: var(--sans);
+    font-size: clamp(22px, 2.2vw, 34px);
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    color: rgba(201,184,150,0.65);
+    margin-bottom: 1.4rem;
+  }
+  .split-copy {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.78;
+    margin-bottom: 2.2rem;
+    max-width: 480px;
+  }
+  .split-btn {
+    display: inline-block;
+    align-self: flex-start;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 14px 30px;
+    text-decoration: none;
+    border-radius: 40px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .split-btn:hover { background: var(--ink); color: var(--paper); }
+  .hero-video__ref {
+    position: absolute;
+    bottom: clamp(20px, 3vw, 40px);
+    left: clamp(20px, 3vw, 48px);
+    color: #c9b896;
+    font-family: var(--sans);
+    z-index: 10;
+    pointer-events: none;
+    text-shadow: 0 1px 2px rgba(0,0,0,.5);
+  }
+  .hero-video__ref-id {
+    font-size: clamp(30px, 2.6vw, 44px);
+    font-weight: 200;
+    letter-spacing: 0.005em;
+    line-height: 1.05;
+    margin-bottom: 3px;
+  }
+  .hero-video__ref-name {
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  @media (max-width: 768px) {
+    .hero-split { flex-direction: column; }
+    .hero-split__video { flex: 0 0 auto; height: 70vh; }
+    .hero-split__text { border-left: none; border-top: 1px solid var(--rule); }
+  }
+
+  /* Content split: tech details left, on-hand photo right */
+  .content-split {
+    display: flex;
+    border-top: 1px solid var(--rule);
+    background: var(--paper-warm);
+  }
+  .content-split__left {
+    flex: 0 0 55%;
+    padding: clamp(2.5rem, 5vw, 5rem) clamp(2rem, 4vw, 4rem);
+    border-right: 1px solid var(--rule);
+  }
+  .content-split__right {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+  }
+  .content-split__photo {
+    width: 100%;
+    height: 100%;
+    min-height: 450px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  .content-split__eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.30em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.6rem;
+  }
+  .technical__list { display: flex; flex-direction: column; }
+  .tech-item { border-top: 1px solid var(--rule); }
+  .tech-item:last-of-type { border-bottom: 1px solid var(--rule); }
+  .tech-item__head {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 22px 32px 22px 0;
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+    user-select: none;
+  }
+  .tech-item__head::-webkit-details-marker { display: none; }
+  .tech-item__head::after {
+    content: '';
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-right: 1px solid var(--accent);
+    border-bottom: 1px solid var(--accent);
+    transform: translate(0, -70%) rotate(45deg);
+    transition: transform 0.3s ease;
+  }
+  .tech-item[open] .tech-item__head::after { transform: translate(0, -25%) rotate(-135deg); }
+  .tech-item__body {
+    padding: 0 32px 24px 0;
+    font-family: var(--serif);
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+  @media (max-width: 768px) {
+    .content-split { flex-direction: column; }
+    .content-split__left { flex: none; border-right: none; border-bottom: 1px solid var(--rule); }
+    .content-split__photo { aspect-ratio: 1 / 1; height: auto; min-height: unset; }
+  }
+
+  /* Three Views */
+  .views {
+    margin-top: 0;
+    padding: 0 0 15px;
+    background: #000;
+  }
+  .views__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .views__item { display: flex; flex-direction: column; gap: 12px; }
+  .views__img-wrap {
+    width: 100%;
+    height: 440px;
+    overflow: hidden;
+    background: #0d0d0d;
+  }
+  .views__img-wrap img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;
+  }
+  .views__label {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-align: center;
+  }
+  .views__eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.30em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-align: center;
+    margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  }
+  @media (max-width: 600px) {
+    .views__grid { grid-template-columns: 1fr; }
+  }
+
+  /* Project files */
+  .project-files {
+    background: var(--paper-warm);
+    padding: 28px var(--gutter);
+    border-top: 1px solid var(--rule);
+    text-align: center;
+  }
+  .project-files__label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.30em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .project-files__links {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .project-files__link {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border: 1px solid var(--rule);
+    padding: 9px 20px;
+    border-radius: 30px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .project-files__link:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Inquire footer */
+  .inquire {
+    background: #fff;
+    color: var(--ink);
+    height: 200px;
+    padding: 0 var(--gutter);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .inquire__brand {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 200;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .inquire__piece {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 200;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+  .inquire__contact {
+    font-family: var(--serif);
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.55;
+  }
+  .inquire__contact a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(0,0,0,.15); }
+  .inquire__contact a:hover { border-bottom-color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header class="ba-header" id="ba-header">
+  <span class="ba-header__logo">BEZ AMBAR</span>
+</header>
+
+<div class="hero-split" id="hero-video">
+  <div class="hero-split__video">
+    <video src="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1786354495/Jewelry%20Videos/Rings/C0491-Website.mp4" autoplay loop muted playsinline preload="auto"></video>
+    <div class="hero-video__ref">
+      <div class="hero-video__ref-id">C0491</div>
+      <div class="hero-video__ref-name">Tide</div>
+    </div>
+  </div>
+  <div class="hero-split__text">
+    <div class="split-eyebrow">The Band</div>
+    <h1 class="split-heading">Tide</h1>
+    <div class="split-ref">C0491</div>
+    <p class="split-copy">You never simply wear TIDE. Each pear-shaped diamond turns with the current — no beginning, no end. Platinum holds the flow. It belongs to you for now, and to someone else forever.</p>
+    <a href="tel:+12136299191" class="split-btn">Request a Viewing</a>
+  </div>
+</div>
+
+<section class="content-split">
+  <div class="content-split__left">
+    <div class="content-split__eyebrow">Technical Details</div>
+    <div class="technical__list">
+      <details class="tech-item">
+        <summary class="tech-item__head">Pear Cut Diamonds</summary>
+        <div class="tech-item__body"><p>18 stones · 5.95ct total · Pear cut.</p></div>
+      </details>
+      <details class="tech-item">
+        <summary class="tech-item__head">Metal</summary>
+        <div class="tech-item__body"><p>Platinum · High polish finish.</p></div>
+      </details>
+      <details class="tech-item">
+        <summary class="tech-item__head">More Details</summary>
+        <div class="tech-item__body"><p>Designed and made in Los Angeles. Available by private appointment. Custom sizing on request.</p></div>
+      </details>
+    </div>
+  </div>
+  <div class="content-split__right">
+    <img class="content-split__photo"
+      src="https://res.cloudinary.com/dlg2mou53/image/upload/v1786355421/Jewelry%20Images/Rings/c0491-tide-model.avif"
+      alt="Tide · C0491 · On Wrist">
+  </div>
+</section>
+
+<section class="views">
+  <div class="views__grid">
+    <div class="views__item">
+      <div class="views__img-wrap"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1786355421/Jewelry%20Images/Rings/c0491-tide-top.avif" alt="Detail"></div>
+      <div class="views__label">Detail</div>
+    </div>
+    <div class="views__item">
+      <div class="views__img-wrap"></div>
+      <div class="views__label"></div>
+    </div>
+    <div class="views__item">
+      <div class="views__img-wrap"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1786355421/Jewelry%20Images/Rings/c0491-tide-sketch.avif" alt="Sketch"></div>
+      <div class="views__label">Sketch</div>
+    </div>
+  </div>
+  <div class="views__eyebrow">Three Views · C0491</div>
+</section>
+
+<section class="project-files">
+  <div class="project-files__label">Project Files</div>
+  <div class="project-files__links">
+    <a href="https://www.dropbox.com/scl/fi/h45ux3iobcynh7tl9bk7x/C0491-Pearshape-band-Master.psd?rlkey=nxm9jnyltyw4p7frvy3hu842z&dl=0" class="project-files__link" target="_blank" rel="noopener">Photoshop · C0491 Master.psd</a>
+    <a href="https://www.dropbox.com/scl/fi/nqs3zeq4tba7ruzfth1mw/C0491-converted.aep?rlkey=er2l5frzocpkksbbl7utrvjms&dl=0" class="project-files__link" target="_blank" rel="noopener">After Effects · C0491.aep</a>
+  </div>
+</section>
+
+<section class="inquire">
+  <div class="inquire__brand">Bez Ambar — Los Angeles</div>
+  <div class="inquire__piece">Tide · C0491</div>
+  <div class="inquire__contact">
+    <a href="tel:+12136299191">Office 213 · 629 · 9191</a><br>
+    <a href="tel:+13232172778">Cell 323 · 217 · 2778</a><br>
+    <a href="mailto:bezambar@bezambar.com">bezambar@bezambar.com</a><br>
+    <a href="https://bezambar.com" target="_blank" rel="noopener">bezambar.com</a>
+  </div>
+</section>
+
+<script>
+  const header = document.getElementById('ba-header');
+  const hero   = document.getElementById('hero-video');
+  function tick() {
+    const rect = hero.getBoundingClientRect();
+    const overDark = rect.top <= 0 && rect.bottom > 60;
+    header.classList.toggle('over-dark', overDark);
+  }
+  window.addEventListener('scroll', tick, { passive: true });
+  tick();
+</script>
+</body>
+</html>

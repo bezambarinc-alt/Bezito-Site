@@ -87,9 +87,8 @@ async function getCategory(id: string, token: string): Promise<string | undefine
   return name ? name.toLowerCase().replace(/\s+/g, '-') : undefined
 }
 
-function detectType(url: string): 'image' | 'video' {
-  return /\/video\/upload\//.test(url) || /\.(mp4|webm|mov)(\?|$)/i.test(url) ? 'video' : 'image'
-}
+// detectType removed — hero_visual / editorial_visual stored as raw URLs;
+// rowToProduct in queries.ts handles type detection via Cloudinary path pattern.
 
 export async function GET(req: NextRequest) {
   // Auth: Vercel Cron injects Authorization header automatically.
@@ -165,36 +164,52 @@ export async function GET(req: NextRequest) {
         const heroVisual = str(a.hero_visual)
         const editorialVisual = str(a.editorial_visual)
 
-        // specs — map Plytix attribute slugs to the ProductSpecs shape the page reads.
-        const specs: Record<string, string | undefined> = {
-          subtitle: str(a.subtitle),
-          lede: str(a.description) ?? str(a.editorial),
-          codeName: str(p.label) ?? str(a.subtitle),
-          metal: str(a.metal),
-          gemStone: str(a.stone_shape),
-          caratWeight: str(a.total_carat_weight) ?? str(a.stone_carats),
-          centerStoneWeight: str(a.center_stone_weight),
-          color: str(a.stone_color),
-          clarity: str(a.stone_clarity),
-          madeIn: 'Los Angeles',
-          category,
-          heroVideoUrl: heroVisual && detectType(heroVisual) === 'video' ? heroVisual : undefined,
-          heroPosterUrl: editorialVisual && detectType(editorialVisual) === 'image' ? editorialVisual : undefined,
-        }
-        Object.keys(specs).forEach((k) => specs[k] === undefined && delete specs[k])
+        // Parse numeric fields (Neon columns are NUMERIC — pass null if absent)
+        const totalCaratWeight  = str(a.total_carat_weight)  ? parseFloat(str(a.total_carat_weight)!)  : null
+        const centerStoneWeight = str(a.center_stone_weight) ? parseFloat(str(a.center_stone_weight)!) : null
 
-        // media — build the gallery array from the visuals we have.
-        const media: { url: string; type: 'image' | 'video'; label?: string }[] = []
-        if (heroVisual) media.push({ url: heroVisual, type: detectType(heroVisual), label: 'Hero' })
-        if (editorialVisual && editorialVisual !== heroVisual)
-          media.push({ url: editorialVisual, type: detectType(editorialVisual), label: 'Editorial' })
-
+        // Write to individual columns — the JSONB `specs`/`media` blobs are legacy.
         await sql(
-          `INSERT INTO products(sku, plytix_id, name, specs, media, synced_at)
-           VALUES ($1,$2,$3,$4,$5,now())
-           ON CONFLICT (sku) DO UPDATE
-             SET plytix_id=$2, name=$3, specs=$4, media=$5, synced_at=now()`,
-          [p.sku, p.id, str(p.label) ?? p.sku, JSON.stringify(specs), JSON.stringify(media)],
+          `INSERT INTO products(
+            sku, plytix_id, name,
+            category, subtitle, editorial, description,
+            hero_visual, editorial_visual,
+            metal, stone_shape, stone_carats, stone_color, stone_clarity, stone_notes,
+            total_carat_weight, center_stone_weight, collection,
+            synced_at
+          ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,now())
+          ON CONFLICT (sku) DO UPDATE SET
+            plytix_id=EXCLUDED.plytix_id, name=EXCLUDED.name,
+            category=EXCLUDED.category, subtitle=EXCLUDED.subtitle,
+            editorial=EXCLUDED.editorial, description=EXCLUDED.description,
+            hero_visual=EXCLUDED.hero_visual, editorial_visual=EXCLUDED.editorial_visual,
+            metal=EXCLUDED.metal, stone_shape=EXCLUDED.stone_shape,
+            stone_carats=EXCLUDED.stone_carats, stone_color=EXCLUDED.stone_color,
+            stone_clarity=EXCLUDED.stone_clarity, stone_notes=EXCLUDED.stone_notes,
+            total_carat_weight=EXCLUDED.total_carat_weight,
+            center_stone_weight=EXCLUDED.center_stone_weight,
+            collection=EXCLUDED.collection,
+            synced_at=now()`,
+          [
+            p.sku,                         // $1  sku
+            p.id,                          // $2  plytix_id
+            str(p.label) ?? p.sku,        // $3  name
+            category ?? null,              // $4  category
+            str(a.subtitle) ?? null,       // $5  subtitle
+            str(a.editorial) ?? null,      // $6  editorial
+            str(a.description) ?? null,    // $7  description
+            heroVisual ?? null,            // $8  hero_visual
+            editorialVisual ?? null,       // $9  editorial_visual
+            str(a.metal) ?? null,          // $10 metal
+            str(a.stone_shape) ?? null,    // $11 stone_shape
+            str(a.stone_carats) ?? null,   // $12 stone_carats
+            str(a.stone_color) ?? null,    // $13 stone_color
+            str(a.stone_clarity) ?? null,  // $14 stone_clarity
+            str(a.stone_notes) ?? null,    // $15 stone_notes
+            totalCaratWeight,              // $16 total_carat_weight (numeric)
+            centerStoneWeight,             // $17 center_stone_weight (numeric)
+            str(a.collection) ?? null,     // $18 collection
+          ],
         )
         syncedSkus.push(p.sku)
         upserted++

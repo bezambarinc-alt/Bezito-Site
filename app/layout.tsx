@@ -6,7 +6,7 @@ import { DrawerProvider } from '@/components/layout/DrawerContext'
 import { HeaderModeProvider, HeaderRouteMode } from '@/components/layout/HeaderModeContext'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import MenuOverlay from '@/components/layout/MenuOverlay'
+import NavMenuData from '@/components/layout/NavMenuData'
 import InquiryDrawer from '@/components/layout/InquiryDrawer'
 import ConciergeDrawer from '@/components/layout/ConciergeDrawer'
 import SearchOverlay from '@/components/layout/SearchOverlay'
@@ -74,7 +74,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Footer />
 
             {/* Overlays present on every page */}
-            <MenuOverlay />
+            <NavMenuData />
             <InquiryDrawer />
             <ConciergeDrawer />
             <SearchOverlay />

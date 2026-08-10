@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jenny Pendant — Vendor Outreach</title>
+<style>
+:root {
+  --ink:#1a1a2e; --paper:#faf9f7; --gold:#9a7b1e; --goldlight:#c9a94a;
+  --red:#8a0000; --green:#2e7a5c; --blue:#1a4a7a; --muted:#777; --line:#e2ddd3;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family: Georgia,'Times New Roman',serif; background:var(--paper); color:var(--ink); line-height:1.55; }
+.page { max-width:1020px; margin:0 auto; padding:40px 24px 80px; }
+
+header { border-bottom:3px double var(--goldlight); padding-bottom:20px; margin-bottom:28px; }
+h1 { font-size:26px; font-weight:normal; letter-spacing:.5px; margin-bottom:4px; }
+.tagline { color:var(--muted); font-size:14px; font-style:italic; }
+.meta { margin-top:10px; font-size:13px; color:#555; }
+
+/* Progress */
+.progress { background:#fff; border:1px solid var(--line); border-radius:6px; padding:18px 22px; margin-bottom:28px; display:flex; gap:28px; align-items:center; flex-wrap:wrap; }
+.prog-stat { text-align:center; min-width:60px; }
+.prog-num  { font-size:28px; color:var(--goldlight); display:block; line-height:1; }
+.prog-label{ font-size:12px; color:var(--muted); margin-top:2px; }
+.prog-track{ flex:1; min-width:180px; background:#ede9e0; border-radius:3px; height:8px; }
+.prog-fill { height:8px; background:var(--goldlight); border-radius:3px; transition:width .4s; }
+.reset-btn { font-size:12px; color:var(--muted); background:none; border:1px solid var(--line); border-radius:3px; padding:4px 10px; cursor:pointer; font-family:Georgia,serif; }
+.reset-btn:hover { color:var(--red); border-color:var(--red); }
+
+/* Category */
+.category { margin-bottom:36px; }
+.cat-header { font-size:17px; font-weight:normal; letter-spacing:.4px; border-bottom:1px solid var(--line); padding-bottom:7px; margin-bottom:14px; color:var(--gold); display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px; }
+.cat-sub { font-size:12.5px; color:var(--muted); font-style:italic; font-weight:normal; }
+
+/* Vendor card */
+.vendor { background:#fff; border:1px solid var(--line); border-radius:6px; padding:16px 18px; margin-bottom:12px; display:grid; grid-template-columns:1fr auto; gap:14px; align-items:start; transition:border-color .2s, background .2s; }
+.vendor[data-status="called"]  { background:#fffef2; border-left:4px solid #e6c050; }
+.vendor[data-status="emailed"] { background:#f4faf6; border-left:4px solid var(--green); }
+.vendor[data-status="replied"] { background:#f0f8ff; border-left:4px solid var(--blue); }
+.vendor[data-status="ordered"] { background:#f0fff4; border-left:4px solid #27ae60; opacity:.85; }
+.vendor[data-status="na"]      { background:#f8f8f8; opacity:.6; }
+
+.v-top  { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:4px; }
+.v-name { font-size:15px; font-weight:bold; }
+.v-loc  { font-size:12.5px; color:var(--muted); margin-bottom:8px; }
+.badge  { font-size:11px; padding:2px 8px; border-radius:10px; white-space:nowrap; }
+.b-ordered { background:#d4edda; color:#155724; }
+.b-first   { background:#fff3cd; color:#856404; }
+.b-rfq     { background:#cce5ff; color:#004085; }
+.b-order   { background:#f8d7da; color:#721c24; }
+
+/* Buttons */
+.actions { display:flex; gap:7px; flex-wrap:wrap; margin-top:8px; }
+.btn { display:inline-flex; align-items:center; gap:5px; padding:6px 13px; border-radius:4px; font-family:Georgia,serif; font-size:13px; text-decoration:none; border:1px solid; cursor:pointer; background:none; transition:all .15s; }
+.btn-call  { border-color:#c9a94a; color:#7a5c0e; }
+.btn-call:hover  { background:#c9a94a; color:#fff; }
+.btn-email { border-color:#4a7ab5; color:#1a4a7a; }
+.btn-email:hover { background:#4a7ab5; color:#fff; }
+.btn-web   { border-color:#aaa; color:#555; }
+.btn-web:hover   { background:#888; color:#fff; }
+
+.v-note { font-size:12px; color:var(--muted); font-style:italic; margin-top:8px; }
+
+/* Right column controls */
+.v-ctrl { display:flex; flex-direction:column; gap:8px; align-items:flex-end; min-width:130px; }
+.status-sel { font-size:12.5px; padding:5px 8px; border:1px solid var(--line); border-radius:3px; background:#faf9f7; font-family:Georgia,serif; cursor:pointer; width:100%; }
+.v-notes    { width:120px; font-size:11.5px; font-family:Georgia,serif; border:1px solid var(--line); border-radius:3px; padding:4px 7px; resize:none; background:#faf9f7; color:var(--ink); height:50px; }
+
+/* Legend */
+.legend { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:24px; font-size:12px; color:var(--muted); }
+.leg-item { display:flex; align-items:center; gap:5px; }
+.leg-dot   { width:10px; height:10px; border-radius:50%; display:inline-block; }
+
+footer { margin-top:60px; border-top:3px double var(--goldlight); padding-top:14px; font-size:12px; color:var(--muted); }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <h1>The Jenny Pendant — Vendor Outreach</h1>
+  <div class="tagline">Supplier contact tracker · 1918 24¢ Airmail Invert encasement · Rev. D (all-gold)</div>
+  <div class="meta"><b>Client:</b> Eric &nbsp;·&nbsp; <b>Custodian:</b> Bez &nbsp;·&nbsp; <b>Updated:</b> August 10, 2026 &nbsp;·&nbsp; Status saved locally in this browser</div>
+</header>
+
+<div class="progress" id="progress">
+  <div class="prog-stat"><span class="prog-num" id="cnt-total">0</span><span class="prog-label">vendors</span></div>
+  <div class="prog-stat"><span class="prog-num" id="cnt-touched">0</span><span class="prog-label">contacted</span></div>
+  <div class="prog-stat"><span class="prog-num" id="cnt-replied">0</span><span class="prog-label">replied / ordered</span></div>
+  <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+  <button class="reset-btn" onclick="resetAll()">Reset all</button>
+</div>
+
+<div class="legend">
+  <div class="leg-item"><span class="leg-dot" style="background:#e6c050"></span> Called</div>
+  <div class="leg-item"><span class="leg-dot" style="background:#2e7a5c"></span> Emailed</div>
+  <div class="leg-item"><span class="leg-dot" style="background:#4a7ab5"></span> Replied</div>
+  <div class="leg-item"><span class="leg-dot" style="background:#27ae60"></span> Ordered</div>
+  <div class="leg-item"><span class="leg-dot" style="background:#ccc"></span> N/A</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     WINDOWS — ACRYLIC (ordered)
+     ═══════════════════════════════════════════════════════════ -->
+<div class="category">
+  <div class="cat-header">
+    Windows — Interim · Optium Museum Acrylic 1/8"
+    <span class="cat-sub">Already ordered ✔ — track for follow-up / ETA</span>
+  </div>
+
+  <div class="vendor" id="v-archplastics">
+    <div>
+      <div class="v-top">
+        <span class="v-name">Architectural Plastics</span>
+        <span class="badge b-ordered">ORDERED ✔</span>
+      </div>
+      <div class="v-loc">Petaluma, CA</div>
+      <div class="actions">
+        <a class="btn btn-call" href="tel:+17077659898">📞 (707) 765-9898</a>
+        <button class="btn btn-email" onclick="sendEmail('sales@archplastics.com',
+          'Jenny Pendant — Optium Acrylic 1/8\u201d order follow-up',
+          'Hello,\n\nFollowing up on our order for Optium Museum Acrylic windows, 37 \u00d7 41 mm, 1/8\u201d thickness. Could you confirm order status and estimated ship date?\n\nThank you,\nBez Ambar\nbezambar@gmail.com')">✉️ sales@archplastics.com</button>
+        <a class="btn btn-web" href="https://archplastics.com" target="_blank">🌐 archplastics.com</a>
+      </div>
+      <div class="v-note">Backups if needed: acplasticsinc.com · greweplastics.com · framedestination.com</div>
+    </div>
+    <div class="v-ctrl">
+      <select class="status-sel" onchange="setStatus('archplastics',this.value)">
+        <option value="none">— status —</option>
+        <option value="called">📞 Called</option>
+        <option value="emailed">✉️ Emailed</option>
+        <option value="replied">💬 Replied</option>
+        <option value="ordered">✅ Ordered</option>
+        <option value="na">⊘ N/A</option>
+      </select>
+      <textarea class="v-notes" placeholder="notes…" onblur="saveNote('archplastics',this.value)" id="n-archplastics"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     WINDOWS — SAPPHIRE (RFQ)
+     ═══════════════════════════════════════════════════════════ -->
+<div class="category">
+  <div class="cat-header">
+    Windows — Final · Custom Sapphire 1.5 mm, UV-cut + AR
+    <span class="cat-sub">RFQ — send to all 6, pick best lead time + price</span>
+  </div>
+
+  <div class="vendor" id="v-gssupplies">
+    <div>
+      <div class="v-top">
+        <span class="v-name">G-S Supplies</span>
+        <span class="badge b-first">FIRST CALL</span>
+      </div>
+      <div class="v-loc">Rochester, NY</div>
+      <div class="actions">
+        <a class="btn btn-call" href="tel:+18002953050">📞 1-800-295-3050</a>
+        <a class="btn btn-call" href="tel:+15852412370">📞 (585) 241-2370</a>
+        <button class="btn btn-email" onclick="sendRFQ('info@gssupplies.com')">✉️ info@gssupplies.com</button>
+        <a class="btn btn-web" href="https://gssupplies.com" target="_blank">🌐 gssupplies.com</a>
+      </div>
+    </div>
+    <div class="v-ctrl">
+      <select class="status-sel" onchange="setStatus('gssupplies',this.value)">
+        <option value="none">— status —</option>
+        <option value="called">📞 Called</option>
+        <option value="emailed">✉️ Emailed</option>
+        <option value="replied">💬 Replied</option>
+        <option value="ordered">✅ Ordered</option>
+        <option value="na">⊘ N/A</option>
+      </select>
+      <textarea class="v-notes" placeholder="notes…" onblur="saveNote('gssupplies',this.value)" id="n-gssupplies"></textarea>
+    </div>
+  </div>
+
+  <div class="vendor" id="v-guildoptics">
+    <div>
+      <div class="v-top">
+        <span class="v-name">Guild Optical</span>
+        <span class="badge b-rfq">RFQ</span>
+      </div>
+      <div class="v-loc">Amherst, NH</div>
+      <div class="actions">
+        <a class="btn btn-call" href="tel:+16038896247">📞 (603) 889-6247</a>
+        <button class="btn btn-email" onclick="sendRFQ('info@guildoptics.com')">✉️ info@guildoptics.com</button>
+        <a class="btn btn-web" href="https://guildoptics.com" target="_blank">🌐 guildoptics.com</a>
+      </div>
+    </div>
+    <div class="v-ctrl">
+      <select class="status-sel" onchange="setStatus('guildoptics',this.value)">
+        <option value="none">— status —</option>
+        <option value="called">📞 Called</option>
+        <option value="emailed">✉️ Emailed</option>
+        <option value="replied">💬 Replied</option>
+        <option value="ordered">✅ Ordered</option>
+        <option value="na">⊘ N/A</option>
+      </select>
+      <textarea class="v-notes" placeholder="notes…" onblur="saveNote('guildoptics',this.value)" id="n-guildoptics"></textarea>
+    </div>
+  </div>
+
+  <div class="vendor" id="v-swissjewel">
+    <div>
+      <div class="v-top">
+        <span class="v-name">Swiss Jewel Co.</span>
+        <span class="badge b-rfq">RFQ</span>
+      </div>
+      <div class="v-loc">Bala Cynwyd, PA</div>
+      <div class="actions">
+        <a class="btn btn-call" href="tel:+18009220118">📞 (800) 922-0118</a>
+        <a class="btn btn-web" href="https://swissjewel.com" target="_blank">🌐 swissjewel.com → contact form</a>
+      </div>
+      <div class="v-note">No public email — call or use website contact form for RFQ</div>
+    </div>
+    <div class="v-ctrl">
+      <select class="status-sel" onchange="setStatus('swissjewel',this.value)">
+        <option value="none">— status —</option>
+        <option value="called">📞 Called</option>
+        <option value="emailed">✉️ Emailed</option>
+        <option value="replied">💬 Replied</option>
+        <option value="ordered">✅ Ordered</option>
+        <option value="na">⊘ N/A</option>
+      </select>
+      <textarea class="v-notes" placeholder="notes…" onblur="saveNote('swissjewel',this.value)" id="n-swissjewel"></textarea>
+    </div>
+  </div>
+
+  <div class="vendor" id="v-stettler">
+    <div>
+      <div class="v-top">
+        <span class="v-name">Stettler Sapphire</span>
+        <span class="badge b-rfq">RFQ</span>
+      </div>
+      <div class="v-loc">Lyss, Switzerland</div>
+      <div class="actions">
+        <a class="btn btn-call" href="tel:+41323874040">📞 +41 32 387 40 40</a>
+        <a class="btn btn-web" href="https://stettlersapphire.ch" target="_blank">🌐 stettlersapphire.ch → contact form</a>
+      </div>
+      <div class="v-note">RFQ via website contact form; note +6h / +9h from Pacific</div>
+    </div>
+    <div class="v-ctrl">
+      <select class="status-sel" onchange="setStatus('stettler',this.value)">
+        <option value="none">— status —</option>
+        <option value="called">📞 Called</option>
+        <option value="emailed">✉️ Emailed</option>
+        <option value="replied">💬 Replied</option>
+        <option value="ordered">✅ Ordered</option>
+        <option value="na">⊘ N/A</option>
+      </select>
+      <textarea class="v-notes" placeholder="notes…" onblur="saveNote('stettler',this.value)" id="n-stettler"></textarea>
+    </div>
+  </div>
+
+  <div class="vendor" id="v-saphirwerk">
+    <div>
+      <div class="v-top">
+        <span class="v-name">Saphirwerk</span>
+        <span class="badge b-rfq">RFQ</span>
+      </div>
+      <div class="v-loc">Brügg, Switzerland</div>
+      <div class="actions">
+        <a class="btn btn-call" href="tel:+41323742585">📞 +41 32 374 25 85</a>
+        <a class="btn btn-web" href="https://saphirwerk.com" target="_blank">🌐 saphirwerk.com → contact form</a>
+      </div>
+      <div class="v-note">RFQ via website; note +9h from Pacific</div>
+    </div>
+    <div class="v-ctrl">
+      <select class="status-sel" onchange="setStatus('saphirwerk',this.value)">
+        <option value="none">— status —</option>
+        <option value="called">📞 Called</option>
+        <option value="emailed">✉️ Emailed</option>
+        <option value="replied">💬 Replied</option>
+        <option value="ordered">✅ Ordered</option>
+        <option value="na">⊘ N/A</option>
+      </select>
+      <textarea class="v-notes" placeholder="notes…" onblur="saveNote('saphirwerk',this.value)" id="n-saphirwerk"></textarea>
+    </div>
+  </div>
+
+  <div class="vendor" id="v-pgo">
+    <div>
+      <div class="v-top">
+        <span class="v-name">PGO</span>
+        <span class="badge b-rfq">RFQ</span>
+      </div>
+      <div class="v-loc">Iserlohn, Germany</div>
+      <div class="actions">
+        <a class="btn btn-call" href="tel:+4923717767900">📞 +49 2371 77679-0</a>
+        <button class="btn btn-email" onclick="sendRFQ('rfq@pgo-online.com')">✉️ rfq@pgo-online.com</button>
+        <a class="btn btn-web" href="https://pgo-online.com" target="_blank">🌐 pgo-online.com</a>
+      </div>
+      <div class="v-note">Germany — RFQ email preferred; +9h from Pacific</div>
+    </div>
+    <div class="v-ctrl">
+      <select class="status-sel" onchange="setStatus('pgo',this.value)">
+        <option value="none">— status —</option>
+        <option value="called">📞 Called</option>
+        <option value="emailed">✉️ Emailed</option>
+        <option value="replied">💬 Replied</option>
+        <option value="ordered">✅ Ordered</option>
+        <option value="na">⊘ N/A</option>
+      </select>
+      <textarea class="v-notes" placeholder="notes…" onblur="saveNote('pgo',this.value)" id="n-pgo"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MAT — MELINEX
+     ═══════════════════════════════════════════════════════════ -->
+<div class="category">
+  <div class="cat-header">
+    Mat — Melinex 516, 7-mil archival polyester
+    <span class="cat-sub">Order 7-mil + 10-mil backup. Also: silica gel + handling supplies</span>
+  </div>
+
+  <div class="vendor" id="v-talas">
+    <div>
+      <div class="v-top">
+        <span class="v-name">Talas</span>
+        <span class="badge b-order">ORDER</span>
+      </div>
+      <div class="v-loc">Brooklyn, NY — talasonline.com</div>
+      <div class="actions">
+        <a class="btn btn-call" href="tel:+12122190770">📞 (212) 219-0770</a>
+        <button class="btn btn-email" onclick="sendEmail('',
+          'Melinex 516 Archival Polyester — 7-mil roll inquiry',
+          'Hello,\n\nI\'d like to order Melinex 516 archival polyester film in 7-mil (0.18 mm) and 10-mil rolls. Also looking for stamp-handling supplies: silica gel packets and cotton gloves.\n\nPlease advise on sizes, pricing, and minimum order quantities.\n\nThank you,\nBez Ambar\nbezambar@gmail.com')">✉️ Draft email (add address from site)</button>
+        <a class="btn btn-web" href="https://talasonline.com" target="_blank">🌐 talasonline.com</a>
+      </div>
+      <div class="v-note">Online ordering available. Backups: tekra.com · professionalplastics.com · grafixplastics.com (DuraLar)</div>
+    </div>
+    <div class="v-ctrl">
+      <select class="status-sel" onchange="setStatus('talas',this.value)">
+        <option value="none">— status —</option>
+        <option value="called">📞 Called</option>
+        <option value="emailed">✉️ Emailed</option>
+        <option value="replied">💬 Replied</option>
+        <option value="ordered">✅ Ordered</option>
+        <option value="na">⊘ N/A</option>
+      </select>
+      <textarea class="v-notes" placeholder="notes…" onblur="saveNote('talas',this.value)" id="n-talas"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PTFE
+     ═══════════════════════════════════════════════════════════ -->
+<div class="category">
+  <div class="cat-header">
+    Gaskets & Seal Ring — Virgin Skived PTFE, 0.010" film
+    <span class="cat-sub">⚠ Never laser-cut PTFE (toxic) — machinist to cut rings with the body order</span>
+  </div>
+
+  <div class="vendor" id="v-cshyde">
+    <div>
+      <div class="v-top">
+        <span class="v-name">CS Hyde Company</span>
+        <span class="badge b-order">ORDER</span>
+      </div>
+      <div class="v-loc">Lake Villa, IL</div>
+      <div class="actions">
+        <a class="btn btn-call" href="tel:+18004614161">📞 1-800-461-4161</a>
+        <button class="btn btn-email" onclick="sendEmail('',
+          'Virgin Skived PTFE Film — 0.010\u201d thickness inquiry',
+          'Hello,\n\nI need virgin skived PTFE film, 0.010\u201d (0.25 mm) thickness, for precision gasket rings in a fine jewelry project. Gasket size: approx. 37 \u00d7 41 mm outer, 34 \u00d7 38 mm inner opening.\n\nSmall quantity for prototype (2\u20134 rings), with option to scale.\n\nPlease advise on available widths, pricing, and minimum order.\n\nThank you,\nBez Ambar\nbezambar@gmail.com')">✉️ Draft email (get address from site)</button>
+        <a class="btn btn-web" href="https://cshyde.com" target="_blank">🌐 cshyde.com</a>
+      </div>
+      <div class="v-note">Alternatives: mcmaster.com (next-day) · professionalplastics.com. Prefer: machinist supplies cut rings with capsule order.</div>
+    </div>
+    <div class="v-ctrl">
+      <select class="status-sel" onchange="setStatus('cshyde',this.value)">
+        <option value="none">— status —</option>
+        <option value="called">📞 Called</option>
+        <option value="emailed">✉️ Emailed</option>
+        <option value="replied">💬 Replied</option>
+        <option value="ordered">✅ Ordered</option>
+        <option value="na">⊘ N/A</option>
+      </select>
+      <textarea class="v-notes" placeholder="notes…" onblur="saveNote('cshyde',this.value)" id="n-cshyde"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     GOLD STOCK
+     ═══════════════════════════════════════════════════════════ -->
+<div class="category">
+  <div class="cat-header">
+    18k Hard Gold Rod / Wire — for machined M1.4 screws
+  </div>
+
+  <div class="vendor" id="v-stuller">
+    <div>
+      <div class="v-top">
+        <span class="v-name">Stuller</span>
+        <span class="badge b-order">ORDER</span>
+      </div>
+      <div class="v-loc">Lafayette, LA</div>
+      <div class="actions">
+        <a class="btn btn-call" href="tel:+18008777777">📞 1-800-877-7777</a>
+        <button class="btn btn-email" onclick="sendEmail('',
+          '18k Hard Gold Rod \u2014 custom screw stock inquiry',
+          'Hello,\n\nI need 18k hard gold rod or wire stock for machining custom M1.4 screws (4 mm length, deep slot head). Looking for a hard alloy \u2014 not soft 18k. Small quantity prototype first.\n\nPlease advise on available diameters, alloy specs, and pricing.\n\nThank you,\nBez Ambar\nbezambar@gmail.com')">✉️ Draft email (get address from site)</button>
+        <a class="btn btn-web" href="https://stuller.com" target="_blank">🌐 stuller.com</a>
+      </div>
+      <div class="v-note">Confirm hard alloy — 18k soft won't hold thread in M1.4 screws</div>
+    </div>
+    <div class="v-ctrl">
+      <select class="status-sel" onchange="setStatus('stuller',this.value)">
+        <option value="none">— status —</option>
+        <option value="called">📞 Called</option>
+        <option value="emailed">✉️ Emailed</option>
+        <option value="replied">💬 Replied</option>
+        <option value="ordered">✅ Ordered</option>
+        <option value="na">⊘ N/A</option>
+      </select>
+      <textarea class="v-notes" placeholder="notes…" onblur="saveNote('stuller',this.value)" id="n-stuller"></textarea>
+    </div>
+  </div>
+
+  <div class="vendor" id="v-hooverstrong">
+    <div>
+      <div class="v-top">
+        <span class="v-name">Hoover &amp; Strong</span>
+        <span class="badge b-order">ORDER</span>
+      </div>
+      <div class="v-loc">Richmond, VA</div>
+      <div class="actions">
+        <button class="btn btn-email" onclick="sendEmail('',
+          '18k Hard Gold Rod \u2014 custom screw stock inquiry',
+          'Hello,\n\nI need 18k hard gold rod or wire stock for machining custom M1.4 screws (4 mm length). Looking for a hard alloy, small quantity for prototype.\n\nPlease advise on available diameters, alloy specs, and pricing.\n\nThank you,\nBez Ambar\nbezambar@gmail.com')">✉️ Draft email (get address from site)</button>
+        <a class="btn btn-web" href="https://hooverandstrong.com" target="_blank">🌐 hooverandstrong.com</a>
+      </div>
+      <div class="v-note">Backup to Stuller for gold rod stock</div>
+    </div>
+    <div class="v-ctrl">
+      <select class="status-sel" onchange="setStatus('hooverstrong',this.value)">
+        <option value="none">— status —</option>
+        <option value="called">📞 Called</option>
+        <option value="emailed">✉️ Emailed</option>
+        <option value="replied">💬 Replied</option>
+        <option value="ordered">✅ Ordered</option>
+        <option value="na">⊘ N/A</option>
+      </select>
+      <textarea class="v-notes" placeholder="notes…" onblur="saveNote('hooverstrong',this.value)" id="n-hooverstrong"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ARGON & ASSEMBLY
+     ═══════════════════════════════════════════════════════════ -->
+<div class="category">
+  <div class="cat-header">
+    Argon 99.99% + Assembly Supplies
+    <span class="cat-sub">Glove bag, O₂ meter, silica gel — Grainger / Amazon / Talas</span>
+  </div>
+
+  <div class="vendor" id="v-airgas">
+    <div>
+      <div class="v-top">
+        <span class="v-name">Airgas (nearest LA branch)</span>
+        <span class="badge b-order">ORDER</span>
+      </div>
+      <div class="v-loc">Los Angeles area — find branch at airgas.com</div>
+      <div class="actions">
+        <button class="btn btn-email" onclick="sendEmail('',
+          'Argon 99.99% \u2014 small cylinder + regulator',
+          'Hello,\n\nI need argon 99.99% (welding grade) in a small cylinder, plus a regulator, for a precision encasement project. Please advise on cylinder sizes, rental vs. purchase, and pricing.\n\nThank you,\nBez Ambar\nbezambar@gmail.com')">✉️ Draft email</button>
+        <a class="btn btn-web" href="https://airgas.com/find-a-location" target="_blank">🌐 Find nearest Airgas</a>
+      </div>
+      <div class="v-note">Any LA-area welding supply works — Airgas, Praxair, etc. Ask for welding-grade Ar, small cylinder.</div>
+    </div>
+    <div class="v-ctrl">
+      <select class="status-sel" onchange="setStatus('airgas',this.value)">
+        <option value="none">— status —</option>
+        <option value="called">📞 Called</option>
+        <option value="emailed">✉️ Emailed</option>
+        <option value="replied">💬 Replied</option>
+        <option value="ordered">✅ Ordered</option>
+        <option value="na">⊘ N/A</option>
+      </select>
+      <textarea class="v-notes" placeholder="notes…" onblur="saveNote('airgas',this.value)" id="n-airgas"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MACHINING
+     ═══════════════════════════════════════════════════════════ -->
+<div class="category">
+  <div class="cat-header">
+    Machining — Gold Body, Back Frame, Bushings, Gold Screws
+    <span class="cat-sub">Need STEP export from CAD first. LA Swiss / precision shops; also Xometry / Protolabs online.</span>
+  </div>
+
+  <div class="vendor" id="v-machinist">
+    <div>
+      <div class="v-top">
+        <span class="v-name">LA Precision / Swiss Machining Shop (TBD)</span>
+        <span class="badge b-rfq">RFQ PENDING STEP</span>
+      </div>
+      <div class="v-loc">El Segundo / Gardena / Torrance / Valencia — search "prototype Swiss machining LA"</div>
+      <div class="actions">
+        <button class="btn btn-email" onclick="sendEmail('',
+          'Custom 18k Gold Pendant Components \u2014 Machining RFQ',
+          'Hello,\n\nI am looking for a precision machining shop to produce the following components for a one-of-a-kind fine jewelry project:\n\n1. Body (tray) \u2014 18k hard gold, 41.0 \u00d7 45.0 \u00d7 7.8 mm, cavity 37.1 \u00d7 41.1 \u00d7 6.3 mm deep, front window 33 \u00d7 37 mm, lip 1.5 \u00d7 4.0 mm wide, R3 corners\n2. Back frame \u2014 18k hard gold, 41.0 \u00d7 45.0 \u00d7 1.5 mm, matching window, 6 countersunk holes for M1.4\n3. Threaded bushings \u00d76 \u2014 316L stainless, \u00d82.4 \u00d7 3.0 mm, internal M1.4, knurled press-fit\n4. Screws \u00d76 + 6 spares \u2014 18k hard gold, M1.4 \u00d7 4.0 mm, deep flat slot\n\nI can provide a STEP file. Quantities: prototype set (1 body, 1 frame, 12 bushings, 12 screws); option for small production run later.\n\nPlease advise on your experience with precious metal machining, lead time, and pricing.\n\nThank you,\nBez Ambar\nbezambar@gmail.com')">✉️ Draft RFQ email</button>
+        <a class="btn btn-web" href="https://xometry.com" target="_blank">🌐 Xometry (online)</a>
+        <a class="btn btn-web" href="https://protolabs.com" target="_blank">🌐 Protolabs (online)</a>
+      </div>
+      <div class="v-note">⚠ Need STEP export from SolidWorks first. Watch-case makers via AWCI directory (awci.com). Screws also: J.I. Morris / swissturn.com.</div>
+    </div>
+    <div class="v-ctrl">
+      <select class="status-sel" onchange="setStatus('machinist',this.value)">
+        <option value="none">— status —</option>
+        <option value="called">📞 Called</option>
+        <option value="emailed">✉️ Emailed</option>
+        <option value="replied">💬 Replied</option>
+        <option value="ordered">✅ Ordered</option>
+        <option value="na">⊘ N/A</option>
+      </select>
+      <textarea class="v-notes" placeholder="shop name, contact, quote…" onblur="saveNote('machinist',this.value)" id="n-machinist"></textarea>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Jenny Pendant — vendor outreach tracker · Rev. D (all-gold) · August 10, 2026 · status and notes saved locally in this browser only
+</footer>
+
+</div>
+
+<script>
+const VENDORS = ['archplastics','gssupplies','guildoptics','swissjewel','stettler','saphirwerk','pgo','talas','cshyde','stuller','hooverstrong','airgas','machinist'];
+const KEY = id => 'jenny-' + id;
+const NOTE_KEY = id => 'jenny-note-' + id;
+
+const RFQ_SUBJECT = 'Custom Sapphire Windows RFQ \u2014 37\u00d741 mm, 1.5 mm thick, UV-cut + AR coated';
+const RFQ_BODY = [
+  'Hello,',
+  '',
+  'I am looking for a quote on custom sapphire windows for a fine jewelry encasement project.',
+  '',
+  'Specifications:',
+  '  \u2022 Dimensions: 37.0 \u00d7 41.0 mm (\u00b10.1 mm)',
+  '  \u2022 Thickness: 1.5 mm',
+  '  \u2022 Quantity: 2 panes (prototype) with option for 25 (production run)',
+  '  \u2022 Coatings: UV-cut inner face, AR (anti-reflective) outer face',
+  '  \u2022 Application: pendant encasement \u2014 no structural load, purely optical/protective',
+  '',
+  'Please advise on pricing, lead time, and available coating combinations.',
+  '',
+  'Thank you,',
+  'Bez Ambar',
+  'bezambar@gmail.com'
+].join('\n');
+
+function sendRFQ(to) { sendEmail(to, RFQ_SUBJECT, RFQ_BODY); }
+
+function sendEmail(to, subject, body) {
+  const u = 'mailto:' + encodeURIComponent(to)
+    + '?subject=' + encodeURIComponent(subject)
+    + '&body=' + encodeURIComponent(body);
+  window.location.href = u;
+}
+
+function setStatus(id, val) {
+  if (val === 'none') localStorage.removeItem(KEY(id));
+  else localStorage.setItem(KEY(id), val);
+  const el = document.getElementById('v-' + id);
+  if (el) el.dataset.status = val === 'none' ? '' : val;
+  updateProgress();
+}
+
+function saveNote(id, val) {
+  if (val.trim()) localStorage.setItem(NOTE_KEY(id), val);
+  else localStorage.removeItem(NOTE_KEY(id));
+}
+
+function resetAll() {
+  if (!confirm('Reset all statuses and notes?')) return;
+  VENDORS.forEach(id => { localStorage.removeItem(KEY(id)); localStorage.removeItem(NOTE_KEY(id)); });
+  loadAll();
+}
+
+function loadAll() {
+  VENDORS.forEach(id => {
+    const val = localStorage.getItem(KEY(id)) || 'none';
+    const note = localStorage.getItem(NOTE_KEY(id)) || '';
+    const el = document.getElementById('v-' + id);
+    if (el) {
+      el.dataset.status = val === 'none' ? '' : val;
+      const sel = el.querySelector('.status-sel');
+      if (sel) sel.value = val;
+    }
+    const ta = document.getElementById('n-' + id);
+    if (ta) ta.value = note;
+  });
+  updateProgress();
+}
+
+function updateProgress() {
+  const total = VENDORS.length;
+  let touched = 0, replied = 0;
+  VENDORS.forEach(id => {
+    const v = localStorage.getItem(KEY(id)) || 'none';
+    if (v !== 'none' && v !== 'na') touched++;
+    if (v === 'replied' || v === 'ordered') replied++;
+  });
+  document.getElementById('cnt-total').textContent = total;
+  document.getElementById('cnt-touched').textContent = touched;
+  document.getElementById('cnt-replied').textContent = replied;
+  document.getElementById('prog-fill').style.width = Math.round((touched / total) * 100) + '%';
+}
+
+loadAll();
+</script>
+</body>
+</html>

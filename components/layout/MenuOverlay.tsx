@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { useDrawers } from './DrawerContext'
+import { getCategoryLabel } from '@/lib/data/categories'
 import styles from './MenuOverlay.module.css'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
@@ -27,52 +28,64 @@ const ROOT: NavEntry[] = [
   { kind: 'action', label: 'Service',     target: 'concierge' },
 ]
 
-// ── Sub-columns ────────────────────────────────────────────────────────────────
-
-const SUB_COLS: SubCol[] = [
-  {
-    id: 'jewelry',
-    items: [
-      { kind: 'label',  text: 'Collections' },
-      { kind: 'link',   label: 'Bloom Collection',   href: '/collection/bloom' },
-      { kind: 'soon',   label: 'Dentelle Collection' },
-      { kind: 'divider' },
-      { kind: 'label',  text: 'Browse' },
-      { kind: 'link',   label: 'Rings',         href: '/jewelry/rings' },
-      { kind: 'link',   label: 'Bands',          href: '/jewelry/wedding-bands' },
-      { kind: 'link',   label: 'Bracelets',      href: '/jewelry/bracelets' },
-      { kind: 'link',   label: 'Earrings',       href: '/jewelry/earrings' },
-      { kind: 'link',   label: 'Necklaces',      href: '/jewelry/necklaces' },
-      { kind: 'link',   label: 'Pendants',       href: '/jewelry/pendants' },
-      { kind: 'divider' },
-      { kind: 'label',  text: 'From the Atelier' },
-      { kind: 'link',   label: 'The Heart Ruby',    href: '/jewelry/bracelets/heart-ruby' },
-      { kind: 'link',   label: 'The 30-Carat Flex', href: '/jewelry/bracelets/30-carat-flex' },
-      { kind: 'link',   label: 'Elysian Band',      href: '/jewelry/wedding-bands/elysian-band-50' },
-      { kind: 'soon',   label: 'Cascata' },
-      { kind: 'soon',   label: 'Crossover Ashoka®' },
-    ],
-  },
-  {
-    id: 'atelier',
-    items: [
-      { kind: 'link',  label: 'About Bez Ambar',  href: '/about-bez-ambar' },
-      { kind: 'link',  label: 'Elysian Cut™',     href: '/elysian-cut' },
-      { kind: 'link',  label: 'Journal',          href: '/journal' },
-      { kind: 'divider' },
-      { kind: 'label', text: 'Resources' },
-      { kind: 'link',  label: 'Diamond Education', href: '/diamond-education' },
-      { kind: 'link',  label: 'Ring Size Guide',   href: '/ring-size-chart' },
-    ],
-  },
-]
-
 // ── MenuOverlay ────────────────────────────────────────────────────────────────
 
-export default function MenuOverlay() {
+interface Props {
+  /** Active categories from Neon — drives Browse section. */
+  categories?: string[]
+  /** Active collections from Neon — shown only when at least one exists. */
+  collections?: string[]
+}
+
+export default function MenuOverlay({ categories = [], collections = [] }: Props) {
   const { active, close, openConcierge, openInquiryDrawer } = useDrawers()
-  const open   = active === 'menu'
+  const open = active === 'menu'
   const [sub, setSub] = useState<string | null>(null)
+
+  // Build the jewelry sub-column dynamically from Neon data.
+  const jewelryItems: NavEntry[] = [
+    // Collections — only rendered when at least one collection exists in Neon.
+    ...(collections.length > 0 ? [
+      { kind: 'label'   as const, text: 'Collections' },
+      ...collections.map(col => ({
+        kind: 'link' as const,
+        label: col,
+        href: `/collection/${col.toLowerCase().replace(/\s+/g, '-')}`,
+      })),
+      { kind: 'divider' as const },
+    ] : []),
+    // Browse — derived from Neon categories; disappears automatically if empty.
+    { kind: 'label' as const, text: 'Browse' },
+    ...categories.map(cat => ({
+      kind: 'link' as const,
+      label: getCategoryLabel(cat),
+      href: `/jewelry/${cat}`,
+    })),
+    { kind: 'divider' as const },
+    // From the Atelier — curated spotlight pieces; stays hardcoded.
+    { kind: 'label' as const, text: 'From the Atelier' },
+    { kind: 'link'  as const, label: 'The Heart Ruby',    href: '/jewelry/bracelets/heart-ruby' },
+    { kind: 'link'  as const, label: 'The 30-Carat Flex', href: '/jewelry/bracelets/30-carat-flex' },
+    { kind: 'link'  as const, label: 'Elysian Band',      href: '/jewelry/wedding-bands/elysian-band-50' },
+    { kind: 'soon'  as const, label: 'Cascata' },
+    { kind: 'soon'  as const, label: 'Crossover Ashoka®' },
+  ]
+
+  const subCols: SubCol[] = [
+    { id: 'jewelry', items: jewelryItems },
+    {
+      id: 'atelier',
+      items: [
+        { kind: 'link',  label: 'About Bez Ambar',   href: '/about-bez-ambar' },
+        { kind: 'link',  label: 'Elysian Cut™',      href: '/elysian-cut' },
+        { kind: 'link',  label: 'Journal',           href: '/journal' },
+        { kind: 'divider' },
+        { kind: 'label', text: 'Resources' },
+        { kind: 'link',  label: 'Diamond Education', href: '/diamond-education' },
+        { kind: 'link',  label: 'Ring Size Guide',   href: '/ring-size-chart' },
+      ],
+    },
+  ]
 
   function handleClose() {
     setSub(null)
@@ -85,7 +98,7 @@ export default function MenuOverlay() {
     if (target === 'inquiry')   openInquiryDrawer(intent ? { intent } : {})
   }
 
-  const activeSub = SUB_COLS.find((c) => c.id === sub)
+  const activeSub = subCols.find((c) => c.id === sub)
 
   const overlayClass = [
     styles.overlay,

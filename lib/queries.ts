@@ -27,12 +27,16 @@ function rowToProduct(r: Record<string, unknown>): Product {
 
   const specs: ProductSpecs = {
     category:          (r.category        as string) ?? undefined,
+    collection:        (r.collection      as string) ?? undefined,
     subtitle:          (r.subtitle        as string) ?? undefined,
     lede:              (r.editorial       as string) ?? (r.description as string) ?? undefined,
     codeName:          (r.name            as string) ?? undefined,
     metal:             (r.metal           as string) ?? undefined,
     gemStone:          (r.stone_shape     as string) ?? undefined,
-    caratWeight:       (r.stone_carats    as string) ?? undefined,
+    caratWeight:       r.total_carat_weight != null
+                         ? String(r.total_carat_weight)
+                         : (r.stone_carats as string) ?? undefined,
+    centerStoneWeight: r.center_stone_weight != null ? String(r.center_stone_weight) : undefined,
     color:             (r.stone_color     as string) ?? undefined,
     clarity:           (r.stone_clarity   as string) ?? undefined,
     heroVideoUrl:      heroVideo  ?? undefined,
@@ -54,7 +58,8 @@ function rowToProduct(r: Record<string, unknown>): Product {
 const COLS = `
   sku, plytix_id, name, category, subtitle, editorial, description,
   hero_visual, editorial_visual, metal, stone_shape, stone_carats,
-  stone_color, stone_clarity, active, featured, sort_order, synced_at`
+  stone_color, stone_clarity, stone_notes, total_carat_weight,
+  center_stone_weight, collection, active, featured, sort_order, synced_at`
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
   const [row] = await sql<Record<string, unknown>>(
@@ -90,6 +95,27 @@ export async function getActiveCategories(): Promise<string[]> {
       ORDER BY category ASC`,
   )
   return rows.map(r => r.category)
+}
+
+/** Active collections with at least one product — drives nav Collections section. */
+export async function getActiveCollections(): Promise<string[]> {
+  const rows = await sql<{ collection: string }>(
+    `SELECT DISTINCT collection FROM products
+      WHERE active = true AND collection IS NOT NULL
+      ORDER BY collection ASC`,
+  )
+  return rows.map(r => r.collection)
+}
+
+/** All products in a named collection. */
+export async function getProductsByCollection(collection: string): Promise<Product[]> {
+  const rows = await sql<Record<string, unknown>>(
+    `SELECT ${COLS} FROM products
+      WHERE lower(collection) = lower($1) AND active = true
+      ORDER BY featured DESC, sort_order ASC, name ASC`,
+    [collection],
+  )
+  return rows.map(rowToProduct)
 }
 
 /** For generateStaticParams — { category, slug } pairs for all active products. */

@@ -1,0 +1,771 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Patent Tracker — Betzalel Ambar</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e2c47a;
+    --bg: #0d0d0d;
+    --surface: #141414;
+    --surface2: #1a1a1a;
+    --border: #2a2a2a;
+    --text: #e8e4dd;
+    --muted: #888;
+    --green: #4caf6e;
+    --yellow: #e2b84c;
+    --red: #e05c5c;
+    --blue: #5c9ee0;
+    --serif: 'EB Garamond', Georgia, serif;
+    --sans: 'Inter', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    min-height: 100vh;
+    padding: 0 0 80px;
+  }
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 28px 40px;
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+  }
+  header h1 {
+    font-family: var(--serif);
+    font-size: 1.9rem;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 0.01em;
+  }
+  header span {
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .badge-green { background: rgba(76,175,110,0.15); color: var(--green); border: 1px solid rgba(76,175,110,0.3); }
+  .badge-yellow { background: rgba(226,184,76,0.15); color: var(--yellow); border: 1px solid rgba(226,184,76,0.3); }
+  .badge-red { background: rgba(224,92,92,0.15); color: var(--red); border: 1px solid rgba(224,92,92,0.3); }
+  .badge-blue { background: rgba(92,158,224,0.15); color: var(--blue); border: 1px solid rgba(92,158,224,0.3); }
+
+  /* Action items banner */
+  .action-banner {
+    background: rgba(224,92,92,0.08);
+    border: 1px solid rgba(224,92,92,0.25);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 36px;
+  }
+  .action-banner h2 {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 14px;
+  }
+  .action-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(224,92,92,0.1);
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+  .action-item:last-child { border-bottom: none; }
+  .action-num {
+    background: var(--red);
+    color: #fff;
+    border-radius: 50%;
+    width: 20px; height: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* App cards */
+  .app-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 36px; }
+  @media(max-width: 680px) { .app-grid { grid-template-columns: 1fr; } .header { padding: 20px; } }
+  .app-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .app-card-header {
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .app-num {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    color: var(--gold);
+  }
+  .app-title {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 3px;
+    letter-spacing: 0.02em;
+  }
+  .app-body { padding: 18px 20px; }
+  .kv-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 0.82rem;
+    gap: 10px;
+  }
+  .kv-row:last-child { border-bottom: none; }
+  .kv-label { color: var(--muted); flex-shrink: 0; }
+  .kv-val { text-align: right; font-weight: 400; }
+  .ptms-grant {
+    margin-top: 14px;
+    background: rgba(76,175,110,0.07);
+    border: 1px solid rgba(76,175,110,0.2);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+  .ptms-grant strong { color: var(--green); }
+
+  /* Timeline */
+  .section { margin-bottom: 36px; }
+  .section-title {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  .timeline { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; }
+  @media(max-width: 680px) { .timeline { grid-template-columns: 1fr; } }
+  .tl-col-title {
+    font-size: 0.72rem;
+    color: var(--gold-light);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  .tl-entry {
+    display: flex;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 0.82rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    line-height: 1.4;
+  }
+  .tl-date { color: var(--muted); width: 82px; flex-shrink: 0; font-size: 0.75rem; }
+  .tl-event { flex: 1; }
+  .tl-key { color: var(--green); font-weight: 500; }
+
+  /* Forecast */
+  .forecast-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media(max-width: 680px) { .forecast-grid { grid-template-columns: 1fr; } }
+  .forecast-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+  .forecast-app { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .forecast-row { display: flex; align-items: center; gap: 10px; padding: 5px 0; font-size: 0.83rem; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-green { background: var(--green); }
+  .dot-yellow { background: var(--yellow); }
+  .dot-red { background: var(--red); }
+
+  /* Letters */
+  .letter-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .letter-header {
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .letter-header span { font-size: 0.78rem; font-weight: 500; }
+  .letter-header small { font-size: 0.72rem; color: var(--muted); }
+  .letter-body {
+    padding: 18px;
+    font-size: 0.8rem;
+    line-height: 1.8;
+    color: #ccc;
+    white-space: pre-wrap;
+    font-family: 'Courier New', monospace;
+    max-height: 360px;
+    overflow-y: auto;
+  }
+
+  /* Contacts */
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.84rem;
+  }
+  .contact-row:last-child { border-bottom: none; }
+  .contact-name { font-weight: 500; width: 200px; }
+  .contact-role { color: var(--muted); flex: 1; }
+  .contact-phone { color: var(--gold); font-family: var(--serif); }
+
+  /* Submit instructions */
+  .steps { counter-reset: step; list-style: none; }
+  .steps li {
+    counter-increment: step;
+    display: flex;
+    gap: 14px;
+    padding: 10px 0;
+    font-size: 0.86rem;
+    line-height: 1.5;
+    border-bottom: 1px solid var(--border);
+  }
+  .steps li:last-child { border-bottom: none; }
+  .steps li::before {
+    content: counter(step);
+    background: var(--gold);
+    color: #000;
+    font-weight: 700;
+    font-size: 0.72rem;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .updated {
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-top: 48px;
+    letter-spacing: 0.06em;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Patent Tracker</h1>
+  <span>Betzalel Ambar · Art Unit 2913 · USPTO Design Patents</span>
+</header>
+
+<div class="container">
+
+  <!-- ACTION ITEMS -->
+  <div class="action-banner">
+    <h2>🔴 Action Required — File This Week</h2>
+    <div class="action-item">
+      <div class="action-num">1</div>
+      <div>
+        <strong>Submit "Petition to Reaffirm Made Special Status" for 30/004,197</strong><br>
+        Both applications show "NEW" after revival — the Made Special flag may have reset. File the reaffirmation petition in Patent Center → New submission → Petitions → select app 30/004,197 → document type: Petition. No fee. Letter text below.
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-num">2</div>
+      <div>
+        <strong>Submit same petition for 30/004,203</strong><br>
+        Same process. Open 30/004,203 in Patent Center → file Petition → paste letter text below. Takes 5 minutes each.
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-num">3</div>
+      <div>
+        <strong>Watch for First Office Action on 30/004,197 (imminent)</strong><br>
+        This application has been in the Made Special priority queue since November 2025. A first Office Action could arrive any week. Check Patent Center / email notifications regularly.
+      </div>
+    </div>
+  </div>
+
+  <!-- APP STATUS CARDS -->
+  <div class="section">
+    <div class="section-title">Application Status</div>
+    <div class="app-grid">
+
+      <div class="app-card">
+        <div class="app-card-header">
+          <div>
+            <div class="app-num">30/004,197</div>
+            <div class="app-title">Faceted Gemstone with Octagonal Outline</div>
+          </div>
+          <span class="badge badge-green">Active</span>
+        </div>
+        <div class="app-body">
+          <div class="kv-row"><span class="kv-label">Filed</span><span class="kv-val">May 16, 2025</span></div>
+          <div class="kv-row"><span class="kv-label">Confirmation</span><span class="kv-val">2396</span></div>
+          <div class="kv-row"><span class="kv-label">Art Unit</span><span class="kv-val">2913</span></div>
+          <div class="kv-row"><span class="kv-label">Status</span><span class="kv-val">Dispatched from Preexam — Not Yet Docketed</span></div>
+          <div class="kv-row"><span class="kv-label">Revival</span><span class="kv-val">Granted Apr 6, 2026</span></div>
+          <div class="kv-row"><span class="kv-label">In Priority Queue</span><span class="kv-val">Since Apr 8, 2026</span></div>
+          <div class="ptms-grant">
+            <strong>✅ Made Special (Age) — GRANTED</strong><br>
+            Petition filed Nov 6, 2025<br>
+            PETDEC: Nov 21, 2025 — signed by Rachel R. Rizzo, PFMU<br>
+            Basis: 37 CFR 1.102(c)(1) — applicant age 65+
+          </div>
+        </div>
+      </div>
+
+      <div class="app-card">
+        <div class="app-card-header">
+          <div>
+            <div class="app-num">30/004,203</div>
+            <div class="app-title">Faceted Gemstone with Multiple Embodiments</div>
+          </div>
+          <span class="badge badge-yellow">Newly Revived</span>
+        </div>
+        <div class="app-body">
+          <div class="kv-row"><span class="kv-label">Filed</span><span class="kv-val">May 17, 2025</span></div>
+          <div class="kv-row"><span class="kv-label">Confirmation</span><span class="kv-val">7687</span></div>
+          <div class="kv-row"><span class="kv-label">Art Unit</span><span class="kv-val">2913</span></div>
+          <div class="kv-row"><span class="kv-label">Status</span><span class="kv-val">Active — entering exam queue</span></div>
+          <div class="kv-row"><span class="kv-label">Revival Petition</span><span class="kv-val">Filed Jun 22, 2026</span></div>
+          <div class="kv-row"><span class="kv-label">Revival Granted</span><span class="kv-val">Aug 6, 2026 — LaShawn D. Marks</span></div>
+          <div class="kv-row"><span class="kv-label">$183 TD Fee Refund</span><span class="kv-val">✅ Back to credit card</span></div>
+          <div class="ptms-grant">
+            <strong>✅ Made Special (Age) — GRANTED</strong><br>
+            Petition filed and granted (confirm exact date in Patent Center)<br>
+            Basis: 37 CFR 1.102(c)(1) — applicant age 65+<br>
+            ⚠️ Reaffirmation petition needed after revival
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="section">
+    <div class="section-title">Full Event Timeline</div>
+    <div class="timeline">
+      <div>
+        <div class="tl-col-title">30/004,197 — Octagonal Outline</div>
+        <div class="tl-entry"><span class="tl-date">May 16, 2025</span><span class="tl-event">Filed</span></div>
+        <div class="tl-entry"><span class="tl-date">May 22, 2025</span><span class="tl-event">Notice to File Missing Parts</span></div>
+        <div class="tl-entry"><span class="tl-date">Nov 6, 2025</span><span class="tl-event tl-key">PTMS (Age) filed — PET.OP.AGE</span></div>
+        <div class="tl-entry"><span class="tl-date">Nov 21, 2025</span><span class="tl-event tl-key">✅ PTMS GRANTED — Rachel Rizzo, PFMU</span></div>
+        <div class="tl-entry"><span class="tl-date">Jan 23, 2026</span><span class="tl-event" style="color:var(--red)">Abandoned (clerical — ABN)</span></div>
+        <div class="tl-entry"><span class="tl-date">Mar 2, 2026</span><span class="tl-event">Oath/Declaration filed</span></div>
+        <div class="tl-entry"><span class="tl-date">Mar 3, 2026</span><span class="tl-event">Revival petition (PET.OP) + fee paid</span></div>
+        <div class="tl-entry"><span class="tl-date">Apr 6, 2026</span><span class="tl-event tl-key">✅ Revival GRANTED → routed to OPAP</span></div>
+        <div class="tl-entry"><span class="tl-date">Apr 8, 2026</span><span class="tl-event">Updated Filing Receipt — entered priority queue</span></div>
+        <div class="tl-entry"><span class="tl-date">Apr 8, 2026</span><span class="tl-event">M327 — No Action Count assigned</span></div>
+      </div>
+      <div>
+        <div class="tl-col-title">30/004,203 — Multiple Embodiments</div>
+        <div class="tl-entry"><span class="tl-date">May 17, 2025</span><span class="tl-event">Filed</span></div>
+        <div class="tl-entry"><span class="tl-date">Jul 23, 2025</span><span class="tl-event" style="color:var(--red)">Abandoned (clerical — missing parts)</span></div>
+        <div class="tl-entry"><span class="tl-date">TBD</span><span class="tl-event tl-key">PTMS (Age) filed — confirm in Patent Center</span></div>
+        <div class="tl-entry"><span class="tl-date">TBD</span><span class="tl-event tl-key">✅ PTMS GRANTED — confirm date</span></div>
+        <div class="tl-entry"><span class="tl-date">Jun 16, 2026</span><span class="tl-event" style="color:var(--yellow)">First revival petition dismissed (OPET)</span></div>
+        <div class="tl-entry"><span class="tl-date">Jun 22, 2026</span><span class="tl-event">Second renewed revival petition filed (#77506177)</span></div>
+        <div class="tl-entry"><span class="tl-date">Aug 6, 2026</span><span class="tl-event tl-key">✅ Revival GRANTED — LaShawn D. Marks, OPET</span></div>
+        <div class="tl-entry"><span class="tl-date">Aug 6, 2026</span><span class="tl-event">$183 duplicate TD fee refunded to credit card</span></div>
+        <div class="tl-entry"><span class="tl-date">Aug 2026</span><span class="tl-event" style="color:var(--yellow)">Shows "NEW" — PTMS reaffirmation needed</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORECAST -->
+  <div class="section">
+    <div class="section-title">Grant Timeline Forecast</div>
+    <div class="forecast-grid">
+      <div class="forecast-card">
+        <div class="forecast-app">30/004,197 — With Made Special reaffirmed</div>
+        <div class="forecast-row"><span class="dot dot-green"></span><strong>Best case:</strong>&nbsp;First OA Q4 2026 → Grant Q1–Q2 2027</div>
+        <div class="forecast-row"><span class="dot dot-yellow"></span><strong>Most likely:</strong>&nbsp;First OA Q1 2027 → Grant Q2–Q3 2027</div>
+        <div class="forecast-row"><span class="dot dot-red"></span><strong>If OA has rejection:</strong>&nbsp;Grant Q3–Q4 2027</div>
+      </div>
+      <div class="forecast-card">
+        <div class="forecast-app">30/004,203 — With Made Special reaffirmed</div>
+        <div class="forecast-row"><span class="dot dot-green"></span><strong>Best case:</strong>&nbsp;First OA Q1 2027 → Grant Q2 2027</div>
+        <div class="forecast-row"><span class="dot dot-yellow"></span><strong>Most likely:</strong>&nbsp;First OA Q2 2027 → Grant Q3 2027</div>
+        <div class="forecast-row"><span class="dot dot-red"></span><strong>Without Made Special:</strong>&nbsp;Late 2027 – Early 2028</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRADEMARK -->
+  <div class="section">
+    <div class="section-title">Trademark Application</div>
+    <div class="app-card" style="max-width:100%;">
+      <div class="app-card-header">
+        <div>
+          <div class="app-num" style="font-size:1.6rem;letter-spacing:0.15em;">VALARA</div>
+          <div class="app-title">Word Mark — Principal Register</div>
+        </div>
+        <span class="badge badge-blue">Under Examination</span>
+      </div>
+      <div class="app-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 32px;">
+          <div>
+            <div class="kv-row"><span class="kv-label">Serial No.</span><span class="kv-val">99720442</span></div>
+            <div class="kv-row"><span class="kv-label">Filing Date</span><span class="kv-val">March 24, 2026</span></div>
+            <div class="kv-row"><span class="kv-label">Mark Type</span><span class="kv-val">Trademark (word mark)</span></div>
+            <div class="kv-row"><span class="kv-label">Register</span><span class="kv-val">Principal</span></div>
+          </div>
+          <div>
+            <div class="kv-row"><span class="kv-label">Status</span><span class="kv-val" style="color:var(--blue)">LIVE — Under Examination</span></div>
+            <div class="kv-row"><span class="kv-label">Assigned to Examiner</span><span class="kv-val">August 4, 2026</span></div>
+            <div class="kv-row"><span class="kv-label">Base Application</span><span class="kv-val">Yes</span></div>
+            <div class="kv-row"><span class="kv-label">TSDR</span><span class="kv-val"><a href="https://tsdr.uspto.gov/#caseNumber=99720442" target="_blank" style="color:var(--gold)">tsdr.uspto.gov → 99720442</a></span></div>
+          </div>
+        </div>
+        <div class="ptms-grant" style="background:rgba(92,158,224,0.07);border-color:rgba(92,158,224,0.2);margin-top:14px;">
+          <strong style="color:var(--blue)">📋 Trademark Examination Timeline</strong><br>
+          Examining attorney assigned Aug 4, 2026. USPTO trademark review typically takes 3–6 months from assignment.<br><br>
+          🟢 <strong>Best case:</strong> No Office Action → Published in Official Gazette Q1 2027 → Registration Q3 2027<br>
+          🟡 <strong>Most likely:</strong> Office Action issued (likelihood of confusion / descriptiveness review) → respond → Registration Q3–Q4 2027<br>
+          🔴 <strong>Watch for:</strong> Any similar "ALARA"-adjacent marks or descriptiveness refusals
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALARA TRADEMARK -->
+  <div class="section">
+    <div class="section-title">Trademark — ALARA (Serial No. 99132097)</div>
+
+    <div class="action-banner" style="background:rgba(226,184,76,0.08);border-color:rgba(226,184,76,0.3);margin-bottom:20px;">
+      <h2 style="color:var(--yellow)">⚠️ Action Required — Call Scott Bibb Back</h2>
+      <div class="action-item">
+        <div class="action-num" style="background:var(--yellow);color:#000">!</div>
+        <div>
+          <strong>Examining Attorney Scott Bibb has called you TWICE and left messages.</strong><br>
+          Call him back immediately: <strong style="color:var(--gold)">(571) 272-5669</strong> or email <strong style="color:var(--gold)">Scott.Bibb@USPTO.GOV</strong><br>
+          Note to file from May 6, 2026 confirms: "Discussed file with Attorney/Applicant — Left message." He is initiating contact despite the suspension notice saying "No Response Required" — there is something he wants to discuss.
+        </div>
+      </div>
+    </div>
+
+    <div class="app-card" style="max-width:100%;margin-bottom:20px;">
+      <div class="app-card-header">
+        <div>
+          <div class="app-num" style="font-size:1.6rem;letter-spacing:0.15em;">ALARA</div>
+          <div class="app-title">Word Mark — Principal Register — IC 014 (Jewelry / Precious Stones)</div>
+        </div>
+        <span class="badge badge-yellow">Suspended</span>
+      </div>
+      <div class="app-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 32px;">
+          <div>
+            <div class="kv-row"><span class="kv-label">Serial No.</span><span class="kv-val">99132097</span></div>
+            <div class="kv-row"><span class="kv-label">Filing Date</span><span class="kv-val">April 11, 2025</span></div>
+            <div class="kv-row"><span class="kv-label">Mark Type</span><span class="kv-val">Trademark (word mark)</span></div>
+            <div class="kv-row"><span class="kv-label">Register</span><span class="kv-val">Principal</span></div>
+            <div class="kv-row"><span class="kv-label">Class</span><span class="kv-val">IC 014 — Precious metals, jewelry, precious stones</span></div>
+          </div>
+          <div>
+            <div class="kv-row"><span class="kv-label">Status</span><span class="kv-val" style="color:var(--yellow)">SUSPENDED — Application remains suspended</span></div>
+            <div class="kv-row"><span class="kv-label">Status Date</span><span class="kv-val">June 19, 2026</span></div>
+            <div class="kv-row"><span class="kv-label">Suspension issued</span><span class="kv-val">November 26, 2025</span></div>
+            <div class="kv-row"><span class="kv-label">Examining Attorney</span><span class="kv-val">Scott Bibb — LO109 — (571) 272-5669</span></div>
+            <div class="kv-row"><span class="kv-label">TSDR</span><span class="kv-val"><a href="https://tsdr.uspto.gov/#caseNumber=99132097" target="_blank" style="color:var(--gold)">tsdr.uspto.gov → 99132097</a></span></div>
+          </div>
+        </div>
+
+        <div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--border);">
+          <div style="font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--yellow);margin-bottom:12px;">Why It's Suspended — The Blocking Mark</div>
+          <div style="background:rgba(226,184,76,0.05);border:1px solid rgba(226,184,76,0.2);border-radius:6px;padding:14px 16px;font-size:0.82rem;line-height:1.6;">
+            Suspended pending resolution of prior-filed application <strong>ALÁRA</strong> (Serial No. 98646473):<br><br>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 20px;">
+              <div>
+                <strong style="font-size:0.75rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;">Blocking Mark</strong><br>
+                Mark: <strong>ALÁRA</strong> (with accent)<br>
+                Owner: Alara World LLC (Wyoming LLC, NYC)<br>
+                Serial No.: 98646473<br>
+                Filed: July 12, 2024
+              </div>
+              <div>
+                <strong style="font-size:0.75rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;">Their Goods</strong><br>
+                <strong style="color:var(--red)">IC 025 — CLOTHING ONLY</strong><br>
+                Dresses, Footwear, Headwear, Socks,<br>Clothing jackets, Tops, Bottoms<br>
+                Status: First Extension Granted<br>
+                (Has NOT proven use in commerce yet)
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:14px;background:rgba(76,175,110,0.07);border:1px solid rgba(76,175,110,0.2);border-radius:6px;padding:14px 16px;font-size:0.82rem;line-height:1.6;">
+          <strong style="color:var(--green)">✅ Your Arguments — Strong Distinguishability Case</strong><br><br>
+          1. <strong>Different classes:</strong> Your ALARA = IC 014 (jewelry/gems). Their ALÁRA = IC 025 (clothing). Completely different goods, trade channels, and consumers.<br>
+          2. <strong>Different marks:</strong> ALARA vs ALÁRA — different spelling + accent mark.<br>
+          3. <strong>They haven't registered:</strong> ALÁRA is still on extension (First Extension Granted). They have NOT filed a Statement of Use, meaning they haven't proven use in commerce. Suspension lifts automatically if they abandon.<br>
+          4. <strong>No jewelry conflict:</strong> The XSearch showed 86 live marks in IC 014 — examiner reviewed all and found none blocking. Only the clothing mark triggered the suspension.<br><br>
+          <strong>Voluntary response option:</strong> You can file a response NOW arguing the goods are sufficiently distinct to lift the suspension even before 98646473 resolves.
+        </div>
+
+        <div style="margin-top:14px;background:rgba(92,158,224,0.07);border:1px solid rgba(92,158,224,0.2);border-radius:6px;padding:14px 16px;font-size:0.82rem;line-height:1.6;">
+          <strong style="color:var(--blue)">📋 Timeline — What Can Happen</strong><br><br>
+          <strong>Best case:</strong> Call Bibb → file voluntary response distinguishing goods → examiner de-suspends → approval for publication Q1 2027 → registration Q2-Q3 2027<br>
+          <strong>Auto-lift:</strong> ALÁRA clothing abandons (fails SOU by ~March 2028) → suspension lifts automatically → Bez's application proceeds<br>
+          <strong>Worst case:</strong> ALÁRA clothing registers → Bez faces Section 2(d) analysis → strong IC 014 vs IC 025 argument available
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLAZE TRADEMARK -->
+  <div class="section">
+    <div class="section-title">Trademark — BLAZE (Reg. No. 3373967) — Active Registration</div>
+    <div class="app-card" style="max-width:100%;margin-bottom:20px;">
+      <div class="app-card-header">
+        <div>
+          <div class="app-num" style="font-size:1.6rem;letter-spacing:0.15em;">BLAZE</div>
+          <div class="app-title">Registered Trademark — Principal Register — Incontestable (§15)</div>
+        </div>
+        <span class="badge badge-green">Live — Active Registration</span>
+      </div>
+      <div class="app-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 32px;">
+          <div>
+            <div class="kv-row"><span class="kv-label">Serial No.</span><span class="kv-val">78718994</span></div>
+            <div class="kv-row"><span class="kv-label">Registration No.</span><span class="kv-val">3373967</span></div>
+            <div class="kv-row"><span class="kv-label">Filed</span><span class="kv-val">September 22, 2005</span></div>
+            <div class="kv-row"><span class="kv-label">Registration Date</span><span class="kv-val">January 22, 2008</span></div>
+            <div class="kv-row"><span class="kv-label">Last Renewed</span><span class="kv-val">February 10, 2018</span></div>
+          </div>
+          <div>
+            <div class="kv-row"><span class="kv-label">Status</span><span class="kv-val" style="color:var(--green)">LIVE — Issued and Active</span></div>
+            <div class="kv-row"><span class="kv-label">§9 Renewal</span><span class="kv-val">Granted ✅</span></div>
+            <div class="kv-row"><span class="kv-label">§8 (10 year)</span><span class="kv-val">Accepted ✅</span></div>
+            <div class="kv-row"><span class="kv-label">§15 Incontestability</span><span class="kv-val">Acknowledged ✅</span></div>
+            <div class="kv-row"><span class="kv-label">TSDR</span><span class="kv-val"><a href="https://tsdr.uspto.gov/#caseNumber=78718994" target="_blank" style="color:var(--gold)">tsdr.uspto.gov → 78718994</a></span></div>
+          </div>
+        </div>
+        <div style="margin-top:16px;background:rgba(226,184,76,0.07);border:1px solid rgba(226,184,76,0.25);border-radius:6px;padding:14px 16px;">
+          <div style="font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--yellow);margin-bottom:10px;">⚠️ Next Renewal Required — §8 + §9 Filing</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;font-size:0.82rem;">
+            <div style="background:rgba(255,255,255,0.04);border-radius:6px;padding:10px 12px;">
+              <div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">Earliest filing</div>
+              <div style="font-weight:500;">Jan. 22, 2027</div>
+            </div>
+            <div style="background:rgba(226,184,76,0.1);border:1px solid rgba(226,184,76,0.3);border-radius:6px;padding:10px 12px;">
+              <div style="font-size:0.68rem;color:var(--yellow);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">No-fee deadline</div>
+              <div style="font-weight:500;">Jan. 24, 2028</div>
+            </div>
+            <div style="background:rgba(224,92,92,0.08);border:1px solid rgba(224,92,92,0.25);border-radius:6px;padding:10px 12px;">
+              <div style="font-size:0.68rem;color:var(--red);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">Late deadline (+fee)</div>
+              <div style="font-weight:500;">Jul. 24, 2028</div>
+            </div>
+          </div>
+          <div style="margin-top:10px;font-size:0.8rem;color:var(--muted);">File via TEAS → Section 8/9 Combined → Registration No. <strong style="color:var(--text);">3373967</strong> &mdash; Bezito will remind you Dec 15, 2026 (window opens) and Oct 1, 2027 (deadline approaching).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW TO SUBMIT -->
+  <div class="section">
+    <div class="section-title">How to Submit Petition in Patent Center</div>
+    <ol class="steps">
+      <li>Go to <strong>patentcenter.uspto.gov</strong> → log in as BETZALEL AMBAR</li>
+      <li>Open the application: search by number (30/004,197 or 30/004,203)</li>
+      <li>Top navigation bar → click <strong>"New submission ▼"</strong> → OR → <strong>"Petitions ▼"</strong></li>
+      <li>Select the application number when prompted</li>
+      <li>Document type: <strong>Petition</strong> (no fee required)</li>
+      <li>Copy/paste the letter text from below → fill in today's date + your phone number</li>
+      <li>Submit → repeat for the second application</li>
+    </ol>
+  </div>
+
+  <!-- PETITION LETTERS -->
+  <div class="section">
+    <div class="section-title">Petition Letters — Ready to File</div>
+
+    <div class="letter-block">
+      <div class="letter-header">
+        <span>Letter 1 — Application 30/004,197 (Octagonal Outline)</span>
+        <small>Fill in: date · phone number</small>
+      </div>
+      <div class="letter-body">IN THE UNITED STATES PATENT AND TRADEMARK OFFICE
+
+In re Application of: Betzalel Ambar
+Application No.: 30/004,197
+Filing Date: May 16, 2025
+Confirmation No.: 2396
+Title: Faceted Gemstone with Octagonal Outline
+Art Unit: 2913
+
+PETITION TO REAFFIRM "MADE SPECIAL" STATUS
+UNDER 37 CFR 1.102(c)(1)
+
+Commissioner for Patents
+United States Patent and Trademark Office
+P.O. Box 1450
+Alexandria, VA 22313-1450
+
+Dear Commissioner:
+
+Applicant Betzalel Ambar respectfully submits this petition requesting that the
+above-identified application be reaffirmed as "Made Special" for advancement of
+examination pursuant to 37 CFR 1.102(c)(1) and MPEP § 708.02, Section II.
+
+BACKGROUND
+
+On November 6, 2025, Applicant filed a Petition to Make Special for Advancement
+of Examination based on the applicant's age, pursuant to 37 CFR 1.102(c)(1).
+The petition was GRANTED by the Office of Petitions (signed by Rachel R. Rizzo,
+Paralegal Specialist, PFMU), and the application was accorded "special" status.
+
+The application subsequently became abandoned due to a clerical/procedural matter
+unrelated to the merits of the invention. The application has since been fully
+revived and is now active (revival granted April 6, 2026, routed to OPAP).
+
+The application is currently reflected as "NEW" in Patent Center, indicating the
+revival processing may have reset the Made Special status flag. Applicant requests
+reaffirmation to preserve priority examination treatment.
+
+REQUEST
+
+Applicant respectfully requests that the Office:
+
+1. Reaffirm the "Made Special" status previously granted under 37 CFR 1.102(c)(1)
+2. Ensure the application is treated as "Made Special" for all examination purposes
+
+No fee is required per 37 CFR 1.102(c)(1).
+
+Respectfully submitted,
+
+/Betzalel Ambar/
+Betzalel Ambar — Inventor and Applicant
+Date: _______________
+Telephone: _______________</div>
+    </div>
+
+    <div class="letter-block">
+      <div class="letter-header">
+        <span>Letter 2 — Application 30/004,203 (Multiple Embodiments)</span>
+        <small>Fill in: date · phone · PTMS petition date</small>
+      </div>
+      <div class="letter-body">IN THE UNITED STATES PATENT AND TRADEMARK OFFICE
+
+In re Application of: Betzalel Ambar
+Application No.: 30/004,203
+Filing Date: May 17, 2025
+Confirmation No.: 7687
+Title: Faceted Gemstone with Multiple Embodiments
+Art Unit: 2913
+
+PETITION TO REAFFIRM "MADE SPECIAL" STATUS
+UNDER 37 CFR 1.102(c)(1)
+
+Commissioner for Patents
+United States Patent and Trademark Office
+P.O. Box 1450
+Alexandria, VA 22313-1450
+
+Dear Commissioner:
+
+Applicant Betzalel Ambar respectfully submits this petition requesting that the
+above-identified application be reaffirmed as "Made Special" for advancement of
+examination pursuant to 37 CFR 1.102(c)(1) and MPEP § 708.02, Section II.
+
+BACKGROUND
+
+A Petition to Make Special for Advancement of Examination based on the applicant's
+age was previously filed and GRANTED by the Office of Petitions (PFMU) for this
+application, pursuant to 37 CFR 1.102(c)(1). Applicant Betzalel Ambar was born
+October 4, 1955, and is 70 years of age.
+
+The application subsequently became abandoned due to clerical/procedural matters
+unrelated to the merits of the invention. Following a renewed petition filed
+June 22, 2026, the application was fully revived by decision of the Office of
+Petitions dated August 6, 2026 (reviewed by Paralegal Specialist LaShawn D. Marks).
+
+The application is currently reflected as "NEW" in Patent Center, indicating the
+revival processing may have reset the Made Special status flag. Applicant requests
+reaffirmation to preserve priority examination treatment.
+
+REQUEST
+
+Applicant respectfully requests that the Office:
+
+1. Reaffirm the "Made Special" status previously granted under 37 CFR 1.102(c)(1)
+2. Ensure the application is treated as "Made Special" for all examination purposes
+
+No fee is required per 37 CFR 1.102(c)(1).
+
+Respectfully submitted,
+
+/Betzalel Ambar/
+Betzalel Ambar — Inventor and Applicant
+Date: _______________
+Telephone: _______________</div>
+    </div>
+  </div>
+
+  <!-- CONTACTS -->
+  <div class="section">
+    <div class="section-title">Key Contacts</div>
+    <div class="contact-row">
+      <span class="contact-name">Rachel R. Rizzo</span>
+      <span class="contact-role">Paralegal Specialist, PFMU — handled PTMS grants for both applications</span>
+      <span class="contact-phone">571-272-8991</span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-name">LaShawn D. Marks</span>
+      <span class="contact-role">OPET — reviewed and granted 30/004,203 revival (Aug 6, 2026)</span>
+      <span class="contact-phone">571-272-7141</span>
+    </div>
+  </div>
+
+  <!-- LEGAL REFS -->
+  <div class="section">
+    <div class="section-title">Key References</div>
+    <div class="kv-row"><span class="kv-label">37 CFR 1.102(c)(1)</span><span class="kv-val">Petition to Make Special — age 65+, no fee required</span></div>
+    <div class="kv-row"><span class="kv-label">MPEP § 708.02, Section II</span><span class="kv-val">Made Special examination priority rules</span></div>
+    <div class="kv-row"><span class="kv-label">Form PTO/SB/130</span><span class="kv-val">PTMS petition form</span></div>
+    <div class="kv-row"><span class="kv-label">Patent Center — 30/004,197</span><span class="kv-val">patentcenter.uspto.gov/applications/30004197</span></div>
+    <div class="kv-row"><span class="kv-label">Patent Center — 30/004,203</span><span class="kv-val">patentcenter.uspto.gov/applications/30004203</span></div>
+  </div>
+
+  <div class="updated">Last updated: August 9, 2026 · Bezito Patent Tracker</div>
+</div>
+
+</body>
+</html>
