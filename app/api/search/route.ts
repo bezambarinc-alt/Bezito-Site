@@ -119,25 +119,78 @@ export async function GET(req: NextRequest) {
   return NextResponse.json({ query: q, results: results.slice(0, LIMIT * 2) })
 }
 
-/** Pull a usable thumbnail URL out of the products.media jsonb (best-effort). */
+interface MediaEntry {
+  url?: string
+  type?: string
+  label?: string
+}
+
+/**
+ * Pull a usable thumbnail URL out of the products.media jsonb.
+ *
+ * Priority:
+ *  1. Array entry with type === 'image'                    (real photo)
+ *  2. Array entry whose URL already contains f_jpg          (pre-computed Cloudinary poster)
+ *  3. First video URL → synthesize Cloudinary poster frame  (so_0,f_jpg,c_fill,w_144,h_144)
+ *  4. Plain string fallback
+ */
 function firstMedia(media: unknown): string | null {
   if (!media) return null
   try {
-    if (typeof media === 'string') return media
+    // Flat array of media objects
     if (Array.isArray(media)) {
-      const first = media[0]
-      if (typeof first === 'string') return first
-      if (first && typeof first === 'object' && 'url' in first) return String((first as { url: unknown }).url)
+      const items = media as MediaEntry[]
+
+      // 1. Prefer an explicit image entry
+      const img = items.find((m) => m.type === 'image' && m.url)
+      if (img?.url) return thumbify(img.url)
+
+      // 2. Pre-computed poster frame (Cloudinary video URL with f_jpg transform already applied)
+      const poster = items.find((m) => m.url && m.url.includes('f_jpg'))
+      if (poster?.url) return thumbify(poster.url)
+
+      // 3. Synthesize poster from first video URL
+      const vid = items.find((m) => m.url)
+      if (vid?.url) return videoToThumb(vid.url)
+
       return null
     }
+
+    // Legacy: plain string
+    if (typeof media === 'string') return thumbify(media)
+
+    // Legacy: object with hero/url keys
     if (typeof media === 'object') {
       const m = media as Record<string, unknown>
-      if (typeof m.hero === 'string') return m.hero
-      if (typeof m.url === 'string') return m.url
-      if (Array.isArray(m.images) && typeof m.images[0] === 'string') return m.images[0]
+      const url = (m.hero ?? m.url) as string | undefined
+      if (typeof url === 'string') return thumbify(url)
     }
   } catch {
     return null
   }
   return null
+}
+
+/** Add small-size Cloudinary transformation to an existing image URL. */
+function thumbify(url: string): string {
+  if (!url.includes('res.cloudinary.com')) return url
+  // Already has a size transform — leave as-is
+  if (url.match(/[wh]_\d/)) return url
+  return url.replace('/image/upload/', '/image/upload/c_fill,w_144,h_144,f_auto,q_auto/')
+}
+
+/**
+ * Convert a Cloudinary video URL to a poster-frame image URL.
+ * Uses so_0 (first frame), crops to square thumb.
+ */
+function videoToThumb(url: string): string {
+  if (!url.includes('res.cloudinary.com') || !url.includes('/video/upload/')) return url
+  // Strip any existing transformation block (between /video/upload/ and the version/path)
+  // Insert our poster transform, swap extension to .jpg
+  return url
+    .replace(
+      /\/video\/upload\/((?:[^/]+,)?)/,
+      '/video/upload/so_0,f_jpg,c_fill,w_144,h_144,q_auto/',
+    )
+    .replace(/\.[a-z0-9]+$/i, '.jpg')
 }
