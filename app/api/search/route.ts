@@ -128,38 +128,34 @@ interface MediaEntry {
 /**
  * Pull a usable thumbnail URL out of the products.media jsonb.
  *
- * Priority:
- *  1. Array entry with type === 'image'                    (real photo)
- *  2. Array entry whose URL already contains f_jpg          (pre-computed Cloudinary poster)
- *  3. First video URL → synthesize Cloudinary poster frame  (so_0,f_jpg,c_fill,w_144,h_144)
- *  4. Plain string fallback
+ * Priority — video stills preferred over editorial photos:
+ *  1. Pre-computed Cloudinary poster frame (URL contains f_jpg)  ← still from the video
+ *  2. First video URL → synthesize poster via so_0,f_jpg          ← still from the video
+ *  3. Editorial image (type === 'image')                          ← last resort, no video
  */
 function firstMedia(media: unknown): string | null {
   if (!media) return null
   try {
-    // Flat array of media objects
     if (Array.isArray(media)) {
       const items = media as MediaEntry[]
 
-      // 1. Prefer an explicit image entry
+      // 1. Pre-computed poster frame already in media array (Cloudinary so_X,f_jpg transform)
+      const poster = items.find((m) => m.url && m.url.includes('f_jpg'))
+      if (poster?.url) return poster.url
+
+      // 2. Synthesize poster from video URL
+      const vid = items.find((m) => m.type === 'video' && m.url)
+      if (vid?.url) return videoToThumb(vid.url)
+
+      // 3. Fallback: editorial/still image — only if no video exists
       const img = items.find((m) => m.type === 'image' && m.url)
       if (img?.url) return thumbify(img.url)
-
-      // 2. Pre-computed poster frame (Cloudinary video URL with f_jpg transform already applied)
-      const poster = items.find((m) => m.url && m.url.includes('f_jpg'))
-      if (poster?.url) return thumbify(poster.url)
-
-      // 3. Synthesize poster from first video URL
-      const vid = items.find((m) => m.url)
-      if (vid?.url) return videoToThumb(vid.url)
 
       return null
     }
 
-    // Legacy: plain string
     if (typeof media === 'string') return thumbify(media)
 
-    // Legacy: object with hero/url keys
     if (typeof media === 'object') {
       const m = media as Record<string, unknown>
       const url = (m.hero ?? m.url) as string | undefined
