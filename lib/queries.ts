@@ -9,9 +9,9 @@ import { CATEGORY_ORDER } from '@/lib/data/categories'
  */
 
 /** Derive a Cloudinary still poster from a video URL (so cards always get a valid image). */
-function cloudinaryPoster(videoUrl: string): string {
+function cloudinaryPoster(videoUrl: string, seconds = 1.0): string {
   return videoUrl
-    .replace('/video/upload/', '/video/upload/so_2.0,f_jpg,w_800,c_fit/')
+    .replace('/video/upload/', `/video/upload/so_${seconds},f_jpg,w_1200,c_fit/`)
     .replace(/\.mp4$/i, '.jpg')
     .replace(/\.webm$/i, '.jpg')
 }
@@ -37,10 +37,10 @@ function rowToProduct(r: Record<string, unknown>): Product {
 
   // Only video URLs go into heroVideo — images get displayed as <img>
   const heroVideo  = heroIsVideo ? heroVisual : null
-  const heroPoster = editIsImage
-    ? editVisual                                        // editorial still → poster
-    : heroVideo
-    ? cloudinaryPoster(heroVideo)                       // derive from video
+  // Poster is always a frame extracted from the video itself (so_1.0).
+  // Using editorial_visual as poster creates a jarring mismatch jump-cut.
+  const heroPoster = heroVideo
+    ? cloudinaryPoster(heroVideo)                       // frame from the video
     : (!heroIsVideo ? heroVisual : null)                // hero is image → use it
 
   const media: ProductMedia[] = []

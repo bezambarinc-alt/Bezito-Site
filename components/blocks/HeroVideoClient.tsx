@@ -3,18 +3,17 @@
 /**
  * HeroVideoClient — client-side media layer for HeroVideo.
  *
- * Handles the poster → video crossfade:
- *   1. Poster (<Image priority>) paints immediately as the LCP element.
- *   2. Video downloads behind it with preload="none" and autoPlay.
- *   3. Once the video fires canPlayThrough, motion fades the poster out (0.9s).
- *
- * Kept intentionally thin — all static markup (overlay, scrim, ref pill)
- * lives in the server-rendered HeroVideo wrapper.
+ * Poster → video crossfade strategy:
+ *   1. Poster (Cloudinary frame extraction, <Image priority>) paints immediately
+ *      as the LCP element. It's a frame from the actual video so the transition
+ *      is invisible — no jarring cut between a photo and the video content.
+ *   2. Video downloads with preload="auto" (above-fold hero — we want it buffered).
+ *   3. Once `playing` fires (video is genuinely rendering frames), CSS transition
+ *      fades the poster out. GPU-composited, no JS animation frame budget.
  */
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { motion } from 'motion/react'
 import styles from './HeroVideo.module.css'
 
 interface Props {
@@ -23,20 +22,13 @@ interface Props {
 }
 
 export default function HeroVideoClient({ videoUrl, posterUrl }: Props) {
-  const [videoReady, setVideoReady] = useState(false)
+  const [videoPlaying, setVideoPlaying] = useState(false)
 
   return (
     <>
-      {/* Poster — LCP element, sits above the video until it's ready */}
+      {/* Poster — LCP element, z-index:2, fades out once video is playing */}
       {posterUrl && (
-        <motion.div
-          className={styles.posterWrap}
-          initial={{ opacity: 1 }}
-          animate={{ opacity: videoReady ? 0 : 1 }}
-          transition={{ duration: 0.9, ease: [0.4, 0, 0.2, 1] }}
-          // Remove from paint tree once invisible so it doesn't block clicks
-          style={{ pointerEvents: videoReady ? 'none' : 'auto' }}
-        >
+        <div className={`${styles.posterWrap} ${videoPlaying ? styles.posterHidden : ''}`}>
           <Image
             src={posterUrl}
             alt=""
@@ -45,10 +37,10 @@ export default function HeroVideoClient({ videoUrl, posterUrl }: Props) {
             sizes="100vw"
             className={styles.poster}
           />
-        </motion.div>
+        </div>
       )}
 
-      {/* Video — renders behind poster (z-index: 1); crossfade reveals it */}
+      {/* Video — z-index:1, preload aggressively (above fold) */}
       <video
         className={styles.video}
         src={videoUrl}
@@ -56,9 +48,9 @@ export default function HeroVideoClient({ videoUrl, posterUrl }: Props) {
         muted
         loop
         playsInline
-        preload="none"
+        preload="auto"
         poster={posterUrl}
-        onCanPlayThrough={() => setVideoReady(true)}
+        onPlaying={() => setVideoPlaying(true)}
       />
     </>
   )
