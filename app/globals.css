@@ -365,3 +365,14 @@ body.page-dark {
 .ba-cta__body{font-family:var(--prose);font-size:17px;line-height:1.75;color:var(--white);max-width:560px;margin:0 auto 32px}
 .ba-cta__btn{display:inline-block;padding:14px 36px;font-family:var(--sans);text-transform:var(--sans-transform,none);letter-spacing:var(--sans-letter-spacing,normal);font-size:15px;font-weight:600;text-decoration:none;border:1px solid var(--accent);color:var(--accent);background:transparent;cursor:pointer;transition:all .3s}
 .ba-cta__btn:hover{background:var(--accent);color:var(--ink)}
+
+
+/* ── Header video-hero detection — CSS :has() ──────────────────────────────
+   When <main> contains an autoplay video (portrait hero or HeroVideo block),
+   the header floats over a dark surface → white text.
+   :not([data-scrolled]) ensures the rule yields to .scrolled (solid white bg).
+   Zero JavaScript. No flash. No list. Chrome 105+, Firefox 121+, Safari 15.4+
+   ─────────────────────────────────────────────────────────────────────────── */
+html:has(main video[autoplay]) #baHeader:not([data-scrolled]) {
+  color: #ffffff;
+}

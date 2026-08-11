@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useDrawers } from './DrawerContext'
-import { useHeaderModeState } from './HeaderModeContext'
 import styles from './Header.module.css'
 
 /**
@@ -18,7 +17,6 @@ import styles from './Header.module.css'
 export default function Header() {
   const { openMenu, openSearch, openConcierge } = useDrawers()
   const [scrolled, setScrolled] = useState(false)
-  const transparent = useHeaderModeState() === 'transparent'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20) // Astro: scrollY > 20
@@ -30,7 +28,8 @@ export default function Header() {
   return (
     <header
       id="baHeader"
-      className={`${styles.header} ${transparent ? styles.transparent : styles.light} ${scrolled ? styles.scrolled : ''}`}
+      className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}
+      data-scrolled={scrolled || undefined}
     >
       {/* Left: hamburger + "Menu" label — no .inner wrapper, exact Astro structure */}
       <button className={styles.menuBtn} aria-label="Open menu" onClick={openMenu}>

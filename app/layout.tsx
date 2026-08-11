@@ -3,7 +3,6 @@ import { Cormorant_Garamond, Open_Sans } from 'next/font/google'
 import './globals.css'
 
 import { DrawerProvider } from '@/components/layout/DrawerContext'
-import { HeaderModeProvider, HeaderRouteMode } from '@/components/layout/HeaderModeContext'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import NavMenuData from '@/components/layout/NavMenuData'
@@ -66,9 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <HeaderModeProvider>
-          <HeaderRouteMode />
-          <DrawerProvider>
+        <DrawerProvider>
             <Header />
             {children}
             <Footer />
@@ -79,7 +76,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <ConciergeDrawer />
             <SearchOverlay />
           </DrawerProvider>
-        </HeaderModeProvider>
       </body>
     </html>
   )
