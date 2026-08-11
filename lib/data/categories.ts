@@ -36,16 +36,22 @@ export const CATEGORIES: Record<string, CategoryMeta> = {
     eyebrow: 'The Collection',
     title: 'Necklaces',
     intro: 'Statement and everyday, drawn from the atelier.',
+    videoUrl:
+      'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1779254420/Jewelry%20Videos/Necklaces/C0508_4k_noykv3.mp4',
   },
   earrings: {
     eyebrow: 'The Collection',
     title: 'Earrings',
     intro: 'Studs, drops, and hoops in signature Bez Ambar cuts.',
+    videoUrl:
+      'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Earrings/R09059_4k_final_diylja.mp4',
   },
   pendants: {
     eyebrow: 'The Collection',
     title: 'Pendants',
     intro: 'Single stones and sculptural forms — light held at the throat.',
+    videoUrl:
+      'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1784671452/Jewelry%20Videos/Pendants/C0785_qkjsfm.mp4',
   },
   'wedding-bands': {
     eyebrow: 'The Collection',

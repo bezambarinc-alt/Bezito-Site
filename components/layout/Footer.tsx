@@ -166,10 +166,9 @@ export default function Footer() {
           <FooterCol title="Shop">
             <Link href="/collection/bloom">Bloom Collection</Link>
             <Link href="/jewelry/rings">Rings</Link>
-            <Link href="/jewelry/engagement-rings">Engagement Rings</Link>
-            <Link href="/jewelry/wedding-bands">Wedding Bands</Link>
-            <Link href="/jewelry/earrings">Earrings</Link>
+            <Link href="/jewelry/bands">Bands</Link>
             <Link href="/jewelry/bracelets">Bracelets</Link>
+            <Link href="/jewelry/earrings">Earrings</Link>
             <Link href="/jewelry/necklaces">Necklaces</Link>
             <Link href="/jewelry/pendants">Pendants</Link>
           </FooterCol>
