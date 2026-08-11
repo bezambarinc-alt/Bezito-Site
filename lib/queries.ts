@@ -15,15 +15,38 @@ function cloudinaryPoster(videoUrl: string): string {
     .replace(/\.webm$/i, '.jpg')
 }
 
+/**
+ * Detect whether a Cloudinary URL is a video or image.
+ * Image extensions always win over the /video/upload/ path prefix
+ * (e.g. C0878_zocjks.jpg lives under /video/upload/ but is a still).
+ */
+function isVideoUrl(url: string): boolean {
+  if (/\.(jpg|jpeg|png|webp|avif|gif)(\?|$)/i.test(url)) return false
+  if (/\.(mp4|webm|mov)(\?|$)/i.test(url)) return true
+  return /\/video\/upload\//.test(url)
+}
+
 /** Map individual Neon columns → the Product view shape. */
 function rowToProduct(r: Record<string, unknown>): Product {
-  const heroVideo  = r.hero_visual       as string | null
-  const heroPoster = (r.editorial_visual as string | null)
-    ?? (heroVideo ? cloudinaryPoster(heroVideo) : null)
+  const heroVisual = r.hero_visual       as string | null
+  const editVisual = r.editorial_visual  as string | null
+
+  const heroIsVideo = heroVisual ? isVideoUrl(heroVisual) : false
+  const editIsImage = editVisual ? !isVideoUrl(editVisual) : false
+
+  // Only video URLs go into heroVideo — images get displayed as <img>
+  const heroVideo  = heroIsVideo ? heroVisual : null
+  const heroPoster = editIsImage
+    ? editVisual                                        // editorial still → poster
+    : heroVideo
+    ? cloudinaryPoster(heroVideo)                       // derive from video
+    : (!heroIsVideo ? heroVisual : null)                // hero is image → use it
 
   const media: ProductMedia[] = []
-  if (heroVideo)  media.push({ url: heroVideo,  type: 'video', label: 'Hero',      poster: heroPoster ?? undefined })
-  if (heroPoster) media.push({ url: heroPoster, type: 'image', label: 'Editorial' })
+  if (heroVideo)        media.push({ url: heroVideo,  type: 'video', label: 'Hero', poster: heroPoster ?? undefined })
+  else if (heroVisual)  media.push({ url: heroVisual, type: 'image', label: 'Hero' })
+  if (editVisual && editVisual !== heroVisual)
+    media.push({ url: editVisual, type: editIsImage ? 'image' : 'video', label: 'Editorial' })
 
   const specs: ProductSpecs = {
     category:          (r.category        as string) ?? undefined,
