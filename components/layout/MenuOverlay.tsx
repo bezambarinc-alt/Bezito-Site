@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { useDrawers } from './DrawerContext'
 import { getCategoryLabel } from '@/lib/data/categories'
+import type { Product } from '@/types/products'
 import styles from './MenuOverlay.module.css'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
@@ -35,9 +36,11 @@ interface Props {
   categories?: string[]
   /** Active collections from Neon — shown only when at least one exists. */
   collections?: string[]
+  /** Products with featured=true in Plytix — drives 'From the Atelier' section. */
+  featuredProducts?: Product[]
 }
 
-export default function MenuOverlay({ categories = [], collections = [] }: Props) {
+export default function MenuOverlay({ categories = [], collections = [], featuredProducts = [] }: Props) {
   const { active, close, openConcierge, openInquiryDrawer } = useDrawers()
   const open = active === 'menu'
   const [sub, setSub] = useState<string | null>(null)
@@ -62,13 +65,16 @@ export default function MenuOverlay({ categories = [], collections = [] }: Props
       href: `/jewelry/${cat}`,
     })),
     { kind: 'divider' as const },
-    // From the Atelier — curated spotlight pieces; stays hardcoded.
-    { kind: 'label' as const, text: 'From the Atelier' },
-    { kind: 'link'  as const, label: 'The Heart Ruby',    href: '/jewelry/bracelets/heart-ruby' },
-    { kind: 'link'  as const, label: 'The 30-Carat Flex', href: '/jewelry/bracelets/30-carat-flex' },
-    { kind: 'link'  as const, label: 'Elysian Band',      href: '/jewelry/wedding-bands/elysian-band-50' },
-    { kind: 'soon'  as const, label: 'Cascata' },
-    { kind: 'soon'  as const, label: 'Crossover Ashoka®' },
+    // From the Atelier — products with featured=true in Plytix, data-driven.
+    ...(featuredProducts.length > 0 ? [
+      { kind: 'divider' as const },
+      { kind: 'label'   as const, text: 'From the Atelier' },
+      ...featuredProducts.map(p => ({
+        kind: 'link' as const,
+        label: p.name,
+        href: `/jewelry/${p.specs.category ?? 'jewelry'}/${encodeURIComponent(p.sku)}`,
+      })),
+    ] : []),
   ]
 
   const subCols: SubCol[] = [

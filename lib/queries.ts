@@ -139,6 +139,14 @@ export async function getActiveCollections(): Promise<string[]> {
   return rows.map(r => r.collection)
 }
 
+/** Featured products — drives 'From the Atelier' nav section. */
+export async function getFeaturedProducts(): Promise<Product[]> {
+  const rows = await sql<Record<string, unknown>>(
+    `SELECT ${COLS} FROM products WHERE active = true AND featured = true ORDER BY sort_order ASC, name ASC`,
+  )
+  return rows.map(rowToProduct)
+}
+
 /** All products in a named collection. */
 export async function getProductsByCollection(collection: string): Promise<Product[]> {
   const rows = await sql<Record<string, unknown>>(

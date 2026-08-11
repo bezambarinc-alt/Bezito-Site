@@ -167,6 +167,8 @@ export async function GET(req: NextRequest) {
         // Parse numeric fields (Neon columns are NUMERIC — pass null if absent)
         const totalCaratWeight  = str(a.total_carat_weight)  ? parseFloat(str(a.total_carat_weight)!)  : null
         const centerStoneWeight = str(a.center_stone_weight) ? parseFloat(str(a.center_stone_weight)!) : null
+        // Plytix featured attribute: boolean, string 'true', or any truthy value
+        const featured = a.featured === true || a.featured === 'true'
 
         // Write to individual columns — the JSONB `specs`/`media` blobs are legacy.
         await sql(
@@ -175,9 +177,9 @@ export async function GET(req: NextRequest) {
             category, subtitle, editorial, description,
             hero_visual, editorial_visual,
             metal, stone_shape, stone_carats, stone_color, stone_clarity, stone_notes,
-            total_carat_weight, center_stone_weight, collection,
+            total_carat_weight, center_stone_weight, collection, featured,
             synced_at
-          ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,now())
+          ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,now())
           ON CONFLICT (sku) DO UPDATE SET
             plytix_id=EXCLUDED.plytix_id, name=EXCLUDED.name,
             category=EXCLUDED.category, subtitle=EXCLUDED.subtitle,
@@ -189,6 +191,7 @@ export async function GET(req: NextRequest) {
             total_carat_weight=EXCLUDED.total_carat_weight,
             center_stone_weight=EXCLUDED.center_stone_weight,
             collection=EXCLUDED.collection,
+            featured=EXCLUDED.featured,
             synced_at=now()`,
           [
             p.sku,                         // $1  sku
@@ -209,6 +212,7 @@ export async function GET(req: NextRequest) {
             totalCaratWeight,              // $16 total_carat_weight (numeric)
             centerStoneWeight,             // $17 center_stone_weight (numeric)
             str(a.collection) ?? null,     // $18 collection
+            featured,                        // $19 featured (boolean)
           ],
         )
         syncedSkus.push(p.sku)
