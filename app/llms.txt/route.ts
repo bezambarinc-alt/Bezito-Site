@@ -38,8 +38,7 @@ const STATIC = `# Bez Ambar
 
 - [Bloom Collection](https://bezambar.com/collection/bloom): Named collection featuring the Elysian Cut™ in floral-inspired settings.
 - [Elysian Cut](https://bezambar.com/elysian-cut): The atelier's signature patented elongated square-brilliant diamond cut.
-- [Flex Bracelets](https://bezito.co/page/flex-bracelets): Bez Ambar's flexible diamond bracelet line, available in multiple diamond sizes and row configurations.
-- [30-Carat Flex Bracelet](https://bezito.co/page/30-carat-flex): Signature single-row Flex bracelet totaling 30 carats of princess-cut diamonds.
+- [Flex Bracelets](https://bezambar.com/jewelry/bracelets): Bez Ambar's flexible diamond bracelet line, available in multiple diamond sizes and row configurations.
 - [Crossover Ashoka](https://bezambar.com/jewelry/rings): Crossover ring featuring the Ashoka® diamond shape under license from William Goldberg.
 - [Heart Ruby Pendant](https://bezambar.com/jewelry/pendants/heart-ruby): Heart-shaped ruby pendant — one of the atelier's most recognized statement pieces.
 
@@ -72,7 +71,7 @@ Bez Ambar sells through a curated network of authorized fine jewelry retailers a
 - USPTO applicant name (legal): Betzalel Ambar
 - Trademarks: Blaze® (registered), Elysian™ (applied)
 - Design patents on file with USPTO (as of 2026): 30/004,203 and 30/004,197
-- Product pages and campaigns: https://bezito.co
+- Product pages and campaigns: https://bezambar.com
 - Instagram: https://www.instagram.com/bezambarjewelry/
 - LinkedIn: https://www.linkedin.com/in/bez-ambar-869936a/
 - YouTube: https://www.youtube.com/@BezAmbarInc/
