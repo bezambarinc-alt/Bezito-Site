@@ -79,12 +79,11 @@ export default async function CategoryPage({
             </div>
             <div className="ba-segment__text">
               <FadeIn delay={0.1}>
-              <span className="ba-eyebrow">
-                {product.name}&nbsp;&nbsp;&middot;&nbsp;&nbsp;ref. {product.sku}
-              </span>
-              <h2 className="ba-segment__heading">
-                {product.specs.subtitle ?? product.name}
-              </h2>
+              <span className="ba-eyebrow">ref. {product.sku}</span>
+              <h2 className="ba-segment__heading">{product.name}</h2>
+              {product.specs.subtitle && (
+                <p className="ba-segment__ref">{product.specs.subtitle}</p>
+              )}
               {(product.specs.gemStone || product.specs.metal) && (
                 <p className="ba-segment__ref">
                   {[product.specs.gemStone, product.specs.metal]

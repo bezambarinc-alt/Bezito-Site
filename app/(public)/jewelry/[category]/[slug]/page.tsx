@@ -95,10 +95,10 @@ export default async function ProductPage({
           <Link href={`/jewelry/${category}`}>{categoryLabel}</Link>
         </nav>
 
-        {/* Product identity */}
+        {/* Product identity — name large, ref below it, subtitle editorial after */}
         <h1 className={styles.title}>{product.name}</h1>
-        {s.subtitle && <p className={styles.subtitle}>{s.subtitle}</p>}
         <p className={styles.refLine}>Ref. {product.sku}</p>
+        {s.subtitle && <p className={styles.subtitle}>{s.subtitle}</p>}
         {s.lede && <p className={styles.lede}>{s.lede}</p>}
       </section>
 
