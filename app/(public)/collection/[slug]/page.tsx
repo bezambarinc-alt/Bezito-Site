@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { getProductsByCollection } from '@/lib/queries'
 import LazyVideo from '@/components/common/LazyVideo'
 import ProductCard from '@/components/product/ProductCard'
+import FadeIn from '@/components/common/FadeIn'
 
 export const dynamic = 'force-dynamic'
 
@@ -98,6 +99,7 @@ export default async function CollectionPage({
               ) : null}
             </div>
             <div className="ba-segment__text">
+              <FadeIn delay={0.1}>
               <span className="ba-eyebrow">
                 {product.name}&nbsp;&nbsp;&middot;&nbsp;&nbsp;ref. {product.sku}
               </span>
@@ -113,6 +115,7 @@ export default async function CollectionPage({
               >
                 View {product.name}
               </Link>
+              </FadeIn>
             </div>
           </div>
         )
@@ -120,13 +123,13 @@ export default async function CollectionPage({
 
       {/* Pull quote */}
       {products.length > 0 && (
-        <section className="ba-pull-quote">
+        <FadeIn><section className="ba-pull-quote">
           <span className="ba-pull-quote__mark">&ldquo;</span>
           <p className="ba-pull-quote__text">
             Every stone arrives with a language. The setting is the translation.
           </p>
           <span className="ba-pull-quote__attr">Bez Ambar</span>
-        </section>
+        </section></FadeIn>
       )}
 
       {/* Section divider + grid */}
@@ -150,7 +153,7 @@ export default async function CollectionPage({
 
       {/* Commission CTA */}
       {products.length > 0 && (
-        <section className="ba-cta">
+        <FadeIn delay={0.1}><section className="ba-cta">
           <span className="ba-cta__eyebrow">Commission</span>
           <h2 className="ba-cta__title">Create Your Own Piece</h2>
           <p className="ba-cta__body">
@@ -158,7 +161,7 @@ export default async function CollectionPage({
             consultation to commission your own work from the {collectionName} aesthetic.
           </p>
           <a href="/contact" className="ba-cta__btn">Inquire</a>
-        </section>
+        </section></FadeIn>
       )}
     </main>
   )

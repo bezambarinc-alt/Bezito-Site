@@ -4,6 +4,7 @@ import { getCategoryMeta, getCategoryLabel } from '@/lib/data/categories'
 import { getProductsByCategory } from '@/lib/queries'
 import ProductCard from '@/components/product/ProductCard'
 import LazyVideo from '@/components/common/LazyVideo'
+import FadeIn from '@/components/common/FadeIn'
 
 /**
  * Category page — matches bezambar-web2026 Astro rings/bands/etc page exactly:
@@ -77,6 +78,7 @@ export default async function CategoryPage({
               ) : null}
             </div>
             <div className="ba-segment__text">
+              <FadeIn delay={0.1}>
               <span className="ba-eyebrow">
                 {product.name}&nbsp;&nbsp;&middot;&nbsp;&nbsp;ref. {product.sku}
               </span>
@@ -99,25 +101,26 @@ export default async function CategoryPage({
               >
                 View {product.name}
               </Link>
+              </FadeIn>
             </div>
           </div>
         )
       })}
 
       {/* 3. Pull quote */}
-      <section className="ba-pull-quote">
+      <FadeIn><section className="ba-pull-quote">
         <span className="ba-pull-quote__mark">&ldquo;</span>
         <p className="ba-pull-quote__text">
           Every stone arrives with a language. The setting is the translation.
         </p>
         <span className="ba-pull-quote__attr">Bez Ambar</span>
-      </section>
+      </section></FadeIn>
 
       {/* 4. Section divider */}
-      <div className="ba-section-divider">
+      <FadeIn><div className="ba-section-divider">
         <span className="ba-section-divider__eyebrow">{cat.title}</span>
         <h2 className="ba-section-divider__title">The Pieces</h2>
-      </div>
+      </div></FadeIn>
 
       {/* 5. Product grid — remaining products after spotlights */}
       {gridProducts.length > 0 && (
@@ -146,7 +149,7 @@ export default async function CategoryPage({
       )}
 
       {/* 6. Commission CTA */}
-      <section className="ba-cta">
+      <FadeIn><section className="ba-cta">
         <span className="ba-cta__eyebrow">Don&rsquo;t See It</span>
         <h2 className="ba-cta__title">Commission a Piece</h2>
         <p className="ba-cta__body">
@@ -156,7 +159,7 @@ export default async function CategoryPage({
         <a href="/contact" className="ba-cta__btn">
           Inquire
         </a>
-      </section>
+      </section></FadeIn>
     </main>
   )
 }

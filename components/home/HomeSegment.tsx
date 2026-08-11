@@ -2,6 +2,7 @@ import Image from 'next/image'
 import styles from './HomeSegment.module.css'
 import ConciergeCtaButton from './ConciergeCtaButton'
 import LazyVideo from '@/components/common/LazyVideo'
+import FadeIn from '@/components/common/FadeIn'
 
 export interface HomeSegmentProps {
   id?: string             // maps to section id= (scroll anchors like #segment-foundation)
@@ -50,7 +51,7 @@ export default function HomeSegment({
   if (noMedia) {
     return (
       <section id={id} className={styles.noMedia}>
-        <div className={styles.noMediaInner}>{textBlock}</div>
+        <div className={styles.noMediaInner}><FadeIn>{textBlock}</FadeIn></div>
       </section>
     )
   }
@@ -78,7 +79,7 @@ export default function HomeSegment({
           </div>
         ) : null}
       </div>
-      <div className={styles.text}>{textBlock}</div>
+      <div className={styles.text}><FadeIn delay={0.15}>{textBlock}</FadeIn></div>
     </section>
   )
 }

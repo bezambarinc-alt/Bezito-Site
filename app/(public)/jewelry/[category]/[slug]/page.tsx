@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { getProductBySlug, getAllProductParams } from '@/lib/queries'
 import { getCategoryLabel } from '@/lib/data/categories'
 import HeroVideo from '@/components/blocks/HeroVideo'
+import FadeIn from '@/components/common/FadeIn'
 import SpecAccordion from '@/components/blocks/SpecAccordion'
 import InquireCta from '@/components/blocks/InquireCta'
 import ProductGallery from '@/components/product/ProductGallery'
@@ -115,7 +116,7 @@ export default async function ProductPage({
 
       {/* ── Technical accordion — 2-col matching Astro .technical ── */}
       <section className={styles.technical}>
-        <div className={styles.technicalInner}>
+        <FadeIn className={styles.technicalInner}>
           <p className={styles.technicalLabel}>
             {s.codeName ?? product.name}
           </p>
@@ -125,11 +126,11 @@ export default async function ProductPage({
               variant="light"
             />
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* ── Inquire CTA (dark) ── */}
-      <InquireCta
+      <FadeIn delay={0.1}><InquireCta
         block={{
           type: 'inquire-cta',
           title: 'Request a Private Viewing',
@@ -137,7 +138,7 @@ export default async function ProductPage({
           sku: product.sku,
           btnLabel: 'Begin a Conversation',
         }}
-      />
+      /></FadeIn>
 
       {/* ── Floating pill ── */}
       <ProdPill title={product.name} sku={product.sku} />

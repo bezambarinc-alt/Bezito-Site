@@ -4,7 +4,8 @@ import Link from 'next/link'
 import { getBlogPost, getBlogCards } from '@/lib/data/blog'
 import { blogCategoryLabel } from '@/lib/data/blog-constants'
 import BlogBody from '@/components/blog/BlogBody'
-import Reveal from '@/components/blog/Reveal'
+import FadeIn from '@/components/common/FadeIn'
+import { motion } from 'motion/react'
 import styles from './page.module.css'
 
 export const dynamic = 'force-dynamic'
@@ -113,32 +114,38 @@ export default async function BlogPost({
       )}
 
       <main className={styles.post} data-pagefind-body>
-        <Reveal as="header" className={styles.hero}>
+        <motion.header
+          className={styles.hero}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}
+        >
           <p className={styles.cat}>{blogCategoryLabel(post.category)}</p>
           <h1 className={styles.title}>{post.title}</h1>
           <p className={styles.meta}>
             {post.author} <span>&middot;</span> {fmtDate(post.date)}
           </p>
-        </Reveal>
+        </motion.header>
 
         {post.heroVideo ? (
-          <Reveal className={`${styles.heroMedia} ${styles.heroVideo}`}>
+          <FadeIn className={`${styles.heroMedia} ${styles.heroVideo}`}>
             <video autoPlay muted loop playsInline poster={post.heroImage ?? undefined}>
               <source src={post.heroVideo} type="video/mp4" />
             </video>
-          </Reveal>
+          </FadeIn>
         ) : post.heroImage ? (
-          <Reveal className={styles.heroMedia}>
+          <FadeIn className={styles.heroMedia}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={post.heroImage} alt={post.heroImageAlt ?? post.title} />
-          </Reveal>
+          </FadeIn>
         ) : null}
 
-        <Reveal className={styles.content}>
+        <FadeIn className={styles.content} delay={0.1}>
           <BlogBody markdown={post.body} />
-        </Reveal>
+        </FadeIn>
 
-        <Reveal className={styles.cta}>
+        <FadeIn className={styles.cta} delay={0.1}>
           <div className={styles.ctaBox}>
             <h3>Commission a Piece of Your Own</h3>
             <p>
@@ -148,14 +155,14 @@ export default async function BlogPost({
             </p>
             <Link href="/contact">Enquire About a Commission</Link>
           </div>
-        </Reveal>
+        </FadeIn>
 
         {related.length > 0 && (
           <section className={styles.related}>
             <h2>Related Articles</h2>
             <div className={styles.relatedGrid}>
               {related.map((c, i) => (
-                <Reveal key={c.slug} delay={i * 90}>
+                <FadeIn key={c.slug} delay={i * 0.1}>
                   <Link href={`/blog/${c.slug}`} className={styles.relatedCard}>
                     <div className={styles.relatedImg}>
                       {c.heroImage && (
@@ -170,7 +177,7 @@ export default async function BlogPost({
                     <h4>{c.title}</h4>
                     <p className={styles.relatedDate}>{fmtDate(c.date)}</p>
                   </Link>
-                </Reveal>
+                </FadeIn>
               ))}
             </div>
           </section>

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getBlogCards } from '@/lib/data/blog'
 import { blogCategoryLabel } from '@/lib/data/blog-constants'
-import Reveal from '@/components/blog/Reveal'
+import FadeIn from '@/components/common/FadeIn'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
@@ -63,7 +63,7 @@ export default async function BlogPage() {
         <div className={styles.content}>
           {/* Featured lead post — large, editorial */}
           {featured && (
-            <Reveal>
+            <FadeIn>
               <Link href={`/blog/${featured.slug}`} className={styles.feature}>
                 <div className={styles.featureMedia}>
                   {featured.heroImage && (
@@ -85,7 +85,7 @@ export default async function BlogPage() {
                   <p className={styles.featureDate}>{fmtDate(featured.date)}</p>
                 </div>
               </Link>
-            </Reveal>
+            </FadeIn>
           )}
 
           <div className={styles.gridRule} aria-hidden="true" />
@@ -93,7 +93,7 @@ export default async function BlogPage() {
           {/* Card grid */}
           <div className={styles.grid}>
             {rest.map((c, i) => (
-              <Reveal key={c.slug} delay={(i % 3) * 80}>
+              <FadeIn key={c.slug} delay={(i % 3) * 0.1}>
                 <Link href={`/blog/${c.slug}`} className={styles.card}>
                   <div className={styles.cardImg}>
                     {c.heroImage && (
@@ -110,7 +110,7 @@ export default async function BlogPage() {
                   <p className={styles.cardExcerpt}>{c.excerpt}</p>
                   <p className={styles.cardDate}>{fmtDate(c.date)}</p>
                 </Link>
-              </Reveal>
+              </FadeIn>
             ))}
           </div>
         </div>
