@@ -47,7 +47,7 @@
   z-index: 3;
   max-width: 640px;
   color: var(--ba-white);
-  animation: ba-fade-in 1s var(--ba-ease-lux) both;
+  /* animation removed — motion.div handles entrance in HeroVideo.tsx */
 }
 .bottomLeft { left: var(--ba-gutter); bottom: clamp(3rem, 8vh, 6rem); }
 .center {

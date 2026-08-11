@@ -1,18 +1,13 @@
 'use client'
 
 /**
- * LazyVideo — viewport-triggered autoplay video.
+ * LazyVideo — viewport-triggered autoplay video with pause on exit.
  *
- * Uses react-intersection-observer (already a project dependency) to
- * observe the video element itself. When it enters the viewport (or comes
- * within `rootMargin`), the src is set imperatively and play() is called.
+ * Uses react-intersection-observer (already a project dependency).
+ * - Loads + plays when the element enters 200px before the viewport.
+ * - Pauses when it exits the viewport (saves GPU on large grids).
  *
- * Accepts all standard <video> attributes via rest-props so it can be used
- * as a drop-in replacement for any raw <video> that was previously loading
- * eagerly (ProductCard, category spotlights, HomeSegment, etc.).
- *
- * Do NOT use this for the above-fold hero — use HeroVideo (poster-crossfade)
- * for that. This is for everything below the fold.
+ * Do NOT use for above-fold heroes — use HeroVideo (poster-crossfade) for that.
  */
 
 import { useInView } from 'react-intersection-observer'
@@ -32,17 +27,21 @@ export default function LazyVideo({
   ...rest
 }: Props) {
   const { ref } = useInView({
-    triggerOnce: true,
+    triggerOnce: false, // must stay false to detect exit for pause
     rootMargin,
     onChange: (inView, entry) => {
-      if (!inView) return
       const video = entry.target as HTMLVideoElement
-      if (video.src) return // already loaded
-      video.src = src
-      video.load()
-      video.play().catch(() => {
-        // Autoplay blocked — browser will show poster/controls
-      })
+      if (inView) {
+        if (!video.src) {
+          video.src = src
+          video.load()
+        }
+        video.play().catch(() => {
+          // Autoplay blocked — browser will defer to user interaction
+        })
+      } else if (video.src) {
+        video.pause()
+      }
     },
   })
 

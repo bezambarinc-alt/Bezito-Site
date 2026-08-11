@@ -1,10 +1,13 @@
 import type { Metadata } from 'next'
-import PageHeader from '@/components/layout/PageHeader'
+import Link from 'next/link'
+import { getProductsByCollection } from '@/lib/queries'
+import LazyVideo from '@/components/common/LazyVideo'
+import ProductCard from '@/components/product/ProductCard'
 
 export const dynamic = 'force-dynamic'
 
-function titleCase(slug: string) {
-  return slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
+function titleCase(s: string) {
+  return s.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
 }
 
 export async function generateMetadata({
@@ -14,17 +17,149 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params
   const name = titleCase(slug)
-  return { title: name, description: `The ${name} collection by Bez Ambar.` }
+  return {
+    title: `${name} Collection — Bez Ambar`,
+    description: `The ${name} Collection — fine jewelry from the Bez Ambar atelier.`,
+  }
 }
 
-export default async function CollectionPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function CollectionPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
   const { slug } = await params
+  const products = await getProductsByCollection(slug)
+
+  // Derive display name from first product's collection attribute (canonical case)
+  // or fall back to title-casing the slug
+  const collectionName = products[0]?.specs.collection ?? titleCase(slug)
+
+  // First 2 products → editorial spotlights; rest → grid
+  const spotlights = products.slice(0, 2)
+  const gridProducts = products.slice(2)
+
+  // Use first product's hero as the portrait hero
+  const heroVideo  = products[0]?.specs.heroVideoUrl
+  const heroPoster = products[0]?.specs.heroPosterUrl
+
   return (
-    <>
-      <PageHeader eyebrow="Collection" title={titleCase(slug)} intro="A curated chapter from the atelier." />
-      <main className="ba-container ba-section">
-        {/* TODO: implement portrait-hero + spotlight + pull-quote + product-grid + CTA */}
-      </main>
-    </>
+    <main>
+      {/* Portrait hero — full viewport */}
+      <section className="ba-portrait-hero">
+        {heroVideo ? (
+          <video src={heroVideo} autoPlay muted loop playsInline preload="auto" />
+        ) : heroPoster ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={heroPoster}
+            alt={collectionName}
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        ) : null}
+        <div className="ba-portrait-hero__overlay">
+          <span className="ba-portrait-hero__eyebrow">Collection</span>
+          <h1 className="ba-portrait-hero__title">{collectionName}</h1>
+        </div>
+      </section>
+
+      {/* Empty state */}
+      {products.length === 0 && (
+        <p
+          style={{
+            fontFamily: 'var(--prose)',
+            fontSize: '1.1rem',
+            color: 'var(--ink-muted)',
+            textAlign: 'center',
+            padding: '6rem 2rem',
+            background: 'var(--white)',
+          }}
+        >
+          New pieces for this collection are being catalogued. Please inquire for availability.
+        </p>
+      )}
+
+      {/* Editorial spotlight segments — first 2 products */}
+      {spotlights.map((product, i) => {
+        const video = product.specs.heroVideoUrl
+        const image = product.specs.heroPosterUrl
+        const cat   = product.specs.category ?? 'jewelry'
+        return (
+          <div
+            key={product.sku}
+            className={`ba-segment${i % 2 === 1 ? ' ba-segment--reverse' : ''}`}
+          >
+            <div className="ba-segment__media">
+              {video ? (
+                <LazyVideo src={video} poster={image ?? undefined} />
+              ) : image ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={image} alt={product.name} />
+              ) : null}
+            </div>
+            <div className="ba-segment__text">
+              <span className="ba-eyebrow">
+                {product.name}&nbsp;&nbsp;&middot;&nbsp;&nbsp;ref. {product.sku}
+              </span>
+              <h2 className="ba-segment__heading">
+                {product.specs.subtitle ?? product.name}
+              </h2>
+              {product.specs.lede && (
+                <p className="ba-segment__body">{product.specs.lede}</p>
+              )}
+              <Link
+                className="ba-segment__link"
+                href={`/jewelry/${cat}/${encodeURIComponent(product.sku)}`}
+              >
+                View {product.name}
+              </Link>
+            </div>
+          </div>
+        )
+      })}
+
+      {/* Pull quote */}
+      {products.length > 0 && (
+        <section className="ba-pull-quote">
+          <span className="ba-pull-quote__mark">&ldquo;</span>
+          <p className="ba-pull-quote__text">
+            Every stone arrives with a language. The setting is the translation.
+          </p>
+          <span className="ba-pull-quote__attr">Bez Ambar</span>
+        </section>
+      )}
+
+      {/* Section divider + grid */}
+      {gridProducts.length > 0 && (
+        <>
+          <div className="ba-section-divider">
+            <span className="ba-section-divider__eyebrow">{collectionName}</span>
+            <h2 className="ba-section-divider__title">The Pieces</h2>
+          </div>
+          <section className="ba-product-grid">
+            {gridProducts.map(p => (
+              <ProductCard
+                key={p.sku}
+                product={p}
+                category={p.specs.category ?? 'jewelry'}
+              />
+            ))}
+          </section>
+        </>
+      )}
+
+      {/* Commission CTA */}
+      {products.length > 0 && (
+        <section className="ba-cta">
+          <span className="ba-cta__eyebrow">Commission</span>
+          <h2 className="ba-cta__title">Create Your Own Piece</h2>
+          <p className="ba-cta__body">
+            Every Bez Ambar piece begins with one stone and one drawing. Arrange a private
+            consultation to commission your own work from the {collectionName} aesthetic.
+          </p>
+          <a href="/contact" className="ba-cta__btn">Inquire</a>
+        </section>
+      )}
+    </main>
   )
 }

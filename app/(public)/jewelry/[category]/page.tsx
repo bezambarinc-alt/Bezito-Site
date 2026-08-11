@@ -49,8 +49,8 @@ export default async function CategoryPage({
       {/* 1. Portrait hero — full viewport, dark, matches ba-portrait-hero */}
       <section className="ba-portrait-hero">
         {cat.videoUrl && (
-          // Category hero is above the fold — preload metadata, not lazy
-          <video src={cat.videoUrl} autoPlay muted loop playsInline preload="metadata" />
+          // Category hero is above the fold — preload aggressively
+          <video src={cat.videoUrl} autoPlay muted loop playsInline preload="auto" />
         )}
         <div className="ba-portrait-hero__overlay">
           <span className="ba-portrait-hero__eyebrow">Bez Ambar</span>
