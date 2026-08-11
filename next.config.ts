@@ -30,6 +30,12 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'res.cloudinary.com', pathname: '/dlg2mou53/**' },
     ],
   },
+  async redirects() {
+    return [
+      { source: '/retailers', destination: '/contact', permanent: false },
+    ]
+  },
+
   async headers() {
     return [
       {
