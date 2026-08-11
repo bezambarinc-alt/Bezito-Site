@@ -21,28 +21,32 @@ import { usePathname } from 'next/navigation'
 export type HeaderMode = 'transparent' | 'light'
 
 /**
- * The ONLY place header mode is configured. Any route whose pathname starts with
- * one of these prefixes gets the ink ('light') header. Everything else is
- * transparent by default (dark-hero pages just work — zero per-page code).
+ * The ONLY place header mode is configured.
+ *
+ * Rule (Kevin, 2026-08-11): video hero = white header. No video = ink header.
+ *
+ * DEFAULT = 'light' (ink — always readable on white/light backgrounds).
+ * EXCEPTIONS = pages that open with a full-viewport dark VIDEO hero where
+ * white text is needed for contrast. List only confirmed video-hero pages.
+ * Everything else gets ink automatically — safe, no invisible headers.
  */
-export const VISIBLE_HEADER_ROUTES: string[] = [
-  '/blog',
-  '/contact',
-  '/privacy-policy',
-  '/terms',
-  '/warranty',
-  '/retailers',
-  '/ring-size-chart',
-  '/legal',
+export const VIDEO_HERO_ROUTES: string[] = [
+  '/',           // homepage
+  '/jewelry',    // all /jewelry/[category] + /jewelry/[category]/[slug]
+  '/elysian-cut',
+  '/collection', // /collection/[slug]
+  '/the-story',
 ]
 
 export function modeForPath(pathname: string | null): HeaderMode {
-  if (!pathname) return 'transparent'
-  return VISIBLE_HEADER_ROUTES.some(
-    (r) => pathname === r || pathname.startsWith(r + '/'),
+  if (!pathname) return 'light'
+  return VIDEO_HERO_ROUTES.some((r) =>
+    r === '/'
+      ? pathname === '/'
+      : pathname === r || pathname.startsWith(r + '/'),
   )
-    ? 'light'
-    : 'transparent'
+    ? 'transparent'
+    : 'light'
 }
 
 interface HeaderModeValue {
