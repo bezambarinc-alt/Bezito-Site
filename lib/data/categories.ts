@@ -72,6 +72,21 @@ export const CATEGORY_LABELS: Record<string, string> = {
   pendants: 'Pendants',
 }
 
+/**
+ * Canonical display order matching the live Astro site nav.
+ * getActiveCategories() sorts by this; unknowns fall to the end.
+ */
+export const CATEGORY_ORDER = [
+  'rings',
+  'bands',
+  'bracelets',
+  'earrings',
+  'necklaces',
+  'pendants',
+  'wedding-bands',
+  'engagement-rings',
+]
+
 /** Fallback for unknown slugs. */
 export function getCategoryMeta(slug: string): CategoryMeta {
   return (

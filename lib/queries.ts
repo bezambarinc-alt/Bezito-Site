@@ -1,5 +1,6 @@
 import { sql } from '@/lib/db'
 import type { Product, ProductMedia, ProductSpecs } from '@/types/products'
+import { CATEGORY_ORDER } from '@/lib/data/categories'
 
 /**
  * Read helpers for the `products` cache (Plytix mirror).
@@ -114,10 +115,18 @@ export async function getAllProducts(): Promise<Product[]> {
 export async function getActiveCategories(): Promise<string[]> {
   const rows = await sql<{ category: string }>(
     `SELECT DISTINCT category FROM products
-      WHERE active = true AND category IS NOT NULL
-      ORDER BY category ASC`,
+      WHERE active = true AND category IS NOT NULL`,
   )
-  return rows.map(r => r.category)
+  return rows
+    .map(r => r.category)
+    .sort((a, b) => {
+      const ai = CATEGORY_ORDER.indexOf(a.toLowerCase())
+      const bi = CATEGORY_ORDER.indexOf(b.toLowerCase())
+      if (ai === -1 && bi === -1) return a.localeCompare(b) // unknowns: alphabetical at end
+      if (ai === -1) return 1
+      if (bi === -1) return -1
+      return ai - bi
+    })
 }
 
 /** Active collections with at least one product — drives nav Collections section. */
