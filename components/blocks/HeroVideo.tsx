@@ -1,33 +1,18 @@
-import Image from 'next/image'
 import type { HeroVideoBlock } from '@/types/blocks'
+import HeroVideoClient from './HeroVideoClient'
 import styles from './HeroVideo.module.css'
 
-/** Full-bleed hero video with an optional reference id + editorial overlay. */
+/**
+ * Full-bleed hero video — server component wrapper.
+ * Static markup (scrim, overlay, ref pill) is server-rendered;
+ * the media crossfade (poster → video) is handled by HeroVideoClient.
+ */
 export default function HeroVideo({ block }: { block: HeroVideoBlock }) {
   const pos = block.overlay?.position ?? 'bottom-left'
   return (
     <section className={styles.hero}>
-      {block.posterUrl && (
-        <Image
-          src={block.posterUrl}
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className={styles.poster}
-        />
-      )}
-      <video
-        className={styles.video}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="none"
-        poster={block.posterUrl}
-      >
-        <source src={block.videoUrl} type="video/mp4" />
-      </video>
+      {/* Poster → video crossfade — client-only interactive layer */}
+      <HeroVideoClient videoUrl={block.videoUrl} posterUrl={block.posterUrl} />
 
       <div className={styles.scrim} aria-hidden />
 

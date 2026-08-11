@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import styles from './HomeSegment.module.css'
 import ConciergeCtaButton from './ConciergeCtaButton'
+import LazyVideo from '@/components/common/LazyVideo'
 
 export interface HomeSegmentProps {
   id?: string             // maps to section id= (scroll anchors like #segment-foundation)
@@ -63,17 +64,7 @@ export default function HomeSegment({
     <section id={id} className={`${styles.segment} ${reverse ? styles.reverse : ''}`}>
       <div className={mediaClass}>
         {videoUrl ? (
-          // Video fills content area (respects inset padding automatically)
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="none"
-            className={styles.video}
-          >
-            <source src={videoUrl} type="video/mp4" />
-          </video>
+          <LazyVideo src={videoUrl} className={styles.video} />
         ) : imageUrl ? (
           // imageWrap is the positioned parent for Next.js Image fill
           <div className={styles.imageWrap}>

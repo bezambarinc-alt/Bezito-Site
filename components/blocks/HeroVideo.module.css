@@ -7,15 +7,25 @@
   background: var(--ba-black);
 }
 
-.poster,
+/* posterWrap sits above the video so the Image is the LCP element */
+.posterWrap {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+.poster {
+  object-fit: cover;
+}
+
 .video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  z-index: 1;
 }
-.video { z-index: 1; }
 
 .scrim {
   position: absolute;

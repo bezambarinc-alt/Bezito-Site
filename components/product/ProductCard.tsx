@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import type { Product } from '@/types/products'
+import LazyVideo from '@/components/common/LazyVideo'
 
 /**
  * Product card — matches bezambar-web2026 Astro .ba-card exactly.
@@ -14,7 +15,7 @@ export default function ProductCard({ product, category }: { product: Product; c
     <Link href={`/jewelry/${category.toLowerCase()}/${encodeURIComponent(product.sku)}`} className="ba-card">
       <div className="ba-card__media">
         {video ? (
-          <video src={video} autoPlay muted loop playsInline />
+          <LazyVideo src={video} poster={image ?? undefined} />
         ) : image ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={image} alt={product.name} loading="lazy" />

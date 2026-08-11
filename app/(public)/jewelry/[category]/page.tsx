@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { getCategoryMeta, getCategoryLabel } from '@/lib/data/categories'
 import { getProductsByCategory } from '@/lib/queries'
 import ProductCard from '@/components/product/ProductCard'
+import LazyVideo from '@/components/common/LazyVideo'
 
 /**
  * Category page — matches bezambar-web2026 Astro rings/bands/etc page exactly:
@@ -48,7 +49,8 @@ export default async function CategoryPage({
       {/* 1. Portrait hero — full viewport, dark, matches ba-portrait-hero */}
       <section className="ba-portrait-hero">
         {cat.videoUrl && (
-          <video src={cat.videoUrl} autoPlay muted loop playsInline />
+          // Category hero is above the fold — preload metadata, not lazy
+          <video src={cat.videoUrl} autoPlay muted loop playsInline preload="metadata" />
         )}
         <div className="ba-portrait-hero__overlay">
           <span className="ba-portrait-hero__eyebrow">Bez Ambar</span>
@@ -68,7 +70,7 @@ export default async function CategoryPage({
           >
             <div className="ba-segment__media">
               {video ? (
-                <video src={video} autoPlay muted loop playsInline />
+                <LazyVideo src={video} poster={image ?? undefined} />
               ) : image ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={image} alt={product.name} />
