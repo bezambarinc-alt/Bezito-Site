@@ -9,8 +9,13 @@
  *   Otherwise → ink header. No list, no per-page tagging. Zero config.
  */
 
-import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useContext, useEffect, useLayoutEffect, useMemo, useState } from 'react'
 import { usePathname } from 'next/navigation'
+
+// useLayoutEffect on client = runs before browser paint → no flash.
+// useEffect on server = no DOM, no warning. Standard isomorphic pattern.
+const useIsomorphicLayoutEffect =
+  typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
 export type HeaderMode = 'transparent' | 'light'
 
@@ -42,12 +47,9 @@ export function HeaderRouteMode() {
   const pathname = usePathname()
   const ctx = useContext(HeaderModeContext)
 
-  useEffect(() => {
-    const raf = requestAnimationFrame(() => {
-      const hasHeroVideo = !!document.querySelector('main video[autoplay]')
-      ctx?.setMode(hasHeroVideo ? 'transparent' : 'light')
-    })
-    return () => cancelAnimationFrame(raf)
+  useIsomorphicLayoutEffect(() => {
+    const hasHeroVideo = !!document.querySelector('main video[autoplay]')
+    ctx?.setMode(hasHeroVideo ? 'transparent' : 'light')
   }, [pathname, ctx])
 
   return null
