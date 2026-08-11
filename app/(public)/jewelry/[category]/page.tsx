@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getCategoryMeta, getCategoryLabel } from '@/lib/data/categories'
 import { getProductsByCategory } from '@/lib/queries'
-import ProductCard from '@/components/product/ProductCard'
+import CategoryRefine from '@/components/product/CategoryRefine'
 import LazyVideo from '@/components/common/LazyVideo'
 import FadeIn from '@/components/common/FadeIn'
 
@@ -122,13 +122,9 @@ export default async function CategoryPage({
         <h2 className="ba-section-divider__title">The Pieces</h2>
       </div></FadeIn>
 
-      {/* 5. Product grid — remaining products after spotlights */}
+      {/* 5. Product grid — with editorial metal refinement */}
       {gridProducts.length > 0 && (
-        <section className="ba-product-grid">
-          {gridProducts.map((p) => (
-            <ProductCard key={p.sku} product={p} category={category} />
-          ))}
-        </section>
+        <CategoryRefine products={gridProducts} category={category} />
       )}
 
       {/* If only 0–2 products, show them all as spotlights with no grid — still add CTA */}
