@@ -373,13 +373,14 @@ body.page-dark {
    :not([data-scrolled]) ensures the rule yields to .scrolled (solid white bg).
    Zero JavaScript. No flash. No list. Chrome 105+, Firefox 121+, Safari 15.4+
    ─────────────────────────────────────────────────────────────────────────── */
-html:has(main video[autoplay]) #baHeader:not([data-scrolled]) {
+html:has(main video[autoplay]):not(:has(main[data-page="pdp"])) #baHeader:not([data-scrolled]) {
   color: #ffffff;
 }
 
-/* PDP: header always solid white — video is 55% wide, header spans full width */
+/* PDP: header solid white, ink text, no transition */
 html:has(main[data-page="pdp"]) #baHeader {
   background: #ffffff;
   color: var(--ba-ink);
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+  transition: none;
 }
