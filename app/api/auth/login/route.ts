@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { SignJWT } from 'jose'
+import { timingSafeEqual, createHash } from 'crypto'
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET!)
 
@@ -18,8 +19,14 @@ export async function POST(req: NextRequest) {
   const { username, password } = await req.json()
   const user = USERS[username]
 
-  // Constant-time compare (jose handles timing-safe via crypto)
-  if (!user || user.pass !== password) {
+  // Timing-safe compare — prevents brute-force timing attacks
+  const safeCompare = (a: string, b: string) => {
+    const bufA = Buffer.from(createHash('sha256').update(a).digest())
+    const bufB = Buffer.from(createHash('sha256').update(b).digest())
+    return bufA.length === bufB.length && timingSafeEqual(bufA, bufB)
+  }
+
+  if (!user || !safeCompare(user.pass, password)) {
     return NextResponse.json({ error: 'invalid credentials' }, { status: 401 })
   }
 
