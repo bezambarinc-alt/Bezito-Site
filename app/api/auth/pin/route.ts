@@ -7,7 +7,7 @@ import { checkRateLimit, recordAttempt } from '@/lib/rate-limit'
 import { audit } from '@/lib/audit'
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET!)
-const SESSION_TTL = 60 * 60 * 4 // 4h
+const SESSION_TTL = 60 * 60 * 8 // 8h — whitelisted/trusted (PIN)
 
 const schema = z.object({
   pin: z.string().min(4).max(20),

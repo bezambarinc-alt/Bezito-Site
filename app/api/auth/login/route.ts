@@ -7,7 +7,7 @@ import { checkRateLimit, recordAttempt } from '@/lib/rate-limit'
 import { audit } from '@/lib/audit'
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET!)
-const SESSION_TTL = 60 * 60 * 4 // 4h — best practice for admin tools
+const SESSION_TTL = 60 * 60 * 2 // 2h — external/untrusted (email+password)
 
 const schema = z.object({
   email:    z.string().email().max(254),
