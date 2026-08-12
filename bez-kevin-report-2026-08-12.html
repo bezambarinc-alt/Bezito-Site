@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Report · 2026-08-12 — Bez × Kevin</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://bezito.co/page/bez-kevin-report-2026-08-12">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --serif: 'EB Garamond', Georgia, serif;
+    --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-muted: #8a8a8a;
+    --paper: #ffffff;
+    --paper-warm: #faf7f2;
+    --rule: rgba(0,0,0,.08);
+    --accent: #95826b;
+    --green: #4a7a4a;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); color: var(--ink); font-family: var(--serif); -webkit-font-smoothing: antialiased; }
+
+  header { padding: 40px 8vw 24px; border-bottom: 1px solid var(--rule); text-align: center; }
+  header .brand { font-family: var(--sans); font-size: 13px; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase; color: var(--ink); }
+  header .eyebrow { font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); margin: 34px 0 14px; }
+  header h1 { font-family: var(--sans); font-size: clamp(22px, 2.6vw, 30px); font-weight: 200; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); line-height: 1.3; }
+  header .lede { font-family: var(--serif); font-size: 17px; color: var(--ink-soft); max-width: 620px; margin: 22px auto 0; line-height: 1.55; }
+  header .back { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(149,130,107,.35); display: inline-block; margin-top: 26px; padding-bottom: 2px; }
+  header .back:hover { border-bottom-color: var(--accent); }
+
+  main { max-width: 1080px; margin: 0 auto; padding: 64px 8vw 100px; }
+
+  section { margin-bottom: 72px; }
+  .sec-eyebrow { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+  h2 { font-family: var(--sans); font-size: clamp(18px, 2vw, 24px); font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); }
+  .divider { height: 1px; background: var(--rule); margin: 18px 0 24px; }
+  .sec-sub { font-family: var(--serif); font-size: 16px; color: var(--ink-muted); margin-bottom: 32px; line-height: 1.5; }
+
+  .card { border-left: 3px solid var(--accent); padding: 22px 28px; margin-bottom: 20px; background: var(--paper-warm); }
+  .card.done { border-left-color: var(--green); }
+  .card.todo { border-left-color: var(--accent); }
+  .card-date { font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 8px; }
+  .card-title { font-family: var(--sans); font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 10px; letter-spacing: 0.02em; }
+  .card-body { font-family: var(--serif); font-size: 16px; color: var(--ink-soft); line-height: 1.6; }
+  .card-body code { font-family: monospace; font-size: 13px; background: rgba(0,0,0,.05); padding: 1px 5px; border-radius: 2px; }
+  .card-body a { color: var(--accent); }
+  .card-body ul { padding-left: 1.4em; margin-top: 8px; }
+  .card-body li { margin-bottom: 4px; }
+  .owner { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); margin-top: 14px; }
+
+  .tag { display: inline-block; font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; margin-right: 6px; margin-bottom: 10px; }
+  .tag-commit { background: rgba(74,122,74,.1); color: var(--green); }
+  .tag-pending { background: rgba(149,130,107,.1); color: var(--accent); }
+
+  footer { border-top: 1px solid var(--rule); padding: 40px 8vw; text-align: center; }
+  footer .brand { font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink); margin-bottom: 10px; }
+  footer .contact { font-family: var(--sans); font-size: 11px; color: var(--ink-muted); letter-spacing: 0.06em; }
+  footer .contact a { color: var(--ink-muted); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Bez Ambar</div>
+  <div class="eyebrow">Daily Report</div>
+  <h1>Wednesday, August 12 · 2026</h1>
+  <p class="lede">Admin dashboard — auth system, security hardening, Next.js 16 best practices, route group isolation. Full day of backend + security work.</p>
+  <a href="https://bezito.co/page/bez-kevin" class="back">← Back to Bez × Kevin</a>
+</header>
+
+<main>
+
+  <!-- ── TO DO ───────────────────────────────────────────────── -->
+  <section id="todo">
+    <div class="sec-eyebrow">Part One</div>
+    <h2>Open Items</h2>
+    <div class="divider"></div>
+    <p class="sec-sub">What needs action before the auth system is production-complete.</p>
+
+    <div class="card todo">
+      <div class="card-title">CF Access — Provide IP Whitelist</div>
+      <div class="card-body">
+        Cloudflare Access is the production auth layer. Architecture is designed and documented. Waiting on the IP whitelist (office, home, VPN) to wire it up.<br><br>
+        Once provided: edge protection goes live — whitelisted IPs get PIN-only access (8h), everyone else gets email + password + MFA (2h). Session duration management moves out of code entirely into CF dashboard.
+      </div>
+      <div class="owner">@kevin → then @bezito</div>
+    </div>
+
+    <div class="card todo">
+      <div class="card-title">Deploy to Vercel</div>
+      <div class="card-body">
+        All commits are on <code>main</code> — push to Vercel to go live. Run <code>git push</code> or trigger via Vercel dashboard.<br><br>
+        After deploy: run the test flow — hit <code>/admin</code>, confirm redirect to <code>/login</code>, test PIN tab and Sign In tab.
+      </div>
+      <div class="owner">@kevin</div>
+    </div>
+
+    <div class="card todo">
+      <div class="card-title">Admin Subdomain — admin.bezambar.com</div>
+      <div class="card-body">
+        The admin and public site are now architecturally isolated (route groups). Next step when CF Access is wired: bind <code>admin.bezambar.com</code> as a separate Cloudflare Access application pointing at the <code>/admin</code> path. This gives full subdomain isolation and lets CF enforce the IP policies cleanly.
+      </div>
+      <div class="owner">@bezito (once CF Access IP list is received)</div>
+    </div>
+
+  </section>
+
+  <!-- ── ACCOMPLISHED ──────────────────────────────────────────── -->
+  <section id="accomplished">
+    <div class="sec-eyebrow">Part Two</div>
+    <h2>Accomplished</h2>
+    <div class="divider"></div>
+    <p class="sec-sub">All commits on <code>bezambarinc-alt/Bezito-Site</code> · <code>main</code>. Newest first.</p>
+
+    <div class="card done">
+      <div class="card-date">2026-08-12</div>
+      <span class="tag tag-commit">31a6341</span>
+      <div class="card-title">Session Durations — PIN 8h, Email/PW 2h</div>
+      <div class="card-body">
+        Two-tier session model matching the planned CF Access policy intent: trusted/whitelisted (PIN) gets 8 hours, external (email + password) gets 2 hours. When CF Access is wired, these become dashboard settings and the code goes away.
+      </div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026-08-12</div>
+      <span class="tag tag-commit">0e38005</span>
+      <div class="card-title">Security Hardening — 2026 Best Practices</div>
+      <div class="card-body">
+        Full security audit against 2026 Next.js guidance (authgear.com, workos.com, safeguard.sh). All gaps fixed:
+        <ul>
+          <li><strong>server-only</strong> — <code>lib/auth.ts</code> + <code>lib/db.ts</code> throw at build time if accidentally imported client-side. Prevents secret leakage into browser bundle.</li>
+          <li><strong>Zod validation</strong> — all auth endpoints validate + type-check input server-side before touching the DB.</li>
+          <li><strong>Rate limiting</strong> — DB-backed (Neon), 5 attempts / 15 min per IP. No external service needed. Returns 429 + Retry-After header.</li>
+          <li><strong>Audit logging</strong> — every login success/fail, PIN success/fail, user add/remove, PIN change writes to the existing <code>audit_log</code> table.</li>
+          <li><strong>Open redirect protection</strong> — <code>?from=</code> redirect param validates same-origin only. Prevents session-hijack via crafted login URLs.</li>
+        </ul>
+        Migration 003 (<code>login_attempts</code> table + indexes) applied to Neon.
+      </div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026-08-12</div>
+      <span class="tag tag-commit">e36184a</span>
+      <div class="card-title">Admin Isolated from Public Site — Route Group Restructure</div>
+      <div class="card-body">
+        Admin and login no longer inherit the jewelry site's chrome (Header, Footer, Freshchat, DrawerProvider, inquiry drawers). Now completely isolated via Next.js route groups:
+        <ul>
+          <li><code>app/layout.tsx</code> — stripped to bare HTML/body + fonts + globals only</li>
+          <li><code>app/(public)/layout.tsx</code> — all jewelry site chrome lives here</li>
+          <li><code>app/(admin)/layout.tsx</code> — dark standalone CMS shell (Inter font, <code>#0f0f0f</code> background, no jewelry brand)</li>
+          <li>Login page redesigned: dark card, PIN / Sign In tabs, CSS modules, no inheritance from public site</li>
+        </ul>
+        Looks and feels like a separate product (Sanity/Contentful/Vercel dashboard feel), not a page within bezambar.com.
+      </div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026-08-12</div>
+      <span class="tag tag-commit">21ec4d7</span>
+      <div class="card-title">Full Auth System — PIN + Email/PW, Admin Settings UI, DB-Backed</div>
+      <div class="card-body">
+        Complete from-scratch auth system:
+        <ul>
+          <li>Login page — two tabs: PIN (numeric, large) | Sign In (email + password). Loading states, no double-submit, redirect-back to original URL after auth.</li>
+          <li>PIN auth — hashed with bcrypt, stored in <code>admin_settings</code> DB table. Never plaintext anywhere.</li>
+          <li>Email/PW auth — hashed with bcrypt, stored in <code>admin_users</code> DB table. Replaces env-var credentials.</li>
+          <li>Logout — Server Action (CSRF safe), clears cookie, redirects to <code>/login</code>.</li>
+          <li><code>/admin/settings</code> — manage PIN and users from inside the admin. Add/remove users, change PIN. Self-delete protection. Can't remove last user.</li>
+          <li>Settings added to AdminNav.</li>
+        </ul>
+        Migrations 002 applied to Neon. Credentials seeded (hashed). Designed to slot CF Access in cleanly — one env var swap in <code>proxy.ts</code>.
+      </div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026-08-12</div>
+      <span class="tag tag-commit">29dc2c2</span>
+      <div class="card-title">Timing-Safe Password Compare</div>
+      <div class="card-body">
+        Fixed brute-force timing attack in login route. Plain string compare (<code>user.pass !== password</code>) replaced with <code>crypto.timingSafeEqual</code> on SHA-256 hashes. Both inputs hashed first to guarantee equal-length buffers. No new dependencies — Node built-in <code>crypto</code> only. (Later superseded by bcrypt migration in 21ec4d7.)
+      </div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026-08-12</div>
+      <span class="tag tag-commit">ce220a8</span>
+      <div class="card-title">Next.js 16 — middleware.ts → proxy.ts</div>
+      <div class="card-body">
+        Next.js 16 deprecated the <code>middleware</code> file convention. Migrated to <code>proxy.ts</code> with <code>proxy()</code> named export. JWT logic, matcher, <code>NextRequest</code>/<code>NextResponse</code> imports all unchanged — just filename and export name. Per Next.js 16.3.0 docs.
+      </div>
+      <div class="owner">@bezito</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026-08-12</div>
+      <span class="tag tag-pending">Architecture</span>
+      <div class="card-title">CF Access — Design + Research</div>
+      <div class="card-body">
+        Researched and documented the production auth architecture using Cloudflare Access (Zero Trust Free tier, up to 50 users):
+        <ul>
+          <li>Whitelisted IPs → PIN-only (email OTP via CF) → 8h session</li>
+          <li>External → email + password + independent MFA (TOTP/security key) → 2h session</li>
+          <li>Session duration, IP allowlist, MFA all managed in CF dashboard — zero code deploys to adjust</li>
+          <li>When live: <code>proxy.ts</code> validates CF's JWKS instead of our cookie. Our login page goes away (CF serves its own). All existing <code>admin_users</code> table + settings management stays.</li>
+        </ul>
+      </div>
+      <div class="owner">@bezito (research) · @kevin (IP whitelist needed to proceed)</div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <div class="brand">Bez Ambar</div>
+  <div class="contact">
+    <a href="https://bezambar.com">bezambar.com</a> · <a href="mailto:bez@bezambar.com">bez@bezambar.com</a> · +1 (213) 629-9191
+  </div>
+</footer>
+
+</body>
+</html>

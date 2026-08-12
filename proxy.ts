@@ -15,7 +15,7 @@ export async function proxy(req: NextRequest) {
   }
 
   const loginUrl = (from: string) => {
-    const url = new URL('/login', req.url)
+    const url = new URL('/admin/login', req.url)
     url.searchParams.set('from', safeFrom(from))
     return url
   }
@@ -32,5 +32,6 @@ export async function proxy(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*'],
+  // Match /admin/* but exclude /admin/login (would cause infinite redirect)
+  matcher: ['/admin/((?!login).*)'],
 }
