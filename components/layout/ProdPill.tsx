@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { useDrawers } from './DrawerContext'
 import styles from './ProdPill.module.css'
 
@@ -9,20 +8,12 @@ interface ProdPillProps {
   sku?: string
 }
 
-/** Sticky bottom pill that opens the InquiryDrawer pre-populated for this piece. */
+/** Sticky bottom pill — always visible from page load. Opens InquiryDrawer for this piece. */
 export default function ProdPill({ title, sku }: ProdPillProps) {
   const { openInquiryDrawer } = useDrawers()
-  const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > window.innerHeight * 0.6)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
 
   return (
-    <div className={`${styles.pill} ${visible ? styles.visible : ''}`}>
+    <div className={`${styles.pill} ${styles.visible}`}>
       {title && <span className={styles.piece}>{title}</span>}
       <button
         className={styles.btn}

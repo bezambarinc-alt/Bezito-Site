@@ -1,145 +1,207 @@
-/* ============================================================
-   Product detail page — /jewelry/[category]/[slug]
-   Layout mirrors Astro product template:
-   1. Full-viewport hero video (HeroVideo block)
-   2. White-bg hero text section (title, ref, lede)
-   3. Still photography gallery (ProductGallery)
-   4. Optional secondary video
-   5. 2-col technical accordion (label left | accordion right)
-   6. Dark InquireCta
-   ============================================================ */
+/* ── Product Detail Page — triptych-style layout ──────────────────────────────
+   1. Hero split    — 55% video left · 45% text right
+   2. Content split — 55% accordion left · 45% on-hand photo right
+   3. Three Views   — black bg · 3-col · 440px per box
+   4. InquireCta    (unchanged)
+   ─────────────────────────────────────────────────────────────────────────── */
 
-/* ── Hero text — white bg, centered ── */
+/* ── 1. Hero split ── */
 
-.hero {
-  background: var(--ba-white);
-  max-width: 720px;
-  margin: 0 auto;
-  padding: clamp(4rem, 8vw, 6rem) clamp(1.25rem, 5vw, 4rem) clamp(3rem, 6vw, 5rem);
-  text-align: center;
-}
-
-/* Breadcrumb — matches Astro .breadcrumb */
-.breadcrumb {
+.heroSplit {
   display: flex;
-  gap: 8px;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--ba-font-sans);
-  font-size: 0.9375rem;
-  font-weight: 400;
-  text-transform: none;
-  color: var(--ba-ink-muted);
-  margin-bottom: 1.5rem;
-}
-.breadcrumb a {
-  color: var(--ba-ink-muted);
-  transition: color 0.2s;
-}
-.breadcrumb a:hover { color: var(--ba-gold); }
-
-/* Product title — large, gold, Open Sans weight 300 */
-.title {
-  font-family: var(--ba-font-sans);
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 300;
-  text-transform: uppercase;
-  color: var(--ba-ink);
-  line-height: 1.1;
-  margin-bottom: 0.5rem;
-  max-width: 900px;
-  margin-inline: auto;
+  min-height: clamp(480px, 65vh, 820px);
+  margin-top: var(--ba-header-h);
+  background: var(--ba-white);
 }
 
-/* Subtitle — italic gold — Astro .hero__subtitle */
-.subtitle {
-  font-family: var(--ba-font-sans);
-  font-size: 0.9375rem;
-  font-weight: 300;
-  color: var(--ba-gold);
-  margin-bottom: 0.5rem;
+.heroVideo {
+  flex: 0 0 55%;
+  position: relative;
+  overflow: hidden;
+  background: #0d0d0d;
 }
 
-/* Reference line — Astro .hero__ref-line */
-.refLine {
-  font-family: var(--ba-font-sans);
-  font-size: 0.8125rem;
-  font-weight: 400;
-  color: var(--ba-ink-muted);
-  letter-spacing: 0.05em;
-  margin-bottom: 1.5rem;
-}
-
-/* Lede — editorial serif body */
-.lede {
-  font-family: var(--ba-font-editorial);
-  font-size: clamp(1rem, 1.5vw, 1.15rem);
-  line-height: 1.75;
-  color: var(--ba-ink-soft);
-  max-width: 60ch;
-  margin-inline: auto;
-}
-
-/* ── Secondary video ── */
-
-.secondary {
-  background: var(--ba-black);
-}
-.secondary video {
+.heroVideo video,
+.heroVideo img {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: clamp(420px, 70vh, 820px);
+  height: 100%;
   object-fit: cover;
+  object-position: center;
+  display: block;
+  pointer-events: none;
+}
+
+.heroText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(3rem, 5vw, 5rem) clamp(2.5rem, 5vw, 5rem);
+  border-left: 1px solid var(--ba-border);
+}
+
+.heroEyebrow {
+  font-family: var(--ba-font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.30em;
+  text-transform: uppercase;
+  color: var(--ba-gold);
+  margin: 0 0 1rem;
+}
+
+.heroTitle {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(28px, 3.6vw, 50px);
+  font-weight: 200;
+  letter-spacing: 0.03em;
+  line-height: 1.08;
+  text-transform: uppercase;
+  color: var(--ba-gold);
+  margin: 0 0 0.6rem;
+}
+
+.heroRefLine {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(16px, 1.8vw, 26px);
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  color: rgba(149, 130, 107, 0.6);
+  margin: 0 0 1.4rem;
+}
+
+.heroCopy {
+  font-family: var(--ba-font-editorial);
+  font-size: 15px;
+  line-height: 1.78;
+  color: var(--ba-ink);
+  max-width: 480px;
+  margin: 0;
+}
+
+/* ── 2. Content split ── */
+
+.contentSplit {
+  display: flex;
+  border-top: 1px solid var(--ba-border);
+  background: var(--ba-paper);
+}
+
+.contentLeft {
+  flex: 0 0 55%;
+  padding: clamp(2.5rem, 5vw, 5rem) clamp(2rem, 4vw, 4rem);
+  border-right: 1px solid var(--ba-border);
+}
+
+.contentEyebrow {
+  font-family: var(--ba-font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.30em;
+  text-transform: uppercase;
+  color: var(--ba-gold);
+  margin: 0 0 1.6rem;
+}
+
+.contentRight {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+}
+
+.contentPhoto {
+  width: 100%;
+  height: 100%;
+  min-height: 450px;
+  object-fit: cover;
+  object-position: top;
   display: block;
 }
 
-/* ── Technical accordion — 2-col, matches Astro .technical / .technical__inner ── */
+/* ── 3. Three Views ── */
 
-.technical {
-  padding: clamp(3rem, 6vw, 6rem) clamp(1.25rem, 5vw, 4rem);
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+.views {
+  margin-top: 0;
+  padding: 0 0 15px;
+  background: #000;
 }
 
-.technicalInner {
+.viewsGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  max-width: var(--ba-maxw-xl);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: var(--ba-maxw);
   margin: 0 auto;
-  align-items: start;
 }
 
-/* Left label — large gold text, matches Astro .technical__label */
-.technicalLabel {
+.viewsItem {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.viewsImgWrap {
+  width: 100%;
+  height: 440px;
+  overflow: hidden;
+  background: #0d0d0d;
+}
+
+.viewsImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.viewsLabel {
   font-family: var(--ba-font-sans);
-  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
-  font-weight: 200;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.20em;
   text-transform: uppercase;
   color: var(--ba-gold);
-  line-height: 1.2;
-  text-align: right;
-  padding-top: 22px;
-  position: sticky;
-  top: calc(var(--ba-header-h) + 2rem);
+  text-align: center;
 }
 
-.technicalAccordion {
-  /* right column — naturally aligned with the accordion component */
-}
-
-/* ── Responsive ── */
+/* ── Mobile ── */
 
 @media (max-width: 768px) {
-  .technicalInner {
+  .heroSplit {
+    flex-direction: column;
+    min-height: auto;
+  }
+  .heroVideo {
+    flex: 0 0 auto;
+    height: 72vw;
+    max-height: 520px;
+    position: relative;
+  }
+  .heroText {
+    border-left: none;
+    border-top: 1px solid var(--ba-border);
+    padding: 2rem 1.5rem;
+  }
+  .contentSplit {
+    flex-direction: column;
+  }
+  .contentLeft {
+    flex: none;
+    border-right: none;
+    border-bottom: 1px solid var(--ba-border);
+  }
+  .contentPhoto {
+    aspect-ratio: 1 / 1;
+    height: auto;
+    min-height: unset;
+  }
+  .viewsGrid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
   }
-  .technicalLabel {
-    text-align: left;
-    position: static;
-    padding-top: 0;
+  .viewsImgWrap {
+    height: 320px;
   }
-}
-
-@media (max-width: 480px) {
-  .hero { padding: 3rem 1.25rem 2.5rem; }
 }
