@@ -11,12 +11,12 @@ const isDev = process.env.NODE_ENV !== 'production'
  */
 const csp = [
   `default-src 'self'`,
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://*.freshworks.com https://*.freshsales.io`,
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://*.freshworks.com https://*.freshsales.io https://*.freshchat.com`,
   `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://webfonts.fontstand.com https://d3a1s2k5oq9b60.cloudfront.net`,
   `font-src 'self' https://fonts.gstatic.com https://webfonts.fontstand.com data:`,
   `img-src 'self' data: blob: https://res.cloudinary.com https://*.freshworks.com`,
   `media-src 'self' blob: https://res.cloudinary.com`,
-  `connect-src 'self' https://res.cloudinary.com https://*.freshworks.com https://*.myfreshworks.com`,
+  `connect-src 'self' https://res.cloudinary.com https://*.freshworks.com https://*.myfreshworks.com https://*.freshchat.com`,
   `frame-src 'self' https://www.google.com https://maps.google.com`,
   `object-src 'none'`,
   `base-uri 'self'`,

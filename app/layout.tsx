@@ -9,6 +9,7 @@ import NavMenuData from '@/components/layout/NavMenuData'
 import InquiryDrawer from '@/components/layout/InquiryDrawer'
 import ConciergeDrawer from '@/components/layout/ConciergeDrawer'
 import SearchOverlay from '@/components/layout/SearchOverlay'
+import FreshchatScript from '@/components/layout/FreshchatScript'
 
 
 const cormorant = Cormorant_Garamond({
@@ -76,6 +77,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <ConciergeDrawer />
             <SearchOverlay />
           </DrawerProvider>
+          <FreshchatScript />
       </body>
     </html>
   )

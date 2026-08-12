@@ -19,6 +19,17 @@ export default function ConciergeDrawer() {
     openInquiryDrawer({ intent, fromConcierge: true })
   }
 
+  // Open Freshchat if loaded, fall back to InquiryDrawer
+  function openChat() {
+    close()
+    const fc = (window as Window & { fcWidget?: { open: () => void; isLoaded?: () => boolean } }).fcWidget
+    if (fc && typeof fc.open === 'function') {
+      fc.open()
+    } else {
+      openInquiryDrawer({ intent: '', fromConcierge: true })
+    }
+  }
+
   return (
     <>
       <div className={`${styles.scrim} ${open ? styles.scrimOpen : ''}`} onClick={close} aria-hidden />
@@ -42,7 +53,7 @@ export default function ConciergeDrawer() {
 
             {/* Atelier Chat */}
             <li>
-              <button className={styles.row} onClick={() => toInquiry('')}>
+              <button className={styles.row} onClick={openChat}>
                 <span className={styles.rowIcon} aria-hidden>
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                     <path d="M15 2H3a1 1 0 00-1 1v9a1 1 0 001 1h3.5l2.5 2.5 2.5-2.5H15a1 1 0 001-1V3a1 1 0 00-1-1z" stroke="currentColor" strokeWidth="1.1" strokeLinejoin="round" />
