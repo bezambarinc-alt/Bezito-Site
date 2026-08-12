@@ -43,6 +43,28 @@ export async function generateMetadata({
   }
 }
 
+function buildProductSchema(product: Awaited<ReturnType<typeof getProductBySlug>>, category: string) {
+  if (!product) return null
+  const s = product.specs
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: s.lede ?? s.subtitle ?? `${product.name} — fine jewelry by Bez Ambar.`,
+    ...(s.heroPosterUrl ? { image: [s.heroPosterUrl] } : {}),
+    sku: product.sku,
+    brand: { '@type': 'Brand', name: 'Bez Ambar' },
+    ...(s.metal ? { material: s.metal } : {}),
+    offers: {
+      '@type': 'Offer',
+      url: `https://bezambar.com/jewelry/${category}/${product.sku}`,
+      seller: { '@type': 'Organization', name: 'Bez Ambar' },
+      availability: 'https://schema.org/InStoreOnly',
+      priceCurrency: 'USD',
+    },
+  }
+}
+
 export default async function ProductPage({
   params,
 }: {
@@ -71,8 +93,17 @@ export default async function ProductPage({
     { label: 'Inquiry',  body: 'Presented privately by appointment. Reference this piece when you inquire.' },
   ].filter((x): x is SpecItem => x !== null)
 
+  const productSchema = buildProductSchema(product, category)
+
   return (
-    <main>
+    <>
+      {productSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+        />
+      )}
+      <main>
       {/* ── Full-viewport hero video ── */}
       {heroVideo && (
         <HeroVideo
@@ -143,5 +174,6 @@ export default async function ProductPage({
       {/* ── Floating pill ── */}
       <ProdPill title={product.name} sku={product.sku} />
     </main>
+    </>
   )
 }

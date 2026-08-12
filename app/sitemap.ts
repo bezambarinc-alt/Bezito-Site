@@ -81,7 +81,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const rows = await sql<{ slug: string; updated_date: string | null; date: string | null }>(
       `SELECT slug, updated_date, date
          FROM blog_posts
-        WHERE published = true
+        WHERE status = 'live'
         ORDER BY date DESC`,
     )
     blogEntries = rows.map((r) => ({
