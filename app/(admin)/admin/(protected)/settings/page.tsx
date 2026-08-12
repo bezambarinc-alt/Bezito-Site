@@ -14,7 +14,7 @@ export interface AdminUser {
 
 export default async function SettingsPage() {
   const session = await getSession()
-  if (!session) redirect('/login')
+  if (!session) redirect('/admin/login')
 
   const users = await sql<AdminUser>(
     `SELECT id, email, role, created_at FROM admin_users ORDER BY created_at ASC`,

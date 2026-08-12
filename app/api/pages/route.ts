@@ -1,10 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { getSession } from '@/lib/auth'
 import { sql } from '@/lib/db'
 
 // HARD RULE: no public "Alara Cut" until patent granted
 const ALARA = /alara\s*cut/i
 
 export async function POST(req: NextRequest) {
+  const session = await getSession()
+  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+
   const input = await req.json() as {
     slug: string
     title: string
@@ -45,6 +49,9 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET() {
+  const session = await getSession()
+  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+
   const rows = await sql<{ slug: string; title: string; status: string; updated_at: string }>(
     `SELECT slug, title, status, updated_at FROM pages ORDER BY updated_at DESC`,
   )

@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic'
 
 export default async function AdminOverview() {
   const session = await getSession()
-  if (!session) redirect('/login')
+  if (!session) redirect('/admin/login')
 
   const [{ active_products, total_products }] = await sql<{ active_products: string; total_products: string }>(
     `SELECT COUNT(*) FILTER (WHERE active = true) AS active_products,
@@ -36,9 +36,17 @@ export default async function AdminOverview() {
     <div>
       <div className={styles.pageHeader}>
         <h1 className={styles.pageTitle}>Overview</h1>
-        <a className={styles.syncLink} href="/api/cron/plytix-sync" target="_blank" rel="noreferrer">
-          Trigger Sync →
-        </a>
+        <form action={async () => {
+          'use server'
+          const s = await import('@/lib/auth').then(m => m.getSession())
+          if (!s) return
+          const base = process.env.APP_URL ?? 'http://localhost:3000'
+          await fetch(`${base}/api/cron/plytix-sync`, {
+            headers: { Authorization: `Bearer ${process.env.CRON_SECRET}` },
+          })
+        }} style={{ margin: 0 }}>
+          <button type="submit" className={styles.syncLink}>Trigger Sync →</button>
+        </form>
       </div>
 
       <div className={styles.kpiGrid}>

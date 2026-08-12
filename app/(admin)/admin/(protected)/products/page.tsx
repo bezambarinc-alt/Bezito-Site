@@ -25,7 +25,7 @@ export interface AdminProduct {
 
 export default async function AdminProductsPage() {
   const session = await getSession()
-  if (!session) redirect('/login')
+  if (!session) redirect('/admin/login')
 
   const products = await sql<AdminProduct>(
     `SELECT sku, slug, name, category, hero_visual, editorial_visual,
