@@ -5,6 +5,7 @@ import { z } from 'zod'
 import { sql } from '@/lib/db'
 import { checkRateLimit, recordAttempt } from '@/lib/rate-limit'
 import { audit } from '@/lib/audit'
+import { getGeo, formatLocation } from '@/lib/geo'
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET!)
 const SESSION_TTL = 60 * 60 * 8 // 8h — whitelisted/trusted (PIN)
@@ -13,14 +14,9 @@ const schema = z.object({
   pin: z.string().min(4).max(20),
 })
 
-function getIP(req: NextRequest): string {
-  return req.headers.get('x-forwarded-for')?.split(',')[0].trim()
-      ?? req.headers.get('x-real-ip')
-      ?? 'unknown'
-}
-
 export async function POST(req: NextRequest) {
-  const ip = getIP(req)
+  const geo = getGeo(req)
+  const ip = geo.ip
 
   const { allowed } = await checkRateLimit(ip)
   if (!allowed) {
@@ -47,7 +43,7 @@ export async function POST(req: NextRequest) {
   await audit(
     ok ? 'auth.pin.success' : 'auth.pin.failed',
     'pin',
-    { ip },
+    { ip, location: formatLocation(geo), city: geo.city, region: geo.region, country: geo.country },
   )
 
   if (!ok) return NextResponse.json({ error: 'invalid pin' }, { status: 401 })

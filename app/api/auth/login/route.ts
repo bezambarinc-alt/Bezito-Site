@@ -5,6 +5,7 @@ import { z } from 'zod'
 import { sql } from '@/lib/db'
 import { checkRateLimit, recordAttempt } from '@/lib/rate-limit'
 import { audit } from '@/lib/audit'
+import { getGeo, formatLocation } from '@/lib/geo'
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET!)
 const SESSION_TTL = 60 * 60 * 2 // 2h — external/untrusted (email+password)
@@ -14,14 +15,9 @@ const schema = z.object({
   password: z.string().min(1).max(256),
 })
 
-function getIP(req: NextRequest): string {
-  return req.headers.get('x-forwarded-for')?.split(',')[0].trim()
-      ?? req.headers.get('x-real-ip')
-      ?? 'unknown'
-}
-
 export async function POST(req: NextRequest) {
-  const ip = getIP(req)
+  const geo = getGeo(req)
+  const ip = geo.ip
 
   // Rate limit
   const { allowed, remaining } = await checkRateLimit(ip)
@@ -53,7 +49,7 @@ export async function POST(req: NextRequest) {
   await audit(
     ok ? 'auth.login.success' : 'auth.login.failed',
     email,
-    { ip, remaining: ok ? undefined : remaining - 1 },
+    { ip, location: formatLocation(geo), remaining: ok ? undefined : remaining - 1 },
   )
 
   if (!ok || !user) {

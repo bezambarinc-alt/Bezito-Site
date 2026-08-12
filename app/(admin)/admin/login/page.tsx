@@ -46,8 +46,11 @@ function LoginForm() {
   return (
     <div className={styles.shell}>
       <div className={styles.card}>
-        <div className={styles.wordmark}>BEZ AMBAR</div>
-        <div className={styles.subtitle}>Admin</div>
+        <div className={styles.brandRow}>
+          <div className={styles.mark}>BA</div>
+          <div className={styles.wordmark}>BEZ AMBAR</div>
+        </div>
+        <div className={styles.subtitle}>Admin Console</div>
 
         {/* Tabs */}
         <div className={styles.tabs}>
@@ -67,43 +70,48 @@ function LoginForm() {
 
         {tab === 'pin' ? (
           <form onSubmit={handlePin} className={styles.form}>
+            <label className={styles.label}>Access PIN</label>
             <input
               type="password"
               inputMode="numeric"
-              placeholder="Enter PIN"
+              placeholder="••••"
               value={pin}
               onChange={e => setPin(e.target.value)}
               autoFocus
               className={`${styles.input} ${styles.pinInput}`}
             />
-            {error && <p className={styles.error}>{error}</p>}
+            {error && <p className={styles.error}>⚠ {error}</p>}
             <button type="submit" disabled={loading || !pin} className={styles.btn}>
-              {loading ? 'Verifying…' : 'Unlock →'}
+              {loading ? 'Verifying…' : 'Unlock'}
             </button>
           </form>
         ) : (
           <form onSubmit={handleSignIn} className={styles.form}>
+            <label className={styles.label}>Email</label>
             <input
               type="email"
-              placeholder="Email"
+              placeholder="you@bezambar.com"
               value={email}
               onChange={e => setEmail(e.target.value)}
               autoFocus
               className={styles.input}
             />
+            <label className={styles.label}>Password</label>
             <input
               type="password"
-              placeholder="Password"
+              placeholder="••••••••"
               value={password}
               onChange={e => setPassword(e.target.value)}
               className={styles.input}
             />
-            {error && <p className={styles.error}>{error}</p>}
+            {error && <p className={styles.error}>⚠ {error}</p>}
             <button type="submit" disabled={loading || !email || !password} className={styles.btn}>
-              {loading ? 'Signing in…' : 'Sign in →'}
+              {loading ? 'Signing in…' : 'Sign in'}
             </button>
           </form>
         )}
+
+        <div className={styles.footer}>Authorized access only · Bez Ambar Inc.</div>
       </div>
     </div>
   )
