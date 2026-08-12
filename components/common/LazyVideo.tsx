@@ -36,9 +36,13 @@ export default function LazyVideo({
           video.src = src
           video.load()
         }
-        video.play().catch(() => {
-          // Autoplay blocked — browser will defer to user interaction
-        })
+        // Wait for enough data before calling play() — more reliable cross-browser
+        const doPlay = () => video.play().catch(() => {})
+        if (video.readyState >= 2) {
+          doPlay()
+        } else {
+          video.addEventListener('canplay', doPlay, { once: true })
+        }
       } else if (video.src) {
         video.pause()
       }

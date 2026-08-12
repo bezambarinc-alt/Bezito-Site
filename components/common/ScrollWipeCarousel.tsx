@@ -81,6 +81,7 @@ export default function ScrollWipeCarousel({ slides }: Props) {
         stackInView = entry.isIntersecting
         setDotsVisible(entry.isIntersecting)
         if (entry.isIntersecting) {
+          video0?.play().catch(() => {})
           video1?.load()
           onScroll()
         } else {
@@ -111,14 +112,14 @@ export default function ScrollWipeCarousel({ slides }: Props) {
       <div className={styles.pin}>
         {/* Slide 0 */}
         <div className={styles.slide0}>
+          {/* preload="auto" — above fold hero, must buffer immediately for autoplay */}
           <video
             ref={video0Ref}
-            autoPlay muted loop playsInline preload="none"
+            src={slides[0].videoUrl}
+            autoPlay muted loop playsInline preload="auto"
             poster={slides[0].posterUrl}
             className={styles.video}
-          >
-            <source src={slides[0].videoUrl} type="video/mp4" />
-          </video>
+          />
           <div className={styles.gradient} aria-hidden />
           <div className={styles.overlayLeft}>
             <p className="ba-eyebrow">{slides[0].eyebrow}</p>
