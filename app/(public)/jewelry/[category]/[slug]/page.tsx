@@ -3,9 +3,7 @@ import { notFound } from 'next/navigation'
 import { getProductBySlug, getAllProductParams } from '@/lib/queries'
 import { getCategoryLabel } from '@/lib/data/categories'
 import SpecAccordion from '@/components/blocks/SpecAccordion'
-import InquireCta from '@/components/blocks/InquireCta'
 import ProdPill from '@/components/layout/ProdPill'
-import FadeIn from '@/components/common/FadeIn'
 import type { SpecItem } from '@/types/blocks'
 import styles from './page.module.css'
 
@@ -109,7 +107,7 @@ export default async function ProductPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
       />
 
-      <main>
+      <main data-page="pdp">
         {/* ── 1. Hero split — 55 / 45 ── */}
         <section className={styles.heroSplit}>
           <div className={styles.heroVideo}>
@@ -179,20 +177,7 @@ export default async function ProductPage({
           </div>
         </section>
 
-        {/* ── 4. InquireCta ── */}
-        <FadeIn delay={0.1}>
-          <InquireCta
-            block={{
-              type: 'inquire-cta',
-              title: 'Request a Private Viewing',
-              pieceTitle: product.name,
-              sku: product.sku,
-              btnLabel: 'Begin a Conversation',
-            }}
-          />
-        </FadeIn>
-
-        {/* ── 5. ProdPill — always visible from load ── */}
+        {/* ── 4. ProdPill — always visible from load ── */}
         <ProdPill title={product.name} sku={product.sku} />
       </main>
     </>

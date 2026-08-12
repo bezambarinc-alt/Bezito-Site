@@ -376,3 +376,10 @@ body.page-dark {
 html:has(main video[autoplay]) #baHeader:not([data-scrolled]) {
   color: #ffffff;
 }
+
+/* PDP: header always solid white — video is 55% wide, header spans full width */
+html:has(main[data-page="pdp"]) #baHeader {
+  background: #ffffff;
+  color: var(--ba-ink);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+}
