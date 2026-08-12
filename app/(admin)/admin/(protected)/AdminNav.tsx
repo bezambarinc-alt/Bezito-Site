@@ -5,11 +5,11 @@ import { usePathname } from 'next/navigation'
 import styles from './layout.module.css'
 
 const NAV = [
-  { href: '/admin',           label: 'Overview'  },
-  { href: '/admin/products',  label: 'Products'  },
-  { href: '/admin/templates', label: 'Templates' },
-  { href: '/admin/leads',     label: 'Leads'     },
-  { href: '/admin/settings',  label: 'Settings'  },
+  { href: '/admin',             label: 'Overview'     },
+  { href: '/admin/products',    label: 'Products'     },
+  { href: '/admin/leads',       label: 'Leads'        },
+  { href: '/admin/generations', label: 'Generations'  },
+  { href: '/admin/settings',    label: 'Settings'     },
 ]
 
 export default function AdminNav() {

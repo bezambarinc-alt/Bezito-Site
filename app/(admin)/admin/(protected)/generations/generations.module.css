@@ -1,0 +1,66 @@
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+
+.table th {
+  text-align: left;
+  padding: 0.6rem 1rem;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 0.6rem 1rem;
+  color: var(--ink);
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.table tbody tr:last-child td { border-bottom: none; }
+.table tbody tr:hover td { background: var(--surface-2); }
+
+.rowError td { background: rgba(220, 60, 60, 0.05); }
+.rowError:hover td { background: rgba(220, 60, 60, 0.09) !important; }
+
+.num {
+  text-align: right !important;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-muted) !important;
+}
+
+.dim { color: var(--ink-faint) !important; font-size: 11.5px; }
+
+.route {
+  font-family: monospace;
+  font-size: 11.5px;
+  color: var(--ink-muted) !important;
+  max-width: 220px;
+  word-break: break-all;
+}
+
+.errorCell {
+  font-size: 11px;
+  color: var(--danger) !important;
+  max-width: 260px;
+}
+
+.empty {
+  padding: 2rem;
+  text-align: center;
+  color: var(--ink-faint);
+  font-size: 13px;
+}
