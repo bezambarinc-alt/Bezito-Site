@@ -91,11 +91,11 @@ export default async function ProductPage({
     { label: 'Inquiry',  body: 'Presented privately by appointment. Reference this piece when you inquire.' },
   ].filter((x): x is SpecItem => x !== null)
 
-  // Three Views — filler until view_1/2/3 columns are added to Neon
+  // Three Views — use real view URLs from Neon when set, filler otherwise
   const views = [
-    { label: 'Front',  url: heroPoster },
-    { label: 'Side',   url: heroPoster },
-    { label: 'Detail', url: heroPoster },
+    { label: 'Front',  url: product.view1Url ?? heroPoster },
+    { label: 'Side',   url: product.view2Url ?? heroPoster },
+    { label: 'Detail', url: product.view3Url ?? heroPoster },
   ]
 
   const productSchema = buildProductSchema(product, category)

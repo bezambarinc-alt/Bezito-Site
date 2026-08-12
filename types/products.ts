@@ -44,6 +44,9 @@ export interface ProductSpecs {
 export interface Product {
   sku: string
   slug: string   // URL-safe version of sku — lowercase, non-alphanumeric → hyphen
+  view1Url: string | null
+  view2Url: string | null
+  view3Url: string | null
   plytixId: string
   name: string
   specs: ProductSpecs

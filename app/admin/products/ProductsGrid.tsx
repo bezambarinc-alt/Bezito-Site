@@ -1,0 +1,242 @@
+'use client'
+
+import { useState, useMemo } from 'react'
+import type { AdminProduct } from './page'
+import styles from './ProductsGrid.module.css'
+
+function cloudinaryThumb(url: string | null): string | null {
+  if (!url) return null
+  if (url.includes('/video/upload/')) {
+    return url
+      .replace('/video/upload/', '/video/upload/so_1.0,f_jpg,c_fill,w_120,h_120,q_auto/')
+      .replace(/\.(mp4|webm|mov)(\?.*)?$/i, '.jpg')
+  }
+  if (url.includes('/image/upload/')) {
+    return url.replace('/image/upload/', '/image/upload/c_fill,w_120,h_120,f_auto,q_auto/')
+  }
+  return url
+}
+
+function timeAgo(iso: string | null): string {
+  if (!iso) return '—'
+  const diff = Date.now() - new Date(iso).getTime()
+  const d = Math.floor(diff / 86400000)
+  if (d > 30) return `${Math.floor(d / 30)}mo ago`
+  if (d > 0)  return `${d}d ago`
+  const h = Math.floor(diff / 3600000)
+  if (h > 0)  return `${h}h ago`
+  return 'Just now'
+}
+
+interface RowState {
+  active: boolean
+  featured: boolean
+  view_1_url: string | null
+  view_2_url: string | null
+  view_3_url: string | null
+}
+
+export default function ProductsGrid({ products }: { products: AdminProduct[] }) {
+  const [rows, setRows]           = useState<Record<string, RowState>>(() =>
+    Object.fromEntries(products.map((p) => [p.slug, {
+      active:    p.active,
+      featured:  p.featured,
+      view_1_url: p.view_1_url,
+      view_2_url: p.view_2_url,
+      view_3_url: p.view_3_url,
+    }]))
+  )
+  const [expanded, setExpanded]   = useState<string | null>(null)
+  const [editViews, setEditViews] = useState<Record<string, { v1: string; v2: string; v3: string }>>({})
+  const [search,  setSearch]      = useState('')
+  const [catFilter, setCatFilter] = useState('all')
+
+  const categories = useMemo(() => {
+    const s = new Set(products.map((p) => p.category ?? 'uncategorized'))
+    return ['all', ...Array.from(s).sort()]
+  }, [products])
+
+  const filtered = useMemo(() => products.filter((p) => {
+    const cat = catFilter === 'all' || (p.category ?? 'uncategorized') === catFilter
+    const q = search.toLowerCase()
+    const match = !q || p.name.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q)
+    return cat && match
+  }), [products, catFilter, search])
+
+  async function patch(slug: string, body: Partial<RowState>) {
+    const res = await fetch(`/api/admin/products/${encodeURIComponent(slug)}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    })
+    if (!res.ok) alert('Update failed')
+  }
+
+  function toggle(slug: string, field: 'active' | 'featured') {
+    const next = !rows[slug][field]
+    setRows((r) => ({ ...r, [slug]: { ...r[slug], [field]: next } }))
+    patch(slug, { [field]: next })
+  }
+
+  function saveViews(slug: string) {
+    const ev = editViews[slug] ?? {}
+    const update = {
+      view_1_url: ev.v1 || null,
+      view_2_url: ev.v2 || null,
+      view_3_url: ev.v3 || null,
+    }
+    setRows((r) => ({ ...r, [slug]: { ...r[slug], ...update } }))
+    patch(slug, update)
+    setExpanded(null)
+  }
+
+  return (
+    <div>
+      <div className={styles.toolbar}>
+        <select
+          className={styles.select}
+          value={catFilter}
+          onChange={(e) => setCatFilter(e.target.value)}
+        >
+          {categories.map((c) => <option key={c} value={c}>{c === 'all' ? 'All categories' : c}</option>)}
+        </select>
+        <input
+          className={styles.search}
+          placeholder="Search name or SKU…"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <span className={styles.count}>{filtered.length} products</span>
+      </div>
+
+      <table className={styles.table}>
+        <thead>
+          <tr>
+            <th className={styles.th} style={{ width: 72 }} />
+            <th className={styles.th}>Name / SKU</th>
+            <th className={styles.th}>Category</th>
+            <th className={styles.th}>Metal</th>
+            <th className={styles.th}>Active</th>
+            <th className={styles.th}>Featured</th>
+            <th className={styles.th}>Views</th>
+            <th className={styles.th}>Synced</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filtered.map((p) => {
+            const row  = rows[p.slug] ?? {}
+            const thumb = cloudinaryThumb(p.hero_visual)
+            const viewCount = [row.view_1_url, row.view_2_url, row.view_3_url].filter(Boolean).length
+            const ev = editViews[p.slug] ?? {
+              v1: row.view_1_url ?? '',
+              v2: row.view_2_url ?? '',
+              v3: row.view_3_url ?? '',
+            }
+            const isExpanded = expanded === p.slug
+
+            return (
+              <>
+                <tr key={p.slug} className={styles.row}>
+                  {/* Thumbnail */}
+                  <td className={styles.td}>
+                    <a href={`/jewelry/${p.category ?? 'jewelry'}/${p.slug}`} target="_blank" rel="noreferrer">
+                      {thumb
+                        ? <img src={thumb} alt="" className={styles.thumb} />
+                        : <div className={styles.thumbFallback} />}
+                    </a>
+                  </td>
+
+                  {/* Name + SKU */}
+                  <td className={styles.td}>
+                    <div className={styles.name}>{p.name}</div>
+                    <div className={styles.sku}>{p.sku}</div>
+                  </td>
+
+                  {/* Category */}
+                  <td className={styles.td}>
+                    {p.category && <span className={styles.badge}>{p.category}</span>}
+                  </td>
+
+                  {/* Metal */}
+                  <td className={styles.td}>
+                    <span className={styles.metal}>{p.metal ?? '—'}</span>
+                  </td>
+
+                  {/* Active toggle */}
+                  <td className={styles.td}>
+                    <button
+                      className={`${styles.toggle} ${row.active ? styles.toggleOn : ''}`}
+                      onClick={() => toggle(p.slug, 'active')}
+                      aria-label={row.active ? 'Deactivate' : 'Activate'}
+                    >
+                      <span className={styles.toggleThumb} />
+                    </button>
+                  </td>
+
+                  {/* Featured toggle */}
+                  <td className={styles.td}>
+                    <button
+                      className={`${styles.star} ${row.featured ? styles.starOn : ''}`}
+                      onClick={() => toggle(p.slug, 'featured')}
+                      aria-label={row.featured ? 'Unfeature' : 'Feature'}
+                    >
+                      ★
+                    </button>
+                  </td>
+
+                  {/* Views */}
+                  <td className={styles.td}>
+                    <button
+                      className={`${styles.viewsBadge} ${viewCount === 3 ? styles.viewsFull : ''}`}
+                      onClick={() => {
+                        setExpanded(isExpanded ? null : p.slug)
+                        if (!editViews[p.slug]) {
+                          setEditViews((ev2) => ({ ...ev2, [p.slug]: { v1: row.view_1_url ?? '', v2: row.view_2_url ?? '', v3: row.view_3_url ?? '' } }))
+                        }
+                      }}
+                    >
+                      {viewCount}/3
+                    </button>
+                  </td>
+
+                  {/* Synced */}
+                  <td className={styles.td}>
+                    <span className={styles.time}>{timeAgo(p.synced_at)}</span>
+                  </td>
+                </tr>
+
+                {/* Inline view edit */}
+                {isExpanded && (
+                  <tr key={`${p.slug}-views`} className={styles.editRow}>
+                    <td colSpan={8} className={styles.editCell}>
+                      <div className={styles.editInner}>
+                        {(['v1', 'v2', 'v3'] as const).map((k, i) => (
+                          <div key={k} className={styles.editField}>
+                            <label className={styles.editLabel}>View {i + 1}</label>
+                            <input
+                              className={styles.editInput}
+                              value={ev[k]}
+                              placeholder="https://res.cloudinary.com/…"
+                              onChange={(e) => setEditViews((prev) => ({
+                                ...prev,
+                                [p.slug]: { ...ev, [k]: e.target.value },
+                              }))}
+                            />
+                          </div>
+                        ))}
+                        <div className={styles.editActions}>
+                          <button className={styles.saveBtn} onClick={() => saveViews(p.slug)}>Save Views</button>
+                          <button className={styles.cancelBtn} onClick={() => setExpanded(null)}>Cancel</button>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                )}
+              </>
+            )
+          })}
+        </tbody>
+      </table>
+    </div>
+  )
+}

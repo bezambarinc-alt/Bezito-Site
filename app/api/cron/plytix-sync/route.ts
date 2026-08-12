@@ -192,8 +192,9 @@ export async function GET(req: NextRequest) {
             total_carat_weight=EXCLUDED.total_carat_weight,
             center_stone_weight=EXCLUDED.center_stone_weight,
             collection=EXCLUDED.collection,
-            featured=EXCLUDED.featured,
-            synced_at=now()`,
+            synced_at=now()
+            -- NOTE: active + featured intentionally excluded from UPDATE.
+            -- These are managed via the admin dashboard, not Plytix.`,
           [
             p.sku,                                                                  // $1  sku
             p.sku.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''), // $2  slug

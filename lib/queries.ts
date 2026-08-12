@@ -71,6 +71,9 @@ function rowToProduct(r: Record<string, unknown>): Product {
   return {
     sku:       r.sku       as string,
     slug:      r.slug      as string ?? (r.sku as string),
+    view1Url:  (r.view_1_url as string | null) ?? null,
+    view2Url:  (r.view_2_url as string | null) ?? null,
+    view3Url:  (r.view_3_url as string | null) ?? null,
     plytixId:  r.plytix_id as string,
     name:      r.name      as string,
     specs,
@@ -84,7 +87,8 @@ const COLS = `
   sku, slug, plytix_id, name, category, subtitle, editorial, description,
   hero_visual, editorial_visual, metal, stone_shape, stone_carats,
   stone_color, stone_clarity, stone_notes, total_carat_weight,
-  center_stone_weight, collection, active, featured, sort_order, synced_at`
+  center_stone_weight, collection, active, featured, sort_order, synced_at,
+  view_1_url, view_2_url, view_3_url`
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
   // Query by slug column (URL-safe, generated from SKU at sync time).
