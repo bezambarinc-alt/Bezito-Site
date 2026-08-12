@@ -7,6 +7,8 @@ export type AuditAction =
   | 'auth.pin.success'
   | 'auth.pin.failed'
   | 'auth.logout'
+  | 'auth.whitelist.added'
+  | 'auth.whitelist.removed'
   | 'admin.user.created'
   | 'admin.user.deleted'
   | 'admin.pin.changed'

@@ -6,13 +6,15 @@ import { sql } from '@/lib/db'
 import { checkRateLimit, recordAttempt } from '@/lib/rate-limit'
 import { audit } from '@/lib/audit'
 import { getGeo, formatLocation } from '@/lib/geo'
+import { addToWhitelist } from '@/lib/whitelist'
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET!)
 const SESSION_TTL = 60 * 60 * 2 // 2h — external/untrusted (email+password)
 
 const schema = z.object({
-  email:    z.string().email().max(254),
-  password: z.string().min(1).max(256),
+  email:       z.string().email().max(254),
+  password:    z.string().min(1).max(256),
+  trustDevice: z.boolean().optional().default(false),
 })
 
 export async function POST(req: NextRequest) {
@@ -36,7 +38,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'invalid credentials' }, { status: 401 })
   }
 
-  const { email, password } = parsed.data
+  const { email, password, trustDevice } = parsed.data
 
   const [user] = await sql<{ id: number; password_hash: string; role: string }>(
     `SELECT id, password_hash, role FROM admin_users WHERE email = $1 LIMIT 1`,
@@ -54,6 +56,12 @@ export async function POST(req: NextRequest) {
 
   if (!ok || !user) {
     return NextResponse.json({ error: 'invalid credentials' }, { status: 401 })
+  }
+
+  // Trust this location — add IP to server-side whitelist for 30 days
+  if (trustDevice) {
+    await addToWhitelist(ip, formatLocation(geo))
+    await audit('auth.whitelist.added', email, { ip, location: formatLocation(geo) })
   }
 
   const token = await new SignJWT({ role: user.role, sub: email, method: 'password' })

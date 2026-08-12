@@ -124,7 +124,19 @@ CREATE INDEX IF NOT EXISTS idx_archive_shapes   ON archive USING GIN (shapes);
 CREATE INDEX IF NOT EXISTS idx_archive_colors   ON archive USING GIN (colors);
 CREATE INDEX IF NOT EXISTS idx_archive_has_gif  ON archive (slug) WHERE gif_url != '';
 
--- 8. admin_users: dashboard accounts — managed via /admin/settings
+-- 8. whitelisted_ips: server-side IP trust list for progressive auth (UN+PW first, PIN on return)
+CREATE TABLE IF NOT EXISTS whitelisted_ips (
+  id         BIGSERIAL PRIMARY KEY,
+  ip_address TEXT        NOT NULL,
+  label      TEXT,
+  expires_at TIMESTAMPTZ NOT NULL DEFAULT now() + interval '30 days',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  CONSTRAINT whitelisted_ips_ip_unique UNIQUE (ip_address)
+);
+CREATE INDEX IF NOT EXISTS idx_whitelisted_ips_ip
+  ON whitelisted_ips (ip_address, expires_at DESC);
+
+-- 9. admin_users: dashboard accounts — managed via /admin/settings
 CREATE TABLE IF NOT EXISTS admin_users (
   id            BIGSERIAL PRIMARY KEY,
   email         TEXT UNIQUE NOT NULL,
