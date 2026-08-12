@@ -91,6 +91,11 @@
   text-decoration: none;
   letter-spacing: 0.08em;
   transition: color 0.15s;
+  /* button reset so it looks like the old <a> */
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
 .logout:hover { color: var(--ba-ink); }
 

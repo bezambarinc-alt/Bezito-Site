@@ -123,3 +123,20 @@ CREATE INDEX IF NOT EXISTS idx_archive_category ON archive (category);
 CREATE INDEX IF NOT EXISTS idx_archive_shapes   ON archive USING GIN (shapes);
 CREATE INDEX IF NOT EXISTS idx_archive_colors   ON archive USING GIN (colors);
 CREATE INDEX IF NOT EXISTS idx_archive_has_gif  ON archive (slug) WHERE gif_url != '';
+
+-- 8. admin_users: dashboard accounts — managed via /admin/settings
+CREATE TABLE IF NOT EXISTS admin_users (
+  id            BIGSERIAL PRIMARY KEY,
+  email         TEXT UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  role          TEXT NOT NULL DEFAULT 'admin',
+  created_at    TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at    TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+-- 9. admin_settings: key-value config (PIN hash, future flags)
+CREATE TABLE IF NOT EXISTS admin_settings (
+  key        TEXT PRIMARY KEY,
+  value      TEXT NOT NULL,
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);

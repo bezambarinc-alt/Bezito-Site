@@ -9,6 +9,7 @@ const NAV = [
   { href: '/admin/products',  label: 'Products'  },
   { href: '/admin/templates', label: 'Templates' },
   { href: '/admin/leads',     label: 'Leads'     },
+  { href: '/admin/settings',  label: 'Settings'  },
 ]
 
 export default function AdminNav() {

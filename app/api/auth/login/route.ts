@@ -1,36 +1,27 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { SignJWT } from 'jose'
-import { timingSafeEqual, createHash } from 'crypto'
+import { compare } from 'bcryptjs'
+import { sql } from '@/lib/db'
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET!)
 
-const USERS: Record<string, { pass: string; role: string }> = {
-  [process.env.ADMIN_BEZ_USER ?? '']: {
-    pass: process.env.ADMIN_BEZ_PASS ?? '',
-    role: 'bez',
-  },
-  [process.env.ADMIN_KEVIN_USER ?? '']: {
-    pass: process.env.ADMIN_KEVIN_PASS ?? '',
-    role: 'kevin',
-  },
-}
-
 export async function POST(req: NextRequest) {
-  const { username, password } = await req.json()
-  const user = USERS[username]
-
-  // Timing-safe compare — prevents brute-force timing attacks
-  const safeCompare = (a: string, b: string) => {
-    const bufA = Buffer.from(createHash('sha256').update(a).digest())
-    const bufB = Buffer.from(createHash('sha256').update(b).digest())
-    return bufA.length === bufB.length && timingSafeEqual(bufA, bufB)
-  }
-
-  if (!user || !safeCompare(user.pass, password)) {
+  const { email, password } = await req.json()
+  if (!email || !password) {
     return NextResponse.json({ error: 'invalid credentials' }, { status: 401 })
   }
 
-  const token = await new SignJWT({ role: user.role, sub: username })
+  const [user] = await sql<{ id: number; password_hash: string; role: string }>(
+    `SELECT id, password_hash, role FROM admin_users WHERE email = $1 LIMIT 1`,
+    [email],
+  )
+
+  // bcrypt.compare is inherently timing-safe
+  if (!user || !(await compare(password, user.password_hash))) {
+    return NextResponse.json({ error: 'invalid credentials' }, { status: 401 })
+  }
+
+  const token = await new SignJWT({ role: user.role, sub: email, method: 'password' })
     .setProtectedHeader({ alg: 'HS256' })
     .setExpirationTime('8h')
     .sign(JWT_SECRET)
