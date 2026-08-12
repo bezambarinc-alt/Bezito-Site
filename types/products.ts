@@ -43,6 +43,7 @@ export interface ProductSpecs {
 /** Normalized product for the view layer. */
 export interface Product {
   sku: string
+  slug: string   // URL-safe version of sku — lowercase, non-alphanumeric → hyphen
   plytixId: string
   name: string
   specs: ProductSpecs

@@ -173,14 +173,15 @@ export async function GET(req: NextRequest) {
         // Write to individual columns — the JSONB `specs`/`media` blobs are legacy.
         await sql(
           `INSERT INTO products(
-            sku, plytix_id, name,
+            sku, slug, plytix_id, name,
             category, subtitle, editorial, description,
             hero_visual, editorial_visual,
             metal, stone_shape, stone_carats, stone_color, stone_clarity, stone_notes,
             total_carat_weight, center_stone_weight, collection, featured,
             synced_at
-          ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,now())
+          ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,now())
           ON CONFLICT (sku) DO UPDATE SET
+            slug=EXCLUDED.slug,
             plytix_id=EXCLUDED.plytix_id, name=EXCLUDED.name,
             category=EXCLUDED.category, subtitle=EXCLUDED.subtitle,
             editorial=EXCLUDED.editorial, description=EXCLUDED.description,
@@ -194,25 +195,26 @@ export async function GET(req: NextRequest) {
             featured=EXCLUDED.featured,
             synced_at=now()`,
           [
-            p.sku,                         // $1  sku
-            p.id,                          // $2  plytix_id
-            str(p.label) ?? p.sku,        // $3  name
-            category ?? null,              // $4  category
-            str(a.subtitle) ?? null,       // $5  subtitle
-            str(a.editorial) ?? null,      // $6  editorial
-            str(a.description) ?? null,    // $7  description
-            heroVisual ?? null,            // $8  hero_visual
-            editorialVisual ?? null,       // $9  editorial_visual
-            str(a.metal) ?? null,          // $10 metal
-            str(a.stone_shape) ?? null,    // $11 stone_shape
-            str(a.stone_carats) ?? null,   // $12 stone_carats
-            str(a.stone_color) ?? null,    // $13 stone_color
-            str(a.stone_clarity) ?? null,  // $14 stone_clarity
-            str(a.stone_notes) ?? null,    // $15 stone_notes
-            totalCaratWeight,              // $16 total_carat_weight (numeric)
-            centerStoneWeight,             // $17 center_stone_weight (numeric)
-            str(a.collection) ?? null,     // $18 collection
-            featured,                        // $19 featured (boolean)
+            p.sku,                                                                  // $1  sku
+            p.sku.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''), // $2  slug
+            p.id,                                                                   // $3  plytix_id
+            str(p.label) ?? p.sku,                                                 // $4  name
+            category ?? null,                                                       // $5  category
+            str(a.subtitle) ?? null,                                               // $6  subtitle
+            str(a.editorial) ?? null,                                              // $7  editorial
+            str(a.description) ?? null,                                            // $8  description
+            heroVisual ?? null,                                                     // $9  hero_visual
+            editorialVisual ?? null,                                               // $10 editorial_visual
+            str(a.metal) ?? null,                                                  // $11 metal
+            str(a.stone_shape) ?? null,                                            // $12 stone_shape
+            str(a.stone_carats) ?? null,                                           // $13 stone_carats
+            str(a.stone_color) ?? null,                                            // $14 stone_color
+            str(a.stone_clarity) ?? null,                                          // $15 stone_clarity
+            str(a.stone_notes) ?? null,                                            // $16 stone_notes
+            totalCaratWeight,                                                       // $17 total_carat_weight
+            centerStoneWeight,                                                      // $18 center_stone_weight
+            str(a.collection) ?? null,                                             // $19 collection
+            featured,                                                               // $20 featured
           ],
         )
         syncedSkus.push(p.sku)

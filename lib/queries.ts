@@ -70,6 +70,7 @@ function rowToProduct(r: Record<string, unknown>): Product {
 
   return {
     sku:       r.sku       as string,
+    slug:      r.slug      as string ?? (r.sku as string),
     plytixId:  r.plytix_id as string,
     name:      r.name      as string,
     specs,
@@ -80,17 +81,17 @@ function rowToProduct(r: Record<string, unknown>): Product {
 }
 
 const COLS = `
-  sku, plytix_id, name, category, subtitle, editorial, description,
+  sku, slug, plytix_id, name, category, subtitle, editorial, description,
   hero_visual, editorial_visual, metal, stone_shape, stone_carats,
   stone_color, stone_clarity, stone_notes, total_carat_weight,
   center_stone_weight, collection, active, featured, sort_order, synced_at`
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
-  // Decode URI encoding — Next.js passes encoded params for SKUs with spaces/hyphens
-  const decoded = (() => { try { return decodeURIComponent(slug) } catch { return slug } })()
+  // Query by slug column (URL-safe, generated from SKU at sync time).
+  // Fallback to raw SKU match for backward compat with any old links.
   const [row] = await sql<Record<string, unknown>>(
-    `SELECT ${COLS} FROM products WHERE sku = $1 AND active = true`,
-    [decoded],
+    `SELECT ${COLS} FROM products WHERE (slug = $1 OR sku = $1) AND active = true LIMIT 1`,
+    [slug],
   )
   return row ? rowToProduct(row) : null
 }
@@ -162,8 +163,8 @@ export async function getProductsByCollection(collection: string): Promise<Produ
 
 /** For generateStaticParams — { category, slug } pairs for all active products. */
 export async function getAllProductParams(): Promise<{ category: string; slug: string }[]> {
-  const rows = await sql<{ sku: string; category: string | null }>(
-    `SELECT sku, category FROM products WHERE active = true`,
+  const rows = await sql<{ slug: string; category: string | null }>(
+    `SELECT slug, category FROM products WHERE active = true`,
   )
-  return rows.map(r => ({ category: (r.category ?? 'jewelry').toLowerCase(), slug: r.sku }))
+  return rows.map(r => ({ category: (r.category ?? 'jewelry').toLowerCase(), slug: r.slug }))
 }

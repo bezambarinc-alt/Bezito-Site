@@ -12,7 +12,7 @@ export default function ProductCard({ product, category }: { product: Product; c
   const image = product.specs.heroPosterUrl
 
   return (
-    <Link href={`/jewelry/${category.toLowerCase()}/${encodeURIComponent(product.sku)}`} className="ba-card">
+    <Link href={`/jewelry/${category.toLowerCase()}/${product.slug}`} className="ba-card">
       <div className="ba-card__media">
         {video ? (
           <LazyVideo src={video} poster={image ?? undefined} />
