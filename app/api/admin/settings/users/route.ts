@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { z } from 'zod'
 import { getSession } from '@/lib/auth'
 import { hash } from 'bcryptjs'
 import { sql } from '@/lib/db'
+import { audit } from '@/lib/audit'
 
 // GET — list all admin users
 export async function GET() {
@@ -19,17 +21,24 @@ export async function POST(req: NextRequest) {
   const session = await getSession()
   if (!session) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
 
-  const { email, password, role = 'admin' } = await req.json()
-  if (!email || !password) {
-    return NextResponse.json({ error: 'email and password are required' }, { status: 400 })
+  const schema = z.object({
+    email:    z.string().email().max(254),
+    password: z.string().min(8).max(256),
+    role:     z.enum(['admin', 'viewer']).optional().default('admin'),
+  })
+  const parsed = schema.safeParse(await req.json().catch(() => null))
+  if (!parsed.success) {
+    return NextResponse.json({ error: 'invalid input' }, { status: 400 })
   }
+  const { email, password, role } = parsed.data
 
-  const passwordHash = await hash(password, 12)
+  const passwordHash = await hash(String(password), 12)
   try {
     const [user] = await sql<{ id: number }>(
       `INSERT INTO admin_users (email, password_hash, role) VALUES ($1, $2, $3) RETURNING id`,
       [email, passwordHash, role],
     )
+    await audit('admin.user.created', session.sub as string, { email, role })
     return NextResponse.json({ ok: true, id: user.id })
   } catch (e: unknown) {
     if ((e as { code?: string }).code === '23505') {
@@ -44,7 +53,9 @@ export async function DELETE(req: NextRequest) {
   const session = await getSession()
   if (!session) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
 
-  const { id } = await req.json()
+  const parsed2 = z.object({ id: z.number().int().positive() }).safeParse(await req.json().catch(() => null))
+  if (!parsed2.success) return NextResponse.json({ error: 'invalid input' }, { status: 400 })
+  const { id } = parsed2.data
 
   const [{ count }] = await sql<{ count: string }>(
     `SELECT COUNT(*)::text AS count FROM admin_users`,
@@ -53,6 +64,7 @@ export async function DELETE(req: NextRequest) {
     return NextResponse.json({ error: 'cannot remove the last admin user' }, { status: 400 })
   }
 
-  await sql(`DELETE FROM admin_users WHERE id = $1`, [id])
+  const [deleted] = await sql<{ email: string }>(`DELETE FROM admin_users WHERE id = $1 RETURNING email`, [id])
+  await audit('admin.user.deleted', session.sub as string, { id, email: deleted?.email })
   return NextResponse.json({ ok: true })
 }

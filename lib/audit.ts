@@ -1,0 +1,28 @@
+import 'server-only'
+import { sql } from '@/lib/db'
+
+export type AuditAction =
+  | 'auth.login.success'
+  | 'auth.login.failed'
+  | 'auth.pin.success'
+  | 'auth.pin.failed'
+  | 'auth.logout'
+  | 'admin.user.created'
+  | 'admin.user.deleted'
+  | 'admin.pin.changed'
+
+export async function audit(
+  action: AuditAction,
+  actor: string,
+  detail?: Record<string, unknown>,
+) {
+  try {
+    await sql(
+      `INSERT INTO audit_log (actor, action, detail) VALUES ($1, $2, $3)`,
+      [actor, action, detail ? JSON.stringify(detail) : null],
+    )
+  } catch {
+    // Audit failure must never break the primary flow — log silently
+    console.error('[audit] failed to write:', action, actor)
+  }
+}
