@@ -86,9 +86,11 @@ const COLS = `
   center_stone_weight, collection, active, featured, sort_order, synced_at`
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
+  // Decode URI encoding — Next.js passes encoded params for SKUs with spaces/hyphens
+  const decoded = (() => { try { return decodeURIComponent(slug) } catch { return slug } })()
   const [row] = await sql<Record<string, unknown>>(
     `SELECT ${COLS} FROM products WHERE sku = $1 AND active = true`,
-    [slug],
+    [decoded],
   )
   return row ? rowToProduct(row) : null
 }
