@@ -20,7 +20,7 @@ export const metadata: Metadata = {
  */
 export default function HomePage() {
   return (
-    <>
+    <main>
       {/* Top hero — shared scroll-wipe carousel */}
       <ScrollWipeCarousel slides={HERO_SLIDES} />
 
@@ -114,6 +114,6 @@ export default function HomePage() {
       {/* Cinematic section — SAME component, different slides */}
       <ScrollWipeCarousel slides={CINEMATIC_SLIDES} />
       <Newsletter />
-    </>
+    </main>
   )
 }
