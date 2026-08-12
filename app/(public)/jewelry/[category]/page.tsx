@@ -96,7 +96,7 @@ export default async function CategoryPage({
               )}
               <Link
                 className="ba-segment__link"
-                href={`/jewelry/${category}/${encodeURIComponent(product.sku)}`}
+                href={`/jewelry/${category}/${product.slug}`}
               >
                 View {product.name}
               </Link>

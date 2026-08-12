@@ -111,7 +111,7 @@ export default async function CollectionPage({
               )}
               <Link
                 className="ba-segment__link"
-                href={`/jewelry/${cat}/${encodeURIComponent(product.sku)}`}
+                href={`/jewelry/${cat}/${product.slug}`}
               >
                 View {product.name}
               </Link>

@@ -72,7 +72,7 @@ export default function MenuOverlay({ categories = [], collections = [], feature
       ...featuredProducts.map(p => ({
         kind: 'link' as const,
         label: p.name,
-        href: `/jewelry/${p.specs.category ?? 'jewelry'}/${encodeURIComponent(p.sku)}`,
+        href: `/jewelry/${p.specs.category ?? 'jewelry'}/${p.slug}`,
       })),
     ] : []),
   ]
