@@ -73,6 +73,23 @@ h1 { font-size:26px; font-weight:normal; letter-spacing:.5px; margin-bottom:4px;
 .leg-dot   { width:10px; height:10px; border-radius:50%; display:inline-block; }
 
 footer { margin-top:60px; border-top:3px double var(--goldlight); padding-top:14px; font-size:12px; color:var(--muted); }
+
+/* BOM Table */
+.bom-section { background:#fff; border:1px solid var(--line); border-radius:6px; padding:20px 22px; margin-bottom:32px; }
+.bom-table { width:100%; border-collapse:collapse; font-size:13px; }
+.bom-table th { background:var(--ink); color:#e8d9a8; font-weight:normal; letter-spacing:.4px; padding:8px 12px; text-align:left; }
+.bom-table td { padding:7px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+.bom-table tr:last-child td { border-bottom:none; }
+.bom-table tr:hover td { background:#faf7ef; }
+.bom-gold td { background:#fffbf0; }
+.bom-gold:hover td { background:#fdf5d8 !important; }
+.bom-total td { background:#f0ede5; font-weight:bold; }
+.bom-num { text-align:center; color:var(--muted); font-size:12px; width:30px; }
+.bom-dim { font-family:'Courier New',monospace; font-size:12px; white-space:nowrap; color:#333; width:220px; }
+.bom-flag { background:#fff3cd; color:#856404; font-size:10.5px; padding:1px 5px; border-radius:3px; white-space:nowrap; font-family:Georgia,serif; }
+.bom-notes { margin-top:16px; display:flex; flex-direction:column; gap:8px; }
+.bom-note-item { font-size:12.5px; color:#444; background:#f7f6f2; border-left:3px solid var(--line); padding:8px 12px; border-radius:0 4px 4px 0; line-height:1.5; }
+.bom-open { border-left-color:#e6a020; background:#fffbf2; }
 </style>
 </head>
 <body>
@@ -81,7 +98,7 @@ footer { margin-top:60px; border-top:3px double var(--goldlight); padding-top:14
 <header>
   <h1>The Jenny Pendant — Vendor Outreach</h1>
   <div class="tagline">Supplier contact tracker · 1918 24¢ Airmail Invert encasement · Rev. D (all-gold)</div>
-  <div class="meta"><b>Client:</b> Eric &nbsp;·&nbsp; <b>Custodian:</b> Bez &nbsp;·&nbsp; <b>Updated:</b> August 10, 2026 &nbsp;·&nbsp; Status saved locally in this browser</div>
+  <div class="meta"><b>Client:</b> Eric &nbsp;·&nbsp; <b>Custodian:</b> Bez &nbsp;·&nbsp; <b>Updated:</b> August 11, 2026 (McMaster order logged) &nbsp;·&nbsp; Status saved locally in this browser</div>
 </header>
 
 <div class="progress" id="progress">
@@ -98,6 +115,107 @@ footer { margin-top:60px; border-top:3px double var(--goldlight); padding-top:14
   <div class="leg-item"><span class="leg-dot" style="background:#4a7ab5"></span> Replied</div>
   <div class="leg-item"><span class="leg-dot" style="background:#27ae60"></span> Ordered</div>
   <div class="leg-item"><span class="leg-dot" style="background:#ccc"></span> N/A</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     BILL OF MATERIALS
+     ═══════════════════════════════════════════════════════════ -->
+<div class="bom-section">
+  <div class="cat-header" style="margin-bottom:16px;">
+    Bill of Materials — Rev. D (all-gold capsule)
+    <span class="cat-sub">All dimensions in mm · thickness = assembled stack direction</span>
+  </div>
+  <div style="overflow-x:auto;">
+    <table class="bom-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Part</th>
+          <th>W × H × Thickness</th>
+          <th>Key Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="bom-num">1</td>
+          <td><b>Stamp</b></td>
+          <td class="bom-dim">27.0 × 31.0 × ≈0.09</td>
+          <td>Portrait, bottom selvage. Confirm by micrometer — sets mat opening. <span class="bom-flag">⚠ measure first</span></td>
+        </tr>
+        <tr>
+          <td class="bom-num">2</td>
+          <td><b>Mat</b> — clear Melinex 7 mil</td>
+          <td class="bom-dim">34.0 × 38.0 × 0.18</td>
+          <td>Opening 28.0 × 32.0 mm (0.5 float per side around stamp)</td>
+        </tr>
+        <tr>
+          <td class="bom-num">3</td>
+          <td><b>Seal ring</b> — virgin PTFE <em>(primary seal)</em></td>
+          <td class="bom-dim">37.0 × 41.0 × 0.25 free → 0.18 squeezed</td>
+          <td>Opening 34.2 × 38.2 mm (1.4 mm band); sits just outside the mat</td>
+        </tr>
+        <tr>
+          <td class="bom-num">4</td>
+          <td><b>Windows ×2</b> — Optium acrylic 1/8″</td>
+          <td class="bom-dim">37.0 × 41.0 × 3.0 nominal <span class="bom-flag">⚠ measure actual</span></td>
+          <td>Coated face inward on front pane. UV-blocking 99%. Sapphire upgrade later.</td>
+        </tr>
+        <tr>
+          <td class="bom-num">5</td>
+          <td><b>Face gaskets ×2</b> — virgin PTFE</td>
+          <td class="bom-dim">37.0 × 41.0 × 0.25 free → 0.18</td>
+          <td>Opening 34.0 × 38.0 mm; flat cushions, no grooves</td>
+        </tr>
+        <tr class="bom-gold">
+          <td class="bom-num">6</td>
+          <td><b>Body</b> — 18k gold</td>
+          <td class="bom-dim">41.0 × 45.0 × 7.8 <span class="bom-flag">→ 43×47 pending</span></td>
+          <td>Cavity 37.1 × 41.1 × 6.3 deep; window 33 × 37; lip 1.5 thick × 4.0 wide; R3 corners</td>
+        </tr>
+        <tr>
+          <td class="bom-num">7</td>
+          <td><b>Threaded inserts ×6</b> — McMaster 92985A250 (or brass 92120A140)</td>
+          <td class="bom-dim">Ø2.4 × 3.0, M1.4 × 0.3</td>
+          <td>Pressed into six Ø2.4 holes × ~3.2 deep in rim; laser-staked</td>
+        </tr>
+        <tr class="bom-gold">
+          <td class="bom-num">8</td>
+          <td><b>Back frame</b> — 18k gold</td>
+          <td class="bom-dim">41.0 × 45.0 × 1.5</td>
+          <td>Window 33 × 37; six 90° countersinks for Ø2.6 flat heads</td>
+        </tr>
+        <tr>
+          <td class="bom-num">9</td>
+          <td><b>Screws ×6 (+14 spares)</b> — McMaster 91430A156</td>
+          <td class="bom-dim">M1.4 × 0.3 × 4.0 long</td>
+          <td>Flat head Ø2.60 × 0.84, sits flush; 18-8 stainless</td>
+        </tr>
+        <tr class="bom-total">
+          <td class="bom-num">10</td>
+          <td><b>Assembled capsule</b></td>
+          <td class="bom-dim">≈41 × 45 × 9.4 <em>(or 43 × 47)</em></td>
+          <td>Argon-filled, fog-tested</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="bom-notes">
+    <div class="bom-note-item">
+      <b>💎 Sapphire upgrade (later):</b> Windows become 37.0 × 41.0 × 1.5 mm KY optical sapphire + one PTFE shim ring 37.0 × 41.0 × 1.5 mm behind each. Everything else unchanged.
+    </div>
+    <div class="bom-note-item">
+      <b>📐 Per-side geometry chain:</b> stamp edge → 0.5 gap → 2.5 visible mat → window edge at 3.0 reveal → 0.5 mat under lip → 1.4 seal-ring band → pane edge at 5.0 → 0.05 to cavity wall → 2.0 gold wall → outside.
+    </div>
+    <div class="bom-note-item bom-open">
+      <b>⚠ Open CAD decision:</b> Ø2.4 inserts need ~3.4 mm of gold around them; current 2.0 mm walls don't provide it. <b>Recommendation: grow body to 43 × 47 mm (~3 mm walls).</b> Alternative: stay 41 × 45 with six local boss-pads at screw positions.
+    </div>
+    <div class="bom-note-item bom-open">
+      <b>📏 Two measurements still owed:</b> (1) stamp actual thickness under micrometer (~0.09 mm?); (2) Optium pane actual thickness when received (~3.0 mm nominal). Both gate soft-part cutting.
+    </div>
+    <div class="bom-note-item">
+      <b>📧 Vendor correspondence on file:</b> Swiss Jewel Co. — replied, 6-week lead time, 41×37×1.5 mm sapphire confirmed, fine-ground edges, polished faces, AR coating available on both faces.
+    </div>
+  </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════
@@ -316,32 +434,36 @@ footer { margin-top:60px; border-top:3px double var(--goldlight); padding-top:14
     <span class="cat-sub">Order 7-mil + 10-mil backup. Also: silica gel + handling supplies</span>
   </div>
 
-  <div class="vendor" id="v-talas">
+  <div class="vendor" id="v-talas" data-status="called">
     <div>
       <div class="v-top">
         <span class="v-name">Talas</span>
         <span class="badge b-order">ORDER</span>
+        <span style="font-size:11px;color:#e6c050;font-weight:600;margin-left:6px;">🛒 IN CART Aug 11</span>
       </div>
-      <div class="v-loc">Brooklyn, NY — talasonline.com</div>
+      <div class="v-loc">Brooklyn, NY · talasonline.com</div>
       <div class="actions">
         <a class="btn btn-call" href="tel:+12122190770">📞 (212) 219-0770</a>
-        <button class="btn btn-email" onclick="sendEmail('',
-          'Melinex 516 Archival Polyester — 7-mil roll inquiry',
-          'Hello,\n\nI\'d like to order Melinex 516 archival polyester film in 7-mil (0.18 mm) and 10-mil rolls. Also looking for stamp-handling supplies: silica gel packets and cotton gloves.\n\nPlease advise on sizes, pricing, and minimum order quantities.\n\nThank you,\nBez Ambar\nbezambar@gmail.com')">✉️ Draft email (add address from site)</button>
-        <a class="btn btn-web" href="https://talasonline.com" target="_blank">🌐 talasonline.com</a>
+        <a class="btn btn-web" href="https://www.talasonline.com/cart" target="_blank">🛒 Cart (checkout pending)</a>
       </div>
-      <div class="v-note">Online ordering available. Backups: tekra.com · professionalplastics.com · grafixplastics.com (DuraLar)</div>
+      <div class="v-note" style="background:#fffef2;border-left:3px solid #e6c050;padding:8px 10px;border-radius:4px;margin-top:8px;">
+        <b>🛒 Cart staged — Aug 11, 2026 · awaiting checkout confirmation</b><br>
+        • TFM001051 — Mylar Film Roll 40&quot; × 50ft, <b>10 mil</b> (0.254 mm) · $220.37<br>
+        • TFM001045 — Mylar Film Roll 40&quot; × 50ft, <b>7 mil</b> (0.178 mm) · $167.73<br>
+        Subtotal $388.10 + shipping &amp; tax TBD<br>
+        <span style="color:#888;">10 mil = rigid window insert · 7 mil = lighter option — both for prototyping</span>
+      </div>
     </div>
     <div class="v-ctrl">
       <select class="status-sel" onchange="setStatus('talas',this.value)">
         <option value="none">— status —</option>
-        <option value="called">📞 Called</option>
+        <option value="called" selected>📞 Called</option>
         <option value="emailed">✉️ Emailed</option>
         <option value="replied">💬 Replied</option>
         <option value="ordered">✅ Ordered</option>
         <option value="na">⊘ N/A</option>
       </select>
-      <textarea class="v-notes" placeholder="notes…" onblur="saveNote('talas',this.value)" id="n-talas"></textarea>
+      <textarea class="v-notes" placeholder="notes…" onblur="saveNote('talas',this.value)" id="n-talas">Aug 11: Cart staged — TFM001051 (10 mil, $220.37) + TFM001045 (7 mil, $167.73). Subtotal $388.10 + shipping. Awaiting order confirmation.</textarea>
     </div>
   </div>
 </div>
@@ -355,21 +477,27 @@ footer { margin-top:60px; border-top:3px double var(--goldlight); padding-top:14
     <span class="cat-sub">⚠ Never laser-cut PTFE (toxic) — machinist to cut rings with the body order</span>
   </div>
 
-  <div class="vendor" id="v-cshyde">
+  <div class="vendor" id="v-cshyde" data-status="ordered">
     <div>
       <div class="v-top">
         <span class="v-name">CS Hyde Company</span>
         <span class="badge b-order">ORDER</span>
+        <span style="font-size:11px;color:#27ae60;font-weight:600;margin-left:6px;">✅ ORDERED Aug 11</span>
       </div>
-      <div class="v-loc">Lake Villa, IL</div>
+      <div class="v-loc">Lake Villa, IL · orders@cshyde.com · 1-800-461-4161</div>
       <div class="actions">
         <a class="btn btn-call" href="tel:+18004614161">📞 1-800-461-4161</a>
-        <button class="btn btn-email" onclick="sendEmail('',
-          'Virgin Skived PTFE Film — 0.010\u201d thickness inquiry',
-          'Hello,\n\nI need virgin skived PTFE film, 0.010\u201d (0.25 mm) thickness, for precision gasket rings in a fine jewelry project. Gasket size: approx. 37 \u00d7 41 mm outer, 34 \u00d7 38 mm inner opening.\n\nSmall quantity for prototype (2\u20134 rings), with option to scale.\n\nPlease advise on available widths, pricing, and minimum order.\n\nThank you,\nBez Ambar\nbezambar@gmail.com')">✉️ Draft email (get address from site)</button>
-        <a class="btn btn-web" href="https://cshyde.com" target="_blank">🌐 cshyde.com</a>
+        <a class="btn btn-web" href="https://cshyde.com/viewitems/films/ptfe-skived-film" target="_blank">🌐 Product page</a>
       </div>
-      <div class="v-note">Alternatives: mcmaster.com (next-day) · professionalplastics.com. Prefer: machinist supplies cut rings with capsule order.</div>
+      <div class="v-note" style="background:#f0fff4;border-left:3px solid #27ae60;padding:8px 10px;border-radius:4px;margin-top:8px;">
+        <b>✅ Order confirmed — Aug 11, 2026</b><br>
+        Item: <b>15-10F-12</b> — .010&quot; thick Skived PTFE Film (0.254 mm ≈ 0.25 mm spec) · Qty: 2<br>
+        Unit $8.94 · Subtotal $17.88 · UPS 2nd Day Air $25.73 · Handling $2.50 · Tax $1.74<br>
+        <b>Total charged: $47.85</b> · Payment: Credit Card<br>
+        Ship to: Bezalel AMBAR, 611 Wilshire Blvd #325, Los Angeles CA 90017<br>
+        Covers BOM parts 3 (seal ring) &amp; 5 (face gaskets ×2) — machinist to cut from sheet<br>
+        <span style="color:#888;">Est. arrival: ~Aug 13–14 (UPS 2nd Day Air)</span>
+      </div>
     </div>
     <div class="v-ctrl">
       <select class="status-sel" onchange="setStatus('cshyde',this.value)">
@@ -377,10 +505,62 @@ footer { margin-top:60px; border-top:3px double var(--goldlight); padding-top:14
         <option value="called">📞 Called</option>
         <option value="emailed">✉️ Emailed</option>
         <option value="replied">💬 Replied</option>
-        <option value="ordered">✅ Ordered</option>
+        <option value="ordered" selected>✅ Ordered</option>
         <option value="na">⊘ N/A</option>
       </select>
-      <textarea class="v-notes" placeholder="notes…" onblur="saveNote('cshyde',this.value)" id="n-cshyde"></textarea>
+      <textarea class="v-notes" placeholder="notes…" onblur="saveNote('cshyde',this.value)" id="n-cshyde">Ordered Aug 11, 2026. Item 15-10F-12, .010&quot; skived PTFE film, qty 2. Total $47.85 (includes UPS 2nd Day Air). Est. arrival Aug 13-14. Machinist cuts seal ring + face gaskets from this sheet.</textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HARDWARE / FASTENERS — McMaster-Carr
+     ═══════════════════════════════════════════════════════════ -->
+<div class="category">
+  <div class="cat-header">
+    Hardware — Threaded Inserts &amp; Screws
+    <span class="cat-sub">BOM items 7 &amp; 9 — M1.4 inserts + M1.4 × 4mm flat-head screws</span>
+  </div>
+
+  <div class="vendor" id="v-mcmaster" data-status="ordered">
+    <div>
+      <div class="v-top">
+        <span class="v-name">McMaster-Carr</span>
+        <span class="badge b-order">ORDER</span>
+        <span style="font-size:11px;color:#27ae60;font-weight:600;margin-left:6px;">✅ ORDERED — 2 items delivered, 1 en route</span>
+      </div>
+      <div class="v-loc">mcmaster.com · PO: 0810BEZ · Amex ****9004 · Total $78.73</div>
+      <div class="actions">
+        <a class="btn btn-web" href="https://mcmaster.com" target="_blank">🌐 mcmaster.com</a>
+        <a class="btn btn-call" href="tel:+15626929111">📞 (562) 692-9111</a>
+      </div>
+      <div class="v-note" style="background:#f0fff4;border-left:3px solid #27ae60;padding:8px 10px;border-radius:4px;margin-top:8px;">
+        <b>✅ Order confirmed — Aug 11, 2026 · PO 0810BEZ</b><br>
+        <br>
+        <b>✔ Delivered 10:25 AM (received by Liliana):</b><br>
+        &nbsp;• <b>92965A250</b> — Splined Press-Fit Threaded Standoffs, 2.4mm OD × 3mm, M1.4 × 0.30mm · 1 pack/10 · $6.10<br>
+        &nbsp;&nbsp;&nbsp;<em style="color:#888;">Test variant — BOM spec is 92985A250; compare fit on receipt</em><br>
+        &nbsp;• <b>92120A140</b> — Brass Heat-Set Inserts, M1.4 × 0.3mm, 3mm installed · 1 pack/100 · $22.43<br>
+        &nbsp;&nbsp;&nbsp;<em style="color:#888;">BOM item 7 alternate — confirmed ordered ✅</em><br>
+        <br>
+        <b>⏳ Delivers Thursday by 5 PM:</b><br>
+        &nbsp;• <b>91430A156</b> — 18-8 SS Slotted Flat Head Screw, M1.4 × 0.3 × 4mm · 2 packs/10 · $26.16<br>
+        &nbsp;&nbsp;&nbsp;<em style="color:#888;">BOM item 9 — exact spec ✅</em><br>
+        <br>
+        Merchandise $54.69 · Shipping $18.71 · Tax $5.33 · <b>Total $78.73</b><br>
+        Ship to: Bez Ambar Inc, 611 Wilshire Blvd Ste 325, Los Angeles CA 90017
+      </div>
+    </div>
+    <div class="v-ctrl">
+      <select class="status-sel" onchange="setStatus('mcmaster',this.value)">
+        <option value="none">— status —</option>
+        <option value="called">📞 Called</option>
+        <option value="emailed">✉️ Emailed</option>
+        <option value="replied">💬 Replied</option>
+        <option value="ordered" selected>✅ Ordered</option>
+        <option value="na">⊘ N/A</option>
+      </select>
+      <textarea class="v-notes" placeholder="notes…" onblur="saveNote('mcmaster',this.value)" id="n-mcmaster">Aug 11, 2026 · PO 0810BEZ · $78.73 total. Delivered: 92965A250 splined standoffs (test vs BOM 92985A250) + 92120A140 brass heat-set inserts (BOM alt). En route Thu: 91430A156 SS screws (exact BOM spec). Received by Liliana.</textarea>
     </div>
   </div>
 </div>
@@ -535,7 +715,7 @@ footer { margin-top:60px; border-top:3px double var(--goldlight); padding-top:14
 </div>
 
 <script>
-const VENDORS = ['archplastics','gssupplies','guildoptics','swissjewel','stettler','saphirwerk','pgo','talas','cshyde','stuller','hooverstrong','airgas','machinist'];
+const VENDORS = ['archplastics','gssupplies','guildoptics','swissjewel','stettler','saphirwerk','pgo','talas','cshyde','mcmaster','stuller','hooverstrong','airgas','machinist'];
 const KEY = id => 'jenny-' + id;
 const NOTE_KEY = id => 'jenny-note-' + id;
 

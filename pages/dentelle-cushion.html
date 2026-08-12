@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>C0765 — 1DUET — Bez Ambar</title>
-<meta name="description" content="C0765 — a bespoke ring by Bez Ambar, Los Angeles.">
-<link rel="canonical" href="https://bezito.co/page/c0765">
-<meta property="og:title" content="C0765 — 1DUET — Bez Ambar">
-<meta property="og:description" content="C0765 — a bespoke ring by Bez Ambar, Los Angeles.">
-<meta property="og:url" content="https://bezito.co/page/c0765">
-<meta property="og:image" content="https://res.cloudinary.com/dlg2mou53/video/upload/so_3.0,f_jpg,w_1200,c_fit/Jewelry%20Videos/Rings/c0765-hd.jpg">
+<title>Dentelle Cushion — Bez Ambar</title>
+<meta name="description" content="5.10ct cushion diamond eternity band. Seventeen stones, one continuous circuit of lace and light. Bez Ambar, Los Angeles.">
+<link rel="canonical" href="https://bezito.co/page/dentelle-cushion">
+<meta property="og:title" content="Dentelle Cushion — Bez Ambar">
+<meta property="og:description" content="5.10ct cushion diamond eternity band. Seventeen stones, one continuous circuit of lace and light. Bez Ambar, Los Angeles.">
+<meta property="og:url" content="https://bezito.co/page/dentelle-cushion">
+<meta property="og:image" content="https://res.cloudinary.com/dlg2mou53/video/upload/so_5.0,f_jpg,w_1200,c_fit/v1784170364/C0788_HD_moypqh.jpg">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231a1a1a'/%3E%3Ctext x='16' y='22' font-family='Inter,sans-serif' font-size='18' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://webfonts.fontstand.com/WF-099839-d89c1d499f0c1f40d1e6d7330af17f97.css" type="text/css"/>
@@ -58,7 +58,6 @@
   }
   .ba-header.over-dark .ba-header__logo { color: #ffffff; }
 
-  /* Split hero: video left, copy right */
   .hero-split {
     display: flex;
     min-height: 40vh;
@@ -77,7 +76,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top;
+    object-position: center;
     pointer-events: none;
   }
   .hero-split__text {
@@ -139,12 +138,6 @@
     transition: background 0.2s ease, color 0.2s ease;
   }
   .split-btn:hover { background: var(--ink); color: var(--paper); }
-  @media (max-width: 768px) {
-    .hero-split { flex-direction: column; }
-    .hero-split__video { flex: 0 0 auto; height: 70vh; }
-    .hero-split__text { border-left: none; border-top: 1px solid var(--rule); }
-  }
-
   .hero-video__ref {
     position: absolute;
     bottom: clamp(20px, 3vw, 40px);
@@ -168,8 +161,12 @@
     letter-spacing: 0.18em;
     text-transform: uppercase;
   }
+  @media (max-width: 768px) {
+    .hero-split { flex-direction: column; }
+    .hero-split__video { flex: 0 0 auto; height: 70vh; }
+    .hero-split__text { border-left: none; border-top: 1px solid var(--rule); }
+  }
 
-  /* Content split: tech details left, photo right */
   .content-split {
     display: flex;
     border-top: 1px solid var(--rule);
@@ -184,23 +181,13 @@
     flex: 1;
     overflow: hidden;
     display: flex;
-    background: #0d0d0d;
-    min-height: 450px;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--sans);
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(201,184,150,0.35);
   }
   .content-split__photo {
     width: 100%;
     height: 100%;
     min-height: 450px;
     object-fit: cover;
-    object-position: top;
+    object-position: center;
     display: block;
   }
   .content-split__eyebrow {
@@ -212,12 +199,6 @@
     color: var(--accent);
     margin-bottom: 1.6rem;
   }
-  @media (max-width: 768px) {
-    .content-split { flex-direction: column; }
-    .content-split__left { flex: none; border-right: none; border-bottom: 1px solid var(--rule); }
-    .content-split__right { min-height: 320px; }
-  }
-
   .technical__list { display: flex; flex-direction: column; }
   .tech-item { border-top: 1px solid var(--rule); }
   .tech-item:last-of-type { border-bottom: 1px solid var(--rule); }
@@ -255,23 +236,16 @@
     line-height: 1.7;
     color: var(--ink);
   }
-  .tech-item__body p + p { margin-top: 0.75rem; }
+  @media (max-width: 768px) {
+    .content-split { flex-direction: column; }
+    .content-split__left { flex: none; border-right: none; border-bottom: 1px solid var(--rule); }
+    .content-split__photo { aspect-ratio: 1 / 1; height: auto; min-height: unset; }
+  }
 
-  /* Three Views */
   .views {
     margin-top: 0;
     padding: 0 0 15px;
     background: #000;
-  }
-  .views__eyebrow {
-    font-family: var(--sans);
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.30em;
-    text-transform: uppercase;
-    color: var(--accent);
-    text-align: center;
-    margin-bottom: 2rem;
   }
   .views__grid {
     display: grid;
@@ -281,22 +255,15 @@
     margin: 0 auto;
   }
   .views__item { display: flex; flex-direction: column; gap: 12px; }
-  .views__placeholder {
+  .views__img-wrap {
     width: 100%;
     height: 440px;
-    background: #0d0d0d;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--sans);
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(201,184,150,0.35);
     overflow: hidden;
+    background: #0d0d0d;
   }
-  .views__placeholder img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .views__img-wrap img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;
+  }
   .views__label {
     font-family: var(--sans);
     font-size: 11px;
@@ -306,45 +273,19 @@
     color: var(--accent);
     text-align: center;
   }
-  @media (max-width: 600px) {
-    .views__grid { grid-template-columns: 1fr; }
-  }
-
-  .project-files {
-    background: var(--paper-warm);
-    padding: 28px var(--gutter);
-    border-top: 1px solid var(--rule);
-    text-align: center;
-  }
-  .project-files__label {
+  .views__eyebrow {
     font-family: var(--sans);
     font-size: 10px;
     font-weight: 500;
     letter-spacing: 0.30em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 14px;
+    text-align: center;
+    margin-top: clamp(1.5rem, 3vw, 2.5rem);
   }
-  .project-files__links {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
+  @media (max-width: 600px) {
+    .views__grid { grid-template-columns: 1fr; }
   }
-  .project-files__link {
-    font-family: var(--sans);
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink);
-    text-decoration: none;
-    border: 1px solid var(--rule);
-    padding: 9px 20px;
-    border-radius: 30px;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .project-files__link:hover { border-color: var(--accent); color: var(--accent); }
 
   .inquire {
     background: #fff;
@@ -356,6 +297,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-top: 1px solid var(--rule);
   }
   .inquire__brand {
     font-family: var(--sans);
@@ -393,19 +335,17 @@
 
 <div class="hero-split" id="hero-video">
   <div class="hero-split__video">
-    <video
-      src="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Rings/c0765-hd.mp4"
-      autoplay loop muted playsinline preload="auto"></video>
+    <video src="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1784170364/C0788_HD_moypqh.mp4" autoplay loop muted playsinline preload="auto"></video>
     <div class="hero-video__ref">
-      <div class="hero-video__ref-id">C0765</div>
-      <div class="hero-video__ref-name">1DUET</div>
+      <div class="hero-video__ref-id">C0788</div>
+      <div class="hero-video__ref-name">Dentelle Cushion</div>
     </div>
   </div>
   <div class="hero-split__text">
-    <div class="split-eyebrow">The Ring</div>
-    <h1 class="split-heading">C0765</h1>
-    <div class="split-ref">1DUET</div>
-    <p class="split-copy">A bespoke ring by Bez Ambar — designed and handcrafted in Los Angeles. Each element selected and set to Bez Ambar's exacting atelier standard.</p>
+    <div class="split-eyebrow">The Band</div>
+    <h1 class="split-heading">Dentelle Cushion</h1>
+    <div class="split-ref">C0788</div>
+    <p class="split-copy">Seventeen cushion cuts set stone to stone, the lace prong connecting each one to the next. The band reads as a single continuous piece — not a row of stones, but one unbroken circuit of light. Dentelle. The lace that doesn't fray.</p>
     <a href="tel:+12136299191" class="split-btn">Request a Viewing</a>
   </div>
 </div>
@@ -415,57 +355,48 @@
     <div class="content-split__eyebrow">Technical Details</div>
     <div class="technical__list">
       <details class="tech-item">
-        <summary class="tech-item__head">Gem Stones</summary>
-        <div class="tech-item__body">
-          <p>Details available on request. Contact the atelier for full stone specification.</p>
-        </div>
+        <summary class="tech-item__head">Cushion Diamonds</summary>
+        <div class="tech-item__body"><p>17 cushion-cut diamonds · 0.30ct each · 5.10 carats total · D–F color · VVS1–VVS2 clarity.</p></div>
+      </details>
+      <details class="tech-item">
+        <summary class="tech-item__head">Dentelle Setting</summary>
+        <div class="tech-item__body"><p>Bez Ambar's signature lace-prong construction — decorative arches between each stone connect the band into one continuous lace-like structure. The metal is part of the design.</p></div>
       </details>
       <details class="tech-item">
         <summary class="tech-item__head">Metal</summary>
-        <div class="tech-item__body">
-          <p>18K gold. Available in yellow, white, or rose gold.</p>
-        </div>
+        <div class="tech-item__body"><p>Platinum. Available in 18K white gold, yellow gold, or rose gold on request.</p></div>
       </details>
       <details class="tech-item">
-        <summary class="tech-item__head">Size</summary>
-        <div class="tech-item__body">
-          <p>Available in all sizes. Contact the atelier for sizing consultation.</p>
-        </div>
-      </details>
-      <details class="tech-item">
-        <summary class="tech-item__head">Commission</summary>
-        <div class="tech-item__body">
-          <p>Designed by Bez Ambar, Los Angeles. One-of-a-kind commission. Available by private appointment.</p>
-        </div>
+        <summary class="tech-item__head">More Details</summary>
+        <div class="tech-item__body"><p>Designed and made in Los Angeles. Available by private appointment. Custom sizing and stone weight on request.</p></div>
       </details>
     </div>
   </div>
   <div class="content-split__right">
-    <!-- on-hand photo — send when ready -->
   </div>
 </section>
 
 <section class="views">
   <div class="views__grid">
     <div class="views__item">
-      <div class="views__placeholder">Top View</div>
-      <div class="views__label">Top View</div>
+      <div class="views__img-wrap"></div>
+      <div class="views__label"></div>
     </div>
     <div class="views__item">
-      <div class="views__placeholder">Side View</div>
-      <div class="views__label">Side View</div>
+      <div class="views__img-wrap"></div>
+      <div class="views__label"></div>
     </div>
     <div class="views__item">
-      <div class="views__placeholder">Three-Quarter</div>
-      <div class="views__label">Three-Quarter</div>
+      <div class="views__img-wrap"></div>
+      <div class="views__label"></div>
     </div>
   </div>
-  <div class="views__eyebrow" style="margin-top:clamp(1.5rem,3vw,2.5rem);">Three Views · C0765</div>
+  <div class="views__eyebrow">Three Views · C0788</div>
 </section>
 
 <section class="inquire">
   <div class="inquire__brand">Bez Ambar — Los Angeles</div>
-  <div class="inquire__piece">C0765 · 1DUET</div>
+  <div class="inquire__piece">Dentelle Cushion · C0788</div>
   <div class="inquire__contact">
     <a href="tel:+12136299191">Office 213 · 629 · 9191</a><br>
     <a href="tel:+13232172778">Cell 323 · 217 · 2778</a><br>
