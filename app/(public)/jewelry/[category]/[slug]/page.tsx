@@ -1,14 +1,31 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { draftMode, cookies } from 'next/headers'
+import { unstable_cache } from 'next/cache'
 import { getProductBySlug, getAllProductParams } from '@/lib/queries'
 import { getCategoryLabel } from '@/lib/data/categories'
-import SpecAccordion from '@/components/blocks/SpecAccordion'
-import ProdPill from '@/components/layout/ProdPill'
+import { sql } from '@/lib/db'
+import { TEMPLATES, isValidTemplateId } from './layouts'
+import type { TemplateId } from './layouts'
 import type { SpecItem } from '@/types/blocks'
-import styles from './page.module.css'
+import DraftModeBanner from '@/components/layout/DraftModeBanner'
 
 export const revalidate = 3600
 export const dynamicParams = true
+
+// Active template is cached with a tag so revalidateTag('product-template')
+// busts it instantly when the admin switches templates — no waiting for ISR.
+const getActiveTemplateId = unstable_cache(
+  async (): Promise<TemplateId> => {
+    const [row] = await sql<{ value: string }>(
+      `SELECT value FROM admin_settings WHERE key = 'active_product_template' LIMIT 1`,
+    )
+    const val = row?.value ?? 'default'
+    return isValidTemplateId(val) ? val : 'default'
+  },
+  ['active-product-template'],
+  { tags: ['product-template'] },
+)
 
 export async function generateStaticParams() {
   try { return await getAllProductParams() } catch { return [] }
@@ -68,11 +85,24 @@ export default async function ProductPage({
   const product = await getProductBySlug(slug)
   if (!product) notFound()
 
+  // ── Template resolution ──────────────────────────────────────────────────
+  const { isEnabled: isDraft } = await draftMode()
+  let templateId: TemplateId = await getActiveTemplateId()
+
+  if (isDraft) {
+    // In draft mode: override with whichever template is being previewed
+    const jar = await cookies()
+    const previewId = jar.get('preview_template')?.value ?? ''
+    if (isValidTemplateId(previewId)) templateId = previewId
+  }
+
+  const Layout = TEMPLATES[templateId]?.component ?? TEMPLATES.default.component
+  const templateMeta = TEMPLATES[templateId] ?? TEMPLATES.default
+  // ────────────────────────────────────────────────────────────────────────
+
   const s = product.specs
   const heroVideo  = s.heroVideoUrl  ?? product.media.find((m) => m.type === 'video')?.url
   const heroPoster = s.heroPosterUrl ?? product.media.find((m) => m.type === 'video')?.poster
-
-  // On-hand photo for content split — prefer editorial image, fall back to poster
   const onHandPhoto =
     product.media.find((m) => m.label === 'Editorial' && m.type === 'image')?.url ??
     product.media.find((m) => m.type === 'image')?.url ??
@@ -91,7 +121,6 @@ export default async function ProductPage({
     { label: 'Inquiry',  body: 'Presented privately by appointment. Reference this piece when you inquire.' },
   ].filter((x): x is SpecItem => x !== null)
 
-  // Three Views — use real view URLs from Neon when set, filler otherwise
   const views = [
     { label: 'Front',  url: product.view1Url ?? heroPoster },
     { label: 'Side',   url: product.view2Url ?? heroPoster },
@@ -107,79 +136,24 @@ export default async function ProductPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
       />
 
-      <main data-page="pdp">
-        {/* ── 1. Hero split — 55 / 45 ── */}
-        <section className={styles.heroSplit}>
-          <div className={styles.heroVideo}>
-            {heroVideo ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <video
-                src={heroVideo}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="auto"
-                poster={heroPoster ?? undefined}
-              />
-            ) : heroPoster ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={heroPoster} alt={product.name} />
-            ) : null}
-          </div>
+      {/* Draft mode preview banner — only visible to admins in preview */}
+      {isDraft && (
+        <DraftModeBanner
+          templateName={templateMeta.name}
+          exitUrl="/api/draft/exit"
+        />
+      )}
 
-          <div className={styles.heroText}>
-            <p className={styles.heroEyebrow}>{categoryLabel}</p>
-            <h1 className={styles.heroTitle}>{product.name}</h1>
-            <p className={styles.heroRefLine}>Ref. {product.sku}</p>
-            {(s.lede || s.subtitle) && (
-              <p className={styles.heroCopy}>{s.lede ?? s.subtitle}</p>
-            )}
-          </div>
-        </section>
-
-        {/* ── 2. Content split ── */}
-        <section className={styles.contentSplit}>
-          <div className={styles.contentLeft}>
-            <p className={styles.contentEyebrow}>Technical Details</p>
-            <SpecAccordion
-              block={{ type: 'spec-accordion', title: '', items: specItems }}
-              variant="light"
-            />
-          </div>
-          <div className={styles.contentRight}>
-            {onHandPhoto && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                className={styles.contentPhoto}
-                src={onHandPhoto}
-                alt={`${product.name} · On Hand`}
-                loading="lazy"
-              />
-            )}
-          </div>
-        </section>
-
-        {/* ── 3. Three Views (filler until Neon view columns exist) ── */}
-        <section className={styles.views}>
-          <div className={styles.viewsGrid}>
-            {views.map((v, i) => (
-              <div key={i} className={styles.viewsItem}>
-                <div className={styles.viewsImgWrap}>
-                  {v.url && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img className={styles.viewsImg} src={v.url} alt={v.label} loading="lazy" />
-                  )}
-                </div>
-                <p className={styles.viewsLabel}>{v.label}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ── 4. ProdPill — always visible from load ── */}
-        <ProdPill title={product.name} sku={product.sku} />
-      </main>
+      <Layout
+        product={product}
+        heroVideo={heroVideo}
+        heroPoster={heroPoster}
+        onHandPhoto={onHandPhoto}
+        category={category}
+        categoryLabel={categoryLabel}
+        specItems={specItems}
+        views={views}
+      />
     </>
   )
 }

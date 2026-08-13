@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dentelle. Cushion. — Bez Ambar</title>
 <meta name="description" content="The Dentelle Cushion — Bez Ambar's signature lace-prong eternity band set with cushion-cut diamonds. 17 stones, 5.10 carats total.">
-<link rel="canonical" href="https://galleries.bezambarinc.workers.dev/page/dentelle-cushion">
+<link rel="canonical" href="https://bezito.co/page/dentelle-cushion">
 <meta property="og:title" content="Dentelle. Cushion. — Bez Ambar">
 <meta property="og:description" content="The Dentelle Cushion — Bez Ambar's signature lace-prong eternity band set with cushion-cut diamonds. 17 stones, 5.10 carats total.">
-<meta property="og:url" content="https://galleries.bezambarinc.workers.dev/page/dentelle-cushion">
+<meta property="og:url" content="https://bezito.co/page/dentelle-cushion">
 <meta property="og:image" content="https://res.cloudinary.com/dlg2mou53/video/upload/so_5.0,f_jpg,w_1200,c_fit/v1786586542/C0788_HD_moypqh.jpg">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231a1a1a'/%3E%3Ctext x='16' y='22' font-family='Inter,sans-serif' font-size='18' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
@@ -50,31 +50,101 @@
     font-size: 16px;
     font-weight: 700;
     letter-spacing: 5px;
-    color: #ffffff;
+    color: var(--ink);
     text-transform: uppercase;
     text-decoration: none;
     pointer-events: auto;
     transition: color 0.3s ease;
   }
-  .ba-header.is-scrolled .ba-header__logo { color: var(--ink); }
+  .ba-header.over-dark .ba-header__logo { color: #ffffff; }
 
-  .hero-video {
-    position: relative;
-    width: 100%;
-    height: clamp(380px, 56.25vw, 900px);
-    background: #0d0d0d;
-    overflow: hidden;
+  .hero-split {
+    display: flex;
+    min-height: 40vh;
+    margin-top: 68px;
+    background: var(--paper);
   }
-  .hero-video video {
+  .hero-split__video {
+    flex: 0 0 55%;
+    position: relative;
+    overflow: hidden;
+    background: #0d0d0d;
+  }
+  .hero-split__video video {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    border: 0;
     object-fit: cover;
+    object-position: top;
     pointer-events: none;
   }
-  .hero-video--secondary { height: clamp(320px, 38vw, 600px); }
+  .hero-split__text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(3rem, 5vw, 5rem) clamp(2.5rem, 5vw, 5rem);
+    border-left: 1px solid var(--rule);
+  }
+  .split-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.30em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .split-heading {
+    font-family: var(--sans);
+    font-size: clamp(30px, 3.8vw, 52px);
+    font-weight: 200;
+    letter-spacing: 0.03em;
+    line-height: 1.08;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  .split-ref {
+    font-family: var(--sans);
+    font-size: clamp(22px, 2.2vw, 34px);
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    color: rgba(201,184,150,0.65);
+    margin-bottom: 1.4rem;
+  }
+  .split-copy {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.78;
+    margin-bottom: 2.2rem;
+    max-width: 480px;
+  }
+  .split-copy p + p { margin-top: 1rem; }
+  .split-btn {
+    display: inline-block;
+    align-self: flex-start;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 14px 30px;
+    text-decoration: none;
+    border-radius: 40px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .split-btn:hover { background: var(--ink); color: var(--paper); }
+  @media (max-width: 768px) {
+    .hero-split { flex-direction: column; }
+    .hero-split__video { flex: 0 0 auto; height: 70vh; }
+    .hero-split__text { border-left: none; border-top: 1px solid var(--rule); }
+  }
+
   .hero-video__ref {
     position: absolute;
     bottom: clamp(20px, 3vw, 40px);
@@ -99,107 +169,44 @@
     text-transform: uppercase;
   }
 
-  .hero {
-    padding: clamp(4rem, 8vw, 7rem) var(--gutter);
-    text-align: center;
-    background: var(--paper);
-  }
-  .hero__title {
-    font-family: var(--sans);
-    font-size: clamp(28px, 3vw, 42px);
-    font-weight: 200;
-    letter-spacing: 0.04em;
-    line-height: 1.2;
-    text-transform: uppercase;
-    margin: 0 auto 1.5rem;
-    max-width: 24ch;
-    color: var(--accent);
-  }
-  .hero__lede {
-    font-family: var(--serif);
-    font-size: 18px;
-    line-height: 1.7;
-    color: var(--ink);
-    margin: 0 auto;
-    max-width: 62ch;
-  }
-
-  .story {
-    padding: clamp(3rem, 7vw, 6rem) var(--gutter);
-    background: var(--paper);
+  .content-split {
+    display: flex;
     border-top: 1px solid var(--rule);
-  }
-  .story__inner { max-width: 720px; margin: 0 auto; text-align: center; }
-  .story__title {
-    font-family: var(--sans);
-    font-size: clamp(20px, 2.2vw, 26px);
-    font-weight: 200;
-    letter-spacing: 0.04em;
-    line-height: 1.2;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.5rem;
-  }
-  .story p {
-    font-family: var(--serif);
-    font-size: 15px;
-    color: var(--ink);
-    margin-bottom: 1.1rem;
-    line-height: 1.7;
-    text-align: left;
-  }
-  .story p:last-child { margin-bottom: 0; }
-  .story__rule { width: 36px; height: 1px; background: var(--accent); margin: 0 auto 28px; }
-
-  .guarantee {
-    padding: clamp(3rem, 6vw, 5rem) var(--gutter);
     background: var(--paper-warm);
-    border-top: 1px solid var(--rule);
-    text-align: center;
   }
-  .guarantee__title {
+  .content-split__left {
+    flex: 0 0 55%;
+    padding: clamp(2.5rem, 5vw, 5rem) clamp(2rem, 4vw, 4rem);
+    border-right: 1px solid var(--rule);
+  }
+  .content-split__right {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+  }
+  .content-split__photo {
+    width: 100%;
+    height: 100%;
+    min-height: 450px;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
+  .content-split__eyebrow {
     font-family: var(--sans);
-    font-size: clamp(18px, 2vw, 22px);
-    font-weight: 200;
-    letter-spacing: 0.04em;
-    line-height: 1.3;
-    text-transform: uppercase;
-    color: var(--ink);
-    max-width: 32ch;
-    margin: 0 auto 1rem;
-  }
-  .guarantee__body {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 15px;
-    color: var(--ink-soft);
-    max-width: 46ch;
-    margin: 0 auto;
-  }
-
-  .technical {
-    background: var(--paper-warm);
-    padding: clamp(4rem, 8vw, 7rem) var(--gutter);
-    border-top: 1px solid var(--rule);
-  }
-  .technical__inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(3rem, 6vw, 6rem);
-    align-items: start;
-  }
-  .technical__title {
-    font-family: var(--sans);
-    font-size: clamp(22px, 2.4vw, 32px);
-    font-weight: 200;
-    letter-spacing: 0.06em;
-    line-height: 1.2;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.30em;
     text-transform: uppercase;
     color: var(--accent);
-    margin: 0;
+    margin-bottom: 1.6rem;
   }
+  @media (max-width: 768px) {
+    .content-split { flex-direction: column; }
+    .content-split__left { flex: none; border-right: none; border-bottom: 1px solid var(--rule); }
+    .content-split__photo { aspect-ratio: 1 / 1; height: auto; }
+  }
+
   .technical__list { display: flex; flex-direction: column; }
   .tech-item { border-top: 1px solid var(--rule); }
   .tech-item:last-of-type { border-bottom: 1px solid var(--rule); }
@@ -220,10 +227,8 @@
   .tech-item__head::after {
     content: '';
     position: absolute;
-    right: 8px;
-    top: 50%;
-    width: 8px;
-    height: 8px;
+    right: 8px; top: 50%;
+    width: 8px; height: 8px;
     border-right: 1px solid var(--accent);
     border-bottom: 1px solid var(--accent);
     transform: translate(0, -70%) rotate(45deg);
@@ -238,13 +243,90 @@
     color: var(--ink);
   }
   .tech-item__body p + p { margin-top: 0.75rem; }
-  @media (max-width: 768px) {
-    .technical__inner { grid-template-columns: 1fr; gap: 2rem; }
+
+  .views {
+    margin-top: 0;
+    padding: 0 0 15px;
+    background: #000;
   }
+  .views__eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.30em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .views__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .views__item { display: flex; flex-direction: column; gap: 12px; }
+  .views__placeholder {
+    width: 100%;
+    height: 440px;
+    background: #0d0d0d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .views__placeholder img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .views__label {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-align: center;
+  }
+  @media (max-width: 600px) { .views__grid { grid-template-columns: 1fr; } }
+
+  .project-files {
+    background: var(--paper-warm);
+    padding: 28px var(--gutter);
+    border-top: 1px solid var(--rule);
+    text-align: center;
+  }
+  .project-files__label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.30em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .project-files__links {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .project-files__link {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border: 1px solid var(--rule);
+    padding: 9px 20px;
+    border-radius: 30px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .project-files__link:hover { border-color: var(--accent); color: var(--accent); }
 
   .inquire {
-    background: #1a1a1a;
-    color: #f4efe5;
+    background: #fff;
+    color: var(--ink);
     height: 200px;
     padding: 0 var(--gutter);
     text-align: center;
@@ -252,33 +334,34 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-top: 1px solid var(--rule);
   }
   .inquire__brand {
     font-family: var(--sans);
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.32em;
+    font-size: 11px;
+    font-weight: 200;
+    letter-spacing: 0.38em;
     text-transform: uppercase;
-    color: #ffffff;
-    margin-bottom: 6px;
+    color: var(--ink);
+    margin-bottom: 8px;
   }
   .inquire__piece {
     font-family: var(--sans);
-    font-size: 11px;
-    font-weight: 300;
-    letter-spacing: 0.22em;
+    font-size: 10px;
+    font-weight: 200;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: #c9b896;
-    margin-bottom: 14px;
+    color: var(--accent);
+    margin-bottom: 18px;
   }
   .inquire__contact {
     font-family: var(--serif);
     font-size: 14px;
-    color: #f4efe5;
+    color: var(--ink);
     line-height: 1.55;
   }
-  .inquire__contact a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.25); }
-  .inquire__contact a:hover { border-bottom-color: #c9b896; }
+  .inquire__contact a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(0,0,0,.15); }
+  .inquire__contact a:hover { border-bottom-color: var(--accent); }
 </style>
 </head>
 <body>
@@ -287,35 +370,31 @@
   <span class="ba-header__logo">BEZ AMBAR</span>
 </header>
 
-<div class="hero-video" id="hero-video">
-  <video
-    src="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1786586542/C0788_HD_moypqh.mp4"
-    autoplay loop muted playsinline preload="auto"></video>
-  <div class="hero-video__ref">
-    <div class="hero-video__ref-id">Dentelle. Cushion.</div>
-    <div class="hero-video__ref-name">C0788</div>
+<div class="hero-split" id="hero-video">
+  <div class="hero-split__video">
+    <video
+      src="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1786586542/C0788_HD_moypqh.mp4"
+      autoplay loop muted playsinline preload="auto"></video>
+    <div class="hero-video__ref">
+      <div class="hero-video__ref-id">C0788</div>
+      <div class="hero-video__ref-name">Dentelle. Cushion.</div>
+    </div>
+  </div>
+  <div class="hero-split__text">
+    <div class="split-eyebrow">The Band</div>
+    <h1 class="split-heading">Dentelle<br>Cushion</h1>
+    <div class="split-ref">C0788</div>
+    <div class="split-copy">
+      <p>The cushion cut is the oldest modern cut form still in regular use — a square silhouette with softened corners that has been refined over two centuries into a shape that holds fire and warmth in equal measure. Its rounded corners make it the most forgiving of all square cuts to set in sequence: the arcs between stones leave room for the Dentelle prong arch to breathe, creating a rhythm of soft geometry that runs around the full band.</p>
+      <p>In the Dentelle, the prongs between each stone are shaped into decorative arches — so the metal becomes part of the design, not infrastructure hidden beneath it. Seventeen cushions set stone-to-stone, the lace prong connecting each one to the next. The band reads as a single continuous piece, not a row of individual stones.</p>
+    </div>
+    <a href="tel:+12136299191" class="split-btn">Request a Viewing</a>
   </div>
 </div>
 
-
-<section class="story">
-  <div class="story__inner">
-    <h2 class="story__title">The Cushion in Lace</h2>
-    <div class="story__rule"></div>
-    <p>The cushion cut is the oldest modern cut form still in regular use — a square silhouette with softened corners that has been refined over two centuries into a shape that holds fire and warmth in equal measure. Its rounded corners make it the most forgiving of all square cuts to set in sequence: the arcs between stones leave room for the Dentelle prong arch to breathe, creating a rhythm of soft geometry that runs around the full band.</p>
-    <p>In the Dentelle, the prongs between each stone are shaped into decorative arches — so the metal becomes part of the design, not infrastructure hidden beneath it. Seventeen cushions set stone-to-stone, the lace prong connecting each one to the next. The band reads as a single continuous piece, not a row of individual stones.</p>
-  </div>
-</section>
-
-<div class="hero-video hero-video--secondary">
-  <video
-    src="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1786586542/C0788_HD_moypqh.mp4"
-    autoplay loop muted playsinline preload="auto"></video>
-</div>
-
-<section class="technical">
-  <div class="technical__inner">
-    <h2 class="technical__title">Technical Details</h2>
+<section class="content-split">
+  <div class="content-split__left">
+    <div class="content-split__eyebrow">Technical Details</div>
     <div class="technical__list">
       <details class="tech-item">
         <summary class="tech-item__head">Stones</summary>
@@ -336,12 +415,43 @@
         </div>
       </details>
       <details class="tech-item">
-        <summary class="tech-item__head">More Details</summary>
+        <summary class="tech-item__head">Commission</summary>
         <div class="tech-item__body">
           <p>Designed and made in Los Angeles. Available by private appointment. Custom sizing and stone weight on request. Each band inspected stone by stone before delivery.</p>
         </div>
       </details>
     </div>
+  </div>
+  <div class="content-split__right">
+    <img class="content-split__photo"
+      src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1786588044/Jewelry%20Images/Rings/dentelle-cushion-model.avif"
+      alt="Dentelle. Cushion. · C0788 · Model">
+  </div>
+</section>
+
+<section class="views">
+  <div class="views__grid">
+    <div class="views__item">
+      <div class="views__placeholder"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1786587208/Jewelry%20Images/Rings/dentelle-cushion-top.avif" alt="Top View"></div>
+      <div class="views__label">Top View</div>
+    </div>
+    <div class="views__item">
+      <div class="views__placeholder"></div>
+      <div class="views__label"></div>
+    </div>
+    <div class="views__item">
+      <div class="views__placeholder"><img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1786587093/Jewelry%20Images/Rings/dentelle-cushion-sketch.jpg" alt="Sketch"></div>
+      <div class="views__label">Sketch</div>
+    </div>
+  </div>
+  <div class="views__eyebrow" style="margin-top:clamp(1.5rem,3vw,2.5rem);">Three Views · Dentelle Cushion · C0788</div>
+</section>
+
+<section class="project-files">
+  <div class="project-files__label">Project Files</div>
+  <div class="project-files__links">
+    <a href="https://www.dropbox.com/scl/fi/b1eofvfcshl6u35ctrmxg/C0788-Dentelle-Cushion-Band-Master.psd?rlkey=52aq32m69n26tevy0ks8vnzrz&dl=0" class="project-files__link" target="_blank" rel="noopener">Photoshop · C0788.psd</a>
+    <a href="https://www.dropbox.com/scl/fi/mpk29f2ptyaxle91ih8mc/C0788-Dentelle-Cushion.aep?rlkey=s9pytgopcsnqfeom5asbbxmmo&dl=0" class="project-files__link" target="_blank" rel="noopener">After Effects · C0788.aep</a>
   </div>
 </section>
 
@@ -360,7 +470,9 @@
   const header = document.getElementById('ba-header');
   const hero   = document.getElementById('hero-video');
   function tick() {
-    header.classList.toggle('is-scrolled', hero.getBoundingClientRect().bottom < 60);
+    const rect = hero.getBoundingClientRect();
+    const overDark = rect.top <= 0 && rect.bottom > 60;
+    header.classList.toggle('over-dark', overDark);
   }
   window.addEventListener('scroll', tick, { passive: true });
   tick();
