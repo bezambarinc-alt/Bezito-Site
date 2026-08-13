@@ -37,6 +37,11 @@ function logView(req: NextRequest): void {
 export async function proxy(req: NextRequest) {
   const path = req.nextUrl.pathname
 
+  // Never gate the login page or the tracking endpoint (prevents redirect loop)
+  if (path === '/admin/login' || path.startsWith('/api/')) {
+    return NextResponse.next()
+  }
+
   // ── Public traffic: log the view, assign a session cookie, pass through ──────
   if (!path.startsWith('/admin')) {
     logView(req)
@@ -79,7 +84,8 @@ export async function proxy(req: NextRequest) {
 }
 
 export const config = {
-  // Run on everything EXCEPT static assets, api, image optimizer.
+  // Run on everything EXCEPT api routes, admin login, static assets, image optimizer.
   // Admin auth + public view-logging are branched inside proxy().
-  matcher: ['/((?!_next/static|_next/image|favicon.ico|.*\\.[a-z0-9]+$).*)'],
+  // Excluding /api and /admin/login here is belt-and-suspenders with the guard above.
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|admin/login|.*\\.[a-z0-9]+$).*)'],
 }
