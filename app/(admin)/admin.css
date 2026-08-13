@@ -1,27 +1,27 @@
 /* ================================================
-   Admin — completely isolated from the public site
-   Clean dark tool UI (Sanity / Vercel / Linear feel)
+   Admin — matches public site light palette
+   Warm off-white, ink, brand gold
    ================================================ */
 
 .ba-admin-root {
   --font: var(--font-inter), 'Inter', system-ui, -apple-system, sans-serif;
 
-  /* Palette */
-  --bg:          #0f0f0f;
-  --surface:     #171717;
-  --surface-2:   #1f1f1f;
-  --border:      rgba(255, 255, 255, 0.08);
-  --border-warm: rgba(255, 255, 255, 0.12);
+  /* Palette — mirrors globals.css public tokens */
+  --bg:          #ffffff;
+  --surface:     #faf7f2;   /* --ba-paper */
+  --surface-2:   #f7f5f2;   /* --ba-light-bg */
+  --border:      rgba(0, 0, 0, 0.08);   /* --ba-border */
+  --border-warm: #e8e4de;               /* --ba-border-warm */
 
-  --ink:         #e8e8e8;
-  --ink-muted:   #888;
-  --ink-faint:   #555;
+  --ink:         #1a1a1a;   /* --ba-ink */
+  --ink-muted:   #888888;   /* --ba-ink-muted */
+  --ink-faint:   #4a4a4a;   /* --ba-ink-soft */
 
-  --accent:      #c9a96e;   /* warm gold — only for active states */
-  --accent-dim:  rgba(201, 169, 110, 0.12);
+  --accent:      #95826b;   /* --ba-gold */
+  --accent-dim:  rgba(149, 130, 107, 0.10);
 
-  --danger:      #e05252;
-  --success:     #4caf7d;
+  --danger:      #c0392b;
+  --success:     #2e7d52;
 
   font-family:    var(--font);
   background:     var(--bg);
@@ -36,8 +36,8 @@
 /* Scrollbar */
 .ba-admin-root ::-webkit-scrollbar { width: 6px; height: 6px; }
 .ba-admin-root ::-webkit-scrollbar-track { background: transparent; }
-.ba-admin-root ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
-.ba-admin-root ::-webkit-scrollbar-thumb:hover { background: #444; }
+.ba-admin-root ::-webkit-scrollbar-thumb { background: #d0ccc6; border-radius: 3px; }
+.ba-admin-root ::-webkit-scrollbar-thumb:hover { background: #b8b3ad; }
 
 /* Focus ring */
 .ba-admin-root :focus-visible {
