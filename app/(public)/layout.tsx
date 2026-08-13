@@ -5,7 +5,6 @@ import NavMenuData from '@/components/layout/NavMenuData'
 import InquiryDrawer from '@/components/layout/InquiryDrawer'
 import ConciergeDrawer from '@/components/layout/ConciergeDrawer'
 import SearchOverlay from '@/components/layout/SearchOverlay'
-import FreshchatScript from '@/components/layout/FreshchatScript'
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -52,7 +51,6 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         <ConciergeDrawer />
         <SearchOverlay />
       </DrawerProvider>
-      <FreshchatScript />
     </>
   )
 }
