@@ -3,7 +3,54 @@ import { jwtVerify } from 'jose'
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET!)
 
+// Paths we never log (assets, api, admin, internal)
+const SKIP = /^\/(_next|api|admin|favicon|robots|sitemap|llms|.*\.[a-z0-9]+$)/i
+
+// Fire-and-forget page-view log → /api/track (Node runtime does the Neon insert).
+// Edge can't use pg, so proxy just relays the request context.
+function logView(req: NextRequest): void {
+  const path = req.nextUrl.pathname
+  if (SKIP.test(path)) return
+  const p = req.nextUrl.searchParams
+  const body = JSON.stringify({
+    path,
+    referer: req.headers.get('referer') || '',
+    ua: req.headers.get('user-agent') || '',
+    ip: req.headers.get('x-forwarded-for')?.split(',')[0].trim()
+        || req.headers.get('x-real-ip') || 'unknown',
+    city:    req.headers.get('x-vercel-ip-city') || '',
+    region:  req.headers.get('x-vercel-ip-country-region') || '',
+    country: req.headers.get('x-vercel-ip-country') || '',
+    utm_source:   p.get('utm_source') || undefined,
+    utm_medium:   p.get('utm_medium') || undefined,
+    utm_campaign: p.get('utm_campaign') || undefined,
+    session_id: req.cookies.get('ba_sid')?.value || undefined,
+  })
+  // No await — must never delay the response
+  fetch(new URL('/api/track', req.url), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'x-track-secret': process.env.TRACK_SECRET || '' },
+    body,
+  }).catch(() => {})
+}
+
 export async function proxy(req: NextRequest) {
+  const path = req.nextUrl.pathname
+
+  // ── Public traffic: log the view, assign a session cookie, pass through ──────
+  if (!path.startsWith('/admin')) {
+    logView(req)
+    const res = NextResponse.next()
+    if (!req.cookies.get('ba_sid')) {
+      res.cookies.set('ba_sid', crypto.randomUUID(), {
+        httpOnly: true, secure: true, sameSite: 'lax',
+        path: '/', maxAge: 60 * 30, // 30-min session window
+      })
+    }
+    return res
+  }
+
+  // ── Admin: auth gate (unchanged) ────────────────────────────────────────────
   const token = req.cookies.get('session')?.value
   // Validate redirect target — relative paths only, no open redirect
   function safeFrom(raw: string): string {
@@ -32,6 +79,7 @@ export async function proxy(req: NextRequest) {
 }
 
 export const config = {
-  // Match /admin/* but exclude /admin/login (would cause infinite redirect)
-  matcher: ['/admin/((?!login).*)'],
+  // Run on everything EXCEPT static assets, api, image optimizer.
+  // Admin auth + public view-logging are branched inside proxy().
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|.*\\.[a-z0-9]+$).*)'],
 }

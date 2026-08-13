@@ -6,6 +6,7 @@ import styles from './layout.module.css'
 
 const NAV = [
   { href: '/admin',             label: 'Overview'     },
+  { href: '/admin/analytics',   label: 'Analytics'    },
   { href: '/admin/products',    label: 'Products'     },
   { href: '/admin/leads',       label: 'Leads'        },
   { href: '/admin/generations', label: 'Generations'  },
