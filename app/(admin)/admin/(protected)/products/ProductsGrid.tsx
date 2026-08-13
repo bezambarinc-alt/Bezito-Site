@@ -48,20 +48,34 @@ export default function ProductsGrid({ products }: { products: AdminProduct[] })
   )
   const [expanded, setExpanded]   = useState<string | null>(null)
   const [editViews, setEditViews] = useState<Record<string, { v1: string; v2: string; v3: string }>>({})
-  const [search,  setSearch]      = useState('')
+  const [search,    setSearch]    = useState('')
   const [catFilter, setCatFilter] = useState('all')
+  const [pageSize,  setPageSize]  = useState<number | 'all'>(25)
+  const [page,      setPage]      = useState(1)
+  const [density,   setDensity]   = useState<'compact' | 'comfortable'>('comfortable')
 
   const categories = useMemo(() => {
     const s = new Set(products.map((p) => p.category ?? 'uncategorized'))
     return ['all', ...Array.from(s).sort()]
   }, [products])
 
-  const filtered = useMemo(() => products.filter((p) => {
-    const cat = catFilter === 'all' || (p.category ?? 'uncategorized') === catFilter
-    const q = search.toLowerCase()
-    const match = !q || p.name.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q)
-    return cat && match
-  }), [products, catFilter, search])
+  const filtered = useMemo(() => {
+    const result = products.filter((p) => {
+      const cat = catFilter === 'all' || (p.category ?? 'uncategorized') === catFilter
+      const q = search.toLowerCase()
+      const match = !q || p.name.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q)
+      return cat && match
+    })
+    return result
+  }, [products, catFilter, search])
+
+  const totalPages = pageSize === 'all' ? 1 : Math.ceil(filtered.length / pageSize)
+  const paged = pageSize === 'all' ? filtered : filtered.slice((page - 1) * pageSize, page * pageSize)
+
+  // reset to page 1 when filter/pageSize changes
+  const handleSearch = (v: string) => { setSearch(v); setPage(1) }
+  const handleCat   = (v: string) => { setCatFilter(v); setPage(1) }
+  const handleSize  = (v: string) => { setPageSize(v === 'all' ? 'all' : Number(v)); setPage(1) }
 
   async function patch(slug: string, body: Partial<RowState>) {
     const res = await fetch(`/api/admin/products/${encodeURIComponent(slug)}`, {
@@ -96,7 +110,7 @@ export default function ProductsGrid({ products }: { products: AdminProduct[] })
         <select
           className={styles.select}
           value={catFilter}
-          onChange={(e) => setCatFilter(e.target.value)}
+          onChange={(e) => handleCat(e.target.value)}
         >
           {categories.map((c) => <option key={c} value={c}>{c === 'all' ? 'All categories' : c}</option>)}
         </select>
@@ -104,12 +118,34 @@ export default function ProductsGrid({ products }: { products: AdminProduct[] })
           className={styles.search}
           placeholder="Search name or SKU…"
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => handleSearch(e.target.value)}
         />
         <span className={styles.count}>{filtered.length} products</span>
+
+        {/* Per-page selector */}
+        <select
+          className={styles.select}
+          value={String(pageSize)}
+          onChange={(e) => handleSize(e.target.value)}
+          aria-label="Rows per page"
+        >
+          <option value="10">10 / page</option>
+          <option value="25">25 / page</option>
+          <option value="50">50 / page</option>
+          <option value="all">All</option>
+        </select>
+
+        {/* Density toggle */}
+        <button
+          className={`${styles.densityBtn} ${density === 'comfortable' ? styles.densityActive : ''}`}
+          onClick={() => setDensity(density === 'compact' ? 'comfortable' : 'compact')}
+          title={density === 'compact' ? 'Switch to comfortable rows' : 'Switch to compact rows'}
+        >
+          {density === 'compact' ? '⊟' : '⊞'}
+        </button>
       </div>
 
-      <table className={styles.table}>
+      <table className={`${styles.table} ${density === 'compact' ? styles.compact : ''}`}>
         <thead>
           <tr>
             <th className={styles.th} style={{ width: 72 }} />
@@ -123,7 +159,7 @@ export default function ProductsGrid({ products }: { products: AdminProduct[] })
           </tr>
         </thead>
         <tbody>
-          {filtered.map((p) => {
+          {paged.map((p) => {
             const row  = rows[p.slug] ?? {}
             const thumb = cloudinaryThumb(p.hero_visual)
             const viewCount = [row.view_1_url, row.view_2_url, row.view_3_url].filter(Boolean).length
@@ -237,6 +273,33 @@ export default function ProductsGrid({ products }: { products: AdminProduct[] })
           })}
         </tbody>
       </table>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className={styles.pagination}>
+          <button
+            className={styles.pageBtn}
+            onClick={() => setPage(1)}
+            disabled={page === 1}
+          >«</button>
+          <button
+            className={styles.pageBtn}
+            onClick={() => setPage(p => Math.max(1, p - 1))}
+            disabled={page === 1}
+          >‹</button>
+          <span className={styles.pageInfo}>{page} / {totalPages}</span>
+          <button
+            className={styles.pageBtn}
+            onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+            disabled={page === totalPages}
+          >›</button>
+          <button
+            className={styles.pageBtn}
+            onClick={() => setPage(totalPages)}
+            disabled={page === totalPages}
+          >»</button>
+        </div>
+      )}
     </div>
   )
 }
