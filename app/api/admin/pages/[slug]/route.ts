@@ -13,6 +13,8 @@ const patchSchema = z.object({
   status:      z.enum(['draft', 'live', 'archived']).optional(),
   // null clears the per-page override and falls back to the scope's global default
   template_id: z.string().refine(v => v in TEMPLATES, 'Invalid template ID').nullable().optional(),
+  // shared=true → anyone with the link can view (Google-Drive-style). Proposal-only; no effect on showcases.
+  shared: z.boolean().optional(),
 })
 
 export async function PATCH(req: NextRequest, { params }: Ctx) {
@@ -30,7 +32,7 @@ export async function PATCH(req: NextRequest, { params }: Ctx) {
   const values: unknown[] = []
   let i = 1
 
-  const { client_id, doc_type, status, template_id } = parsed.data
+  const { client_id, doc_type, status, template_id, shared } = parsed.data
 
   // Scope validation — reject templates that don't belong to this page's doc_type.
   // Uses the incoming doc_type when changing both at once; otherwise reads from DB.
@@ -58,6 +60,7 @@ export async function PATCH(req: NextRequest, { params }: Ctx) {
   if (doc_type    !== undefined) { updates.push(`doc_type    = $${i++}`); values.push(doc_type) }
   if (status      !== undefined) { updates.push(`status      = $${i++}`); values.push(status) }
   if (template_id !== undefined) { updates.push(`template_id = $${i++}`); values.push(template_id) }
+  if (shared      !== undefined) { updates.push(`shared      = $${i++}`); values.push(shared) }
 
   if (updates.length === 1) {
     return NextResponse.json({ error: 'No fields to update' }, { status: 400 })

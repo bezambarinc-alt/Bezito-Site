@@ -8,6 +8,7 @@ interface ClientPage {
   title: string
   doc_type: 'showcase' | 'proposal'
   status: string
+  shared: boolean
   client_id: number | null
   client_name: string | null
   client_slug: string | null
@@ -149,7 +150,7 @@ export default function PagesClient({ pages: initial, clients, templatesByScope 
             <th className="admin-th">Template</th>
             <th className="admin-th">Status</th>
             <th className="admin-th">Assigned to</th>
-            <th className="admin-th">PIN</th>
+            <th className="admin-th">Access</th>
             <th className="admin-th">Updated</th>
             <th className="admin-th" />
           </tr>
@@ -230,12 +231,25 @@ export default function PagesClient({ pages: initial, clients, templatesByScope 
                   </select>
                 </td>
 
-                {/* PIN status */}
+                {/* Access: shared toggle for proposals, PIN for showcases */}
                 <td className="admin-td">
-                  {pinActive
-                    ? <span className={styles.pinOn}>{p.customer_pin}</span>
-                    : <span className={styles.pinOff}>—</span>
-                  }
+                  {p.doc_type === 'proposal' ? (
+                    <button
+                      className={p.shared ? styles.pinOn : styles.pinOff}
+                      onClick={() => patch(p.slug, { shared: !p.shared })}
+                      disabled={busy}
+                      title={p.shared
+                        ? 'Anyone with the link can view — click to make private'
+                        : 'Portal login required — click to share with anyone'
+                      }
+                    >
+                      {p.shared ? '🌐 Shared' : '🔒 Private'}
+                    </button>
+                  ) : (
+                    pinActive
+                      ? <span className={styles.pinOn}>{p.customer_pin}</span>
+                      : <span className={styles.pinOff}>—</span>
+                  )}
                 </td>
 
                 {/* Updated */}

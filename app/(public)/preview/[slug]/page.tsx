@@ -1,4 +1,5 @@
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
+import { getClientSession } from '@/lib/client-auth'
 import { cookies } from 'next/headers'
 import { sql } from '@/lib/db'
 import { jwtVerify } from 'jose'
@@ -19,27 +20,31 @@ export default async function PreviewPage({ params, searchParams }: Ctx) {
   const sp = searchParams ? await searchParams : {}
   const tplParam = sp?.tpl ?? null  // admin preview override
 
-  // Admin bypass: if ?tpl=xxx is present + valid admin session cookie, skip PIN
   const jar = await cookies()
-  let isAdminPreview = false
-  if (tplParam) {
-    const adminToken = jar.get('session')?.value
-    if (adminToken) {
-      try {
-        const { payload } = await jwtVerify(adminToken, JWT_SECRET)
-        isAdminPreview = !!payload.sub
-      } catch { /* invalid session — not admin */ }
-    }
-  }
 
-  // Fetch page — supports both showcase (PIN-gated) and proposal (direct link, no PIN)
+  // Check admin session independently — used for proposal gate bypass AND template preview bypass.
+  // isAdminPreview also requires ?tpl= (template preview mode).
+  // isAdmin alone is enough to bypass the proposal client gate.
+  const adminToken = jar.get('session')?.value
+  let isAdmin = false
+  if (adminToken) {
+    try {
+      const { payload } = await jwtVerify(adminToken, JWT_SECRET)
+      isAdmin = !!payload.sub
+    } catch { /* invalid session */ }
+  }
+  const isAdminPreview = isAdmin && tplParam !== null
+
+  // Fetch page — supports showcase (PIN-gated) and proposal (client-gated or shared)
   const [page] = await sql<{
     slug: string; title: string; status: string; doc_type: string;
+    client_id: number | null;
+    shared: boolean;
     customer_pin: string | null; pin_expires_at: string | null;
     template_id: string | null; tenant: string; blocks: unknown;
   }>(
-    `SELECT slug, title, status, doc_type, customer_pin, pin_expires_at,
-            template_id, tenant, blocks
+    `SELECT slug, title, status, doc_type, client_id, shared,
+            customer_pin, pin_expires_at, template_id, tenant, blocks
      FROM pages
      WHERE slug = $1 AND doc_type IN ('showcase','proposal') AND status = 'live'
      LIMIT 1`,
@@ -48,7 +53,25 @@ export default async function PreviewPage({ params, searchParams }: Ctx) {
 
   if (!page) notFound()
 
-  // PIN check (skip for admin preview)
+  // Proposal access gate—
+  // Default: portal auth required (only the assigned client can open it).
+  // When shared=true: anyone with the link (Bez flipped the Google-Drive-style toggle).
+  // Admins (Bez/Kevin) always bypass.
+  if (page.doc_type === 'proposal' && !isAdmin) {
+    if (!page.shared) {
+      const clientSession = await getClientSession()
+      const authorized =
+        clientSession &&
+        (page.client_id === null || clientSession.clientId === page.client_id)
+      if (!authorized) {
+        // Not logged in as the assigned client — send to portal login
+        redirect(`/portal/login`)
+      }
+    }
+    // page.shared === true → publicly accessible, fall through
+  }
+
+  // PIN check for showcases (skip for admin preview)
   if (!isAdminPreview) {
     const requiresPin =
       page.customer_pin !== null &&

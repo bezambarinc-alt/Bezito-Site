@@ -24,11 +24,12 @@ export default async function AdminPagesPage() {
   const [pages, clients] = await Promise.all([
     sql<{
       slug: string; title: string; doc_type: string; status: string;
+      shared: boolean;
       client_id: number | null; client_name: string | null; client_slug: string | null;
       customer_pin: string | null; pin_expires_at: string | null;
       template_id: string | null; updated_at: string;
     }>(
-      `SELECT p.slug, p.title, p.doc_type, p.status,
+      `SELECT p.slug, p.title, p.doc_type, p.status, p.shared,
               p.client_id, p.customer_pin, p.pin_expires_at,
               p.template_id, p.updated_at,
               c.name AS client_name, c.slug AS client_slug
