@@ -3,7 +3,7 @@ import { z } from 'zod'
 import { sql } from '@/lib/db'
 import { getSession } from '@/lib/auth'
 import { audit } from '@/lib/audit'
-import { TEMPLATES } from '@/app/(public)/jewelry/[category]/[slug]/layouts'
+import { TEMPLATES, type TemplateScope } from '@/app/(public)/jewelry/[category]/[slug]/layouts'
 
 type Ctx = { params: Promise<{ slug: string }> }
 
@@ -11,7 +11,8 @@ const patchSchema = z.object({
   client_id:   z.number().nullable().optional(),
   doc_type:    z.enum(['showcase', 'proposal']).optional(),
   status:      z.enum(['draft', 'live', 'archived']).optional(),
-  template_id: z.string().refine(v => v in TEMPLATES, 'Invalid template ID').optional(),
+  // null clears the per-page override and falls back to the scope's global default
+  template_id: z.string().refine(v => v in TEMPLATES, 'Invalid template ID').nullable().optional(),
 })
 
 export async function PATCH(req: NextRequest, { params }: Ctx) {
@@ -30,6 +31,29 @@ export async function PATCH(req: NextRequest, { params }: Ctx) {
   let i = 1
 
   const { client_id, doc_type, status, template_id } = parsed.data
+
+  // Scope validation — reject templates that don't belong to this page's doc_type.
+  // Uses the incoming doc_type when changing both at once; otherwise reads from DB.
+  if (template_id !== null && template_id !== undefined) {
+    let targetDocType: string | undefined = doc_type
+    if (!targetDocType) {
+      const [pageRow] = await sql<{ doc_type: string }>(
+        `SELECT doc_type FROM pages WHERE slug = $1 LIMIT 1`,
+        [slug],
+      )
+      targetDocType = pageRow?.doc_type
+    }
+    const scopeMap: Record<string, TemplateScope> = { proposal: 'proposal', showcase: 'showcase' }
+    const requiredScope = scopeMap[targetDocType ?? '']
+    const template = TEMPLATES[template_id]
+    if (!template || !requiredScope || !template.scope.includes(requiredScope)) {
+      return NextResponse.json(
+        { error: `Template "${template_id}" is not valid for ${targetDocType ?? 'this'} pages` },
+        { status: 400 },
+      )
+    }
+  }
+
   if (client_id   !== undefined) { updates.push(`client_id   = $${i++}`); values.push(client_id) }
   if (doc_type    !== undefined) { updates.push(`doc_type    = $${i++}`); values.push(doc_type) }
   if (status      !== undefined) { updates.push(`status      = $${i++}`); values.push(status) }

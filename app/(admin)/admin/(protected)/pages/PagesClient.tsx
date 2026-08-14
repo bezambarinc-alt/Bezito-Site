@@ -28,13 +28,19 @@ interface TemplateOption {
   name: string
 }
 
+/** Scoped template lists — each doc_type only sees templates valid for that scope. */
+interface TemplatesByScope {
+  proposal: TemplateOption[]
+  showcase: TemplateOption[]
+}
+
 interface Props {
   pages: ClientPage[]
   clients: Client[]
-  templateIds: TemplateOption[]
+  templatesByScope: TemplatesByScope
 }
 
-export default function PagesClient({ pages: initial, clients, templateIds }: Props) {
+export default function PagesClient({ pages: initial, clients, templatesByScope }: Props) {
   const [pages, setPages]     = useState(initial)
   const [search, setSearch]   = useState('')
   const [typeFilter, setType] = useState<'all' | 'showcase' | 'proposal'>('all')
@@ -58,7 +64,7 @@ export default function PagesClient({ pages: initial, clients, templateIds }: Pr
     return true
   }), [pages, search, typeFilter, clientFilter, deleted])
 
-  async function patchTemplate(slug: string, templateId: string) {
+  async function patchTemplate(slug: string, templateId: string | null) {
     setSaving(s => ({ ...s, [slug]: true }))
     try {
       await fetch(`/api/admin/pages/${slug}`, {
@@ -180,19 +186,24 @@ export default function PagesClient({ pages: initial, clients, templateIds }: Pr
                   </select>
                 </td>
 
-                {/* Template */}
+                {/* Template — filtered to only show layouts valid for this page's doc_type */}
                 <td className="admin-td">
-                  <select
-                    className={styles.typeSelect}
-                    value={p.template_id ?? 'default'}
-                    disabled={busy || p.doc_type === 'proposal'}
-                    title={p.doc_type === 'proposal' ? 'Proposals use a fixed layout' : undefined}
-                    onChange={e => patchTemplate(p.slug, e.target.value)}
-                  >
-                    {templateIds.map(t => (
-                      <option key={t.id} value={t.id}>{t.name}</option>
-                    ))}
-                  </select>
+                  {(() => {
+                    const scopedTpls = templatesByScope[p.doc_type as 'proposal' | 'showcase'] ?? []
+                    return (
+                      <select
+                        className={styles.typeSelect}
+                        value={p.template_id ?? ''}
+                        disabled={busy}
+                        onChange={e => patchTemplate(p.slug, e.target.value || null)}
+                      >
+                        <option value="">— scope default —</option>
+                        {scopedTpls.map(t => (
+                          <option key={t.id} value={t.id}>{t.name}</option>
+                        ))}
+                      </select>
+                    )
+                  })()}
                 </td>
 
                 {/* Status */}

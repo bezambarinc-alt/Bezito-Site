@@ -11,7 +11,15 @@ export default async function AdminPagesPage() {
   const session = await getSession()
   if (!session) redirect('/admin/login')
 
-  const templateIds = Object.entries(TEMPLATES).map(([id, t]) => ({ id, name: t.name }))
+  // Build per-scope template lists — each doc_type only sees its valid templates
+  const templatesByScope = {
+    proposal: Object.entries(TEMPLATES)
+      .filter(([, t]) => t.scope.includes('proposal'))
+      .map(([id, t]) => ({ id, name: t.name })),
+    showcase: Object.entries(TEMPLATES)
+      .filter(([, t]) => t.scope.includes('showcase'))
+      .map(([id, t]) => ({ id, name: t.name })),
+  }
 
   const [pages, clients] = await Promise.all([
     sql<{
@@ -38,7 +46,7 @@ export default async function AdminPagesPage() {
     <PagesClient
       pages={pages as Parameters<typeof PagesClient>[0]['pages']}
       clients={clients}
-      templateIds={templateIds}
+      templatesByScope={templatesByScope}
     />
   )
 }

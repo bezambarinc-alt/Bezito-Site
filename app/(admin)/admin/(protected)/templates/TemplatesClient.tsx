@@ -8,6 +8,8 @@ interface TemplateMeta {
   name: string
   description: string
   status: 'active' | 'draft'
+  /** Page types this template is valid for — filters which cards show per tab. */
+  scope: string[]
 }
 
 interface Product {
@@ -135,7 +137,19 @@ export default function TemplatesClient({ templates, activeIds, products, client
         )}
 
         {tab === 'proposal' && (
-          <span className={styles.previewEmpty}>Proposals use a fixed document layout — preview not available</span>
+          clientPages.length > 0 ? (
+            <select
+              className={styles.previewSelect}
+              value={selectedPage}
+              onChange={e => setSelectedPage(e.target.value)}
+            >
+              {clientPages.map(p => (
+                <option key={p.slug} value={p.slug}>{p.title}</option>
+              ))}
+            </select>
+          ) : (
+            <span className={styles.previewEmpty}>No live proposal pages yet</span>
+          )
         )}
       </div>
 
@@ -143,9 +157,9 @@ export default function TemplatesClient({ templates, activeIds, products, client
         <p className={`${styles.msg} ${msg.ok ? styles.msgOk : styles.msgErr}`}>{msg.text}</p>
       )}
 
-      {/* Template cards */}
+      {/* Template cards — only those valid for the current tab scope */}
       <div className={styles.grid}>
-        {templates.map(t => {
+        {templates.filter(t => t.scope.includes(tab)).map(t => {
           const isActive     = t.id === currentActive
           const isActivating = activating === t.id
           const canPreview   = tab !== 'proposal'

@@ -60,6 +60,7 @@ export default async function TemplatesPage() {
           name: TEMPLATES[id].name,
           description: TEMPLATES[id].description,
           status: TEMPLATES[id].status,
+          scope: TEMPLATES[id].scope,
         }))}
         activeIds={activeIds}
         products={products}

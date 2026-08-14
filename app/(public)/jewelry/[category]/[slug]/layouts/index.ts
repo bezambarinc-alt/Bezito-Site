@@ -4,11 +4,16 @@ import LayoutDefault from './LayoutDefault'
 import LayoutDark from './LayoutDark'
 import LayoutMulti from './LayoutMulti'
 
+export type TemplateScope = 'product' | 'proposal' | 'showcase'
+
 export interface TemplateEntry {
   name: string
   description: string
   component: ComponentType<ProductLayoutProps>
   status: 'active' | 'draft'
+  /** Page types this template is valid for. A template ONLY appears in the
+   *  admin UI and page dropdowns for the scopes listed here. */
+  scope: TemplateScope[]
 }
 
 /**
@@ -17,23 +22,29 @@ export interface TemplateEntry {
  * The active template is tracked in admin_settings ('active_product_template').
  */
 export const TEMPLATES: Record<string, TemplateEntry> = {
+  // ── Product page layouts — /jewelry/[category]/[slug] only ──────────────
   default: {
     name: 'Default',
     description: 'Triptych — 55/45 hero split · specs left · on-hand photo right · three views black',
     component: LayoutDefault,
     status: 'active',
+    scope: ['product'],
   },
+
+  // ── Proposal + Showcase layouts — client-facing pages only ───────────────
   dark: {
     name: 'Editorial Dark',
-    description: 'Dark editorial — image hero · story copy · spec table · contact block. Best for custom commissions and client proposals.',
+    description: 'Single-item proposal — image hero · story copy · spec table · contact block.',
     component: LayoutDark,
     status: 'active',
+    scope: ['proposal', 'showcase'],
   },
   multi: {
     name: 'Multi-Image',
-    description: 'Dark gallery — hero + 2-col image grid with lightbox. Best for presenting one piece in multiple metals, angles, or variations.',
+    description: 'Multi-variation proposal — hero + 2-col image gallery. Use when showing one piece in multiple metals or angles.',
     component: LayoutMulti,
     status: 'active',
+    scope: ['proposal', 'showcase'],
   },
   // Add new layout variants here, e.g.:
   // v2: {
