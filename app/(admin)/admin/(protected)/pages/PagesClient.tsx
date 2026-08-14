@@ -246,15 +246,12 @@ export default function PagesClient({ pages: initial, clients, templatesByScope 
                 {/* Actions */}
                 <td className="admin-td">
                   <div className={styles.actions}>
-                    {/* Only showcases use the /preview/ URL — proposals don't have a public preview route */}
-                    {p.doc_type === 'showcase' && (
-                      <a
-                        href={`/preview/${p.slug}`}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="admin-link"
-                      >View ↗</a>
-                    )}
+                    <a
+                      href={`/preview/${p.slug}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="admin-link"
+                    >View ↗</a>
                     <button
                       className="admin-danger-btn"
                       onClick={() => deletePage(p.slug)}

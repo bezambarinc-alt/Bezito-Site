@@ -32,7 +32,7 @@ export default async function PreviewPage({ params, searchParams }: Ctx) {
     }
   }
 
-  // Fetch page — must be a live showcase
+  // Fetch page — supports both showcase (PIN-gated) and proposal (direct link, no PIN)
   const [page] = await sql<{
     slug: string; title: string; status: string; doc_type: string;
     customer_pin: string | null; pin_expires_at: string | null;
@@ -41,7 +41,7 @@ export default async function PreviewPage({ params, searchParams }: Ctx) {
     `SELECT slug, title, status, doc_type, customer_pin, pin_expires_at,
             template_id, tenant, blocks
      FROM pages
-     WHERE slug = $1 AND doc_type = 'showcase' AND status = 'live'
+     WHERE slug = $1 AND doc_type IN ('showcase','proposal') AND status = 'live'
      LIMIT 1`,
     [slug],
   )
@@ -72,9 +72,10 @@ export default async function PreviewPage({ params, searchParams }: Ctx) {
     ?? 'dark'
   ) as string
 
-  // Validate a template ID is real AND scoped for showcase/proposal
+  // Validate a template ID is real AND scoped for client-facing pages (proposal or showcase)
   const isValidForPreview = (id: string) =>
-    isValidTemplateId(id) && TEMPLATES[id].scope.includes('showcase')
+    isValidTemplateId(id) &&
+    (TEMPLATES[id].scope.includes('showcase') || TEMPLATES[id].scope.includes('proposal'))
 
   // Validate stored global — prevents a product template bleeding onto preview pages
   const storedGlobal = globalRow?.value
