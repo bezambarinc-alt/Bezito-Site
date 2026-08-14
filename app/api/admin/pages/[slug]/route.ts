@@ -29,10 +29,11 @@ export async function PATCH(req: NextRequest, { params }: Ctx) {
   const values: unknown[] = []
   let i = 1
 
-  const { client_id, doc_type, status } = parsed.data
-  if (client_id !== undefined) { updates.push(`client_id = $${i++}`); values.push(client_id) }
-  if (doc_type  !== undefined) { updates.push(`doc_type  = $${i++}`); values.push(doc_type) }
-  if (status    !== undefined) { updates.push(`status    = $${i++}`); values.push(status) }
+  const { client_id, doc_type, status, template_id } = parsed.data
+  if (client_id   !== undefined) { updates.push(`client_id   = $${i++}`); values.push(client_id) }
+  if (doc_type    !== undefined) { updates.push(`doc_type    = $${i++}`); values.push(doc_type) }
+  if (status      !== undefined) { updates.push(`status      = $${i++}`); values.push(status) }
+  if (template_id !== undefined) { updates.push(`template_id = $${i++}`); values.push(template_id) }
 
   if (updates.length === 1) {
     return NextResponse.json({ error: 'No fields to update' }, { status: 400 })

@@ -164,25 +164,7 @@ export default function MenuOverlay({ categories = [], collections = [], feature
             return null
           })}
 
-          {/* CTA items — bottom of root col, matches Astro .menu-cta-item */}
-          <li className={styles.ctaItem}>
-            <button
-              type="button"
-              className={styles.ctaBtn}
-              onClick={() => { handleClose(); openInquiryDrawer({ intent: 'consultation' }) }}
-            >
-              Arrange a Private Consultation
-            </button>
-          </li>
-          <li className={styles.ctaItem}>
-            <button
-              type="button"
-              className={styles.conciergeBtn}
-              onClick={() => { handleClose(); openConcierge() }}
-            >
-              Atelier Concierge
-            </button>
-          </li>
+
         </ul>
 
         {/* Column 2 — sub (expands drawer width) */}
