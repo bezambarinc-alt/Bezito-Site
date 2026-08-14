@@ -92,44 +92,44 @@ export default function PagesClient({ pages: initial, clients }: Props) {
   return (
     <div>
       {/* Toolbar */}
-      <div className={styles.toolbar}>
-        <h1 className={styles.heading}>Client Pages</h1>
+      <div className="admin-toolbar">
+        <h1 className="admin-toolbar-heading">Client Pages</h1>
         <input
-          className={styles.search}
+          className="admin-search"
           type="search"
           placeholder="Search title or slug…"
           value={search}
           onChange={e => setSearch(e.target.value)}
         />
-        <select className={styles.select} value={typeFilter} onChange={e => setType(e.target.value as typeof typeFilter)}>
+        <select className="admin-select" value={typeFilter} onChange={e => setType(e.target.value as typeof typeFilter)}>
           <option value="all">All types</option>
           <option value="showcase">Showcase</option>
           <option value="proposal">Proposal</option>
         </select>
-        <select className={styles.select} value={clientFilter} onChange={e => setClient(e.target.value)}>
+        <select className="admin-select" value={clientFilter} onChange={e => setClient(e.target.value)}>
           {clientOptions.map(c => (
             <option key={c.slug} value={c.slug}>{c.name}</option>
           ))}
         </select>
-        <span className={styles.count}>{filtered.length} pages</span>
+        <span className="admin-count">{filtered.length} pages</span>
       </div>
 
-      <table className={styles.table}>
+      <table className="admin-table">
         <thead>
           <tr>
-            <th className={styles.th}>Title / Slug</th>
-            <th className={styles.th}>Type</th>
-            <th className={styles.th}>Status</th>
-            <th className={styles.th}>Assigned to</th>
-            <th className={styles.th}>PIN</th>
-            <th className={styles.th}>Updated</th>
-            <th className={styles.th} />
+            <th className="admin-th">Title / Slug</th>
+            <th className="admin-th">Type</th>
+            <th className="admin-th">Status</th>
+            <th className="admin-th">Assigned to</th>
+            <th className="admin-th">PIN</th>
+            <th className="admin-th">Updated</th>
+            <th className="admin-th" />
           </tr>
         </thead>
         <tbody>
           {filtered.length === 0 && (
             <tr>
-              <td colSpan={7} className={styles.empty}>No pages match your filters.</td>
+              <td colSpan={7} className="admin-empty">No pages match your filters.</td>
             </tr>
           )}
           {filtered.map(p => {
@@ -137,16 +137,16 @@ export default function PagesClient({ pages: initial, clients }: Props) {
             const pinActive = p.customer_pin && p.pin_expires_at && new Date(p.pin_expires_at) > new Date()
 
             return (
-              <tr key={p.slug} className={styles.row}>
+              <tr key={p.slug} className="admin-row">
 
                 {/* Title + slug */}
-                <td className={styles.td}>
+                <td className="admin-td">
                   <div className={styles.title}>{p.title}</div>
                   <code className={styles.slug}>{p.slug}</code>
                 </td>
 
                 {/* Doc type toggle */}
-                <td className={styles.td}>
+                <td className="admin-td">
                   <select
                     className={styles.typeSelect}
                     value={p.doc_type}
@@ -159,8 +159,8 @@ export default function PagesClient({ pages: initial, clients }: Props) {
                 </td>
 
                 {/* Status */}
-                <td className={styles.td}>
-                  <span className={`${styles.badge} ${
+                <td className="admin-td">
+                  <span className={`admin-badge ${
                     p.status === 'live'     ? styles.badgeLive :
                     p.status === 'archived' ? styles.badgeArchived :
                     styles.badgeDraft
@@ -168,7 +168,7 @@ export default function PagesClient({ pages: initial, clients }: Props) {
                 </td>
 
                 {/* Client assignment */}
-                <td className={styles.td}>
+                <td className="admin-td">
                   <select
                     className={styles.clientSelect}
                     value={p.client_slug ?? 'unassigned'}
@@ -183,7 +183,7 @@ export default function PagesClient({ pages: initial, clients }: Props) {
                 </td>
 
                 {/* PIN status */}
-                <td className={styles.td}>
+                <td className="admin-td">
                   {pinActive
                     ? <span className={styles.pinOn}>{p.customer_pin}</span>
                     : <span className={styles.pinOff}>—</span>
@@ -191,21 +191,21 @@ export default function PagesClient({ pages: initial, clients }: Props) {
                 </td>
 
                 {/* Updated */}
-                <td className={styles.td}>
+                <td className="admin-td">
                   <span className={styles.date}>{fmtDate(p.updated_at)}</span>
                 </td>
 
                 {/* Actions */}
-                <td className={styles.td}>
+                <td className="admin-td">
                   <div className={styles.actions}>
                     <a
                       href={`/preview/${p.slug}`}
                       target="_blank"
                       rel="noreferrer"
-                      className={styles.viewLink}
+                      className="admin-link"
                     >View ↗</a>
                     <button
-                      className={styles.deleteBtn}
+                      className="admin-danger-btn"
                       onClick={() => deletePage(p.slug)}
                       disabled={busy}
                     >Archive</button>

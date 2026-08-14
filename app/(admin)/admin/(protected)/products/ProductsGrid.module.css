@@ -1,73 +1,5 @@
-/* Products grid */
-
-.toolbar {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.25rem;
-}
-
-.select {
-  font-family: var(--ba-font-sans);
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  color: var(--ba-ink);
-  background: var(--ba-white);
-  border: 1px solid var(--ba-border-warm);
-  padding: 0.45rem 0.75rem;
-  outline: none;
-}
-
-.search {
-  font-family: var(--ba-font-sans);
-  font-size: 12px;
-  color: var(--ba-ink);
-  background: var(--ba-white);
-  border: 1px solid var(--ba-border-warm);
-  padding: 0.45rem 0.75rem;
-  outline: none;
-  flex: 1;
-  max-width: 280px;
-}
-.search::placeholder { color: var(--ba-ink-muted); }
-.search:focus { border-color: var(--ba-gold); }
-
-.count {
-  font-family: var(--ba-font-sans);
-  font-size: 11px;
-  color: var(--ba-ink-muted);
-  margin-left: auto;
-}
-
-/* ── Table ── */
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  font-family: var(--ba-font-sans);
-}
-
-.th {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ba-ink-muted);
-  padding: 0.5rem 0.75rem;
-  text-align: left;
-  border-bottom: 2px solid var(--ba-border);
-  white-space: nowrap;
-}
-
-.row {
-  border-bottom: 1px solid var(--ba-border);
-}
-.row:hover { background: var(--ba-light-bg); }
-
-.td {
-  padding: 0.625rem 0.75rem;
-  vertical-align: middle;
-}
+/* Products grid — view-specific overrides only.
+   Shared table/toolbar/badge/toggle styles live in admin.css */
 
 /* Thumbnail */
 .thumb {
@@ -75,238 +7,96 @@
   height: 60px;
   object-fit: cover;
   display: block;
-  background: var(--ba-paper);
+  background: var(--surface);
 }
 .thumbFallback {
   width: 60px;
   height: 60px;
-  background: var(--ba-paper);
-  border: 1px solid var(--ba-border-warm);
+  background: var(--surface);
+  border: 1px solid var(--border-warm);
 }
+.compact .admin-td { padding: 0.35rem 0.75rem; }
+.compact .thumb, .compact .thumbFallback { width: 40px; height: 40px; }
 
 /* Name / SKU */
-.name {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ba-ink);
-  margin-bottom: 2px;
-}
-.sku {
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ba-ink-muted);
-}
+.name { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+.sku  { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-muted); }
 
 /* Category badge */
 .badge {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ba-gold);
-  border: 1px solid rgba(149, 130, 107, 0.4);
-  padding: 2px 8px;
-  white-space: nowrap;
+  font-size: 10px; font-weight: 500; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--accent);
+  border: 1px solid rgba(149,130,107,.4); padding: 2px 8px; white-space: nowrap;
 }
 
 /* Metal */
 .metal {
-  font-size: 11px;
-  color: var(--ba-ink-muted);
-  max-width: 140px;
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  font-size: 11px; color: var(--ink-muted);
+  max-width: 140px; display: block;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
-
-/* Active toggle */
-.toggle {
-  width: 36px;
-  height: 20px;
-  background: rgba(0,0,0,0.15);
-  border-radius: 999px;
-  position: relative;
-  border: none;
-  cursor: pointer;
-  transition: background 0.2s;
-  padding: 0;
-}
-.toggleOn { background: #22c55e; }
-.toggleThumb {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  background: #fff;
-  border-radius: 50%;
-  top: 3px;
-  left: 3px;
-  transition: transform 0.2s;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-}
-.toggleOn .toggleThumb { transform: translateX(16px); }
 
 /* Featured star */
-.star {
-  font-size: 18px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--ba-border-warm);
-  line-height: 1;
-  padding: 0;
-  transition: color 0.15s;
-}
-.starOn { color: var(--ba-gold); }
-.star:hover { color: var(--ba-gold); }
+.star { font-size: 18px; background: none; border: none; cursor: pointer; color: var(--border-warm); line-height: 1; padding: 0; transition: color .15s; }
+.starOn { color: var(--accent); }
+.star:hover { color: var(--accent); }
 
 /* Views badge */
 .viewsBadge {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--ba-ink-muted);
-  background: none;
-  border: 1px solid var(--ba-border-warm);
-  padding: 3px 8px;
-  cursor: pointer;
-  transition: border-color 0.15s, color 0.15s;
+  font-size: 11px; font-weight: 600; color: var(--ink-muted);
+  background: none; border: 1px solid var(--border-warm);
+  padding: 3px 8px; cursor: pointer; transition: border-color .15s, color .15s;
 }
-.viewsBadge:hover { border-color: var(--ba-gold); color: var(--ba-gold); }
-.viewsFull { color: var(--ba-gold); border-color: rgba(149,130,107,0.4); }
+.viewsBadge:hover { border-color: var(--accent); color: var(--accent); }
+.viewsFull { color: var(--accent); border-color: rgba(149,130,107,.4); }
 
 /* Time */
-.time {
-  font-size: 11px;
-  color: var(--ba-ink-muted);
-  white-space: nowrap;
-}
+.time { font-size: 11px; color: var(--ink-muted); white-space: nowrap; }
 
-/* ── Inline view edit ── */
-
-.editRow { background: var(--ba-paper); }
-
-.editCell { padding: 0 !important; }
-
-.editInner {
-  padding: 1rem 0.75rem;
-  display: flex;
-  gap: 1rem;
-  align-items: flex-end;
-  flex-wrap: wrap;
-}
-
-.editField {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  flex: 1;
-  min-width: 200px;
-}
-
-.editLabel {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ba-ink-muted);
-}
-
-.editInput {
-  font-family: var(--ba-font-sans);
-  font-size: 12px;
-  color: var(--ba-ink);
-  background: var(--ba-white);
-  border: 1px solid var(--ba-border-warm);
-  padding: 0.4rem 0.6rem;
-  outline: none;
-  width: 100%;
-}
-.editInput:focus { border-color: var(--ba-gold); }
-
-.editActions {
-  display: flex;
-  gap: 0.5rem;
-  align-items: flex-end;
-}
-
-.saveBtn {
-  font-family: var(--ba-font-sans);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #fff;
-  background: var(--ba-ink);
-  border: 1px solid var(--ba-ink);
-  padding: 0.45rem 1rem;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background 0.2s;
-}
-.saveBtn:hover { background: var(--ba-gold); border-color: var(--ba-gold); }
-
-.cancelBtn {
-  font-family: var(--ba-font-sans);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ba-ink-muted);
-  background: none;
-  border: 1px solid var(--ba-border-warm);
-  padding: 0.45rem 0.75rem;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-/* ── Density toggle ── */
-.densityBtn {
-  font-size: 16px;
-  background: none;
-  border: 1px solid var(--ba-border-warm);
-  color: var(--ba-ink-muted);
-  padding: 0.3rem 0.5rem;
-  cursor: pointer;
-  line-height: 1;
-  transition: border-color 0.15s, color 0.15s;
-}
-.densityBtn:hover { border-color: var(--ba-gold); color: var(--ba-gold); }
-.densityActive { border-color: var(--ba-gold); color: var(--ba-gold); }
-
-/* ── Compact mode ── */
-.compact .td { padding: 0.35rem 0.75rem; }
-.compact .thumb, .compact .thumbFallback { width: 40px; height: 40px; }
-
-/* ── Pagination ── */
+/* Pagination */
 .pagination {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 1.25rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--ba-border);
+  display: flex; align-items: center; justify-content: center;
+  gap: .5rem; margin-top: 1.25rem; padding-top: 1rem;
+  border-top: 1px solid var(--border);
 }
-
 .pageBtn {
-  font-family: var(--ba-font-sans);
-  font-size: 12px;
-  font-weight: 500;
-  background: none;
-  border: 1px solid var(--ba-border-warm);
-  color: var(--ba-ink-muted);
-  padding: 0.3rem 0.65rem;
-  cursor: pointer;
-  transition: border-color 0.15s, color 0.15s;
-  line-height: 1.4;
+  font-size: 12px; font-weight: 500; background: none;
+  border: 1px solid var(--border-warm); color: var(--ink-muted);
+  padding: .3rem .65rem; cursor: pointer; transition: border-color .15s, color .15s; line-height: 1.4;
 }
-.pageBtn:hover:not(:disabled) { border-color: var(--ba-gold); color: var(--ba-gold); }
-.pageBtn:disabled { opacity: 0.3; cursor: default; }
+.pageBtn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.pageBtn:disabled { opacity: .3; cursor: default; }
+.pageInfo { font-size: 11px; color: var(--ink-muted); min-width: 60px; text-align: center; }
 
-.pageInfo {
-  font-family: var(--ba-font-sans);
-  font-size: 11px;
-  color: var(--ba-ink-muted);
-  min-width: 60px;
-  text-align: center;
+/* Density toggle */
+.densityBtn {
+  font-size: 16px; background: none; border: 1px solid var(--border-warm);
+  color: var(--ink-muted); padding: .3rem .5rem; cursor: pointer;
+  line-height: 1; transition: border-color .15s, color .15s;
+}
+.densityBtn:hover { border-color: var(--accent); color: var(--accent); }
+.densityActive { border-color: var(--accent); color: var(--accent); }
+
+/* Inline view edit */
+.editRow { background: var(--surface); }
+.editCell { padding: 0 !important; }
+.editInner { padding: 1rem .75rem; display: flex; gap: 1rem; align-items: flex-end; flex-wrap: wrap; }
+.editField { display: flex; flex-direction: column; gap: .25rem; flex: 1; min-width: 200px; }
+.editLabel { font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-muted); }
+.editInput {
+  font-size: 12px; color: var(--ink); background: var(--bg);
+  border: 1px solid var(--border-warm); padding: .4rem .6rem; outline: none; width: 100%;
+}
+.editInput:focus { border-color: var(--accent); }
+.editActions { display: flex; gap: .5rem; align-items: flex-end; }
+.saveBtn {
+  font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: #fff; background: var(--ink); border: 1px solid var(--ink);
+  padding: .45rem 1rem; cursor: pointer; white-space: nowrap; transition: background .2s;
+}
+.saveBtn:hover { background: var(--accent); border-color: var(--accent); }
+.cancelBtn {
+  font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-muted); background: none; border: 1px solid var(--border-warm);
+  padding: .45rem .75rem; cursor: pointer; white-space: nowrap;
 }

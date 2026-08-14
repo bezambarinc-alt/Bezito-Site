@@ -60,8 +60,8 @@ export default function ClientsClient({ initial }: { initial: Client[] }) {
 
   return (
     <div>
-      <div className={styles.toolbar}>
-        <h1 className={styles.heading}>Clients</h1>
+      <div className="admin-toolbar">
+        <h1 className="admin-toolbar-heading">Clients</h1>
         <button className={styles.addBtn} onClick={() => setShowForm(s => !s)}>
           {showForm ? 'Cancel' : '+ Add Client'}
         </button>
@@ -104,45 +104,45 @@ export default function ClientsClient({ initial }: { initial: Client[] }) {
         </form>
       )}
 
-      <table className={styles.table}>
+      <table className="admin-table">
         <thead>
           <tr>
-            <th className={styles.th}>Name</th>
-            <th className={styles.th}>Slug</th>
-            <th className={styles.th}>Email</th>
-            <th className={styles.th}>Pages</th>
-            <th className={styles.th}>Status</th>
-            <th className={styles.th}>Created</th>
-            <th className={styles.th} />
+            <th className="admin-th">Name</th>
+            <th className="admin-th">Slug</th>
+            <th className="admin-th">Email</th>
+            <th className="admin-th">Pages</th>
+            <th className="admin-th">Status</th>
+            <th className="admin-th">Created</th>
+            <th className="admin-th" />
           </tr>
         </thead>
         <tbody>
           {clients.length === 0 && (
             <tr>
-              <td colSpan={7} className={styles.empty}>No clients yet — add one above.</td>
+              <td colSpan={7} className="admin-empty">No clients yet — add one above.</td>
             </tr>
           )}
           {clients.map(c => (
-            <tr key={c.id} className={styles.row}>
-              <td className={styles.td}><span className={styles.name}>{c.name}</span></td>
-              <td className={styles.td}><code className={styles.slug}>{c.slug}</code></td>
-              <td className={styles.td}>{c.contact_email}</td>
-              <td className={styles.td}>{c.page_count}</td>
-              <td className={styles.td}>
+            <tr key={c.id} className="admin-row">
+              <td className="admin-td"><span className={styles.name}>{c.name}</span></td>
+              <td className="admin-td"><code className={styles.slug}>{c.slug}</code></td>
+              <td className="admin-td">{c.contact_email}</td>
+              <td className="admin-td">{c.page_count}</td>
+              <td className="admin-td">
                 <button
-                  className={`${styles.toggle} ${c.active ? styles.toggleOn : ''}`}
+                  className={`admin-toggle ${c.active ? 'admin-toggle-on' : ''}`}
                   onClick={() => toggleActive(c.id, c.active)}
                   aria-label={c.active ? 'Deactivate' : 'Activate'}
                 >
-                  <span className={styles.toggleThumb} />
+                  <span className="admin-toggle-thumb" />
                 </button>
               </td>
-              <td className={styles.td}>
+              <td className="admin-td">
                 <span className={styles.date}>
                   {new Date(c.created_at).toLocaleDateString()}
                 </span>
               </td>
-              <td className={styles.td}>
+              <td className="admin-td">
                 <a
                   href={`/admin/clients/${c.id}/pages`}
                   className={styles.viewLink}

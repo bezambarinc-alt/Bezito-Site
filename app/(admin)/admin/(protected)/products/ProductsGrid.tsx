@@ -106,25 +106,25 @@ export default function ProductsGrid({ products }: { products: AdminProduct[] })
 
   return (
     <div>
-      <div className={styles.toolbar}>
+      <div className="admin-toolbar">
         <select
-          className={styles.select}
+          className="admin-select"
           value={catFilter}
           onChange={(e) => handleCat(e.target.value)}
         >
           {categories.map((c) => <option key={c} value={c}>{c === 'all' ? 'All categories' : c}</option>)}
         </select>
         <input
-          className={styles.search}
+          className="admin-search"
           placeholder="Search name or SKU…"
           value={search}
           onChange={(e) => handleSearch(e.target.value)}
         />
-        <span className={styles.count}>{filtered.length} products</span>
+        <span className="admin-count">{filtered.length} products</span>
 
         {/* Per-page selector */}
         <select
-          className={styles.select}
+          className="admin-select"
           value={String(pageSize)}
           onChange={(e) => handleSize(e.target.value)}
           aria-label="Rows per page"
@@ -145,17 +145,17 @@ export default function ProductsGrid({ products }: { products: AdminProduct[] })
         </button>
       </div>
 
-      <table className={`${styles.table} ${density === 'compact' ? styles.compact : ''}`}>
+      <table className={`admin-table ${density === 'compact' ? styles.compact : ''}`}>
         <thead>
           <tr>
-            <th className={styles.th} style={{ width: 72 }} />
-            <th className={styles.th}>Name / SKU</th>
-            <th className={styles.th}>Category</th>
-            <th className={styles.th}>Metal</th>
-            <th className={styles.th}>Active</th>
-            <th className={styles.th}>Featured</th>
-            <th className={styles.th}>Views</th>
-            <th className={styles.th}>Synced</th>
+            <th className="admin-th" style={{ width: 72 }} />
+            <th className="admin-th">Name / SKU</th>
+            <th className="admin-th">Category</th>
+            <th className="admin-th">Metal</th>
+            <th className="admin-th">Active</th>
+            <th className="admin-th">Featured</th>
+            <th className="admin-th">Views</th>
+            <th className="admin-th">Synced</th>
           </tr>
         </thead>
         <tbody>
@@ -172,9 +172,9 @@ export default function ProductsGrid({ products }: { products: AdminProduct[] })
 
             return (
               <>
-                <tr key={p.slug} className={styles.row}>
+                <tr key={p.slug} className="admin-row">
                   {/* Thumbnail */}
-                  <td className={styles.td}>
+                  <td className="admin-td">
                     <a href={`/jewelry/${p.category ?? 'jewelry'}/${p.slug}`} target="_blank" rel="noreferrer">
                       {thumb
                         ? <img src={thumb} alt="" className={styles.thumb} />
@@ -183,34 +183,34 @@ export default function ProductsGrid({ products }: { products: AdminProduct[] })
                   </td>
 
                   {/* Name + SKU */}
-                  <td className={styles.td}>
+                  <td className="admin-td">
                     <div className={styles.name}>{p.name}</div>
                     <div className={styles.sku}>{p.sku}</div>
                   </td>
 
                   {/* Category */}
-                  <td className={styles.td}>
+                  <td className="admin-td">
                     {p.category && <span className={styles.badge}>{p.category}</span>}
                   </td>
 
                   {/* Metal */}
-                  <td className={styles.td}>
+                  <td className="admin-td">
                     <span className={styles.metal}>{p.metal ?? '—'}</span>
                   </td>
 
                   {/* Active toggle */}
-                  <td className={styles.td}>
+                  <td className="admin-td">
                     <button
-                      className={`${styles.toggle} ${row.active ? styles.toggleOn : ''}`}
+                      className={`admin-toggle ${row.active ? 'admin-toggle-on' : ''}`}
                       onClick={() => toggle(p.slug, 'active')}
                       aria-label={row.active ? 'Deactivate' : 'Activate'}
                     >
-                      <span className={styles.toggleThumb} />
+                      <span className="admin-toggle-thumb" />
                     </button>
                   </td>
 
                   {/* Featured toggle */}
-                  <td className={styles.td}>
+                  <td className="admin-td">
                     <button
                       className={`${styles.star} ${row.featured ? styles.starOn : ''}`}
                       onClick={() => toggle(p.slug, 'featured')}
@@ -221,7 +221,7 @@ export default function ProductsGrid({ products }: { products: AdminProduct[] })
                   </td>
 
                   {/* Views */}
-                  <td className={styles.td}>
+                  <td className="admin-td">
                     <button
                       className={`${styles.viewsBadge} ${viewCount === 3 ? styles.viewsFull : ''}`}
                       onClick={() => {
@@ -236,7 +236,7 @@ export default function ProductsGrid({ products }: { products: AdminProduct[] })
                   </td>
 
                   {/* Synced */}
-                  <td className={styles.td}>
+                  <td className="admin-td">
                     <span className={styles.time}>{timeAgo(p.synced_at)}</span>
                   </td>
                 </tr>
