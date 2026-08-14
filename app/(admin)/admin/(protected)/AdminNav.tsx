@@ -8,6 +8,7 @@ import styles from './layout.module.css'
 // ── Types ───────────────────────────────────────────────────────────────────
 
 type NavLink = { href: string; label: string; exact?: boolean }
+type NavDivider = { divider: true }
 
 type NavSection = {
   section: true
@@ -17,7 +18,7 @@ type NavSection = {
   children: NavLink[]
 }
 
-type NavEntry = NavLink | NavSection
+type NavEntry = NavLink | NavSection | NavDivider
 
 // ── Navigation definition ────────────────────────────────────────────────────
 //
@@ -55,6 +56,7 @@ const NAV: NavEntry[] = [
     ],
   },
 
+  { divider: true },
   { href: '/admin/leads',    label: 'Leads'    },
   { href: '/admin/settings', label: 'Settings' },
 ]
@@ -145,6 +147,11 @@ export default function AdminNav() {
               </div>
             </div>
           )
+        }
+
+        // ── Divider ──────────────────────────────────────────────────────────
+        if ('divider' in item) {
+          return <div key={i} className={styles.navDivider} aria-hidden />
         }
 
         // ── Flat link ────────────────────────────────────────────────────────
