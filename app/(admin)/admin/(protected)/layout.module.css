@@ -101,30 +101,20 @@
 }
 .logout:hover { color: var(--danger); }
 
-/* ── Nav group (Clients section) ── */
+/* ── Section groups (Products, Clients) ──
 
-.navGroup {
-  padding-top: 0.5rem;
-  margin-top: 0.25rem;
+   Section headers use .navItem directly — same Link element, same class,
+   same visual language as Overview / Analytics / Leads / Settings.
+   The .navSection container just adds the top separator and groups
+   the header with its always-visible sub-items.
+*/
+
+.navSection {
   border-top: 1px solid var(--border);
+  margin-top: 0.25rem;
 }
 
-.navGroupLabel {
-  display: block;
-  font-family: var(--font);
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  padding: 0.5rem 1.25rem 0.25rem;
-  transition: color 0.12s;
-}
-
-.navGroupActive {
-  color: var(--accent);
-}
-
+/* Sub-items — indented nav links that live below the section header */
 .navSub {
   display: block;
   font-family: var(--font);
@@ -143,83 +133,7 @@
   background: var(--surface-2);
 }
 
-/* ── Collapsible section (Products / Clients) ── */
-
-.navSection {
-  border-top: 1px solid var(--border);
-  margin-top: 0.25rem;
-  padding-top: 0.25rem;
-}
-
-/*
-  Section header is a button that acts as the collapse toggle.
-  Must look IDENTICAL to .navItem — same size, weight, padding, left border.
-  The only visual difference is the chevron on the right.
-*/
-.navSectionHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  font-family: var(--font);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  color: var(--ink-muted);
-  padding: 0.65rem 1.25rem;
-  border-left: 2px solid transparent;
-  /* Reset button defaults */
-  background: none;
-  border-top: none;
-  border-right: none;
-  border-bottom: none;
-  cursor: pointer;
-  text-align: left;
-  transition: color 0.12s, border-color 0.12s, background 0.12s;
-}
-
-.navSectionHeader:hover {
-  color: var(--ink);
-  background: var(--surface-2);
-}
-
-.navSectionLabel {
-  /* Inherits from .navSectionHeader */
-}
-
-/* Header accent when any child is active — same treatment as .navActive */
-.navSectionActive {
-  color: var(--accent);
-  border-left-color: var(--accent);
-  background: var(--accent-dim);
-}
-
-/* Chevron SVG */
-.chevron {
-  display: block;
-  color: var(--ink-faint);
-  flex-shrink: 0;
-  transition: transform 0.22s ease, color 0.12s;
-}
-
-.chevronOpen {
-  transform: rotate(90deg);
-}
-
-/* Collapsible body — max-height animation */
-.navSectionBody {
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.25s ease;
-}
-
-.navSectionBodyOpen {
-  /* large enough for any realistic number of child links */
-  max-height: 400px;
-  transition: max-height 0.3s ease;
-}
-
-/* Horizontal divider — separates sections from utility items (Leads, Settings) */
+/* Horizontal divider — separates section groups from utility items (Leads, Settings) */
 .navDivider {
   height: 1px;
   background: var(--border);
