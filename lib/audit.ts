@@ -18,6 +18,7 @@ export type AuditAction =
   | 'admin.client.created'
   | 'admin.client.updated'
   | 'admin.client.deactivated'
+  | 'admin.page.created'
   | 'admin.page.updated'
   | 'admin.page.archived'
   | 'admin.template.activated'

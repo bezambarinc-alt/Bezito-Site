@@ -7,7 +7,15 @@ import PagesClient from './PagesClient'
 export const dynamic = 'force-dynamic'
 export const metadata = { title: 'Client Pages — Admin' }
 
-export default async function AdminPagesPage() {
+export default async function AdminPagesPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ type?: string }>
+}) {
+  const sp = searchParams ? await searchParams : {}
+  const initialType = sp.type === 'proposal' ? 'proposal'
+    : sp.type === 'showcase' ? 'showcase'
+    : 'all'
   const session = await getSession()
   if (!session) redirect('/admin/login')
 
@@ -48,6 +56,7 @@ export default async function AdminPagesPage() {
       pages={pages as Parameters<typeof PagesClient>[0]['pages']}
       clients={clients}
       templatesByScope={templatesByScope}
+      initialType={initialType as 'all' | 'showcase' | 'proposal'}
     />
   )
 }

@@ -101,6 +101,48 @@
 }
 .logout:hover { color: var(--danger); }
 
+/* ── Nav group (Clients section) ── */
+
+.navGroup {
+  padding-top: 0.5rem;
+  margin-top: 0.25rem;
+  border-top: 1px solid var(--border);
+}
+
+.navGroupLabel {
+  display: block;
+  font-family: var(--font);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding: 0.5rem 1.25rem 0.25rem;
+  transition: color 0.12s;
+}
+
+.navGroupActive {
+  color: var(--accent);
+}
+
+.navSub {
+  display: block;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+  text-decoration: none;
+  padding: 0.5rem 1.25rem 0.5rem 1.75rem;
+  border-left: 2px solid transparent;
+  transition: color 0.12s, border-color 0.12s, background 0.12s;
+}
+
+.navSub:hover {
+  color: var(--ink);
+  background: var(--surface-2);
+}
+
 /* ── Content ── */
 
 .content {

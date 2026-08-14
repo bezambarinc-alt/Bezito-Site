@@ -1,0 +1,55 @@
+/* Requests admin view */
+
+.done { opacity: 0.55; }
+
+.unknown { color: var(--ink-faint); font-style: italic; }
+
+.sku {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  background: var(--surface-2);
+  padding: 2px 5px;
+  border-radius: 3px;
+  color: var(--ink-muted);
+}
+
+.message {
+  font-size: 13px;
+  color: var(--ink);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-width: 360px;
+}
+
+.date {
+  font-size: 12px;
+  color: var(--ink-muted);
+  white-space: nowrap;
+}
+
+/* Status badges */
+.badge_pending     { background: rgba(250, 200, 80, 0.15); color: #c69000; border: 1px solid rgba(250,200,80,.3); }
+.badge_in_progress { background: rgba(100, 160, 250, 0.15); color: #4a80e0; border: 1px solid rgba(100,160,250,.3); }
+.badge_done        { background: rgba(100, 200, 120, 0.15); color: #3a8040; border: 1px solid rgba(100,200,120,.3); }
+
+/* Action buttons */
+.actions { display: flex; gap: 0.4rem; align-items: center; }
+
+.progressBtn, .doneBtn, .reopenBtn {
+  font-family: var(--font);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 3px 10px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+  background: var(--surface);
+  color: var(--ink-muted);
+}
+
+.progressBtn:hover { background: var(--accent-dim); color: var(--accent); border-color: var(--accent); }
+.doneBtn:hover     { background: rgba(100,200,120,.15); color: #3a8040; border-color: rgba(100,200,120,.4); }
+.reopenBtn:hover   { background: var(--surface-2); color: var(--ink); }

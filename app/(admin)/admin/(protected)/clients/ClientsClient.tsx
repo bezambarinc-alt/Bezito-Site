@@ -144,9 +144,9 @@ export default function ClientsClient({ initial }: { initial: Client[] }) {
               </td>
               <td className="admin-td">
                 <a
-                  href={`/admin/clients/${c.id}/pages`}
+                  href={`/admin/clients/${c.id}`}
                   className={styles.viewLink}
-                >Pages →</a>
+                >View →</a>
               </td>
             </tr>
           ))}

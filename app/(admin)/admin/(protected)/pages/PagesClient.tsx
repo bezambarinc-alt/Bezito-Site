@@ -39,12 +39,13 @@ interface Props {
   pages: ClientPage[]
   clients: Client[]
   templatesByScope: TemplatesByScope
+  initialType?: 'all' | 'showcase' | 'proposal'
 }
 
-export default function PagesClient({ pages: initial, clients, templatesByScope }: Props) {
+export default function PagesClient({ pages: initial, clients, templatesByScope, initialType = 'all' }: Props) {
   const [pages, setPages]     = useState(initial)
   const [search, setSearch]   = useState('')
-  const [typeFilter, setType] = useState<'all' | 'showcase' | 'proposal'>('all')
+  const [typeFilter, setType] = useState<'all' | 'showcase' | 'proposal'>(initialType)
   const [clientFilter, setClient] = useState<string>('all')
   const [saving, setSaving]   = useState<Record<string, boolean>>({})
   const [deleted, setDeleted] = useState<Set<string>>(new Set())
