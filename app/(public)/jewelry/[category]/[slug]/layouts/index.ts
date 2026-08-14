@@ -1,6 +1,7 @@
 import type { ComponentType } from 'react'
 import type { ProductLayoutProps } from './types'
 import LayoutDefault from './LayoutDefault'
+import LayoutDark from './LayoutDark'
 
 export interface TemplateEntry {
   name: string
@@ -19,6 +20,12 @@ export const TEMPLATES: Record<string, TemplateEntry> = {
     name: 'Default',
     description: 'Triptych — 55/45 hero split · specs left · on-hand photo right · three views black',
     component: LayoutDefault,
+    status: 'active',
+  },
+  dark: {
+    name: 'Editorial Dark',
+    description: 'Dark editorial — image hero · story copy · spec table · contact block. Best for custom commissions and client proposals.',
+    component: LayoutDark,
     status: 'active',
   },
   // Add new layout variants here, e.g.:
