@@ -143,6 +143,71 @@
   background: var(--surface-2);
 }
 
+/* ── Collapsible section (Products / Clients) ── */
+
+.navSection {
+  border-top: 1px solid var(--border);
+  margin-top: 0.25rem;
+}
+
+/* Clickable section header — acts as the collapse toggle */
+.navSectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-family: var(--font);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding: 0.6rem 1.25rem 0.35rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.12s;
+}
+
+.navSectionHeader:hover {
+  color: var(--ink-muted);
+}
+
+.navSectionLabel {
+  /* Inherits from .navSectionHeader */
+}
+
+/* Header when any child is active */
+.navSectionActive {
+  color: var(--accent) !important;
+}
+
+/* Chevron SVG */
+.chevron {
+  display: block;
+  color: var(--ink-faint);
+  flex-shrink: 0;
+  transition: transform 0.22s ease, color 0.12s;
+}
+
+.chevronOpen {
+  transform: rotate(90deg);
+}
+
+/* Collapsible body — max-height animation */
+.navSectionBody {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.25s ease;
+}
+
+.navSectionBodyOpen {
+  /* large enough for any realistic number of child links */
+  max-height: 400px;
+  transition: max-height 0.3s ease;
+}
+
 /* ── Content ── */
 
 .content {

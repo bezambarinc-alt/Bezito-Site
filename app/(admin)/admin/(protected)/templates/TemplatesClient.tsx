@@ -32,10 +32,19 @@ interface Props {
   activeIds: Record<ViewTab, string>   // active template per tab
   products: Product[]
   clientPages: ClientPage[]
+  /**
+   * Scope context passed from the nav URL param:
+   * 'product' → only show product layout tab
+   * 'client'  → only show Proposals + Client Showcase tabs
+   * undefined  → show all three tabs (direct URL access)
+   */
+  defaultScope?: 'product' | 'client'
 }
 
-export default function TemplatesClient({ templates, activeIds, products, clientPages }: Props) {
-  const [tab, setTab]             = useState<ViewTab>('product')
+export default function TemplatesClient({ templates, activeIds, products, clientPages, defaultScope }: Props) {
+  // Start on the correct tab for the scope context
+  const initialTab: ViewTab = defaultScope === 'client' ? 'proposal' : 'product'
+  const [tab, setTab]             = useState<ViewTab>(initialTab)
   const [activeNow, setActiveNow] = useState(activeIds)
   const [activating, setActivating] = useState<string | null>(null)
   const [selectedProduct, setSelectedProduct] = useState<string>(products[0]?.slug ?? '')
@@ -79,8 +88,15 @@ export default function TemplatesClient({ templates, activeIds, products, client
   const tabLabels: Record<ViewTab, string> = {
     product:  'Product pages',
     proposal: 'Proposals',
-    showcase: 'Client showcase',
+    showcase: 'Client Showcase',
   }
+
+  // Which tabs are visible depends on which section the user navigated from
+  const visibleTabs: ViewTab[] = !defaultScope
+    ? ['product', 'proposal', 'showcase']      // direct URL: show all
+    : defaultScope === 'product'
+      ? ['product']                              // Products section: product layouts only
+      : ['proposal', 'showcase']                 // Clients section: client layouts only
 
   const currentActive = activeNow[tab]
 
@@ -88,7 +104,7 @@ export default function TemplatesClient({ templates, activeIds, products, client
     <div>
       {/* Tab bar */}
       <div className={styles.tabBar}>
-        {(['product', 'proposal', 'showcase'] as ViewTab[]).map(t => (
+        {visibleTabs.map(t => (
           <button
             key={t}
             className={`${styles.tabBtn} ${tab === t ? styles.tabActive : ''}`}

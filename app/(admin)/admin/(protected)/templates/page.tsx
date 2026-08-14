@@ -30,7 +30,19 @@ interface ProductRow {
   category: string | null
 }
 
-export default async function TemplatesPage() {
+export default async function TemplatesPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ scope?: string }>
+}) {
+  const sp = searchParams ? await searchParams : {}
+  // scope=product  → Products section: show only product layout tab
+  // scope=client   → Clients section:  show only Proposals + Client Showcase tabs
+  // (no scope)     → direct URL access: show all tabs
+  const defaultScope: 'product' | 'client' | undefined =
+    sp.scope === 'product' ? 'product'
+    : sp.scope === 'client' ? 'client'
+    : undefined
   const session = await getSession()
   if (!session) redirect('/admin/login')
 
@@ -82,6 +94,7 @@ export default async function TemplatesPage() {
         activeIds={activeIds}
         products={products}
         clientPages={clientPages}
+        defaultScope={defaultScope}
       />
     </div>
   )
