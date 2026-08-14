@@ -12,6 +12,15 @@ export type AuditAction =
   | 'admin.user.created'
   | 'admin.user.deleted'
   | 'admin.pin.changed'
+  | 'auth.client.login.success'
+  | 'auth.client.login.failed'
+  | 'auth.client.logout'
+  | 'admin.client.created'
+  | 'admin.client.updated'
+  | 'admin.client.deactivated'
+  | 'portal.pin.generated'
+  | 'portal.pin.revoked'
+  | 'portal.page_request.submitted'
 
 export async function audit(
   action: AuditAction,

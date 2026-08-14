@@ -1,0 +1,25 @@
+/* Portal — client-facing shell. Light, neutral, no Bez Ambar branding. */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink:       #1a1a1a;
+  --ink-soft:  #4a4a4a;
+  --ink-muted: #888;
+  --bg:        #ffffff;
+  --surface:   #faf9f7;
+  --border:    rgba(0,0,0,.08);
+  --accent:    #95826b;
+  --radius:    6px;
+  --sans:      'Inter', system-ui, -apple-system, sans-serif;
+  --serif:     Georgia, serif;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  font-size: 14px;
+  line-height: 1.5;
+}

@@ -1,0 +1,83 @@
+/* Customer preview — no branding, clean, neutral */
+.gate {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f7f5;
+  padding: 24px;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.gateCard {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 8px;
+  padding: 44px 40px;
+  width: 100%;
+  max-width: 340px;
+  text-align: center;
+  box-shadow: 0 4px 24px -8px rgba(0,0,0,.07);
+}
+
+.gateHeading {
+  font-size: 18px;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+  letter-spacing: -.01em;
+}
+
+.gateSub {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+
+.gateError {
+  font-size: 12px;
+  color: #c0392b;
+  margin-bottom: 14px;
+}
+
+.pinInput {
+  width: 100%;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: .4em;
+  text-align: center;
+  color: #1a1a1a;
+  background: #faf9f7;
+  border: 1px solid rgba(0,0,0,.1);
+  border-radius: 6px;
+  padding: 14px 12px 14px 24px; /* offset for letter-spacing */
+  outline: none;
+  transition: border-color .15s;
+  font-variant-numeric: tabular-nums;
+  -webkit-text-security: disc;
+}
+.pinInput:focus { border-color: #1a1a1a; }
+
+.gateBtn {
+  width: 100%;
+  margin-top: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: #fff;
+  background: #1a1a1a;
+  border: none;
+  border-radius: 6px;
+  padding: 13px;
+  cursor: pointer;
+  transition: background .15s;
+}
+.gateBtn:hover:not(:disabled) { background: #95826b; }
+.gateBtn:disabled { opacity: .4; cursor: default; }
+
+/* Showcase wrapper — strips all site chrome */
+.showcase {
+  min-height: 100vh;
+  background: #fff;
+}

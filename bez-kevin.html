@@ -238,6 +238,52 @@
     line-height: 1.6;
   }
   footer .contact a { color: var(--ink-soft); text-decoration: none; }
+
+  /* ── Bez × Kevin — Command bar ─────────────────────────────── */
+  .bkc { position:sticky; top:0; z-index:200; background:#fff; border-bottom:1px solid rgba(0,0,0,.09); }
+  .bkt { display:flex; align-items:stretch; padding:0 8vw; overflow-x:auto; scrollbar-width:none; }
+  .bkt::-webkit-scrollbar { display:none; }
+  .bkt button {
+    font-family:var(--sans); font-size:11px; font-weight:500; letter-spacing:.04em;
+    color:var(--ink-muted); padding:13px 15px 11px; border:none; background:none;
+    border-bottom:2px solid transparent; cursor:pointer; white-space:nowrap;
+    display:flex; align-items:center; gap:5px; transition:color .12s;
+  }
+  .bkt button:hover { color:var(--ink); }
+  .bkt button.on { color:var(--ink); border-bottom-color:var(--accent); font-weight:600; }
+  .bkt button sup {
+    font-size:9px; font-weight:700; background:rgba(0,0,0,.07);
+    color:var(--ink-muted); padding:1px 5px; border-radius:8px; line-height:1.6;
+  }
+  .bkt button.on sup { background:var(--accent); color:#fff; }
+  .bkf {
+    display:none; align-items:center; gap:8px; flex-wrap:wrap;
+    padding:7px 8vw; background:#faf7f2; border-top:1px solid rgba(0,0,0,.06);
+  }
+  .bkf.on { display:flex; }
+  .bkf input {
+    font-family:var(--sans); font-size:12px; color:var(--ink);
+    border:1px solid rgba(0,0,0,.13); padding:5px 11px;
+    border-radius:3px; outline:none; width:200px;
+  }
+  .bkf input:focus { border-color:var(--accent); }
+  .bksep { width:1px; height:20px; background:rgba(0,0,0,.1); margin:0 2px; }
+  .bkp {
+    font-family:var(--sans); font-size:10px; font-weight:600; letter-spacing:.08em;
+    text-transform:uppercase; border:1px solid rgba(0,0,0,.12); padding:4px 9px;
+    border-radius:3px; cursor:pointer; background:#fff; color:var(--ink-muted);
+    transition:all .12s; white-space:nowrap;
+  }
+  .bkp:hover { border-color:var(--ink-muted); color:var(--ink); }
+  .bkp.on { background:var(--ink); color:#fff; border-color:var(--ink); }
+  .bkp.p0 { color:#b03030; border-color:rgba(176,48,48,.4); }
+  .bkp.p0.on { background:#b03030; color:#fff; }
+  .bkempty {
+    font-family:var(--serif); font-style:italic; color:var(--ink-muted);
+    text-align:center; padding:60px 8vw; font-size:16px; display:none;
+  }
+  main { padding-top:32px; }
+  /* ────────────────────────────────────────────────────────────── */
 </style>
 </head>
 <body>
@@ -249,9 +295,85 @@
   <p class="lede">A shared workspace for links, ideas, and directions as we build. Everything on this page evolves — add, edit, cross out as we go.</p>
 </header>
 
-<main>
+<div class="bkc" id="bkC">
+  <nav class="bkt" id="bkT">
+    <button class="on" data-tab="open">Open<sup id="n0"></sup></button>
+    <button data-tab="specs">Specs<sup id="n1"></sup></button>
+    <button data-tab="reports">Reports</button>
+    <button data-tab="links">Links</button>
+    <button data-tab="shipped">Shipped<sup id="n2"></sup></button>
+  </nav>
+  <div class="bkf on" id="bkF">
+    <input id="bkQ" type="search" placeholder="Search…" autocomplete="off">
+    <div class="bksep"></div>
+    <button class="bkp on" data-o="">All</button>
+    <button class="bkp" data-o="kevin">@kevin</button>
+    <button class="bkp" data-o="bez">@bez</button>
+    <button class="bkp" data-o="bezito">@bezito</button>
+    <button class="bkp" data-o="darryl">@darryl</button>
+    <div class="bksep"></div>
+    <button class="bkp on" data-p="">All</button>
+    <button class="bkp p0" data-p="p0">P0</button>
+    <button class="bkp" data-p="p1">P1</button>
+    <button class="bkp" data-p="p2">P2</button>
+  </div>
+</div>
+<p class="bkempty" id="bkE">Nothing matches.</p>
 
-  <section id="today-2026-07-25">
+<main>
+<section id="today-2026-08-13">
+    <div class="sec-eyebrow">Logged — 2026 · 08 · 13</div>
+    <h2>Aug 13 — Shipped</h2>
+    <div class="divider"></div>
+    <p class="sec-sub">Everything shipped in today’s session. All committed to main, deployed to Vercel.</p>
+
+    <div class="card done">
+      <div class="card-date">2026 · 08 · 13</div>
+      <div class="card-title">Freshchat widget removed + CSP fixed</div>
+      <div class="card-body">
+        Freshchat script stripped from <code>(public)/layout.tsx</code>. <code>frame-src</code> and <code>connect-src</code> CSP entries removed from <code>proxy.ts</code>. Was generating console errors on every page load and blocking frame-src across the site.
+      </div>
+      <div class="owner">@bezito — ✓ Shipped (9251396)</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 08 · 13</div>
+      <div class="card-title">Favicon — brand SVG mark copied from live Astro site</div>
+      <div class="card-body">
+        Previous favicon was a 16×16 solid-color block. Pulled the correct SVG from the live Astro <code>&lt;head&gt;</code>: <code>#1a1a1a</code> charcoal background + <code>#95826b</code> brand gold bold serif “B”. Saved as <code>app/icon.svg</code> (Next.js App Router auto-wires it). Replaced <code>public/favicon.ico</code> with a proper 32×32 ICO rendered from the same SVG. Removed the earlier bad PNG resize that was showing as “black square in gold square.”
+      </div>
+      <div class="owner">@bezito — ✓ Shipped (a9a76b6)</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 08 · 13</div>
+      <div class="card-title">Admin — light theme to match public site</div>
+      <div class="card-body">
+        Admin was in dark CMS mode. All CSS vars in <code>app/(admin)/admin.css</code> swapped to public site palette: white background, <code>#faf7f2</code> warm paper surfaces, <code>#1a1a1a</code> ink, <code>#95826b</code> brand gold accent. Login card shadow updated from heavy dark glow to subtle warm drop shadow.
+      </div>
+      <div class="owner">@bezito — ✓ Shipped (3e9266a)</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 08 · 13</div>
+      <div class="card-title">Admin products — pagination + row density toggle</div>
+      <div class="card-body">
+        Two new toolbar controls on the products table. <strong>Per-page selector:</strong> 10 / 25 / 50 / All — defaults to 25, pagination controls (« ‹ N/N › ») appear when needed. <strong>Density toggle (⊟/⊞):</strong> flips between comfortable and compact row height for faster scanning of large lists.
+      </div>
+      <div class="owner">@bezito — ✓ Shipped (7142d21)</div>
+    </div>
+
+    <div class="card done">
+      <div class="card-date">2026 · 08 · 13</div>
+      <div class="card-title">Plytix → Neon sync — triggered and verified (66/66 live)</div>
+      <div class="card-body">
+        The sync fix (individual column writes vs. JSONB blob) had been committed previously but never re-run. All product attribute columns in Neon were NULL — product pages and category browse were returning empty. Triggered <code>/api/cron/plytix-sync</code>: <strong>66 listed, 66 upserted, 0 errors.</strong> Verified: Prism product page renders correctly (55K chars, hero video present); Rings category page returns 25 products with correct slugs.
+      </div>
+      <div class="owner">@bezito — ✓ Shipped</div>
+    </div>
+
+  </section>
+
     <div class="sec-eyebrow">Logged — 2026 · 07 · 25</div>
     <h2>Open Items</h2>
     <div class="divider"></div>
@@ -410,6 +532,12 @@
       <div class="card-date">2026 · 08 · 12</div>
       <div class="card-title">Report — 2026 · 08 · 12</div>
       <div class="card-body">Admin dashboard — full auth system (PIN + email/pw, DB-backed, bcrypt), route group isolation (admin fully decoupled from jewelry site, dark CMS-style UI), 2026 security hardening (rate limiting, Zod, audit log, server-only, open redirect fix), CF Access architecture designed. 6 commits. <a href="https://bezito.co/page/bez-kevin-report-2026-08-12" target="_blank" rel="noopener">Open report →</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-date">2026 · 08 · 13</div>
+      <div class="card-title">Report — 2026 · 08 · 13</div>
+      <div class="card-body">Freshchat removed + CSP fixed. Favicon corrected (SVG brand mark copied from live Astro site — dark charcoal + gold B). Admin switched to light theme matching public site palette. Admin products table: pagination (10/25/50/All) + density toggle. Plytix → Neon sync triggered: 66/66 products live, product pages and category browse verified rendering correctly.</div>
     </div>
 
     <div class="empty">— next report will land here —</div>
@@ -895,6 +1023,51 @@
       </div>
       <div class="card-meta">Full doc with code snippets → memory/nextjs-project.md</div>
     </div>
+
+    <div class="card todo">
+      <div class="card-date">2026 · 08 · 13</div>
+      <div class="card-title">Client Portal + White-Label — Spec (Locked 2026-08-13)</div>
+      <div class="card-body">
+        <strong>What it is:</strong> A client-facing portal baked into the Next.js admin. Bez manages dealers (Polacheck, Westime, etc.) — creates showcase pages and proposals for them — through the same system we already have. Nothing new architecturally; extension of existing infrastructure.<br><br>
+
+        <strong>Three layers:</strong><br>
+        — <strong>Bez admin (/admin)</strong> — manages clients, creates pages via Bezito, picks template, sees all pages + analytics by client<br>
+        — <strong>Client portal (private login)</strong> — client sees their pages and proposals, generates a 4-digit PIN per page when ready to share, submits page requests via a quick form<br>
+        — <strong>Customer view (PIN-walled)</strong> — URL + 4-digit PIN. Pure product showcase. No form. No Bez Ambar. No friction.<br><br>
+
+        <strong>Two document types, one system:</strong><br>
+        — <code>showcase</code> — client shares with their customer (PIN-walled)<br>
+        — <code>proposal</code> — Bez sends to client directly (private, email delivery, lands in client portal)<br><br>
+
+        <strong>Page creation flow:</strong><br>
+        Client requests → Bez → Bezito → <code>POST /api/pages</code> → template applied → live → client generates PIN → shares with customer<br><br>
+
+        <strong>Domain:</strong> TBD — not a blocker. Build against Next.js now, migrate to neutral domain later (bezito.co once galleries worker migrates).<br><br>
+
+        <strong>D1 proposals:</strong> Stay in D1. No migration. New proposals go through Next.js going forward.<br><br>
+
+        <strong>Reuse (don't rebuild):</strong><br>
+        ✅ Auth — same JWT/jose pattern, add <code>role: 'client'</code><br>
+        ✅ Template system — same TSX layout registry, same Draft Mode preview<br>
+        ✅ Admin shell — add "Clients" to sidebar nav<br>
+        ✅ <code>pages</code> table — <code>tenant</code> + <code>password</code> columns already exist; add <code>doc_type</code> (showcase | proposal)<br>
+        ✅ <code>POST /api/pages</code> — add <code>tenant</code> + <code>doc_type</code> params<br>
+        ✅ Analytics section — extend to filter by tenant<br>
+        ✅ Freshmarketer — already in stack; use for proposal email delivery<br><br>
+
+        <strong>Net new (minimal):</strong><br>
+        — <code>clients</code> table in Neon (slug, name, contact_email, credentials)<br>
+        — <code>doc_type</code> column on <code>pages</code><br>
+        — <code>/portal/[client_slug]</code> route namespace<br>
+        — Client auth role in JWT payload<br>
+        — PIN generation + validation (4-digit, stored in <code>pages.password</code>)<br>
+        — "Clients" section in admin<br>
+        — "Request a Page" form in client portal<br>
+        — Email delivery hook for proposals
+      </div>
+      <div class="owner">@kevin (architect) · @bezito (build when green-lit)</div>
+    </div>
+
   </section>
 
   <section id="links">
@@ -1204,6 +1377,7 @@
       <div class="card-body">Cross-referenced full WP post CSV (213 slugs) against Astro blog posts and existing redirects. All 213 WP slugs now covered. Fixed two broken targets: <code>blaze-cut-diamonds-unmatched-engagement-rings-wedding-bands</code> was pointing to <code>/journal</code> (now → <code>/blog/blaze-cut-diamond</code>); <code>the-significance-of-mens-wedding-bands</code> was pointing to a non-existent slug (now → <code>/blog/mens-wedding-band-buying-guide</code>). Added redirects for numeric post IDs <code>/552</code> and <code>/599</code>.</div>
       <div class="owner">@bezito · @kevin</div>
     </div>
+
   </section>
 
 </main>
@@ -1216,5 +1390,123 @@
   </div>
 </footer>
 
+
+<script>
+(function(){
+var SPEC_IDS = {'nextjs-project':1,'proposals':1};
+var SKIP_OPEN = {'reports':1,'links':1,'completed':1};
+var SKIP_SHIPPED = {'reports':1,'links':1};
+
+// Tag every card
+document.querySelectorAll('main .card').forEach(function(c){
+  var sec = c.closest('section'), sid = sec ? sec.id : '';
+  var title = (c.querySelector('.card-title')||{}).textContent||'';
+  var body  = (c.querySelector('.card-body') ||{}).textContent||'';
+  var owner = (c.querySelector('.owner')     ||{}).textContent||'';
+  var stat = c.classList.contains('done') ? 'shipped'
+           : (SPEC_IDS[sid] || /spec|locked|stack|architec|portal|client portal/i.test(title)) ? 'spec'
+           : 'open';
+  c.dataset.s = stat;
+  c.dataset.o = ['kevin','bez','bezito','darryl'].filter(function(x){return owner.toLowerCase().indexOf('@'+x)>-1;}).join(',');
+  c.dataset.p = c.classList.contains('p0')?'p0':c.classList.contains('p1')?'p1':c.classList.contains('p2')?'p2':'';
+  c.dataset.q = (title+' '+body+' '+owner).toLowerCase();
+});
+
+// Counts
+function cnt(s){return document.querySelectorAll('main .card[data-s="'+s+'"]').length;}
+function setCounts(){
+  document.getElementById('n0').textContent = cnt('open');
+  document.getElementById('n1').textContent = cnt('spec');
+  document.getElementById('n2').textContent = cnt('shipped');
+}
+setCounts();
+
+var tab='open', q='', ow='', pri='';
+
+function render(){
+  var secs = document.querySelectorAll('main section');
+  // Hide all sections first
+  secs.forEach(function(s){s.style.display='none';});
+  document.querySelectorAll('main .card').forEach(function(c){c.style.display='';});
+
+  if(tab==='reports'){document.getElementById('reports').style.display='';return;}
+  if(tab==='links'){document.getElementById('links').style.display='';return;}
+
+  // Show relevant sections
+  secs.forEach(function(s){
+    var show = tab==='open'    ? !SKIP_OPEN[s.id] && !SPEC_IDS[s.id]
+             : tab==='specs'   ? (SPEC_IDS[s.id] || s.id==='directions')
+             : tab==='shipped' ? !SKIP_SHIPPED[s.id]
+             : false;
+    if(show) s.style.display='';
+  });
+
+  // Filter cards
+  var shown=0;
+  document.querySelectorAll('main section').forEach(function(sec){
+    if(sec.style.display==='none') return;
+    sec.querySelectorAll('.card').forEach(function(c){
+      var ok = c.dataset.s === (tab==='shipped'?'shipped':tab==='specs'?'spec':'open');
+      if(ok && q && c.dataset.q.indexOf(q)<0) ok=false;
+      if(ok && ow && c.dataset.o.indexOf(ow)<0) ok=false;
+      if(ok && pri && c.dataset.p!==pri) ok=false;
+      c.style.display = ok?'':'none';
+      if(ok) shown++;
+    });
+  });
+
+  // Hide empty sections
+  document.querySelectorAll('main section').forEach(function(sec){
+    if(sec.style.display==='none') return;
+    var any = Array.from(sec.querySelectorAll('.card')).some(function(c){return c.style.display!=='none';});
+    var hasChrome = sec.querySelector('h2,.report-grid,.links-grid,.empty');
+    if(!any && !hasChrome) sec.style.display='none';
+  });
+
+  var em = document.getElementById('bkE');
+  em.style.display = (shown===0 && (q||ow||pri)) ? 'block':'none';
+}
+
+// Filter bar visibility
+function syncBar(){
+  var f = document.getElementById('bkF');
+  f.classList.toggle('on', tab==='open'||tab==='specs'||tab==='shipped');
+}
+
+// Tab clicks
+document.querySelectorAll('#bkT button').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('#bkT button').forEach(function(b){b.classList.remove('on');});
+    btn.classList.add('on');
+    tab = btn.dataset.tab;
+    syncBar();
+    render();
+  });
+});
+
+// Search
+document.getElementById('bkQ').addEventListener('input',function(){
+  q=this.value.toLowerCase().trim(); render();
+});
+
+// Owner pills
+document.querySelectorAll('[data-o]').forEach(function(p){
+  p.addEventListener('click',function(){
+    document.querySelectorAll('[data-o]').forEach(function(x){x.classList.remove('on');});
+    p.classList.add('on'); ow=p.dataset.o; render();
+  });
+});
+
+// Priority pills
+document.querySelectorAll('[data-p]').forEach(function(p){
+  p.addEventListener('click',function(){
+    document.querySelectorAll('[data-p]').forEach(function(x){x.classList.remove('on');});
+    p.classList.add('on'); pri=p.dataset.p; render();
+  });
+});
+
+syncBar(); render();
+})();
+</script>
 </body>
 </html>

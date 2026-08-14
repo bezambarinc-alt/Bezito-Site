@@ -37,9 +37,24 @@ function logView(req: NextRequest): void {
 export async function proxy(req: NextRequest) {
   const path = req.nextUrl.pathname
 
-  // Never gate the login page or the tracking endpoint (prevents redirect loop)
-  if (path === '/admin/login' || path.startsWith('/api/')) {
+  // Never gate login pages or API routes (prevents redirect loops)
+  if (path === '/admin/login' || path === '/portal/login' || path.startsWith('/api/') || path.startsWith('/preview/')) {
     return NextResponse.next()
+  }
+
+  // ── Portal: client session gate ────────────────────────────────────────────
+  if (path.startsWith('/portal')) {
+    const clientToken = req.cookies.get('client_session')?.value
+    const portalLogin = new URL('/portal/login', req.url)
+    portalLogin.searchParams.set('from', path + req.nextUrl.search)
+    if (!clientToken) return NextResponse.redirect(portalLogin)
+    try {
+      const { payload } = await jwtVerify(clientToken, JWT_SECRET)
+      if (payload.role !== 'client') return NextResponse.redirect(portalLogin)
+      return NextResponse.next()
+    } catch {
+      return NextResponse.redirect(portalLogin)
+    }
   }
 
   // ── Public traffic: log the view, assign a session cookie, pass through ──────
@@ -87,5 +102,5 @@ export const config = {
   // Run on everything EXCEPT api routes, admin login, static assets, image optimizer.
   // Admin auth + public view-logging are branched inside proxy().
   // Excluding /api and /admin/login here is belt-and-suspenders with the guard above.
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|admin/login|.*\\.[a-z0-9]+$).*)'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|admin/login|portal/login|.*\\.[a-z0-9]+$).*)'],
 }
