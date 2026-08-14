@@ -137,19 +137,7 @@ export default function TemplatesClient({ templates, activeIds, products, client
         )}
 
         {tab === 'proposal' && (
-          clientPages.length > 0 ? (
-            <select
-              className={styles.previewSelect}
-              value={selectedPage}
-              onChange={e => setSelectedPage(e.target.value)}
-            >
-              {clientPages.map(p => (
-                <option key={p.slug} value={p.slug}>{p.title}</option>
-              ))}
-            </select>
-          ) : (
-            <span className={styles.previewEmpty}>No live proposal pages yet</span>
-          )
+          <span className={styles.previewEmpty}>Proposals are sent directly — no public preview URL. Assign a template per-page in the Pages panel.</span>
         )}
       </div>
 
