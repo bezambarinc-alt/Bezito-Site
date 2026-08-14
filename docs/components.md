@@ -1,67 +1,212 @@
 # Components
 
-All components live in `src/components/`. They are rendered by `Layout.astro` and appear on every page unless noted.
+All components are in `components/`. CSS Modules are co-located (`ComponentName.module.css`).
 
-## Header (`Header.astro`)
+---
 
-Fixed top bar. Always rendered.
+## Layout
 
-- Left: hamburger button that opens `Nav`
-- Center: "BEZ AMBAR" wordmark link → `/`
-- Right: search icon (opens `SearchOverlay`), contact icon → currently `<a href="/contact">` (navigates to contact page)
-- **TODO:** contact icon should open InquiryDrawer with a contact-style form instead of navigating away
-- Transparent at page top; JS adds `.is-solid` (white background) on scroll
-- All styles in `global.css` section 7 — no scoped `<style>` block in the component
+### `Header`
+Fixed header — `components/layout/Header.tsx`
 
-## Nav (`Nav.astro`)
+Transparent on page load, transitions to solid white on scroll (`scrollY > 20`). Three zones:
+- **Left:** hamburger + "Menu" label → `openMenu()`
+- **Center:** "Bez Ambar" wordmark → `<Link href="/">`
+- **Right:** search icon → `openSearch()`, concierge bell → `openConcierge()`
 
-Slide-left menu overlay. Always rendered, hidden until toggled.
+Scroll state + drawer actions via `useDrawers()` from `DrawerContext`.
 
-- Root column: top-level items (Jewelry, Atelier, Blog, The Archive, Service)
-- Sub-columns: Jewelry (Collections + Browse + From the Atelier), Atelier, Service
-- "Browse" section: Rings → Bands → Bracelets → Earrings → Necklaces → Pendants (no Engagement Rings, no Wedding Bands as separate items)
-- "From the Atelier" section: featured highlight pieces and new concepts
-- Bottom CTA: "Arrange a Private Consultation" → opens InquiryDrawer with `intent: 'consultation'`
-- Mobile: single-panel slide (root slides left, sub-column slides in from right)
+---
 
-## Footer (`Footer.astro`)
+### `MenuOverlay`
+Slide-in navigation — `components/layout/MenuOverlay.tsx`
 
-Five-column footer. Always rendered.
+Two-column layout:
+- **Column 1 (root):** static `ROOT` items — Jewelry (expand), Atelier (expand), Blog, The Archive, Service
+- **Column 2 (sub):** dynamic sub-menu rendered when an expand item is active
 
-- Column 1: Brand — wordmark, tagline, `<SocialLinks />`, Blaze® credit
-- Column 2: Shop — collection + category links
-- Column 3: Discover — About, Diamond Education, Elysian Cut, Press, Journal, Ring Size Guide
-- Column 4: Service — Contact, Bespoke Design, Repairs & Cleaning, Ring Resizing, Warranty
-- Column 5: Visit the Atelier — address + hours
-- Accordion on mobile (each column collapses)
-- Imports `SocialLinks`
+Root items are data-driven (`ROOT` array at top of file). Jewelry sub-items are built from Neon data passed via `NavMenuData` (categories, collections, featured products).
 
-## SearchOverlay (`SearchOverlay.astro`)
+Service item calls `openConcierge()` — the only CTA in the menu. Do not add additional CTAs.
 
-Full-screen frosted-glass search panel. Always rendered, hidden until triggered.
+---
 
-- Powered by Pagefind (static search, built at deploy time)
-- Triggered by header search icon
-- Renders live results below input as user types
+### `NavMenuData`
+Server component — `components/layout/NavMenuData.tsx`
 
-## InquiryDrawer (`InquiryDrawer.astro`)
+Fetches `getActiveCategories()`, `getActiveCollections()`, `getFeaturedProducts()` from Neon and renders `<MenuOverlay>` with the data. Injected into the public layout; `MenuOverlay` is client-side.
 
-Slide-right inquiry/contact panel. Always rendered, hidden until triggered.
+---
 
-- Opens via `window.openInquiryDrawer({ title?, sku?, intent? })`
-- Form shows two fields only: Name + Email. Intent is always set programmatically, never shown to the visitor.
-- Submits to FreshSales worker: `https://bezito-forms.bezambarinc.workers.dev/api/contact`
-- Payload includes: firstName, lastName (split from single Name input), email, intent (programmatic), pieceTitle, pieceSku, utmSource, utmMedium, utmCampaign
-- Used site-wide for general inquiries, bespoke commissions, and service requests
-- **Note:** The Archive page has its own separate modal (video left + form right) — it does NOT use this drawer
+### `DrawerContext`
+Shared drawer state — `components/layout/DrawerContext.tsx`
 
-## SocialLinks (`SocialLinks.astro`)
+`DrawerProvider` wraps the public layout. Provides `useDrawers()` hook:
 
-Icon-only social row. Used inside `Footer`, `InquiryDrawer`, and the contact page.
+```typescript
+const { active, openMenu, closeMenu, openSearch, openConcierge, openInquiryDrawer, close } = useDrawers()
+```
 
-- Instagram → `https://www.instagram.com/bezambarjewelry/`
-- Pinterest → `https://www.pinterest.com/bezambarinc/`
-- YouTube → `https://www.youtube.com/@BezAmbarInc/`
-- TikTok → `https://www.tiktok.com/@bezambar`
-- LinkedIn → `https://www.linkedin.com/in/bez-ambar-869936a/`
-- Accepts optional `class` prop for layout overrides
+`active` can be `'menu' | 'search' | 'concierge' | 'inquiry' | null`. Only one drawer open at a time.
+
+---
+
+### `ConciergeDrawer`
+Atelier concierge slide panel — `components/layout/ConciergeDrawer.tsx`
+
+Opens from the right. Contains service options (consultation booking, care, custom work). May link to Freshchat if/when the chat integration is re-added.
+
+---
+
+### `InquiryDrawer`
+Inquiry form slide panel — `components/layout/InquiryDrawer.tsx`
+
+Primary conversion surface. Can be opened with context:
+```typescript
+openInquiryDrawer({ intent?: string, sku?: string, title?: string })
+```
+
+On submit: `POST /api/lead` with name, email, message, intent, SKU.
+
+---
+
+### `SearchOverlay`
+Full-screen search — `components/layout/SearchOverlay.tsx`
+
+Searches `products` table via `GET /api/search`. Live-updates as user types.
+
+---
+
+### `Footer`
+Site footer — `components/layout/Footer.tsx`
+
+---
+
+### `DraftModeBanner`
+Admin-only — `components/layout/DraftModeBanner.tsx`
+
+Shown on product pages when Next.js draft mode is active (template preview). Shows the active template name and an exit link.
+
+---
+
+### `ProdPill`
+Floating product pill — `components/layout/ProdPill.tsx`
+
+Sticky pill shown on product pages. Contains piece name + inquiry CTA. Appears after scroll threshold.
+
+---
+
+## Blocks
+
+Content blocks used by page templates. Each block handles one content type.
+
+| Component | Purpose |
+|---|---|
+| `BlockRenderer` | Dispatches to the correct block component by `type` |
+| `HeroSplit` | Two-column hero — video/image left, text right |
+| `HeroVideo` | Full-bleed video hero |
+| `ContentSplit` | Text left, image/content right |
+| `SpecAccordion` | Technical details accordion (gem, metal, size, etc.) |
+| `ImageGrid` | Multi-image grid |
+| `Editorial` | Full-width editorial text block |
+| `PullQuote` | Large pull quote |
+| `Richtext` | Markdown body text |
+| `Segment` | Generic section wrapper |
+| `InquireCta` | Inline inquiry CTA button |
+| `InquireFooter` | Page footer inquiry block |
+
+---
+
+## Product
+
+### `ProductCard`
+Product grid card — `components/product/ProductCard.tsx`
+
+Shows hero video (looped, muted) or image + piece name. Links to `/jewelry/[category]/[slug]`.
+
+### `ProductGrid`
+Grid layout for product cards — `components/product/ProductGrid.tsx`
+
+### `ProductGallery`
+Product image gallery on detail pages — `components/product/ProductGallery.tsx`
+
+### `CategoryRefine`
+Category filter pill row — `components/product/CategoryRefine.tsx`
+
+---
+
+## Home
+
+### `HomeSegment`
+Homepage section wrapper with reveal animation — `components/home/HomeSegment.tsx`
+
+### `HomeHeroImage`
+Homepage hero image — `components/home/HomeHeroImage.tsx`
+
+### `Newsletter`
+Newsletter signup form — `components/home/Newsletter.tsx`
+
+Submits to `POST /api/lead` with `intent: 'newsletter'`.
+
+### `ConciergeCtaButton`
+Floating concierge CTA on homepage — `components/home/ConciergeCtaButton.tsx`
+
+---
+
+## Common
+
+### `FadeIn`
+Intersection-observer fade-in animation wrapper — `components/common/FadeIn.tsx`
+
+### `LazyVideo`
+Cloudinary video with lazy loading + poster — `components/common/LazyVideo.tsx`
+
+### `ScrollWipeCarousel`
+Scroll-driven wipe carousel — `components/common/ScrollWipeCarousel.tsx`
+
+### `PageCta`
+Full-width page CTA block — `components/common/PageCta.tsx`
+
+---
+
+## Blog
+
+### `BlogBody`
+Markdown blog post renderer — `components/blog/BlogBody.tsx`
+
+Uses `react-markdown` + `rehype-sanitize`.
+
+### `Reveal`
+Scroll-reveal wrapper for blog content — `components/blog/Reveal.tsx`
+
+---
+
+## Archive
+
+### `ArchiveClient`
+Client-side archive grid with filtering — `components/archive/ArchiveClient.tsx`
+
+### `ArchiveGrid`
+Masonry grid of archive items — `components/archive/ArchiveGrid.tsx`
+
+### `ArchiveModal`
+Video player + inquiry modal for archive items — `components/archive/ArchiveModal.tsx`
+
+### `ArchiveFilterPill` / `ArchiveGifCard`
+Filter controls + individual archive item card.
+
+---
+
+## Page-specific
+
+### `PinGate` (`app/(public)/preview/[slug]/PinGate.tsx`)
+Client-side 4-digit PIN entry. Shown when preview page requires PIN and cookie is absent. Submits to `POST /api/preview/[slug]/verify-pin`.
+
+### `ScrollSpyTabs` (`app/(public)/diamond-education/ScrollSpyTabs.tsx`)
+Sticky tab bar that tracks which section is in view.
+
+### `ChapterReveal` / `StoryNav` (`app/(public)/the-story/`)
+Scroll-driven chapter reveal + sticky nav for the brand story page.
+
+### `CuratorFeed` (`app/(public)/journal/CuratorFeed.tsx`)
+Curated journal feed with category filtering.

@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
   // Bust preview pages on showcase scope change
   if (scope === 'showcase') revalidatePath('/preview', 'layout')
 
-  await audit('admin.template.activated' as never, session.sub as string, { templateId: id, scope })
+  await audit('admin.template.activated', session.sub as string, { templateId: id, scope })
 
   return NextResponse.json({ ok: true })
 }

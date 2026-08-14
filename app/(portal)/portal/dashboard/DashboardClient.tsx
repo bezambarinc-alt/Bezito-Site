@@ -94,16 +94,14 @@ export default function DashboardClient({ pages, clientName }: Props) {
       <header className={styles.header}>
         <div className={styles.headerInner}>
           <span className={styles.welcome}>Welcome back, <strong>{clientName}</strong></span>
-          <form action="/api/portal/auth" method="POST">
-            <button
-              type="button"
-              className={styles.signout}
-              onClick={async () => {
-                await fetch('/api/portal/auth', { method: 'DELETE' })
-                window.location.href = '/portal/login'
-              }}
-            >Sign out</button>
-          </form>
+          <button
+            type="button"
+            className={styles.signout}
+            onClick={async () => {
+              await fetch('/api/portal/auth', { method: 'DELETE' })
+              window.location.href = '/portal/login'
+            }}
+          >Sign out</button>
         </div>
       </header>
 

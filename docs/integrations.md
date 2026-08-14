@@ -1,122 +1,95 @@
 # Integrations
 
-## Overview
+Five external systems. Each has a specific role — they do not overlap.
 
-The Bez Ambar site connects to six external systems. Each has a specific role; they do not overlap.
-
-| System | Role | Access |
+| System | Role | Credentials |
 |---|---|---|
-| **Plytix** | Product data source of truth (PXM) | API active |
-| **FreshSales** | CRM — all inquiry leads | API active |
-| **Cloudinary** | All video and image media | Credentials in workspace |
-| **Vercel** | Hosting + deployment | Token at `~/.openclaw/credentials/vercel.json` |
-| **Pagefind** | Static search index | Built at deploy time |
-| **Fontstand** | Lyon Text font CDN license | Domain-locked CDN |
+| **Neon** | Primary database | `DATABASE_URL` env var |
+| **Plytix** | Product data source of truth (PIM) | `PLYTIX_API_KEY` + `PLYTIX_API_PASSWORD` |
+| **Freshsales** | CRM — all inquiry leads | `FRESHSALES_API_KEY` |
+| **Cloudinary** | All video + image media | Credentials in workspace Controller dir |
+| **Vercel** | Hosting + auto-deployment | Token at `~/.openclaw/credentials/vercel.json` |
+| **Fontstand** | Lyon Text font CDN license | Domain-locked CDN — no credentials needed |
 
 ---
 
-## Plytix (PXM)
+## Plytix (PIM)
 
-**Plytix** is the Product Experience Management platform — the single source of truth for all product data. Nothing about a product (title, description, stone specs, media URLs, categories) should be changed anywhere other than Plytix. The Astro site reads from it; it does not write to it.
+**Plytix** is the single source of truth for all product data. Nothing about a product should be changed anywhere other than Plytix. The Neon `products` table is a read cache — rebuilt by cron, never written manually.
 
-### Data Model
+### Auth
 
-The canonical data structure is the CSV export at `data/plytix-import.csv`:
-
-| Column | Description |
-|---|---|
-| `slug` | URL-safe product identifier, used in Astro routes (`/products/[slug]`) |
-| `sku` | Internal SKU (e.g. `C0754`) |
-| `ref_code` | Reference code for ordering / internal use |
-| `title` | Display title (e.g. "Single Row Flex Bracelet") |
-| `subtitle` | Secondary descriptor |
-| `category` | `rings`, `bracelets`, `earrings`, `necklaces`, `pendants`, `bands` |
-| `collection` | Collection slug if the piece belongs to one (e.g. `bloom`) |
-| `status` | `active`, `archive`, `coming-soon` |
-| `metal` | e.g. `18k Yellow Gold`, `Platinum` |
-| `description` | Short factual description for product pages |
-| `editorial` | Longer editorial text (used in spotlight sections on collection pages) |
-| `stone_shape` | e.g. `princess`, `round`, `baguette`, `cushion` |
-| `stone_carats_exact` | Exact total carat weight if fixed |
-| `stone_carats_min` | Min carat weight for configurable ranges |
-| `stone_carats_max` | Max carat weight for configurable ranges |
-| `stone_carats_display` | Display string (e.g. "3.0–5.0 ct") |
-| `stone_color` | Diamond color grade or gemstone color |
-| `stone_clarity` | Diamond clarity or gemstone quality note |
-| `stone_notes` | Free-text stone context |
-| `hero_video` | Cloudinary video URL for product hero / card |
-| `hero_image` | Cloudinary image URL for fallback / OG image |
-| `inquiry_subject` | Pre-filled subject line when InquiryDrawer opens from this product |
-| `pretty_url` | Canonical public URL (e.g. `https://bezambar.com/products/single-row-flex-bracelet`) |
-
-### Sync Flow
+Plytix uses a short-lived Bearer token obtained per session:
 
 ```
-Plytix (source of truth)
-       ↓  scripts/sync-plytix.js
-src/content/products/*.md   (Astro content collection entries)
-       ↓  astro build
-/products/[slug]   (static HTML pages)
+POST https://auth.plytix.com/auth/api/get-token
+Body: { api_key, api_password }
+Response: { data: [{ access_token }] }
 ```
 
-**Script:** `scripts/sync-plytix.js` — fetches product data from the Plytix API and writes individual `.md` files into `src/content/products/`. Run this whenever product data changes in Plytix before building.
+Note: the token is at `data[0].access_token` (not `.token`) — a documented Plytix quirk.
 
-**Do not hand-edit** `src/content/products/` files directly. They are generated output. Changes will be overwritten on next sync.
+### Sync flow
 
-### API Access
+```
+GET /api/cron/plytix-sync (every 4h via Vercel cron)
+  │
+  ├─ Auth → get access_token
+  ├─ POST /products/search (paginated, page_size=100, filter: status=Completed)
+  │    ← Returns product IDs + labels only. Attributes always come back EMPTY here.
+  ├─ For each ID: GET /products/{id}
+  │    ← Returns full attributes (description, editorial, hero_visual, metal, stone_*, etc.)
+  ├─ For each ID: GET /products/{id}/categories (taxonomy link → category name)
+  ├─ Upsert into Neon products table
+  │    ← active + featured excluded from ON CONFLICT UPDATE (admin-managed)
+  ├─ Delete stale rows (not returned by Plytix this run)
+  └─ revalidateTag('products') → bust ISR product page cache
+```
 
-- **API access:** active. Credentials stored in workspace (ask Kevin or check the Controller dir).
-- Plytix also feeds Klaviyo (campaign segmentation) and CF Workers (landing pages) — not only the Astro site.
+Rate limiting: Plytix 429s on rapid GETs. The sync uses 200ms sleep between products and exponential backoff (up to 6 retries, 1500ms×attempt) on 429.
 
-### Why Plytix (not a headless CMS)
+Function timeout: `export const maxDuration = 300` — 66 products + sequential fetches + upserts exceeds the default 10s limit.
 
-Product data is multi-channel: the Astro site, Klaviyo email campaigns, and CF Worker landing pages all consume it. A headless CMS (Contentful, Sanity) would center the website as the authoring environment. Plytix is built specifically for multi-channel product data distribution — one source, many outputs, no content model compromises for any single channel.
+### Plytix data model quirks
+
+- `POST /products/search` → attributes always empty, use for IDs only
+- `GET /products/{id}` → real attributes live here
+- Categories live in a taxonomy (not an attribute) — fetch via `/products/{id}/categories`
+- `featured` attribute: may be boolean, string `'true'`, or other truthy value — normalize on read
+
+### Category attribute
+
+Products use a single-select `category` attribute in Plytix (added 2026-08-08). The sync prefers this over the taxonomy link. Fallback order: `attribute.category` → taxonomy link → `'jewelry'`.
 
 ---
 
-## FreshSales (CRM)
+## Freshsales (CRM)
 
-FreshSales Enterprise handles all inquiry leads from the website.
+Freshsales Enterprise handles all inquiry leads.
 
 - **Domain:** `bezambar.myfreshworks.com`
-- **API base URL:** `https://bezambar.myfreshworks.com/crm/sales/api`
-- **Credentials:** `workspace/credentials/freshsales.json`
-  ```json
-  {
-    "domain": "bezambar.myfreshworks.com",
-    "base_url": "https://bezambar.myfreshworks.com/crm/sales/api",
-    "plan": "Enterprise",
-    "user": "bez@bezambar.com"
-  }
-  ```
-- **All Contacts view ID:** `127026373115`
+- **API base:** `https://bezambar.myfreshworks.com/crm/sales/api`
+- **Auth:** `Authorization: Token token=<FRESHSALES_API_KEY>`
 
-### Lead Flow
-
-The site never calls FreshSales directly. The `InquiryDrawer` form POSTs to the CF Worker:
+### Lead flow
 
 ```
-POST https://bezito-forms.bezambarinc.workers.dev/api/contact
+POST /api/lead (browser → Next.js)
+  │
+  ├─ Validate email
+  ├─ INSERT INTO leads (always succeeds first)
+  └─ POST https://bezambar.myfreshworks.com/crm/sales/api/contacts (best-effort)
+       │
+       ├─ Success: UPDATE leads SET crm_status='synced', crm_id=contact.id
+       └─ Failure: UPDATE leads SET crm_status='failed'
+           (lead is safe in Neon — CRM failure is non-fatal)
 ```
 
-The CF Worker:
-1. Validates the payload
-2. Checks FreshSales for an existing contact by email
-3. Creates or updates the contact
-4. Creates a new deal/lead with piece context + UTM attribution
-5. Returns `{ success: true }` or error message
+The browser never calls Freshsales directly. The API key never appears in client-side code.
 
-**Why proxy through a CF Worker (not call FreshSales directly from the browser):** FreshSales API keys never touch the client. A direct browser → FreshSales call would expose the API key in every page source. The worker also enables server-side validation, rate limiting, and future queueing without any changes to the site.
+### Freshworks integrations (pending)
 
-### Field Mapping
-
-| Form field | FreshSales field |
-|---|---|
-| firstName + lastName (split from Name input) | Contact name |
-| email | Contact email |
-| intent (programmatic) | Deal description + custom field |
-| pieceTitle + pieceSku | Deal name / description |
-| utmSource / utmMedium / utmCampaign | Custom UTM fields on deal |
+Full Freshworks integration (chat widget, live visitor tracking) is planned but not yet implemented. The Freshchat widget was evaluated and removed (2026-08-12). The CSP in `next.config.ts` includes Freshworks domains for the remaining CRM API calls from `/api/lead`.
 
 ---
 
@@ -125,105 +98,73 @@ The CF Worker:
 All media (video + images) is hosted on Cloudinary and served via Cloudinary's CDN.
 
 - **Account ID:** `dlg2mou53`
-- **Credentials:** in workspace Controller dir
-- **Uploader script:** `scripts/cloudinary-upload.js`
+- **CSP:** `next.config.ts` already includes `res.cloudinary.com` in `img-src` and `media-src`
 
-### URL Patterns
+### URL patterns
 
 Images:
 ```
-https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_800/v1/<public-id>
+https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_800/<public-id>
 ```
 
-Video (for product heroes and archive):
+Video:
 ```
-https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1/<public-id>
-```
-
-Transformations are applied via URL parameters — never transform at upload time. This allows re-delivery at different sizes without re-uploading.
-
-**Why Cloudinary (not self-hosting or another CDN):** product videos need adaptive delivery across device sizes and connection speeds. Cloudinary handles transcoding, format selection (`f_auto`), and quality optimization (`q_auto`) per request via URL params. Self-hosting would require storing multiple pre-encoded versions of every clip.
-
-### Folder Structure
-
-See `memory/cloudinary-folder-structure.md` for the full canonical map. Short version:
-
-- `Jewelry Images/<Category>/` — product photos (Rings, Bracelets, Earrings, Necklaces, Pendants, Bands, Stones, Atelier)
-- `Jewelry Videos/<Category>/` — active product videos (same category list)
-- `Studio/prompt-creations/<category>/` — AI-generated images (rings, necklaces, earrings, tools)
-- `Inspirations/<designer>/` — design reference mood boards (sfj, glen-spiro, choppard, taffin, rings)
-- `Archive/` — legacy GIFs (559) + pre-2026 video masters (546)
-
-### CSP
-
-`vercel.json` includes Cloudinary in Content Security Policy:
-```
-media-src https://res.cloudinary.com
-img-src https://res.cloudinary.com
+https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/<public-id>.mp4
 ```
 
-Do not change these without updating `vercel.json`.
+Still poster from video (used as `heroPosterUrl`):
+```
+https://res.cloudinary.com/dlg2mou53/video/upload/so_1.0,f_jpg,w_1200,c_fit/<public-id>.jpg
+```
+
+### Folder structure
+
+See `memory/cloudinary-folder-structure.md` for the full canonical map:
+
+- `Jewelry Images/<Category>/` — product photos
+- `Jewelry Videos/<Category>/` — product videos
+- `Studio/prompt-creations/<category>/` — AI-generated images
+- `Archive/` — legacy GIFs (559) + pre-2026 video masters
+
+Never commit image/video binary files to the repo. Always use Cloudinary URLs.
+
+### Video vs image detection
+
+`rowToProduct()` in `lib/queries.ts` detects video vs image by URL:
+1. If URL has image extension (`.jpg`, `.jpeg`, `.png`, `.webp`) → always image
+2. If URL has video extension (`.mp4`, `.webm`, `.mov`) → video
+3. If path contains `/video/upload/` → video (fallback)
+
+This handles the case where a still image lives under `/video/upload/` in Cloudinary (common for product photos uploaded through the video pipeline).
 
 ---
 
 ## Vercel
 
-All deployments go through Vercel.
-
 - **Account:** `bezambarinc-alt`
-- **Project:** `bezito-site`
-- **Token:** `~/.openclaw/credentials/vercel.json` — ⚠️ expires ~2026-08-02, rotate before then
-- **Output:** `static` (via `@astrojs/vercel/static` adapter)
-- **Trigger:** auto-deploy on every push to `main`
+- **Project:** `bezambar-nextjs` (`prj_YIYwbBNqU7GFLwpuzWNlwGiZx475`)
+- **Token:** `~/.openclaw/credentials/vercel.json`
+- **Live URL:** `bezambar-web2026.vercel.app`
+- **Auto-deploys:** every push to `main`
+- **Fluid compute:** enabled (supports long-running functions up to 300s)
+- **Neon:** provisioned via Vercel Marketplace
 
-`vercel.json` at repo root controls:
-- HTTP response headers (CSP, X-Frame-Options, etc.)
-- Any redirects needed for domain cutover
-- Build output configuration
+`vercel.json` controls:
+- Cron schedule (`/api/cron/plytix-sync` every 4h)
 
----
-
-## Pagefind (Static Search)
-
-Pagefind generates a static search index at build time. The site uses it for in-page full-text search.
-
-Build command (in `package.json`):
-```
-astro build && pagefind --site dist
-```
-
-The index is written into `dist/pagefind/` at build time. It is served as a static asset — no server-side search, no API call.
-
-The `SearchOverlay` component loads Pagefind's JS at runtime and queries the index client-side. No external network call during search.
-
-`astro.config.mjs` marks `/pagefind/pagefind.js` as external (Rollup doesn't try to bundle it at build time):
-```js
-external: ['/pagefind/pagefind.js']
-```
-
-Do not remove this — it will break the build.
-
-**Why Pagefind (not Algolia, Elasticsearch, or another search service):** no API key, no external dependency at runtime, zero cost, works offline. The index is a static asset served from the same CDN as the rest of the site. Search queries never leave the browser — fully client-side. Since the site is static and the product catalog is small (~50–200 SKUs), a hosted search service adds cost and complexity with no benefit.
+Security headers + CSP are set in `next.config.ts` (not `vercel.json`).
 
 ---
 
 ## Fontstand / Lyon Text
 
-Lyon Text is loaded via **Fontstand's CDN** under a domain-licensed webfont agreement.
+Lyon Text is loaded via Fontstand CDN under a domain-licensed webfont agreement:
 
 ```html
 <link rel="stylesheet" href="https://webfonts.fontstand.com/WF-099839-d89c1d499f0c1f40d1e6d7330af17f97.css" />
 ```
 
-**What this means:**
-- The font is licensed for `bezambar.com` only — it will not render on other domains or localhost without a separate license
+- Licensed for `bezambar.com` only — will not render on other domains or localhost
 - In local dev the fallback kicks in (Cormorant Garamond)
-- Do not self-host Lyon Text or copy the CSS file — this would violate the license
-- If the CDN stylesheet URL changes (Fontstand sends a new key), update it in `Layout.astro`
-
-Lyon Text is used for:
-- Body text (`--prose` font stack)
-- Serif display headings (homepage hero h1, blog h1-h6)
-- Pull quotes
-
-Cormorant Garamond (npm, `@fontsource-variable/cormorant-garamond`) is the production fallback and the local-dev stand-in.
+- Do not self-host or copy the CSS file — violates the license
+- If Fontstand sends a new key URL, update it in `app/layout.tsx`

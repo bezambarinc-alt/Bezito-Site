@@ -42,7 +42,7 @@ export async function PATCH(req: NextRequest, { params }: Ctx) {
   values.push(slug)
   await sql(`UPDATE pages SET ${updates.join(', ')} WHERE slug = $${i}`, values)
 
-  await audit('admin.client.updated', session.sub as string, {
+  await audit('admin.page.updated', session.sub as string, {
     slug, ...parsed.data,
   })
 
@@ -61,7 +61,7 @@ export async function DELETE(_req: NextRequest, { params }: Ctx) {
     [slug],
   )
 
-  await audit('admin.client.updated', session.sub as string, { slug, action: 'archived' })
+  await audit('admin.page.archived', session.sub as string, { slug })
 
   return NextResponse.json({ ok: true })
 }

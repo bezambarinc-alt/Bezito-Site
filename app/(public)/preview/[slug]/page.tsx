@@ -61,9 +61,9 @@ export default async function PreviewPage({ params, searchParams }: Ctx) {
     }
   }
 
-  // Template resolution: ?tpl param (admin preview) → page's own template_id → global active
+  // Template resolution: ?tpl param (admin preview) → page's own template_id → showcase global → product global
   const [globalRow] = await sql<{ value: string }>(
-    `SELECT value FROM admin_settings WHERE key = 'active_product_template' LIMIT 1`,
+    `SELECT value FROM admin_settings WHERE key = 'active_showcase_template' LIMIT 1`,
   )
   const globalActive = globalRow?.value ?? 'default'
   const resolvedId   = tplParam ?? page.template_id ?? globalActive

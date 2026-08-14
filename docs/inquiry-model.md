@@ -1,159 +1,107 @@
-# Inquiry Model — Why No Cart, How Inquiry Works
+# Inquiry Model
 
-## The Model
+The site has no cart, no checkout, and no prices. Every conversion action leads to a human conversation.
 
-Bez Ambar does not sell online. There is no cart, no checkout, no "Buy Now" button, no price on any page. This is a deliberate structural decision, not a gap.
+---
 
-The product is a made-to-order fine jewelry piece from an independent atelier. It cannot be appropriately sold via a 2-minute checkout flow. The purchase decision involves budget discussions, stone selection, metal choice, sizing, and often custom modifications — all of which require a human conversation.
-
-The site exists to do one thing: **generate a qualified inquiry that starts that conversation.**
-
-### The Funnel
+## Funnel
 
 ```
-Visitor arrives (organic / campaign / referral)
-       ↓
-Engages with piece (video hero, product page, archive)
-       ↓
-Clicks inquiry CTA (button, nav CTA, or drawer trigger)
-       ↓
-InquiryDrawer opens (pre-filled with piece context)
-       ↓
-Visitor submits form (name, email)
-       ↓
-CF Worker receives POST → creates FreshSales contact + lead
-       ↓
-Bez / team sees new lead in FreshSales
-       ↓
-Personal follow-up within 24 hours
-       ↓
-Consultation → commission → piece made to order
+Visitor sees piece
+    ↓
+Watches hero video (Cloudinary MP4, looped, muted)
+    ↓
+Clicks inquiry CTA (ProdPill, InquireCta block, or InquireFooter)
+    ↓
+InquiryDrawer opens (slide-right panel)
+    ↓
+Submits name + email + message
+    ↓
+POST /api/lead → Neon (durable) → Freshsales CRM (best-effort)
+    ↓
+Bez / team follows up by phone or email
 ```
-
-Nothing in this flow involves a transaction. The form submission is the conversion. Everything after that is human.
 
 ---
 
 ## InquiryDrawer
 
-The `InquiryDrawer` is a slide-right panel rendered by `Layout.astro` on every page. It is always present in the DOM; it's hidden until triggered.
+Global panel — present on every public page via `DrawerProvider` in `app/(public)/layout.tsx`.
 
-**Why always-in-DOM (not mounted on demand):** the drawer can be triggered from anywhere — product CTAs, nav, footer service links, inline text links. Pre-rendering it means zero load time on open. Mounting it dynamically would introduce a flicker or delay on the first open, which is unacceptable for the primary conversion action.
+**Open it from anywhere:**
+```typescript
+const { openInquiryDrawer } = useDrawers()
 
-### Opening It
-
-```js
-window.openInquiryDrawer({
-  title: 'Single Row Flex Bracelet',   // optional — pre-fills piece title
-  sku: 'C0754',                         // optional — passed in form payload
-  intent: 'consultation'                // optional — must match FreshSales intent values (see below)
+openInquiryDrawer({
+  intent?: string,    // e.g. 'consultation', 'inquiry', 'custom'
+  sku?: string,       // pre-fills piece context
+  title?: string,     // pre-fills piece title
 })
 ```
 
-Intent values (must align with FreshSales dropdown on the `/contact` page):
-- `'commission a piece'` — Bespoke Design links (Nav + Footer)
-- `'consultation'` — Nav bottom CTA "Arrange a Private Consultation"
-- `'collection piece'` — A Piece from the Collection
-- `'atelier visit'` — Visit the Atelier
-- `'repairs'` — Repairs & Cleaning
-- `'resize'` — Ring Resizing
+**On submit:** `POST /api/lead` with `{ name, email, message, intent, sku }`.
 
-Called from:
-- Product page "Inquire" CTA buttons
-- Nav bottom CTA ("Arrange a Private Consultation")
-- Header contact icon — **currently links to `/contact` page** (TODO: should open InquiryDrawer with contact-style form)
-- Collection page CTAs
-- Footer service links
-- Any inline text link that should trigger inquiry
-
-### Form Fields
-
-Visible to visitor:
-- Name (required)
-- Email (required)
-
-**Why only two fields:** minimize friction at the top of the funnel. Name + email is enough to start the relationship. Everything else — stone preferences, budget, timeline, ring size — belongs in the follow-up call, not a web form. Every additional field increases abandon rate. The piece context (title, SKU, intent) is passed programmatically so it's already in FreshSales without the visitor typing anything.
-
-Hidden / auto-filled:
-- `intent` — set programmatically via `openInquiryDrawer()` (e.g. `'consultation'`, `'commission a piece'`, `'repairs'`, `'resize'`)
-- `pieceTitle` — passed via `openInquiryDrawer()`
-- `pieceSku` — passed via `openInquiryDrawer()`
-- `utmSource`, `utmMedium`, `utmCampaign` — captured from URL on load, stored in `sessionStorage`, auto-included in every submit
-
-### Submission
-
-POSTs JSON to: `https://bezito-forms.bezambarinc.workers.dev/api/contact`
-
-The CF Worker:
-1. Validates required fields
-2. Creates or updates a FreshSales contact (matched by email)
-3. Creates a FreshSales lead/deal with piece context
-4. Returns `{ success: true }` — the drawer shows a confirmation state
-
-On success: the form fields clear, a "We'll be in touch" message appears. Drawer can be closed.
-
-On error: the error message appears inline. Form data is preserved. User can retry.
+The drawer is always in the DOM (zero open latency). Not mounted on demand — that would introduce a visible flicker on the primary conversion action.
 
 ---
 
-## Archive Modal
+## ConciergeDrawer
 
-The Archive page (`/archive`) has its own inquiry mechanism — separate from `InquiryDrawer`. Do not confuse them.
+Separate panel for service-related inquiries — care, custom work, consultation booking.
+Opened via the concierge bell icon in the header or the "Service" nav item.
 
-**Archive modal:**
-- Triggered by clicking a piece card in the archive grid
-- Opens a full-width overlay (not a slide-panel)
-- Left side: Cloudinary MP4 video (autoplay, looped, no controls)
-- Right side: inquiry form — name + email fields, same POST endpoint as InquiryDrawer
-- The piece context (title, sku) is injected from `archive-data.json` entry
-- Closing dismisses the overlay; does not navigate away
-
-The reason it's separate: the Archive layout is gallery-first, and the modal presentation fits the archive browsing context better than a slide panel.
+Not the same as the InquiryDrawer. Do not conflate.
 
 ---
 
-## CTA Language
+## Entry points
 
-These are the approved CTA phrases. Use them consistently. Do not improvise.
+| Entry point | Component | Intent |
+|---|---|---|
+| Header concierge bell | `Header` → `openConcierge()` | Service |
+| Menu "Service" item | `MenuOverlay` ROOT | Service |
+| Product page floating pill | `ProdPill` | Piece inquiry |
+| Product page footer | `InquireFooter` block | Piece inquiry |
+| Inline product CTA | `InquireCta` block | Piece inquiry |
+| Homepage | `ConciergeCtaButton` | General |
+| Newsletter form | `Newsletter` | Newsletter subscribe |
+| Archive modal | `ArchiveModal` | Archive piece inquiry |
+| Contact page | `ContactForm` | General contact |
 
-| Context | Correct CTA |
+---
+
+## Lead data model
+
+```sql
+leads (
+  id          -- auto
+  page_slug   -- FK → pages.slug (only for real page slugs, not SKUs)
+  sku         -- piece SKU if piece-specific
+  intent      -- consultation | inquiry | newsletter | custom | etc.
+  name        -- optional
+  email       -- required
+  message     -- optional free text
+  crm_status  -- pending | synced | failed
+  crm_id      -- Freshsales contact ID if synced
+  created_at
+)
+```
+
+Leads are written to Neon first — always. CRM push is best-effort. `crm_status='failed'` leads are visible in `/admin/leads` and can be retried.
+
+---
+
+## Copy rules
+
+Never use retail language in CTAs or body copy:
+
+| ❌ Never | ✅ Instead |
 |---|---|
-| Product page primary | "Inquire About This Piece" |
-| Product page secondary | "Request Details" |
-| Collection page | "Inquire" |
-| Nav bottom CTA | "Arrange a Private Consultation" |
-| Homepage | "Explore the Collection" → then "Inquire" at piece level |
-| Blog / editorial | "Inquire" (inline link) or no CTA |
-| 404 | "Return Home" or "Browse the Archive" |
-| Header icon | (no text — contact icon only) |
+| Shop | Browse / Explore |
+| Buy / Purchase | Inquire / Commission |
+| Add to cart | Request |
+| Price / Cost | Available by inquiry |
+| Deal / Sale | — (never) |
+| Affordable | — (never) |
 
-**Never use:** "Buy Now", "Shop Now", "Add to Cart", "Check Out", "Order", "Purchase."
-
----
-
-## FreshSales CRM (Lead Destination)
-
-All form submissions land in FreshSales Enterprise.
-
-- **Domain:** `bezambar.myfreshworks.com`
-- **API base:** `https://bezambar.myfreshworks.com/crm/sales/api`
-- **Credentials:** `workspace/credentials/freshsales.json`
-- **All Contacts view ID:** `127026373115`
-
-Each inquiry creates:
-- A **Contact** record (or updates the existing one if email matches)
-- A **Deal/Lead** record linked to that contact, with piece title + SKU in the deal description
-- Source is tagged "Website Inquiry"
-
-The CF Worker handles this server-side — the site never makes API calls directly to FreshSales. All FreshSales API calls go through `bezito-forms.bezambarinc.workers.dev`.
-
----
-
-## Why No Price
-
-Price is omitted for two reasons:
-
-1. **Piece-specific:** the price of a made-to-order piece depends on the exact stone sourced, metal choice, and any modifications. There is no single price to display.
-2. **Qualification:** visitors who inquire are self-selected for seriousness. Showing a price would short-circuit that filter in both directions (underpricing the piece in context, or scaring off serious buyers who see a number without context).
-
-If pressed to add price in any form: discuss with Bez first. This is a strategic brand decision, not a technical constraint.
+See [docs/brand.md](brand.md) for full voice rules.
