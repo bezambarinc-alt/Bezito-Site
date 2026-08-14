@@ -43,7 +43,12 @@
   flex: 1;
 }
 
+/* Shared base for every top-level nav item — flat links AND section header buttons.
+   Must be identical so <a> and <button> render at the same visual weight. */
 .navItem {
+  display: flex;
+  align-items: center;
+  width: 100%;
   font-family: var(--font);
   font-size: 12px;
   font-weight: 500;
@@ -53,6 +58,7 @@
   padding: 0.65rem 1.25rem;
   border-left: 2px solid transparent;
   transition: color 0.12s, border-color 0.12s, background 0.12s;
+  box-sizing: border-box;
 }
 
 .navItem:hover {
@@ -114,6 +120,8 @@
   The only difference is the chevron, which sits inline right after the
   label text and inherits the text color so it doesn’t call extra attention.
 */
+/* Section toggle button inherits the same base properties as .navItem.
+   Only adds: gap (chevron spacing), button resets (background/border/cursor). */
 .navSectionHeader {
   display: flex;
   align-items: center;
@@ -133,6 +141,7 @@
   cursor: pointer;
   text-align: left;
   transition: color 0.12s, border-color 0.12s, background 0.12s;
+  box-sizing: border-box;
 }
 
 .navSectionHeader:hover {
