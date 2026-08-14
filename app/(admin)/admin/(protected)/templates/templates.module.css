@@ -172,7 +172,53 @@
   border-radius: 8px;
 }
 
-/* Preview mode toggle — product vs client page */
+/* ── Tab bar ── */
+.tabBar {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 1.5rem;
+}
+
+.tabBtn {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  transition: color .12s;
+}
+.tabBtn:hover { color: var(--ink); }
+.tabActive {
+  color: var(--ink);
+  font-weight: 600;
+  border-bottom-color: var(--accent);
+}
+
+.tabMeta {
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--ink-muted);
+  letter-spacing: .02em;
+}
+.tabActive .tabMeta { color: var(--accent); }
+
+.previewEmpty {
+  font-size: 12px;
+  color: var(--ink-muted);
+  font-style: italic;
+}
+
+/* Preview mode toggle — product vs client page (legacy) */
 .previewToggle {
   display: flex;
   border: 1px solid var(--border-warm);

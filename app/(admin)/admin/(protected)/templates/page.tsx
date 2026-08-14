@@ -19,10 +19,11 @@ export default async function TemplatesPage() {
   const session = await getSession()
   if (!session) redirect('/admin/login')
 
-  const [active, products, clientPages] = await Promise.all([
-    sql<{ value: string }>(
-      `SELECT value FROM admin_settings WHERE key = 'active_product_template' LIMIT 1`,
-    ).then(r => r[0]?.value ?? 'default'),
+  const [activeRows, products, clientPages] = await Promise.all([
+    sql<{ key: string; value: string }>(
+      `SELECT key, value FROM admin_settings
+       WHERE key IN ('active_product_template','active_proposal_template','active_showcase_template')`,
+    ),
     sql<ProductRow>(
       `SELECT sku, slug, name, category FROM products WHERE active = true ORDER BY name ASC`,
     ),
@@ -32,17 +33,23 @@ export default async function TemplatesPage() {
   ])
 
   const templateIds = getTemplateIds()
+  const settingMap  = Object.fromEntries(activeRows.map(r => [r.key, r.value]))
+  const activeIds   = {
+    product:  settingMap['active_product_template']  ?? 'default',
+    proposal: settingMap['active_proposal_template'] ?? 'default',
+    showcase: settingMap['active_showcase_template'] ?? 'default',
+  }
 
   return (
     <div className={styles.page}>
       <div className={adminStyles.pageHeader}>
         <h1 className={adminStyles.pageTitle}>Templates</h1>
-        <span className={adminStyles.syncLink}>Product page layout variants</span>
+        <span className={adminStyles.syncLink}>Layout variants — product · proposal · client showcase</span>
       </div>
 
       <p className={styles.intro}>
-        Each template is a full-page layout variant for the product detail page.
-        The active template renders for all visitors. Draft templates are only visible via preview.
+        Each template is a full-page layout variant. Each view type (product, proposal, client showcase)
+        has its own active default. Draft templates are only visible via preview.
         To add a new variant, ask Bezito — it writes the TSX, commits, and Vercel deploys automatically.
       </p>
 
@@ -54,7 +61,7 @@ export default async function TemplatesPage() {
           description: TEMPLATES[id].description,
           status: TEMPLATES[id].status,
         }))}
-        activeId={active}
+        activeIds={activeIds}
         products={products}
         clientPages={clientPages}
       />

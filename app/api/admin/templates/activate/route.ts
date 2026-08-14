@@ -16,26 +16,34 @@ export async function POST(req: NextRequest) {
   const session = await getSession()
   if (!session) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
 
-  const parsed = z.object({ id: z.string().min(1).max(64) }).safeParse(await req.json().catch(() => null))
+  const parsed = z.object({
+    id:    z.string().min(1).max(64),
+    scope: z.enum(['product', 'proposal', 'showcase']).default('product'),
+  }).safeParse(await req.json().catch(() => null))
   if (!parsed.success) return NextResponse.json({ error: 'invalid input' }, { status: 400 })
 
-  const { id } = parsed.data
+  const { id, scope } = parsed.data
   if (!isValidTemplateId(id)) {
     return NextResponse.json({ error: 'unknown template id' }, { status: 400 })
   }
 
+  const settingKey = scope === 'proposal' ? 'active_proposal_template'
+                   : scope === 'showcase'  ? 'active_showcase_template'
+                   : 'active_product_template'
+
   await sql(
     `INSERT INTO admin_settings (key, value)
-     VALUES ('active_product_template', $1)
-     ON CONFLICT (key) DO UPDATE SET value = $1, updated_at = now()`,
-    [id],
+     VALUES ($1, $2)
+     ON CONFLICT (key) DO UPDATE SET value = $2, updated_at = now()`,
+    [settingKey, id],
   )
 
-  // Bust all product pages — they pick up the new template on next request
-  // without waiting for the 1h ISR window to expire.
-  revalidatePath('/jewelry', 'layout')
+  // Bust product pages on product scope change
+  if (scope === 'product') revalidatePath('/jewelry', 'layout')
+  // Bust preview pages on showcase scope change
+  if (scope === 'showcase') revalidatePath('/preview', 'layout')
 
-  await audit('admin.template.activated' as never, session.sub as string, { templateId: id })
+  await audit('admin.template.activated' as never, session.sub as string, { templateId: id, scope })
 
   return NextResponse.json({ ok: true })
 }

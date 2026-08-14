@@ -22,81 +22,91 @@ interface ClientPage {
   title: string
 }
 
+type ViewTab = 'product' | 'proposal' | 'showcase'
+
 interface Props {
   templateIds: string[]
   templates: TemplateMeta[]
-  activeId: string
+  activeIds: Record<ViewTab, string>   // active template per tab
   products: Product[]
   clientPages: ClientPage[]
 }
 
-export default function TemplatesClient({ templates, activeId, products, clientPages }: Props) {
+export default function TemplatesClient({ templates, activeIds, products, clientPages }: Props) {
+  const [tab, setTab]             = useState<ViewTab>('product')
+  const [activeNow, setActiveNow] = useState(activeIds)
   const [activating, setActivating] = useState<string | null>(null)
-  const [activeNow, setActiveNow] = useState(activeId)
-  const [selectedProduct, setSelectedProduct]   = useState<string>(products[0]?.slug ?? '')
-  const [selectedClientPage, setClientPage]     = useState<string>(clientPages[0]?.slug ?? '')
-  const [previewMode, setPreviewMode]           = useState<'product' | 'client'>('product')
+  const [selectedProduct, setSelectedProduct] = useState<string>(products[0]?.slug ?? '')
+  const [selectedPage, setSelectedPage]       = useState<string>(clientPages[0]?.slug ?? '')
   const [msg, setMsg] = useState<{ text: string; ok: boolean } | null>(null)
 
-  // Build the preview URL for a template + product (Draft Mode)
-  function productPreviewUrl(templateId: string): string {
-    const product = products.find(p => p.slug === selectedProduct)
-    if (!product) return '#'
-    const category = (product.category ?? 'jewelry').toLowerCase()
-    const slug = encodeURIComponent(product.slug)
-    return `/api/draft?template=${templateId}&slug=/jewelry/${encodeURIComponent(category)}/${slug}`
-  }
-
-  // Build the preview URL for a client showcase page (admin bypass via ?tpl=)
-  function clientPreviewUrl(templateId: string): string {
-    if (!selectedClientPage) return '#'
-    return `/preview/${encodeURIComponent(selectedClientPage)}?tpl=${encodeURIComponent(templateId)}`
-  }
-
   function previewUrl(templateId: string): string {
-    return previewMode === 'client' ? clientPreviewUrl(templateId) : productPreviewUrl(templateId)
+    if (tab === 'product') {
+      const p = products.find(x => x.slug === selectedProduct)
+      if (!p) return '#'
+      const cat = (p.category ?? 'jewelry').toLowerCase()
+      return `/api/draft?template=${templateId}&slug=/jewelry/${encodeURIComponent(cat)}/${encodeURIComponent(p.slug)}`
+    }
+    // proposal + showcase: use client preview bypass
+    const slug = tab === 'showcase' ? selectedPage : (clientPages[0]?.slug ?? '')
+    if (!slug) return '#'
+    return `/preview/${encodeURIComponent(slug)}?tpl=${encodeURIComponent(templateId)}`
   }
 
-  async function activate(id: string) {
+  async function activate(templateId: string) {
     setMsg(null)
-    setActivating(id)
+    setActivating(templateId)
     try {
       const res = await fetch('/api/admin/templates/activate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id }),
+        body: JSON.stringify({ id: templateId, scope: tab }),
       })
       if (res.ok) {
-        setActiveNow(id)
-        setMsg({ text: `Template "${templates.find(t => t.id === id)?.name}" is now live ✓`, ok: true })
+        setActiveNow(prev => ({ ...prev, [tab]: templateId }))
+        setMsg({ text: `"${templates.find(t => t.id === templateId)?.name}" set as ${tab} default ✓`, ok: true })
       } else {
         const d = await res.json()
-        setMsg({ text: d.error || 'Failed to activate template', ok: false })
+        setMsg({ text: d.error ?? 'Failed to activate', ok: false })
       }
     } finally {
       setActivating(null)
     }
   }
 
+  const tabLabels: Record<ViewTab, string> = {
+    product:  'Product pages',
+    proposal: 'Proposals',
+    showcase: 'Client showcase',
+  }
+
+  const currentActive = activeNow[tab]
+
   return (
     <div>
-      {/* Preview bar — toggle between product + client page */}
+      {/* Tab bar */}
+      <div className={styles.tabBar}>
+        {(['product', 'proposal', 'showcase'] as ViewTab[]).map(t => (
+          <button
+            key={t}
+            className={`${styles.tabBtn} ${tab === t ? styles.tabActive : ''}`}
+            onClick={() => { setTab(t); setMsg(null) }}
+          >
+            {tabLabels[t]}
+            {activeNow[t] && (
+              <span className={styles.tabMeta}>
+                {templates.find(x => x.id === activeNow[t])?.name ?? activeNow[t]}
+              </span>
+            )}
+          </button>
+        ))}
+      </div>
+
+      {/* Preview bar */}
       <div className={styles.previewBar}>
         <label className={styles.previewLabel}>Preview with</label>
-        <div className={styles.previewToggle}>
-          <button
-            className={`${styles.previewToggleBtn} ${previewMode === 'product' ? styles.previewToggleActive : ''}`}
-            onClick={() => setPreviewMode('product')}
-          >Product</button>
-          <button
-            className={`${styles.previewToggleBtn} ${previewMode === 'client' ? styles.previewToggleActive : ''}`}
-            onClick={() => setPreviewMode('client')}
-            disabled={clientPages.length === 0}
-            title={clientPages.length === 0 ? 'No live showcase pages yet' : undefined}
-          >Client page</button>
-        </div>
 
-        {previewMode === 'product' && (
+        {tab === 'product' && (
           <select
             className={styles.previewSelect}
             value={selectedProduct}
@@ -108,16 +118,24 @@ export default function TemplatesClient({ templates, activeId, products, clientP
           </select>
         )}
 
-        {previewMode === 'client' && (
-          <select
-            className={styles.previewSelect}
-            value={selectedClientPage}
-            onChange={e => setClientPage(e.target.value)}
-          >
-            {clientPages.map(p => (
-              <option key={p.slug} value={p.slug}>{p.title} ({p.slug})</option>
-            ))}
-          </select>
+        {tab === 'showcase' && (
+          clientPages.length > 0 ? (
+            <select
+              className={styles.previewSelect}
+              value={selectedPage}
+              onChange={e => setSelectedPage(e.target.value)}
+            >
+              {clientPages.map(p => (
+                <option key={p.slug} value={p.slug}>{p.title}</option>
+              ))}
+            </select>
+          ) : (
+            <span className={styles.previewEmpty}>No live showcase pages yet</span>
+          )
+        )}
+
+        {tab === 'proposal' && (
+          <span className={styles.previewEmpty}>Proposals use a fixed document layout — preview not available</span>
         )}
       </div>
 
@@ -128,8 +146,10 @@ export default function TemplatesClient({ templates, activeId, products, clientP
       {/* Template cards */}
       <div className={styles.grid}>
         {templates.map(t => {
-          const isActive = t.id === activeNow
+          const isActive     = t.id === currentActive
           const isActivating = activating === t.id
+          const canPreview   = tab !== 'proposal'
+
           return (
             <div key={t.id} className={`${styles.card} ${isActive ? styles.cardActive : ''}`}>
               <div className={styles.cardHead}>
@@ -138,29 +158,29 @@ export default function TemplatesClient({ templates, activeId, products, clientP
                   <div className={styles.cardDesc}>{t.description}</div>
                 </div>
                 <span className={`${styles.badge} ${isActive ? styles.badgeActive : styles.badgeDraft}`}>
-                  {isActive ? 'Active' : 'Draft'}
+                  {isActive ? `${tabLabels[tab]} default` : 'Not active'}
                 </span>
               </div>
 
               <div className={styles.cardActions}>
-                {/* Preview — opens in new tab via Draft Mode */}
-                <a
-                  href={previewUrl(t.id)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.previewBtn}
-                >
-                  Preview →
-                </a>
+                {canPreview && (
+                  <a
+                    href={previewUrl(t.id)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.previewBtn}
+                  >
+                    Preview →
+                  </a>
+                )}
 
-                {/* Set as default */}
                 {!isActive && (
                   <button
                     onClick={() => activate(t.id)}
-                    disabled={isActivating !== null}
+                    disabled={!!activating}
                     className={styles.activateBtn}
                   >
-                    {isActivating ? 'Activating…' : 'Set as Default'}
+                    {isActivating ? 'Activating…' : `Set as ${tabLabels[tab]} default`}
                   </button>
                 )}
               </div>
