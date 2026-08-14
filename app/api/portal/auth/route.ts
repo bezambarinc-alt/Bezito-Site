@@ -38,7 +38,12 @@ export async function POST(req: NextRequest) {
     [email],
   )
 
-  const ok: boolean = client?.active ? await compare(password, client.password_hash) : false
+  // Always run bcrypt — prevents timing side-channel that reveals whether email exists.
+  // If no client found, compare against a dummy hash (result is always false).
+  const DUMMY = '$2b$10$abcdefghijklmnopqrstuumZm1dBEsb4BV08BezAqRaXgj5e3YWwu'
+  const hash = client?.active ? client.password_hash : DUMMY
+  const bcryptOk = await compare(password, hash)
+  const ok = !!(client?.active && bcryptOk)
 
   await recordAttempt(ip, ok)
   await audit(

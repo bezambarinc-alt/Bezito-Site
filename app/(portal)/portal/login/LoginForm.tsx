@@ -11,7 +11,9 @@ export default function PortalLoginForm() {
   const [loading, setLoading]   = useState(false)
   const router       = useRouter()
   const searchParams = useSearchParams()
-  const from = searchParams?.get('from') ?? '/portal'
+  // Sanitize redirect target — only allow relative paths, no open redirect
+  const rawFrom = searchParams?.get('from') ?? '/portal'
+  const from = rawFrom.startsWith('/') && !rawFrom.startsWith('//') ? rawFrom : '/portal'
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
