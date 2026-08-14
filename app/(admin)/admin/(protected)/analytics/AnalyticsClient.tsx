@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState, useMemo } from 'react'
+import { useEffect, useRef, useState, useMemo, useCallback, startTransition } from 'react'
 import {
   Chart, LineController, LineElement, PointElement, LinearScale, CategoryScale,
   DoughnutController, ArcElement, Filler, Tooltip, Legend,
@@ -51,20 +51,23 @@ export default function AnalyticsClient() {
   const srcChart = useRef<Chart | null>(null)
   const devChart = useRef<Chart | null>(null)
 
-  async function load(d: number) {
+  const load = useCallback(async (d: number) => {
     const res = await fetch(`/api/admin/analytics?days=${d}`).then(r => r.json()).catch(() => null)
-    if (res && !res.error) setData(res)
-    setLoading(false)
-  }
+    // startTransition marks these as non-urgent — prevents cascading renders
+    startTransition(() => {
+      if (res && !res.error) setData(res)
+      setLoading(false)
+    })
+  }, [])
 
   // Load on mount + when the range changes
-  useEffect(() => { load(days) }, [days])
+  useEffect(() => { load(days) }, [load, days])
 
   // Poll every 30s for real-time KPIs (keeps current range)
   useEffect(() => {
     const t = setInterval(() => load(days), 30000)
     return () => clearInterval(t)
-  }, [days])
+  }, [load, days])
 
   // Build the timeseries into a dense (zero-filled) array for the current range
   const filled = useMemo(() => {

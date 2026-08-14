@@ -117,9 +117,12 @@ export default function SettingsClient({ users: initUsers, whitelist: initWl, cu
     else { const d = await res.json(); alert(d.error || 'Failed to revoke') }
   }
 
+  // Lazy useState initializer — Date.now() runs once on mount, render-safe
+  const [now] = useState(() => Date.now())
+
   function fmtExpiry(iso: string, expired: boolean): string {
     if (expired) return 'expired'
-    const days = Math.ceil((new Date(iso).getTime() - Date.now()) / 864e5)
+    const days = Math.ceil((new Date(iso).getTime() - now) / 864e5)
     return days <= 0 ? 'expiring' : `${days}d left`
   }
 
