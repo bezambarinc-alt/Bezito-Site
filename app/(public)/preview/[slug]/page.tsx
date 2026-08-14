@@ -64,15 +64,16 @@ export default async function PreviewPage({ params, searchParams }: Ctx) {
         clientSession &&
         (page.client_id === null || clientSession.clientId === page.client_id)
       if (!authorized) {
-        // Not logged in as the assigned client — send to portal login
-        redirect(`/portal/login`)
+        // Not logged in as the assigned client — send to portal login.
+        // ?from= is handled by the portal login: redirects back here after auth.
+        redirect(`/portal/login?from=/preview/${encodeURIComponent(slug)}`)
       }
     }
     // page.shared === true → publicly accessible, fall through
   }
 
-  // PIN check for showcases (skip for admin preview)
-  if (!isAdminPreview) {
+  // PIN check — showcases only (proposals are client-gated, not PIN-gated)
+  if (!isAdminPreview && page.doc_type === 'showcase') {
     const requiresPin =
       page.customer_pin !== null &&
       page.pin_expires_at !== null &&
