@@ -4,7 +4,7 @@
    ================================================ */
 
 .ba-admin-root {
-  --font: var(--font-inter), 'Inter', system-ui, -apple-system, sans-serif;
+  --font: var(--font-opensans), system-ui, -apple-system, sans-serif;
 
   /* Palette — mirrors globals.css public tokens */
   --bg:          #ffffff;

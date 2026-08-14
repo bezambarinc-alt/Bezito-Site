@@ -1,24 +1,16 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './admin.css'
-
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  display: 'swap',
-  variable: '--font-inter',
-})
 
 export const metadata: Metadata = {
   title: { default: 'Admin', template: '%s · Bez Ambar Admin' },
   robots: { index: false, follow: false },
 }
 
-// Completely isolated from the public site — no Header, Footer, Drawers, Freshchat.
-// Looks and behaves like a standalone CMS tool.
+// Completely isolated from the public site — no Header, Footer, Drawers.
+// Uses --font-opensans loaded by the root layout (app/layout.tsx).
 export default function AdminGroupLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className={`${inter.variable} ba-admin-root`}>
+    <div className="ba-admin-root">
       {children}
     </div>
   )

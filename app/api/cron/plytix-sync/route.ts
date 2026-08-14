@@ -238,7 +238,7 @@ export async function GET(req: NextRequest) {
     }
 
     // Invalidate catalog cache so next request serves fresh data
-    revalidateTag('products')
+    revalidateTag('products', 'max')
 
     return NextResponse.json({ ok: true, listed: ids.length, upserted, deleted, errors: errors.slice(0, 5) })
   } catch (e) {
