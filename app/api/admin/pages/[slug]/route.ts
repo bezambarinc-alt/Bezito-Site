@@ -7,9 +7,10 @@ import { audit } from '@/lib/audit'
 type Ctx = { params: Promise<{ slug: string }> }
 
 const patchSchema = z.object({
-  client_id: z.number().nullable().optional(),
-  doc_type:  z.enum(['showcase', 'proposal']).optional(),
-  status:    z.enum(['draft', 'live', 'archived']).optional(),
+  client_id:   z.number().nullable().optional(),
+  doc_type:    z.enum(['showcase', 'proposal']).optional(),
+  status:      z.enum(['draft', 'live', 'archived']).optional(),
+  template_id: z.string().max(64).optional(),
 })
 
 export async function PATCH(req: NextRequest, { params }: Ctx) {

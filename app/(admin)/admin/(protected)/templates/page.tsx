@@ -19,12 +19,15 @@ export default async function TemplatesPage() {
   const session = await getSession()
   if (!session) redirect('/admin/login')
 
-  const [active, products] = await Promise.all([
+  const [active, products, clientPages] = await Promise.all([
     sql<{ value: string }>(
       `SELECT value FROM admin_settings WHERE key = 'active_product_template' LIMIT 1`,
     ).then(r => r[0]?.value ?? 'default'),
     sql<ProductRow>(
       `SELECT sku, slug, name, category FROM products WHERE active = true ORDER BY name ASC`,
+    ),
+    sql<{ slug: string; title: string }>(
+      `SELECT slug, title FROM pages WHERE doc_type = 'showcase' AND status = 'live' ORDER BY title ASC`,
     ),
   ])
 
@@ -53,6 +56,7 @@ export default async function TemplatesPage() {
         }))}
         activeId={active}
         products={products}
+        clientPages={clientPages}
       />
     </div>
   )

@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import { cookies } from 'next/headers'
 import { sql } from '@/lib/db'
+import { jwtVerify } from 'jose'
 import { TEMPLATES, isValidTemplateId } from '@/app/(public)/jewelry/[category]/[slug]/layouts'
 import { getCategoryLabel } from '@/lib/data/categories'
 import type { SpecItem } from '@/types/blocks'
@@ -9,18 +10,36 @@ import PinGate from './PinGate'
 export const dynamic = 'force-dynamic'
 export const metadata = { robots: 'noindex' }
 
-type Ctx = { params: Promise<{ slug: string }> }
+const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET!)
 
-export default async function PreviewPage({ params }: Ctx) {
+type Ctx = { params: Promise<{ slug: string }>; searchParams?: Promise<Record<string, string>> }
+
+export default async function PreviewPage({ params, searchParams }: Ctx) {
   const { slug } = await params
+  const sp = searchParams ? await searchParams : {}
+  const tplParam = sp?.tpl ?? null  // admin preview override
 
-  // Fetch the page — must be a live showcase
+  // Admin bypass: if ?tpl=xxx is present + valid admin session cookie, skip PIN
+  const jar = await cookies()
+  let isAdminPreview = false
+  if (tplParam) {
+    const adminToken = jar.get('session')?.value
+    if (adminToken) {
+      try {
+        const { payload } = await jwtVerify(adminToken, JWT_SECRET)
+        isAdminPreview = !!payload.sub
+      } catch { /* invalid session — not admin */ }
+    }
+  }
+
+  // Fetch page — must be a live showcase
   const [page] = await sql<{
     slug: string; title: string; status: string; doc_type: string;
     customer_pin: string | null; pin_expires_at: string | null;
-    tenant: string; blocks: unknown;
+    template_id: string | null; tenant: string; blocks: unknown;
   }>(
-    `SELECT slug, title, status, doc_type, customer_pin, pin_expires_at, tenant, blocks
+    `SELECT slug, title, status, doc_type, customer_pin, pin_expires_at,
+            template_id, tenant, blocks
      FROM pages
      WHERE slug = $1 AND doc_type = 'showcase' AND status = 'live'
      LIMIT 1`,
@@ -29,32 +48,37 @@ export default async function PreviewPage({ params }: Ctx) {
 
   if (!page) notFound()
 
-  // Check if PIN is set and not expired
-  const requiresPin =
-    page.customer_pin !== null &&
-    page.pin_expires_at !== null &&
-    new Date(page.pin_expires_at) > new Date()
+  // PIN check (skip for admin preview)
+  if (!isAdminPreview) {
+    const requiresPin =
+      page.customer_pin !== null &&
+      page.pin_expires_at !== null &&
+      new Date(page.pin_expires_at) > new Date()
 
-  if (requiresPin) {
-    // Check preview cookie
-    const jar = await cookies()
-    const granted = jar.get(`ba_preview_${slug}`)?.value === '1'
-    if (!granted) {
-      return <PinGate slug={slug} />
+    if (requiresPin) {
+      const granted = jar.get(`ba_preview_${slug}`)?.value === '1'
+      if (!granted) return <PinGate slug={slug} />
     }
   }
 
-  // Render showcase — pull product data from slug if blocks references a product
-  // The blocks JSONB may contain { type: 'product', sku: '...' }
-  const blocks = (page.blocks as { type?: string; sku?: string }[] | null) ?? []
-  const productBlock = blocks.find(b => b.type === 'product' && b.sku)
-  const productSku = productBlock?.sku
+  // Template resolution: ?tpl param (admin preview) → page's own template_id → global active
+  const [globalRow] = await sql<{ value: string }>(
+    `SELECT value FROM admin_settings WHERE key = 'active_product_template' LIMIT 1`,
+  )
+  const globalActive = globalRow?.value ?? 'default'
+  const resolvedId   = tplParam ?? page.template_id ?? globalActive
+  const templateId   = isValidTemplateId(resolvedId) ? resolvedId : 'default'
+  const Layout       = TEMPLATES[templateId].component
 
-  // Attempt to load the product
+  // Product from blocks
+  const blocks     = (page.blocks as { type?: string; sku?: string }[] | null) ?? []
+  const productSku = blocks.find(b => b.type === 'product' && b.sku)?.sku
+
   const [product] = productSku
     ? await sql<{
-        sku: string; name: string; slug: string; category: string; subtitle: string | null;
-        editorial: string | null; hero_visual: string | null; editorial_visual: string | null;
+        sku: string; name: string; slug: string; category: string;
+        subtitle: string | null; editorial: string | null;
+        hero_visual: string | null; editorial_visual: string | null;
         metal: string | null; stone_shape: string | null; stone_carats: string | null;
         stone_color: string | null; stone_clarity: string | null; stone_notes: string | null;
         total_carat_weight: number | null; center_stone_weight: number | null;
@@ -70,32 +94,22 @@ export default async function PreviewPage({ params }: Ctx) {
       )
     : []
 
-  // Get active template
-  const [templateRow] = await sql<{ value: string }>(
-    `SELECT value FROM admin_settings WHERE key = 'active_product_template' LIMIT 1`,
-  )
-  const templateId = templateRow?.value ?? 'default'
-  const template = TEMPLATES[isValidTemplateId(templateId) ? templateId : 'default']
-  const Layout = template.component
-
-  // Build spec items
   const specItems: SpecItem[] = []
   if (product) {
-    if (product.stone_shape)        specItems.push({ label: 'Stone Shape',    body: product.stone_shape })
-    if (product.stone_carats)       specItems.push({ label: 'Carat Weight',   body: product.stone_carats })
-    if (product.stone_color)        specItems.push({ label: 'Color',          body: product.stone_color })
-    if (product.stone_clarity)      specItems.push({ label: 'Clarity',        body: product.stone_clarity })
-    if (product.metal)              specItems.push({ label: 'Metal',          body: product.metal })
-    if (product.center_stone_weight) specItems.push({ label: 'Center Stone', body: `${product.center_stone_weight} ct` })
+    if (product.stone_shape)         specItems.push({ label: 'Stone Shape',    body: product.stone_shape })
+    if (product.stone_carats)        specItems.push({ label: 'Carat Weight',   body: product.stone_carats })
+    if (product.stone_color)         specItems.push({ label: 'Color',          body: product.stone_color })
+    if (product.stone_clarity)       specItems.push({ label: 'Clarity',        body: product.stone_clarity })
+    if (product.metal)               specItems.push({ label: 'Metal',          body: product.metal })
+    if (product.center_stone_weight) specItems.push({ label: 'Center Stone',   body: `${product.center_stone_weight} ct` })
   }
 
+  const category = product?.category ?? 'jewelry'
   const views = [
     { label: 'View 1', url: product?.view_1_url },
     { label: 'View 2', url: product?.view_2_url },
     { label: 'View 3', url: product?.view_3_url },
   ]
-
-  const category = product?.category ?? 'jewelry'
 
   return (
     <div style={{ minHeight: '100vh', background: '#fff' }}>
@@ -113,19 +127,19 @@ export default async function PreviewPage({ params }: Ctx) {
             view2Url: product.view_2_url ?? null,
             view3Url: product.view_3_url ?? null,
             specs: {
-              codeName: product.sku,
-              subtitle: product.subtitle ?? undefined,
-              lede: product.editorial ?? undefined,
-              metal: product.metal ?? undefined,
-              gemStone: product.stone_shape ?? undefined,
-              caratWeight: product.total_carat_weight ? String(product.total_carat_weight) : undefined,
-              color: product.stone_color ?? undefined,
-              clarity: product.stone_clarity ?? undefined,
-              heroVideoUrl: product.hero_visual ?? undefined,
+              codeName:      product.sku,
+              subtitle:      product.subtitle      ?? undefined,
+              lede:          product.editorial      ?? undefined,
+              metal:         product.metal          ?? undefined,
+              gemStone:      product.stone_shape    ?? undefined,
+              caratWeight:   product.total_carat_weight ? String(product.total_carat_weight) : undefined,
+              color:         product.stone_color    ?? undefined,
+              clarity:       product.stone_clarity  ?? undefined,
+              heroVideoUrl:  product.hero_visual    ?? undefined,
               heroPosterUrl: product.editorial_visual ?? undefined,
             },
           }}
-          heroVideo={product.hero_visual ?? undefined}
+          heroVideo={product.hero_visual    ?? undefined}
           heroPoster={product.editorial_visual ?? undefined}
           onHandPhoto={product.editorial_visual ?? undefined}
           category={category}
@@ -134,7 +148,6 @@ export default async function PreviewPage({ params }: Ctx) {
           views={views}
         />
       ) : (
-        // Fallback: no product linked — show title only
         <div style={{ maxWidth: 640, margin: '80px auto', padding: '0 24px', fontFamily: 'Georgia, serif' }}>
           <h1 style={{ fontSize: 28, fontWeight: 400, color: '#1a1a1a' }}>{page.title}</h1>
         </div>

@@ -13,6 +13,7 @@ interface ClientPage {
   client_slug: string | null
   customer_pin: string | null
   pin_expires_at: string | null
+  template_id: string | null
   updated_at: string
 }
 
@@ -22,12 +23,18 @@ interface Client {
   name: string
 }
 
+interface TemplateOption {
+  id: string
+  name: string
+}
+
 interface Props {
   pages: ClientPage[]
   clients: Client[]
+  templateIds: TemplateOption[]
 }
 
-export default function PagesClient({ pages: initial, clients }: Props) {
+export default function PagesClient({ pages: initial, clients, templateIds }: Props) {
   const [pages, setPages]     = useState(initial)
   const [search, setSearch]   = useState('')
   const [typeFilter, setType] = useState<'all' | 'showcase' | 'proposal'>('all')
@@ -50,6 +57,20 @@ export default function PagesClient({ pages: initial, clients }: Props) {
     if (q && !p.title.toLowerCase().includes(q) && !p.slug.includes(q)) return false
     return true
   }), [pages, search, typeFilter, clientFilter, deleted])
+
+  async function patchTemplate(slug: string, templateId: string) {
+    setSaving(s => ({ ...s, [slug]: true }))
+    try {
+      await fetch(`/api/admin/pages/${slug}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ template_id: templateId }),
+      })
+      setPages(ps => ps.map(p => p.slug === slug ? { ...p, template_id: templateId } : p))
+    } finally {
+      setSaving(s => ({ ...s, [slug]: false }))
+    }
+  }
 
   async function patch(slug: string, body: Record<string, unknown>) {
     setSaving(s => ({ ...s, [slug]: true }))
@@ -119,6 +140,7 @@ export default function PagesClient({ pages: initial, clients }: Props) {
           <tr>
             <th className="admin-th">Title / Slug</th>
             <th className="admin-th">Type</th>
+            <th className="admin-th">Template</th>
             <th className="admin-th">Status</th>
             <th className="admin-th">Assigned to</th>
             <th className="admin-th">PIN</th>
@@ -155,6 +177,21 @@ export default function PagesClient({ pages: initial, clients }: Props) {
                   >
                     <option value="showcase">Showcase</option>
                     <option value="proposal">Proposal</option>
+                  </select>
+                </td>
+
+                {/* Template */}
+                <td className="admin-td">
+                  <select
+                    className={styles.typeSelect}
+                    value={p.template_id ?? 'default'}
+                    disabled={busy || p.doc_type === 'proposal'}
+                    title={p.doc_type === 'proposal' ? 'Proposals use a fixed layout' : undefined}
+                    onChange={e => patchTemplate(p.slug, e.target.value)}
+                  >
+                    {templateIds.map(t => (
+                      <option key={t.id} value={t.id}>{t.name}</option>
+                    ))}
                   </select>
                 </td>
 

@@ -17,27 +17,44 @@ interface Product {
   category: string | null
 }
 
+interface ClientPage {
+  slug: string
+  title: string
+}
+
 interface Props {
   templateIds: string[]
   templates: TemplateMeta[]
   activeId: string
   products: Product[]
+  clientPages: ClientPage[]
 }
 
-export default function TemplatesClient({ templates, activeId, products }: Props) {
+export default function TemplatesClient({ templates, activeId, products, clientPages }: Props) {
   const [activating, setActivating] = useState<string | null>(null)
   const [activeNow, setActiveNow] = useState(activeId)
-  const [selectedProduct, setSelectedProduct] = useState<string>(products[0]?.slug ?? '')
+  const [selectedProduct, setSelectedProduct]   = useState<string>(products[0]?.slug ?? '')
+  const [selectedClientPage, setClientPage]     = useState<string>(clientPages[0]?.slug ?? '')
+  const [previewMode, setPreviewMode]           = useState<'product' | 'client'>('product')
   const [msg, setMsg] = useState<{ text: string; ok: boolean } | null>(null)
 
-  // Build the preview URL for a template + product
-  function previewUrl(templateId: string): string {
+  // Build the preview URL for a template + product (Draft Mode)
+  function productPreviewUrl(templateId: string): string {
     const product = products.find(p => p.slug === selectedProduct)
     if (!product) return '#'
     const category = (product.category ?? 'jewelry').toLowerCase()
     const slug = encodeURIComponent(product.slug)
-    const productPath = `/jewelry/${encodeURIComponent(category)}/${slug}`
-    return `/api/draft?template=${templateId}&slug=${productPath}`
+    return `/api/draft?template=${templateId}&slug=/jewelry/${encodeURIComponent(category)}/${slug}`
+  }
+
+  // Build the preview URL for a client showcase page (admin bypass via ?tpl=)
+  function clientPreviewUrl(templateId: string): string {
+    if (!selectedClientPage) return '#'
+    return `/preview/${encodeURIComponent(selectedClientPage)}?tpl=${encodeURIComponent(templateId)}`
+  }
+
+  function previewUrl(templateId: string): string {
+    return previewMode === 'client' ? clientPreviewUrl(templateId) : productPreviewUrl(templateId)
   }
 
   async function activate(id: string) {
@@ -63,18 +80,45 @@ export default function TemplatesClient({ templates, activeId, products }: Props
 
   return (
     <div>
-      {/* Product picker for preview */}
+      {/* Preview bar — toggle between product + client page */}
       <div className={styles.previewBar}>
-        <label className={styles.previewLabel}>Preview with product</label>
-        <select
-          className={styles.previewSelect}
-          value={selectedProduct}
-          onChange={e => setSelectedProduct(e.target.value)}
-        >
-          {products.map(p => (
-            <option key={p.slug} value={p.slug}>{p.name} ({p.sku})</option>
-          ))}
-        </select>
+        <label className={styles.previewLabel}>Preview with</label>
+        <div className={styles.previewToggle}>
+          <button
+            className={`${styles.previewToggleBtn} ${previewMode === 'product' ? styles.previewToggleActive : ''}`}
+            onClick={() => setPreviewMode('product')}
+          >Product</button>
+          <button
+            className={`${styles.previewToggleBtn} ${previewMode === 'client' ? styles.previewToggleActive : ''}`}
+            onClick={() => setPreviewMode('client')}
+            disabled={clientPages.length === 0}
+            title={clientPages.length === 0 ? 'No live showcase pages yet' : undefined}
+          >Client page</button>
+        </div>
+
+        {previewMode === 'product' && (
+          <select
+            className={styles.previewSelect}
+            value={selectedProduct}
+            onChange={e => setSelectedProduct(e.target.value)}
+          >
+            {products.map(p => (
+              <option key={p.slug} value={p.slug}>{p.name} ({p.sku})</option>
+            ))}
+          </select>
+        )}
+
+        {previewMode === 'client' && (
+          <select
+            className={styles.previewSelect}
+            value={selectedClientPage}
+            onChange={e => setClientPage(e.target.value)}
+          >
+            {clientPages.map(p => (
+              <option key={p.slug} value={p.slug}>{p.title} ({p.slug})</option>
+            ))}
+          </select>
+        )}
       </div>
 
       {msg && (
