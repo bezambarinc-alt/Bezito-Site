@@ -2,6 +2,7 @@ import type { ComponentType } from 'react'
 import type { ProductLayoutProps } from './types'
 import LayoutDefault from './LayoutDefault'
 import LayoutDark from './LayoutDark'
+import LayoutMulti from './LayoutMulti'
 
 export interface TemplateEntry {
   name: string
@@ -26,6 +27,12 @@ export const TEMPLATES: Record<string, TemplateEntry> = {
     name: 'Editorial Dark',
     description: 'Dark editorial — image hero · story copy · spec table · contact block. Best for custom commissions and client proposals.',
     component: LayoutDark,
+    status: 'active',
+  },
+  multi: {
+    name: 'Multi-Image',
+    description: 'Dark gallery — hero + 2-col image grid with lightbox. Best for presenting one piece in multiple metals, angles, or variations.',
+    component: LayoutMulti,
     status: 'active',
   },
   // Add new layout variants here, e.g.:

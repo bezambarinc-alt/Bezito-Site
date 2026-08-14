@@ -1,0 +1,371 @@
+/*
+ * LayoutMulti.module.css
+ * Multi-image / variation proposal template — saraydarian design.
+ * Same dark palette as LayoutDark for brand consistency.
+ * Key differentiator: 2-column image gallery grid replaces single editorial block.
+ */
+
+/* ── Root ─────────────────────────────────────────────────────────────────── */
+
+.root {
+  background: #2a2a2a;
+  color: #d7d3c8;
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* ── Header ───────────────────────────────────────────────────────────────── */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #ffffff;
+  border-bottom: 1px solid rgba(215, 211, 200, 0.16);
+  padding: 18px 20px;
+  text-align: center;
+}
+
+.logo {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  color: #000000;
+  text-transform: uppercase;
+}
+
+/* ── Hero image ───────────────────────────────────────────────────────────── */
+
+.heroMedia {
+  max-width: 1200px;
+  margin: clamp(2rem, 5vw, 4rem) auto 0;
+  padding: 0 clamp(1.25rem, 5vw, 4rem);
+  cursor: zoom-in;
+}
+
+.heroImg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── Piece identity ───────────────────────────────────────────────────────── */
+
+.identity {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 6vw, 4rem) clamp(1.25rem, 5vw, 4rem);
+  text-align: center;
+}
+
+.mark {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(215, 211, 200, 0.62);
+  margin: 0 0 1.25rem;
+}
+
+.title {
+  font-family: "Didot", "Playfair Display", "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2.5rem, 6vw, 4.75rem);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+  color: #d7d3c8;
+  margin: 0 0 1.25rem;
+}
+
+.lede {
+  font-family: "Didot", "Playfair Display", "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-style: italic;
+  color: rgba(215, 211, 200, 0.75);
+  margin: 0 auto;
+  max-width: 56ch;
+}
+
+/* ── Image gallery ────────────────────────────────────────────────────────── */
+
+.gallery {
+  padding: clamp(3rem, 8vw, 6rem) 0;
+  border-top: 1px solid rgba(215, 211, 200, 0.16);
+}
+
+.galleryWrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 5vw, 4rem);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1rem, 3vw, 2rem);
+}
+
+.galleryItem {
+  cursor: zoom-in;
+  overflow: hidden;
+}
+
+.galleryItem:hover .galleryImg {
+  transform: scale(1.02);
+}
+
+.galleryImg {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.galleryLabel {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(215, 211, 200, 0.5);
+  margin: 0.6rem 0 0;
+  text-align: center;
+}
+
+/* Single image: full width */
+.galleryWrap > .galleryItem:only-child {
+  grid-column: 1 / -1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Odd last item in a 2-col grid: span full width */
+.galleryWrap > .galleryItem:last-child:nth-child(odd):not(:only-child) {
+  grid-column: 1 / -1;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ── Shared helpers ───────────────────────────────────────────────────────── */
+
+.wrapNarrow {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 5vw, 4rem);
+}
+
+.eyebrow {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(215, 211, 200, 0.62);
+  margin: 0 0 1.25rem;
+  text-align: center;
+}
+
+/* ── Spec table ───────────────────────────────────────────────────────────── */
+
+.specs {
+  padding: clamp(4rem, 10vw, 8rem) 0;
+  border-top: 1px solid rgba(215, 211, 200, 0.16);
+  text-align: center;
+}
+
+.specsHeading {
+  font-family: "Didot", "Playfair Display", "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+  font-weight: 400;
+  color: #d7d3c8;
+  margin: 0 0 2rem;
+}
+
+.specTable {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.specRow {}
+
+.specLabel {
+  padding: 0.9rem 0.25rem;
+  border-bottom: 1px solid rgba(215, 211, 200, 0.16);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(215, 211, 200, 0.62);
+  width: 38%;
+  text-align: left;
+  vertical-align: top;
+}
+
+.specValue {
+  padding: 0.9rem 0.25rem;
+  border-bottom: 1px solid rgba(215, 211, 200, 0.16);
+  font-size: 0.95rem;
+  color: #d7d3c8;
+  text-align: left;
+  vertical-align: top;
+}
+
+.specRow:last-child .specLabel,
+.specRow:last-child .specValue {
+  border-bottom: 0;
+}
+
+/* ── Contact ──────────────────────────────────────────────────────────────── */
+
+.contact {
+  background: #333333;
+  padding: clamp(4rem, 10vw, 8rem) 0;
+  border-top: 1px solid rgba(215, 211, 200, 0.16);
+  text-align: center;
+}
+
+.contactHeading {
+  font-family: "Didot", "Playfair Display", "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+  font-weight: 400;
+  color: #d7d3c8;
+  margin: 0 0 1rem;
+}
+
+.contactBody {
+  margin: 0 auto 1em;
+  max-width: 56ch;
+  color: #d7d3c8;
+}
+
+.contactLine {
+  font-family: "Didot", "Playfair Display", "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  color: rgba(215, 211, 200, 0.62);
+  margin-top: 1.5rem;
+}
+
+.contactLine a {
+  color: #d7d3c8;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(215, 211, 200, 0.16);
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.contactLine a:hover {
+  color: #c5a258;
+  border-color: #c5a258;
+}
+
+/* ── Footer ───────────────────────────────────────────────────────────────── */
+
+.footer {
+  background: #0d0d0d;
+  color: #c9b684;
+  text-align: center;
+  padding: 2.5rem clamp(1.25rem, 5vw, 4rem);
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.footerLogo {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  color: #c5a258;
+  margin-bottom: 0.5rem;
+}
+
+.footer a {
+  color: #c9b684;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover { color: #ffffff; }
+
+.footerTag {
+  margin-top: 0.5rem;
+  font-size: 0.65rem;
+  color: #333333;
+  letter-spacing: 0.15em;
+}
+
+/* ── Lightbox ─────────────────────────────────────────────────────────────── */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.95);
+  z-index: 1000;
+  cursor: zoom-out;
+  overflow: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.lightboxClose {
+  position: fixed;
+  top: 1.2rem;
+  right: 1.4rem;
+  background: rgba(250, 250, 247, 0.1);
+  border: 1px solid rgba(250, 250, 247, 0.25);
+  color: rgba(250, 250, 247, 0.92);
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  display: grid;
+  place-items: center;
+  z-index: 1;
+  transition: background 0.2s ease;
+}
+
+.lightboxClose:hover {
+  background: rgba(250, 250, 247, 0.2);
+}
+
+.lightboxStage {
+  min-width: 100vw;
+  min-height: 100vh;
+  padding: 4vh 4vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  box-sizing: border-box;
+}
+
+.lightboxImg {
+  display: block;
+  max-width: none;
+  max-height: none;
+  width: auto;
+  height: auto;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .galleryWrap {
+    grid-template-columns: 1fr;
+  }
+  .galleryWrap > .galleryItem:last-child:nth-child(odd):not(:only-child) {
+    grid-column: auto;
+    max-width: none;
+  }
+  .specLabel { width: 42%; }
+}
