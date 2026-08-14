@@ -1,38 +1,25 @@
 'use client'
 
 import Link from 'next/link'
+import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import styles from './layout.module.css'
 
 // ── Types ───────────────────────────────────────────────────────────────────
 
-type NavLink = { href: string; label: string; exact?: boolean }
+type NavLink    = { href: string; label: string; exact?: boolean }
 type NavDivider = { divider: true }
+type NavSection = { section: true; key: string; label: string; defaultOpen?: boolean; children: NavLink[] }
+type NavEntry   = NavLink | NavSection | NavDivider
 
-type NavSection = {
-  section: true
-  label: string
-  /** href makes the section header a link (same as navItem). */
-  href: string
-  children: NavLink[]
-}
-
-type NavEntry = NavLink | NavSection | NavDivider
-
-// ── Navigation definition ────────────────────────────────────────────────────
-//
-// All top-level items are Links — section headers included.
-// No collapse, no chevron. Every item in the sidebar is the same type of
-// control and speaks the same visual language.
+// ── Nav definition ───────────────────────────────────────────────────────────
 
 const NAV: NavEntry[] = [
   { href: '/admin',           label: 'Overview', exact: true },
   { href: '/admin/analytics', label: 'Analytics' },
 
   {
-    section: true,
-    label:   'Products',
-    href:    '/admin/products',
+    section: true, key: 'products', label: 'Products', defaultOpen: true,
     children: [
       { href: '/admin/products',               label: 'Catalog'   },
       { href: '/admin/templates?scope=product', label: 'Templates' },
@@ -40,9 +27,7 @@ const NAV: NavEntry[] = [
   },
 
   {
-    section: true,
-    label:   'Clients',
-    href:    '/admin/clients',
+    section: true, key: 'clients', label: 'Clients', defaultOpen: true,
     children: [
       { href: '/admin/clients',                label: 'Users',     exact: true },
       { href: '/admin/pages?type=proposal',    label: 'Proposals'  },
@@ -53,17 +38,30 @@ const NAV: NavEntry[] = [
   },
 
   { divider: true },
-
   { href: '/admin/leads',    label: 'Leads'    },
   { href: '/admin/settings', label: 'Settings' },
 ]
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
-function isActive(href: string, currentPath: string, exact?: boolean): boolean {
-  const hrefPath = href.split('?')[0]
-  if (exact) return currentPath === hrefPath
-  return currentPath.startsWith(hrefPath)
+function isActive(href: string, path: string, exact?: boolean): boolean {
+  const base = href.split('?')[0]
+  return exact ? path === base : path.startsWith(base)
+}
+
+// Small chevron — inherits currentColor so it reads as part of the label text.
+// Opacity is kept low so it doesn't call more attention than the text itself.
+function Chevron({ open }: { open: boolean }) {
+  return (
+    <svg
+      width="8" height="8" viewBox="0 0 10 10"
+      fill="none" aria-hidden
+      className={`${styles.chevron} ${open ? styles.chevronOpen : ''}`}
+    >
+      <path d="M3 2.5L5.5 5 3 7.5" stroke="currentColor" strokeWidth="1.5"
+        strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -71,49 +69,52 @@ function isActive(href: string, currentPath: string, exact?: boolean): boolean {
 export default function AdminNav() {
   const path = usePathname() ?? ''
 
+  const [open, setOpen] = useState<Record<string, boolean>>(() =>
+    Object.fromEntries(
+      NAV.filter((x): x is NavSection => 'section' in x)
+         .map(x => [x.key, x.defaultOpen ?? true])
+    )
+  )
+
   return (
     <nav className={styles.nav} aria-label="Admin navigation">
       {NAV.map((item, i) => {
 
-        // ── Section header + always-visible sub-items ────────────────────────
         if ('section' in item) {
-          // Section header is active when any child is active
-          const anyChildActive = item.children.some(c => isActive(c.href, path, c.exact))
-          // Section header itself is also active if the path matches it exactly
-          const headerActive = anyChildActive || isActive(item.href, path, true)
-
+          const isOpen    = open[item.key] ?? true
+          const anyActive = item.children.some(c => isActive(c.href, path, c.exact))
           return (
-            <div key={item.label} className={styles.navSection}>
-              <Link
-                href={item.href}
-                className={`${styles.navItem} ${headerActive ? styles.navActive : ''}`}
+            <div key={item.key} className={styles.navSection}>
+              {/* Section toggle — styled identically to navItem.
+                  Chevron is the only indicator of collapsibility. */}
+              <button
+                type="button"
+                aria-expanded={isOpen}
+                onClick={() => setOpen(o => ({ ...o, [item.key]: !o[item.key] }))}
+                className={`${styles.navSectionHeader} ${anyActive ? styles.navActive : ''}`}
               >
                 {item.label}
-              </Link>
-
-              {item.children.map(child => (
-                <Link
-                  key={child.href}
-                  href={child.href}
-                  className={`${styles.navSub} ${isActive(child.href, path, child.exact) ? styles.navActive : ''}`}
-                >
-                  {child.label}
-                </Link>
-              ))}
+                <Chevron open={isOpen} />
+              </button>
+              <div className={`${styles.navSectionBody} ${isOpen ? styles.navSectionBodyOpen : ''}`}>
+                {item.children.map(child => (
+                  <Link key={child.href} href={child.href}
+                    className={`${styles.navSub} ${isActive(child.href, path, child.exact) ? styles.navActive : ''}`}
+                  >
+                    {child.label}
+                  </Link>
+                ))}
+              </div>
             </div>
           )
         }
 
-        // ── Divider ──────────────────────────────────────────────────────────
         if ('divider' in item) {
           return <div key={i} className={styles.navDivider} aria-hidden />
         }
 
-        // ── Flat link ────────────────────────────────────────────────────────
         return (
-          <Link
-            key={item.href}
-            href={item.href}
+          <Link key={item.href} href={item.href}
             className={`${styles.navItem} ${isActive(item.href, path, item.exact) ? styles.navActive : ''}`}
           >
             {item.label}

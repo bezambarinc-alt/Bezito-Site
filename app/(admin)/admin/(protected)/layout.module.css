@@ -101,20 +101,68 @@
 }
 .logout:hover { color: var(--danger); }
 
-/* ── Section groups (Products, Clients) ──
-
-   Section headers use .navItem directly — same Link element, same class,
-   same visual language as Overview / Analytics / Leads / Settings.
-   The .navSection container just adds the top separator and groups
-   the header with its always-visible sub-items.
-*/
+/* ── Section groups (Products, Clients) ── */
 
 .navSection {
   border-top: 1px solid var(--border);
   margin-top: 0.25rem;
 }
 
-/* Sub-items — indented nav links that live below the section header */
+/*
+  Section toggle button.
+  Font, size, weight, padding, border-left — identical to .navItem.
+  The only difference is the chevron, which sits inline right after the
+  label text and inherits the text color so it doesn’t call extra attention.
+*/
+.navSectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  width: 100%;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+  padding: 0.65rem 1.25rem;
+  border-left: 2px solid transparent;
+  background: none;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.12s, border-color 0.12s, background 0.12s;
+}
+
+.navSectionHeader:hover {
+  color: var(--ink);
+  background: var(--surface-2);
+}
+
+/* Chevron — inherits the item’s text color, kept at low opacity so it
+   reads as a subtle affordance, not a visual break. */
+.chevron {
+  display: block;
+  color: currentColor;
+  flex-shrink: 0;
+  opacity: 0.5;
+  transition: transform 0.2s ease;
+}
+.chevronOpen { transform: rotate(90deg); }
+
+/* Collapsible body */
+.navSectionBody {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.25s ease;
+}
+.navSectionBodyOpen {
+  max-height: 400px;
+  transition: max-height 0.3s ease;
+}
+
+/* Sub-items — indented, one weight lighter than the section header */
 .navSub {
   display: block;
   font-family: var(--font);
@@ -133,7 +181,7 @@
   background: var(--surface-2);
 }
 
-/* Horizontal divider — separates section groups from utility items (Leads, Settings) */
+/* Horizontal divider before utility items (Leads, Settings) */
 .navDivider {
   height: 1px;
   background: var(--border);
