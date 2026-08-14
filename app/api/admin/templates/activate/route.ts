@@ -3,7 +3,7 @@ import { z } from 'zod'
 import { revalidatePath } from 'next/cache'
 import { getSession } from '@/lib/auth'
 import { sql } from '@/lib/db'
-import { isValidTemplateId } from '@/app/(public)/jewelry/[category]/[slug]/layouts'
+import { TEMPLATES, isValidTemplateId, type TemplateScope } from '@/app/(public)/jewelry/[category]/[slug]/layouts'
 import { audit } from '@/lib/audit'
 
 export const dynamic = 'force-dynamic'
@@ -25,6 +25,14 @@ export async function POST(req: NextRequest) {
   const { id, scope } = parsed.data
   if (!isValidTemplateId(id)) {
     return NextResponse.json({ error: 'unknown template id' }, { status: 400 })
+  }
+
+  // Reject cross-scope activation — e.g. prevent setting 'dark' as active_product_template
+  if (!TEMPLATES[id].scope.includes(scope as TemplateScope)) {
+    return NextResponse.json(
+      { error: `Template "${id}" is not valid for scope "${scope}"` },
+      { status: 400 },
+    )
   }
 
   const settingKey = scope === 'proposal' ? 'active_proposal_template'

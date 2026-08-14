@@ -65,9 +65,24 @@ export default async function PreviewPage({ params, searchParams }: Ctx) {
   const [globalRow] = await sql<{ value: string }>(
     `SELECT value FROM admin_settings WHERE key = 'active_showcase_template' LIMIT 1`,
   )
-  const globalActive = globalRow?.value ?? 'default'
+
+  // First active template valid for showcase scope — used as fallback throughout
+  const showcaseFallback = (
+    Object.entries(TEMPLATES).find(([, t]) => t.scope.includes('showcase') && t.status === 'active')?.[0]
+    ?? 'dark'
+  ) as string
+
+  // Validate a template ID is real AND scoped for showcase/proposal
+  const isValidForPreview = (id: string) =>
+    isValidTemplateId(id) && TEMPLATES[id].scope.includes('showcase')
+
+  // Validate stored global — prevents a product template bleeding onto preview pages
+  const storedGlobal = globalRow?.value
+  const globalActive = (storedGlobal && isValidForPreview(storedGlobal)) ? storedGlobal : showcaseFallback
+
+  // Per-page override and admin tpl param also scope-checked
   const resolvedId   = tplParam ?? page.template_id ?? globalActive
-  const templateId   = isValidTemplateId(resolvedId) ? resolvedId : 'default'
+  const templateId   = isValidForPreview(resolvedId ?? '') ? resolvedId! : showcaseFallback
   const Layout       = TEMPLATES[templateId].component
 
   // Product from blocks

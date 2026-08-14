@@ -1,7 +1,22 @@
 import { redirect } from 'next/navigation'
 import { getSession } from '@/lib/auth'
 import { sql } from '@/lib/db'
-import { TEMPLATES, getTemplateIds } from '@/app/(public)/jewelry/[category]/[slug]/layouts'
+import { TEMPLATES, getTemplateIds, type TemplateScope } from '@/app/(public)/jewelry/[category]/[slug]/layouts'
+
+/** Returns the first active template valid for the given scope. */
+function firstValidForScope(scope: TemplateScope): string {
+  return Object.entries(TEMPLATES).find(([, t]) => t.scope.includes(scope) && t.status === 'active')?.[0] ?? 'default'
+}
+
+/**
+ * Validates a stored template ID against its expected scope.
+ * If the stored value is missing or cross-scoped, returns the first valid template for that scope.
+ */
+function resolveActive(storedId: string | undefined, scope: TemplateScope): string {
+  if (!storedId) return firstValidForScope(scope)
+  const t = TEMPLATES[storedId]
+  return (t && t.scope.includes(scope)) ? storedId : firstValidForScope(scope)
+}
 import styles from './templates.module.css'
 import adminStyles from '../admin.module.css'
 import TemplatesClient from './TemplatesClient'
@@ -34,10 +49,12 @@ export default async function TemplatesPage() {
 
   const templateIds = getTemplateIds()
   const settingMap  = Object.fromEntries(activeRows.map(r => [r.key, r.value]))
+  // Use resolveActive so that stale/cross-scoped DB values never bleed into the wrong tab.
+  // e.g. if active_proposal_template was never set, it won't default to 'default' (product layout).
   const activeIds   = {
-    product:  settingMap['active_product_template']  ?? 'default',
-    proposal: settingMap['active_proposal_template'] ?? 'default',
-    showcase: settingMap['active_showcase_template'] ?? 'default',
+    product:  resolveActive(settingMap['active_product_template'],  'product'),
+    proposal: resolveActive(settingMap['active_proposal_template'], 'proposal'),
+    showcase: resolveActive(settingMap['active_showcase_template'], 'showcase'),
   }
 
   return (

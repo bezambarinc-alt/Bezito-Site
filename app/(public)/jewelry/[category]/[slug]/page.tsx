@@ -21,7 +21,8 @@ const getActiveTemplateId = unstable_cache(
       `SELECT value FROM admin_settings WHERE key = 'active_product_template' LIMIT 1`,
     )
     const val = row?.value ?? 'default'
-    return isValidTemplateId(val) ? val : 'default'
+    // Scope guard — a proposal/showcase template must never render on a public product page
+    return (isValidTemplateId(val) && TEMPLATES[val].scope.includes('product')) ? val : 'default'
   },
   ['active-product-template'],
   { tags: ['product-template'] },
