@@ -3,6 +3,7 @@ import { hash } from 'bcryptjs'
 import { z } from 'zod'
 import { sql } from '@/lib/db'
 import { getSession } from '@/lib/auth'
+import { isAuthorizedAgent } from '@/lib/agent-auth'
 import { audit } from '@/lib/audit'
 
 type Ctx = { params: Promise<{ id: string }> }
@@ -14,9 +15,10 @@ const patchSchema = z.object({
   password:      z.string().min(8).max(128).optional(),
 })
 
-export async function GET(_req: NextRequest, { params }: Ctx) {
+export async function GET(req: NextRequest, { params }: Ctx) {
   const session = await getSession()
-  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const agentOk = isAuthorizedAgent(req)
+  if (!session && !agentOk) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const { id } = await params
   const [client] = await sql<{ id: number; slug: string; name: string; contact_email: string; active: boolean; created_at: string }>(
@@ -30,7 +32,8 @@ export async function GET(_req: NextRequest, { params }: Ctx) {
 
 export async function PATCH(req: NextRequest, { params }: Ctx) {
   const session = await getSession()
-  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const agentOk = isAuthorizedAgent(req)
+  if (!session && !agentOk) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const { id } = await params
   const body = await req.json().catch(() => null)
@@ -55,20 +58,23 @@ export async function PATCH(req: NextRequest, { params }: Ctx) {
   values.push(Number(id))
   await sql(`UPDATE clients SET ${updates.join(', ')} WHERE id = $${i}`, values)
 
-  await audit('admin.client.updated', session.sub as string, { clientId: Number(id), fields: Object.keys(parsed.data) })
+  const actor = session?.sub ?? 'bezito-agent'
+  await audit('admin.client.updated', actor, { clientId: Number(id), fields: Object.keys(parsed.data) })
 
   return NextResponse.json({ ok: true })
 }
 
-export async function DELETE(_req: NextRequest, { params }: Ctx) {
+export async function DELETE(req: NextRequest, { params }: Ctx) {
   const session = await getSession()
-  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const agentOk = isAuthorizedAgent(req)
+  if (!session && !agentOk) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const { id } = await params
   // Soft-delete only
   await sql(`UPDATE clients SET active = false, updated_at = now() WHERE id = $1`, [Number(id)])
 
-  await audit('admin.client.deactivated', session.sub as string, { clientId: Number(id) })
+  const actor = session?.sub ?? 'bezito-agent'
+  await audit('admin.client.deactivated', actor, { clientId: Number(id) })
 
   return NextResponse.json({ ok: true })
 }

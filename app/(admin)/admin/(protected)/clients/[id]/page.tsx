@@ -1,8 +1,7 @@
 import { notFound, redirect } from 'next/navigation'
 import { getSession } from '@/lib/auth'
 import { sql } from '@/lib/db'
-import adminStyles from '../../admin.module.css'
-import styles from './client.module.css'
+import ClientDetailClient from './ClientDetailClient'
 
 export const dynamic = 'force-dynamic'
 
@@ -63,158 +62,12 @@ export default async function ClientDetailPage({ params }: Ctx) {
 
   if (!client) notFound()
 
-  function fmtDate(iso: string) {
-    return new Date(iso).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: '2-digit' })
-  }
-
   return (
-    <div>
-      {/* Client header */}
-      <div className={adminStyles.pageHeader}>
-        <div>
-          <h1 className={adminStyles.pageTitle}>{client.name}</h1>
-          <p className={styles.meta}>
-            <span className={styles.email}>{client.contact_email}</span>
-            <span className={`admin-badge ${client.active ? styles.badgeActive : styles.badgeInactive}`}>
-              {client.active ? 'Active' : 'Inactive'}
-            </span>
-            <span className={styles.since}>Since {fmtDate(client.created_at)}</span>
-          </p>
-        </div>
-        <div className={styles.actions}>
-          <a href="/admin/clients" className="admin-link">← All Clients</a>
-        </div>
-      </div>
-
-      {/* Proposals */}
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>
-          Proposals <span className={styles.count}>{proposals.length}</span>
-        </h2>
-        {proposals.length === 0 ? (
-          <p className="admin-empty">No proposals yet.</p>
-        ) : (
-          <table className="admin-table">
-            <thead>
-              <tr>
-                <th className="admin-th">Title</th>
-                <th className="admin-th">Template</th>
-                <th className="admin-th">Access</th>
-                <th className="admin-th">Status</th>
-                <th className="admin-th">Updated</th>
-                <th className="admin-th" />
-              </tr>
-            </thead>
-            <tbody>
-              {proposals.map(p => (
-                <tr key={p.slug} className="admin-row">
-                  <td className="admin-td">
-                    <div className={styles.itemTitle}>{p.title}</div>
-                    <code className={styles.slug}>{p.slug}</code>
-                  </td>
-                  <td className="admin-td">{p.template_id ?? '—'}</td>
-                  <td className="admin-td">{p.shared ? '🌐 Shared' : '🔒 Private'}</td>
-                  <td className="admin-td">
-                    <span className={`admin-badge ${p.status === 'live' ? styles.badgeLive : styles.badgeDraft}`}>
-                      {p.status}
-                    </span>
-                  </td>
-                  <td className="admin-td">{fmtDate(p.updated_at)}</td>
-                  <td className="admin-td">
-                    <a href={`/preview/${p.slug}`} className="admin-link" target="_blank" rel="noreferrer">
-                      View ↗
-                    </a>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </section>
-
-      {/* Showcase pages */}
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>
-          Pages <span className={styles.count}>{pages.length}</span>
-        </h2>
-        {pages.length === 0 ? (
-          <p className="admin-empty">No showcase pages yet.</p>
-        ) : (
-          <table className="admin-table">
-            <thead>
-              <tr>
-                <th className="admin-th">Title</th>
-                <th className="admin-th">PIN</th>
-                <th className="admin-th">Status</th>
-                <th className="admin-th">Updated</th>
-                <th className="admin-th" />
-              </tr>
-            </thead>
-            <tbody>
-              {pages.map(p => (
-                <tr key={p.slug} className="admin-row">
-                  <td className="admin-td">
-                    <div className={styles.itemTitle}>{p.title}</div>
-                    <code className={styles.slug}>{p.slug}</code>
-                  </td>
-                  <td className="admin-td">
-                    {p.customer_pin
-                      ? <span style={{ color: 'var(--accent)' }}>{p.customer_pin}</span>
-                      : <span style={{ color: 'var(--ink-faint)' }}>—</span>
-                    }
-                  </td>
-                  <td className="admin-td">
-                    <span className={`admin-badge ${p.status === 'live' ? styles.badgeLive : styles.badgeDraft}`}>
-                      {p.status}
-                    </span>
-                  </td>
-                  <td className="admin-td">{fmtDate(p.updated_at)}</td>
-                  <td className="admin-td">
-                    <a href={`/preview/${p.slug}`} className="admin-link" target="_blank" rel="noreferrer">
-                      View ↗
-                    </a>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </section>
-
-      {/* Requests */}
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>
-          Requests <span className={styles.count}>{requests.length}</span>
-        </h2>
-        {requests.length === 0 ? (
-          <p className="admin-empty">No page requests.</p>
-        ) : (
-          <table className="admin-table">
-            <thead>
-              <tr>
-                <th className="admin-th">Product SKU</th>
-                <th className="admin-th">Message</th>
-                <th className="admin-th">Status</th>
-                <th className="admin-th">Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {requests.map(r => (
-                <tr key={r.id} className="admin-row">
-                  <td className="admin-td"><code className={styles.slug}>{r.product_sku ?? '—'}</code></td>
-                  <td className="admin-td" style={{ maxWidth: 320 }}>{r.message}</td>
-                  <td className="admin-td">
-                    <span className={`admin-badge ${r.status === 'done' ? styles.badgeLive : styles.badgeDraft}`}>
-                      {r.status}
-                    </span>
-                  </td>
-                  <td className="admin-td">{fmtDate(r.created_at)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </section>
-    </div>
+    <ClientDetailClient
+      client={client}
+      proposals={proposals}
+      pages={pages}
+      requests={requests}
+    />
   )
 }

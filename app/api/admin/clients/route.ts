@@ -3,6 +3,7 @@ import { hash } from 'bcryptjs'
 import { z } from 'zod'
 import { sql } from '@/lib/db'
 import { getSession } from '@/lib/auth'
+import { isAuthorizedAgent } from '@/lib/agent-auth'
 import { audit } from '@/lib/audit'
 
 const createSchema = z.object({
@@ -12,9 +13,10 @@ const createSchema = z.object({
   password:      z.string().min(8).max(128),
 })
 
-export async function GET(_req: NextRequest) {
+export async function GET(req: NextRequest) {
   const session = await getSession()
-  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const agentOk = isAuthorizedAgent(req)
+  if (!session && !agentOk) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const clients = await sql<{
     id: number; slug: string; name: string; contact_email: string;
@@ -33,7 +35,8 @@ export async function GET(_req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   const session = await getSession()
-  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const agentOk = isAuthorizedAgent(req)
+  if (!session && !agentOk) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const body = await req.json().catch(() => null)
   const parsed = createSchema.safeParse(body)
@@ -51,7 +54,8 @@ export async function POST(req: NextRequest) {
     [slug, name, contact_email, password_hash],
   )
 
-  await audit('admin.client.created', session.sub as string, { clientId: client.id, slug, name })
+  const actor = session?.sub ?? 'bezito-agent'
+  await audit('admin.client.created', actor, { clientId: client.id, slug, name })
 
   return NextResponse.json({ ok: true, id: client.id }, { status: 201 })
 }

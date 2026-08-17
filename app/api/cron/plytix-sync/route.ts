@@ -170,6 +170,11 @@ export async function GET(req: NextRequest) {
         // Plytix featured attribute: boolean, string 'true', or any truthy value
         const featured = a.featured === true || a.featured === 'true'
 
+        // Three-view angles (optional Plytix attributes — null until Kevin adds them in Plytix UI)
+        const view1 = str(a.view_1_url) ?? null
+        const view2 = str(a.view_2_url) ?? null
+        const view3 = str(a.view_3_url) ?? null
+
         // Write to individual columns — the JSONB `specs`/`media` blobs are legacy.
         await sql(
           `INSERT INTO products(
@@ -178,8 +183,9 @@ export async function GET(req: NextRequest) {
             hero_visual, editorial_visual,
             metal, stone_shape, stone_carats, stone_color, stone_clarity, stone_notes,
             total_carat_weight, center_stone_weight, collection, featured,
+            view_1_url, view_2_url, view_3_url,
             synced_at
-          ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,now())
+          ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,now())
           ON CONFLICT (sku) DO UPDATE SET
             slug=EXCLUDED.slug,
             plytix_id=EXCLUDED.plytix_id, name=EXCLUDED.name,
@@ -192,30 +198,37 @@ export async function GET(req: NextRequest) {
             total_carat_weight=EXCLUDED.total_carat_weight,
             center_stone_weight=EXCLUDED.center_stone_weight,
             collection=EXCLUDED.collection,
+            view_1_url = COALESCE(EXCLUDED.view_1_url, products.view_1_url),
+            view_2_url = COALESCE(EXCLUDED.view_2_url, products.view_2_url),
+            view_3_url = COALESCE(EXCLUDED.view_3_url, products.view_3_url),
             synced_at=now()
             -- NOTE: active + featured intentionally excluded from UPDATE.
-            -- These are managed via the admin dashboard, not Plytix.`,
+            -- These are managed via the admin dashboard, not Plytix.
+            -- view_1/2/3: COALESCE so manual Neon values persist until Plytix attrs are populated.`,
           [
-            p.sku,                                                                  // $1  sku
+            p.sku,                                                                    // $1  sku
             p.sku.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''), // $2  slug
-            p.id,                                                                   // $3  plytix_id
-            str(p.label) ?? p.sku,                                                 // $4  name
-            category ?? null,                                                       // $5  category
-            str(a.subtitle) ?? null,                                               // $6  subtitle
-            str(a.editorial) ?? null,                                              // $7  editorial
-            str(a.description) ?? null,                                            // $8  description
-            heroVisual ?? null,                                                     // $9  hero_visual
-            editorialVisual ?? null,                                               // $10 editorial_visual
-            str(a.metal) ?? null,                                                  // $11 metal
-            str(a.stone_shape) ?? null,                                            // $12 stone_shape
-            str(a.stone_carats) ?? null,                                           // $13 stone_carats
-            str(a.stone_color) ?? null,                                            // $14 stone_color
-            str(a.stone_clarity) ?? null,                                          // $15 stone_clarity
-            str(a.stone_notes) ?? null,                                            // $16 stone_notes
-            totalCaratWeight,                                                       // $17 total_carat_weight
-            centerStoneWeight,                                                      // $18 center_stone_weight
-            str(a.collection) ?? null,                                             // $19 collection
-            featured,                                                               // $20 featured
+            p.id,                                                                     // $3  plytix_id
+            str(p.label) ?? p.sku,                                                   // $4  name
+            category ?? null,                                                         // $5  category
+            str(a.subtitle) ?? null,                                                 // $6  subtitle
+            str(a.editorial) ?? null,                                                // $7  editorial
+            str(a.description) ?? null,                                              // $8  description
+            heroVisual ?? null,                                                       // $9  hero_visual
+            editorialVisual ?? null,                                                 // $10 editorial_visual
+            str(a.metal) ?? null,                                                    // $11 metal
+            str(a.stone_shape) ?? null,                                              // $12 stone_shape
+            str(a.stone_carats) ?? null,                                             // $13 stone_carats
+            str(a.stone_color) ?? null,                                              // $14 stone_color
+            str(a.stone_clarity) ?? null,                                            // $15 stone_clarity
+            str(a.stone_notes) ?? null,                                              // $16 stone_notes
+            totalCaratWeight,                                                         // $17 total_carat_weight
+            centerStoneWeight,                                                        // $18 center_stone_weight
+            str(a.collection) ?? null,                                               // $19 collection
+            featured,                                                                 // $20 featured
+            view1,                                                                    // $21 view_1_url
+            view2,                                                                    // $22 view_2_url
+            view3,                                                                    // $23 view_3_url
           ],
         )
         syncedSkus.push(p.sku)

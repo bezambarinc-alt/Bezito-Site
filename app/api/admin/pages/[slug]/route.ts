@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { sql } from '@/lib/db'
 import { getSession } from '@/lib/auth'
+import { isAuthorizedAgent } from '@/lib/agent-auth'
 import { audit } from '@/lib/audit'
 import { TEMPLATES, type TemplateScope } from '@/app/(public)/jewelry/[category]/[slug]/layouts'
 
@@ -19,7 +20,8 @@ const patchSchema = z.object({
 
 export async function PATCH(req: NextRequest, { params }: Ctx) {
   const session = await getSession()
-  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const agentOk = isAuthorizedAgent(req)
+  if (!session && !agentOk) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const { slug } = await params
   const body = await req.json().catch(() => null)
@@ -69,16 +71,16 @@ export async function PATCH(req: NextRequest, { params }: Ctx) {
   values.push(slug)
   await sql(`UPDATE pages SET ${updates.join(', ')} WHERE slug = $${i}`, values)
 
-  await audit('admin.page.updated', session.sub as string, {
-    slug, ...parsed.data,
-  })
+  const actor = session?.sub ?? 'bezito-agent'
+  await audit('admin.page.updated', actor, { slug, ...parsed.data })
 
   return NextResponse.json({ ok: true })
 }
 
-export async function DELETE(_req: NextRequest, { params }: Ctx) {
+export async function DELETE(req: NextRequest, { params }: Ctx) {
   const session = await getSession()
-  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const agentOk = isAuthorizedAgent(req)
+  if (!session && !agentOk) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const { slug } = await params
 
@@ -88,7 +90,8 @@ export async function DELETE(_req: NextRequest, { params }: Ctx) {
     [slug],
   )
 
-  await audit('admin.page.archived', session.sub as string, { slug })
+  const actorDel = session?.sub ?? 'bezito-agent'
+  await audit('admin.page.archived', actorDel, { slug })
 
   return NextResponse.json({ ok: true })
 }

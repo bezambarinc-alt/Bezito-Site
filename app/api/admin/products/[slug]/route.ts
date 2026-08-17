@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getSession } from '@/lib/auth'
+import { isAuthorizedAgent } from '@/lib/agent-auth'
 import { sql } from '@/lib/db'
 
 type Ctx = { params: Promise<{ slug: string }> }
@@ -8,7 +9,8 @@ const ALLOWED_FIELDS = new Set(['active', 'featured', 'view_1_url', 'view_2_url'
 
 export async function PATCH(req: NextRequest, { params }: Ctx) {
   const session = await getSession()
-  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const agentOk = isAuthorizedAgent(req)
+  if (!session && !agentOk) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const { slug } = await params
   const body = await req.json() as Record<string, unknown>
@@ -40,9 +42,10 @@ export async function PATCH(req: NextRequest, { params }: Ctx) {
   return NextResponse.json({ product: rows[0] })
 }
 
-export async function GET(_req: NextRequest, { params }: Ctx) {
+export async function GET(req: NextRequest, { params }: Ctx) {
   const session = await getSession()
-  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const agentOk = isAuthorizedAgent(req)
+  if (!session && !agentOk) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const { slug } = await params
   const [product] = await sql(
