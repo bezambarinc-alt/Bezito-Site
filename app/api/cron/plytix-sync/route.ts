@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { revalidateTag } from 'next/cache'
 import { sql } from '@/lib/db'
+import { isAuthorizedAgent } from '@/lib/agent-auth'
 
 /**
  * Plytix → Neon products cache sync.
@@ -94,7 +95,9 @@ export async function GET(req: NextRequest) {
   // Auth: Vercel Cron injects Authorization header automatically.
   // Bezito can also trigger manually with BEZITO_SECRET.
   const auth = req.headers.get('authorization') ?? ''
+  const agentOk = await isAuthorizedAgent(req)
   if (
+    !agentOk &&
     auth !== `Bearer ${process.env.CRON_SECRET}` &&
     auth !== `Bearer ${process.env.BEZITO_SECRET}`
   ) {

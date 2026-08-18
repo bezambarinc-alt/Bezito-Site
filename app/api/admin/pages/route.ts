@@ -33,6 +33,7 @@ export async function POST(req: NextRequest) {
     template_id: z.string().optional(),
     blocks:      z.array(z.record(z.unknown())).optional().default([]),
     status:      z.enum(['draft', 'live']).default('draft'),
+    shared:      z.boolean().optional().default(false),
   })
 
   const body = await req.json().catch(() => null)
@@ -41,7 +42,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Invalid input', issues: parsed.error.issues }, { status: 400 })
   }
 
-  const { slug, title, doc_type, client_id, template_id, blocks, status } = parsed.data
+  const { slug, title, doc_type, client_id, template_id, blocks, status, shared } = parsed.data
 
   // Validate template scope if provided
   if (template_id) {
@@ -60,10 +61,10 @@ export async function POST(req: NextRequest) {
 
   try {
     const [page] = await sql<{ id: number }>(
-      `INSERT INTO pages (slug, title, doc_type, client_id, template_id, blocks, status, idempotency_key)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      `INSERT INTO pages (slug, title, doc_type, client_id, template_id, blocks, status, shared, idempotency_key)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
        RETURNING id`,
-      [slug, title, doc_type, client_id ?? null, template_id ?? null, JSON.stringify(blocks), status, idempotencyKey],
+      [slug, title, doc_type, client_id ?? null, template_id ?? null, JSON.stringify(blocks), status, shared, idempotencyKey],
     )
 
     const actor = session?.sub ?? 'bezito-agent'

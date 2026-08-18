@@ -38,7 +38,7 @@ const body = {
   slug: payload.slug,
   title: payload.title,
   doc_type: payload.doc_type,
-  template: payload.template,
+  template_id: payload.template,
   status: payload.status || 'draft',
   blocks: payload.blocks,
   shared: payload.shared || false,
@@ -46,7 +46,7 @@ const body = {
 
 const res = await fetch(`${BASE_URL}/api/admin/pages`, {
   method: 'POST',
-  headers: agentHeaders({ 'Idempotency-Key': crypto.randomUUID() }),
+  headers: agentHeaders({ 'Idempotency-Key': `create-page:${payload.slug}` }),
   body: JSON.stringify(body),
 })
 

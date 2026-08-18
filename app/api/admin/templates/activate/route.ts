@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { revalidatePath } from 'next/cache'
 import { getSession } from '@/lib/auth'
+import { isAuthorizedAgent } from '@/lib/agent-auth'
 import { sql } from '@/lib/db'
 import { TEMPLATES, isValidTemplateId, type TemplateScope } from '@/app/(public)/jewelry/[category]/[slug]/layouts'
 import { audit } from '@/lib/audit'
@@ -14,7 +15,8 @@ export const dynamic = 'force-dynamic'
  */
 export async function POST(req: NextRequest) {
   const session = await getSession()
-  if (!session) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
+  const agentOk = await isAuthorizedAgent(req)
+  if (!session && !agentOk) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
 
   const parsed = z.object({
     id:    z.string().min(1).max(64),
@@ -51,7 +53,8 @@ export async function POST(req: NextRequest) {
   // Bust preview pages on showcase scope change
   if (scope === 'showcase') revalidatePath('/preview', 'layout')
 
-  await audit('admin.template.activated', session.sub as string, { templateId: id, scope })
+  const actor = (session?.sub as string) ?? 'bezito-agent'
+  await audit('admin.template.activated', actor, { templateId: id, scope })
 
   return NextResponse.json({ ok: true })
 }

@@ -14,10 +14,10 @@ const { clients } = await res.json()
 const q = query.toLowerCase()
 
 const match = clients.find(c =>
-  c.id === query ||
+  String(c.id) === query ||
   c.slug === q ||
   c.name.toLowerCase().includes(q) ||
-  c.email?.toLowerCase().includes(q)
+  c.contact_email?.toLowerCase().includes(q)
 )
 
 if (!match) {
@@ -32,6 +32,6 @@ console.log(`\nClient found:`)
 console.log(`  Name:   ${match.name}`)
 console.log(`  Slug:   ${match.slug}`)
 console.log(`  ID:     ${match.id}`)
-console.log(`  Email:  ${match.email || '(none)'}`)
+console.log(`  Email:  ${match.contact_email || '(none)'}`)
 console.log(`  Active: ${match.active}`)
 console.log()

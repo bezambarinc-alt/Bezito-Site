@@ -4,7 +4,7 @@
 // Exits 0 on success, 1 on error.
 // Use --json flag to get machine-readable output: { id, sku, status }
 
-import { plytixToken, PLYTIX_API_KEY } from './_env.mjs'
+import { plytixToken } from './_env.mjs'
 
 const sku = process.argv[2]
 const rawStatus = process.argv[3]?.toLowerCase()

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { sql } from '@/lib/db'
 import { getSession } from '@/lib/auth'
+import { isAuthorizedAgent } from '@/lib/agent-auth'
 
 type Ctx = { params: Promise<{ id: string }> }
 
@@ -11,7 +12,8 @@ type Ctx = { params: Promise<{ id: string }> }
  */
 export async function PATCH(req: NextRequest, { params }: Ctx) {
   const session = await getSession()
-  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const agentOk = await isAuthorizedAgent(req)
+  if (!session && !agentOk) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const { id } = await params
   const requestId = parseInt(id, 10)

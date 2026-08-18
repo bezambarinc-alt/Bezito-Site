@@ -16,7 +16,11 @@ if (!res.ok) {
 console.log(`Sync triggered. Response:`, JSON.stringify(json))
 
 if (process.argv.includes('--wait')) {
-  console.log('Waiting 10s for sync to complete...')
-  await new Promise(r => setTimeout(r, 10000))
-  console.log('Done waiting.')
+  // The sync endpoint runs synchronously — the JSON response above already
+  // reflects a completed run (listed/upserted/deleted counts). There is no
+  // async job to poll. A short settle gives edge-cache revalidation time to propagate.
+  const SETTLE_MS = 5000
+  console.log(`Sync complete. Settling ${SETTLE_MS / 1000}s for cache revalidation...`)
+  await new Promise(r => setTimeout(r, SETTLE_MS))
+  console.log('Done.')
 }

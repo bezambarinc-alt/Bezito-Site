@@ -15,6 +15,6 @@ console.log(`\nPortal clients (${clients.length}):\n`)
 for (const c of clients) {
   const status = c.active ? '✓' : '✗'
   console.log(`  [${status}] ${c.name.padEnd(30)} slug: ${c.slug.padEnd(20)} id: ${c.id}`)
-  if (c.email) console.log(`       email: ${c.email}`)
+  if (c.contact_email) console.log(`       email: ${c.contact_email}`)
 }
 console.log()
