@@ -1416,7 +1416,7 @@
 
     <!-- Command catalog -->
     <div class="sec-eyebrow" style="margin-top:20px">Commands</div>
-    <h2 style="margin-bottom:20px">10 Commands</h2>
+    <h2 style="margin-bottom:20px">13 Commands</h2>
 
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:36px">
 
@@ -1481,6 +1481,24 @@
         <strong style="font-size:13px">Templates:</strong> <code style="font-size:12px;font-family:monospace;background:#f5f2ee;padding:1px 5px;border-radius:3px">default</code> (product), <code style="font-size:12px;font-family:monospace;background:#f5f2ee;padding:1px 5px;border-radius:3px">dark</code> (proposal|showcase), <code style="font-size:12px;font-family:monospace;background:#f5f2ee;padding:1px 5px;border-radius:3px">multi</code> (proposal|showcase). New templates = code + push.</div>
       </div>
 
+      <div class="card">
+        <div class="card-title">/archive-page</div>
+        <div class="card-body">Soft-archive a proposal or showcase page. Triggers: "archive that page", "take down [slug]", "remove the Saraydarian proposal".<br><br>
+        <em style="font-size:14px;color:#8a8a8a">archive-page.mjs &lt;slug&gt; → DELETE /api/admin/pages/[slug] → status='archived', record kept in DB for audit</em></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">/update-client</div>
+        <div class="card-body">Update a client account — name, email, or reset password. Triggers: "update client [name]", "reset [client] password", "change [client] email".<br><br>
+        <em style="font-size:14px;color:#8a8a8a">update-client.mjs &lt;name|slug|id&gt; --json '{"contact_email":"...","password":"..."}' → PATCH /api/admin/clients/[id]</em></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">/share-page</div>
+        <div class="card-body">Toggle public access on a proposal — anyone with the link can view, no portal login needed. Triggers: "share that page", "make [slug] public", "send Saraydarian a direct link".<br><br>
+        <em style="font-size:14px;color:#8a8a8a">share-page.mjs &lt;slug&gt; [on|off] → PATCH /api/admin/pages/[slug] {shared:true} · Proposals only</em></div>
+      </div>
+
     </div>
 
     <!-- Scripts + field reference in two columns -->
@@ -1500,7 +1518,10 @@
             plytix-create-product.mjs --json '{...}'<br>
             plytix-update-product.mjs &lt;sku&gt; [--attrs] [--sync]<br>
             plytix-set-status.mjs &lt;sku&gt; &lt;draft|completed&gt;<br>
-            set-template.mjs &lt;id&gt; [scope]
+            set-template.mjs &lt;id&gt; [scope]<br>
+            archive-page.mjs &lt;slug&gt;<br>
+            update-client.mjs &lt;name|slug|id&gt; --json '{...}'<br>
+            share-page.mjs &lt;slug&gt; [on|off]
           </code>
         </div>
       </div>
