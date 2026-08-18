@@ -9,8 +9,21 @@ import { TEMPLATES, type TemplateScope } from '@/app/(public)/jewelry/[category]
 /** POST /api/admin/pages — create a new page (used by Bezito and admin UI) */
 export async function POST(req: NextRequest) {
   const session = await getSession()
-  const agentOk = isAuthorizedAgent(req)
+  const agentOk = await isAuthorizedAgent(req)
   if (!session && !agentOk) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+
+  const idempotencyKey = req.headers.get('idempotency-key') || null
+
+  // Idempotency check — return existing page if this key was already processed
+  if (idempotencyKey) {
+    const [existing] = await sql<{ id: number; slug: string }>(
+      `SELECT id, slug FROM pages WHERE idempotency_key = $1`,
+      [idempotencyKey],
+    )
+    if (existing) {
+      return NextResponse.json({ ok: true, id: existing.id, slug: existing.slug, idempotent: true })
+    }
+  }
 
   const schema = z.object({
     slug:        z.string().regex(/^[a-z0-9-]+$/, 'Slug must be lowercase letters, numbers, hyphens').min(1).max(64),
@@ -47,10 +60,10 @@ export async function POST(req: NextRequest) {
 
   try {
     const [page] = await sql<{ id: number }>(
-      `INSERT INTO pages (slug, title, doc_type, client_id, template_id, blocks, status)
-       VALUES ($1, $2, $3, $4, $5, $6, $7)
+      `INSERT INTO pages (slug, title, doc_type, client_id, template_id, blocks, status, idempotency_key)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
        RETURNING id`,
-      [slug, title, doc_type, client_id ?? null, template_id ?? null, JSON.stringify(blocks), status],
+      [slug, title, doc_type, client_id ?? null, template_id ?? null, JSON.stringify(blocks), status, idempotencyKey],
     )
 
     const actor = session?.sub ?? 'bezito-agent'
@@ -68,7 +81,7 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   const session = await getSession()
-  const agentOk = isAuthorizedAgent(req)
+  const agentOk = await isAuthorizedAgent(req)
   if (!session && !agentOk) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const pages = await sql<{

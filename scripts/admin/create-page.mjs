@@ -46,7 +46,7 @@ const body = {
 
 const res = await fetch(`${BASE_URL}/api/admin/pages`, {
   method: 'POST',
-  headers: agentHeaders(),
+  headers: agentHeaders({ 'Idempotency-Key': crypto.randomUUID() }),
   body: JSON.stringify(body),
 })
 

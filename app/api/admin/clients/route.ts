@@ -15,7 +15,7 @@ const createSchema = z.object({
 
 export async function GET(req: NextRequest) {
   const session = await getSession()
-  const agentOk = isAuthorizedAgent(req)
+  const agentOk = await isAuthorizedAgent(req)
   if (!session && !agentOk) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const clients = await sql<{
@@ -35,8 +35,21 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   const session = await getSession()
-  const agentOk = isAuthorizedAgent(req)
+  const agentOk = await isAuthorizedAgent(req)
   if (!session && !agentOk) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+
+  const idempotencyKey = req.headers.get('idempotency-key') || null
+
+  // Idempotency check — return existing client if this key was already processed
+  if (idempotencyKey) {
+    const [existing] = await sql<{ id: number; slug: string }>(
+      `SELECT id, slug FROM clients WHERE idempotency_key = $1`,
+      [idempotencyKey],
+    )
+    if (existing) {
+      return NextResponse.json({ ok: true, id: existing.id, idempotent: true })
+    }
+  }
 
   const body = await req.json().catch(() => null)
   const parsed = createSchema.safeParse(body)
@@ -47,15 +60,23 @@ export async function POST(req: NextRequest) {
   const { name, slug, contact_email, password } = parsed.data
   const password_hash = await hash(password, 10)
 
-  const [client] = await sql<{ id: number }>(
-    `INSERT INTO clients (slug, name, contact_email, password_hash)
-     VALUES ($1, $2, $3, $4)
-     RETURNING id`,
-    [slug, name, contact_email, password_hash],
-  )
+  try {
+    const [client] = await sql<{ id: number }>(
+      `INSERT INTO clients (slug, name, contact_email, password_hash, idempotency_key)
+       VALUES ($1, $2, $3, $4, $5)
+       RETURNING id`,
+      [slug, name, contact_email, password_hash, idempotencyKey],
+    )
 
-  const actor = session?.sub ?? 'bezito-agent'
-  await audit('admin.client.created', actor, { clientId: client.id, slug, name })
+    const actor = session?.sub ?? 'bezito-agent'
+    await audit('admin.client.created', actor, { clientId: client.id, slug, name })
 
-  return NextResponse.json({ ok: true, id: client.id }, { status: 201 })
+    return NextResponse.json({ ok: true, id: client.id }, { status: 201 })
+  } catch (e) {
+    const msg = (e as Error).message ?? ''
+    if (msg.includes('unique') || msg.includes('duplicate')) {
+      return NextResponse.json({ error: 'Client slug already exists' }, { status: 409 })
+    }
+    return NextResponse.json({ error: 'Database error' }, { status: 500 })
+  }
 }

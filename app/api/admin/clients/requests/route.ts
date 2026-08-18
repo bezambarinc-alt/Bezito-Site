@@ -13,7 +13,7 @@ import { isAuthorizedAgent } from '@/lib/agent-auth'
  */
 export async function GET(req: NextRequest) {
   const session = await getSession()
-  const agentOk = isAuthorizedAgent(req)
+  const agentOk = await isAuthorizedAgent(req)
   if (!session && !agentOk) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const { searchParams } = new URL(req.url)

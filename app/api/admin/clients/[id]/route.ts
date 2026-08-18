@@ -17,7 +17,7 @@ const patchSchema = z.object({
 
 export async function GET(req: NextRequest, { params }: Ctx) {
   const session = await getSession()
-  const agentOk = isAuthorizedAgent(req)
+  const agentOk = await isAuthorizedAgent(req)
   if (!session && !agentOk) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const { id } = await params
@@ -32,7 +32,7 @@ export async function GET(req: NextRequest, { params }: Ctx) {
 
 export async function PATCH(req: NextRequest, { params }: Ctx) {
   const session = await getSession()
-  const agentOk = isAuthorizedAgent(req)
+  const agentOk = await isAuthorizedAgent(req)
   if (!session && !agentOk) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const { id } = await params
@@ -66,7 +66,7 @@ export async function PATCH(req: NextRequest, { params }: Ctx) {
 
 export async function DELETE(req: NextRequest, { params }: Ctx) {
   const session = await getSession()
-  const agentOk = isAuthorizedAgent(req)
+  const agentOk = await isAuthorizedAgent(req)
   if (!session && !agentOk) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const { id } = await params
