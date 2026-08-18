@@ -18,14 +18,17 @@ if (!KEY || !SECRET) {
 
 const creds = Buffer.from(`${KEY}:${SECRET}`).toString('base64')
 
-async function search(resourceType) {
-  const expr = encodeURIComponent(`tags=${ref.toLowerCase()}`)
-  const url = `https://api.cloudinary.com/v1_1/${CLOUD}/resources/search?expression=${expr}&max_results=50&resource_type=${resourceType}`
+// Assets are organized as Jewelry Images/<Cat>/<sku>-<view> — no tags.
+// The Search API ignores resource_type as a URL param; include it in the expression.
+// One call returns both image and video, deduped by public_id.
+async function searchAll() {
+  const expr = encodeURIComponent(`filename:${ref.toLowerCase()}*`)
+  const url = `https://api.cloudinary.com/v1_1/${CLOUD}/resources/search?expression=${expr}&max_results=100`
   const res = await fetch(url, { headers: { Authorization: `Basic ${creds}` } })
   const json = await res.json()
-  if (!res.ok) { console.error(`Cloudinary error (${resourceType}):`, json); return [] }
+  if (!res.ok) { console.error(`Cloudinary error:`, json); return [] }
   return (json.resources || []).map(r => ({
-    type: resourceType,
+    type: r.resource_type,
     public_id: r.public_id,
     url: r.secure_url,
     format: r.format,
@@ -33,8 +36,10 @@ async function search(resourceType) {
   }))
 }
 
-const [images, videos] = await Promise.all([search('image'), search('video')])
-const all = [...images, ...videos]
+const all_raw = await searchAll()
+// Dedupe by public_id (Search API can return same asset twice under image+video)
+const seen = new Set()
+const all = all_raw.filter(r => { const k = r.public_id; if (seen.has(k)) return false; seen.add(k); return true })
 
 if (!all.length) {
   console.log(`No Cloudinary assets found for ref_code: ${ref}`)
