@@ -302,6 +302,7 @@
     <button data-tab="reports">Reports</button>
     <button data-tab="links">Links</button>
     <button data-tab="shipped">Shipped<sup id="n2"></sup></button>
+    <button data-tab="docs">Commands</button>
   </nav>
   <div class="bkf on" id="bkF">
     <input id="bkQ" type="search" placeholder="Search…" autocomplete="off">
@@ -1380,6 +1381,214 @@
 
   </section>
 
+  <!-- ══ DOCS ══ -->
+  <section id="docs" style="display:none">
+    <div class="sec-eyebrow">bezambar.com</div>
+    <h2>Site Command System</h2>
+    <p class="sec-sub">What these commands do and how to use them. Say the natural trigger phrase to Bezito and the right command fires. All scripts live in <code style="font-size:13px;font-family:monospace;background:#f5f2ee;padding:2px 6px;border-radius:3px">web/bez-ambar/scripts/admin/</code></p>
+    <div class="divider"></div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:40px">
+
+      <div class="card">
+        <div class="card-title">🔄 Two Pipelines</div>
+        <div class="card-body">
+          <strong style="display:block;margin-bottom:6px">Pipeline 1 — Products</strong>
+          <code style="display:block;font-size:12px;font-family:monospace;background:#f5f2ee;padding:8px 10px;border-radius:3px;line-height:1.6;color:#4a4a4a">Assets → Cloudinary → Plytix (Completed) → 4h sync → Neon → bezambar.com</code>
+          <div style="font-size:14px;color:#6a6a6a;margin-top:8px;line-height:1.5"><code style="font-family:monospace;font-size:12px">active</code> + <code style="font-family:monospace;font-size:12px">featured</code> = Neon-only flags via admin API — never set in Plytix. Neon products table is a read cache — never write manually.</div>
+          <strong style="display:block;margin:14px 0 6px">Pipeline 2 — Client Pages</strong>
+          <code style="display:block;font-size:12px;font-family:monospace;background:#f5f2ee;padding:8px 10px;border-radius:3px;line-height:1.6;color:#4a4a4a">Bez instruction → POST /api/admin/pages → /preview/[slug] → portal or PIN</code>
+          <div style="font-size:14px;color:#6a6a6a;margin-top:8px">Proposals = portal login (email + password). Showcases = client generates 4-digit PIN, shares with their customer.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">🔐 Auth &amp; Security</div>
+        <div class="card-body" style="font-size:15px;line-height:1.6;color:#4a4a4a">
+          All scripts use JWT bearer tokens minted from <code style="font-family:monospace;font-size:12px;background:#f5f2ee;padding:1px 5px;border-radius:3px">BEZITO_SECRET</code> in <code style="font-family:monospace;font-size:12px;background:#f5f2ee;padding:1px 5px;border-radius:3px">.env.local</code>. Tokens are HS256, 15-min expiry, signed at script load.<br><br>
+          <code style="font-family:monospace;font-size:12px;background:#f5f2ee;padding:1px 5px;border-radius:3px">_env.mjs</code> handles loading — import <code style="font-family:monospace;font-size:12px;background:#f5f2ee;padding:1px 5px;border-radius:3px">agentHeaders()</code> for all fetch calls. Never commit <code style="font-family:monospace;font-size:12px;background:#f5f2ee;padding:1px 5px;border-radius:3px">BEZITO_SECRET</code> to repo.<br><br>
+          <strong>Idempotency:</strong> Create scripts send <code style="font-family:monospace;font-size:12px;background:#f5f2ee;padding:1px 5px;border-radius:3px">Idempotency-Key: uuid</code> — safe to retry on network errors, no duplicate records.<br><br>
+          <strong>Direct Neon reads:</strong> <code style="font-family:monospace;font-size:12px;background:#f5f2ee;padding:1px 5px;border-radius:3px">BEZITO_NEON_READONLY_URL</code> gives SELECT-only DB access — bypasses HTTP for fast lookups.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Command catalog -->
+    <div class="sec-eyebrow" style="margin-top:20px">Commands</div>
+    <h2 style="margin-bottom:20px">10 Commands</h2>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:36px">
+
+      <div class="card">
+        <div class="card-title">/add-product</div>
+        <div class="card-body">Full intake: Cloudinary → Plytix → publish decision. Triggers: "add product", "intake [piece]", "Darryl sent assets", "new piece [SKU]".<br><br>
+        <em style="font-size:14px;color:#8a8a8a">Phase 1: SKU → Phase 2: Cloudinary upload → Phase 3: Plytix copy + entry → Phase 4: publish decision (active/featured)</em></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">/publish-product</div>
+        <div class="card-body">Draft → Completed. Triggers: "publish [piece]", "set live", "push to the site".<br><br>
+        <em style="font-size:14px;color:#8a8a8a">Plytix status → Completed → trigger-sync → verify Neon → set active → set featured if applicable</em></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">/unpublish-product</div>
+        <div class="card-body">Completed → Draft. Triggers: "unpublish [piece]", "take down", "hide [piece]".<br><br>
+        <em style="font-size:14px;color:#8a8a8a">plytix-set-status draft → trigger-sync (stale row removed from Neon)</em></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">/edit-product</div>
+        <div class="card-body">Update existing Plytix product. Triggers: "update [piece]", "edit copy", "swap the hero".<br><br>
+        <em style="font-size:14px;color:#8a8a8a">Fetch current → show values → confirm changes → plytix-update-product.mjs [--sync]</em></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">/upload-assets</div>
+        <div class="card-body">Cloudinary only. Triggers: "upload images", "upload video", "add assets for [piece]".<br><br>
+        <em style="font-size:14px;color:#8a8a8a">cloudinary-search.mjs → upload to correct folder + tags → offer to update Plytix URLs</em></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">/create-proposal</div>
+        <div class="card-body">Client proposal page. Triggers: "create a proposal for [client]", "proposal [client] [piece]".<br><br>
+        <em style="font-size:14px;color:#8a8a8a">resolve client → pick piece(s) → auto-slug [client]-[sku]-YYYYMMDD-HHMM → draft/live → create-page.mjs → optional shared link</em></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">/create-showcase</div>
+        <div class="card-body">Client showcase page (PIN system). Same flow as proposal but doc_type = showcase. Client generates PIN in portal for their customer.<br><br>
+        <em style="font-size:14px;color:#8a8a8a">No shared toggle — showcases always use PIN auth</em></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">/check-requests</div>
+        <div class="card-body">Pending client page requests. Triggers: "any requests?", "check page requests".<br><br>
+        <em style="font-size:14px;color:#8a8a8a">list-requests.mjs --status pending → Client | SKU | Message | Date → offer /create-proposal</em></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">/add-client</div>
+        <div class="card-body">New portal account. Triggers: "add client", "new client [name]".<br><br>
+        <em style="font-size:14px;color:#8a8a8a">name → auto-slug → email → temp password → POST /api/admin/clients → return login URL + creds</em></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">/set-template</div>
+        <div class="card-body">Switch the active layout template globally by scope. Triggers: "set template", "switch to dark", "use multi-image for proposals".<br><br>
+        <em style="font-size:14px;color:#8a8a8a">set-template.mjs &lt;id&gt; [scope] → POST /api/admin/templates/activate → busts Next.js ISR cache</em><br><br>
+        <strong style="font-size:13px">Templates:</strong> <code style="font-size:12px;font-family:monospace;background:#f5f2ee;padding:1px 5px;border-radius:3px">default</code> (product), <code style="font-size:12px;font-family:monospace;background:#f5f2ee;padding:1px 5px;border-radius:3px">dark</code> (proposal|showcase), <code style="font-size:12px;font-family:monospace;background:#f5f2ee;padding:1px 5px;border-radius:3px">multi</code> (proposal|showcase). New templates = code + push.</div>
+      </div>
+
+    </div>
+
+    <!-- Scripts + field reference in two columns -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:36px">
+
+      <div class="card">
+        <div class="card-title">Scripts Quick Reference</div>
+        <div class="card-body">
+          <code style="display:block;font-size:12px;font-family:monospace;background:#f5f2ee;padding:10px 12px;border-radius:3px;line-height:2;color:#3a3a3a">
+            cloudinary-search.mjs &lt;ref_code&gt; [--json]<br>
+            list-clients.mjs [--json]<br>
+            get-client.mjs &lt;name|slug|id&gt; [--json]<br>
+            create-page.mjs --json '{...}'<br>
+            patch-page.mjs &lt;slug&gt; --json '{...}'<br>
+            list-requests.mjs [--status pending]<br>
+            trigger-sync.mjs [--wait]<br>
+            plytix-create-product.mjs --json '{...}'<br>
+            plytix-update-product.mjs &lt;sku&gt; [--attrs] [--sync]<br>
+            plytix-set-status.mjs &lt;sku&gt; &lt;draft|completed&gt;<br>
+            set-template.mjs &lt;id&gt; [scope]
+          </code>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Publish Flow — Always This Order</div>
+        <div class="card-body" style="font-size:15px;line-height:1.7;color:#4a4a4a">
+          <span style="color:#95826b;font-weight:600">1.</span> Plytix status → Completed<br>
+          <span style="color:#95826b;font-weight:600">2.</span> Trigger sync (<code style="font-family:monospace;font-size:12px">trigger-sync.mjs --wait</code>)<br>
+          <span style="color:#95826b;font-weight:600">3.</span> Verify in Neon (GET /api/admin/products/[slug])<br>
+          <span style="color:#95826b;font-weight:600">4.</span> Set active → <code style="font-family:monospace;font-size:12px">PATCH { active: true }</code><br>
+          <span style="color:#95826b;font-weight:600">5.</span> Set featured if applicable<br><br>
+          <strong>Page access models:</strong><br>
+          Proposal = portal login (email + password at /portal)<br>
+          Showcase = 4-digit PIN generated by client<br>
+          Shared = <code style="font-family:monospace;font-size:12px">shared: true</code> — anyone with URL
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Plytix fields + Category IDs -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:36px">
+
+      <div class="card">
+        <div class="card-title">Plytix Required Fields (to sync)</div>
+        <div class="card-body">
+          <code style="display:block;font-size:12px;font-family:monospace;background:#f5f2ee;padding:10px 12px;border-radius:3px;line-height:2;color:#3a3a3a">
+            sku, label, status=Completed<br>
+            categories, family<br>
+            subtitle, editorial<br>
+            metal, stone_shape, stone_color<br>
+            hero_visual (Cloudinary URL)<br>
+            editorial_visual (Cloudinary URL)<br>
+            category (text: Rings/Bracelets/…)
+          </code>
+          <div style="font-size:13px;color:#8a8a8a;margin-top:10px">Optional: description, stone_clarity, stone_carats, total_carat_weight, view_1/2/3_url, collection</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Category + Family IDs (Plytix)</div>
+        <div class="card-body">
+          <table style="width:100%;font-size:12px;font-family:monospace;border-collapse:collapse;line-height:1.8">
+            <tr><td style="color:#95826b;font-weight:600;padding-right:12px">rings</td><td style="color:#6a6a6a">6a581535…9f19 / 6a55e10e…5106</td></tr>
+            <tr><td style="color:#95826b;font-weight:600;padding-right:12px">bracelets</td><td style="color:#6a6a6a">6a581538…147f / 6a55e0f0…1cc8</td></tr>
+            <tr><td style="color:#95826b;font-weight:600;padding-right:12px">earrings</td><td style="color:#6a6a6a">6a581539…6260 / 6a55e0f1…b2b7</td></tr>
+            <tr><td style="color:#95826b;font-weight:600;padding-right:12px">necklaces</td><td style="color:#6a6a6a">6a58153a…1481 / 6a55e0f0…b2b3</td></tr>
+            <tr><td style="color:#95826b;font-weight:600;padding-right:12px">pendants</td><td style="color:#6a6a6a">6a58153b…d447 / 6a55e0f1…b2b5</td></tr>
+          </table>
+          <div style="font-size:11px;color:#8a8a8a;margin-top:10px">Full IDs in skills/bezambar-site-admin/SKILL.md</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SKU rules + Copy standards -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:36px">
+
+      <div class="card">
+        <div class="card-title">SKU Rules</div>
+        <div class="card-body" style="font-size:15px;line-height:1.7;color:#4a4a4a">
+          Canonical: <code style="font-family:monospace;font-size:12px;background:#f5f2ee;padding:1px 5px;border-radius:3px">[PART]-[STYLE CODE]</code> e.g. <code style="font-family:monospace;font-size:12px;background:#f5f2ee;padding:1px 5px;border-radius:3px">C0825-5FLX30R</code><br><br>
+          Style code first digit → category: 1=ring 2=band 3=necklace 4=pendant 5=bracelet<br><br>
+          R-numbers = repair/part IDs — do NOT infer category.<br>
+          Part only → ask for style code. Style only → ask for part number.<br><br>
+          <strong>Slug format (proposals):</strong><br>
+          <code style="font-family:monospace;font-size:12px;background:#f5f2ee;padding:4px 8px;border-radius:3px;display:block;margin-top:6px">[client-slug]-[sku]-YYYYMMDD-HHMM</code>
+          <div style="font-size:13px;color:#8a8a8a;margin-top:6px">e.g. saraydarian-c0493-20260818-1430 — always unique, no collision logic needed</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Copy Standards — Patek Tone</div>
+        <div class="card-body" style="font-size:15px;line-height:1.7;color:#4a4a4a">
+          <strong>Label:</strong> 1–3 words. A name, not a description. No specs.<br>
+          <span style="color:#4a7a4a">✅ "The Crossover" · "Fancy Yellow" · "Prism"</span><br>
+          <span style="color:#b03030">❌ "18K Round Diamond Ring"</span><br><br>
+          <strong>Subtitle:</strong> One atmospheric sentence. What makes the piece feel inevitable.<br><br>
+          <strong>Editorial:</strong> 2–3 flowing sentences. Story of the piece. No retail language. No prices.<br><br>
+          <strong>Hard rules:</strong> No public mention of "Alara Cut" (patent pending). Never write directly to Neon products table.
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
 </main>
 
 <footer>
@@ -1394,8 +1603,8 @@
 <script>
 (function(){
 var SPEC_IDS = {'nextjs-project':1,'proposals':1};
-var SKIP_OPEN = {'reports':1,'links':1,'completed':1};
-var SKIP_SHIPPED = {'reports':1,'links':1};
+var SKIP_OPEN = {'reports':1,'links':1,'completed':1,'docs':1};
+var SKIP_SHIPPED = {'reports':1,'links':1,'docs':1};
 
 // Tag every card
 document.querySelectorAll('main .card').forEach(function(c){
@@ -1431,6 +1640,7 @@ function render(){
 
   if(tab==='reports'){document.getElementById('reports').style.display='';return;}
   if(tab==='links'){document.getElementById('links').style.display='';return;}
+  if(tab==='docs'){document.getElementById('docs').style.display='';return;}
 
   // Show relevant sections
   secs.forEach(function(s){
@@ -1470,7 +1680,7 @@ function render(){
 // Filter bar visibility
 function syncBar(){
   var f = document.getElementById('bkF');
-  f.classList.toggle('on', tab==='open'||tab==='specs'||tab==='shipped');
+  f.classList.toggle('on', tab==='open'||tab==='specs'||tab==='shipped'||tab==='docs');
 }
 
 // Tab clicks
