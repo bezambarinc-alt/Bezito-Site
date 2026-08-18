@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your $2M — Where Will It Be?</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0d0d0d;
+    color: #f0f0f0;
+    min-height: 100vh;
+    padding: 24px 16px 60px;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .header .sub {
+    font-size: 14px;
+    color: #888;
+    line-height: 1.5;
+  }
+  .header .meta {
+    display: inline-flex;
+    gap: 12px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .badge {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px;
+    color: #aaa;
+  }
+
+  .scenario {
+    max-width: 680px;
+    margin: 0 auto 40px;
+  }
+  .scenario-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .scenario-title h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .scenario-desc {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid #222;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 420px;
+  }
+  thead tr {
+    background: #1a1a1a;
+  }
+  thead th {
+    padding: 12px 14px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #666;
+    text-align: right;
+    font-weight: 600;
+  }
+  thead th:first-child {
+    text-align: left;
+  }
+  tbody tr {
+    border-top: 1px solid #1e1e1e;
+  }
+  tbody tr:hover {
+    background: #161616;
+  }
+  td {
+    padding: 14px 14px;
+    font-size: 15px;
+    text-align: right;
+    color: #ccc;
+  }
+  td:first-child {
+    text-align: left;
+  }
+  .advisor-name {
+    font-weight: 700;
+    font-size: 14px;
+    color: #fff;
+    display: block;
+  }
+  .advisor-style {
+    font-size: 11px;
+    color: #555;
+    margin-top: 2px;
+    display: block;
+  }
+
+  .val {
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .val.best {
+    color: #4ade80;
+    font-weight: 800;
+  }
+  .val.worst {
+    color: #f87171;
+  }
+  .val.mid {
+    color: #facc15;
+  }
+
+  .gain {
+    display: block;
+    font-size: 11px;
+    margin-top: 2px;
+  }
+  .gain.up { color: #4ade80; }
+  .gain.down { color: #f87171; }
+  .gain.flat { color: #facc15; }
+
+  .insight-box {
+    max-width: 680px;
+    margin: 0 auto 40px;
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .insight-box h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+  }
+  .insight {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: flex-start;
+  }
+  .insight-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .insight-text { font-size: 13px; color: #aaa; line-height: 1.55; }
+  .insight-text strong { color: #fff; }
+
+  .assumptions {
+    max-width: 680px;
+    margin: 0 auto;
+    font-size: 12px;
+    color: #444;
+    line-height: 1.7;
+    border-top: 1px solid #1e1e1e;
+    padding-top: 20px;
+  }
+  .assumptions strong { color: #666; }
+
+  .marker-green { color: #4ade80; font-weight: 700; }
+  .marker-red { color: #f87171; font-weight: 700; }
+  .marker-yellow { color: #facc15; font-weight: 700; }
+
+  .emoji-pill {
+    font-size: 20px;
+    margin-right: 4px;
+  }
+
+  @media (max-width: 480px) {
+    .header h1 { font-size: 22px; }
+    td, th { padding: 10px 10px; font-size: 13px; }
+    .val { font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>💰 Your $2M — Where Will It Be?</h1>
+  <p class="sub">Three advisors. Two scenarios. Real projected dollar values.</p>
+  <div class="meta">
+    <span class="badge">📅 Aug 16, 2026</span>
+    <span class="badge">👤 Age 70</span>
+    <span class="badge">💵 $2,000,000 starting</span>
+    <span class="badge">📊 CAPE 41.2×</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SCENARIO 1 — BULL / NORMAL MARKET
+═══════════════════════════════════════════ -->
+<div class="scenario">
+  <div class="scenario-title">
+    <span class="emoji-pill">📈</span>
+    <h2>Scenario 1 — Bull Market</h2>
+  </div>
+  <p class="scenario-desc">US market keeps going up (no major crash). Based on today's valuations, US stocks expected to return ~6%/yr — lower than historical 10% because CAPE is at 41. Non-US stocks expected ~8%/yr (cheaper, already outperforming). Short T-bills at ~4%/yr.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Advisor</th>
+          <th>5 Years<br><span style="font-weight:400;color:#444">Age 75</span></th>
+          <th>10 Years<br><span style="font-weight:400;color:#444">Age 80</span></th>
+          <th>15 Years<br><span style="font-weight:400;color:#444">Age 85</span></th>
+          <th>20 Years<br><span style="font-weight:400;color:#444">Age 90</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- GRANTHAM -->
+        <tr>
+          <td>
+            <span class="advisor-name">🇬🇧 Grantham</span>
+            <span class="advisor-style">60% non-US stocks · T-bills · Gold · No US equity</span>
+          </td>
+          <td>
+            <span class="val best">$2.68M</span>
+            <span class="gain up">+$680K</span>
+          </td>
+          <td>
+            <span class="val best">$3.58M</span>
+            <span class="gain up">+$1.58M</span>
+          </td>
+          <td>
+            <span class="val best">$4.79M</span>
+            <span class="gain up">+$2.79M</span>
+          </td>
+          <td>
+            <span class="val mid">$6.41M</span>
+            <span class="gain up">+$4.41M</span>
+          </td>
+        </tr>
+        <!-- DALIO -->
+        <tr>
+          <td>
+            <span class="advisor-name">🌐 Dalio</span>
+            <span class="advisor-style">Balanced — stocks · bonds · gold · T-bills · commodities</span>
+          </td>
+          <td>
+            <span class="val mid">$2.61M</span>
+            <span class="gain up">+$610K</span>
+          </td>
+          <td>
+            <span class="val mid">$3.42M</span>
+            <span class="gain up">+$1.42M</span>
+          </td>
+          <td>
+            <span class="val mid">$4.46M</span>
+            <span class="gain up">+$2.46M</span>
+          </td>
+          <td>
+            <span class="val worst">$5.84M</span>
+            <span class="gain up">+$3.84M</span>
+          </td>
+        </tr>
+        <!-- BUFFETT -->
+        <tr>
+          <td>
+            <span class="advisor-name">🏦 Buffett</span>
+            <span class="advisor-style">T-bills now → more US stocks as horizon grows</span>
+          </td>
+          <td>
+            <span class="val worst">$2.49M</span>
+            <span class="gain flat">+$490K</span>
+          </td>
+          <td>
+            <span class="val worst">$3.25M</span>
+            <span class="gain up">+$1.25M</span>
+          </td>
+          <td>
+            <span class="val worst">$4.45M</span>
+            <span class="gain up">+$2.45M</span>
+          </td>
+          <td>
+            <span class="val best">$6.39M</span>
+            <span class="gain up">+$4.39M</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:11px;color:#444;margin-top:8px;text-align:right;"><span class="marker-green">Green</span> = best · <span class="marker-yellow">Yellow</span> = middle · <span class="marker-red">Red</span> = lowest in that column</p>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SCENARIO 2 — US CRASH
+═══════════════════════════════════════════ -->
+<div class="scenario">
+  <div class="scenario-title">
+    <span class="emoji-pill">📉</span>
+    <h2>Scenario 2 — US Market Crashes 60% in Year 3</h2>
+  </div>
+  <p class="scenario-desc">Grantham's bear case plays out. US market falls ~60% (matching dot-com levels). Global markets fall ~20% as collateral damage. Gold spikes +30%. T-bills hold steady. Then recovery begins. Key question: who survives best, and who recovers fastest?</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Advisor</th>
+          <th>5 Years<br><span style="font-weight:400;color:#444">Age 75</span></th>
+          <th>10 Years<br><span style="font-weight:400;color:#444">Age 80</span></th>
+          <th>15 Years<br><span style="font-weight:400;color:#444">Age 85</span></th>
+          <th>20 Years<br><span style="font-weight:400;color:#444">Age 90</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- GRANTHAM -->
+        <tr>
+          <td>
+            <span class="advisor-name">🇬🇧 Grantham</span>
+            <span class="advisor-style">Crash protection — no US equity, gold spikes, T-bills hold</span>
+          </td>
+          <td>
+            <span class="val best">$2.34M</span>
+            <span class="gain up">+$340K</span>
+          </td>
+          <td>
+            <span class="val best">$3.13M</span>
+            <span class="gain up">+$1.13M</span>
+          </td>
+          <td>
+            <span class="val mid">$4.20M</span>
+            <span class="gain up">+$2.20M</span>
+          </td>
+          <td>
+            <span class="val mid">$5.61M</span>
+            <span class="gain up">+$3.61M</span>
+          </td>
+        </tr>
+        <!-- DALIO -->
+        <tr>
+          <td>
+            <span class="advisor-name">🌐 Dalio</span>
+            <span class="advisor-style">Partially protected but US equity portion gets hit</span>
+          </td>
+          <td>
+            <span class="val mid">$2.19M</span>
+            <span class="gain flat">+$190K</span>
+          </td>
+          <td>
+            <span class="val worst">$2.86M</span>
+            <span class="gain up">+$860K</span>
+          </td>
+          <td>
+            <span class="val worst">$3.74M</span>
+            <span class="gain up">+$1.74M</span>
+          </td>
+          <td>
+            <span class="val worst">$4.89M</span>
+            <span class="gain up">+$2.89M</span>
+          </td>
+        </tr>
+        <!-- BUFFETT -->
+        <tr>
+          <td>
+            <span class="advisor-name">🏦 Buffett</span>
+            <span class="advisor-style">Takes hit — but T-bill hoard buys crashed stocks cheap → rockets</span>
+          </td>
+          <td>
+            <span class="val worst">$2.25M</span>
+            <span class="gain flat">+$250K</span>
+          </td>
+          <td>
+            <span class="val mid">$3.46M</span>
+            <span class="gain up">+$1.46M</span>
+          </td>
+          <td>
+            <span class="val best">$5.33M</span>
+            <span class="gain up">+$3.33M</span>
+          </td>
+          <td>
+            <span class="val best">$8.20M</span>
+            <span class="gain up">+$6.20M</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:11px;color:#444;margin-top:8px;text-align:right;"><span class="marker-green">Green</span> = best · <span class="marker-yellow">Yellow</span> = middle · <span class="marker-red">Red</span> = lowest in that column</p>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     KEY INSIGHTS
+═══════════════════════════════════════════ -->
+<div class="insight-box">
+  <h3>📌 What This Tells You</h3>
+  <div class="insight">
+    <span class="insight-icon">🇬🇧</span>
+    <p class="insight-text"><strong>Grantham wins if the market keeps going up AND if it crashes at 5-10 years.</strong> His non-US heavy portfolio is already beating the US (+17% YTD for VEU). He protects capital in a crash because he has zero US equity. The downside: he never gets the explosive upside if US equity roars back at year 15-20.</p>
+  </div>
+  <div class="insight">
+    <span class="insight-icon">🌐</span>
+    <p class="insight-text"><strong>Dalio is never the best, never the worst.</strong> The All-Weather portfolio is designed to avoid catastrophe in any environment — not to maximize wealth. If you need to sleep at night, this is the answer. But it always finishes in the middle.</p>
+  </div>
+  <div class="insight">
+    <span class="insight-icon">🏦</span>
+    <p class="insight-text"><strong>Buffett is the worst at 5 years in a crash — and the best at 20 years.</strong> Here's why: his heavy T-bill position (60% cash) takes a smaller hit in the crash, then he deploys all that cash to buy beaten-down American companies at the bottom. He's literally waiting for this. By year 20 in a crash scenario, he ends up with <strong>$8.2M</strong> — more than anyone else, in either scenario.</p>
+  </div>
+  <div class="insight">
+    <span class="insight-icon">⚠️</span>
+    <p class="insight-text"><strong>The question is your time horizon and risk tolerance.</strong> If you need this money in 5 years → Grantham protects best in both scenarios. If this is truly 15-20 year money (legacy / estate) → Buffett wins, especially if a crash happens and you can hold through it.</p>
+  </div>
+  <div class="insight">
+    <span class="insight-icon">🪙</span>
+    <p class="insight-text"><strong>Your jeweler's advantage:</strong> You already hold physical gold in your jewelry inventory. Grantham's gold allocation is partially covered. This tilts the synthesis slightly more toward Buffett's T-bill/equity approach for the financial portfolio.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     ASSUMPTIONS
+═══════════════════════════════════════════ -->
+<div class="assumptions">
+  <strong>Assumptions &amp; Methodology</strong><br><br>
+  <strong>Bull Scenario:</strong> Grantham = 6.0%/yr blended (55% non-US at 8% + T-bills at 4% + gold at 4.5%). Dalio = 5.5%/yr blended (balanced all-weather). Buffett = 4.5%/yr at 5yr (T-bill heavy), rising to 6.5%/yr by 15yr and 7.5%/yr by 20yr as equity allocation increases with horizon.<br><br>
+  <strong>Crash Scenario:</strong> US market −60% in year 3. Non-US −20% (global contagion). Gold +30% (safe haven). T-bills stable at 4%. Post-crash: Grantham continues 5.5-6%/yr. Dalio recovers at 5.5%/yr. Buffett deploys T-bill hoard into crashed equities → recovers at 8-9%/yr (buying cheap amplifies long-term return).<br><br>
+  These are projections based on blended expected returns — not guarantees. Actual returns will vary. This is educational modeling for decision-making purposes only.<br><br>
+  <strong>CAPE:</strong> 41.2× (Aug 14, 2026) · <strong>Real yield:</strong> 2.41% · <strong>Gold:</strong> ~$4,375/oz · <strong>DXY:</strong> 99.7 · <strong>VEU YTD:</strong> +17.2%
+</div>
+
+</body>
+</html>
