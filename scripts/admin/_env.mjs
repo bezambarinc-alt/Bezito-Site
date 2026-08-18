@@ -45,7 +45,7 @@ export async function plytixToken() {
     body: JSON.stringify({ api_key: PLYTIX_API_KEY, api_password: PLYTIX_API_PASSWORD }),
   })
   const json = await res.json()
-  _plytixToken = json?.data?.[0]?.token
+  _plytixToken = json?.data?.[0]?.access_token ?? json?.data?.[0]?.token
   if (!_plytixToken) { console.error('Plytix auth failed:', JSON.stringify(json)); process.exit(1) }
   return _plytixToken
 }
