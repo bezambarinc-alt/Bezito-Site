@@ -160,6 +160,7 @@ export default async function PreviewPage({ params, searchParams }: Ctx) {
             name: product.name,
             slug: product.slug,
             plytixId: '',
+            featured: false,
             price: null,
             media: [],
             syncedAt: '',

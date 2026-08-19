@@ -49,6 +49,7 @@ export interface Product {
   view3Url: string | null
   plytixId: string
   name: string
+  featured: boolean
   specs: ProductSpecs
   price: number | null
   media: ProductMedia[]

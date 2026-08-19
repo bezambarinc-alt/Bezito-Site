@@ -76,6 +76,7 @@ function rowToProduct(r: Record<string, unknown>): Product {
     view3Url:  (r.view_3_url as string | null) ?? null,
     plytixId:  r.plytix_id as string,
     name:      r.name      as string,
+    featured:  Boolean(r.featured),
     specs,
     price:     null,
     media,

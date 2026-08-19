@@ -2,19 +2,10 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getCategoryMeta, getCategoryLabel } from '@/lib/data/categories'
 import { getProductsByCategory } from '@/lib/queries'
-import CategoryRefine from '@/components/product/CategoryRefine'
+import CategoryCarousel from '@/components/product/CategoryCarousel'
+import CategoryMobileReel from '@/components/product/CategoryMobileReel'
 import LazyVideo from '@/components/common/LazyVideo'
 import FadeIn from '@/components/common/FadeIn'
-
-/**
- * Category page — matches bezambar-web2026 Astro rings/bands/etc page exactly:
- * 1. Portrait hero (full viewport video + overlay)
- * 2. Up to 2 editorial spotlight segments (first 2 products)
- * 3. Pull quote
- * 4. Section divider
- * 5. Product grid (remaining products, ba-product-grid)
- * 6. Commission CTA
- */
 
 export const dynamic = 'force-dynamic'
 
@@ -41,91 +32,111 @@ export default async function CategoryPage({
   const cat = getCategoryMeta(category)
   const products = await getProductsByCategory(category)
 
-  // First 2 products become editorial spotlights; rest go into the grid
-  const spotlights = products.slice(0, 2)
-  const gridProducts = products.slice(2)
+  // Hero = featured product, or most recent (first in list, sorted featured DESC)
+  const heroProduct = products.find((p) => p.featured) ?? products[0] ?? null
+  // Editorial = next product that isn't the hero
+  const editorialProduct = products.find((p) => p.slug !== heroProduct?.slug) ?? null
+
+  const heroVideo  = heroProduct?.specs.heroVideoUrl  ?? null
+  const heroPoster = heroProduct?.specs.heroPosterUrl ?? null
 
   return (
     <main>
-      {/* 1. Portrait hero — full viewport, dark, matches ba-portrait-hero */}
-      <section className="ba-portrait-hero">
-        {cat.videoUrl && (
-          // Category hero is above the fold — preload aggressively
-          <video src={cat.videoUrl} autoPlay muted loop playsInline preload="auto" />
+      {/* ── Desktop-only sections ───────────────────────────────────────────── */}
+
+      {/* 1. Hero — featured product video, category title, product link */}
+      <section className="ba-portrait-hero ba-cat-desktop">
+        {heroVideo && (
+          <video
+            src={heroVideo}
+            autoPlay muted loop playsInline preload="auto"
+            poster={heroPoster ?? undefined}
+          />
         )}
         <div className="ba-portrait-hero__overlay">
           <h1 className="ba-portrait-hero__title">{cat.title}</h1>
           {cat.intro && <p className="ba-portrait-hero__lede">{cat.intro}</p>}
+          {heroProduct && (
+            <Link
+              className="ba-portrait-hero__product-link"
+              href={`/jewelry/${category}/${heroProduct.slug}`}
+            >
+              View {heroProduct.name} →
+            </Link>
+          )}
         </div>
       </section>
 
-      {/* 2. Editorial spotlight segments — first 2 products */}
-      {spotlights.map((product, i) => {
-        const video = product.specs.heroVideoUrl
-        const image = product.specs.heroPosterUrl
-        return (
-          <div
-            key={product.sku}
-            className={`ba-segment${i % 2 === 1 ? ' ba-segment--reverse' : ''}`}
-          >
-            <div className="ba-segment__media">
-              {video ? (
-                <LazyVideo src={video} poster={image ?? undefined} />
-              ) : image ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={image} alt={product.name} />
-              ) : null}
-            </div>
-            <div className="ba-segment__text">
-              <FadeIn delay={0.1}>
-              <span className="ba-eyebrow">ref. {product.sku}</span>
-              <h2 className="ba-segment__heading">{product.name}</h2>
-              {product.specs.subtitle && (
-                <p className="ba-segment__ref">{product.specs.subtitle}</p>
+      {/* 2. Editorial spotlight — 1 product, 2-col */}
+      {editorialProduct && (
+        <div className="ba-segment ba-cat-desktop">
+          <div className="ba-segment__media">
+            {editorialProduct.specs.heroVideoUrl ? (
+              <LazyVideo
+                src={editorialProduct.specs.heroVideoUrl}
+                poster={editorialProduct.specs.heroPosterUrl ?? undefined}
+              />
+            ) : editorialProduct.specs.heroPosterUrl ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={editorialProduct.specs.heroPosterUrl} alt={editorialProduct.name} />
+            ) : null}
+          </div>
+          <div className="ba-segment__text">
+            <FadeIn delay={0.1}>
+              <span className="ba-eyebrow">ref. {editorialProduct.sku}</span>
+              <h2 className="ba-segment__heading">{editorialProduct.name}</h2>
+              {editorialProduct.specs.subtitle && (
+                <p className="ba-segment__ref">{editorialProduct.specs.subtitle}</p>
               )}
-              {(product.specs.gemStone || product.specs.metal) && (
+              {(editorialProduct.specs.gemStone || editorialProduct.specs.metal) && (
                 <p className="ba-segment__ref">
-                  {[product.specs.gemStone, product.specs.metal]
+                  {[editorialProduct.specs.gemStone, editorialProduct.specs.metal]
                     .filter(Boolean)
                     .join(' · ')}
                 </p>
               )}
-              {product.specs.lede && (
-                <p className="ba-segment__body">{product.specs.lede}</p>
+              {editorialProduct.specs.lede && (
+                <p className="ba-segment__body">{editorialProduct.specs.lede}</p>
               )}
               <Link
                 className="ba-segment__link"
-                href={`/jewelry/${category}/${product.slug}`}
+                href={`/jewelry/${category}/${editorialProduct.slug}`}
               >
-                View {product.name}
+                View {editorialProduct.name}
               </Link>
-              </FadeIn>
-            </div>
+            </FadeIn>
           </div>
-        )
-      })}
-
-      {/* 3. Pull quote */}
-      <FadeIn><section className="ba-pull-quote">
-        <span className="ba-pull-quote__mark">&ldquo;</span>
-        <p className="ba-pull-quote__text">
-          Every stone arrives with a language. The setting is the translation.
-        </p>
-        <span className="ba-pull-quote__attr">Bez Ambar</span>
-      </section></FadeIn>
-
-      {/* 4. Section divider */}
-      <FadeIn><div className="ba-section-divider">
-        <span className="ba-section-divider__eyebrow">{cat.title}</span>
-        <h2 className="ba-section-divider__title">The Pieces</h2>
-      </div></FadeIn>
-
-      {/* 5. Product grid — with editorial metal refinement */}
-      {gridProducts.length > 0 && (
-        <CategoryRefine products={gridProducts} category={category} />
+        </div>
       )}
 
-      {/* If only 0–2 products, show them all as spotlights with no grid — still add CTA */}
+      {/* 3. Desktop banner carousel — all products */}
+      {products.length > 0 && (
+        <CategoryCarousel products={products} category={category} />
+      )}
+
+      {/* Commission CTA — desktop only */}
+      {products.length > 0 && (
+        <FadeIn>
+          <section className="ba-cta ba-cat-desktop">
+            <span className="ba-cta__eyebrow">Don&rsquo;t See It</span>
+            <h2 className="ba-cta__title">Commission a Piece</h2>
+            <p className="ba-cta__body">
+              If the piece you&rsquo;re looking for isn&rsquo;t here, it can be made.
+              Every Bez Ambar piece begins with one stone and one drawing.
+            </p>
+            <a href="/contact" className="ba-cta__btn">Inquire</a>
+          </section>
+        </FadeIn>
+      )}
+
+      {/* ── Mobile-only section ─────────────────────────────────────────────── */}
+
+      {/* 4. Full-screen vertical swipe reel */}
+      {products.length > 0 && (
+        <CategoryMobileReel products={products} category={category} />
+      )}
+
+      {/* Empty state */}
       {products.length === 0 && (
         <p
           style={{
@@ -141,19 +152,6 @@ export default async function CategoryPage({
           current availability.
         </p>
       )}
-
-      {/* 6. Commission CTA */}
-      <FadeIn><section className="ba-cta">
-        <span className="ba-cta__eyebrow">Don&rsquo;t See It</span>
-        <h2 className="ba-cta__title">Commission a Piece</h2>
-        <p className="ba-cta__body">
-          If the piece you&rsquo;re looking for isn&rsquo;t here, it can be
-          made. Every Bez Ambar piece begins with one stone and one drawing.
-        </p>
-        <a href="/contact" className="ba-cta__btn">
-          Inquire
-        </a>
-      </section></FadeIn>
     </main>
   )
 }

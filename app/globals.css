@@ -312,7 +312,11 @@ body.page-dark {
 .ba-portrait-hero__overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;text-align:left;padding:0 clamp(40px,6vw,80px) clamp(15px,8vw,65px);background:linear-gradient(to bottom,#00000026,#0000 25% 65%,#00000080);color:var(--ba-white);pointer-events:none}
 .ba-portrait-hero__eyebrow{font-family:var(--ba-font-sans);font-size:0.9375rem;font-weight:600;text-transform:uppercase;letter-spacing:0;color:var(--ba-gold);margin-bottom:8px;text-shadow:0 1px 3px rgba(0,0,0,.5)}
 .ba-portrait-hero__title{font-family:var(--ba-font-sans);font-size:clamp(1.5rem,2.8vw,2.5rem);font-weight:300;text-transform:uppercase;letter-spacing:0;line-height:1.1;color:var(--ba-gold);margin:8px 0 14px;max-width:640px;text-shadow:0 2px 6px rgba(0,0,0,.5)}
-.ba-portrait-hero__lede{font-family:var(--ba-font-editorial);font-size:clamp(1rem,1.3vw,1.15rem);font-style:normal;color:var(--ba-white);margin:0 0 28px;max-width:440px;line-height:1.6}
+.ba-portrait-hero__lede{font-family:var(--ba-font-editorial);font-size:clamp(1rem,1.3vw,1.15rem);font-style:normal;color:var(--ba-white);margin:0 0 20px;max-width:440px;line-height:1.6}
+.ba-portrait-hero__product-link{font-family:var(--ba-font-sans);font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ba-white);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.45);padding-bottom:2px;pointer-events:auto;transition:opacity .2s}
+.ba-portrait-hero__product-link:hover{opacity:.7}
+/* Category page responsive utility — desktop sections hidden on mobile */
+@media(max-width:768px){.ba-cat-desktop{display:none!important}}
 
 /* Segment (editorial spotlight) — matches HomeSegment.module.css layout */
 .ba-segment{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(40px,6vw,100px);max-width:1300px;margin:0 auto;padding:clamp(12px,1.6vw,24px) clamp(40px,5vw,80px)}
