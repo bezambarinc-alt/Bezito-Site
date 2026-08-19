@@ -42,8 +42,7 @@ export default function MenuOverlay({ categories = [] }: Props) {
 
   // Build the jewelry sub-column dynamically from Neon data.
   const jewelryItems: NavEntry[] = [
-    // Browse — derived from Neon categories; disappears automatically if empty.
-    { kind: 'label' as const, text: 'Browse' },
+    { kind: 'label' as const, text: 'Collections' },
     ...categories.map(cat => ({
       kind: 'link' as const,
       label: getCategoryLabel(cat),
