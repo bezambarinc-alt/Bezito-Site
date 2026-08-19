@@ -23,7 +23,7 @@ interface SubCol { id: string; items: NavEntry[] }
 const ROOT: NavEntry[] = [
   { kind: 'expand', label: 'Collections',      id: 'jewelry' },
   { kind: 'link',   label: 'Jewelry Archive', href: '/archive' },
-  { kind: 'link',   label: 'Journal',         href: '/journal' },
+  { kind: 'expand', label: 'Journal',          id: 'journal' },
   { kind: 'expand', label: 'Atelier',         id: 'atelier' },
   { kind: 'action', label: 'Service',         target: 'concierge' },
 ]
@@ -52,6 +52,13 @@ export default function MenuOverlay({ categories = [] }: Props) {
 
   const subCols: SubCol[] = [
     { id: 'jewelry', items: jewelryItems },
+    {
+      id: 'journal',
+      items: [
+        { kind: 'link', label: 'The Blog',  href: '/journal' },
+        { kind: 'link', label: 'Instagram', href: 'https://www.instagram.com/bezambarjewelry/' },
+      ],
+    },
     {
       id: 'atelier',
       items: [
