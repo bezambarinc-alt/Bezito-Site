@@ -173,11 +173,19 @@ export default function ProductsGrid({ products }: { products: AdminProduct[] })
             return (
               <>
                 <tr key={p.slug} className="admin-row">
-                  {/* Thumbnail */}
+                  {/* Thumbnail — active → public page; inactive → draft preview */}
                   <td className="admin-td">
-                    <a href={`/jewelry/${p.category ?? 'jewelry'}/${p.slug}`} target="_blank" rel="noreferrer">
+                    <a
+                      href={row.active
+                        ? `/jewelry/${p.category ?? 'jewelry'}/${p.slug}`
+                        : `/api/draft?template=default&slug=/jewelry/${p.category ?? 'jewelry'}/${p.slug}`
+                      }
+                      target="_blank"
+                      rel="noreferrer"
+                      title={row.active ? undefined : 'Draft preview (inactive product)'}
+                    >
                       {thumb
-                        ? <img src={thumb} alt="" className={styles.thumb} />
+                        ? <img src={thumb} alt="" className={styles.thumb} style={row.active ? undefined : { opacity: 0.5 }} />
                         : <div className={styles.thumbFallback} />}
                     </a>
                   </td>

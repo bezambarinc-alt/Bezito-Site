@@ -100,6 +100,15 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
   return row ? rowToProduct(row) : null
 }
 
+/** Same as getProductBySlug but ignores active flag — for admin draft preview. */
+export async function getProductBySlugPreview(slug: string): Promise<Product | null> {
+  const [row] = await sql<Record<string, unknown>>(
+    `SELECT ${COLS} FROM products WHERE (slug = $1 OR sku = $1) LIMIT 1`,
+    [slug],
+  )
+  return row ? rowToProduct(row) : null
+}
+
 export async function getProductsByCategory(category: string): Promise<Product[]> {
   const rows = await sql<Record<string, unknown>>(
     `SELECT ${COLS} FROM products

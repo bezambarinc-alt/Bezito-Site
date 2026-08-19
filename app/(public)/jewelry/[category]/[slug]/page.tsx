@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import { draftMode, cookies } from 'next/headers'
 import { unstable_cache } from 'next/cache'
-import { getProductBySlug, getAllProductParams } from '@/lib/queries'
+import { getProductBySlug, getProductBySlugPreview, getAllProductParams } from '@/lib/queries'
 import { getCategoryLabel } from '@/lib/data/categories'
 import { sql } from '@/lib/db'
 import { TEMPLATES, isValidTemplateId } from './layouts'
@@ -38,7 +38,10 @@ export async function generateMetadata({
   params: Promise<{ category: string; slug: string }>
 }): Promise<Metadata> {
   const { slug } = await params
-  const product = await getProductBySlug(slug)
+  const { isEnabled: isDraft } = await draftMode()
+  const product = isDraft
+    ? await getProductBySlugPreview(slug)
+    : await getProductBySlug(slug)
   if (!product) return { title: 'Piece Not Found' }
   const s = product.specs
   return {
@@ -83,11 +86,26 @@ export default async function ProductPage({
   params: Promise<{ category: string; slug: string }>
 }) {
   const { category: urlCategory, slug } = await params
-  const product = await getProductBySlug(slug)
-  if (!product) notFound()
+
+  // ── Product resolution ───────────────────────────────────────────────────
+  const { isEnabled: isDraft } = await draftMode()
+  let product = await getProductBySlug(slug)
+  if (!product) {
+    if (isDraft) {
+      // Admin preview — show inactive products without redirecting
+      product = await getProductBySlugPreview(slug)
+      if (!product) notFound()
+    } else {
+      // External user hit an inactive or removed product URL.
+      // If the product exists but is inactive, redirect home (don't 404).
+      // If it truly doesn't exist, return 404.
+      const inactive = await getProductBySlugPreview(slug)
+      if (inactive) redirect('/')
+      notFound()
+    }
+  }
 
   // ── Template resolution ──────────────────────────────────────────────────
-  const { isEnabled: isDraft } = await draftMode()
   let templateId: TemplateId = await getActiveTemplateId()
 
   if (isDraft) {
