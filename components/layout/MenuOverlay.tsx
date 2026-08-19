@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { useDrawers } from './DrawerContext'
 import { getCategoryLabel } from '@/lib/data/categories'
-import type { Product } from '@/types/products'
 import styles from './MenuOverlay.module.css'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
@@ -34,29 +33,15 @@ const ROOT: NavEntry[] = [
 interface Props {
   /** Active categories from Neon — drives Browse section. */
   categories?: string[]
-  /** Active collections from Neon — shown only when at least one exists. */
-  collections?: string[]
-  /** Products with featured=true in Plytix — drives 'From the Atelier' section. */
-  featuredProducts?: Product[]
 }
 
-export default function MenuOverlay({ categories = [], collections = [], featuredProducts = [] }: Props) {
+export default function MenuOverlay({ categories = [] }: Props) {
   const { active, close, openConcierge, openInquiryDrawer } = useDrawers()
   const open = active === 'menu'
   const [sub, setSub] = useState<string | null>(null)
 
   // Build the jewelry sub-column dynamically from Neon data.
   const jewelryItems: NavEntry[] = [
-    // Collections — only rendered when at least one collection exists in Neon.
-    ...(collections.length > 0 ? [
-      { kind: 'label'   as const, text: 'Collections' },
-      ...collections.map(col => ({
-        kind: 'link' as const,
-        label: col,
-        href: `/collection/${col.toLowerCase().replace(/\s+/g, '-')}`,
-      })),
-      { kind: 'divider' as const },
-    ] : []),
     // Browse — derived from Neon categories; disappears automatically if empty.
     { kind: 'label' as const, text: 'Browse' },
     ...categories.map(cat => ({
@@ -64,17 +49,6 @@ export default function MenuOverlay({ categories = [], collections = [], feature
       label: getCategoryLabel(cat),
       href: `/jewelry/${cat}`,
     })),
-    { kind: 'divider' as const },
-    // From the Atelier — products with featured=true in Plytix, data-driven.
-    ...(featuredProducts.length > 0 ? [
-      { kind: 'divider' as const },
-      { kind: 'label'   as const, text: 'From the Atelier' },
-      ...featuredProducts.map(p => ({
-        kind: 'link' as const,
-        label: p.name,
-        href: `/jewelry/${p.specs.category ?? 'jewelry'}/${p.slug}`,
-      })),
-    ] : []),
   ]
 
   const subCols: SubCol[] = [
