@@ -54,7 +54,6 @@ export default async function CategoryPage({
           <video src={cat.videoUrl} autoPlay muted loop playsInline preload="auto" />
         )}
         <div className="ba-portrait-hero__overlay">
-          <span className="ba-portrait-hero__eyebrow">Bez Ambar</span>
           <h1 className="ba-portrait-hero__title">{cat.title}</h1>
           {cat.intro && <p className="ba-portrait-hero__lede">{cat.intro}</p>}
         </div>
