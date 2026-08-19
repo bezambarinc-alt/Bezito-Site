@@ -123,9 +123,9 @@ export default async function ProductPage({
   ].filter((x): x is SpecItem => x !== null)
 
   const views = [
-    { label: 'Front',  url: product.view1Url ?? heroPoster },
-    { label: 'Side',   url: product.view2Url ?? heroPoster },
-    { label: 'Detail', url: product.view3Url ?? heroPoster },
+    { label: 'Top',          url: product.view1Url ?? heroPoster },
+    { label: 'Concept',      url: product.view2Url ?? heroPoster },
+    { label: 'Stone Sketch', url: product.view3Url ?? heroPoster },
   ]
 
   const productSchema = buildProductSchema(product, category)

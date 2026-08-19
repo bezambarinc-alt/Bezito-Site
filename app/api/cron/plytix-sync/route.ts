@@ -173,10 +173,11 @@ export async function GET(req: NextRequest) {
         // Plytix featured attribute: boolean, string 'true', or any truthy value
         const featured = a.featured === true || a.featured === 'true'
 
-        // Three-view angles (optional Plytix attributes — null until Kevin adds them in Plytix UI)
-        const view1 = str(a.view_1_url) ?? null
-        const view2 = str(a.view_2_url) ?? null
-        const view3 = str(a.view_3_url) ?? null
+        // Three-view angles — Plytix slugs confirmed 2026-08-19:
+        //   visual_top, visual_concept, visual_stone_sketch
+        const view1 = str(a.visual_top) ?? null
+        const view2 = str(a.visual_concept) ?? null
+        const view3 = str(a.visual_stone_sketch) ?? null
 
         // Write to individual columns — the JSONB `specs`/`media` blobs are legacy.
         await sql(
