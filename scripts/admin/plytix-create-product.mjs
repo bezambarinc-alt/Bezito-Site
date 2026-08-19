@@ -141,7 +141,7 @@ if (createResult.status >= 300) {
   process.exit(1)
 }
 
-const productId = createResult.body?.data?.id ?? createResult.body?.id
+const productId = createResult.body?.data?.[0]?.id ?? createResult.body?.data?.id ?? createResult.body?.id
 if (!productId) {
   console.error('Create succeeded but no product ID returned:', JSON.stringify(createResult.body))
   process.exit(1)
