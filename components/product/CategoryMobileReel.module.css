@@ -22,6 +22,13 @@
   background: #0f0f0f;
 }
 
+/* Poster img — always-visible background; next/image fills the slide via its own styles */
+.poster {
+  object-fit: cover;
+  opacity: 0.85;
+}
+
+/* Video: starts invisible, fades in on canplay so the poster covers the load gap */
 .video {
   position: absolute;
   inset: 0;
@@ -29,6 +36,11 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 1;
+}
+.videoPlaying {
   opacity: 0.85;
 }
 
@@ -43,12 +55,14 @@
   inset: 0;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.15), transparent 30% 55%, rgba(0, 0, 0, 0.65));
   pointer-events: none;
+  z-index: 2;
 }
 
 .overlay {
   position: absolute;
   inset: 0;
   display: flex;
+  z-index: 3;
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
