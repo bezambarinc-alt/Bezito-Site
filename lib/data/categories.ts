@@ -16,7 +16,7 @@ export const CATEGORIES: Record<string, CategoryMeta> = {
     title: 'Rings',
     intro: 'Engagement, cocktail, and eternity — each stone chiseled to catch the light.',
     videoUrl:
-      'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Rings/c0578_4k_v1_2160p_wwnfcz.mp4',
+      'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1786669104/C0765-HD.mp4',
   },
   bands: {
     eyebrow: 'The Collection',
