@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 import { getSession } from '@/lib/auth'
 import { isAuthorizedAgent } from '@/lib/agent-auth'
 import { sql } from '@/lib/db'
@@ -30,16 +31,24 @@ export async function PATCH(req: NextRequest, { params }: Ctx) {
   }
 
   values.push(slug)
-  const rows = await sql<{ sku: string; active: boolean; featured: boolean }>(
+  const rows = await sql<{ sku: string; active: boolean; featured: boolean; category: string }>(
     `UPDATE products
      SET ${updates.join(', ')}
      WHERE slug = $${values.length}
-     RETURNING sku, slug, name, active, featured, view_1_url, view_2_url, view_3_url`,
+     RETURNING sku, slug, name, category, active, featured, view_1_url, view_2_url, view_3_url`,
     values,
   )
 
   if (!rows.length) return NextResponse.json({ error: 'Product not found' }, { status: 404 })
-  return NextResponse.json({ product: rows[0] })
+
+  const product = rows[0]
+  // Bust ISR cache for this product page so active/featured changes are visible immediately.
+  if (product.category) {
+    revalidatePath(`/jewelry/${product.category}/${slug}`)
+  }
+  revalidatePath('/jewelry', 'layout')
+
+  return NextResponse.json({ product })
 }
 
 export async function GET(req: NextRequest, { params }: Ctx) {
