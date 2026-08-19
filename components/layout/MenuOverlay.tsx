@@ -21,7 +21,7 @@ interface SubCol { id: string; items: NavEntry[] }
 // ── Root items (matches live bezambar-web2026.vercel.app exactly) ─────────────
 
 const ROOT: NavEntry[] = [
-  { kind: 'expand', label: 'Jewelry',         id: 'jewelry' },
+  { kind: 'expand', label: 'Collections',      id: 'jewelry' },
   { kind: 'link',   label: 'Jewelry Archive', href: '/archive' },
   { kind: 'link',   label: 'Journal',         href: '/journal' },
   { kind: 'expand', label: 'Atelier',         id: 'atelier' },
