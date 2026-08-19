@@ -80,12 +80,12 @@
   width: 100%;
   text-align: left;
   font-family: var(--ba-font-sans);
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 300;
-  letter-spacing: 0.20em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #888888;
-  padding: 13px 40px;
+  color: #666666;
+  padding: 17px 40px;
   text-decoration: none;
   background: none;
   border: 0;
@@ -131,12 +131,12 @@
 /* Section label — Astro .menu-section-label */
 .sectionLabel {
   font-family: var(--ba-font-sans);
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.26em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--ba-gold);
-  padding: 18px 40px 6px;
+  padding: 20px 40px 6px;
   list-style: none;
 }
 
@@ -172,7 +172,9 @@
 
 
 @media (max-width: 640px) {
-  .overlay { width: 88vw; }
+  .overlay { width: 92vw; }
   .hasSub  { width: 92vw; }
-  .col     { flex: 0 0 50%; width: 50%; }
+  .col     { flex: 0 0 100%; width: 100%; }
+  /* Full-width push: hide root col when sub is open */
+  .hasSub .col:first-of-type { display: none; }
 }
