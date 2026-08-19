@@ -22,7 +22,7 @@ async function findProduct(sku) {
     const res = await fetch('https://pim.plytix.com/api/v1/products/search', {
       method: 'POST', headers: H,
       body: JSON.stringify({
-        filters: [[{ field: 'sku', operator: 'eq', value: sku }]],
+        filters: [[{ field: 'sku', operator: 'like', value: sku }]],
         attributes: ['sku', 'label', 'status', 'category'],
         pagination: { page: 1, page_size: 1 },
       }),
