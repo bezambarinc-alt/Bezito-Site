@@ -6,10 +6,13 @@
  * Uses react-intersection-observer (already a project dependency).
  * - Loads + plays when the element enters 200px before the viewport.
  * - Pauses when it exits the viewport (saves GPU on large grids).
+ * - Aborts buffering (src reset) when exiting before canplay fires,
+ *   preventing decode-buffer accumulation on large category grids.
  *
  * Do NOT use for above-fold heroes — use HeroVideo (poster-crossfade) for that.
  */
 
+import { useRef } from 'react'
 import { useInView } from 'react-intersection-observer'
 import type { VideoHTMLAttributes } from 'react'
 
@@ -26,8 +29,11 @@ export default function LazyVideo({
   poster,
   ...rest
 }: Props) {
+  // Track pending canplay listener so we can remove it on exit
+  const pendingPlay = useRef<(() => void) | null>(null)
+
   const { ref } = useInView({
-    triggerOnce: false, // must stay false to detect exit for pause
+    triggerOnce: false,
     rootMargin,
     onChange: (inView, entry) => {
       const video = entry.target as HTMLVideoElement
@@ -36,15 +42,30 @@ export default function LazyVideo({
           video.src = src
           video.load()
         }
-        // Wait for enough data before calling play() — more reliable cross-browser
-        const doPlay = () => video.play().catch(() => {})
+        const doPlay = () => {
+          pendingPlay.current = null
+          video.play().catch(() => {})
+        }
         if (video.readyState >= 2) {
           doPlay()
         } else {
+          pendingPlay.current = doPlay
           video.addEventListener('canplay', doPlay, { once: true })
         }
-      } else if (video.src) {
+      } else {
+        // Remove the pending canplay listener to prevent ghost plays after exit
+        if (pendingPlay.current) {
+          video.removeEventListener('canplay', pendingPlay.current)
+          pendingPlay.current = null
+        }
         video.pause()
+        // If still buffering (never reached canplay), reset src to free the
+        // decode buffer. Next in-view entry reloads from scratch — acceptable
+        // cost; the alternative is N simultaneous buffers on large grids.
+        if (video.readyState < 2) {
+          video.src = ''
+          video.load()
+        }
       }
     },
   })
