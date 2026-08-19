@@ -22,11 +22,11 @@ interface SubCol { id: string; items: NavEntry[] }
 // ── Root items (matches live bezambar-web2026.vercel.app exactly) ─────────────
 
 const ROOT: NavEntry[] = [
-  { kind: 'expand', label: 'Jewelry',     id: 'jewelry' },
-  { kind: 'expand', label: 'Atelier',     id: 'atelier' },
-  { kind: 'link',   label: 'Blog',        href: '/blog' },
-  { kind: 'link',   label: 'The Archive', href: '/archive' },
-  { kind: 'action', label: 'Service',     target: 'concierge' },
+  { kind: 'expand', label: 'Jewelry',         id: 'jewelry' },
+  { kind: 'link',   label: 'Jewelry Archive', href: '/archive' },
+  { kind: 'link',   label: 'Journal',         href: '/journal' },
+  { kind: 'expand', label: 'Atelier',         id: 'atelier' },
+  { kind: 'action', label: 'Service',         target: 'concierge' },
 ]
 
 // ── MenuOverlay ────────────────────────────────────────────────────────────────
@@ -84,7 +84,6 @@ export default function MenuOverlay({ categories = [], collections = [], feature
       items: [
         { kind: 'link',  label: 'About Bez Ambar',   href: '/about-bez-ambar' },
         { kind: 'link',  label: 'Elysian Cut™',      href: '/elysian-cut' },
-        { kind: 'link',  label: 'Journal',           href: '/journal' },
         { kind: 'divider' },
         { kind: 'label', text: 'Resources' },
         { kind: 'link',  label: 'Diamond Education', href: '/diamond-education' },
