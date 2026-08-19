@@ -6,7 +6,7 @@
 //   slug          string  required — [client-slug]-[sku]-YYYYMMDD-HHMM
 //   title         string  required
 //   doc_type      string  'proposal' | 'showcase'
-//   template      string  'dark' | 'multi' | 'multi-piece'
+//   template      string  'default' | 'dark' | 'multi'
 //   status        string  'draft' | 'live'   (default: draft)
 //   blocks        array   [{product_id, sku, name, hero_url, editorial_url, ...}]
 //   shared        bool    false = portal-auth required, true = anyone with link
