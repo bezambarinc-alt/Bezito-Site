@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import type { Product } from '@/types/products'
 import styles from './CategoryMobileReel.module.css'
@@ -10,15 +10,39 @@ interface Props {
   category: string
 }
 
+/** A product is renderable in the reel only if it has a hero video OR a hero
+ *  image. Video takes precedence; image-hero pieces render as <img>. Anything
+ *  with neither is skipped entirely (no blank slide). */
+function mediaFor(p: Product): { kind: 'video' | 'image'; url: string } | null {
+  if (p.specs.heroVideoUrl) return { kind: 'video', url: p.specs.heroVideoUrl }
+  if (p.specs.heroPosterUrl) return { kind: 'image', url: p.specs.heroPosterUrl }
+  return null
+}
+
 export default function CategoryMobileReel({ products, category }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
+  // Slugs whose media 404s / fails to decode at runtime — dropped from the reel.
+  const [failed, setFailed] = useState<Set<string>>(new Set())
+  const markFailed = (slug: string) =>
+    setFailed((prev) => (prev.has(slug) ? prev : new Set(prev).add(slug)))
+
+  // Only pieces with usable, not-yet-failed media get a slide.
+  const slides = products
+    .map((p) => ({ p, media: mediaFor(p) }))
+    .filter((s): s is { p: Product; media: { kind: 'video' | 'image'; url: string } } =>
+      s.media !== null && !failed.has(s.p.slug),
+    )
+
+  // Re-attach observers whenever the rendered slide set changes (e.g. a failed
+  // piece is dropped) so lazy src/play still fires on the survivors.
+  const renderKey = slides.map((s) => s.p.slug).join('|')
 
   useEffect(() => {
     const container = containerRef.current
     if (!container) return
 
-    // ── Ensure src is set, then play. No poster/opacity gate anymore — the
-    //    video is visible from the start; play() drives buffering. ──
+    // Ensure src is set, then play. Video is visible from the start; play()
+    // drives buffering. A failed load bubbles to the <video> onError handler.
     const activate = (video: HTMLVideoElement) => {
       if (!video.src && video.dataset.src) {
         video.src = video.dataset.src
@@ -27,11 +51,11 @@ export default function CategoryMobileReel({ products, category }: Props) {
       video.play().catch(() => {})
     }
 
-    // ── Kick the first slide immediately — it's already in the DOM with src set ──
+    // Kick the first video slide immediately (if the first slide is a video).
     const firstVideo = container.querySelector<HTMLVideoElement>('video')
     if (firstVideo) activate(firstVideo)
 
-    // ── Preload: buffer slides one full viewport before they're needed ─────────
+    // Preload: buffer video slides one viewport before they're needed.
     const preloadIO = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -46,25 +70,22 @@ export default function CategoryMobileReel({ products, category }: Props) {
       { root: container, rootMargin: '100% 0px', threshold: 0 },
     )
 
-    // ── Play/pause: engage only when slide is fully settled on screen ──────────
+    // Play/pause video slides when they settle on screen. Image slides have no
+    // <video>, so querySelector returns null and they're skipped harmlessly.
     const playIO = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           const video = entry.target.querySelector<HTMLVideoElement>('video')
           if (!video) continue
-
-          if (entry.isIntersecting) {
-            activate(video)
-          } else {
-            video.pause()
-          }
+          if (entry.isIntersecting) activate(video)
+          else video.pause()
         }
       },
       { root: container, threshold: 0.85 },
     )
 
-    const slides = container.querySelectorAll<HTMLElement>('[data-slide]')
-    slides.forEach((s) => {
+    const slideEls = container.querySelectorAll<HTMLElement>('[data-slide]')
+    slideEls.forEach((s) => {
       preloadIO.observe(s)
       playIO.observe(s)
     })
@@ -73,28 +94,35 @@ export default function CategoryMobileReel({ products, category }: Props) {
       preloadIO.disconnect()
       playIO.disconnect()
     }
-  }, [])
+  }, [renderKey])
+
+  if (slides.length === 0) return null
 
   return (
     <div ref={containerRef} className={styles.reel}>
-      {products.map((p, i) => {
-        const videoSrc = p.specs.heroVideoUrl
-        const isFirst  = i === 0
+      {slides.map(({ p, media }, i) => {
+        const isFirst = i === 0
 
         return (
           <div key={p.slug} className={styles.slide} data-slide="">
-            {/* Video only — no poster layer. First slide loads eagerly; the rest
-                are lazily attached via data-src by the preload/play observers. */}
-            {videoSrc ? (
+            {media.kind === 'video' ? (
               <video
-                src={isFirst ? videoSrc : undefined}
-                data-src={isFirst ? undefined : videoSrc}
+                src={isFirst ? media.url : undefined}
+                data-src={isFirst ? undefined : media.url}
                 muted loop playsInline
                 preload={isFirst ? 'auto' : 'none'}
                 className={styles.video}
+                onError={() => markFailed(p.slug)}
               />
             ) : (
-              <div className={styles.placeholder} />
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={media.url}
+                alt={p.name}
+                loading={isFirst ? 'eager' : 'lazy'}
+                className={styles.video}
+                onError={() => markFailed(p.slug)}
+              />
             )}
 
             <div className={styles.gradient} aria-hidden />
