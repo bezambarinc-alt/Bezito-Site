@@ -33,6 +33,7 @@ export default function CinematicCarousel({ products, category }: Props) {
   const current = products[index]
 
   return (
+    <div className={styles.section}>
     <section className={styles.stage}>
 
       {/* Slide track */}
@@ -125,5 +126,6 @@ export default function CinematicCarousel({ products, category }: Props) {
         </nav>
       )}
     </section>
+    </div>
   )
 }
