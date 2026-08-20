@@ -1,11 +1,16 @@
 // plytix-update-product.mjs — update attributes on an existing Plytix product
 // Usage: node scripts/admin/plytix-update-product.mjs <sku> --attrs '{"editorial":"...","metal":"..."}'
+//        node scripts/admin/plytix-update-product.mjs --id <plytix_id> --attrs '{...}'  ← preferred when ID is known
+//
+// --id <plytix_id>  Skip SKU search entirely — use the Plytix product ID directly (from Neon plytix_id column).
+//                   This is the correct path for /edit-product flows where the slug → Neon lookup gives you
+//                   the plytix_id. Avoids compound-SKU search failures (e.g. "B5993" ≠ "B5993 - 5FLX38R3").
 //
 // Updatable fields: any attribute from the Plytix attribute registry.
 // Common: subtitle, editorial, description, metal, stone_shape, stone_color,
 //         stone_clarity, stone_carats, stone_notes, total_carat_weight,
 //         center_stone_weight, hero_visual, editorial_visual,
-//         view_1_url, view_2_url, view_3_url, collection, category
+//         visual_top, visual_concept, visual_stone_sketch, collection, category
 //
 // To also update the product label (name), pass --label "New Name"
 // To also update the product status, use plytix-set-status.mjs
@@ -14,12 +19,15 @@
 
 import { plytixToken, BASE_URL, agentHeaders } from './_env.mjs'
 
-const sku = process.argv[2]
+const idIdx = process.argv.indexOf('--id')
+const directId = idIdx !== -1 ? process.argv[idIdx + 1] : null
+const sku = !directId ? process.argv[2] : null
 const attrsIdx = process.argv.indexOf('--attrs')
 const labelIdx = process.argv.indexOf('--label')
 
-if (!sku || attrsIdx === -1 && labelIdx === -1) {
+if (!directId && !sku || attrsIdx === -1 && labelIdx === -1) {
   console.error('Usage: plytix-update-product.mjs <sku> [--attrs \'{"field":"value"}\'] [--label "Name"] [--sync]')
+  console.error('       plytix-update-product.mjs --id <plytix_id> [--attrs \'{"field":"value"}\'] [--label "Name"] [--sync]')
   process.exit(1)
 }
 
@@ -70,13 +78,27 @@ async function patchProduct(id, body) {
   return { status: 429, body: {} }
 }
 
-const product = await findProduct(sku)
-if (!product) {
-  console.error(`Product not found in Plytix: "${sku}"`)
-  process.exit(1)
+// Resolve: either use --id directly (no search) or find by exact SKU
+let product
+if (directId) {
+  // Direct ID path — skip search, fetch detail to get label/sku for logging
+  const detail = await getDetail(directId)
+  const p = Array.isArray(detail) ? detail[0] : detail
+  if (!p?.id && !p?.sku) {
+    console.error(`Product not found in Plytix by id: "${directId}"`)
+    process.exit(1)
+  }
+  product = { id: directId, label: p.label, sku: p.sku ?? directId }
+} else {
+  product = await findProduct(sku)
+  if (!product) {
+    console.error(`Product not found in Plytix: "${sku}"`)
+    console.error('Tip: Plytix uses compound SKUs (e.g. "B5993 - 5FLX38R3"). Use --id <plytix_id> to skip search.')
+    process.exit(1)
+  }
 }
 
-console.log(`\nUpdating ${sku} (id: ${product.id}, label: ${product.label ?? '(none)'})`)
+console.log(`\nUpdating ${product.sku ?? product.id} (id: ${product.id}, label: ${product.label ?? '(none)'})`)
 
 // Show current values for fields being changed
 if (Object.keys(attrs).length > 0 || newLabel) {
