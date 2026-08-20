@@ -95,7 +95,7 @@ export default function ArchiveClient({ entries }: Props) {
   )
 
   return (
-    <>
+    <div className={styles.page}>
       {/* ── Hero — pill anchor is the LAST child of the hero section,
            exactly like Astro's .vg-hero > .ba-filter-pill-anchor. ── */}
       <section className={styles.hero}>
@@ -122,6 +122,6 @@ export default function ArchiveClient({ entries }: Props) {
       </div>
 
       <ArchiveModal entry={openEntry} onClose={closePiece} />
-    </>
+    </div>
   )
 }

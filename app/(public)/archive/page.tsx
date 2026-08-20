@@ -40,7 +40,7 @@ export default async function ArchivePage() {
   // exactly like Astro). The unseeded fallback keeps its own minimal hero.
   if (entries.length === 0) {
     return (
-      <>
+      <div className={styles.page}>
         <section className={styles.hero}>
           <p className={styles.eyebrow}>The Archive</p>
           <h1 className={styles.title}>Every Piece in Motion</h1>
@@ -55,7 +55,7 @@ export default async function ArchivePage() {
             <a href="/api/admin/seed-archive">Seed the archive →</a>
           </p>
         </main>
-      </>
+      </div>
     )
   }
 

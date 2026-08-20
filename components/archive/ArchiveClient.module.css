@@ -4,9 +4,15 @@
    Hero styles mirror Astro .vg-hero (templates/editorial.css) 1:1.
    ============================================================ */
 
-/* ── Hero (Astro .vg-hero) — white bg, ink text, centered ── */
+/* ── Dark page backdrop — full-bleed so the 680px hero has no white seam ── */
+.page {
+  background: #0d0d0d;
+  min-height: 100vh;
+}
+
+/* ── Hero (Astro .vg-hero) — dark bg, light text, centered ── */
 .hero {
-  background: var(--ba-white);
+  background: transparent;
   padding: 140px 2rem 56px;         /* Astro .vg-hero: padding 140px 2rem 56px */
   text-align: center;
   max-width: 680px;                 /* Astro .vg-hero max-width: 680px */
@@ -30,29 +36,29 @@
   display: block;
 }
 
-/* Astro .vg-hero__title — ink, weight 300, uppercase */
+/* Astro .vg-hero__title — light, weight 300, uppercase */
 .title {
   font-family: var(--ba-font-sans);
   font-size: clamp(36px, 6vw, 60px);
   font-weight: 300;
   text-transform: uppercase;
-  color: var(--ba-ink);
+  color: var(--ba-cream);
   margin: 0 0 20px;
   line-height: 1.1;
 }
 
-/* Astro .vg-hero__lede — full ink, serif prose, fixed 19px, no width cap */
+/* Astro .vg-hero__lede — soft light, serif prose, fixed 19px, no width cap */
 .lede {
   font-family: var(--ba-font-editorial);
   font-size: 19px;
   line-height: 1.65;
-  color: var(--ba-ink);
+  color: #b8b3a8;
   margin: 0 auto;
 }
 
-/* ── Grid area (Astro .vg-grid) — WHITE bg ── */
+/* ── Grid area (Astro .vg-grid) — dark bg ── */
 .gridWrap {
-  background: var(--ba-white);
+  background: transparent;
   min-height: 60vh;
   padding: 0 clamp(1.25rem, 5vw, 4rem) clamp(4rem, 8vw, 7rem);
 }
