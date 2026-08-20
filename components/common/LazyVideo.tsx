@@ -38,7 +38,12 @@ export default function LazyVideo({
     onChange: (inView, entry) => {
       const video = entry.target as HTMLVideoElement
       if (inView) {
-        if (!video.src) {
+        // Guard on the attribute, NOT the `.src` property. After an exit-reset
+        // we removeAttribute('src'), so getAttribute returns null here and we
+        // correctly restore the real URL. (Reading `video.src` would resolve an
+        // empty/absent src to the page URL — truthy — and skip the reload,
+        // leaving the poster frozen forever.)
+        if (!video.getAttribute('src')) {
           video.src = src
           video.load()
         }
@@ -63,7 +68,10 @@ export default function LazyVideo({
         // decode buffer. Next in-view entry reloads from scratch — acceptable
         // cost; the alternative is N simultaneous buffers on large grids.
         if (video.readyState < 2) {
-          video.src = ''
+          // removeAttribute (not `src = ''`) so the next in-view check sees an
+          // absent src and reloads. Setting `src = ''` leaves a truthy
+          // `video.src` (page URL) that blocks the reload guard above.
+          video.removeAttribute('src')
           video.load()
         }
       }

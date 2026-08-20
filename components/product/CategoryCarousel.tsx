@@ -24,7 +24,12 @@ export default function CategoryCarousel({ products, category }: Props) {
           >
             <div className={styles.media}>
               {video ? (
-                <LazyVideo src={video} poster={poster ?? undefined} className={styles.video} />
+                <LazyVideo
+                  src={video}
+                  poster={poster ?? undefined}
+                  className={styles.video}
+                  rootMargin="0px 400px"
+                />
               ) : poster ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={poster} alt={p.name} className={styles.video} />
