@@ -15,9 +15,22 @@ export default function CinematicCarousel({ products, category }: Props) {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
   const total = products.length
 
+  // Circular: wrap past either end so there's always a prev and a next.
   const go = useCallback(
-    (next: number) => setIndex(Math.max(0, Math.min(next, total - 1))),
+    (next: number) => setIndex(((next % total) + total) % total),
     [total],
+  )
+
+  // Shortest signed distance from index to slide i on the circular ring:
+  // the immediate prev is -1 (even if it's the last item), next is +1.
+  const circOffset = useCallback(
+    (i: number) => {
+      let o = i - index
+      if (o > total / 2) o -= total
+      else if (o < -total / 2) o += total
+      return o
+    },
+    [index, total],
   )
 
   // Active + both neighbours play (muted) so the blurred prev/next peeks show a
@@ -25,14 +38,14 @@ export default function CinematicCarousel({ products, category }: Props) {
   useEffect(() => {
     videoRefs.current.forEach((v, i) => {
       if (!v) return
-      if (Math.abs(i - index) <= 1) {
+      if (Math.abs(circOffset(i)) <= 1) {
         v.play().catch(() => {})
       } else {
         v.pause()
         v.currentTime = 0
       }
     })
-  }, [index])
+  }, [index, circOffset])
 
   if (total === 0) return null
 
@@ -43,7 +56,7 @@ export default function CinematicCarousel({ products, category }: Props) {
       <section className={styles.stage}>
         <div className={styles.track}>
           {products.map((p, i) => {
-            const offset = i - index
+            const offset = circOffset(i)
             const isActive = offset === 0
             const isNeighbour = Math.abs(offset) === 1
             const isVisible = Math.abs(offset) <= 1
@@ -98,30 +111,30 @@ export default function CinematicCarousel({ products, category }: Props) {
           </Link>
         </div>
 
-        {index > 0 && (
-          <button
-            className={`${styles.arrow} ${styles.arrowPrev}`}
-            onClick={() => go(index - 1)}
-            aria-label="Previous piece"
-          >
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden>
-              <path d="M15 5 L8 12 L15 19" stroke="currentColor" strokeWidth="1.25"
-                strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
-        )}
+        {total > 1 && (
+          <>
+            <button
+              className={`${styles.arrow} ${styles.arrowPrev}`}
+              onClick={() => go(index - 1)}
+              aria-label="Previous piece"
+            >
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path d="M15 5 L8 12 L15 19" stroke="currentColor" strokeWidth="1.25"
+                  strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
 
-        {index < total - 1 && (
-          <button
-            className={`${styles.arrow} ${styles.arrowNext}`}
-            onClick={() => go(index + 1)}
-            aria-label="Next piece"
-          >
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden>
-              <path d="M9 5 L16 12 L9 19" stroke="currentColor" strokeWidth="1.25"
-                strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
+            <button
+              className={`${styles.arrow} ${styles.arrowNext}`}
+              onClick={() => go(index + 1)}
+              aria-label="Next piece"
+            >
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path d="M9 5 L16 12 L9 19" stroke="currentColor" strokeWidth="1.25"
+                  strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          </>
         )}
       </section>
     </div>
