@@ -10,19 +10,19 @@ interface Props {
   category: string
 }
 
+const AUTOSCROLL_MS = 5000
+
 export default function CinematicCarousel({ products, category }: Props) {
   const [index, setIndex] = useState(0)
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const total = products.length
 
-  // Circular: wrap past either end so there's always a prev and a next.
   const go = useCallback(
     (next: number) => setIndex(((next % total) + total) % total),
     [total],
   )
 
-  // Shortest signed distance from index to slide i on the circular ring:
-  // the immediate prev is -1 (even if it's the last item), next is +1.
   const circOffset = useCallback(
     (i: number) => {
       let o = i - index
@@ -33,8 +33,23 @@ export default function CinematicCarousel({ products, category }: Props) {
     [index, total],
   )
 
-  // Active + both neighbours play (muted) so the blurred prev/next peeks show a
-  // live frame, not a black paused video. Off-screen slides are paused + reset.
+  // Reset and restart the autoscroll timer. Call on manual navigation so the
+  // timer doesn't fire immediately after a user-initiated advance.
+  const resetTimer = useCallback(() => {
+    if (timerRef.current) clearTimeout(timerRef.current)
+    if (total <= 1) return
+    timerRef.current = setTimeout(() => {
+      setIndex((prev) => ((prev + 1) % total))
+    }, AUTOSCROLL_MS)
+  }, [total])
+
+  // Start autoscroll on mount; restart whenever index changes.
+  useEffect(() => {
+    resetTimer()
+    return () => { if (timerRef.current) clearTimeout(timerRef.current) }
+  }, [index, resetTimer])
+
+  // Active + both neighbours play so the blurred flanks show live frames.
   useEffect(() => {
     videoRefs.current.forEach((v, i) => {
       if (!v) return
@@ -51,6 +66,11 @@ export default function CinematicCarousel({ products, category }: Props) {
 
   const current = products[index]
 
+  const handleManual = (next: number) => {
+    resetTimer()
+    go(next)
+  }
+
   return (
     <div className={styles.section}>
       <section className={styles.stage}>
@@ -59,8 +79,8 @@ export default function CinematicCarousel({ products, category }: Props) {
             const offset = circOffset(i)
             const isActive = offset === 0
             const isNeighbour = Math.abs(offset) === 1
-            const isPlaying = Math.abs(offset) <= 1   // active + both flanks play
-            const isLoaded = Math.abs(offset) <= 2    // buffer one ring further so the next swap isn't choppy
+            const isPlaying = Math.abs(offset) <= 1
+            const isLoaded = Math.abs(offset) <= 2
             const video = p.specs.heroVideoUrl
             const image = p.specs.heroPosterUrl
 
@@ -69,10 +89,8 @@ export default function CinematicCarousel({ products, category }: Props) {
                 key={p.sku}
                 className={styles.slide}
                 style={{
-                  // Filmstrip: active window centered; prev flanks left, next
-                  // flanks right at ±102% of the slide width (small gap between).
                   transform: `translateX(calc(-50% + ${offset * 102}%))`,
-                  filter: isActive ? 'none' : 'blur(14px)',
+                  filter: isActive ? 'none' : 'blur(18px)',
                   opacity: isActive ? 1 : isNeighbour ? 0.6 : 0,
                   zIndex: isActive ? 2 : 1,
                   pointerEvents: isActive ? 'auto' : 'none',
@@ -116,7 +134,7 @@ export default function CinematicCarousel({ products, category }: Props) {
           <>
             <button
               className={`${styles.arrow} ${styles.arrowPrev}`}
-              onClick={() => go(index - 1)}
+              onClick={() => handleManual(index - 1)}
               aria-label="Previous piece"
             >
               <svg viewBox="0 0 24 24" fill="none" aria-hidden>
@@ -127,7 +145,7 @@ export default function CinematicCarousel({ products, category }: Props) {
 
             <button
               className={`${styles.arrow} ${styles.arrowNext}`}
-              onClick={() => go(index + 1)}
+              onClick={() => handleManual(index + 1)}
               aria-label="Next piece"
             >
               <svg viewBox="0 0 24 24" fill="none" aria-hidden>
