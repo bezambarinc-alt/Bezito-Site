@@ -180,8 +180,8 @@
   color: var(--ba-gold, #c9a96e);
 }
 
-.arrowPrev { left: clamp(16px, 3vw, 44px); }
-.arrowNext { right: clamp(16px, 3vw, 44px); }
+.arrowPrev { left: max(16px, calc(50% - 428px)); }
+.arrowNext { right: max(16px, calc(50% - 428px)); }
 
 /* ── Responsive ─────────────────────────────────────────────── */
 
