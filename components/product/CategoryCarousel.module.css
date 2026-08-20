@@ -1,9 +1,5 @@
-/* Viewport wrapper — desktop only; hosts the scroll track + nav arrows */
+/* ── Viewport — desktop only; clips the blurred peek cards at the edges ── */
 .viewport {
-  display: none;
-}
-
-.track {
   display: none;
 }
 
@@ -11,73 +7,53 @@
   .viewport {
     display: block;
     position: relative;
+    overflow: hidden;
     margin-bottom: 80px;
   }
+
+  /* Track scrolls horizontally. Symmetric 11vw padding centers the first and
+     last card so an adjacent blurred card always peeks in from each side.
+     Math: 78vw card + 11vw left + 11vw right = 100vw. */
   .track {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    background: transparent;   /* gutters = page background, not a grey box */
+    gap: 24px;
+    padding: 0 11vw;
+    scroll-padding: 0 11vw;
   }
   .track::-webkit-scrollbar { display: none; }
 }
 
-/* ── Prev / next arrows — restrained, luxury-minimal ── */
-.nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 5;
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  background: rgba(0, 0, 0, 0.28);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  color: rgba(255, 255, 255, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  cursor: pointer;
-  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, opacity 0.3s ease;
+/* ── Cards ── */
+.card {
+  flex: 0 0 78vw;
+  scroll-snap-align: center;
+  transition: opacity 0.45s ease, filter 0.45s ease, transform 0.45s ease;
+  will-change: filter, opacity, transform;
 }
-.nav svg {
-  width: 22px;
-  height: 22px;
-  display: block;
+
+/* Active card — sharp, full presence */
+.cardActive {
+  opacity: 1;
+  filter: none;
+  transform: scale(1);
 }
-.nav:hover {
-  background: rgba(0, 0, 0, 0.5);
-  border-color: var(--ba-gold, #c9a96e);
-  color: var(--ba-gold, #c9a96e);
-}
-.nav:disabled {
-  opacity: 0;
+
+/* Adjacent cards — blurred, recede; pointer-events off so only the active
+   card's CTA is clickable */
+.cardDim {
+  opacity: 0.3;
+  filter: blur(4px);
+  transform: scale(0.97);
   pointer-events: none;
 }
-/* Sit just inside the content-width video edges → visually nearer the center
-   on wide screens, not pinned to the full banner edge. */
-.prev { left: max(24px, calc((100vw - var(--ba-maxw, 1200px)) / 2 + 24px)); }
-.next { right: max(24px, calc((100vw - var(--ba-maxw, 1200px)) / 2 + 24px)); }
 
-.card {
-  flex: 0 0 100%;
-  scroll-snap-align: center;
-  display: flex;
-  justify-content: center;
-  color: inherit;
-  padding: 0 clamp(40px, 5vw, 80px);
-  box-sizing: border-box;
-}
-
+/* ── Media box ── */
 .media {
   position: relative;
   width: 100%;
-  max-width: var(--ba-maxw, 1200px);
   height: 480px;
   overflow: hidden;
   background: #111;
@@ -105,6 +81,7 @@
   pointer-events: none;
 }
 
+/* ── Text overlay ── */
 .info {
   position: absolute;
   bottom: 0;
@@ -145,7 +122,7 @@
   line-height: 1.5;
 }
 
-/* CTA — separated from copy by a hairline rule + generous top margin */
+/* CTA — separated from copy by a hairline rule */
 .cta {
   margin-top: 28px;
   padding-top: 20px;
@@ -161,9 +138,48 @@
   color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
   background: none;
-  border-bottom: none;
   transition: color 0.25s ease;
 }
 .cta span { transition: transform 0.25s ease; }
 .cta:hover { color: var(--ba-gold, #c9a96e); }
 .cta:hover span { transform: translateX(4px); }
+
+/* ── Nav arrows — sit in the blurred peek zone on each side ── */
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, opacity 0.3s ease;
+}
+.nav svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+.nav:hover {
+  background: rgba(0, 0, 0, 0.45);
+  border-color: var(--ba-gold, #c9a96e);
+  color: var(--ba-gold, #c9a96e);
+}
+.nav:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Center of the 11vw peek zone */
+.prev { left: 4.5vw; }
+.next { right: 4.5vw; }

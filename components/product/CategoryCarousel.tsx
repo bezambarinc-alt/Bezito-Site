@@ -13,49 +13,68 @@ interface Props {
 
 export default function CategoryCarousel({ products, category }: Props) {
   const trackRef = useRef<HTMLDivElement>(null)
-  const [atStart, setAtStart] = useState(true)
-  const [atEnd, setAtEnd] = useState(false)
+  const [activeIndex, setActiveIndex] = useState(0)
 
-  const updateEdges = useCallback(() => {
+  // After each scroll, find whichever card center is closest to the viewport center.
+  const updateActive = useCallback(() => {
     const el = trackRef.current
     if (!el) return
-    setAtStart(el.scrollLeft <= 4)
-    setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 4)
+    const viewCenter = el.scrollLeft + el.clientWidth / 2
+    let closest = 0
+    let minDist = Infinity
+    Array.from(el.querySelectorAll<HTMLElement>('[data-card]')).forEach((card, i) => {
+      const dist = Math.abs(card.offsetLeft + card.offsetWidth / 2 - viewCenter)
+      if (dist < minDist) { minDist = dist; closest = i }
+    })
+    setActiveIndex(closest)
   }, [])
 
   useEffect(() => {
-    updateEdges()
     const el = trackRef.current
     if (!el) return
-    el.addEventListener('scroll', updateEdges, { passive: true })
-    window.addEventListener('resize', updateEdges)
+    el.addEventListener('scroll', updateActive, { passive: true })
+    window.addEventListener('resize', updateActive)
     return () => {
-      el.removeEventListener('scroll', updateEdges)
-      window.removeEventListener('resize', updateEdges)
+      el.removeEventListener('scroll', updateActive)
+      window.removeEventListener('resize', updateActive)
     }
-  }, [updateEdges])
+  }, [updateActive])
 
-  const scrollByCard = (dir: 1 | -1) => {
+  // Scroll so the target card is centered in the viewport.
+  const goTo = useCallback((index: number) => {
     const el = trackRef.current
     if (!el) return
-    el.scrollBy({ left: dir * el.clientWidth, behavior: 'smooth' })
-  }
+    const cards = Array.from(el.querySelectorAll<HTMLElement>('[data-card]'))
+    const card = cards[index]
+    if (!card) return
+    el.scrollTo({
+      left: card.offsetLeft - (el.clientWidth - card.offsetWidth) / 2,
+      behavior: 'smooth',
+    })
+  }, [])
+
+  if (products.length === 0) return null
 
   return (
     <div className={styles.viewport}>
       <div className={styles.track} ref={trackRef}>
-        {products.map((p) => {
-          const video  = p.specs.heroVideoUrl
+        {products.map((p, i) => {
+          const video = p.specs.heroVideoUrl
           const poster = p.specs.heroPosterUrl
+          const isActive = i === activeIndex
           return (
-            <div key={p.slug} className={styles.card}>
+            <div
+              key={p.slug}
+              data-card=""
+              className={`${styles.card} ${isActive ? styles.cardActive : styles.cardDim}`}
+            >
               <div className={styles.media}>
                 {video ? (
                   <LazyVideo
                     src={video}
                     poster={poster ?? undefined}
                     className={styles.video}
-                    rootMargin="0px 400px"
+                    rootMargin="0px 600px"
                   />
                 ) : poster ? (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -84,8 +103,8 @@ export default function CategoryCarousel({ products, category }: Props) {
             type="button"
             className={`${styles.nav} ${styles.prev}`}
             aria-label="Previous piece"
-            onClick={() => scrollByCard(-1)}
-            disabled={atStart}
+            onClick={() => goTo(activeIndex - 1)}
+            disabled={activeIndex === 0}
           >
             <svg viewBox="0 0 24 24" fill="none" aria-hidden>
               <path d="M15 5 L8 12 L15 19" stroke="currentColor" strokeWidth="1.25"
@@ -96,8 +115,8 @@ export default function CategoryCarousel({ products, category }: Props) {
             type="button"
             className={`${styles.nav} ${styles.next}`}
             aria-label="Next piece"
-            onClick={() => scrollByCard(1)}
-            disabled={atEnd}
+            onClick={() => goTo(activeIndex + 1)}
+            disabled={activeIndex === products.length - 1}
           >
             <svg viewBox="0 0 24 24" fill="none" aria-hidden>
               <path d="M9 5 L16 12 L9 19" stroke="currentColor" strokeWidth="1.25"
