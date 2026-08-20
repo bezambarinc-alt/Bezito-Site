@@ -47,20 +47,21 @@ export default function LazyVideo({
           video.src = src
           video.load()
         }
-        const doPlay = () => {
-          pendingPlay.current = null
-          video.play().catch(() => {})
-        }
-        if (video.readyState >= 2) {
-          doPlay()
-        } else {
-          pendingPlay.current = doPlay
-          video.addEventListener('canplay', doPlay, { once: true })
-        }
+        // Attempt play now AND keep listening while in view. A single {once}
+        // canplay is fragile: if that one play() promise is interrupted (common
+        // under fast scroll / many concurrent videos), it's never retried and
+        // the poster freezes. Listening on canplay + playing (persistent, torn
+        // down on exit) means any later "ready" event re-attempts the play.
+        const doPlay = () => { video.play().catch(() => {}) }
+        pendingPlay.current = doPlay
+        video.addEventListener('canplay', doPlay)
+        video.addEventListener('loadeddata', doPlay)
+        if (video.readyState >= 2) doPlay()
       } else {
-        // Remove the pending canplay listener to prevent ghost plays after exit
+        // Tear down the in-view play listeners so nothing fires after exit
         if (pendingPlay.current) {
           video.removeEventListener('canplay', pendingPlay.current)
+          video.removeEventListener('loadeddata', pendingPlay.current)
           pendingPlay.current = null
         }
         video.pause()
