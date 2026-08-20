@@ -144,30 +144,29 @@
   line-height: 1.5;
 }
 
-/* Prominent CTA — the only clickable target (video is not a link) */
+/* CTA — text-only, no pill; hairline underline fades to gold on hover */
 .cta {
-  margin-top: 14px;
+  margin-top: 18px;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   font-family: var(--ba-font-sans);
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
-  padding: 12px 26px;
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  background: rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  padding: 0;
+  border: none;
+  background: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  padding-bottom: 3px;
+  transition: color 0.25s ease, border-color 0.25s ease;
 }
 .cta span { transition: transform 0.25s ease; }
 .cta:hover {
-  background: var(--ba-gold, #c9a96e);
-  border-color: var(--ba-gold, #c9a96e);
-  color: #0f0f0f;
+  color: var(--ba-gold, #c9a96e);
+  border-bottom-color: var(--ba-gold, #c9a96e);
 }
-.cta:hover span { transform: translateX(3px); }
+.cta:hover span { transform: translateX(4px); }
