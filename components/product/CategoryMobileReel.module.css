@@ -22,13 +22,7 @@
   background: #0f0f0f;
 }
 
-/* Poster img — always-visible background; next/image fills the slide via its own styles */
-.poster {
-  object-fit: cover;
-  opacity: 0.85;
-}
-
-/* Video: starts invisible, fades in on canplay so the poster covers the load gap */
+/* Video — visible from the start; no poster layer, dark slide bg covers the load gap */
 .video {
   position: absolute;
   inset: 0;
@@ -36,12 +30,8 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  z-index: 1;
-}
-.videoPlaying {
   opacity: 0.85;
+  z-index: 1;
 }
 
 .placeholder {
