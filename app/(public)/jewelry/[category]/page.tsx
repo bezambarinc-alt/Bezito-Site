@@ -1,13 +1,18 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { getCategoryMeta, getCategoryLabel } from '@/lib/data/categories'
+import { getCategoryMeta, getCategoryLabel, CATEGORIES } from '@/lib/data/categories'
 import { getProductsByCategory } from '@/lib/queries'
 import CinematicCarousel from '@/components/product/CinematicCarousel'
 import AtelierBanner from '@/components/common/AtelierBanner'
 import LazyVideo from '@/components/common/LazyVideo'
 import FadeIn from '@/components/common/FadeIn'
 
-export const dynamic = 'force-dynamic'
+// Pre-render all known category slugs at build time; revalidate hourly.
+export const revalidate = 3600
+
+export function generateStaticParams() {
+  return Object.keys(CATEGORIES).map((category) => ({ category }))
+}
 
 export async function generateMetadata({
   params,
