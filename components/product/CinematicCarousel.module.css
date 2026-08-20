@@ -68,36 +68,50 @@
   display: block;
 }
 
-/* ── Bottom gradient scrim for text legibility ──────────────── */
+/* ── Side-panel overlays (text lives on the blurred neighbours) ─ */
 
-.scrim {
+/* Left peek panel: active product identity centered in the prev slot.
+   The prev slide is centered at 50% − 102% of its width; its right edge
+   sits at roughly calc(50% − 444px). This panel spans from the stage
+   left edge to that point. */
+.prevOverlay {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.38) 0%,
-    rgba(0, 0, 0, 0.06) 26%,
-    transparent 44%
-  );
-  pointer-events: none;
-  z-index: 3;
+  top: 0;
+  left: 0;
+  width: calc(50% - 444px);
+  height: 100%;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 clamp(16px, 2vw, 28px);
+  pointer-events: auto;
 }
 
-/* ── Caption ────────────────────────────────────────────────── */
-
-.caption {
+/* Right peek panel: editorial description centered in the next slot. */
+.nextOverlay {
   position: absolute;
-  bottom: clamp(40px, 8vh, 72px);
-  /* Align near the active window's left edge (window ≈889px, centered → edge at 50% − 444px) */
-  left: max(24px, calc(50% - 420px));
+  top: 0;
+  right: 0;
+  width: calc(50% - 444px);
+  height: 100%;
   z-index: 4;
-  max-width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 clamp(16px, 2vw, 28px);
+  pointer-events: none;
 }
 
 .captionLink {
   text-decoration: none;
   color: inherit;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
 }
 
 .ref {
@@ -107,36 +121,33 @@
   text-transform: uppercase;
   letter-spacing: 0.16em;
   color: var(--ba-gold);
-  margin-bottom: 8px;
 }
 
 .name {
   font-family: var(--ba-font-sans);
-  font-size: clamp(1.1rem, 1.7vw, 1.5rem);
+  font-size: clamp(0.85rem, 1.2vw, 1.15rem);
   font-weight: 300;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.05em;
   color: #ffffff;
-  line-height: 1.15;
-  margin-bottom: 8px;
-  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+  line-height: 1.2;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
 }
 
 .sub {
   font-family: var(--ba-font-editorial);
-  font-size: clamp(0.78rem, 0.9vw, 0.86rem);
+  font-size: clamp(0.75rem, 0.85vw, 0.88rem);
   font-style: italic;
   color: rgba(255, 255, 255, 0.55);
-  margin-bottom: 14px;
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
 .cta {
   font-family: var(--ba-font-sans);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   color: var(--ba-gold);
   border-bottom: 1px solid currentColor;
   padding-bottom: 3px;
@@ -194,8 +205,9 @@
   .arrowPrev { left: 12px; }
   .arrowNext { right: 12px; }
 
-  .caption {
-    left: 20px;
-    max-width: calc(100vw - 60px);
+  /* Peek zones are too narrow on mobile — hide the side text panels */
+  .prevOverlay,
+  .nextOverlay {
+    display: none;
   }
 }

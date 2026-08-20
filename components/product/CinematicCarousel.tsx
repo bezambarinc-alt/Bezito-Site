@@ -119,16 +119,23 @@ export default function CinematicCarousel({ products, category }: Props) {
           })}
         </div>
 
-        <div className={styles.scrim} />
+        {/* Left peek panel — current product identity, centered in prev slot */}
+        {total > 1 && (
+          <div className={styles.prevOverlay}>
+            <Link href={`/jewelry/${category}/${current.slug}`} className={styles.captionLink}>
+              <p className={styles.ref}>ref. {current.sku}</p>
+              <h2 className={styles.name}>{current.name}</h2>
+              <span className={styles.cta}>View Piece →</span>
+            </Link>
+          </div>
+        )}
 
-        <div className={styles.caption}>
-          <Link href={`/jewelry/${category}/${current.slug}`} className={styles.captionLink}>
-            <p className={styles.ref}>ref. {current.sku}</p>
-            <h2 className={styles.name}>{current.name}</h2>
-            {current.specs.subtitle && <p className={styles.sub}>{current.specs.subtitle}</p>}
-            <span className={styles.cta}>View Piece →</span>
-          </Link>
-        </div>
+        {/* Right peek panel — editorial description, centered in next slot */}
+        {total > 1 && current.specs.subtitle && (
+          <div className={styles.nextOverlay}>
+            <p className={styles.sub}>{current.specs.subtitle}</p>
+          </div>
+        )}
 
         {total > 1 && (
           <>
