@@ -114,21 +114,6 @@ export default async function CategoryPage({
         <CategoryCarousel products={products} category={category} />
       )}
 
-      {/* Commission CTA — desktop only */}
-      {products.length > 0 && (
-        <FadeIn>
-          <section className="ba-cta ba-cat-desktop">
-            <span className="ba-cta__eyebrow">Don&rsquo;t See It</span>
-            <h2 className="ba-cta__title">Commission a Piece</h2>
-            <p className="ba-cta__body">
-              If the piece you&rsquo;re looking for isn&rsquo;t here, it can be made.
-              Every Bez Ambar piece begins with one stone and one drawing.
-            </p>
-            <a href="/contact" className="ba-cta__btn">Inquire</a>
-          </section>
-        </FadeIn>
-      )}
-
       {/* ── Mobile-only section ─────────────────────────────────────────────── */}
 
       {/* 4. Full-screen vertical swipe reel */}
