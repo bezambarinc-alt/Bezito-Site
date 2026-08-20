@@ -75,9 +75,9 @@
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(0, 0, 0, 0.5) 0%,
-    rgba(0, 0, 0, 0.12) 32%,
-    transparent 55%
+    rgba(0, 0, 0, 0.38) 0%,
+    rgba(0, 0, 0, 0.06) 26%,
+    transparent 44%
   );
   pointer-events: none;
   z-index: 3;
@@ -112,23 +112,23 @@
 
 .name {
   font-family: var(--ba-font-sans);
-  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-size: clamp(1.1rem, 1.7vw, 1.5rem);
   font-weight: 300;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   color: #ffffff;
   line-height: 1.15;
-  margin-bottom: 10px;
-  text-shadow: 0 1px 16px rgba(0, 0, 0, 0.4);
+  margin-bottom: 8px;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
 }
 
 .sub {
   font-family: var(--ba-font-editorial);
-  font-size: clamp(0.82rem, 1vw, 0.92rem);
+  font-size: clamp(0.78rem, 0.9vw, 0.86rem);
   font-style: italic;
-  color: rgba(255, 255, 255, 0.62);
-  margin-bottom: 18px;
-  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 14px;
+  line-height: 1.45;
 }
 
 .cta {
