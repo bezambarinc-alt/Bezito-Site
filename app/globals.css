@@ -319,7 +319,7 @@ body.page-dark {
 @media(max-width:768px){.ba-cat-desktop{display:none!important}}
 
 /* Segment (editorial spotlight) — matches HomeSegment.module.css layout */
-.ba-segment{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(40px,6vw,100px);max-width:1300px;margin:0 auto;padding:clamp(12px,1.6vw,24px) clamp(40px,5vw,80px)}
+.ba-segment{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(40px,6vw,100px);max-width:1300px;margin:0 auto;padding:clamp(32px,4vw,64px) clamp(40px,5vw,80px)}
 .ba-segment--reverse .ba-segment__media{order:2;justify-self:start}
 .ba-segment--reverse .ba-segment__text{order:1;justify-self:end}
 .ba-segment__media{overflow:hidden;background:transparent;position:relative;width:100%;max-width:540px;aspect-ratio:1/1;justify-self:end}
