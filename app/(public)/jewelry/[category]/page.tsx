@@ -2,8 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getCategoryMeta, getCategoryLabel } from '@/lib/data/categories'
 import { getProductsByCategory } from '@/lib/queries'
-import CategoryCarousel from '@/components/product/CategoryCarousel'
-import CategoryMobileReel from '@/components/product/CategoryMobileReel'
+import CinematicCarousel from '@/components/product/CinematicCarousel'
 import LazyVideo from '@/components/common/LazyVideo'
 import FadeIn from '@/components/common/FadeIn'
 
@@ -109,16 +108,9 @@ export default async function CategoryPage({
         </div>
       )}
 
-      {/* 3. Desktop banner carousel — all products */}
+      {/* 3. Cinematic carousel — all products, desktop + mobile */}
       {products.length > 0 && (
-        <CategoryCarousel products={products} category={category} />
-      )}
-
-      {/* ── Mobile-only section ─────────────────────────────────────────────── */}
-
-      {/* 4. Full-screen vertical swipe reel */}
-      {products.length > 0 && (
-        <CategoryMobileReel products={products} category={category} />
+        <CinematicCarousel products={products} category={category} />
       )}
 
       {/* Empty state */}

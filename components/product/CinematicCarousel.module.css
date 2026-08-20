@@ -1,0 +1,205 @@
+/* CinematicCarousel — full-width black stage, one piece at a time.
+   Adjacent slides peek in at 12% on each side, blurred.
+   Negative space is the design. */
+
+/* ── Stage ──────────────────────────────────────────────────── */
+
+.stage {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  min-height: 600px;
+  background: #000;
+  overflow: hidden;
+}
+
+/* ── Track ──────────────────────────────────────────────────── */
+
+.track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Individual slide ───────────────────────────────────────── */
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* transition applied inline for initial-render correctness */
+}
+
+/* ── Media (video / img) ────────────────────────────────────── */
+
+.media {
+  width: 100%;
+  height: 100%;
+}
+
+.media video,
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  opacity: 0.85;
+}
+
+/* ── Bottom gradient scrim for text legibility ──────────────── */
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.2) 40%,
+    transparent 65%
+  );
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* ── Caption ────────────────────────────────────────────────── */
+
+.caption {
+  position: absolute;
+  bottom: clamp(48px, 9vh, 90px);
+  left: clamp(40px, 6vw, 80px);
+  z-index: 4;
+  max-width: 480px;
+}
+
+.captionLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.ref {
+  font-family: var(--ba-font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ba-gold);
+  margin-bottom: 10px;
+}
+
+.name {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: #ffffff;
+  line-height: 1.1;
+  margin-bottom: 14px;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
+}
+
+.sub {
+  font-family: var(--ba-font-editorial);
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 22px;
+  line-height: 1.55;
+}
+
+.cta {
+  font-family: var(--ba-font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ba-gold);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 3px;
+  transition: opacity 0.2s;
+}
+
+.captionLink:hover .cta {
+  opacity: 0.7;
+}
+
+/* ── Arrows ─────────────────────────────────────────────────── */
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.arrow:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.arrowPrev { left: clamp(16px, 3vw, 44px); }
+.arrowNext { right: clamp(16px, 3vw, 44px); }
+
+/* ── Dot navigation — vertical, right edge ──────────────────── */
+
+.dots {
+  position: absolute;
+  right: clamp(20px, 2.5vw, 36px);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 5;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  padding: 0;
+}
+
+.dotActive {
+  background: #ffffff;
+  transform: scale(1.5);
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .stage {
+    height: 100vh;
+  }
+
+  .arrowPrev { left: 12px; }
+  .arrowNext { right: 12px; }
+
+  .dots { right: 10px; }
+
+  .caption {
+    left: 20px;
+    max-width: calc(100vw - 80px);
+  }
+}
