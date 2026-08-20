@@ -24,23 +24,32 @@ const PLYTIX_AUTH = 'https://auth.plytix.com/auth/api/get-token'
 const PLYTIX_BASE = 'https://pim.plytix.com/api/v1'
 
 async function getPlytixToken(): Promise<string> {
-  const res = await fetch(PLYTIX_AUTH, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      api_key: process.env.PLYTIX_API_KEY,
-      api_password: process.env.PLYTIX_API_PASSWORD,
-    }),
-  })
-  const data = (await res.json()) as {
-    data?: [{ access_token?: string; token?: string }]
-    msg?: string
+  for (let attempt = 0; attempt < 4; attempt++) {
+    try {
+      const res = await fetch(PLYTIX_AUTH, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          api_key: process.env.PLYTIX_API_KEY,
+          api_password: process.env.PLYTIX_API_PASSWORD,
+        }),
+        signal: AbortSignal.timeout(15_000),
+      })
+      const data = (await res.json()) as {
+        data?: [{ access_token?: string; token?: string }]
+        msg?: string
+      }
+      const token = data?.data?.[0]?.access_token ?? data?.data?.[0]?.token
+      if (!token) {
+        throw new Error(`Plytix auth failed (${res.status}): ${data?.msg ?? JSON.stringify(data).slice(0, 200)}`)
+      }
+      return token
+    } catch (e) {
+      if (attempt === 3) throw e
+      await sleep(2000 * (attempt + 1))
+    }
   }
-  const token = data?.data?.[0]?.access_token ?? data?.data?.[0]?.token
-  if (!token) {
-    throw new Error(`Plytix auth failed (${res.status}): ${data?.msg ?? JSON.stringify(data).slice(0, 200)}`)
-  }
-  return token
+  throw new Error('Plytix auth exhausted retries')
 }
 
 interface PlytixDetail {
@@ -55,15 +64,26 @@ const str = (v: unknown): string | undefined =>
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
 
-// Plytix rate-limits rapid GET (429). Retry with backoff. Generic fetcher.
+// Retry fetch with exponential backoff — handles 429 rate-limits and transient
+// network errors (ENOTFOUND, ECONNRESET, etc.) that can occur during DNS hiccups.
 async function getWithRetry(url: string, token: string): Promise<Response | null> {
   for (let attempt = 0; attempt < 6; attempt++) {
-    const res = await fetch(url, { headers: { Authorization: `Bearer ${token}` } })
-    if (res.status === 429) {
-      await sleep(1500 * (attempt + 1))
-      continue
+    try {
+      const res = await fetch(url, {
+        headers: { Authorization: `Bearer ${token}` },
+        signal: AbortSignal.timeout(15_000),
+      })
+      if (res.status === 429) {
+        await sleep(1500 * (attempt + 1))
+        continue
+      }
+      return res
+    } catch (e) {
+      // Network error (DNS, connection reset, timeout) — retry with backoff
+      const isLast = attempt === 5
+      if (isLast) return null
+      await sleep(2000 * (attempt + 1))
     }
-    return res
   }
   return null
 }
@@ -243,11 +263,16 @@ export async function GET(req: NextRequest) {
       }
     }
 
-    // 3) Delete stale rows — any SKU in Neon not returned by Plytix this run
+    // 3) Delete stale rows — any SKU in Neon not returned by Plytix this run.
+    //    Guard: preserve rows with plytix_id LIKE 'pending-%' — these were inserted
+    //    directly (before a real Plytix entry existed) and must not be wiped.
     let deleted = 0
     if (syncedSkus.length > 0) {
       const stale = await sql<{ sku: string }>(
-        `DELETE FROM products WHERE sku <> ALL($1::text[]) RETURNING sku`,
+        `DELETE FROM products
+         WHERE sku <> ALL($1::text[])
+           AND (plytix_id IS NULL OR plytix_id NOT LIKE 'pending-%')
+         RETURNING sku`,
         [syncedSkus]
       )
       deleted = stale.length
