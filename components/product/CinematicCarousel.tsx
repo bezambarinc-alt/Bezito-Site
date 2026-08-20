@@ -15,7 +15,7 @@ const AUTOSCROLL_MS = 5000
 export default function CinematicCarousel({ products, category }: Props) {
   const [index, setIndex] = useState(0)
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const total = products.length
 
   const go = useCallback(
@@ -33,21 +33,22 @@ export default function CinematicCarousel({ products, category }: Props) {
     [index, total],
   )
 
-  // Reset and restart the autoscroll timer. Call on manual navigation so the
-  // timer doesn't fire immediately after a user-initiated advance.
+  // Use setInterval so the tick is self-sustaining — no need to restart it
+  // on every index change (which caused rapid-fire misfires with setTimeout).
   const resetTimer = useCallback(() => {
-    if (timerRef.current) clearTimeout(timerRef.current)
+    if (timerRef.current) clearInterval(timerRef.current)
     if (total <= 1) return
-    timerRef.current = setTimeout(() => {
+    timerRef.current = setInterval(() => {
       setIndex((prev) => ((prev + 1) % total))
     }, AUTOSCROLL_MS)
   }, [total])
 
-  // Start autoscroll on mount; restart whenever index changes.
+  // Start interval on mount; stable dep (resetTimer only changes if product
+  // count changes), so this never re-runs mid-session by accident.
   useEffect(() => {
     resetTimer()
-    return () => { if (timerRef.current) clearTimeout(timerRef.current) }
-  }, [index, resetTimer])
+    return () => { if (timerRef.current) clearInterval(timerRef.current) }
+  }, [resetTimer])
 
   // Active + both neighbours play so the blurred flanks show live frames.
   useEffect(() => {
