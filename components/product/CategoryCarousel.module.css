@@ -18,7 +18,7 @@
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    background: var(--ink, #0f0f0f);
+    background: transparent;   /* gutters = page background, not a grey box */
   }
   .track::-webkit-scrollbar { display: none; }
 }
