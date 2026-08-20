@@ -59,7 +59,8 @@ export default function CinematicCarousel({ products, category }: Props) {
             const offset = circOffset(i)
             const isActive = offset === 0
             const isNeighbour = Math.abs(offset) === 1
-            const isVisible = Math.abs(offset) <= 1
+            const isPlaying = Math.abs(offset) <= 1   // active + both flanks play
+            const isLoaded = Math.abs(offset) <= 2    // buffer one ring further so the next swap isn't choppy
             const video = p.specs.heroVideoUrl
             const image = p.specs.heroPosterUrl
 
@@ -82,13 +83,13 @@ export default function CinematicCarousel({ products, category }: Props) {
                   {video ? (
                     <video
                       ref={(el) => { videoRefs.current[i] = el }}
-                      src={isVisible ? video : undefined}
+                      src={isLoaded ? video : undefined}
                       poster={image ?? undefined}
                       muted
                       loop
                       playsInline
-                      autoPlay={isVisible}
-                      preload={isVisible ? 'auto' : 'none'}
+                      autoPlay={isPlaying}
+                      preload={isPlaying ? 'auto' : isLoaded ? 'metadata' : 'none'}
                     />
                   ) : image ? (
                     // eslint-disable-next-line @next/next/no-img-element
