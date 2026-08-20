@@ -89,7 +89,10 @@ export default function CategoryCarousel({ products, category }: Props) {
             onClick={() => scrollByCard(-1)}
             disabled={atStart}
           >
-            ‹
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden>
+              <path d="M15 5 L8 12 L15 19" stroke="currentColor" strokeWidth="1.25"
+                strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </button>
           <button
             type="button"
@@ -98,7 +101,10 @@ export default function CategoryCarousel({ products, category }: Props) {
             onClick={() => scrollByCard(1)}
             disabled={atEnd}
           >
-            ›
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden>
+              <path d="M9 5 L16 12 L9 19" stroke="currentColor" strokeWidth="1.25"
+                strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </button>
         </>
       )}
