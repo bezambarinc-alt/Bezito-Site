@@ -55,12 +55,11 @@ export default function CinematicCarousel({ products, category }: Props) {
                 key={p.sku}
                 className={styles.slide}
                 style={{
-                  // Full-bleed coverflow: slide is centered on left:50% via -50%,
-                  // then each neighbour is pushed out so its CENTER (the piece)
-                  // peeks in at the screen edge — not just a black edge strip.
-                  transform: `translateX(calc(-50% + ${offset * 58}%)) scale(${isActive ? 1 : 0.86})`,
+                  // Filmstrip: active window centered; prev flanks left, next
+                  // flanks right at ±102% of the slide width (small gap between).
+                  transform: `translateX(calc(-50% + ${offset * 102}%))`,
                   filter: isActive ? 'none' : 'blur(6px)',
-                  opacity: isActive ? 1 : isNeighbour ? 0.7 : 0,
+                  opacity: isActive ? 1 : isNeighbour ? 0.6 : 0,
                   zIndex: isActive ? 2 : 1,
                   pointerEvents: isActive ? 'auto' : 'none',
                 }}
