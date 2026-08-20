@@ -48,11 +48,7 @@ export default function CategoryCarousel({ products, category }: Props) {
           const video  = p.specs.heroVideoUrl
           const poster = p.specs.heroPosterUrl
           return (
-            <Link
-              key={p.slug}
-              href={`/jewelry/${category}/${p.slug}`}
-              className={styles.card}
-            >
+            <div key={p.slug} className={styles.card}>
               <div className={styles.media}>
                 {video ? (
                   <LazyVideo
@@ -72,10 +68,12 @@ export default function CategoryCarousel({ products, category }: Props) {
                   <span className={styles.ref}>ref. {p.sku}</span>
                   <h3 className={styles.name}>{p.name}</h3>
                   {p.specs.subtitle && <p className={styles.sub}>{p.specs.subtitle}</p>}
-                  <span className={styles.cta}>View piece →</span>
+                  <Link href={`/jewelry/${category}/${p.slug}`} className={styles.cta}>
+                    View Piece <span aria-hidden>→</span>
+                  </Link>
                 </div>
               </div>
-            </Link>
+            </div>
           )
         })}
       </div>
