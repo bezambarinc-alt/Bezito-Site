@@ -18,20 +18,26 @@ export default function CategoryMobileReel({ products, category }: Props) {
     const container = containerRef.current
     if (!container) return
 
+    // ── Reveal + play a slide's video. IMPORTANT: call play() to DRIVE
+    //    buffering — don't wait for canplay first. With preload metadata/none
+    //    the browser stops at readyState 1 and canplay (readyState 3) never
+    //    fires on its own, so gating play() behind canplay deadlocks and the
+    //    poster shows forever. play() kicks the buffer; reveal on whichever
+    //    "it's actually rendering" signal lands first. ──
+    const reveal = (video: HTMLVideoElement) => video.classList.add(styles.videoPlaying)
+    const activate = (video: HTMLVideoElement) => {
+      if (!video.src && video.dataset.src) {
+        video.src = video.dataset.src
+        video.load()
+      }
+      video.addEventListener('playing', () => reveal(video), { once: true })
+      video.addEventListener('canplay', () => reveal(video), { once: true })
+      video.play().then(() => reveal(video)).catch(() => {})
+    }
+
     // ── Kick the first slide immediately — it's already in the DOM with src set ──
     const firstVideo = container.querySelector<HTMLVideoElement>('video')
-    if (firstVideo) {
-      const showFirst = () => firstVideo.classList.add(styles.videoPlaying)
-      if (firstVideo.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) {
-        showFirst()
-        firstVideo.play().catch(() => {})
-      } else {
-        firstVideo.addEventListener('canplay', () => {
-          showFirst()
-          firstVideo.play().catch(() => {})
-        }, { once: true })
-      }
-    }
+    if (firstVideo) activate(firstVideo)
 
     // ── Preload: buffer slides one full viewport before they're needed ─────────
     const preloadIO = new IntersectionObserver(
@@ -56,20 +62,7 @@ export default function CategoryMobileReel({ products, category }: Props) {
           if (!video) continue
 
           if (entry.isIntersecting) {
-            // Ensure src is set (safety net if preloadIO missed it)
-            if (!video.src && video.dataset.src) {
-              video.src = video.dataset.src!
-              video.load()
-            }
-            const play = () => {
-              video.play().catch(() => {})
-              video.classList.add(styles.videoPlaying)
-            }
-            if (video.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) {
-              play()
-            } else {
-              video.addEventListener('canplay', play, { once: true })
-            }
+            activate(video)
           } else {
             video.pause()
           }
