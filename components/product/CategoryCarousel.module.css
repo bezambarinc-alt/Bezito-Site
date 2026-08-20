@@ -144,9 +144,11 @@
   line-height: 1.5;
 }
 
-/* CTA — text-only, no pill; hairline underline fades to gold on hover */
+/* CTA — separated from copy by a hairline rule + generous top margin */
 .cta {
-  margin-top: 18px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -157,16 +159,10 @@
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
-  padding: 0;
-  border: none;
   background: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  padding-bottom: 3px;
-  transition: color 0.25s ease, border-color 0.25s ease;
+  border-bottom: none;
+  transition: color 0.25s ease;
 }
 .cta span { transition: transform 0.25s ease; }
-.cta:hover {
-  color: var(--ba-gold, #c9a96e);
-  border-bottom-color: var(--ba-gold, #c9a96e);
-}
+.cta:hover { color: var(--ba-gold, #c9a96e); }
 .cta:hover span { transform: translateX(4px); }
