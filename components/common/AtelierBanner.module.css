@@ -1,7 +1,7 @@
 .banner {
   width: 100%;
   background: #000;
-  margin-top: 45px;
+  margin-top: clamp(12px, 1.6vw, 24px);
   padding: clamp(56px, 9vw, 112px) 0 clamp(48px, 7vw, 88px);
   overflow: hidden;
 }
