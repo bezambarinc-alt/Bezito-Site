@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { getCategoryMeta, getCategoryLabel } from '@/lib/data/categories'
 import { getProductsByCategory } from '@/lib/queries'
 import CinematicCarousel from '@/components/product/CinematicCarousel'
+import AtelierBanner from '@/components/common/AtelierBanner'
 import LazyVideo from '@/components/common/LazyVideo'
 import FadeIn from '@/components/common/FadeIn'
 
@@ -112,6 +113,9 @@ export default async function CategoryPage({
       {products.length > 0 && (
         <CinematicCarousel products={products} category={category} />
       )}
+
+      {/* 4. Atelier banner — chiseled wordmark on black */}
+      <AtelierBanner />
 
       {/* Empty state */}
       {products.length === 0 && (
