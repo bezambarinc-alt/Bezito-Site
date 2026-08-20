@@ -17,18 +17,18 @@ export const HERO_SLIDES: [CarouselSlide, CarouselSlide] = [
       'https://res.cloudinary.com/dlg2mou53/video/upload/h_1080,c_limit,f_auto,q_auto/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.mp4',
     posterUrl:
       'https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.jpg',
-    eyebrow: 'The Elysian Cut™',
-    headline: 'A Game of Angles',
-    sub: 'Crown meets pavilion. Stone meets stone. Light becomes a line.',
+    eyebrow: 'Bez Ambar · Los Angeles',
+    headline: 'The Magic of Light',
+    sub: 'A certificate can grade a stone. It cannot make one beautiful. That takes a master who understands light.',
   },
   {
     videoUrl:
       'https://res.cloudinary.com/dlg2mou53/video/upload/h_1080,c_limit,f_auto,q_auto/Jewelry%20Videos/Bands/4k_ovalcut_band_6_v1_rllzya.mp4',
     posterUrl:
       'https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bands/4k_ovalcut_band_6_v1_rllzya.jpg',
-    eyebrow: 'The Elysian Oval Band',
-    headline: 'Worn on the Finger, Worn as Light',
-    sub: 'Every angle catches the next. The line never breaks.',
+    eyebrow: 'Bez Ambar · Los Angeles',
+    headline: 'The Magic of Light',
+    sub: 'A certificate can grade a stone. It cannot make one beautiful. That takes a master who understands light.',
   },
 ]
 
