@@ -55,9 +55,12 @@ export default function CinematicCarousel({ products, category }: Props) {
                 key={p.sku}
                 className={styles.slide}
                 style={{
-                  transform: `translateX(${offset * 80}%)`,
-                  filter: isActive ? 'none' : 'blur(10px)',
-                  opacity: isActive ? 1 : isNeighbour ? 0.55 : 0,
+                  // Coverflow: slide is centered on left:50% via -50%, then each
+                  // neighbour is pushed out ~68% of its own width so its CENTER
+                  // (the piece itself) peeks into the stage — not just a black edge.
+                  transform: `translateX(calc(-50% + ${offset * 68}%)) scale(${isActive ? 1 : 0.84})`,
+                  filter: isActive ? 'none' : 'blur(6px)',
+                  opacity: isActive ? 1 : isNeighbour ? 0.7 : 0,
                   zIndex: isActive ? 2 : 1,
                   pointerEvents: isActive ? 'auto' : 'none',
                 }}

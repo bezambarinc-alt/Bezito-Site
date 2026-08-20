@@ -34,13 +34,18 @@
 .slide {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: 50%;
+  width: 62%;
   height: 100%;
+  transform-origin: center center;
   transition:
     transform 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94),
     filter 0.75s ease,
     opacity 0.75s ease;
+}
+
+@media (max-width: 768px) {
+  .slide { width: 82%; }
 }
 
 /* ── Media (video / img) ────────────────────────────────────── */
@@ -57,7 +62,6 @@
   object-fit: cover;
   object-position: center;
   display: block;
-  opacity: 0.85;
 }
 
 /* ── Bottom gradient scrim for text legibility ──────────────── */
@@ -80,9 +84,10 @@
 .caption {
   position: absolute;
   bottom: clamp(48px, 9vh, 90px);
-  left: clamp(40px, 6vw, 80px);
+  /* Align to the active slide's left edge (slide is 62% wide, centered → edge at 19%) */
+  left: calc(19% + clamp(20px, 2vw, 40px));
   z-index: 4;
-  max-width: 480px;
+  max-width: 420px;
 }
 
 .captionLink {
@@ -186,7 +191,7 @@
   .arrowNext { right: 12px; }
 
   .caption {
-    left: 20px;
-    max-width: calc(100vw - 80px);
+    left: calc(9% + 20px);
+    max-width: calc(82vw - 40px);
   }
 }
