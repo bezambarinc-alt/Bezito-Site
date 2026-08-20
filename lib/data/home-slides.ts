@@ -19,7 +19,7 @@ export const HERO_SLIDES: [CarouselSlide, CarouselSlide] = [
       'https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.jpg',
     eyebrow: 'Bez Ambar · Los Angeles',
     headline: 'The Magic of Light',
-    sub: 'A certificate can grade a stone. It cannot make one beautiful. That takes a master who understands light.',
+    sub: 'A certificate can grade a stone. It cannot tell how the light dances within it. In lesser hands, light merely touches the stone; done right, it melts into the divine.',
   },
   {
     videoUrl:
@@ -28,7 +28,7 @@ export const HERO_SLIDES: [CarouselSlide, CarouselSlide] = [
       'https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bands/4k_ovalcut_band_6_v1_rllzya.jpg',
     eyebrow: 'Bez Ambar · Los Angeles',
     headline: 'The Magic of Light',
-    sub: 'A certificate can grade a stone. It cannot make one beautiful. That takes a master who understands light.',
+    sub: 'A certificate can grade a stone. It cannot tell how the light dances within it. In lesser hands, light merely touches the stone; done right, it melts into the divine.',
   },
 ]
 
