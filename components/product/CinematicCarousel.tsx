@@ -20,15 +20,16 @@ export default function CinematicCarousel({ products, category }: Props) {
     [total],
   )
 
-  // Active video plays; neighbours stay loaded but paused for an instant swap.
+  // Active + both neighbours play (muted) so the blurred prev/next peeks show a
+  // live frame, not a black paused video. Off-screen slides are paused + reset.
   useEffect(() => {
     videoRefs.current.forEach((v, i) => {
       if (!v) return
-      if (i === index) {
+      if (Math.abs(i - index) <= 1) {
         v.play().catch(() => {})
       } else {
         v.pause()
-        if (Math.abs(i - index) > 1) v.currentTime = 0
+        v.currentTime = 0
       }
     })
   }, [index])
@@ -54,9 +55,9 @@ export default function CinematicCarousel({ products, category }: Props) {
                 key={p.sku}
                 className={styles.slide}
                 style={{
-                  transform: `translateX(${offset * 84}%)`,
+                  transform: `translateX(${offset * 80}%)`,
                   filter: isActive ? 'none' : 'blur(10px)',
-                  opacity: isActive ? 1 : isNeighbour ? 0.5 : 0,
+                  opacity: isActive ? 1 : isNeighbour ? 0.55 : 0,
                   zIndex: isActive ? 2 : 1,
                   pointerEvents: isActive ? 'auto' : 'none',
                 }}
@@ -71,8 +72,8 @@ export default function CinematicCarousel({ products, category }: Props) {
                       muted
                       loop
                       playsInline
-                      autoPlay={i === 0}
-                      preload={isVisible ? 'metadata' : 'none'}
+                      autoPlay={isVisible}
+                      preload={isVisible ? 'auto' : 'none'}
                     />
                   ) : image ? (
                     // eslint-disable-next-line @next/next/no-img-element
