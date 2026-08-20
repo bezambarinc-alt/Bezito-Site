@@ -1,8 +1,17 @@
+/* Viewport wrapper — desktop only; hosts the scroll track + nav arrows */
+.viewport {
+  display: none;
+}
+
 .track {
   display: none;
 }
 
 @media (min-width: 769px) {
+  .viewport {
+    display: block;
+    position: relative;
+  }
   .track {
     display: flex;
     overflow-x: auto;
@@ -13,6 +22,39 @@
   }
   .track::-webkit-scrollbar { display: none; }
 }
+
+/* ── Prev / next arrows ── */
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 30px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, opacity 0.25s;
+}
+.nav:hover {
+  background: rgba(0, 0, 0, 0.75);
+  border-color: var(--ba-gold, #c9a96e);
+  color: var(--ba-gold, #c9a96e);
+}
+.nav:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+.prev { left: 24px; }
+.next { right: 24px; }
 
 .card {
   flex: 0 0 100vw;
