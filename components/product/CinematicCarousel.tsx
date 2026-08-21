@@ -87,7 +87,12 @@ export default function CinematicCarousel({ products, category }: Props) {
       const scrollRange = rect.height - window.innerHeight
       if (scrollRange <= 0) return
       const progress    = Math.max(0, Math.min(1, -rect.top / scrollRange))
-      const fracIndex   = progress * (total - 1)
+      const fracRaw     = progress * (total - 1)
+      // Smoothstep per segment: active positions get extra dwell, transition is faster in middle
+      const segFloor    = Math.floor(fracRaw)
+      const local       = fracRaw - segFloor
+      const eased       = local * local * (3 - 2 * local)
+      const fracIndex   = segFloor + eased
       const rounded     = Math.round(fracIndex)
 
       mobileSlideRefs.current.forEach((slide, i) => {
