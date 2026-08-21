@@ -13,11 +13,11 @@
   justify-content: center;
 }
 
-/* Stage — portrait video cards (3:4 → ~420px wide at 560px tall) */
+/* Stage — matches CinematicCarousel exactly */
 .stage {
   position: relative;
   width: 100%;
-  height: 560px;
+  height: 500px;
   background: #0a0a0a;
   overflow: hidden;
 }
@@ -28,13 +28,13 @@
   height: 100%;
 }
 
-/* Portrait slide — 3:4 ratio, centered on left:50% */
+/* 16:9 slide at 500px tall = ~889px wide, centered on left:50% */
 .slide {
   position: absolute;
   top: 0;
   left: 50%;
   height: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 16 / 9;
   transform-origin: center center;
   will-change: transform, opacity;
   transition:
@@ -90,18 +90,18 @@
 }
 .slideBtn:hover::after { opacity: 1; }
 
-/* Left peek panel — identity + CTA */
+/* Left peek panel — matches CinematicCarousel (889px/2 = 444px) */
 .prevOverlay {
   position: absolute;
   top: 0; left: 0;
-  width: calc(50% - 210px);
+  width: calc(50% - 444px);
   height: 100%;
   z-index: 4;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0 clamp(16px, 2vw, 32px);
+  padding: 0 clamp(16px, 2vw, 28px);
 }
 
 .captionGroup {
@@ -183,8 +183,8 @@
   background: rgba(0, 0, 0, 0.45);
   color: var(--ba-gold, #c9a96e);
 }
-.arrowPrev { left:  max(16px, calc(50% - 228px)); }
-.arrowNext { right: max(16px, calc(50% - 228px)); }
+.arrowPrev { left:  max(16px, calc(50% - 428px)); }
+.arrowNext { right: max(16px, calc(50% - 428px)); }
 
 /* Hide desktop carousel on mobile */
 @media (max-width: 768px) {

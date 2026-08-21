@@ -127,7 +127,7 @@ export default function ArchiveCarousel({ entries, onOpen }: Props) {
                   key={e.slug}
                   className={styles.slide}
                   style={{
-                    transform:     `translateX(calc(-50% + ${offset * 105}%))`,
+                    transform:     `translateX(calc(-50% + ${offset * 102}%))`,
                     filter:        isActive ? 'none' : 'blur(18px)',
                     opacity:       isActive ? 1 : isNeighbour ? 0.55 : 0,
                     zIndex:        isActive ? 2 : 1,
