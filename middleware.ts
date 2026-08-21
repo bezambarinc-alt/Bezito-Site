@@ -7,7 +7,7 @@ const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET!)
 const SKIP = /^\/(_next|api|admin|favicon|robots|sitemap|llms|.*\.[a-z0-9]+$)/i
 
 // Fire-and-forget page-view log → /api/track (Node runtime does the Neon insert).
-// Edge can't use pg, so proxy just relays the request context.
+// Edge can't use pg, so middleware just relays the request context.
 function logView(req: NextRequest): void {
   const path = req.nextUrl.pathname
   if (SKIP.test(path)) return
@@ -34,7 +34,7 @@ function logView(req: NextRequest): void {
   }).catch(() => {})
 }
 
-export async function proxy(req: NextRequest) {
+export default async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname
 
   // Never gate login pages or API routes (prevents redirect loops)
@@ -70,7 +70,7 @@ export async function proxy(req: NextRequest) {
     return res
   }
 
-  // ── Admin: auth gate (unchanged) ────────────────────────────────────────────
+  // ── Admin: auth gate ────────────────────────────────────────────────────────
   const token = req.cookies.get('session')?.value
   // Validate redirect target — relative paths only, no open redirect
   function safeFrom(raw: string): string {
@@ -100,7 +100,7 @@ export async function proxy(req: NextRequest) {
 
 export const config = {
   // Run on everything EXCEPT api routes, admin login, static assets, image optimizer.
-  // Admin auth + public view-logging are branched inside proxy().
+  // Admin auth + public view-logging are branched inside middleware().
   // Excluding /api and /admin/login here is belt-and-suspenders with the guard above.
   matcher: ['/((?!api|_next/static|_next/image|favicon.ico|admin/login|portal/login|.*\\.[a-z0-9]+$).*)'],
 }

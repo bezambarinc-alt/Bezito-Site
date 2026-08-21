@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { getSession } from '@/lib/auth'
+import { getSession, requirePrivileged } from '@/lib/auth'
 import { sql } from '@/lib/db'
 import { removeFromWhitelist } from '@/lib/whitelist'
 import { audit } from '@/lib/audit'
@@ -29,9 +29,9 @@ export async function GET() {
   return NextResponse.json(rows)
 }
 
-// POST — manually add an IP to the whitelist
+// POST — manually add an IP to the whitelist (privileged: viewers blocked)
 export async function POST(req: NextRequest) {
-  const session = await getSession()
+  const session = await requirePrivileged()
   if (!session) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
 
   const schema = z.object({
@@ -58,9 +58,9 @@ export async function POST(req: NextRequest) {
   return NextResponse.json({ ok: true })
 }
 
-// DELETE — revoke an IP
+// DELETE — revoke an IP (privileged: viewers blocked)
 export async function DELETE(req: NextRequest) {
-  const session = await getSession()
+  const session = await requirePrivileged()
   if (!session) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
 
   const parsed = z.object({ ip: z.string().min(3).max(64) }).safeParse(await req.json().catch(() => null))

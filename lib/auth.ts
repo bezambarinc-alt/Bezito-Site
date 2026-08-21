@@ -38,5 +38,17 @@ export async function requireRole(role: string): Promise<boolean> {
   return session?.role === role
 }
 
+/**
+ * Returns the session for any authenticated non-viewer user.
+ * Use on admin write routes that viewers must not access
+ * (user management, pin/whitelist changes).
+ */
+export async function requirePrivileged(): Promise<SessionPayload | null> {
+  const session = await getSession()
+  if (!session) return null
+  if (session.role === 'viewer') return null
+  return session
+}
+
 // Re-export page-gate helpers for backward compatibility with existing imports.
 export { PAGE_GATE_COOKIE, checkPageGate } from './page-gate'

@@ -1,5 +1,3 @@
-'use client'
-
 /** Floating banner shown when Next.js Draft Mode is active (template preview). */
 export default function DraftModeBanner({
   templateName,

@@ -1,7 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { sql } from '@/lib/db'
+import { getGeo } from '@/lib/geo'
+import { checkRateLimit, recordAttempt } from '@/lib/rate-limit'
 
 export async function POST(req: NextRequest) {
+  const { ip } = getGeo(req)
+  const { allowed } = await checkRateLimit(ip)
+  if (!allowed) {
+    return NextResponse.json(
+      { error: 'Too many requests. Please try again later.' },
+      { status: 429, headers: { 'Retry-After': '900' } },
+    )
+  }
+  await recordAttempt(ip, true)
+
   const body = await req.json() as {
     name?: string
     email?: string

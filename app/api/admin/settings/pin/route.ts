@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { getSession } from '@/lib/auth'
+import { requirePrivileged } from '@/lib/auth'
 import { hash } from 'bcryptjs'
 import { sql } from '@/lib/db'
 import { audit } from '@/lib/audit'
 
 export async function PATCH(req: NextRequest) {
-  const session = await getSession()
+  const session = await requirePrivileged()
   if (!session) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
 
   const parsed = z.object({ pin: z.string().min(4).max(20) }).safeParse(await req.json().catch(() => null))

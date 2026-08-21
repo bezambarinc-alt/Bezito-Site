@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { getSession } from '@/lib/auth'
+import { getSession, requirePrivileged } from '@/lib/auth'
 import { hash } from 'bcryptjs'
 import { sql } from '@/lib/db'
 import { audit } from '@/lib/audit'
@@ -16,9 +16,9 @@ export async function GET() {
   return NextResponse.json(users)
 }
 
-// POST — add a new admin user
+// POST — add a new admin user (privileged: viewers blocked)
 export async function POST(req: NextRequest) {
-  const session = await getSession()
+  const session = await requirePrivileged()
   if (!session) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
 
   const schema = z.object({
@@ -48,9 +48,9 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// DELETE — remove a user (cannot delete the last one)
+// DELETE — remove a user (cannot delete the last one; privileged: viewers blocked)
 export async function DELETE(req: NextRequest) {
-  const session = await getSession()
+  const session = await requirePrivileged()
   if (!session) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
 
   const parsed2 = z.object({ id: z.number().int().positive() }).safeParse(await req.json().catch(() => null))
