@@ -61,14 +61,17 @@ export default function CinematicCarousel({ products, category }: Props) {
   const [mobileIndex, setMobileIndex] = useState(0)
   const mobileStackRef  = useRef<HTMLDivElement>(null)
   const mobileSlideRefs = useRef<(HTMLDivElement | null)[]>([])
-  const mobileVideoRefs = useRef<(HTMLVideoElement | null)[]>([])
+  const mobileVideoRefs    = useRef<(HTMLVideoElement | null)[]>([])
+  const mobileTextTopRef   = useRef<HTMLDivElement>(null)
+  const mobileTextBottomRef = useRef<HTMLDivElement>(null)
 
   // Scroll-driven rAF — drives full-height slide transforms directly.
   // Each slide is 100% of the pin. translateY(offset × 75%) means:
   //   offset -1 → -75% (bottom 25% peeks at top)
   //   offset  0 → 0%   (fills entire pin — active)
   //   offset +1 → +75% (top 25% peeks at bottom)
-  // The blur overlays are fixed on the pin; videos scroll beneath them.
+  // Text overlays are also rAF-driven: they exit outward during transition
+  // (top exits up, bottom exits down) and re-enter once content has snapped.
   useEffect(() => {
     const stack = mobileStackRef.current
     if (!stack || total <= 1) return
@@ -90,11 +93,23 @@ export default function CinematicCarousel({ products, category }: Props) {
       mobileSlideRefs.current.forEach((slide, i) => {
         if (!slide) return
         const offset = i - fracIndex
-        // translateY % is relative to the slide's own height (= full pin height)
         slide.style.transform = `translateY(${offset * 75}%)`
-        // Active slide sits on top so prev/next appear behind it at the peek edges
         slide.style.zIndex = i === rounded ? '2' : '1'
       })
+
+      // exitFactor: 0 at rest, 1 at midpoint (content snaps at 1, text is off-screen)
+      const exitFactor = Math.min(1, Math.abs(fracIndex - rounded) * 2)
+      const opacity    = String(Math.max(0, 1 - exitFactor * 1.5))
+      const topText    = mobileTextTopRef.current
+      const botText    = mobileTextBottomRef.current
+      if (topText) {
+        topText.style.transform = `translateY(${-exitFactor * 120}%)`
+        topText.style.opacity   = opacity
+      }
+      if (botText) {
+        botText.style.transform = `translateY(${exitFactor * 120}%)`
+        botText.style.opacity   = opacity
+      }
 
       setMobileIndex(prev => prev !== rounded ? rounded : prev)
     }
@@ -249,8 +264,8 @@ export default function CinematicCarousel({ products, category }: Props) {
           <div className={styles.mobileBlurTop}    aria-hidden />
           <div className={styles.mobileBlurBottom} aria-hidden />
 
-          {/* Identity text — above the blur, slides outward on product change */}
-          <div key={`ident-${mobileIndex}`} className={styles.mobileTextTop}>
+          {/* Identity text — above the blur, exits outward on transition via rAF */}
+          <div ref={mobileTextTopRef} className={styles.mobileTextTop}>
             <Link href={`/jewelry/${category}/${mobileCurrent.slug}`} className={styles.captionLink}>
               <p className={styles.ref}>ref. {mobileCurrent.sku}</p>
               <h2 className={styles.name}>{mobileCurrent.name}</h2>
@@ -261,9 +276,9 @@ export default function CinematicCarousel({ products, category }: Props) {
             </Link>
           </div>
 
-          {/* Lede text — above the blur at bottom, slides outward on product change */}
+          {/* Lede text — above the blur at bottom, exits outward on transition via rAF */}
           {mobileCurrent.specs.lede && (
-            <div key={`lede-${mobileIndex}`} className={styles.mobileTextBottom}>
+            <div ref={mobileTextBottomRef} className={styles.mobileTextBottom}>
               <p className={styles.lede}>{mobileCurrent.specs.lede}</p>
             </div>
           )}

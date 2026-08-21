@@ -250,8 +250,9 @@
   }
 
   /* Text zones — above the blur, crisp.
-     React remounts these (via key prop) when mobileIndex changes,
-     re-triggering the CSS enter animation so text slides in from outside. */
+     Position + opacity are driven entirely by rAF — no CSS animation.
+     rAF exits them outward (top goes up, bottom goes down) during transition,
+     content snaps while off-screen, then they re-enter from outside. */
   .mobileTextTop {
     position: absolute;
     top: 0; left: 0;
@@ -263,7 +264,7 @@
     text-align: center;
     padding: 0 clamp(20px, 5vw, 40px);
     pointer-events: auto;
-    animation: mobileEnterTop 0.4s ease both;
+    will-change: transform, opacity;
   }
 
   .mobileTextBottom {
@@ -277,18 +278,7 @@
     text-align: center;
     padding: 0 clamp(20px, 5vw, 40px);
     pointer-events: none;
-    animation: mobileEnterBottom 0.4s ease both;
-  }
-
-  /* Text enters from the outside edge of each peek zone */
-  @keyframes mobileEnterTop {
-    from { transform: translateY(-20px); opacity: 0; }
-    to   { transform: translateY(0);     opacity: 1; }
-  }
-
-  @keyframes mobileEnterBottom {
-    from { transform: translateY(20px);  opacity: 0; }
-    to   { transform: translateY(0);     opacity: 1; }
+    will-change: transform, opacity;
   }
 
   /* Tighten text sizes for the compact peek zones */
