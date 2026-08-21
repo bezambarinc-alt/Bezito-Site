@@ -1,49 +1,27 @@
-/* ArchiveFilterRow — luxury typographic filter header.
-   Section label left · category tabs center–right · filtered count far right. */
+/* ArchiveFilterRow — centered editorial filter bar on light background.
+   Sits between the editorial section and the dark carousel stage. */
 
 .row {
+  width: 100%;
   display: flex;
   align-items: center;
-  padding: 26px clamp(20px, 4vw, 60px) 22px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-  gap: 40px;
+  justify-content: center;
+  padding: 40px clamp(20px, 4vw, 60px) 36px;
+  background: var(--ba-cream, #faf9f7);
+  gap: 4px;
 }
 
-/* "The Archive" — subdued section label */
-.label {
-  font-family: var(--ba-font-sans);
-  font-size: 10px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  color: rgba(255, 255, 255, 0.25);
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-/* Tab row — horizontally scrollable on narrow viewports */
-.tabs {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  gap: 2px;
-}
-.tabs::-webkit-scrollbar { display: none; }
-
-/* Individual category tab */
+/* Category tab — spaced caps, dark muted text */
 .tab {
   font-family: var(--ba-font-sans);
   font-size: 10px;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: rgba(255, 255, 255, 0.32);
+  letter-spacing: 0.2em;
+  color: rgba(0, 0, 0, 0.28);
   background: none;
   border: none;
-  padding: 8px 14px;
+  padding: 8px 18px;
   cursor: pointer;
   white-space: nowrap;
   position: relative;
@@ -55,64 +33,47 @@
   content: '';
   position: absolute;
   bottom: 0;
-  left: 14px;
-  right: 14px;
+  left: 18px;
+  right: 18px;
   height: 1px;
-  background: var(--ba-gold-warm, #c9b896);
+  background: var(--ba-gold, #95826b);
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 0.25s ease;
 }
 
 .tab:hover {
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(0, 0, 0, 0.65);
 }
 
 .tabActive {
-  color: var(--ba-gold-warm, #c9b896);
+  color: var(--ba-gold, #95826b);
 }
 .tabActive::after {
   transform: scaleX(1);
 }
 
-/* Filtered count badge — far right, only when filtering */
-.count {
-  font-family: var(--ba-font-sans);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.2);
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
 /* ── Mobile ───────────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .row {
-    padding: 18px 16px 14px;
+    padding: 20px 0 16px;
+    overflow-x: auto;
+    justify-content: flex-start;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     gap: 0;
   }
-
-  .label {
-    display: none;
-  }
-
-  .count {
-    display: none;
-  }
-
-  .tabs {
-    gap: 0;
-  }
+  .row::-webkit-scrollbar { display: none; }
 
   .tab {
     font-size: 9px;
-    padding: 6px 10px;
-    letter-spacing: 0.14em;
+    padding: 6px 12px;
+    flex-shrink: 0;
+    letter-spacing: 0.16em;
   }
 
   .tab::after {
-    left: 10px;
-    right: 10px;
+    left: 12px;
+    right: 12px;
   }
 }
