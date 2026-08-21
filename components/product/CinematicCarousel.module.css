@@ -204,16 +204,17 @@
     background: #000;
   }
 
-  /* Full-height slides — each fills the entire pin.
-     translateY(offset × 75%) gives the 25/50/25 peek split:
-       offset -1 = -75% → bottom 25% visible at the top peek
-       offset  0 =   0% → fills entire pin (active)
-       offset +1 = +75% → top 25% visible at the bottom peek
-     Videos scroll behind the fixed blur overlays. No per-slide blur. */
+  /* 50%-height slides — each exactly fills one zone of the 25/50/25 split.
+     translateY(calc(offset × 100% + 50%)) positions them:
+       offset -1 → translateY(-50%)  → top 25% of pin (prev peek)
+       offset  0 → translateY(+50%)  → middle 50% of pin (active)
+       offset +1 → translateY(+150%) → bottom 25% of pin (next peek)
+     Slides never overlap so no z-index manipulation needed. */
   .mobileSlide {
     position: absolute;
-    inset: 0;
-    will-change: transform, z-index;
+    left: 0; right: 0; top: 0;
+    height: 50%;
+    will-change: transform;
   }
 
   .mobileSlide video,

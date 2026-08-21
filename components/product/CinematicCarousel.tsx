@@ -65,13 +65,13 @@ export default function CinematicCarousel({ products, category }: Props) {
   const mobileTextTopRef   = useRef<HTMLDivElement>(null)
   const mobileTextBottomRef = useRef<HTMLDivElement>(null)
 
-  // Scroll-driven rAF — drives full-height slide transforms directly.
-  // Each slide is 100% of the pin. translateY(offset × 75%) means:
-  //   offset -1 → -75% (bottom 25% peeks at top)
-  //   offset  0 → 0%   (fills entire pin — active)
-  //   offset +1 → +75% (top 25% peeks at bottom)
-  // Text overlays are also rAF-driven: they exit outward during transition
-  // (top exits up, bottom exits down) and re-enter once content has snapped.
+  // Scroll-driven rAF — drives 50%-height slide transforms directly.
+  // Each slide is 50% of the pin height. translateY(calc(offset×100% + 50%)) means:
+  //   offset -1 → translateY(-50%)  → slide occupies -25% to +25% of pin → top 25% peeks
+  //   offset  0 → translateY(+50%)  → slide occupies +25% to +75% of pin → active zone
+  //   offset +1 → translateY(+150%) → slide occupies +75% to +125% of pin → bottom 25% peeks
+  // Slides never overlap → no z-index tricks needed. Blur overlays sit at top/bottom 25%.
+  // Text overlays are also rAF-driven: they exit outward during transition.
   useEffect(() => {
     const stack = mobileStackRef.current
     if (!stack || total <= 1) return
@@ -93,8 +93,7 @@ export default function CinematicCarousel({ products, category }: Props) {
       mobileSlideRefs.current.forEach((slide, i) => {
         if (!slide) return
         const offset = i - fracIndex
-        slide.style.transform = `translateY(${offset * 75}%)`
-        slide.style.zIndex = i === rounded ? '2' : '1'
+        slide.style.transform = `translateY(calc(${offset * 100}% + 50%))`
       })
 
       // exitFactor: 0 at rest, 1 at midpoint (content snaps at 1, text is off-screen)
