@@ -1,8 +1,1 @@
-/* ArchiveClient — filter bar above the carousel */
-
-.filterBar {
-  background: #0a0a0a;
-  display: flex;
-  justify-content: center;
-  padding: 32px 2rem 24px;
-}
+/* ArchiveClient — no local styles; filter bar moved into ArchiveCarousel header */

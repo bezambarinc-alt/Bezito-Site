@@ -2,14 +2,25 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import type { ArchiveEntry } from '@/lib/data/archive-constants'
+import ArchiveFilterPill from './ArchiveFilterPill'
 import styles from './ArchiveCarousel.module.css'
 
 interface Props {
-  entries: ArchiveEntry[]
-  onOpen:  (slug: string) => void
+  entries:         ArchiveEntry[]
+  onOpen:          (slug: string) => void
+  // Filter props — rendered in carousel header
+  cat:             string
+  shape:           string
+  color:           string
+  filteredCount:   number
+  totalCount:      number
+  onFilterChange:  (cat: string, shape: string, color: string) => void
 }
 
-export default function ArchiveCarousel({ entries, onOpen }: Props) {
+export default function ArchiveCarousel({
+  entries, onOpen,
+  cat, shape, color, filteredCount, totalCount, onFilterChange,
+}: Props) {
   const total = entries.length
 
   // ── Desktop state ──────────────────────────────────────────────────────────
@@ -114,6 +125,17 @@ export default function ArchiveCarousel({ entries, onOpen }: Props) {
     <>
       {/* ── Desktop horizontal filmstrip (hidden on mobile) ─────────────── */}
       <div className={styles.section}>
+        {/* Carousel header: section label left, filter pill right */}
+        <div className={styles.carouselHeader}>
+          <span className={styles.sectionLabel}>The Archive</span>
+          <ArchiveFilterPill
+            cat={cat} shape={shape} color={color}
+            filteredCount={filteredCount} totalCount={totalCount}
+            onFilterChange={onFilterChange}
+            noFloat
+          />
+        </div>
+
         <section className={styles.stage}>
           <div className={styles.track}>
             {entries.map((e, i) => {

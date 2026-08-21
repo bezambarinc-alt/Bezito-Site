@@ -29,19 +29,23 @@ interface Props {
   filteredCount:  number
   totalCount:     number
   onFilterChange: (cat: string, shape: string, color: string) => void
+  /** When true, disables floating behaviour — renders inline only (e.g. carousel header) */
+  noFloat?:       boolean
 }
 
 export default function ArchiveFilterPill({
   cat, shape, color,
   filteredCount, totalCount,
   onFilterChange,
+  noFloat = false,
 }: Props) {
   const [open,     setOpen]     = useState(false)
   const [floating, setFloating] = useState(false)
   const anchorRef = useRef<HTMLDivElement>(null)
 
-  // Floating behaviour — mirrors Astro IntersectionObserver on archivePillAnchor
+  // Floating behaviour — skipped when noFloat is true
   useEffect(() => {
+    if (noFloat) return
     const el = anchorRef.current
     if (!el) return
     const io = new IntersectionObserver(
@@ -50,7 +54,7 @@ export default function ArchiveFilterPill({
     )
     io.observe(el)
     return () => io.disconnect()
-  }, [])
+  }, [noFloat])
 
   // Close on ESC + lock body scroll while the drawer is open
   useEffect(() => {
@@ -86,13 +90,20 @@ export default function ArchiveFilterPill({
 
   return (
     <>
-      {/* ── Inline anchor — pill starts here, floats to bottom on scroll ── */}
-      <div ref={anchorRef} className={styles.anchor}>
-        {!floating && <Pill />}
-      </div>
+      {noFloat ? (
+        /* ── Static (no float) — render pill directly with no anchor wrapper ── */
+        <Pill />
+      ) : (
+        <>
+          {/* ── Inline anchor — pill starts here, floats to bottom on scroll ── */}
+          <div ref={anchorRef} className={styles.anchor}>
+            {!floating && <Pill />}
+          </div>
 
-      {/* ── Fixed floating pill (appears when anchor scrolls out of view) ── */}
-      {floating && <Pill fixed />}
+          {/* ── Fixed floating pill (appears when anchor scrolls out of view) ── */}
+          {floating && <Pill fixed />}
+        </>
+      )}
 
       {/* ── Overlay ── */}
       <div

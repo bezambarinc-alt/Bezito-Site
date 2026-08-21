@@ -11,10 +11,8 @@
 import { useCallback, useMemo } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import type { ArchiveEntry } from '@/lib/data/archive-constants'
-import ArchiveFilterPill from './ArchiveFilterPill'
 import ArchiveCarousel from './ArchiveCarousel'
 import ArchiveModal from './ArchiveModal'
-import styles from './ArchiveClient.module.css'
 
 interface Props {
   entries: ArchiveEntry[]
@@ -84,23 +82,17 @@ export default function ArchiveClient({ entries }: Props) {
 
   return (
     <>
-      {/* Filter pill — dark bar above carousel */}
-      <div className={styles.filterBar}>
-        <ArchiveFilterPill
-          cat={cat}
-          shape={shape}
-          color={color}
-          filteredCount={filtered.length}
-          totalCount={entries.length}
-          onFilterChange={handleFilterChange}
-        />
-      </div>
-
-      {/* Carousel — key resets index on filter change */}
+      {/* Carousel — filter pill is rendered inside carousel header; key resets index on filter change */}
       <ArchiveCarousel
         key={`${cat}|${shape}|${color}`}
         entries={filtered}
         onOpen={openPiece}
+        cat={cat}
+        shape={shape}
+        color={color}
+        filteredCount={filtered.length}
+        totalCount={entries.length}
+        onFilterChange={handleFilterChange}
       />
 
       <ArchiveModal entry={openEntry} onClose={closePiece} />
