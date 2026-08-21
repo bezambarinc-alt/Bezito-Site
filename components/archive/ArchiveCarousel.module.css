@@ -10,7 +10,7 @@
   width: 100%;
   background: #0a0a0a;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
 }
 
 /* Stage — matches CinematicCarousel exactly */
