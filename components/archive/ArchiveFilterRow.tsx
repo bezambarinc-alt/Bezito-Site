@@ -7,15 +7,10 @@ interface Props {
   cat:            string
   shape:          string
   color:          string
-  filteredCount:  number
-  totalCount:     number
   onFilterChange: (cat: string, shape: string, color: string) => void
 }
 
-export default function ArchiveFilterRow({
-  cat, shape, color,
-  onFilterChange,
-}: Props) {
+export default function ArchiveFilterRow({ cat, shape, color, onFilterChange }: Props) {
   const setCat = (v: string) => onFilterChange(v, shape, color)
 
   return (

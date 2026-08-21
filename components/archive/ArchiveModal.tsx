@@ -42,7 +42,8 @@ export default function ArchiveModal({ entry, onClose }: Props) {
       vid.play().catch(() => {})
     } else {
       vid.pause()
-      vid.src = ''
+      vid.removeAttribute('src')
+      vid.load()
     }
   }, [open, entry?.mp4Url])
 

@@ -10,3 +10,9 @@
 next-env.d.ts
 *.log
 dist/
+
+# Playwright browser profile data
+undefined:/
+.lighthouse-*/
+lighthouse.*/
+*.pma

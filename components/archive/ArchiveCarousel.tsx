@@ -6,20 +6,17 @@ import ArchiveFilterRow from './ArchiveFilterRow'
 import styles from './ArchiveCarousel.module.css'
 
 interface Props {
-  entries:         ArchiveEntry[]
-  onOpen:          (slug: string) => void
-  // Filter props — rendered in carousel header
-  cat:             string
-  shape:           string
-  color:           string
-  filteredCount:   number
-  totalCount:      number
-  onFilterChange:  (cat: string, shape: string, color: string) => void
+  entries:        ArchiveEntry[]
+  onOpen:         (slug: string) => void
+  cat:            string
+  shape:          string
+  color:          string
+  onFilterChange: (cat: string, shape: string, color: string) => void
 }
 
 export default function ArchiveCarousel({
   entries, onOpen,
-  cat, shape, color, filteredCount, totalCount, onFilterChange,
+  cat, shape, color, onFilterChange,
 }: Props) {
   const total = entries.length
 
@@ -42,6 +39,12 @@ export default function ArchiveCarousel({
     [index, total],
   )
 
+  // Reset carousel position when filter changes (avoids full remount via key prop)
+  useEffect(() => {
+    setIndex(0)
+    setMobileIndex(0)
+  }, [cat, shape, color])
+
   // Play active + neighbours so blurred flanks show live frames
   useEffect(() => {
     videoRefs.current.forEach((v, i) => {
@@ -53,19 +56,18 @@ export default function ArchiveCarousel({
 
   // ── Mobile scroll-lock state ───────────────────────────────────────────────
   const [mobileIndex, setMobileIndex] = useState(0)
-  const mobileStackRef      = useRef<HTMLDivElement>(null)
-  const mobileSlideRefs     = useRef<(HTMLDivElement | null)[]>([])
-  const mobileVideoRefs     = useRef<(HTMLVideoElement | null)[]>([])
-  const mobileTextTopRef    = useRef<HTMLDivElement>(null)
+  const mobileStackRef   = useRef<HTMLDivElement>(null)
+  const mobileSlideRefs  = useRef<(HTMLDivElement | null)[]>([])
+  const mobileVideoRefs  = useRef<(HTMLVideoElement | null)[]>([])
+  const mobileTextTopRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const stack = mobileStackRef.current
     if (!stack || total <= 1) return
 
-    const mq = window.matchMedia('(max-width: 768px)')
-    if (!mq.matches) return
-
+    // No matchMedia bailout — scrollRange check handles desktop (stack display:none → height 0)
     let ticking = false
+    let rafId   = 0
 
     const update = () => {
       ticking = false
@@ -97,12 +99,15 @@ export default function ArchiveCarousel({
     }
 
     const onScroll = () => {
-      if (!ticking) { ticking = true; requestAnimationFrame(update) }
+      if (!ticking) { ticking = true; rafId = requestAnimationFrame(update) }
     }
 
-    requestAnimationFrame(update)
+    rafId = requestAnimationFrame(update)
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      cancelAnimationFrame(rafId)
+    }
   }, [total])
 
   // Play/pause mobile videos on index change
@@ -127,7 +132,6 @@ export default function ArchiveCarousel({
       <div className={styles.section}>
         <ArchiveFilterRow
           cat={cat} shape={shape} color={color}
-          filteredCount={filteredCount} totalCount={totalCount}
           onFilterChange={onFilterChange}
         />
 

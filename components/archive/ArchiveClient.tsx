@@ -93,16 +93,12 @@ export default function ArchiveClient({
 
   return (
     <>
-      {/* Carousel — filter pill is rendered inside carousel header; key resets index on filter change */}
       <ArchiveCarousel
-        key={`${cat}|${shape}|${color}`}
         entries={filtered}
         onOpen={openPiece}
         cat={cat}
         shape={shape}
         color={color}
-        filteredCount={filtered.length}
-        totalCount={entries.length}
         onFilterChange={handleFilterChange}
       />
 

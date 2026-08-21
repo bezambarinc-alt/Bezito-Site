@@ -8,9 +8,9 @@
 import 'server-only'
 import { sql } from '@/lib/db'
 
-// Re-export everything from constants so server code needs only one import.
-export type { ArchiveEntry, CardSize } from './archive-constants'
-export { CARD_SIZE_CYCLE, CATEGORY_FILTERS, SHAPE_FILTERS, COLOR_FILTERS } from './archive-constants'
+// Re-export from constants so server code needs only one import.
+export type { ArchiveEntry } from './archive-constants'
+export { CATEGORY_FILTERS } from './archive-constants'
 
 // ── Internal row shape from Neon ──────────────────────────────────────────────
 
