@@ -6,15 +6,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Gradient bridge: white (from editorial) → cream centre → dark (into carousel stage) */
-  padding: 52px clamp(20px, 4vw, 60px) 60px;
-  background: linear-gradient(
-    to bottom,
-    #ffffff 0%,
-    var(--ba-cream, #faf9f7) 25%,
-    var(--ba-cream, #faf9f7) 72%,
-    #0a0a0a 100%
-  );
+  padding: 40px clamp(20px, 4vw, 60px) 36px;
+  background: var(--ba-cream, #faf9f7);
   gap: 4px;
 }
 
