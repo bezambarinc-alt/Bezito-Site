@@ -17,7 +17,7 @@ import { useCallback, useMemo } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import type { ArchiveEntry } from '@/lib/data/archive-constants'
 import ArchiveFilterPill from './ArchiveFilterPill'
-import ArchiveGrid from './ArchiveGrid'
+import ArchiveCarousel from './ArchiveCarousel'
 import ArchiveModal from './ArchiveModal'
 import styles from './ArchiveClient.module.css'
 
@@ -116,10 +116,12 @@ export default function ArchiveClient({ entries }: Props) {
         />
       </section>
 
-      {/* ── Grid ── */}
-      <div className={styles.gridWrap}>
-        <ArchiveGrid entries={filtered} onOpen={openPiece} />
-      </div>
+      {/* ── Carousel — key resets index when filters change ── */}
+      <ArchiveCarousel
+        key={`${cat}|${shape}|${color}`}
+        entries={filtered}
+        onOpen={openPiece}
+      />
 
       <ArchiveModal entry={openEntry} onClose={closePiece} />
     </div>
