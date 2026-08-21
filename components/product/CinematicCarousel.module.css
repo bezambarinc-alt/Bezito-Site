@@ -184,7 +184,7 @@
    MOBILE SCROLL-LOCK VERTICAL STACK
    ═══════════════════════════════════════════════════════════════ */
 
-/* Hidden on desktop; height set inline (total × 100vh) */
+/* Hidden on desktop; height set inline (total × 100dvh) */
 .mobileStack { display: none; }
 
 @media (max-width: 768px) {
@@ -194,41 +194,51 @@
     background: #000;
   }
 
-  /* Sticky viewport — stays pinned while user scrolls through the stack */
+  /* Sticky pin — sits below the fixed header, fills remaining viewport.
+     Uses dvh (dynamic viewport height) so mobile browser chrome is excluded. */
   .mobilePin {
     position: sticky;
-    top: 0;
-    height: 100vh;
+    top: var(--ba-header-h, 64px);
+    height: calc(100dvh - var(--ba-header-h, 64px));
     overflow: hidden;
     background: #000;
   }
 
-  /* Each slide: 50vh tall, positioned by rAF-driven translateY.
-     Starts at translateY(25vh) (active position) — JS overrides immediately. */
+  /* Each slide: 50% of pin height (= active zone).
+     Starts hidden (opacity 0) — rAF reveals and positions on first frame. */
   .mobileSlide {
     position: absolute;
     top: 0; left: 0;
     width: 100%;
-    height: 50vh;
-    will-change: transform, opacity, filter;
-    /* No transition on transform — scroll drives it frame-by-frame.
-       Smooth crossfade on opacity/filter when product index snaps. */
+    height: 50%;
+    will-change: transform, opacity, z-index;
+    opacity: 0;
+    /* No transition on transform — scroll drives it frame-by-frame. */
+  }
+
+  /* Media wrapper — blur + dim live here so text overlays stay crisp */
+  .mobileMedia {
+    position: absolute;
+    inset: 0;
+    will-change: opacity, filter;
     transition: opacity 0.3s ease, filter 0.3s ease;
   }
 
-  .mobileSlide video,
-  .mobileSlide img {
+  .mobileMedia video,
+  .mobileMedia img {
     width: 100%; height: 100%;
     object-fit: cover;
     object-position: center;
     display: block;
   }
 
-  /* Top peek zone (0–25vh) — identity + CTA over blurred prev */
-  .mobileTopOverlay {
+  /* Identity text — bottom half of slide.
+     Visible when slide is in prev position (bottom peeks at top of viewport).
+     Scrolls off the top naturally as the slide advances. */
+  .mobileSlideIdent {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 25vh;
+    bottom: 0; left: 0;
+    width: 100%; height: 50%;
     z-index: 4;
     display: flex;
     align-items: center;
@@ -236,13 +246,27 @@
     text-align: center;
     padding: 0 clamp(20px, 5vw, 40px);
     pointer-events: auto;
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
 
-  /* Bottom peek zone (75–100vh) — editorial lede over blurred next */
-  .mobileBottomOverlay {
+  /* Gradient scrim behind identity text for legibility */
+  .mobileSlideIdent::before {
+    content: '';
     position: absolute;
-    bottom: 0; left: 0;
-    width: 100%; height: 25vh;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+    z-index: -1;
+  }
+
+  /* Lede text — top half of slide.
+     Visible when slide is in next position (top peeks at bottom of viewport).
+     Rises upward and passes behind the active slide's video as the next
+     slide transitions to active (active slide z-index: 2 covers it). */
+  .mobileSlideLede {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 50%;
     z-index: 4;
     display: flex;
     align-items: center;
@@ -250,12 +274,23 @@
     text-align: center;
     padding: 0 clamp(20px, 5vw, 40px);
     pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
 
-  /* Tighten text sizes for the narrow peek zones on mobile */
-  .mobileTopOverlay .name  { font-size: clamp(0.95rem, 4vw, 1.2rem); }
-  .mobileTopOverlay .sub   { font-size: 0.78rem; }
-  .mobileTopOverlay .ref   { font-size: 10px; }
-  .mobileTopOverlay .cta   { font-size: 10px; }
-  .mobileBottomOverlay .lede { font-size: clamp(0.78rem, 3.5vw, 0.9rem); }
+  /* Gradient scrim behind lede text for legibility */
+  .mobileSlideLede::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+    z-index: -1;
+  }
+
+  /* Tighten text sizes for the compact peek zones on mobile */
+  .mobileSlideIdent .name { font-size: clamp(0.95rem, 4vw, 1.2rem); }
+  .mobileSlideIdent .sub  { font-size: 0.78rem; }
+  .mobileSlideIdent .ref  { font-size: 10px; }
+  .mobileSlideIdent .cta  { font-size: 10px; }
+  .mobileSlideLede  .lede { font-size: clamp(0.78rem, 3.5vw, 0.9rem); }
 }
