@@ -194,8 +194,8 @@
     background: #000;
   }
 
-  /* Sticky pin — sits below the fixed header, fills remaining viewport.
-     Uses dvh (dynamic viewport height) so mobile browser chrome is excluded. */
+  /* Sticky pin — below fixed header, fills remaining viewport.
+     dvh (dynamic viewport height) excludes mobile browser chrome. */
   .mobilePin {
     position: sticky;
     top: var(--ba-header-h, 64px);
@@ -204,41 +204,58 @@
     background: #000;
   }
 
-  /* Each slide: 50% of pin height (= active zone).
-     Starts hidden (opacity 0) — rAF reveals and positions on first frame. */
+  /* Full-height slides — each fills the entire pin.
+     translateY(offset × 75%) gives the 25/50/25 peek split:
+       offset -1 = -75% → bottom 25% visible at the top peek
+       offset  0 =   0% → fills entire pin (active)
+       offset +1 = +75% → top 25% visible at the bottom peek
+     Videos scroll behind the fixed blur overlays. No per-slide blur. */
   .mobileSlide {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 50%;
-    will-change: transform, opacity, z-index;
-    opacity: 0;
-    /* No transition on transform — scroll drives it frame-by-frame. */
-  }
-
-  /* Media wrapper — blur + dim live here so text overlays stay crisp */
-  .mobileMedia {
-    position: absolute;
     inset: 0;
-    will-change: opacity, filter;
-    transition: opacity 0.3s ease, filter 0.3s ease;
+    will-change: transform, z-index;
   }
 
-  .mobileMedia video,
-  .mobileMedia img {
+  .mobileSlide video,
+  .mobileSlide img {
     width: 100%; height: 100%;
     object-fit: cover;
     object-position: center;
     display: block;
   }
 
-  /* Identity text — bottom half of slide.
-     Visible when slide is in prev position (bottom peeks at top of viewport).
-     Scrolls off the top naturally as the slide advances. */
-  .mobileSlideIdent {
+  /* Frosted glass overlays — fixed to the pin, cover top/bottom 25%.
+     backdrop-filter blurs whatever video is scrolling behind them.
+     Text layers sit above at z-index 4. */
+  .mobileBlurTop,
+  .mobileBlurBottom {
     position: absolute;
-    bottom: 0; left: 0;
-    width: 100%; height: 50%;
+    left: 0;
+    width: 100%;
+    height: 25%;
+    z-index: 3;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    pointer-events: none;
+  }
+
+  .mobileBlurTop {
+    top: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.05) 100%);
+  }
+
+  .mobileBlurBottom {
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.05) 100%);
+  }
+
+  /* Text zones — above the blur, crisp.
+     React remounts these (via key prop) when mobileIndex changes,
+     re-triggering the CSS enter animation so text slides in from outside. */
+  .mobileTextTop {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 25%;
     z-index: 4;
     display: flex;
     align-items: center;
@@ -246,27 +263,13 @@
     text-align: center;
     padding: 0 clamp(20px, 5vw, 40px);
     pointer-events: auto;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    animation: mobileEnterTop 0.4s ease both;
   }
 
-  /* Gradient scrim behind identity text for legibility */
-  .mobileSlideIdent::before {
-    content: '';
+  .mobileTextBottom {
     position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
-    z-index: -1;
-  }
-
-  /* Lede text — top half of slide.
-     Visible when slide is in next position (top peeks at bottom of viewport).
-     Rises upward and passes behind the active slide's video as the next
-     slide transitions to active (active slide z-index: 2 covers it). */
-  .mobileSlideLede {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 50%;
+    bottom: 0; left: 0;
+    width: 100%; height: 25%;
     z-index: 4;
     display: flex;
     align-items: center;
@@ -274,23 +277,24 @@
     text-align: center;
     padding: 0 clamp(20px, 5vw, 40px);
     pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    animation: mobileEnterBottom 0.4s ease both;
   }
 
-  /* Gradient scrim behind lede text for legibility */
-  .mobileSlideLede::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
-    z-index: -1;
+  /* Text enters from the outside edge of each peek zone */
+  @keyframes mobileEnterTop {
+    from { transform: translateY(-20px); opacity: 0; }
+    to   { transform: translateY(0);     opacity: 1; }
   }
 
-  /* Tighten text sizes for the compact peek zones on mobile */
-  .mobileSlideIdent .name { font-size: clamp(0.95rem, 4vw, 1.2rem); }
-  .mobileSlideIdent .sub  { font-size: 0.78rem; }
-  .mobileSlideIdent .ref  { font-size: 10px; }
-  .mobileSlideIdent .cta  { font-size: 10px; }
-  .mobileSlideLede  .lede { font-size: clamp(0.78rem, 3.5vw, 0.9rem); }
+  @keyframes mobileEnterBottom {
+    from { transform: translateY(20px);  opacity: 0; }
+    to   { transform: translateY(0);     opacity: 1; }
+  }
+
+  /* Tighten text sizes for the compact peek zones */
+  .mobileTextTop .name { font-size: clamp(0.95rem, 4vw, 1.2rem); }
+  .mobileTextTop .sub  { font-size: 0.78rem; }
+  .mobileTextTop .ref  { font-size: 10px; }
+  .mobileTextTop .cta  { font-size: 10px; }
+  .mobileTextBottom .lede { font-size: clamp(0.78rem, 3.5vw, 0.9rem); }
 }

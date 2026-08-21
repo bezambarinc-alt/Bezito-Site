@@ -60,15 +60,15 @@ export default function CinematicCarousel({ products, category }: Props) {
   // ── Mobile scroll-lock state ───────────────────────────────────────────────
   const [mobileIndex, setMobileIndex] = useState(0)
   const mobileStackRef  = useRef<HTMLDivElement>(null)
-  const mobilePinRef    = useRef<HTMLDivElement>(null)
   const mobileSlideRefs = useRef<(HTMLDivElement | null)[]>([])
-  const mobileMediaRefs = useRef<(HTMLDivElement | null)[]>([])
-  const mobileIdentRefs = useRef<(HTMLDivElement | null)[]>([])
-  const mobileLedeRefs  = useRef<(HTMLDivElement | null)[]>([])
   const mobileVideoRefs = useRef<(HTMLVideoElement | null)[]>([])
 
-  // Scroll-driven rAF loop — drives slide transforms directly, avoiding
-  // React re-renders per frame. Only activates on mobile viewports.
+  // Scroll-driven rAF — drives full-height slide transforms directly.
+  // Each slide is 100% of the pin. translateY(offset × 75%) means:
+  //   offset -1 → -75% (bottom 25% peeks at top)
+  //   offset  0 → 0%   (fills entire pin — active)
+  //   offset +1 → +75% (top 25% peeks at bottom)
+  // The blur overlays are fixed on the pin; videos scroll beneath them.
   useEffect(() => {
     const stack = mobileStackRef.current
     if (!stack || total <= 1) return
@@ -80,13 +80,7 @@ export default function CinematicCarousel({ products, category }: Props) {
 
     const update = () => {
       ticking = false
-      const pin = mobilePinRef.current
-      if (!pin) return
       const rect        = stack.getBoundingClientRect()
-      // Pin's actual usable height in px (100dvh minus header offset)
-      const pinH        = pin.clientHeight
-      const peekH       = pinH * 0.25   // 25% of pin = one peek zone
-      const activeH     = pinH * 0.5    // 50% of pin = active zone
       const scrollRange = rect.height - window.innerHeight
       if (scrollRange <= 0) return
       const progress    = Math.max(0, Math.min(1, -rect.top / scrollRange))
@@ -96,39 +90,12 @@ export default function CinematicCarousel({ products, category }: Props) {
       mobileSlideRefs.current.forEach((slide, i) => {
         if (!slide) return
         const offset = i - fracIndex
-
-        // Position slide — peekH offsets it so active lands in middle zone
-        slide.style.transform = `translateY(${peekH + offset * activeH}px)`
-
-        // Active slide on top so next slide's lede naturally rises behind it
+        // translateY % is relative to the slide's own height (= full pin height)
+        slide.style.transform = `translateY(${offset * 75}%)`
+        // Active slide sits on top so prev/next appear behind it at the peek edges
         slide.style.zIndex = i === rounded ? '2' : '1'
-        // Reveal visible slides (opacity starts 0 in CSS)
-        slide.style.opacity = Math.abs(offset) < 1.5 ? '1' : '0'
-
-        // Blur + dim only the media layer — text stays crisp
-        const media = mobileMediaRefs.current[i]
-        if (media) {
-          const absOff = Math.abs(offset)
-          media.style.filter  = absOff < 0.5 ? 'none' : 'blur(18px)'
-          media.style.opacity = absOff < 0.5 ? '1' : absOff < 1.5 ? '0.5' : '0'
-        }
-
-        // Identity text (bottom of slide) — visible when this slide is prev
-        // fades in as offset moves toward -1, fades out as it approaches 0
-        const ident = mobileIdentRefs.current[i]
-        if (ident) {
-          ident.style.opacity = String(Math.max(0, Math.min(1, (-offset - 0.25) * 2)))
-        }
-
-        // Lede text (top of slide) — visible when this slide is next
-        // rises up from bottom peek zone and goes behind the active video
-        const lede = mobileLedeRefs.current[i]
-        if (lede) {
-          lede.style.opacity = String(Math.max(0, Math.min(1, (offset - 0.25) * 2)))
-        }
       })
 
-      // Trigger React re-render only when displayed product changes (for video play/pause)
       setMobileIndex(prev => prev !== rounded ? rounded : prev)
     }
 
@@ -152,7 +119,8 @@ export default function CinematicCarousel({ products, category }: Props) {
 
   if (total === 0) return null
 
-  const current = products[index]
+  const current       = products[index]
+  const mobileCurrent = products[mobileIndex]
 
   const handleManual = (next: number) => { resetTimer(); go(next) }
 
@@ -249,7 +217,9 @@ export default function CinematicCarousel({ products, category }: Props) {
         className={styles.mobileStack}
         style={{ height: `calc(${total} * 100dvh)` }}
       >
-        <div ref={mobilePinRef} className={styles.mobilePin}>
+        <div className={styles.mobilePin}>
+
+          {/* Full-height video slides — scroll behind the blur overlays */}
           {products.map((p, i) => {
             const video = p.specs.heroVideoUrl
             const image = p.specs.heroPosterUrl
@@ -259,50 +229,44 @@ export default function CinematicCarousel({ products, category }: Props) {
                 ref={(el) => { mobileSlideRefs.current[i] = el }}
                 className={styles.mobileSlide}
               >
-                {/* Media layer — blur/dim applied here so text stays crisp */}
-                <div
-                  ref={(el) => { mobileMediaRefs.current[i] = el }}
-                  className={styles.mobileMedia}
-                >
-                  {video ? (
-                    <video
-                      ref={(el) => { mobileVideoRefs.current[i] = el }}
-                      src={video}
-                      poster={image ?? undefined}
-                      muted loop playsInline
-                      preload={i === 0 ? 'auto' : 'none'}
-                    />
-                  ) : image ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={image} alt={p.name} />
-                  ) : null}
-                </div>
-
-                {/* Identity (bottom of slide) — scrolls off the top as prev */}
-                <div
-                  ref={(el) => { mobileIdentRefs.current[i] = el }}
-                  className={styles.mobileSlideIdent}
-                >
-                  <Link href={`/jewelry/${category}/${p.slug}`} className={styles.captionLink}>
-                    <p className={styles.ref}>ref. {p.sku}</p>
-                    <h2 className={styles.name}>{p.name}</h2>
-                    {p.specs.subtitle && <p className={styles.sub}>{p.specs.subtitle}</p>}
-                    <span className={styles.cta}>View Piece →</span>
-                  </Link>
-                </div>
-
-                {/* Lede (top of slide) — rises from bottom peek, goes behind active video */}
-                {p.specs.lede && (
-                  <div
-                    ref={(el) => { mobileLedeRefs.current[i] = el }}
-                    className={styles.mobileSlideLede}
-                  >
-                    <p className={styles.lede}>{p.specs.lede}</p>
-                  </div>
-                )}
+                {video ? (
+                  <video
+                    ref={(el) => { mobileVideoRefs.current[i] = el }}
+                    src={video}
+                    poster={image ?? undefined}
+                    muted loop playsInline
+                    preload={i === 0 ? 'auto' : 'none'}
+                  />
+                ) : image ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={image} alt={p.name} />
+                ) : null}
               </div>
             )
           })}
+
+          {/* Frosted glass overlays — fixed to pin, videos scroll beneath them */}
+          <div className={styles.mobileBlurTop}    aria-hidden />
+          <div className={styles.mobileBlurBottom} aria-hidden />
+
+          {/* Identity text — above the blur, slides outward on product change */}
+          <div key={`ident-${mobileIndex}`} className={styles.mobileTextTop}>
+            <Link href={`/jewelry/${category}/${mobileCurrent.slug}`} className={styles.captionLink}>
+              <p className={styles.ref}>ref. {mobileCurrent.sku}</p>
+              <h2 className={styles.name}>{mobileCurrent.name}</h2>
+              {mobileCurrent.specs.subtitle && (
+                <p className={styles.sub}>{mobileCurrent.specs.subtitle}</p>
+              )}
+              <span className={styles.cta}>View Piece →</span>
+            </Link>
+          </div>
+
+          {/* Lede text — above the blur at bottom, slides outward on product change */}
+          {mobileCurrent.specs.lede && (
+            <div key={`lede-${mobileIndex}`} className={styles.mobileTextBottom}>
+              <p className={styles.lede}>{mobileCurrent.specs.lede}</p>
+            </div>
+          )}
         </div>
       </div>
     </>
