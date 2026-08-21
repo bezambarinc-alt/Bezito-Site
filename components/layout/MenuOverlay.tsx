@@ -55,8 +55,8 @@ export default function MenuOverlay({ categories = [] }: Props) {
     {
       id: 'journal',
       items: [
-        { kind: 'link', label: 'The Blog',  href: '/journal' },
-        { kind: 'link', label: 'Instagram', href: 'https://www.instagram.com/bezambarjewelry/' },
+        { kind: 'link', label: 'The Blog',  href: '/blog' },
+        { kind: 'link', label: 'Instagram', href: '/journal' },
       ],
     },
     {
