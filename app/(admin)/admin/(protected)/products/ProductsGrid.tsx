@@ -1,8 +1,30 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useCallback } from 'react'
 import type { AdminProduct } from './page'
 import styles from './ProductsGrid.module.css'
+
+type SortCol = 'name' | 'category' | 'metal' | 'active' | 'featured' | 'synced_at' | 'sort_order'
+type SortDir = 'asc' | 'desc'
+
+function sortRows(arr: AdminProduct[], col: SortCol, dir: SortDir): AdminProduct[] {
+  return [...arr].sort((a, b) => {
+    const av = a[col]
+    const bv = b[col]
+    if (av == null && bv == null) return 0
+    if (av == null) return 1
+    if (bv == null) return -1
+    if (typeof av === 'boolean') {
+      return dir === 'asc' ? Number(av) - Number(bv) : Number(bv) - Number(av)
+    }
+    if (typeof av === 'number' && typeof bv === 'number') {
+      return dir === 'asc' ? av - bv : bv - av
+    }
+    const sa = String(av).toLowerCase()
+    const sb = String(bv).toLowerCase()
+    return dir === 'asc' ? sa.localeCompare(sb) : sb.localeCompare(sa)
+  })
+}
 
 function cloudinaryThumb(url: string | null): string | null {
   if (!url) return null
@@ -36,6 +58,28 @@ interface RowState {
   view_3_url: string | null
 }
 
+function SortHeader({
+  col, label, sort, onSort,
+}: {
+  col: SortCol
+  label: string
+  sort: { col: SortCol; dir: SortDir }
+  onSort: (col: SortCol) => void
+}) {
+  const active = sort.col === col
+  const indicator = active ? (sort.dir === 'asc' ? ' ↑' : ' ↓') : ''
+  return (
+    <th
+      className={`admin-th ${styles.sortable} ${active ? styles.sortActive : ''}`}
+      onClick={() => onSort(col)}
+      role="columnheader"
+      aria-sort={active ? (sort.dir === 'asc' ? 'ascending' : 'descending') : 'none'}
+    >
+      {label}{indicator}
+    </th>
+  )
+}
+
 export default function ProductsGrid({ products }: { products: AdminProduct[] }) {
   const [rows, setRows]           = useState<Record<string, RowState>>(() =>
     Object.fromEntries(products.map((p) => [p.slug, {
@@ -48,11 +92,13 @@ export default function ProductsGrid({ products }: { products: AdminProduct[] })
   )
   const [expanded, setExpanded]   = useState<string | null>(null)
   const [editViews, setEditViews] = useState<Record<string, { v1: string; v2: string; v3: string }>>({})
-  const [search,    setSearch]    = useState('')
-  const [catFilter, setCatFilter] = useState('all')
-  const [pageSize,  setPageSize]  = useState<number | 'all'>(25)
-  const [page,      setPage]      = useState(1)
-  const [density,   setDensity]   = useState<'compact' | 'comfortable'>('comfortable')
+  const [search,       setSearch]       = useState('')
+  const [catFilter,    setCatFilter]    = useState('all')
+  const [statusFilter, setStatusFilter] = useState<'all' | 'active' | 'inactive'>('all')
+  const [sort,         setSort]         = useState<{ col: SortCol; dir: SortDir }>({ col: 'name', dir: 'asc' })
+  const [pageSize,     setPageSize]     = useState<number | 'all'>(25)
+  const [page,         setPage]         = useState(1)
+  const [density,      setDensity]      = useState<'compact' | 'comfortable'>('comfortable')
 
   const categories = useMemo(() => {
     const s = new Set(products.map((p) => p.category ?? 'uncategorized'))
@@ -60,22 +106,31 @@ export default function ProductsGrid({ products }: { products: AdminProduct[] })
   }, [products])
 
   const filtered = useMemo(() => {
-    const result = products.filter((p) => {
-      const cat = catFilter === 'all' || (p.category ?? 'uncategorized') === catFilter
-      const q = search.toLowerCase()
-      const match = !q || p.name.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q)
-      return cat && match
-    })
-    return result
-  }, [products, catFilter, search])
+    const q = search.toLowerCase()
+    return sortRows(
+      products.filter((p) => {
+        if (catFilter !== 'all' && (p.category ?? 'uncategorized') !== catFilter) return false
+        if (statusFilter === 'active'   && !p.active) return false
+        if (statusFilter === 'inactive' &&  p.active) return false
+        if (q && !p.name.toLowerCase().includes(q) && !p.sku.toLowerCase().includes(q)) return false
+        return true
+      }),
+      sort.col,
+      sort.dir,
+    )
+  }, [products, catFilter, statusFilter, search, sort])
 
   const totalPages = pageSize === 'all' ? 1 : Math.ceil(filtered.length / pageSize)
   const paged = pageSize === 'all' ? filtered : filtered.slice((page - 1) * pageSize, page * pageSize)
 
-  // reset to page 1 when filter/pageSize changes
-  const handleSearch = (v: string) => { setSearch(v); setPage(1) }
-  const handleCat   = (v: string) => { setCatFilter(v); setPage(1) }
-  const handleSize  = (v: string) => { setPageSize(v === 'all' ? 'all' : Number(v)); setPage(1) }
+  const handleSearch = (v: string)  => { setSearch(v);       setPage(1) }
+  const handleCat    = (v: string)  => { setCatFilter(v);    setPage(1) }
+  const handleStatus = (v: string)  => { setStatusFilter(v as 'all' | 'active' | 'inactive'); setPage(1) }
+  const handleSize   = (v: string)  => { setPageSize(v === 'all' ? 'all' : Number(v)); setPage(1) }
+  const handleSort   = useCallback((col: SortCol) => {
+    setSort((s) => s.col === col ? { col, dir: s.dir === 'asc' ? 'desc' : 'asc' } : { col, dir: 'asc' })
+    setPage(1)
+  }, [])
 
   async function patch(slug: string, body: Partial<RowState>) {
     const res = await fetch(`/api/admin/products/${encodeURIComponent(slug)}`, {
@@ -114,6 +169,16 @@ export default function ProductsGrid({ products }: { products: AdminProduct[] })
         >
           {categories.map((c) => <option key={c} value={c}>{c === 'all' ? 'All categories' : c}</option>)}
         </select>
+        <select
+          className="admin-select"
+          value={statusFilter}
+          onChange={(e) => handleStatus(e.target.value)}
+          aria-label="Filter by status"
+        >
+          <option value="all">All status</option>
+          <option value="active">Active only</option>
+          <option value="inactive">Inactive only</option>
+        </select>
         <input
           className="admin-search"
           placeholder="Search name or SKU…"
@@ -149,13 +214,13 @@ export default function ProductsGrid({ products }: { products: AdminProduct[] })
         <thead>
           <tr>
             <th className="admin-th" style={{ width: 72 }} />
-            <th className="admin-th">Name / SKU</th>
-            <th className="admin-th">Category</th>
-            <th className="admin-th">Metal</th>
-            <th className="admin-th">Active</th>
-            <th className="admin-th">Featured</th>
+            <SortHeader col="name"       label="Name / SKU" sort={sort} onSort={handleSort} />
+            <SortHeader col="category"   label="Category"   sort={sort} onSort={handleSort} />
+            <SortHeader col="metal"      label="Metal"      sort={sort} onSort={handleSort} />
+            <SortHeader col="active"     label="Active"     sort={sort} onSort={handleSort} />
+            <SortHeader col="featured"   label="Featured"   sort={sort} onSort={handleSort} />
             <th className="admin-th">Views</th>
-            <th className="admin-th">Synced</th>
+            <SortHeader col="synced_at"  label="Synced"     sort={sort} onSort={handleSort} />
           </tr>
         </thead>
         <tbody>
