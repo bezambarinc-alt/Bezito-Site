@@ -1,9 +1,13 @@
-/* CinematicCarousel — full-width black stage, one piece at a time.
-   Adjacent slides peek in ~16% on each side, blurred, as a preview of the
-   next / previous piece. Negative space is the design. */
+/* CinematicCarousel
+   Desktop  — horizontal filmstrip, blurred neighbours, autoscroll + arrows.
+   Mobile   — scroll-lock vertical stack (same pattern as ScrollWipeCarousel),
+              25vh prev peek / 50vh active / 25vh next peek. */
 
-/* ── Full-width black section wrapper ───────────────────────── */
+/* ═══════════════════════════════════════════════════════════════
+   DESKTOP HORIZONTAL CAROUSEL
+   ═══════════════════════════════════════════════════════════════ */
 
+/* Full-width black section wrapper */
 .section {
   width: 100%;
   background: #000;
@@ -11,8 +15,7 @@
   justify-content: center;
 }
 
-/* ── Stage ──────────────────────────────────────────────────── */
-
+/* Stage */
 .stage {
   position: relative;
   width: 100%;
@@ -21,19 +24,14 @@
   overflow: hidden;
 }
 
-/* ── Track ──────────────────────────────────────────────────── */
-
+/* Track */
 .track {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-/* ── Individual slide ───────────────────────────────────────── */
-
-/* Each slide is a fixed 500px-tall, 16:9 window (≈889px wide) — the video keeps
-   its aspect ratio, never cropped full-bleed. Centered on left:50%; neighbours
-   flank it left/right as a filmstrip. */
+/* Individual slide — 500px tall, 16:9 (~889px wide), centered at left:50% */
 .slide {
   position: absolute;
   top: 0;
@@ -48,36 +46,20 @@
     opacity 0.7s ease;
 }
 
-@media (max-width: 768px) {
-  .slide { aspect-ratio: 9 / 16; }
-}
-
-/* ── Media (video / img) ────────────────────────────────────── */
-
-.media {
-  width: 100%;
-  height: 100%;
-}
-
+/* Media (video / img) */
+.media { width: 100%; height: 100%; }
 .media video,
 .media img {
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   object-fit: cover;
   object-position: center;
   display: block;
 }
 
-/* ── Side-panel overlays (text lives on the blurred neighbours) ─ */
-
-/* Left peek panel: active product identity centered in the prev slot.
-   The prev slide is centered at 50% − 102% of its width; its right edge
-   sits at roughly calc(50% − 444px). This panel spans from the stage
-   left edge to that point. */
+/* Left peek panel — spans from stage edge to active window edge */
 .prevOverlay {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: calc(50% - 444px);
   height: 100%;
   z-index: 4;
@@ -89,11 +71,10 @@
   pointer-events: auto;
 }
 
-/* Right peek panel: editorial description centered in the next slot. */
+/* Right peek panel */
 .nextOverlay {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 0; right: 0;
   width: calc(50% - 444px);
   height: 100%;
   z-index: 4;
@@ -105,6 +86,7 @@
   pointer-events: none;
 }
 
+/* Caption link (left panel) */
 .captionLink {
   text-decoration: none;
   color: inherit;
@@ -114,6 +96,7 @@
   gap: 6px;
 }
 
+/* Shared text styles (used in both desktop panels + mobile overlays) */
 .ref {
   font-family: var(--ba-font-sans);
   font-size: 11px;
@@ -159,23 +142,18 @@
   color: var(--ba-gold);
   border-bottom: 1px solid currentColor;
   padding-bottom: 3px;
-  transition: opacity 0.2s;
   margin-top: 4px;
+  transition: opacity 0.2s;
 }
+.captionLink:hover .cta { opacity: 0.7; }
 
-.captionLink:hover .cta {
-  opacity: 0.7;
-}
-
-/* ── Arrows ─────────────────────────────────────────────────── */
-
+/* Arrows */
 .arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   z-index: 5;
-  width: 48px;
-  height: 48px;
+  width: 48px; height: 48px;
   padding: 0;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.24);
@@ -184,73 +162,75 @@
   -webkit-backdrop-filter: blur(8px);
   color: rgba(255, 255, 255, 0.85);
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   transition: border-color 0.25s, background 0.25s, color 0.25s;
 }
-.arrow svg {
-  width: 20px;
-  height: 20px;
-  display: block;
-}
+.arrow svg { width: 20px; height: 20px; display: block; }
 .arrow:hover {
   border-color: var(--ba-gold, #c9a96e);
   background: rgba(0, 0, 0, 0.45);
   color: var(--ba-gold, #c9a96e);
 }
-
-.arrowPrev { left: max(16px, calc(50% - 428px)); }
+.arrowPrev { left:  max(16px, calc(50% - 428px)); }
 .arrowNext { right: max(16px, calc(50% - 428px)); }
 
-/* ── Mobile overlay panels (top/bottom peek zones) ──────────── */
-
-/* Hidden on desktop — only shown via mobile media query below */
-.mobileTopOverlay,
-.mobileBottomOverlay {
-  display: none;
+/* Hide desktop carousel on mobile */
+@media (max-width: 768px) {
+  .section { display: none; }
 }
 
-/* ── Responsive ─────────────────────────────────────────────── */
+
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE SCROLL-LOCK VERTICAL STACK
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Hidden on desktop; height set inline (total × 100vh) */
+.mobileStack { display: none; }
 
 @media (max-width: 768px) {
-  /* Stage fills full viewport height on mobile */
-  .stage {
-    width: 100%;
+  .mobileStack {
+    display: block;
+    position: relative;
+    background: #000;
+  }
+
+  /* Sticky viewport — stays pinned while user scrolls through the stack */
+  .mobilePin {
+    position: sticky;
+    top: 0;
     height: 100vh;
+    overflow: hidden;
+    background: #000;
   }
 
-  /* Desktop arrows hidden on mobile */
-  .arrow { display: none; }
-
-  /* Desktop side panels hidden on mobile */
-  .prevOverlay,
-  .nextOverlay {
-    display: none;
-  }
-
-  /* Mobile slide: 50vh tall, full width, no aspect-ratio constraint.
-     translateY(25vh + offset × 50vh) gives the 25/50/25 peek layout:
-       offset -1 → top: -25vh  (bottom 25vh peeks at stage top)
-       offset  0 → top:  25vh  (50vh active, centered)
-       offset +1 → top:  75vh  (top 25vh peeks at stage bottom) */
-  .slideMobile {
-    left: 0 !important;
-    width: 100% !important;
-    height: 50vh !important;
-    aspect-ratio: unset !important;
-    top: 0;
-  }
-
-  /* Top peek zone — identity + CTA, centered in the 25vh prev slot */
-  .mobileTopOverlay {
-    display: flex;
+  /* Each slide: 50vh tall, positioned by rAF-driven translateY.
+     Starts at translateY(25vh) (active position) — JS overrides immediately. */
+  .mobileSlide {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 0; left: 0;
     width: 100%;
-    height: 25vh;
+    height: 50vh;
+    will-change: transform, opacity, filter;
+    /* No transition on transform — scroll drives it frame-by-frame.
+       Smooth crossfade on opacity/filter when product index snaps. */
+    transition: opacity 0.3s ease, filter 0.3s ease;
+  }
+
+  .mobileSlide video,
+  .mobileSlide img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  /* Top peek zone (0–25vh) — identity + CTA over blurred prev */
+  .mobileTopOverlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 25vh;
     z-index: 4;
+    display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -258,19 +238,24 @@
     pointer-events: auto;
   }
 
-  /* Bottom peek zone — lede, centered in the 25vh next slot */
+  /* Bottom peek zone (75–100vh) — editorial lede over blurred next */
   .mobileBottomOverlay {
-    display: flex;
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 25vh;
+    bottom: 0; left: 0;
+    width: 100%; height: 25vh;
     z-index: 4;
+    display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding: 0 clamp(20px, 5vw, 40px);
     pointer-events: none;
   }
+
+  /* Tighten text sizes for the narrow peek zones on mobile */
+  .mobileTopOverlay .name  { font-size: clamp(0.95rem, 4vw, 1.2rem); }
+  .mobileTopOverlay .sub   { font-size: 0.78rem; }
+  .mobileTopOverlay .ref   { font-size: 10px; }
+  .mobileTopOverlay .cta   { font-size: 10px; }
+  .mobileBottomOverlay .lede { font-size: clamp(0.78rem, 3.5vw, 0.9rem); }
 }
