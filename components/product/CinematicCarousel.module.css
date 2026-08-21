@@ -116,7 +116,7 @@
 
 .ref {
   font-family: var(--ba-font-sans);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.16em;
@@ -125,7 +125,7 @@
 
 .name {
   font-family: var(--ba-font-sans);
-  font-size: clamp(0.85rem, 1.2vw, 1.15rem);
+  font-size: clamp(1.1rem, 1.6vw, 1.5rem);
   font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -136,15 +136,23 @@
 
 .sub {
   font-family: var(--ba-font-editorial);
-  font-size: clamp(0.75rem, 0.85vw, 0.88rem);
+  font-size: clamp(0.82rem, 0.95vw, 1rem);
   font-style: italic;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.65);
   line-height: 1.5;
+}
+
+.lede {
+  font-family: var(--ba-font-editorial);
+  font-size: clamp(0.85rem, 1vw, 1.05rem);
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.65;
 }
 
 .cta {
   font-family: var(--ba-font-sans);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -152,6 +160,7 @@
   border-bottom: 1px solid currentColor;
   padding-bottom: 3px;
   transition: opacity 0.2s;
+  margin-top: 4px;
 }
 
 .captionLink:hover .cta {
