@@ -11,12 +11,24 @@ interface Props {
 }
 
 const AUTOSCROLL_MS = 5000
+const SWIPE_THRESHOLD = 50
 
 export default function CinematicCarousel({ products, category }: Props) {
   const [index, setIndex] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const touchStartY = useRef<number | null>(null)
   const total = products.length
+
+  // Detect mobile viewport; update on resize
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)')
+    const update = () => setIsMobile(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
 
   const go = useCallback(
     (next: number) => setIndex(((next % total) + total) % total),
@@ -33,18 +45,15 @@ export default function CinematicCarousel({ products, category }: Props) {
     [index, total],
   )
 
-  // Use setInterval so the tick is self-sustaining — no need to restart it
-  // on every index change (which caused rapid-fire misfires with setTimeout).
+  // Autoscroll — desktop only; mobile users swipe manually
   const resetTimer = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current)
-    if (total <= 1) return
+    if (total <= 1 || isMobile) return
     timerRef.current = setInterval(() => {
       setIndex((prev) => ((prev + 1) % total))
     }, AUTOSCROLL_MS)
-  }, [total])
+  }, [total, isMobile])
 
-  // Start interval on mount; stable dep (resetTimer only changes if product
-  // count changes), so this never re-runs mid-session by accident.
   useEffect(() => {
     resetTimer()
     return () => { if (timerRef.current) clearInterval(timerRef.current) }
@@ -72,9 +81,36 @@ export default function CinematicCarousel({ products, category }: Props) {
     go(next)
   }
 
+  // Touch handlers for mobile vertical swipe
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartY.current = e.touches[0].clientY
+  }
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartY.current === null) return
+    const delta = touchStartY.current - e.changedTouches[0].clientY
+    if (delta > SWIPE_THRESHOLD) go(index + 1)       // swipe up → next
+    else if (delta < -SWIPE_THRESHOLD) go(index - 1) // swipe down → prev
+    touchStartY.current = null
+  }
+
+  // Slide transform: horizontal on desktop, vertical on mobile
+  const slideStyle = (offset: number, isActive: boolean, isNeighbour: boolean) => ({
+    transform: isMobile
+      ? `translateY(calc(25vh + ${offset * 50}vh))`
+      : `translateX(calc(-50% + ${offset * 102}%))`,
+    filter: isActive ? 'none' : 'blur(18px)',
+    opacity: isActive ? 1 : isNeighbour ? 0.6 : 0,
+    zIndex: isActive ? 2 : 1,
+    pointerEvents: (isActive ? 'auto' : 'none') as React.CSSProperties['pointerEvents'],
+  })
+
   return (
     <div className={styles.section}>
-      <section className={styles.stage}>
+      <section
+        className={styles.stage}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+      >
         <div className={styles.track}>
           {products.map((p, i) => {
             const offset = circOffset(i)
@@ -88,14 +124,8 @@ export default function CinematicCarousel({ products, category }: Props) {
             return (
               <div
                 key={p.sku}
-                className={styles.slide}
-                style={{
-                  transform: `translateX(calc(-50% + ${offset * 102}%))`,
-                  filter: isActive ? 'none' : 'blur(18px)',
-                  opacity: isActive ? 1 : isNeighbour ? 0.6 : 0,
-                  zIndex: isActive ? 2 : 1,
-                  pointerEvents: isActive ? 'auto' : 'none',
-                }}
+                className={`${styles.slide} ${isMobile ? styles.slideMobile : ''}`}
+                style={slideStyle(offset, isActive, isNeighbour)}
                 aria-hidden={!isActive}
               >
                 <div className={styles.media}>
@@ -120,7 +150,7 @@ export default function CinematicCarousel({ products, category }: Props) {
           })}
         </div>
 
-        {/* Left peek panel — ref + name + subtitle + CTA, centered in prev slot */}
+        {/* Desktop: left peek panel — ref + name + subtitle + CTA */}
         {total > 1 && (
           <div className={styles.prevOverlay}>
             <Link href={`/jewelry/${category}/${current.slug}`} className={styles.captionLink}>
@@ -134,13 +164,35 @@ export default function CinematicCarousel({ products, category }: Props) {
           </div>
         )}
 
-        {/* Right peek panel — full editorial description (lede), centered in next slot */}
+        {/* Desktop: right peek panel — editorial lede */}
         {total > 1 && current.specs.lede && (
           <div className={styles.nextOverlay}>
             <p className={styles.lede}>{current.specs.lede}</p>
           </div>
         )}
 
+        {/* Mobile: top peek panel (over prev) — identity + CTA */}
+        {total > 1 && (
+          <div className={styles.mobileTopOverlay}>
+            <Link href={`/jewelry/${category}/${current.slug}`} className={styles.captionLink}>
+              <p className={styles.ref}>ref. {current.sku}</p>
+              <h2 className={styles.name}>{current.name}</h2>
+              {current.specs.subtitle && (
+                <p className={styles.sub}>{current.specs.subtitle}</p>
+              )}
+              <span className={styles.cta}>View Piece →</span>
+            </Link>
+          </div>
+        )}
+
+        {/* Mobile: bottom peek panel (over next) — editorial lede */}
+        {total > 1 && current.specs.lede && (
+          <div className={styles.mobileBottomOverlay}>
+            <p className={styles.lede}>{current.specs.lede}</p>
+          </div>
+        )}
+
+        {/* Desktop arrows only */}
         {total > 1 && (
           <>
             <button

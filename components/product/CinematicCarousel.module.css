@@ -203,20 +203,74 @@
 .arrowPrev { left: max(16px, calc(50% - 428px)); }
 .arrowNext { right: max(16px, calc(50% - 428px)); }
 
+/* ── Mobile overlay panels (top/bottom peek zones) ──────────── */
+
+/* Hidden on desktop — only shown via mobile media query below */
+.mobileTopOverlay,
+.mobileBottomOverlay {
+  display: none;
+}
+
 /* ── Responsive ─────────────────────────────────────────────── */
 
 @media (max-width: 768px) {
+  /* Stage fills full viewport height on mobile */
   .stage {
     width: 100%;
     height: 100vh;
   }
 
-  .arrowPrev { left: 12px; }
-  .arrowNext { right: 12px; }
+  /* Desktop arrows hidden on mobile */
+  .arrow { display: none; }
 
-  /* Peek zones are too narrow on mobile — hide the side text panels */
+  /* Desktop side panels hidden on mobile */
   .prevOverlay,
   .nextOverlay {
     display: none;
+  }
+
+  /* Mobile slide: 50vh tall, full width, no aspect-ratio constraint.
+     translateY(25vh + offset × 50vh) gives the 25/50/25 peek layout:
+       offset -1 → top: -25vh  (bottom 25vh peeks at stage top)
+       offset  0 → top:  25vh  (50vh active, centered)
+       offset +1 → top:  75vh  (top 25vh peeks at stage bottom) */
+  .slideMobile {
+    left: 0 !important;
+    width: 100% !important;
+    height: 50vh !important;
+    aspect-ratio: unset !important;
+    top: 0;
+  }
+
+  /* Top peek zone — identity + CTA, centered in the 25vh prev slot */
+  .mobileTopOverlay {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 25vh;
+    z-index: 4;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 clamp(20px, 5vw, 40px);
+    pointer-events: auto;
+  }
+
+  /* Bottom peek zone — lede, centered in the 25vh next slot */
+  .mobileBottomOverlay {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 25vh;
+    z-index: 4;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 clamp(20px, 5vw, 40px);
+    pointer-events: none;
   }
 }

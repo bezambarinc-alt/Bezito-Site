@@ -49,8 +49,8 @@ export default async function CategoryPage({
     <main>
       {/* ── Desktop-only sections ───────────────────────────────────────────── */}
 
-      {/* 1. Hero — featured product video, category title, product link */}
-      <section className="ba-portrait-hero ba-cat-desktop">
+      {/* 1. Hero — full-height on both desktop and mobile */}
+      <section className="ba-portrait-hero">
         {heroVideo && (
           <video
             src={heroVideo}
