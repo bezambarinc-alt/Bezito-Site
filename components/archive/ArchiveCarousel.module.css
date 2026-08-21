@@ -13,24 +13,6 @@
   justify-content: center;
 }
 
-/* Carousel header — section label left, filter pill right */
-.carouselHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 28px clamp(20px, 4vw, 60px) 24px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.sectionLabel {
-  font-family: var(--ba-font-sans);
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: rgba(255, 255, 255, 0.45);
-}
-
 /* Stage — matches CinematicCarousel exactly */
 .stage {
   position: relative;

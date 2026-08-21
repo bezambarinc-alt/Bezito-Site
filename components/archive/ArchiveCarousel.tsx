@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import type { ArchiveEntry } from '@/lib/data/archive-constants'
-import ArchiveFilterPill from './ArchiveFilterPill'
+import ArchiveFilterRow from './ArchiveFilterRow'
 import styles from './ArchiveCarousel.module.css'
 
 interface Props {
@@ -125,16 +125,11 @@ export default function ArchiveCarousel({
     <>
       {/* ── Desktop horizontal filmstrip (hidden on mobile) ─────────────── */}
       <div className={styles.section}>
-        {/* Carousel header: section label left, filter pill right */}
-        <div className={styles.carouselHeader}>
-          <span className={styles.sectionLabel}>The Archive</span>
-          <ArchiveFilterPill
-            cat={cat} shape={shape} color={color}
-            filteredCount={filteredCount} totalCount={totalCount}
-            onFilterChange={onFilterChange}
-            noFloat
-          />
-        </div>
+        <ArchiveFilterRow
+          cat={cat} shape={shape} color={color}
+          filteredCount={filteredCount} totalCount={totalCount}
+          onFilterChange={onFilterChange}
+        />
 
         <section className={styles.stage}>
           <div className={styles.track}>
