@@ -15,17 +15,28 @@ import ArchiveCarousel from './ArchiveCarousel'
 import ArchiveModal from './ArchiveModal'
 
 interface Props {
-  entries: ArchiveEntry[]
+  entries:       ArchiveEntry[]
+  initialCat:    string
+  initialShape:  string
+  initialColor:  string
+  initialOpenId: string | null
 }
 
-export default function ArchiveClient({ entries }: Props) {
+export default function ArchiveClient({
+  entries,
+  initialCat,
+  initialShape,
+  initialColor,
+  initialOpenId,
+}: Props) {
   const router = useRouter()
   const params = useSearchParams()
 
-  const cat    = params?.get('cat')   ?? 'all'
-  const shape  = params?.get('shape') ?? 'all'
-  const color  = params?.get('color') ?? 'all'
-  const openId = params?.get('id')    ?? null
+  // Server-passed initials used on first render; URL params take over after hydration
+  const cat    = params?.get('cat')   ?? initialCat
+  const shape  = params?.get('shape') ?? initialShape
+  const color  = params?.get('color') ?? initialColor
+  const openId = params?.get('id')    ?? initialOpenId
 
   const buildQs = useCallback(
     (next: { cat?: string; shape?: string; color?: string; id?: string | null }) => {

@@ -1,10 +1,8 @@
 import type { Metadata } from 'next'
-import { Suspense } from 'react'
 import Link from 'next/link'
 import { getArchiveEntries } from '@/lib/data/archive'
 import type { ArchiveEntry } from '@/lib/data/archive-constants'
 import ArchiveClient from '@/components/archive/ArchiveClient'
-import { ArchiveGridSkeleton } from '@/components/archive/ArchiveGrid'
 import AtelierBanner from '@/components/common/AtelierBanner'
 import FadeIn from '@/components/common/FadeIn'
 import LazyVideo from '@/components/common/LazyVideo'
@@ -21,7 +19,12 @@ export const metadata: Metadata = {
   },
 }
 
-export default async function ArchivePage() {
+export default async function ArchivePage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string>>
+}) {
+  const sp = await searchParams
   let entries: ArchiveEntry[] = []
   try {
     entries = await getArchiveEntries()
@@ -104,10 +107,14 @@ export default async function ArchivePage() {
         </div>
       )}
 
-      {/* 3. Filter + Carousel (client) */}
-      <Suspense fallback={<ArchiveGridSkeleton />}>
-        <ArchiveClient entries={entries} />
-      </Suspense>
+      {/* 3. Filter + Carousel (client) — initial search params passed from server to avoid Suspense CLS */}
+      <ArchiveClient
+        entries={entries}
+        initialCat={sp.cat   ?? 'all'}
+        initialShape={sp.shape ?? 'all'}
+        initialColor={sp.color ?? 'all'}
+        initialOpenId={sp.id   ?? null}
+      />
 
       {/* 4. Atelier banner */}
       <AtelierBanner />
