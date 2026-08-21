@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import type { ArchiveEntry } from '@/lib/data/archive-constants'
-import { getCategoryLabel } from '@/lib/data/categories'
 import styles from './ArchiveCarousel.module.css'
 
 interface Props {
@@ -15,6 +14,7 @@ export default function ArchiveCarousel({ entries, onOpen }: Props) {
 
   // ── Desktop state ──────────────────────────────────────────────────────────
   const [index, setIndex] = useState(0)
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
 
   const go = useCallback(
     (next: number) => setIndex(((next % total) + total) % total),
@@ -31,15 +31,22 @@ export default function ArchiveCarousel({ entries, onOpen }: Props) {
     [index, total],
   )
 
+  // Play active + neighbours so blurred flanks show live frames
+  useEffect(() => {
+    videoRefs.current.forEach((v, i) => {
+      if (!v) return
+      if (Math.abs(circOffset(i)) <= 1) v.play().catch(() => {})
+      else { v.pause(); v.currentTime = 0 }
+    })
+  }, [index, circOffset])
+
   // ── Mobile scroll-lock state ───────────────────────────────────────────────
   const [mobileIndex, setMobileIndex] = useState(0)
   const mobileStackRef      = useRef<HTMLDivElement>(null)
   const mobileSlideRefs     = useRef<(HTMLDivElement | null)[]>([])
+  const mobileVideoRefs     = useRef<(HTMLVideoElement | null)[]>([])
   const mobileTextTopRef    = useRef<HTMLDivElement>(null)
-  const mobileTextBottomRef = useRef<HTMLDivElement>(null)
 
-  // Scroll-driven rAF — same pattern as CinematicCarousel mobile.
-  // Tall wrapper + sticky pin + smoothstep per segment.
   useEffect(() => {
     const stack = mobileStackRef.current
     if (!stack || total <= 1) return
@@ -69,16 +76,10 @@ export default function ArchiveCarousel({ entries, onOpen }: Props) {
       })
 
       const exitFactor = Math.min(1, Math.abs(fracIndex - rounded) * 2)
-      const opacity    = String(Math.max(0, 1 - exitFactor * 1.5))
       const topText    = mobileTextTopRef.current
-      const botText    = mobileTextBottomRef.current
       if (topText) {
         topText.style.transform = `translateY(${-exitFactor * 120}%)`
-        topText.style.opacity   = opacity
-      }
-      if (botText) {
-        botText.style.transform = `translateY(${exitFactor * 120}%)`
-        botText.style.opacity   = opacity
+        topText.style.opacity   = String(Math.max(0, 1 - exitFactor * 1.5))
       }
 
       setMobileIndex(prev => prev !== rounded ? rounded : prev)
@@ -92,6 +93,15 @@ export default function ArchiveCarousel({ entries, onOpen }: Props) {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [total])
+
+  // Play/pause mobile videos on index change
+  useEffect(() => {
+    mobileVideoRefs.current.forEach((v, i) => {
+      if (!v) return
+      if (i === mobileIndex) v.play().catch(() => {})
+      else v.pause()
+    })
+  }, [mobileIndex])
 
   if (total === 0) {
     return <div className={styles.empty}>No pieces match the current filters.</div>
@@ -126,9 +136,14 @@ export default function ArchiveCarousel({ entries, onOpen }: Props) {
                   aria-hidden={!isActive}
                 >
                   <div className={styles.media}>
-                    {isLoaded && e.gifUrl ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={e.gifUrl} alt={e.title} className={styles.gifImg} />
+                    {isLoaded && e.mp4Url ? (
+                      <video
+                        ref={(el) => { videoRefs.current[i] = el }}
+                        src={e.mp4Url}
+                        muted loop playsInline
+                        autoPlay={isActive || isNeighbour}
+                        preload={isActive || isNeighbour ? 'auto' : 'metadata'}
+                      />
                     ) : (
                       <div className={styles.placeholder} />
                     )}
@@ -152,24 +167,9 @@ export default function ArchiveCarousel({ entries, onOpen }: Props) {
               <div className={styles.captionGroup}>
                 <p className={styles.ref}>ref. {current.sku}</p>
                 <h2 className={styles.name}>{current.title}</h2>
-                <p className={styles.sub}>{getCategoryLabel(current.category)}</p>
                 <button className={styles.cta} onClick={() => onOpen(current.slug)}>
                   View Piece →
                 </button>
-              </div>
-            </div>
-          )}
-
-          {/* Right peek panel — shape + color tags */}
-          {total > 1 && (current.shapes.length > 0 || current.colors.length > 0) && (
-            <div className={styles.nextOverlay}>
-              <div className={styles.tagGroup}>
-                {current.shapes.map(s => (
-                  <span key={s} className={styles.tag}>{s}</span>
-                ))}
-                {current.colors.map(c => (
-                  <span key={c} className={styles.tag}>{c}</span>
-                ))}
               </div>
             </div>
           )}
@@ -221,9 +221,13 @@ export default function ArchiveCarousel({ entries, onOpen }: Props) {
                 role={i === mobileIndex ? 'button' : undefined}
                 aria-label={i === mobileIndex ? `View ${e.title}` : undefined}
               >
-                {isLoaded && e.gifUrl ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={e.gifUrl} alt="" className={styles.mobileGif} />
+                {isLoaded && e.mp4Url ? (
+                  <video
+                    ref={(el) => { mobileVideoRefs.current[i] = el }}
+                    src={e.mp4Url}
+                    muted loop playsInline
+                    preload={i === mobileIndex ? 'auto' : 'none'}
+                  />
                 ) : (
                   <div className={styles.mobilePlaceholder} />
                 )}
@@ -244,14 +248,6 @@ export default function ArchiveCarousel({ entries, onOpen }: Props) {
             >
               View Piece →
             </button>
-          </div>
-
-          {/* Bottom text — category, exits downward on transition */}
-          <div ref={mobileTextBottomRef} className={styles.mobileTextBottom}>
-            <p className={styles.mobileSub}>{getCategoryLabel(mobileCurrent.category)}</p>
-            {mobileCurrent.shapes.length > 0 && (
-              <p className={styles.mobileTags}>{mobileCurrent.shapes.join(' · ')}</p>
-            )}
           </div>
         </div>
       </div>

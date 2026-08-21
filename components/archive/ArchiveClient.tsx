@@ -1,16 +1,11 @@
 'use client'
 
 /**
- * ArchiveClient — client-side shell for the archive page.
+ * ArchiveClient — filter state + carousel + modal.
  *
- * Receives ALL entries from the server component (Neon query, once at render).
- * The URL is the single source of truth for BOTH:
- *   - filters:   ?cat= ?shape= ?color=
- *   - open piece: ?id=<slug>   (deep-linkable, shareable, back-button aware)
- *
- * Card click → router.push(?id=slug) → modal opens.
- * Modal close / ESC / backdrop → clears ?id= → modal closes.
- * Direct load of /archive?id=slug opens that piece's modal immediately.
+ * Hero, editorial section, and AtelierBanner live in the server page component.
+ * This component owns URL state for filters (?cat= ?shape= ?color=) and the
+ * open piece (?id=<slug>), plus the interactive carousel and modal.
  */
 
 import { useCallback, useMemo } from 'react'
@@ -29,15 +24,11 @@ export default function ArchiveClient({ entries }: Props) {
   const router = useRouter()
   const params = useSearchParams()
 
-  // Header mode is decided centrally by route (see VISIBLE_HEADER_ROUTES).
-
-  // URL is the source of truth
   const cat    = params?.get('cat')   ?? 'all'
   const shape  = params?.get('shape') ?? 'all'
   const color  = params?.get('color') ?? 'all'
   const openId = params?.get('id')    ?? null
 
-  // Build a query string preserving current filters, optionally with an id
   const buildQs = useCallback(
     (next: { cat?: string; shape?: string; color?: string; id?: string | null }) => {
       const sp = new URLSearchParams()
@@ -56,7 +47,6 @@ export default function ArchiveClient({ entries }: Props) {
 
   const handleFilterChange = useCallback(
     (nextCat: string, nextShape: string, nextColor: string) => {
-      // Changing filters clears any open piece
       const qs = buildQs({ cat: nextCat, shape: nextShape, color: nextColor, id: null })
       router.replace(qs ? `?${qs}` : '/archive', { scroll: false })
     },
@@ -66,7 +56,7 @@ export default function ArchiveClient({ entries }: Props) {
   const openPiece = useCallback(
     (slug: string) => {
       const qs = buildQs({ id: slug })
-      router.push(`?${qs}`, { scroll: false })  // push → back button closes modal
+      router.push(`?${qs}`, { scroll: false })
     },
     [router, buildQs],
   )
@@ -87,25 +77,15 @@ export default function ArchiveClient({ entries }: Props) {
     [entries, cat, shape, color],
   )
 
-  // Resolve the open piece from the URL id (search full set, not just filtered,
-  // so a shared link works even if the visitor's filters would hide it)
   const openEntry = useMemo(
     () => (openId ? entries.find(e => e.slug === openId) ?? null : null),
     [entries, openId],
   )
 
   return (
-    <div className={styles.page}>
-      {/* ── Hero — pill anchor is the LAST child of the hero section,
-           exactly like Astro's .vg-hero > .ba-filter-pill-anchor. ── */}
-      <section className={styles.hero}>
-        <p className={styles.eyebrow}>The Archive</p>
-        <h1 className={styles.title}>Every Piece in Motion</h1>
-        <p className={styles.lede}>
-          Over five hundred Bez Ambar pieces, filmed at the atelier in Los Angeles.
-          Watch each stone under light before you inquire.
-        </p>
-
+    <>
+      {/* Filter pill — dark bar above carousel */}
+      <div className={styles.filterBar}>
         <ArchiveFilterPill
           cat={cat}
           shape={shape}
@@ -114,9 +94,9 @@ export default function ArchiveClient({ entries }: Props) {
           totalCount={entries.length}
           onFilterChange={handleFilterChange}
         />
-      </section>
+      </div>
 
-      {/* ── Carousel — key resets index when filters change ── */}
+      {/* Carousel — key resets index on filter change */}
       <ArchiveCarousel
         key={`${cat}|${shape}|${color}`}
         entries={filtered}
@@ -124,6 +104,6 @@ export default function ArchiveClient({ entries }: Props) {
       />
 
       <ArchiveModal entry={openEntry} onClose={closePiece} />
-    </div>
+    </>
   )
 }

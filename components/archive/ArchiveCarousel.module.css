@@ -1,5 +1,5 @@
 /* ArchiveCarousel
-   Desktop  — horizontal filmstrip, portrait GIF slides, blurred neighbours, arrows.
+   Desktop  — horizontal filmstrip, portrait video slides, blurred neighbours, arrows.
    Mobile   — scroll-lock vertical stack, 25dvh prev / 50dvh active / 25dvh next. */
 
 /* ═══════════════════════════════════════════════════════════════
@@ -8,17 +8,17 @@
 
 .section {
   width: 100%;
-  background: #0d0d0d;
+  background: #0a0a0a;
   display: flex;
   justify-content: center;
 }
 
-/* Stage — tall enough for portrait GIF cards (3:4 → 420px wide at 560px tall) */
+/* Stage — portrait video cards (3:4 → ~420px wide at 560px tall) */
 .stage {
   position: relative;
   width: 100%;
   height: 560px;
-  background: #0d0d0d;
+  background: #0a0a0a;
   overflow: hidden;
 }
 
@@ -50,7 +50,7 @@
   overflow: hidden;
 }
 
-.gifImg {
+.media video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -58,7 +58,7 @@
   display: block;
 }
 
-/* Shimmer placeholder — matches dark page */
+/* Shimmer placeholder */
 .placeholder {
   width: 100%;
   height: 100%;
@@ -71,7 +71,7 @@
   to   { background-position: -200% 0; }
 }
 
-/* Invisible full-slide button over the active GIF — opens modal */
+/* Invisible full-slide button — shows play icon on hover */
 .slideBtn {
   position: absolute;
   inset: 0;
@@ -81,15 +81,10 @@
   z-index: 3;
 }
 .slideBtn::after {
-  content: '▶';
+  content: '';
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 36px;
-  color: rgba(255, 255, 255, 0.85);
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+  background: rgba(0, 0, 0, 0.2);
   opacity: 0;
   transition: opacity 0.25s ease;
 }
@@ -99,20 +94,6 @@
 .prevOverlay {
   position: absolute;
   top: 0; left: 0;
-  width: calc(50% - 210px);   /* 420px/2 = 210px — aligns to portrait slide edge */
-  height: 100%;
-  z-index: 4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 clamp(16px, 2vw, 28px);
-}
-
-/* Right peek panel — shape/color tags */
-.nextOverlay {
-  position: absolute;
-  top: 0; right: 0;
   width: calc(50% - 210px);
   height: 100%;
   z-index: 4;
@@ -120,8 +101,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0 clamp(16px, 2vw, 28px);
-  pointer-events: none;
+  padding: 0 clamp(16px, 2vw, 32px);
 }
 
 .captionGroup {
@@ -142,20 +122,13 @@
 
 .name {
   font-family: var(--ba-font-sans);
-  font-size: clamp(1rem, 1.4vw, 1.35rem);
+  font-size: clamp(1rem, 1.4vw, 1.4rem);
   font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: #ffffff;
   line-height: 1.25;
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
-}
-
-.sub {
-  font-family: var(--ba-font-editorial);
-  font-size: clamp(0.8rem, 0.9vw, 0.95rem);
-  font-style: italic;
-  color: rgba(255, 255, 255, 0.55);
 }
 
 .cta {
@@ -175,26 +148,6 @@
 }
 .cta:hover { opacity: 0.7; }
 
-/* Shape / color tags — right panel */
-.tagGroup {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-}
-
-.tag {
-  font-family: var(--ba-font-sans);
-  font-size: 10px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 20px;
-  padding: 4px 10px;
-}
-
 /* Empty state */
 .empty {
   text-align: center;
@@ -203,6 +156,7 @@
   font-style: italic;
   color: rgba(255, 255, 255, 0.4);
   font-size: 1rem;
+  background: #0a0a0a;
 }
 
 /* Arrows */
@@ -248,10 +202,9 @@
   .mobileStack {
     display: block;
     position: relative;
-    background: #0d0d0d;
+    background: #0a0a0a;
   }
 
-  /* Sticky pin — below fixed header, fills remaining viewport */
   .mobilePin {
     position: sticky;
     top: var(--ba-header-h, 64px);
@@ -260,7 +213,7 @@
     background: #000;
   }
 
-  /* 50%-height slides — never overlap (see CinematicCarousel for geometry notes) */
+  /* 50%-height slides — never overlap (same geometry as CinematicCarousel) */
   .mobileSlide {
     position: absolute;
     left: 0; right: 0; top: 0;
@@ -269,7 +222,7 @@
     cursor: pointer;
   }
 
-  .mobileGif {
+  .mobileSlide video {
     width: 100%; height: 100%;
     object-fit: cover;
     object-position: center;
@@ -306,7 +259,7 @@
     background: linear-gradient(to top, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.05) 100%);
   }
 
-  /* Text zones — rAF-driven, exit outward on transition */
+  /* Top text overlay — rAF-driven, exits upward on transition */
   .mobileTextTop {
     position: absolute;
     top: 0; left: 0;
@@ -320,22 +273,6 @@
     gap: 4px;
     padding: 0 clamp(20px, 5vw, 40px);
     pointer-events: auto;
-    will-change: transform, opacity;
-  }
-
-  .mobileTextBottom {
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 100%; height: 25%;
-    z-index: 4;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 4px;
-    padding: 0 clamp(20px, 5vw, 40px);
-    pointer-events: none;
     will-change: transform, opacity;
   }
 
@@ -373,22 +310,5 @@
     padding-bottom: 2px;
     margin-top: 4px;
     cursor: pointer;
-  }
-
-  .mobileSub {
-    font-family: var(--ba-font-editorial);
-    font-size: clamp(0.75rem, 3vw, 0.88rem);
-    font-style: italic;
-    color: rgba(255, 255, 255, 0.6);
-    margin: 0;
-  }
-
-  .mobileTags {
-    font-family: var(--ba-font-sans);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: rgba(255, 255, 255, 0.35);
-    margin: 0;
   }
 }
