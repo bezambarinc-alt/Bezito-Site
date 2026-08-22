@@ -96,49 +96,6 @@
   margin: clamp(3rem, 6vw, 5rem) auto 0;
   padding: 0 clamp(1.25rem, 5vw, 2rem);
 }
-.ctaBox {
-  background: var(--ba-ink);
-  color: #fff;
-  padding: clamp(2rem, 4vw, 3rem);
-  text-align: center;
-  border-radius: 2px;
-}
-.ctaBox h3 {
-  font-family: var(--ba-font-sans);
-  font-weight: 200;
-  font-size: clamp(1.35rem, 2.6vw, 1.85rem);
-  letter-spacing: 0.01em;
-  margin: 0 0 1rem;
-}
-.ctaBox p {
-  font-family: var(--ba-font-editorial);
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.82);
-  max-width: 52ch;
-  margin: 0 auto 1.75rem;
-}
-.ctaBox a,
-.ctaBox button {
-  display: inline-block;
-  font-family: var(--ba-font-sans);
-  font-size: 0.85rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--ba-ink);
-  background: var(--ba-gold);
-  padding: 0.9rem 2rem;
-  text-decoration: none;
-  border-radius: 1px;
-  transition: background 0.25s, transform 0.25s;
-  cursor: pointer;
-}
-.ctaBox a:hover,
-.ctaBox button:hover {
-  background: var(--ba-gold-warm, #d8b98a);
-  transform: translateY(-1px);
-}
 
 /* Related */
 .related {

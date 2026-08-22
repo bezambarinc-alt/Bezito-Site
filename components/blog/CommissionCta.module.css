@@ -1,45 +1,31 @@
-/* ============================================================
-   PageCta — shared dark closing CTA used on About, Elysian,
-   The Story, and any content page ending with a contact prompt.
-   Matches Astro .product-cta pattern.
-   ============================================================ */
-
-.cta {
+.box {
   background: var(--ba-ink);
   color: #fff;
+  padding: clamp(2.5rem, 5vw, 3.5rem) clamp(2rem, 6vw, 4rem);
   text-align: center;
-  padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 4rem);
-}
-
-.eyebrow {
-  font-family: var(--ba-font-sans);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: var(--ba-gold-warm);
-  margin-bottom: 1rem;
-  display: block;
+  border-radius: 2px;
 }
 
 .title {
   font-family: var(--ba-font-sans);
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: 200;
+  font-size: clamp(1.35rem, 2.6vw, 1.85rem);
+  letter-spacing: 0.01em;
   text-transform: uppercase;
   color: #fff;
-  margin-bottom: 1rem;
+  margin: 0 0 1.1rem;
 }
 
 .body {
   font-family: var(--ba-font-editorial);
   font-size: 1rem;
   line-height: 1.75;
-  color: rgba(255, 255, 255, 0.7);
-  max-width: 50ch;
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 52ch;
   margin: 0 auto 2rem;
 }
 
-/* Ghost pill — white on ink bg; Patek-level restraint */
+/* Ghost pill — Patek-level restraint */
 .btn {
   display: inline-block;
   font-family: var(--ba-font-sans);

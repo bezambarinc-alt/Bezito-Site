@@ -4,8 +4,8 @@ import Link from 'next/link'
 import { getBlogPost, getBlogCards } from '@/lib/data/blog'
 import { blogCategoryLabel } from '@/lib/data/blog-constants'
 import BlogBody from '@/components/blog/BlogBody'
+import CommissionCta from '@/components/blog/CommissionCta'
 import FadeIn from '@/components/common/FadeIn'
-import InquiryButton from '@/components/common/InquiryButton'
 import { motion } from 'motion/react'
 import styles from './page.module.css'
 
@@ -147,15 +147,7 @@ export default async function BlogPost({
         </FadeIn>
 
         <FadeIn className={styles.cta} delay={0.1}>
-          <div className={styles.ctaBox}>
-            <h3>Commission a Piece of Your Own</h3>
-            <p>
-              Every piece is designed and made in the Los Angeles atelier, from the
-              first reading of the stone to the final pass of the setting wheel.
-              Enquire to begin a commission.
-            </p>
-            <InquiryButton intent="Bespoke Commission">Enquire About a Commission</InquiryButton>
-          </div>
+          <CommissionCta />
         </FadeIn>
 
         {related.length > 0 && (

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import InquiryButton from '@/components/common/InquiryButton'
+import PageCta from '@/components/common/PageCta'
 import ScrollSpyTabs from './ScrollSpyTabs'
 import styles from './page.module.css'
 
@@ -213,16 +213,14 @@ export default function DiamondEducationPage() {
         </div>
       </section>
 
-      {/* ── CTA ── */}
-      <section className={styles.cta}>
-        <p className={styles.ctaEyebrow}>Choose Your Stone</p>
-        <h2 className={styles.ctaTitle}>Talk to the Cutter</h2>
-        <p className={styles.ctaBody}>
-          At Bez Ambar, stone selection is part of the commission process. We evaluate
-          each stone by eye — not just by certificate. Arrange a consultation to begin.
-        </p>
-        <InquiryButton className={styles.ctaBtn} intent="Stone Selection Consultation">Arrange a Consultation</InquiryButton>
-      </section>
+      <PageCta
+        eyebrow="Choose Your Stone"
+        title="Talk to the Cutter"
+        body="At Bez Ambar, stone selection is part of the commission process. We evaluate each stone by eye — not just by certificate. Arrange a consultation to begin."
+        drawer
+        intent="Stone Selection Consultation"
+        ctaLabel="Arrange a Consultation"
+      />
 
     </main>
   )

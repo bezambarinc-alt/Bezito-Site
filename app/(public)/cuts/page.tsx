@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import InquiryButton from '@/components/common/InquiryButton'
+import PageCta from '@/components/common/PageCta'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
@@ -78,16 +78,14 @@ export default function CutsPage() {
         </section>
       ))}
 
-      {/* ── CTA ── */}
-      <section className={styles.cta}>
-        <p className={styles.ctaEyebrow}>Experience the Cuts</p>
-        <h2 className={styles.ctaTitle}>See Them in Person</h2>
-        <p className={styles.ctaBody}>
-          The difference between a Bez Ambar cut and any other becomes clear under
-          direct light. Arrange a private viewing at the Los Angeles atelier.
-        </p>
-        <InquiryButton className={styles.ctaBtn} intent="The Cuts — Private Viewing">Arrange a Consultation</InquiryButton>
-      </section>
+      <PageCta
+        eyebrow="Experience the Cuts"
+        title="See Them in Person"
+        body="The difference between a Bez Ambar cut and any other becomes clear under direct light. Arrange a private viewing at the Los Angeles atelier."
+        drawer
+        intent="The Cuts — Private Viewing"
+        ctaLabel="Arrange a Consultation"
+      />
 
     </main>
   )
