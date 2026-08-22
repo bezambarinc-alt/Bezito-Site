@@ -45,7 +45,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link
           rel="stylesheet"
           href="https://webfonts.fontstand.com/WF-099839-d89c1d499f0c1f40d1e6d7330af17f97.css"
-          referrerPolicy="no-referrer"
         />
       </head>
       <body>{children}</body>
