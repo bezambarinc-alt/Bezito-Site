@@ -1,7 +1,7 @@
 /* ============================================================
    Bez Ambar — global tokens, resets, base typography
    Reference: src/styles/global.css (Astro) — matched 1:1
-   Fonts: Open Sans (headings/UI) · Lyon Text > Cormorant (body/prose)
+   Fonts: Open Sans (headings/UI) · Lyon Text (body/prose)
    "Chiseling Light." Los Angeles · Est. 1979
    ============================================================ */
 
@@ -31,9 +31,9 @@
      next/font vars (--font-*) resolve to the loaded webfonts; Lyon Text is
      first so it takes over automatically once the licensed files are served. */
   --ba-font-sans:  var(--font-opensans), 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --ba-font-serif: 'Lyon Text Regular', var(--font-cormorant), 'Cormorant GaramondVariable', 'Cormorant Garamond', Georgia, serif;
+  --ba-font-serif: 'Lyon Text Regular', Georgia, serif;
   /* Editorial = same serif/prose stack, used for prose/body copy */
-  --ba-font-editorial: 'Lyon Text Regular', var(--font-cormorant), 'Cormorant GaramondVariable', 'Cormorant Garamond', Georgia, serif;
+  --ba-font-editorial: 'Lyon Text Regular', Georgia, serif;
 
   --ba-sans-transform:       uppercase;
   --ba-sans-letter-spacing:  0;

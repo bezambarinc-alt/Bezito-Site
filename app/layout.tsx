@@ -1,14 +1,6 @@
 import type { Metadata } from 'next'
-import { Cormorant_Garamond, Open_Sans } from 'next/font/google'
+import { Open_Sans } from 'next/font/google'
 import './globals.css'
-
-const cormorant = Cormorant_Garamond({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-  display: 'swap',
-  variable: '--font-cormorant',
-})
 
 const openSans = Open_Sans({
   subsets: ['latin'],
@@ -39,7 +31,7 @@ export const metadata: Metadata = {
 // Admin chrome lives in (admin)/layout.tsx.
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${openSans.variable}`}>
+    <html lang="en" className={openSans.variable}>
       <head>
         <link rel="preconnect" href="https://webfonts.fontstand.com" crossOrigin="" />
         <link
