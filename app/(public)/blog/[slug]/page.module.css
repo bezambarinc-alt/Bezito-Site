@@ -118,7 +118,8 @@
   max-width: 52ch;
   margin: 0 auto 1.75rem;
 }
-.ctaBox a {
+.ctaBox a,
+.ctaBox button {
   display: inline-block;
   font-family: var(--ba-font-sans);
   font-size: 0.85rem;
@@ -131,8 +132,10 @@
   text-decoration: none;
   border-radius: 1px;
   transition: background 0.25s, transform 0.25s;
+  cursor: pointer;
 }
-.ctaBox a:hover {
+.ctaBox a:hover,
+.ctaBox button:hover {
   background: var(--ba-gold-warm, #d8b98a);
   transform: translateY(-1px);
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import InquiryButton from '@/components/common/InquiryButton'
 import ScrollSpyTabs from './ScrollSpyTabs'
 import styles from './page.module.css'
 
@@ -220,7 +221,7 @@ export default function DiamondEducationPage() {
           At Bez Ambar, stone selection is part of the commission process. We evaluate
           each stone by eye — not just by certificate. Arrange a consultation to begin.
         </p>
-        <a href="/contact" className={styles.ctaBtn}>Arrange a Consultation</a>
+        <InquiryButton className={styles.ctaBtn} intent="Stone Selection Consultation">Arrange a Consultation</InquiryButton>
       </section>
 
     </main>

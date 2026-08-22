@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import InquiryButton from '@/components/common/InquiryButton'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
@@ -85,7 +86,7 @@ export default function CutsPage() {
           The difference between a Bez Ambar cut and any other becomes clear under
           direct light. Arrange a private viewing at the Los Angeles atelier.
         </p>
-        <a href="/contact" className={styles.ctaBtn}>Arrange a Consultation</a>
+        <InquiryButton className={styles.ctaBtn} intent="The Cuts — Private Viewing">Arrange a Consultation</InquiryButton>
       </section>
 
     </main>

@@ -5,6 +5,7 @@ import { getBlogPost, getBlogCards } from '@/lib/data/blog'
 import { blogCategoryLabel } from '@/lib/data/blog-constants'
 import BlogBody from '@/components/blog/BlogBody'
 import FadeIn from '@/components/common/FadeIn'
+import InquiryButton from '@/components/common/InquiryButton'
 import { motion } from 'motion/react'
 import styles from './page.module.css'
 
@@ -153,7 +154,7 @@ export default async function BlogPost({
               first reading of the stone to the final pass of the setting wheel.
               Enquire to begin a commission.
             </p>
-            <Link href="/contact">Enquire About a Commission</Link>
+            <InquiryButton intent="Bespoke Commission">Enquire About a Commission</InquiryButton>
           </div>
         </FadeIn>
 

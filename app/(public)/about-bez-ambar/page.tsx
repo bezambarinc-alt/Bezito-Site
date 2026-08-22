@@ -104,7 +104,8 @@ export default function AboutPage() {
         eyebrow="Private Consultation"
         title="Meet Bez in Los Angeles"
         body="Every commission begins with a conversation. Bez is present at every meeting. Arrange a private viewing at 611 Wilshire Blvd."
-        href="/contact"
+        drawer
+        intent="Private Consultation"
         ctaLabel="Arrange a Visit"
       />
 

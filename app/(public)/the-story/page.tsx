@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import InquiryButton from '@/components/common/InquiryButton'
 import StoryNav from './StoryNav'
 import { ChapterReveal, AnimateChild } from './ChapterReveal'
 import { CHAPTERS, STORY_YEARS } from '@/lib/data/story-chapters'
@@ -200,9 +201,9 @@ export default function TheStoryPage() {
             </p>
           </AnimateChild>
           <AnimateChild>
-            <a href="/contact" className={styles.ctaLink}>
+            <InquiryButton className={styles.ctaLink} intent="Bespoke Commission">
               Inquire about a bespoke commission →
-            </a>
+            </InquiryButton>
           </AnimateChild>
         </ChapterReveal>
       </section>

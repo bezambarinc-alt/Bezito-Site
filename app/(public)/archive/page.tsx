@@ -46,8 +46,7 @@ export default async function ArchivePage({
           </div>
         </section>
         <p style={{ textAlign: 'center', padding: '4rem 2rem', color: '#888' }}>
-          The archive is being catalogued.{' '}
-          <a href="/api/admin/seed-archive">Seed the archive →</a>
+          The archive is being catalogued.
         </p>
       </main>
     )

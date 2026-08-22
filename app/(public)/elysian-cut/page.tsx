@@ -101,7 +101,8 @@ export default function ElysianCutPage() {
         eyebrow="The Elysian Band"
         title="See It on the Finger"
         body="The Elysian Pear and Oval bands are available through the atelier. Arrange a private viewing to experience the continuous line in person."
-        href="/contact"
+        drawer
+        intent="Elysian Band"
         ctaLabel="Arrange a Consultation"
       />
 
