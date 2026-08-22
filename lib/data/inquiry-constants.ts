@@ -18,6 +18,8 @@ export const INQUIRY_INTENTS = [
   'A Piece from the Collection',
   'Repair & Cleaning',
   'Ring Resizing',
+  'Find a Retailer',
+  'Ring Sizing Appointment',
 ] as const
 
 export type InquiryIntent = (typeof INQUIRY_INTENTS)[number]

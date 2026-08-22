@@ -113,6 +113,20 @@ export default function ConciergeDrawer() {
               </ul>
             </li>
 
+            {/* Find a Retailer */}
+            <li>
+              <button className={styles.row} onClick={() => toInquiry('Find a Retailer')}>
+                <span className={styles.rowIcon} aria-hidden>
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M9 2C6.2 2 4 4.2 4 7c0 3.8 5 9 5 9s5-5.2 5-9c0-2.8-2.2-5-5-5z" stroke="currentColor" strokeWidth="1.1" strokeLinejoin="round" />
+                    <circle cx="9" cy="7" r="1.8" stroke="currentColor" strokeWidth="1.1" />
+                  </svg>
+                </span>
+                <span className={styles.rowLabel}>Find a Retailer</span>
+                <span className={styles.rowChevron} aria-hidden>›</span>
+              </button>
+            </li>
+
             {/* Services — expandable */}
             <li className={`${styles.expandWrap} ${svcOpen ? styles.expandOpen : ''}`}>
               <button

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import InquiryButton from '@/components/common/InquiryButton'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
@@ -141,7 +142,7 @@ export default function RingSizeChartPage() {
             A mandrel fitting takes under five minutes and gives you an exact size.
             Visit us at 611 Wilshire Blvd, Los Angeles — by appointment.
           </p>
-          <a href="/contact" className={styles.ctaBtn}>Schedule a Visit</a>
+          <InquiryButton className={styles.ctaBtn} intent="Ring Sizing Appointment">Schedule a Visit</InquiryButton>
         </section>
 
       </div>

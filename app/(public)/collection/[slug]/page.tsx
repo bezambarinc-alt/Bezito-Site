@@ -4,6 +4,7 @@ import { getProductsByCollection } from '@/lib/queries'
 import LazyVideo from '@/components/common/LazyVideo'
 import ProductCard from '@/components/product/ProductCard'
 import FadeIn from '@/components/common/FadeIn'
+import InquiryButton from '@/components/common/InquiryButton'
 
 export const dynamic = 'force-dynamic'
 
@@ -160,7 +161,7 @@ export default async function CollectionPage({
             Every Bez Ambar piece begins with one stone and one drawing. Arrange a private
             consultation to commission your own work from the {collectionName} aesthetic.
           </p>
-          <a href="/contact" className="ba-cta__btn">Inquire</a>
+          <InquiryButton className="ba-cta__btn" intent="Commission a Piece">Inquire</InquiryButton>
         </section></FadeIn>
       )}
     </main>
