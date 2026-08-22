@@ -162,24 +162,24 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* ── Shop — matches Astro Footer.astro exactly ── */}
+          {/* ── Shop ── */}
           <FooterCol title="Shop">
-            <Link href="/collection/bloom">Bloom Collection</Link>
             <Link href="/jewelry/rings">Rings</Link>
             <Link href="/jewelry/bands">Bands</Link>
             <Link href="/jewelry/bracelets">Bracelets</Link>
             <Link href="/jewelry/earrings">Earrings</Link>
             <Link href="/jewelry/necklaces">Necklaces</Link>
             <Link href="/jewelry/pendants">Pendants</Link>
+            <Link href="/archive">The Archive</Link>
           </FooterCol>
 
-          {/* ── Discover — Astro calls this column "Discover" not "Atelier" ── */}
+          {/* ── Discover ── */}
           <FooterCol title="Discover">
             <Link href="/about-bez-ambar">About Bez Ambar</Link>
+            <Link href="/the-story">The Story</Link>
+            <Link href="/cuts">The Cuts</Link>
             <Link href="/elysian-cut">Elysian Cut™</Link>
-            <Link href="/journal">Journal</Link>
-            <Link href="/blog">Blog</Link>
-            <Link href="/archive">The Archive</Link>
+            <Link href="/blog">Journal</Link>
             <Link href="/diamond-education">Diamond Education</Link>
             <Link href="/ring-size-chart">Ring Size Guide</Link>
           </FooterCol>
