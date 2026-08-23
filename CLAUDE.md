@@ -42,7 +42,7 @@ Auto-deploys on every push to `main`. Vercel token: `~/.openclaw/credentials/ver
 | PIM | Plytix — product data source of truth |
 | CRM | Freshsales (`bezambar.myfreshworks.com`) |
 | Analytics | Custom — Neon `page_views` table |
-| Fonts | Cormorant Garamond + Open Sans via `next/font`; Lyon Text via Fontstand CDN |
+| Fonts | Lyon Text Regular (Fontstand CDN, domain-locked) + Open Sans (system stack). No Cormorant. No Google Fonts. |
 
 ---
 
@@ -126,6 +126,58 @@ components/layout/
 - **Audit all mutating actions** — admin + portal mutations go through `audit()` from `lib/audit.ts`.
 - **Lead durability** — always write to Neon before CRM push. CRM failure must never cause a 500.
 - **No `as never` hacks** — if a type needs a new union member, add it to `AuditAction` in `lib/audit.ts`.
+
+---
+
+## ⚠️ Next.js 16 — Things Agents Get Wrong
+
+These rules exist because AI agents consistently apply stale Next.js conventions from training data. Read each one before writing any code.
+
+### 1. Middleware filename is `proxy.ts` — NOT `middleware.ts`
+
+Next.js 16 renamed the middleware file. `middleware.ts` is the **old convention** and is NOT compiled by the framework. The correct file is `proxy.ts` at the repo root.
+
+- `PROXY_FILENAME = 'proxy'` is hardcoded in `node_modules/next/dist/lib/constants.js`
+- The function must be a **default export** (`export default async function`) — the function name does not matter
+- `export const config = { matcher: [...] }` is the correct export for route matching
+- **There must never be a `middleware.ts` in this project.** If you see one, it is a bug.
+- Our `proxy.ts` handles: `ba_sid` session cookie, analytics `logView()`, admin JWT gate, portal JWT gate
+
+### 2. Vercel env vars — never audit from `.env.local`
+
+`.env.local` is a local dev file. Production values live in Vercel. Before declaring an env var "missing":
+- Hit the Vercel API: `GET /v1/projects/{projectId}/env` with the token at `~/.openclaw/credentials/vercel.json`
+- All critical vars are set in Vercel production: `DATABASE_URL`, `JWT_SECRET`, `FRESHSALES_API_KEY`, `CRON_SECRET`, `APP_URL`, `BEZITO_SECRET`, `PLYTIX_API_KEY`, `PLYTIX_API_PASSWORD`, `TRACK_SECRET`, `CLOUDINARY_*`, `ADMIN_*`
+
+### 3. Font stack — no Cormorant Garamond anywhere
+
+Cormorant Garamond has been fully removed. The correct stack:
+
+| Role | Value | CSS var |
+|------|-------|---------|
+| Editorial/serif | `'Lyon Text Regular', Georgia, serif` | `var(--ba-font-editorial)` |
+| Body/sans | `'Open Sans', Helvetica, Arial, sans-serif` | `var(--ba-font-sans)` |
+
+- Lyon Text Regular is served by **Fontstand** (domain-locked CDN via `<link>` in `app/layout.tsx`)
+- The Fontstand `<link>` must NOT have `referrerPolicy="no-referrer"` — that strips the `Referer` header and causes Fontstand's license check to 403
+- Never add Cormorant, Playfair Display, or Inter to this project
+
+### 4. CTA pattern — InquiryDrawer, never hard `/contact` links
+
+All public-page CTAs open the `InquiryDrawer` with a pre-filled intent. Zero hard navigation to `/contact` on any public page.
+
+- Use `<InquiryButton intent="..." label="..." />` from `components/layout/InquiryButton.tsx`
+- Valid intents are in `lib/data/inquiry-constants.ts`
+- The ConciergeDrawer is the concierge panel (top-level). It passes through to InquiryDrawer for specific intents.
+- `PageCta` component supports `drawer + intent` props for server pages
+
+### 5. Button aesthetic — ghost pill, no gold fills
+
+This project follows a Patek-style ghost pill system. No gold-filled buttons anywhere.
+
+- **Light bg context:** ink ghost pill (black border + text, transparent → slight fill on hover)
+- **Dark bg context:** white ghost pill (white border + text, transparent → 7% white fill on hover)
+- Floating `ProdPill`: white/96 outer pill + inner ghost ink pill → solid ink fill on hover
 
 ---
 
