@@ -43,7 +43,7 @@ export default async function CategoryPage({
   const editorialProduct = products.find((p) => p.slug !== heroProduct?.slug) ?? null
 
   const heroVideo  = heroProduct?.specs.heroVideoUrl  ?? null
-  const heroPoster = heroProduct?.specs.heroPosterUrl ?? null
+  const heroPoster = heroProduct?.specs.heroPosterUrl ?? cat.heroImageUrl ?? null
 
   return (
     <main>
@@ -51,13 +51,16 @@ export default async function CategoryPage({
 
       {/* 1. Hero — full-height on both desktop and mobile */}
       <section className="ba-portrait-hero">
-        {heroVideo && (
+        {heroVideo ? (
           <video
             src={heroVideo}
             autoPlay muted loop playsInline preload="auto"
             poster={heroPoster ?? undefined}
           />
-        )}
+        ) : heroPoster ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={heroPoster} alt={cat.title} />
+        ) : null}
         <div className="ba-portrait-hero__overlay">
           <h1 className="ba-portrait-hero__title">{cat.title}</h1>
           {cat.intro && <p className="ba-portrait-hero__lede">{cat.intro}</p>}

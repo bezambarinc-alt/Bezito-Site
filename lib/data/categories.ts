@@ -8,6 +8,7 @@ export interface CategoryMeta {
   title: string
   intro: string
   videoUrl?: string
+  heroImageUrl?: string
 }
 
 export const CATEGORIES: Record<string, CategoryMeta> = {
@@ -31,6 +32,8 @@ export const CATEGORIES: Record<string, CategoryMeta> = {
     intro: 'Articulated lines of brilliance for the wrist.',
     videoUrl:
       'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.mp4',
+    heroImageUrl:
+      'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/Jewelry%20Images/Bracelets/axiom-bracelet-model-shot.jpg',
   },
   necklaces: {
     eyebrow: 'The Collection',
