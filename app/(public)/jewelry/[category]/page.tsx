@@ -42,8 +42,8 @@ export default async function CategoryPage({
   // Editorial = next product that isn't the hero
   const editorialProduct = products.find((p) => p.slug !== heroProduct?.slug) ?? null
 
-  const heroVideo  = heroProduct?.specs.heroVideoUrl  ?? null
-  const heroPoster = heroProduct?.specs.heroPosterUrl ?? cat.heroImageUrl ?? null
+  const heroVideo  = cat.heroImageUrl ? null : (heroProduct?.specs.heroVideoUrl ?? null)
+  const heroPoster = cat.heroImageUrl ?? heroProduct?.specs.heroPosterUrl ?? null
 
   return (
     <main>
