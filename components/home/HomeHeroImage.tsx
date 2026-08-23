@@ -40,7 +40,7 @@ export default function HomeHeroImage({
       />
       <div className={styles.overlay}>
         {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
-        <h1 className={styles.title}>{title}</h1>
+        <h2 className={styles.title}>{title}</h2>
         {sub && <p className={styles.sub}>{sub}</p>}
       </div>
     </section>

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { getBlogPost, getBlogCards } from '@/lib/data/blog'
@@ -9,7 +10,7 @@ import FadeIn from '@/components/common/FadeIn'
 import { motion } from 'motion/react'
 import styles from './page.module.css'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 86400
 
 function fmtDate(d: string) {
   try {
@@ -137,8 +138,14 @@ export default async function BlogPost({
           </FadeIn>
         ) : post.heroImage ? (
           <FadeIn className={styles.heroMedia}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={post.heroImage} alt={post.heroImageAlt ?? post.title} />
+            <Image
+              src={post.heroImage}
+              alt={post.heroImageAlt ?? post.title}
+              width={1200}
+              height={680}
+              style={{ width: '100%', height: 'auto' }}
+              priority
+            />
           </FadeIn>
         ) : null}
 
@@ -159,11 +166,12 @@ export default async function BlogPost({
                   <Link href={`/blog/${c.slug}`} className={styles.relatedCard}>
                     <div className={styles.relatedImg}>
                       {c.heroImage && (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
+                        <Image
                           src={c.heroImage}
                           alt={c.heroImageAlt ?? c.title}
-                          loading="lazy"
+                          width={400}
+                          height={260}
+                          style={{ width: '100%', height: 'auto' }}
                         />
                       )}
                     </div>

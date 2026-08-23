@@ -17,7 +17,7 @@ const STATIC_ROUTES: Array<{ path: string; priority: number; freq: Freq }> = [
   { path: '/',                      priority: 1.0, freq: 'weekly'  },
   { path: '/about-bez-ambar',       priority: 0.8, freq: 'monthly' },
   { path: '/elysian-cut',           priority: 0.8, freq: 'monthly' },
-  { path: '/collection/bloom',      priority: 0.85, freq: 'weekly' },
+  { path: '/cuts',                  priority: 0.8, freq: 'monthly' },
   { path: '/archive',               priority: 0.75, freq: 'monthly' },
   { path: '/journal',               priority: 0.7, freq: 'weekly'  },
   { path: '/blog',                  priority: 0.7, freq: 'weekly'  },
@@ -25,6 +25,7 @@ const STATIC_ROUTES: Array<{ path: string; priority: number; freq: Freq }> = [
   { path: '/diamond-education',     priority: 0.7, freq: 'monthly' },
   { path: '/jewelry/rings',         priority: 0.8, freq: 'weekly'  },
   { path: '/jewelry/engagement-rings', priority: 0.8, freq: 'weekly' },
+  { path: '/jewelry/bands',         priority: 0.75, freq: 'weekly' },
   { path: '/jewelry/wedding-bands', priority: 0.75, freq: 'weekly' },
   { path: '/jewelry/bracelets',     priority: 0.75, freq: 'weekly' },
   { path: '/jewelry/earrings',      priority: 0.75, freq: 'weekly' },
@@ -59,14 +60,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ── Products (Neon DB) ───────────────────────────────────────────────────
   let productEntries: MetadataRoute.Sitemap = []
   try {
-    const rows = await sql<{ sku: string; category: string | null; synced_at: string | null }>(
-      `SELECT sku, category, synced_at
+    const rows = await sql<{ slug: string; category: string | null; synced_at: string | null }>(
+      `SELECT slug, category, synced_at
          FROM products
         WHERE active = true
         ORDER BY sort_order ASC, name ASC`,
     )
     productEntries = rows.map((r) => ({
-      url: `${BASE}/jewelry/${(r.category ?? 'jewelry').toLowerCase()}/${r.sku}`,
+      url: `${BASE}/jewelry/${(r.category ?? 'jewelry').toLowerCase()}/${r.slug}`,
       lastModified: r.synced_at ? new Date(r.synced_at) : now,
       changeFrequency: 'weekly' as Freq,
       priority: 0.7,

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { getBlogCards } from '@/lib/data/blog'
 import { blogCategoryLabel } from '@/lib/data/blog-constants'
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
     'Stories from the Bez Ambar atelier — craft, diamonds, and the people behind the work.',
 }
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 3600
 
 function fmtDate(d: string) {
   try {
@@ -67,10 +68,13 @@ export default async function BlogPage() {
               <Link href={`/blog/${featured.slug}`} className={styles.feature}>
                 <div className={styles.featureMedia}>
                   {featured.heroImage && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
+                    <Image
                       src={featured.heroImage}
                       alt={featured.heroImageAlt ?? featured.title}
+                      width={900}
+                      height={600}
+                      style={{ width: '100%', height: 'auto' }}
+                      priority
                     />
                   )}
                   <span className={styles.featureBadge}>Latest</span>
@@ -97,11 +101,12 @@ export default async function BlogPage() {
                 <Link href={`/blog/${c.slug}`} className={styles.card}>
                   <div className={styles.cardImg}>
                     {c.heroImage && (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
+                      <Image
                         src={c.heroImage}
                         alt={c.heroImageAlt ?? c.title}
-                        loading="lazy"
+                        width={600}
+                        height={400}
+                        style={{ width: '100%', height: 'auto' }}
                       />
                     )}
                   </div>

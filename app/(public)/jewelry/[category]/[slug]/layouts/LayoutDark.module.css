@@ -22,7 +22,7 @@
 .root {
   background: #2a2a2a;
   color: #d7d3c8;
-  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--ba-font-sans);
   font-size: 17px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -43,7 +43,7 @@
 }
 
 .logo {
-  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--ba-font-sans);
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 5px;
@@ -76,7 +76,7 @@
 }
 
 .mark {
-  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--ba-font-sans);
   font-size: 0.78rem;
   letter-spacing: 0.35em;
   text-transform: uppercase;
@@ -85,7 +85,7 @@
 }
 
 .title {
-  font-family: "Didot", "Playfair Display", "Cormorant Garamond", Georgia, serif;
+  font-family: var(--ba-font-editorial);
   font-size: clamp(2.5rem, 6vw, 4.75rem);
   font-weight: 400;
   letter-spacing: 0.01em;
@@ -103,7 +103,7 @@
 }
 
 .eyebrow {
-  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--ba-font-sans);
   font-size: 0.8rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -121,7 +121,7 @@
 
 /* First paragraph — large italic serif lede */
 .editorialLede {
-  font-family: "Didot", "Playfair Display", "Cormorant Garamond", Georgia, serif;
+  font-family: var(--ba-font-editorial);
   font-size: clamp(1.2rem, 2.4vw, 1.55rem);
   font-style: italic;
   color: #d7d3c8;
@@ -146,7 +146,7 @@
 }
 
 .specsHeading {
-  font-family: "Didot", "Playfair Display", "Cormorant Garamond", Georgia, serif;
+  font-family: var(--ba-font-editorial);
   font-size: clamp(1.6rem, 3.2vw, 2.4rem);
   font-weight: 400;
   line-height: 1.2;
@@ -166,7 +166,7 @@
 .specLabel {
   padding: 0.9rem 0.25rem;
   border-bottom: 1px solid rgba(215, 211, 200, 0.16);
-  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--ba-font-sans);
   font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -180,7 +180,7 @@
 .specValue {
   padding: 0.9rem 0.25rem;
   border-bottom: 1px solid rgba(215, 211, 200, 0.16);
-  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--ba-font-sans);
   font-size: 0.95rem;
   color: #d7d3c8;
   text-align: left;
@@ -202,7 +202,7 @@
 }
 
 .contactHeading {
-  font-family: "Didot", "Playfair Display", "Cormorant Garamond", Georgia, serif;
+  font-family: var(--ba-font-editorial);
   font-size: clamp(1.6rem, 3.2vw, 2.4rem);
   font-weight: 400;
   color: #d7d3c8;
@@ -210,14 +210,14 @@
 }
 
 .contactBody {
-  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--ba-font-sans);
   margin: 0 auto 1em;
   max-width: 56ch;
   color: #d7d3c8;
 }
 
 .contactLine {
-  font-family: "Didot", "Playfair Display", "Cormorant Garamond", Georgia, serif;
+  font-family: var(--ba-font-editorial);
   font-style: italic;
   font-size: clamp(1.05rem, 2vw, 1.35rem);
   color: rgba(215, 211, 200, 0.62);
@@ -243,7 +243,7 @@
   color: #c9b684;
   text-align: center;
   padding: 2.5rem clamp(1.25rem, 5vw, 4rem);
-  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--ba-font-sans);
   font-size: 0.78rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;

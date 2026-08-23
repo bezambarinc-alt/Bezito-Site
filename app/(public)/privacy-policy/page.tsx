@@ -59,8 +59,8 @@ export default function PrivacyPolicyPage() {
 
         <section className={styles.section}>
           <h2>5. Cookies and Tracking</h2>
-          <p>We use cookies and similar technologies for analytics and to improve site performance. We use Google Analytics and may use advertising pixels to understand how our marketing performs. You can opt out of analytics tracking via your browser settings or the Google Analytics opt-out browser add-on.</p>
-          <p>A cookie consent notice will appear on your first visit. You may withdraw consent at any time by clearing your browser cookies.</p>
+          <p>We use cookies and similar technologies for analytics and to improve site performance. We run first-party analytics only — page views, session counts, and referral sources are logged to our own systems and are not shared with advertising networks or data brokers. We do not use Google Analytics or third-party advertising pixels.</p>
+          <p>A <code>ba_sid</code> session cookie (30-minute window) is set to count unique visits and correlate page views within a session. No personal information is stored in this cookie. You may disable cookies in your browser settings; the site remains fully functional without them.</p>
         </section>
 
         <section className={styles.section}>

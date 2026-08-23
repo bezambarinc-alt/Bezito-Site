@@ -11,7 +11,14 @@ export async function GET(req: NextRequest) {
   const jar = await cookies()
   jar.delete('preview_template')
 
-  // Redirect back to the page they were previewing, or /jewelry as fallback
-  const from = req.nextUrl.searchParams.get('from') ?? '/jewelry'
+  // Redirect back to the page they were previewing — same-origin only
+  const raw = req.nextUrl.searchParams.get('from') ?? '/jewelry'
+  const from = (() => {
+    try {
+      const u = new URL(raw, req.url)
+      if (u.origin !== new URL(req.url).origin) return '/jewelry'
+    } catch { return '/jewelry' }
+    return raw
+  })()
   return NextResponse.redirect(new URL(from, req.url))
 }
