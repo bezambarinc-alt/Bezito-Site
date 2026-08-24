@@ -315,9 +315,8 @@ body.page-dark {
 .ba-portrait-hero__lede{font-family:var(--ba-font-editorial);font-size:clamp(1rem,1.3vw,1.15rem);font-style:normal;color:var(--ba-white);margin:0 0 20px;max-width:440px;line-height:1.6}
 .ba-portrait-hero__product-link{font-family:var(--ba-font-sans);font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ba-white);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.45);padding-bottom:2px;pointer-events:auto;transition:opacity .2s}
 .ba-portrait-hero__product-link:hover{opacity:.7}
-/* Bracelets hero — light background image, no opacity dim or gradient overlay */
+/* Bracelets hero — light background image, remove opacity dim but keep gradient */
 .ba-portrait-hero--bracelets img,.ba-portrait-hero--bracelets video{opacity:1}
-.ba-portrait-hero--bracelets .ba-portrait-hero__overlay{background:none}
 /* Category page responsive utility — desktop sections hidden on mobile */
 @media(max-width:768px){.ba-cat-desktop{display:none!important}}
 
