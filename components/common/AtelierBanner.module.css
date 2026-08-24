@@ -37,12 +37,12 @@
   margin-bottom: clamp(24px, 3.5vw, 44px);
 }
 
-/* Text base — thin, engraved proportions */
+/* Text base — matches header wordmark (--ba-font-sans, weight 600, no tracking) */
 .baseText {
   font-family: var(--ba-font-sans);
   font-size: 112px;
-  font-weight: 100;
-  letter-spacing: 0.18em;
+  font-weight: 600;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
@@ -50,8 +50,8 @@
 .shadowText {
   font-family: var(--ba-font-sans);
   font-size: 112px;
-  font-weight: 100;
-  letter-spacing: 0.18em;
+  font-weight: 600;
+  letter-spacing: 0;
   text-transform: uppercase;
   fill: rgba(0, 0, 0, 0.85);
 }
@@ -66,6 +66,27 @@
   letter-spacing: 0.04em;
   line-height: 1.6;
   margin-bottom: clamp(32px, 5vw, 56px);
+}
+
+/* ── Consult CTA ─────────────────────────────────────────── */
+
+.cta {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(11px, 0.9vw, 13px);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(201, 169, 110, 0.85);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 0 4px;
+  margin-bottom: clamp(32px, 5vw, 56px);
+  transition: color 0.3s;
+}
+
+.cta:hover {
+  color: #f0dbb0;
 }
 
 /* ── Thin gold rule ──────────────────────────────────────── */

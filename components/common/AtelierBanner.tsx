@@ -1,3 +1,4 @@
+import InquiryButton from './InquiryButton'
 import styles from './AtelierBanner.module.css'
 
 export default function AtelierBanner() {
@@ -61,8 +62,12 @@ export default function AtelierBanner() {
         </svg>
 
         <p className={styles.tagline}>
-          Each piece cut by hand. Each stone chosen once.
+          Most jewelers set a stone. We choose it, then draw the piece around it.
         </p>
+
+        <InquiryButton intent="Private Consultation" className={styles.cta}>
+          Consult us →
+        </InquiryButton>
 
         <div className={styles.rule} />
       </div>
