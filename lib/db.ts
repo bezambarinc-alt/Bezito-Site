@@ -6,6 +6,8 @@ import { attachDatabasePool } from '@vercel/functions'
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   max: 10,
+  idleTimeoutMillis: 10_000,
+  connectionTimeoutMillis: 5_000,
 })
 
 // Lets Vercel drain idle connections before suspending the function.

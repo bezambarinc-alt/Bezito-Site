@@ -9,6 +9,7 @@ import CommissionCta from '@/components/blog/CommissionCta'
 import FadeIn from '@/components/common/FadeIn'
 import { motion } from 'motion/react'
 import styles from './page.module.css'
+import { getNonce } from '@/lib/nonce'
 
 export const revalidate = 86400
 
@@ -101,17 +102,20 @@ export default async function BlogPost({
     ...cards.filter((c) => c.slug !== post.slug && c.category === post.category),
     ...cards.filter((c) => c.slug !== post.slug && c.category !== post.category),
   ].slice(0, 3)
+  const nonce = await getNonce()
 
   return (
     <>
       <script
+        nonce={nonce}
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd).replace(/</g, '\\u003c') }}
       />
       {faqLd && (
         <script
+          nonce={nonce}
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd).replace(/</g, '\\u003c') }}
         />
       )}
 

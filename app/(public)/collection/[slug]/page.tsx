@@ -7,7 +7,7 @@ import ProductCard from '@/components/product/ProductCard'
 import FadeIn from '@/components/common/FadeIn'
 import InquiryButton from '@/components/common/InquiryButton'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 3600
 
 function titleCase(s: string) {
   return s.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())

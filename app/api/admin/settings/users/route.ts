@@ -5,9 +5,9 @@ import { hash } from 'bcryptjs'
 import { sql } from '@/lib/db'
 import { audit } from '@/lib/audit'
 
-// GET — list all admin users
+// GET — list all admin users (privileged: viewers blocked)
 export async function GET() {
-  const session = await getSession()
+  const session = await requirePrivileged()
   if (!session) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
 
   const users = await sql<{ id: number; email: string; role: string; created_at: string }>(

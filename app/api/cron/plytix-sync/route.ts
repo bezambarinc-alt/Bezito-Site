@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { revalidateTag } from 'next/cache'
+import { revalidatePath } from 'next/cache'
 import { sql } from '@/lib/db'
 import { isAuthorizedAgent } from '@/lib/agent-auth'
 
@@ -280,7 +280,7 @@ export async function GET(req: NextRequest) {
     }
 
     // Invalidate catalog cache so next request serves fresh data
-    revalidateTag('products', 'max')
+    revalidatePath('/jewelry', 'layout')
 
     return NextResponse.json({ ok: true, listed: ids.length, upserted, deleted, errors: errors.slice(0, 5) })
   } catch (e) {

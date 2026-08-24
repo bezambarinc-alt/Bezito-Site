@@ -3,6 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { RETAILERS, getRetailer, mapEmbedUrl, directionsUrl } from '@/lib/data/retailers'
+import InquiryButton from '@/components/common/InquiryButton'
+import { getNonce } from '@/lib/nonce'
 import styles from './page.module.css'
 
 const COLLECTION_ITEMS = [
@@ -75,6 +77,7 @@ export default async function RetailerPage({
   const r = getRetailer(slug)
   if (!r) notFound()
 
+  const nonce = await getNonce()
   const multi = r.locations.length > 1
 
   // JSON-LD for each location
@@ -106,8 +109,9 @@ export default async function RetailerPage({
       {jsonLd.map((data, i) => (
         <script
           key={i}
+          nonce={nonce}
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, '\\u003c') }}
         />
       ))}
 
@@ -244,13 +248,12 @@ export default async function RetailerPage({
           <div className={styles.collectionStrip}>
             {COLLECTION_ITEMS.map((item) => (
               <div key={item.title} className={styles.collectionItem}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src={item.src}
                   alt={item.alt}
-                  loading="lazy"
                   width={600}
                   height={800}
+                  style={{ width: '100%', height: 'auto' }}
                 />
                 <div className={styles.collectionCaption}>
                   <p className={styles.collectionCaptionTitle}>{item.title}</p>
@@ -304,9 +307,9 @@ export default async function RetailerPage({
               <Link className={styles.ctaBtnPrimary} href="/retailers">
                 View All Locations
               </Link>
-              <Link className={styles.ctaBtnGhost} href="/contact">
+              <InquiryButton className={styles.ctaBtnGhost} intent="Contact the Atelier">
                 Contact the Atelier
-              </Link>
+              </InquiryButton>
             </div>
           </div>
         </section>

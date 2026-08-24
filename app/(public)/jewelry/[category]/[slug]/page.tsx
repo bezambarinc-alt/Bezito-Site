@@ -9,6 +9,7 @@ import { TEMPLATES, isValidTemplateId } from './layouts'
 import type { TemplateId } from './layouts'
 import type { SpecItem } from '@/types/blocks'
 import DraftModeBanner from '@/components/layout/DraftModeBanner'
+import { getNonce } from '@/lib/nonce'
 
 export const revalidate = 3600
 export const dynamicParams = true
@@ -37,13 +38,14 @@ export async function generateMetadata({
 }: {
   params: Promise<{ category: string; slug: string }>
 }): Promise<Metadata> {
-  const { slug } = await params
+  const { category, slug } = await params
   const { isEnabled: isDraft } = await draftMode()
   const product = isDraft
     ? await getProductBySlugPreview(slug)
     : await getProductBySlug(slug)
   if (!product) return { title: 'Piece Not Found' }
   const s = product.specs
+  const canonicalCategory = (s.category ?? category).toLowerCase()
   return {
     title: `${product.name} — Bez Ambar`,
     description: s.lede ?? s.subtitle ?? `${product.name} by Bez Ambar.`,
@@ -52,7 +54,7 @@ export async function generateMetadata({
       description: s.subtitle ?? product.name,
       images: s.heroPosterUrl ? [{ url: s.heroPosterUrl }] : undefined,
     },
-    alternates: { canonical: `https://bezambar.com/jewelry/${product.slug}` },
+    alternates: { canonical: `https://bezambar.com/jewelry/${canonicalCategory}/${product.slug}` },
   }
 }
 
@@ -147,12 +149,14 @@ export default async function ProductPage({
   ]
 
   const productSchema = buildProductSchema(product, category)
+  const nonce = await getNonce()
 
   return (
     <>
       <script
+        nonce={nonce}
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema).replace(/</g, '\\u003c') }}
       />
 
       {/* Draft mode preview banner — only visible to admins in preview */}

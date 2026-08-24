@@ -8,9 +8,9 @@ import { audit } from '@/lib/audit'
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
-// GET — list all whitelisted IPs (active + expired, for visibility)
+// GET — list all whitelisted IPs (active + expired, for visibility; privileged: viewers blocked)
 export async function GET() {
-  const session = await getSession()
+  const session = await requirePrivileged()
   if (!session) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
 
   const rows = await sql<{
