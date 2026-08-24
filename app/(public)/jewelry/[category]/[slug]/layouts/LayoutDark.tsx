@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import type { ProductLayoutProps } from './types'
 import styles from './LayoutDark.module.css'
 
@@ -69,8 +70,15 @@ export default function LayoutDark({
         aria-label={heroImg ? `View ${title} full size` : undefined}
       >
         {heroImg && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={heroImg} alt={title} loading="eager" className={styles.heroImg} />
+          <Image
+            src={heroImg}
+            alt={title}
+            width={1400}
+            height={1000}
+            style={{ width: '100%', height: 'auto' }}
+            priority
+            className={styles.heroImg}
+          />
         )}
       </div>
 

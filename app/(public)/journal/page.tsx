@@ -3,7 +3,7 @@ import CuratorFeed from './CuratorFeed'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
-  title: 'Journal — Bez Ambar',
+  title: 'From the Bench — Bez Ambar',
   description:
     'Behind the craft. Inside the atelier. The latest from the Bez Ambar workbench — shared as it happens on Instagram.',
 }

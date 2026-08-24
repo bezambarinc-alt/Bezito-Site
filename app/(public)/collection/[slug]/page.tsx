@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { getProductsByCollection } from '@/lib/queries'
 import LazyVideo from '@/components/common/LazyVideo'
@@ -52,11 +53,13 @@ export default async function CollectionPage({
         {heroVideo ? (
           <video src={heroVideo} autoPlay muted loop playsInline preload="auto" />
         ) : heroPoster ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             src={heroPoster}
             alt={collectionName}
+            width={1600}
+            height={900}
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            priority
           />
         ) : null}
         <div className="ba-portrait-hero__overlay">
@@ -95,8 +98,13 @@ export default async function CollectionPage({
               {video ? (
                 <LazyVideo src={video} poster={image ?? undefined} />
               ) : image ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={image} alt={product.name} />
+                <Image
+                  src={image}
+                  alt={product.name}
+                  width={800}
+                  height={900}
+                  style={{ width: '100%', height: 'auto' }}
+                />
               ) : null}
             </div>
             <div className="ba-segment__text">

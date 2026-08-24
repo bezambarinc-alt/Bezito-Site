@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { getCategoryMeta, getCategoryLabel, CATEGORIES } from '@/lib/data/categories'
 import { getProductsByCategory } from '@/lib/queries'
@@ -58,8 +59,14 @@ export default async function CategoryPage({
             poster={heroPoster ?? undefined}
           />
         ) : heroPoster ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={heroPoster} alt={cat.title} />
+          <Image
+            src={heroPoster}
+            alt={cat.title}
+            width={1600}
+            height={900}
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            priority
+          />
         ) : null}
         <div className="ba-portrait-hero__overlay">
           <h1 className="ba-portrait-hero__title">{cat.title}</h1>
@@ -85,8 +92,13 @@ export default async function CategoryPage({
                 poster={editorialProduct.specs.heroPosterUrl ?? undefined}
               />
             ) : editorialProduct.specs.heroPosterUrl ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={editorialProduct.specs.heroPosterUrl} alt={editorialProduct.name} />
+              <Image
+                src={editorialProduct.specs.heroPosterUrl}
+                alt={editorialProduct.name}
+                width={800}
+                height={900}
+                style={{ width: '100%', height: 'auto' }}
+              />
             ) : null}
           </div>
           <div className="ba-segment__text">

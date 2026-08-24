@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import SpecAccordion from '@/components/blocks/SpecAccordion'
 import ProdPill from '@/components/layout/ProdPill'
 import type { SpecAccordionBlock } from '@/types/blocks'
@@ -31,8 +32,14 @@ export default function LayoutDefault({
             // eslint-disable-next-line @next/next/no-img-element
             <video src={heroVideo} autoPlay muted loop playsInline preload="auto" poster={heroPoster ?? undefined} />
           ) : heroPoster ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={heroPoster} alt={product.name} />
+            <Image
+              src={heroPoster}
+              alt={product.name}
+              width={1400}
+              height={1000}
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              priority
+            />
           ) : null}
         </div>
         <div className={styles.heroText}>
@@ -53,8 +60,14 @@ export default function LayoutDefault({
         </div>
         <div className={styles.contentRight}>
           {onHandPhoto && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img className={styles.contentPhoto} src={onHandPhoto} alt={`${product.name} · On Hand`} loading="lazy" />
+            <Image
+              className={styles.contentPhoto}
+              src={onHandPhoto}
+              alt={`${product.name} · On Hand`}
+              width={800}
+              height={900}
+              style={{ width: '100%', height: 'auto' }}
+            />
           )}
         </div>
       </section>
@@ -66,8 +79,14 @@ export default function LayoutDefault({
             <div key={i} className={styles.viewsItem}>
               <div className={styles.viewsImgWrap}>
                 {v.url && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img className={styles.viewsImg} src={v.url} alt={v.label} loading="lazy" />
+                  <Image
+                    className={styles.viewsImg}
+                    src={v.url}
+                    alt={v.label}
+                    width={600}
+                    height={600}
+                    style={{ width: '100%', height: 'auto' }}
+                  />
                 )}
               </div>
               <p className={styles.viewsLabel}>{v.label}</p>

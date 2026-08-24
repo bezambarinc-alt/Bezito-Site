@@ -7,7 +7,7 @@ import FadeIn from '@/components/common/FadeIn'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
-  title: 'Journal — Bez Ambar',
+  title: 'The Journal — Bez Ambar',
   description:
     'Stories from the Bez Ambar atelier — craft, diamonds, and the people behind the work.',
 }
