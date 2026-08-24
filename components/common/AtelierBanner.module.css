@@ -31,10 +31,11 @@
 /* ── Chiseled SVG wordmark ───────────────────────────────── */
 
 .wordmark {
-  width: min(820px, 92vw);
+  /* Sized to render the wordmark at the header logo's scale (~15px cap height) */
+  width: clamp(130px, 16vw, 165px);
   height: auto;
   display: block;
-  margin-bottom: clamp(24px, 3.5vw, 44px);
+  margin-bottom: clamp(20px, 2.5vw, 32px);
 }
 
 /* Text base — matches header wordmark (--ba-font-sans, weight 600, no tracking) */
