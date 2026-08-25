@@ -31,7 +31,6 @@ export default async function JournalPage() {
         <div className={styles.feedWrap}>
           {/* Feed target div — server-rendered, Curator script fills it client-side */}
           <div id="curator-feed-default-feed-layout" className={styles.curatorContainer} />
-          {/* Loads Curator.io script deferred via Next.js <Script strategy="lazyOnload"> */}
           <CuratorFeed nonce={nonce} />
         </div>
 

@@ -47,20 +47,6 @@
   min-height: 100px;
 }
 
-.curatorFeed {
-  position: relative;
-}
-
-.curatorBranding {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  font-family: var(--ba-font-sans);
-  font-size: 0.6875rem;
-  color: var(--ba-ink-muted);
-  opacity: 0.5;
-}
-
 .curatorContainer {
   min-height: 200px;
 }
