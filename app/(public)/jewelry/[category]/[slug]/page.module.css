@@ -143,6 +143,7 @@
 }
 
 .viewsImgWrap {
+  position: relative;
   width: 100%;
   height: 440px;
   overflow: hidden;
@@ -150,11 +151,8 @@
 }
 
 .viewsImg {
-  width: 100%;
-  height: 100%;
   object-fit: cover;
   object-position: center;
-  display: block;
 }
 
 .viewsLabel {
