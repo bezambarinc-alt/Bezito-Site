@@ -15,8 +15,8 @@ function buildCsp(nonce: string): string {
   const isDev = process.env.NODE_ENV !== 'production'
   return [
     `default-src 'self'`,
-    `script-src 'self' 'nonce-${nonce}'${isDev ? " 'unsafe-eval'" : ''} https://*.freshworks.com https://*.freshsales.io https://cdn.curator.io`,
-    `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://webfonts.fontstand.com https://d3a1s2k5oq9b60.cloudfront.net`,
+    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${isDev ? " 'unsafe-eval'" : ''} https://*.freshworks.com https://*.freshsales.io https://cdn.curator.io`,
+    `style-src 'self' 'unsafe-inline' 'nonce-curator-5e41d6ec-ffe3-4d7e-9e2a-09f0d58789f2' https://fonts.googleapis.com https://webfonts.fontstand.com https://d3a1s2k5oq9b60.cloudfront.net`,
     `font-src 'self' https://fonts.gstatic.com https://webfonts.fontstand.com data:`,
     `img-src 'self' data: blob: https://res.cloudinary.com https://*.curator.io https://*.cdninstagram.com`,
     `media-src 'self' blob: https://res.cloudinary.com`,

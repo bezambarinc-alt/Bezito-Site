@@ -1,6 +1,9 @@
+import { headers } from 'next/headers'
 import type { Metadata } from 'next'
 import CuratorFeed from './CuratorFeed'
 import styles from './page.module.css'
+
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'From the Bench — Bez Ambar',
@@ -8,7 +11,8 @@ export const metadata: Metadata = {
     'Behind the craft. Inside the atelier. The latest from the Bez Ambar workbench — shared as it happens on Instagram.',
 }
 
-export default function JournalPage() {
+export default async function JournalPage() {
+  const nonce = (await headers()).get('x-nonce') ?? undefined
   return (
     <main>
 
@@ -28,7 +32,7 @@ export default function JournalPage() {
           {/* Feed target div — server-rendered, Curator script fills it client-side */}
           <div id="curator-feed-default-feed-layout" className={styles.curatorContainer} />
           {/* Loads Curator.io script deferred via Next.js <Script strategy="lazyOnload"> */}
-          <CuratorFeed />
+          <CuratorFeed nonce={nonce} />
         </div>
 
         {/* Fallback grid — always visible */}
