@@ -145,14 +145,14 @@
 .viewsImgWrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 3 / 4;
+  height: 440px;
   overflow: hidden;
   background: #0d0d0d;
 }
 
 .viewsImg {
   object-fit: cover;
-  object-position: center top;
+  object-position: center;
 }
 
 .viewsLabel {
@@ -200,6 +200,6 @@
     grid-template-columns: 1fr;
   }
   .viewsImgWrap {
-    aspect-ratio: 3 / 4;
+    height: 320px;
   }
 }

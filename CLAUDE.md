@@ -171,7 +171,11 @@ All public-page CTAs open the `InquiryDrawer` with a pre-filled intent. Zero har
 - The ConciergeDrawer is the concierge panel (top-level). It passes through to InquiryDrawer for specific intents.
 - `PageCta` component supports `drawer + intent` props for server pages
 
-### 5. Button aesthetic — ghost pill, no gold fills
+### 5. PDP three-views panel — explicit height, never aspect-ratio
+
+`app/(public)/jewelry/[category]/[slug]/page.module.css` — `.viewsImgWrap` uses `height: 440px` (desktop) and `height: 320px` (mobile). Do NOT change this to `aspect-ratio`. `next/image fill` sets `position: absolute; inset: 0; height: 100%` on the child — an absolutely-positioned element resolves percentage height from its containing block's explicit height, not from an intrinsic ratio. `aspect-ratio: 3/4` resolves to 0 in grid/flex contexts and breaks the fill. Do not touch this.
+
+### 6. Button aesthetic — ghost pill, no gold fills
 
 This project follows a Patek-style ghost pill system. No gold-filled buttons anywhere.
 
