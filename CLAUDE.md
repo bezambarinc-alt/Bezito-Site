@@ -40,7 +40,7 @@ Auto-deploys on every push to `main`. Vercel token: `~/.openclaw/credentials/ver
 | Validation | Zod on all API inputs |
 | Media | Cloudinary (`dlg2mou53`) — all images + videos |
 | PIM | Plytix — product data source of truth |
-| CRM | Freshsales (`bezambar.myfreshworks.com`) |
+| CRM | Zoho CRM — `lib/zoho-auth.ts` + `app/api/lead/route.ts` + `app/actions/inquiry.ts` |
 | Analytics | Custom — Neon `page_views` table |
 | Fonts | Lyon Text Regular (Fontstand CDN, domain-locked) + Open Sans (system stack). No Cormorant. No Google Fonts. |
 
@@ -82,7 +82,7 @@ app/
 │   ├── admin/templates/   # Template activation
 │   ├── admin/analytics/   # Analytics aggregations
 │   ├── admin/settings/    # PIN + user management
-│   ├── lead/              # Inquiry capture → Neon + Freshsales
+│   ├── lead/              # Inquiry capture → Neon + Zoho CRM (best-effort)
 │   ├── cron/plytix-sync   # Plytix → Neon (every 4h)
 │   ├── track/             # Page view ingestion
 │   ├── search/            # Product search
@@ -147,7 +147,8 @@ Next.js 16 renamed the middleware file. `middleware.ts` is the **old convention*
 
 `.env.local` is a local dev file. Production values live in Vercel. Before declaring an env var "missing":
 - Hit the Vercel API: `GET /v1/projects/{projectId}/env` with the token at `~/.openclaw/credentials/vercel.json`
-- All critical vars are set in Vercel production: `DATABASE_URL`, `JWT_SECRET`, `FRESHSALES_API_KEY`, `CRON_SECRET`, `APP_URL`, `BEZITO_SECRET`, `PLYTIX_API_KEY`, `PLYTIX_API_PASSWORD`, `TRACK_SECRET`, `CLOUDINARY_*`, `ADMIN_*`
+- All critical vars are set in Vercel production: `DATABASE_URL`, `JWT_SECRET`, `ZOHO_CLIENT_ID`, `ZOHO_CLIENT_SECRET`, `ZOHO_REFRESH_TOKEN`, `CRON_SECRET`, `APP_URL`, `BEZITO_SECRET`, `PLYTIX_API_KEY`, `PLYTIX_API_PASSWORD`, `TRACK_SECRET`, `CLOUDINARY_*`, `ADMIN_*`
+- `FRESHSALES_API_KEY` is decommissioned — do not reference it anywhere
 
 ### 3. Font stack — no Cormorant Garamond anywhere
 
@@ -175,7 +176,25 @@ All public-page CTAs open the `InquiryDrawer` with a pre-filled intent. Zero har
 
 `app/(public)/jewelry/[category]/[slug]/page.module.css` — `.viewsImgWrap` uses `height: 440px` (desktop) and `height: 320px` (mobile). Do NOT change this to `aspect-ratio`. `next/image fill` sets `position: absolute; inset: 0; height: 100%` on the child — an absolutely-positioned element resolves percentage height from its containing block's explicit height, not from an intrinsic ratio. `aspect-ratio: 3/4` resolves to 0 in grid/flex contexts and breaks the fill. Do not touch this.
 
-### 6. Button aesthetic — ghost pill, no gold fills
+### 6. Zoho CRM — lead ingestion rules
+
+All form submissions (InquiryDrawer, ContactForm, ArchiveModal) → Neon Postgres FIRST, then Zoho CRM best-effort. Zoho failure must never cause a 500 or lose a lead.
+
+**Never change without reading this:**
+- `Lead_Source` is a picklist — always pass `'Web Site'` (hardcoded constant in each file). Do NOT pass a sku, slug, or ad-hoc string — it silently pollutes CRM reporting without error.
+- `Last_Name` is required. Use `parseZohoName(name, email)` from `lib/zoho-auth.ts` — it splits name correctly and falls back to the email local-part.
+- Check `data[0].status === 'success' && data[0].code === 'SUCCESS'` — NOT just `crm.ok`. Zoho returns HTTP 207 on per-record validation failure (crm.ok is true, but the lead was never created).
+- `AbortSignal.timeout(5000)` on every Zoho fetch — CRM is best-effort, never blocks the user response.
+- On HTTP 401 from Zoho: call `invalidateZohoToken()` to clear the stale cache before marking `failed`.
+- Env vars: `ZOHO_CLIENT_ID`, `ZOHO_CLIENT_SECRET`, `ZOHO_REFRESH_TOKEN` — must be set in Vercel (bezambar-nextjs project). DC is US (`accounts.zoho.com`). If org ever moves DC, add `ZOHO_ACCOUNTS_URL` env var.
+
+**Files:**
+- `lib/zoho-auth.ts` — token cache + `parseZohoName` + `invalidateZohoToken`
+- `app/api/lead/route.ts` — newsletter/archive modal (REST endpoint, email-only or name+email)
+- `app/actions/inquiry.ts` — InquiryDrawer + ContactForm (Server Action, full form with intent dropdown)
+- `app/api/admin/leads/retry/route.ts` — admin retry for `crm_status='failed'` leads
+
+### 7. Button aesthetic — ghost pill, no gold fills
 
 This project follows a Patek-style ghost pill system. No gold-filled buttons anywhere.
 

@@ -2,6 +2,11 @@ import { NextRequest, NextResponse } from 'next/server'
 import { sql } from '@/lib/db'
 import { getGeo } from '@/lib/geo'
 import { checkRateLimit, recordAttempt } from '@/lib/rate-limit'
+import { getZohoToken, invalidateZohoToken, parseZohoName } from '@/lib/zoho-auth'
+
+// Lead_Source must be a valid Zoho CRM picklist display_value.
+// Verify this matches your org's picklist: Zoho CRM → Leads → Fields → Lead Source.
+const ZOHO_LEAD_SOURCE = 'Web Site'
 
 export async function POST(req: NextRequest) {
   const { ip } = getGeo(req)
@@ -26,24 +31,20 @@ export async function POST(req: NextRequest) {
     page_slug?: string
   }
 
-  const name  = body.name
-  const email = body.email
+  const name   = body.name
+  const email  = body.email
   const intent = body.intent
   // Accept an explicit `sku` too; else fall back to the page_slug field, which
   // archive/newsletter callers overload with the piece SKU (e.g. "C-1234").
-  const sku = body.sku ?? body.pageSlug ?? body.page_slug ?? null
-
-  // Both SKU and intent now have their OWN columns — neither is stuffed into the
-  // message text anymore. The message holds only the actual free-text body.
+  const sku    = body.sku ?? body.pageSlug ?? body.page_slug ?? null
   const message = body.message || null
 
-  if (!email || !/^[^@]+@[^@]+\.[^@]+$/.test(email)) {
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return NextResponse.json({ error: 'invalid email' }, { status: 400 })
   }
 
   // `leads.page_slug` has a FK -> pages.slug. Only write it if the value is a
-  // REAL page slug; a piece SKU is not a page and would violate the FK (500 →
-  // lost lead). The SKU lives in the dedicated `leads.sku` column instead.
+  // REAL page slug; a piece SKU is not a page and would violate the FK.
   let fkPageSlug: string | null = null
   if (sku) {
     try {
@@ -53,37 +54,57 @@ export async function POST(req: NextRequest) {
       )
       if (hit.length > 0) fkPageSlug = sku
     } catch {
-      fkPageSlug = null // never let this lookup break the lead save
+      fkPageSlug = null
     }
   }
 
-  // 1. Durable audit copy FIRST — lead can never be lost even if CRM fails.
-  //    SKU + intent go to their dedicated columns; message stays clean.
+  // 1. Durable audit copy FIRST — lead is never lost even if CRM fails.
   const [lead] = await sql<{ id: number }>(
     `INSERT INTO leads(page_slug, sku, intent, name, email, message, crm_status)
      VALUES ($1,$2,$3,$4,$5,$6,'pending') RETURNING id`,
     [fkPageSlug, sku, intent ?? null, name ?? null, email, message ?? null],
   )
 
-  // 2. Push to Freshsales (best-effort)
+  // 2. Push to Zoho CRM Leads (best-effort — 5s timeout, never blocks lead save)
   try {
-    const crm = await fetch('https://bezambar.myfreshworks.com/crm/sales/api/contacts', {
+    const token = await getZohoToken()
+    const nameFields = parseZohoName(name, email)
+    const description = [
+      intent ? `Intent: ${intent}` : null,
+      sku    ? `Piece: ${sku}`    : null,
+      message || null,
+    ].filter(Boolean).join('\n') || 'Website inquiry'
+
+    const crm = await fetch('https://www.zohoapis.com/crm/v3/Leads', {
       method: 'POST',
+      signal: AbortSignal.timeout(5000),
       headers: {
-        'Authorization': `Token token=${process.env.FRESHSALES_API_KEY}`,
+        Authorization: `Zoho-oauthtoken ${token}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        contact: {
-          first_name: name,
-          email,
-          custom_field: { source: sku ?? 'site', intent: intent ?? 'site' },
-        },
+        data: [{
+          ...nameFields,
+          Email: email,
+          Lead_Source: ZOHO_LEAD_SOURCE,
+          Description: description,
+        }],
       }),
     })
-    if (crm.ok) {
-      const { contact } = await crm.json() as { contact: { id: number } }
-      await sql(`UPDATE leads SET crm_status='synced', crm_id=$1 WHERE id=$2`, [String(contact?.id ?? ''), lead.id])
+
+    // Zoho returns 207 on per-record validation failure — crm.ok is true.
+    // Must check data[0].status to distinguish success from silent rejection.
+    const json = await crm.json() as {
+      data: Array<{ code: string; status: string; details?: { id?: string } }>
+    }
+    const rec   = json.data?.[0]
+    const crmId = rec?.details?.id
+
+    if (crm.status === 401) {
+      invalidateZohoToken()
+      await sql(`UPDATE leads SET crm_status='failed' WHERE id=$1`, [lead.id])
+    } else if (crm.ok && rec?.status === 'success' && rec?.code === 'SUCCESS' && crmId) {
+      await sql(`UPDATE leads SET crm_status='synced', crm_id=$1 WHERE id=$2`, [crmId, lead.id])
     } else {
       await sql(`UPDATE leads SET crm_status='failed' WHERE id=$1`, [lead.id])
     }

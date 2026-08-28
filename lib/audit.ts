@@ -25,6 +25,8 @@ export type AuditAction =
   | 'portal.pin.generated'
   | 'portal.pin.revoked'
   | 'portal.page_request.submitted'
+  | 'admin.lead.retry.success'
+  | 'admin.lead.retry.failed'
 
 export async function audit(
   action: AuditAction,

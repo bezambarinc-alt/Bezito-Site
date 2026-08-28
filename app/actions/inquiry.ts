@@ -3,14 +3,11 @@
 import { z } from 'zod'
 import { sql } from '@/lib/db'
 import { INQUIRY_INTENTS } from '@/lib/data/inquiry-constants'
+import { getZohoToken, invalidateZohoToken, parseZohoName } from '@/lib/zoho-auth'
 
-/**
- * Inquiry Server Action — used by the InquiryDrawer and the Contact page form.
- * Durable audit copy is written to Neon FIRST, then a best-effort push to
- * Freshsales. The lead is never lost even if the CRM call fails.
- *
- * No secrets are hardcoded — Freshsales credentials come from the environment.
- */
+// Lead_Source must be a valid Zoho CRM picklist display_value.
+// Verify this matches your org's picklist: Zoho CRM → Leads → Fields → Lead Source.
+const ZOHO_LEAD_SOURCE = 'Web Site'
 
 // Built from the single shared source of truth so the schema can never drift
 // from the UI (this exact duplication caused a submission-breaking bug before).
@@ -85,29 +82,51 @@ export async function submitInquiry(
     return { status: 'error', message: 'We could not record your inquiry. Please call the atelier.' }
   }
 
-  // 2. Best-effort CRM push.
+  // 2. Best-effort CRM push — 5s timeout, never delays the success response.
   try {
-    const crm = await fetch('https://bezambar.myfreshworks.com/crm/sales/api/contacts', {
+    const token = await getZohoToken()
+    const nameFields = parseZohoName(d.name, d.email)
+    // Description: human-readable summary for the sales team.
+    // Lead_Source is always 'Web Site'; the specific intent lives in Description.
+    const description = [
+      `How can we help: ${d.intent}`,
+      d.pieceTitle ? `Piece: ${d.pieceTitle}` : null,
+      d.preferredDate ? `Preferred date: ${d.preferredDate}` : null,
+      d.phone ? `Phone: ${d.phone}` : null,
+      d.message || null,
+    ].filter(Boolean).join('\n')
+
+    const crm = await fetch('https://www.zohoapis.com/crm/v3/Leads', {
       method: 'POST',
+      signal: AbortSignal.timeout(5000),
       headers: {
-        Authorization: `Token token=${process.env.FRESHSALES_API_KEY}`,
+        Authorization: `Zoho-oauthtoken ${token}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        contact: {
-          first_name: d.name,
-          email: d.email,
-          mobile_number: d.phone || undefined,
-          custom_field: { source: d.pageSlug || 'site', intent: d.intent },
-        },
+        data: [{
+          ...nameFields,
+          Email: d.email,
+          Mobile: d.phone || undefined,
+          Lead_Source: ZOHO_LEAD_SOURCE,
+          Description: description,
+        }],
       }),
     })
-    if (crm.ok && leadId != null) {
-      const body = (await crm.json()) as { contact?: { id?: number } }
-      await sql(`UPDATE leads SET crm_status='synced', crm_id=$1 WHERE id=$2`, [
-        String(body.contact?.id ?? ''),
-        leadId,
-      ])
+
+    // Zoho returns 207 on per-record validation failure — crm.ok is true.
+    // Must check data[0].status to distinguish success from silent rejection.
+    const json = (await crm.json()) as {
+      data: Array<{ code: string; status: string; details?: { id?: string } }>
+    }
+    const rec   = json.data?.[0]
+    const crmId = rec?.details?.id
+
+    if (crm.status === 401 && leadId != null) {
+      invalidateZohoToken()
+      await sql(`UPDATE leads SET crm_status='failed' WHERE id=$1`, [leadId])
+    } else if (crm.ok && rec?.status === 'success' && rec?.code === 'SUCCESS' && crmId && leadId != null) {
+      await sql(`UPDATE leads SET crm_status='synced', crm_id=$1 WHERE id=$2`, [crmId, leadId])
     } else if (leadId != null) {
       await sql(`UPDATE leads SET crm_status='failed' WHERE id=$1`, [leadId])
     }
