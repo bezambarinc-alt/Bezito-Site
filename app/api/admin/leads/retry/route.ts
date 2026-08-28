@@ -22,9 +22,9 @@ export async function POST(req: NextRequest) {
 
   // Only retry leads that haven't been synced yet — prevents duplicate Zoho records.
   const [lead] = await sql<{
-    id: number; name: string | null; email: string; sku: string | null; intent: string | null
+    id: number; name: string | null; email: string; sku: string | null; intent: string | null; page_slug: string | null
   }>(
-    `SELECT id, name, email, sku, intent FROM leads
+    `SELECT id, name, email, sku, intent, page_slug FROM leads
      WHERE id = $1 AND crm_status IN ('failed', 'pending') LIMIT 1`,
     [parsed.data.id],
   )
@@ -36,9 +36,11 @@ export async function POST(req: NextRequest) {
   try {
     const token = await getZohoToken()
     const nameFields = parseZohoName(lead.name, lead.email)
+    const appUrl = process.env.APP_URL ?? 'https://bezambar-web2026.vercel.app'
+    const pageUrl = lead.page_slug ? `${appUrl}/${lead.page_slug}` : undefined
     const description = [
+      lead.sku    ? `SKU: ${lead.sku}`       : null,
       lead.intent ? `Intent: ${lead.intent}` : null,
-      lead.sku    ? `Piece: ${lead.sku}`     : null,
     ].filter(Boolean).join('\n') || 'Website inquiry'
 
     const crm = await fetch('https://www.zohoapis.com/crm/v3/Leads', {
@@ -53,6 +55,7 @@ export async function POST(req: NextRequest) {
           ...nameFields,
           Email: lead.email,
           Lead_Source: ZOHO_LEAD_SOURCE,
+          Website: pageUrl,
           Description: description,
         }],
       }),

@@ -86,14 +86,18 @@ export async function submitInquiry(
   try {
     const token = await getZohoToken()
     const nameFields = parseZohoName(d.name, d.email)
+    const appUrl = process.env.APP_URL ?? 'https://bezambar-web2026.vercel.app'
+    const pageUrl = d.pageSlug ? `${appUrl}/${d.pageSlug}` : undefined
     // Description: human-readable summary for the sales team.
-    // Lead_Source is always 'Web Site'; the specific intent lives in Description.
+    // Lead_Source is always 'Web Site'; intent/page/SKU live in Description + Website field.
+    // SKU is first so it's visible immediately in the CRM lead preview panel.
     const description = [
+      d.sku           ? `SKU: ${d.sku}`                         : null,
       `How can we help: ${d.intent}`,
-      d.pieceTitle ? `Piece: ${d.pieceTitle}` : null,
-      d.preferredDate ? `Preferred date: ${d.preferredDate}` : null,
-      d.phone ? `Phone: ${d.phone}` : null,
-      d.message || null,
+      d.pieceTitle    ? `Piece: ${d.pieceTitle}`                 : null,
+      d.preferredDate ? `Preferred date: ${d.preferredDate}`     : null,
+      d.phone         ? `Phone: ${d.phone}`                      : null,
+      d.message       || null,
     ].filter(Boolean).join('\n')
 
     const crm = await fetch('https://www.zohoapis.com/crm/v3/Leads', {
@@ -109,6 +113,7 @@ export async function submitInquiry(
           Email: d.email,
           Mobile: d.phone || undefined,
           Lead_Source: ZOHO_LEAD_SOURCE,
+          Website: pageUrl,
           Description: description,
         }],
       }),

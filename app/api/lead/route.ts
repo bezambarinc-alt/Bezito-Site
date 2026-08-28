@@ -31,13 +31,13 @@ export async function POST(req: NextRequest) {
     page_slug?: string
   }
 
-  const name   = body.name
-  const email  = body.email
-  const intent = body.intent
-  // Accept an explicit `sku` too; else fall back to the page_slug field, which
-  // archive/newsletter callers overload with the piece SKU (e.g. "C-1234").
-  const sku    = body.sku ?? body.pageSlug ?? body.page_slug ?? null
-  const message = body.message || null
+  const name      = body.name
+  const email     = body.email
+  const intent    = body.intent
+  const sku       = body.sku ?? null
+  const message   = body.message || null
+  // pageSlug is the site path (e.g. "jewelry/rings/c-0754"); sku is the piece reference.
+  const rawPageSlug = body.pageSlug ?? body.page_slug ?? null
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return NextResponse.json({ error: 'invalid email' }, { status: 400 })
@@ -46,13 +46,13 @@ export async function POST(req: NextRequest) {
   // `leads.page_slug` has a FK -> pages.slug. Only write it if the value is a
   // REAL page slug; a piece SKU is not a page and would violate the FK.
   let fkPageSlug: string | null = null
-  if (sku) {
+  if (rawPageSlug) {
     try {
       const hit = await sql<{ slug: string }>(
         `SELECT slug FROM pages WHERE slug = $1 LIMIT 1`,
-        [sku],
+        [rawPageSlug],
       )
-      if (hit.length > 0) fkPageSlug = sku
+      if (hit.length > 0) fkPageSlug = rawPageSlug
     } catch {
       fkPageSlug = null
     }
@@ -65,13 +65,17 @@ export async function POST(req: NextRequest) {
     [fkPageSlug, sku, intent ?? null, name ?? null, email, message ?? null],
   )
 
+  // Page URL for Zoho Website field — lets sales see exactly which page the lead came from.
+  const appUrl = process.env.APP_URL ?? 'https://bezambar-web2026.vercel.app'
+  const pageUrl = rawPageSlug ? `${appUrl}/${rawPageSlug}` : undefined
+
   // 2. Push to Zoho CRM Leads (best-effort — 5s timeout, never blocks lead save)
   try {
     const token = await getZohoToken()
     const nameFields = parseZohoName(name, email)
     const description = [
-      intent ? `Intent: ${intent}` : null,
-      sku    ? `Piece: ${sku}`    : null,
+      sku     ? `SKU: ${sku}`        : null,
+      intent  ? `Intent: ${intent}`  : null,
       message || null,
     ].filter(Boolean).join('\n') || 'Website inquiry'
 
@@ -87,6 +91,7 @@ export async function POST(req: NextRequest) {
           ...nameFields,
           Email: email,
           Lead_Source: ZOHO_LEAD_SOURCE,
+          Website: pageUrl,
           Description: description,
         }],
       }),
