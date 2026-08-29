@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import SpecAccordion from '@/components/blocks/SpecAccordion'
 import ProdPill from '@/components/layout/ProdPill'
+import AtelierBanner from '@/components/common/AtelierBanner'
 import type { SpecAccordionBlock } from '@/types/blocks'
 import type { ProductLayoutProps } from './types'
 import styles from '../page.module.css'
@@ -94,7 +95,10 @@ export default function LayoutDefault({
         </div>
       </section>
 
-      {/* ── 4. ProdPill ── */}
+      {/* ── 4. Atelier banner ── */}
+      <AtelierBanner />
+
+      {/* ── 5. ProdPill ── */}
       <ProdPill title={product.name} sku={product.sku} />
     </main>
   )
