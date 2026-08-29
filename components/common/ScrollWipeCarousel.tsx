@@ -29,6 +29,7 @@ export default function ScrollWipeCarousel({ slides }: Props) {
   const [activeDot, setActiveDot]   = useState(0)
   const [dotsVisible, setDotsVisible] = useState(false)
   const video1Started = useRef(false)
+  const video1Loaded  = useRef(false)
   const ticking = useRef(false)
 
   useEffect(() => {
@@ -82,7 +83,10 @@ export default function ScrollWipeCarousel({ slides }: Props) {
         setDotsVisible(entry.isIntersecting)
         if (entry.isIntersecting) {
           video0?.play().catch(() => {})
-          video1?.load()
+          if (!video1Loaded.current) {
+            video1Loaded.current = true
+            video1?.load()
+          }
           onScroll()
         } else {
           video0?.pause()

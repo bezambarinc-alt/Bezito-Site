@@ -1,13 +1,8 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import dynamic from 'next/dynamic'
+import ScrollWipeCarousel from './ScrollWipeCarousel'
 import type { CarouselSlide } from '@/lib/data/home-slides'
-
-const ScrollWipeCarousel = dynamic(
-  () => import('./ScrollWipeCarousel'),
-  { ssr: false },
-)
 
 interface Props {
   slides: [CarouselSlide, CarouselSlide]
@@ -15,8 +10,9 @@ interface Props {
 
 /**
  * Defers mounting ScrollWipeCarousel until 800px before viewport entry.
- * Placeholder is the same 200vh height as the real carousel to avoid layout shift.
- * Prevents the cinematic section's preload="auto" video from loading at page init.
+ * Placeholder is the same 200vh height as the real carousel — no layout shift.
+ * Prevents the cinematic section's video and scroll listener from loading at page init.
+ * Uses a direct import (not next/dynamic) since the chunk is already in the main bundle.
  */
 export default function LazyScrollWipeCarousel({ slides }: Props) {
   const sentinelRef = useRef<HTMLDivElement>(null)
