@@ -80,11 +80,11 @@ export default function LayoutDefault({
               <div key={i} className={styles.viewsItem}>
                 <div className={styles.viewsImgWrap}>
                   <Image
-                    fill
                     src={v.url!}
                     alt={v.label}
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className={styles.viewsImg}
+                    width={900}
+                    height={440}
+                    sizes="(max-width: 768px) 100vw, 34vw"
                   />
                 </div>
                 <p className={styles.viewsLabel}>{v.label}</p>

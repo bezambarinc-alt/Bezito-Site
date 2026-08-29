@@ -142,18 +142,10 @@ export default async function ProductPage({
     { label: 'Inquiry',  body: 'Presented privately by appointment. Reference this piece when you inquire.' },
   ].filter((x): x is SpecItem => x !== null)
 
-  // Crop Cloudinary view images to the exact container aspect ratio so the
-  // subject always fills the frame — no CSS guesswork, no composition gaps.
-  function cropView(url: string | null | undefined): string | undefined {
-    if (!url) return undefined
-    if (!url.includes('res.cloudinary.com')) return url
-    return url.replace('/upload/', '/upload/c_fill,g_north,w_900,h_440/')
-  }
-
   const views = [
-    { label: 'Top',          url: cropView(product.view1Url ?? heroPoster) },
-    { label: 'Concept',      url: cropView(product.view2Url ?? heroPoster) },
-    { label: 'Stone Sketch', url: cropView(product.view3Url ?? heroPoster) },
+    { label: 'Top',          url: product.view1Url ?? heroPoster },
+    { label: 'Concept',      url: product.view2Url ?? heroPoster },
+    { label: 'Stone Sketch', url: product.view3Url ?? heroPoster },
   ]
 
   const productSchema = buildProductSchema(product, category)

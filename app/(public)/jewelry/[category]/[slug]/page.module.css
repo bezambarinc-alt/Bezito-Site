@@ -149,9 +149,12 @@
   background: #0d0d0d;
 }
 
-.viewsImg {
+.viewsImgWrap img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: center center;
+  object-position: top center;
+  display: block;
 }
 
 .viewsLabel {
