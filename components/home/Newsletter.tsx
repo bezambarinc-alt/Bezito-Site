@@ -29,7 +29,7 @@ export default function Newsletter() {
   return (
     <section className={styles.section}>
       <div className={styles.inner}>
-        <h2 className={styles.title}>The Private List</h2>
+        <h2 className={`ba-eyebrow ${styles.title}`}>The Private List</h2>
         <p className={styles.lede}>
           First access to new pieces, archive discoveries, and notes from the atelier.
           Rarely sent. Always worth it.

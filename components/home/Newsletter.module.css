@@ -15,14 +15,7 @@
   margin: 0 auto;
 }
 
-/* Astro .newsletter h2: 15px, weight 400, gold — NOT a large uppercase heading */
 .title {
-  font-family: var(--ba-font-sans);
-  font-size: 0.9375rem; /* 15px */
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0;
-  color: var(--ba-gold);
   margin: 0 0 22px;
 }
 
