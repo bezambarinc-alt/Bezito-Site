@@ -62,11 +62,15 @@ export default function AtelierBanner() {
         </svg>
 
         <p className={styles.tagline}>
-          Most jewelers set a stone. We choose it, then draw the piece around it.
+          We transform stones into art.
         </p>
 
-        <InquiryButton intent="Private Consultation" className={styles.cta}>
-          Consult us →
+        <p className={styles.body}>
+          For private clients, retailers, and stone dealers — all inquiries welcome.
+        </p>
+
+        <InquiryButton intent="Bring Us Your Stone" className={styles.cta}>
+          Bring Us Your Stone →
         </InquiryButton>
 
         <div className={styles.rule} />

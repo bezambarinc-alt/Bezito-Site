@@ -66,7 +66,19 @@
   color: rgba(255, 255, 255, 0.28);
   letter-spacing: 0.04em;
   line-height: 1.6;
-  margin-bottom: clamp(32px, 5vw, 56px);
+  margin-bottom: clamp(16px, 2vw, 24px);
+}
+
+/* ── Sub body ────────────────────────────────────────────── */
+
+.body {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(9px, 0.82vw, 11px);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.35);
+  margin-top: -20px;
+  margin-bottom: clamp(28px, 4vw, 44px);
 }
 
 /* ── Consult CTA ─────────────────────────────────────────── */
