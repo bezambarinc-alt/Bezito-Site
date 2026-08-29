@@ -7,11 +7,7 @@ export default function AtelierBanner() {
       <div className={styles.inner}>
         <p className={styles.eyebrow}>Los Angeles · Est. 1979</p>
 
-        <h2 className={styles.headline}>Bez Ambar</h2>
-
-        <p className={styles.tagline}>
-          We transform stones into art.
-        </p>
+        <h2 className={styles.headline}>We Transform Stones Into Art.</h2>
 
         <p className={styles.body}>
           In partnership with diamond cutters, color stone dealers, and retailers. All inquiries welcome.
@@ -22,6 +18,8 @@ export default function AtelierBanner() {
         </InquiryButton>
 
         <div className={styles.rule} />
+
+        <p className={styles.wordmark}>Bez Ambar</p>
       </div>
     </section>
   )
