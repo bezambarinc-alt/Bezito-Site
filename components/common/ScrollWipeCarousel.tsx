@@ -45,6 +45,7 @@ export default function ScrollWipeCarousel({ slides }: Props) {
     // Compute wipe progress + drive transform/video/dots. Called inside rAF.
     const update = () => {
       ticking.current = false
+      if (!stackInView) return  // skip getBoundingClientRect + setState when off-screen
       const rect     = stack.getBoundingClientRect()
       const progress = Math.max(0, Math.min(1, -rect.top / (rect.height - window.innerHeight)))
 
@@ -54,13 +55,13 @@ export default function ScrollWipeCarousel({ slides }: Props) {
 
       if (progress >= 0.45 && !video1Started.current) {
         video1Started.current = true
-        if (stackInView) video1?.play().catch(() => {})
+        video1?.play().catch(() => {})
       }
 
       setActiveDot(progress >= 0.5 ? 1 : 0)
     }
 
-    // rAF-throttled scroll handler (Astro parity — avoids layout thrash per event)
+    // rAF-throttled scroll handler
     const onScroll = () => {
       if (!ticking.current) {
         ticking.current = true
@@ -68,15 +69,15 @@ export default function ScrollWipeCarousel({ slides }: Props) {
       }
     }
 
-    // Resize handler — recompute after the viewport settles (Astro parity)
+    // Resize handler — recompute after the viewport settles
     let resizeTimer: ReturnType<typeof setTimeout>
     const onResize = () => {
       clearTimeout(resizeTimer)
       resizeTimer = setTimeout(onScroll, 120)
     }
 
-    // Pause both videos when the stack scrolls off-screen (perf: no decoding
-    // offscreen video); resume the active one when it returns.
+    // Scroll listener is ONLY active while the stack is in the viewport.
+    // IO adds it on entry and removes it on exit — off-screen carousel costs zero per scroll.
     const io = new IntersectionObserver(
       ([entry]) => {
         stackInView = entry.isIntersecting
@@ -87,21 +88,25 @@ export default function ScrollWipeCarousel({ slides }: Props) {
             video1Loaded.current = true
             video1?.load()
           }
+          if (!reduced) {
+            window.addEventListener('scroll', onScroll, { passive: true })
+            window.addEventListener('resize', onResize)
+          }
           onScroll()
         } else {
           video0?.pause()
           video1?.pause()
+          window.removeEventListener('scroll', onScroll)
+          window.removeEventListener('resize', onResize)
+          clearTimeout(resizeTimer)
         }
       },
       { threshold: 0 },
     )
     io.observe(stack)
 
+    // One-time position check on mount (sets slide1 initial transform)
     requestAnimationFrame(update)
-    if (!reduced) {
-      window.addEventListener('scroll', onScroll, { passive: true })
-      window.addEventListener('resize', onResize)
-    }
 
     return () => {
       window.removeEventListener('scroll', onScroll)
