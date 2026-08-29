@@ -3,7 +3,7 @@
 
 .section {
   min-height: 300px;
-  padding: clamp(60px, 10vw, 120px) 40px;
+  padding: clamp(30px, 5vw, 60px) 40px;
   background: var(--ba-white);
   color: var(--ba-ink);
   text-align: center;
