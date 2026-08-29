@@ -149,10 +149,7 @@
   background: #0d0d0d;
 }
 
-.viewsImg {
-  object-fit: cover;
-  object-position: center;
-}
+/* object-fit applied inline on the Image component — fill prop requires it */
 
 .viewsLabel {
   font-family: var(--ba-font-sans);

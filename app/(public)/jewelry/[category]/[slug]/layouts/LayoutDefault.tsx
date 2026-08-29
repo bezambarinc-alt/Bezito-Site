@@ -74,26 +74,26 @@ export default function LayoutDefault({
       </section>
 
       {/* ── 3. Three Views ── */}
-      <section className={styles.views}>
-        <div className={styles.viewsGrid}>
-          {views.map((v, i) => (
-            <div key={i} className={styles.viewsItem}>
-              <div className={styles.viewsImgWrap}>
-                {v.url && (
+      {views.some(v => v.url) && (
+        <section className={styles.views}>
+          <div className={styles.viewsGrid} style={{ gridTemplateColumns: `repeat(${views.filter(v => v.url).length}, 1fr)` }}>
+            {views.filter(v => v.url).map((v, i) => (
+              <div key={i} className={styles.viewsItem}>
+                <div className={styles.viewsImgWrap}>
                   <Image
                     fill
-                    className={styles.viewsImg}
-                    src={v.url}
+                    src={v.url!}
                     alt={v.label}
                     sizes="(max-width: 768px) 100vw, 33vw"
+                    style={{ objectFit: 'cover', objectPosition: 'center' }}
                   />
-                )}
+                </div>
+                <p className={styles.viewsLabel}>{v.label}</p>
               </div>
-              <p className={styles.viewsLabel}>{v.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* ── 4. Atelier banner ── */}
       <AtelierBanner />
