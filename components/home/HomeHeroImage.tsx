@@ -36,7 +36,7 @@ export default function HomeHeroImage({
         fill
         priority={priority}
         sizes="100vw"
-        style={{ objectFit: 'cover' }}
+        className={styles.heroImg}
       />
       <div className={styles.overlay}>
         {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
