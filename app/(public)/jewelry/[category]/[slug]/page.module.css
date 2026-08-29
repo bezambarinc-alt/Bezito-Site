@@ -124,22 +124,21 @@
 
 .views {
   margin-top: 0;
-  padding: 0 0 15px;
+  padding: 0;
   background: #000;
 }
 
 .viewsGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  max-width: var(--ba-maxw);
-  margin: 0 auto;
+  gap: 2px;
+  width: 100%;
 }
 
 .viewsItem {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0;
 }
 
 .viewsImgWrap {
@@ -162,6 +161,7 @@
   letter-spacing: 0.20em;
   text-transform: uppercase;
   color: var(--ba-gold);
+  padding: 10px 0 12px;
   text-align: center;
 }
 
