@@ -1,6 +1,7 @@
 'use client'
 
 import { useActionState, useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { useDrawers } from './DrawerContext'
 import { submitInquiry, type InquiryState } from '@/app/actions/inquiry'
 import {
@@ -15,6 +16,7 @@ const initialState: InquiryState = { status: 'idle' }
 /** Right-panel slide-in inquiry form. Matches Astro #inquiry-drawer / .ba-drawer */
 export default function InquiryDrawer() {
   const { active, close, openConcierge, inquiryPrefill } = useDrawers()
+  const pathname = usePathname()
   const open = active === 'inquiry'
   const [state, formAction, pending] = useActionState(submitInquiry, initialState)
   const [intent, setIntent] = useState<string>(inquiryPrefill.intent ?? '')
@@ -82,6 +84,7 @@ export default function InquiryDrawer() {
             <form action={formAction} className={styles.form}>
               <input type="hidden" name="sku"       value={inquiryPrefill.sku   ?? ''} />
               <input type="hidden" name="pieceTitle" value={inquiryPrefill.title ?? ''} />
+              <input type="hidden" name="pageSlug"   value={(pathname ?? '').slice(1)} />
 
               {/* Row 1: Name + Email */}
               <div className={styles.formRow}>
