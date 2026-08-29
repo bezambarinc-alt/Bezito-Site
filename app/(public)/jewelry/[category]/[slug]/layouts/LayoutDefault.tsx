@@ -85,6 +85,7 @@ export default function LayoutDefault({
                     width={900}
                     height={440}
                     sizes="(max-width: 768px) 100vw, 34vw"
+                    className={styles.viewsImg}
                   />
                 </div>
                 <p className={styles.viewsLabel}>{v.label}</p>
