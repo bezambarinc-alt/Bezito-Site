@@ -142,12 +142,11 @@ export default function ScrollWipeCarousel({ slides }: Props) {
         <div ref={slide1Ref} className={styles.slide1}>
           <video
             ref={video1Ref}
+            src={slides[1].videoUrl}
             muted loop playsInline preload="none"
             poster={slides[1].posterUrl}
             className={styles.video}
-          >
-            <source src={slides[1].videoUrl} type="video/mp4" />
-          </video>
+          />
           <div className={styles.gradient} aria-hidden />
           <div className={styles.overlayLeft}>
             <p className="ba-eyebrow">{slides[1].eyebrow}</p>
@@ -155,20 +154,21 @@ export default function ScrollWipeCarousel({ slides }: Props) {
             <p className={styles.sub}>{slides[1].sub}</p>
           </div>
         </div>
-      </div>
 
-      {/* Dot navigator */}
-      <div
-        className={styles.dots}
-        style={{ opacity: dotsVisible ? 1 : 0 }}
-        aria-hidden="true"
-      >
-        {slides.map((_, i) => (
-          <span
-            key={i}
-            className={`${styles.dot} ${i === activeDot ? styles.dotActive : ''}`}
-          />
-        ))}
+        {/* Dot navigator — inside .pin so position:absolute is scoped to the sticky panel,
+            not the viewport. Prevents overlap when two carousels are on the same page. */}
+        <div
+          className={styles.dots}
+          style={{ opacity: dotsVisible ? 1 : 0 }}
+          aria-hidden="true"
+        >
+          {slides.map((_, i) => (
+            <span
+              key={i}
+              className={`${styles.dot} ${i === activeDot ? styles.dotActive : ''}`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   )
