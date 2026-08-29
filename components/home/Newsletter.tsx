@@ -30,7 +30,7 @@ export default function Newsletter() {
     <section className={styles.section}>
       <div className={styles.inner}>
         <h2 className={styles.title}>The Private List</h2>
-        <p className={`ba-lede ${styles.lede}`}>
+        <p className={styles.lede}>
           First access to new pieces, archive discoveries, and notes from the atelier.
           Rarely sent. Always worth it.
         </p>
