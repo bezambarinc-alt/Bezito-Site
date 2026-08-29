@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import ScrollWipeCarousel from '@/components/common/ScrollWipeCarousel'
+import LazyScrollWipeCarousel from '@/components/common/LazyScrollWipeCarousel'
 import HomeSegment from '@/components/home/HomeSegment'
 import HomeHeroImage from '@/components/home/HomeHeroImage'
 import Newsletter from '@/components/home/Newsletter'
@@ -112,8 +113,8 @@ export default function HomePage() {
         openConcierge
       />
 
-      {/* Cinematic section — SAME component, different slides */}
-      <ScrollWipeCarousel slides={CINEMATIC_SLIDES} />
+      {/* Cinematic section — lazy-mounted to prevent double 720p load at page init */}
+      <LazyScrollWipeCarousel slides={CINEMATIC_SLIDES} />
       <Newsletter />
       <AtelierBanner />
     </main>
