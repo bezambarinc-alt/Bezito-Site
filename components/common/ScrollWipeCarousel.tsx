@@ -96,6 +96,7 @@ export default function ScrollWipeCarousel({ slides }: Props) {
         } else {
           video0?.pause()
           video1?.pause()
+          video1Started.current = false
           window.removeEventListener('scroll', onScroll)
           window.removeEventListener('resize', onResize)
           clearTimeout(resizeTimer)
