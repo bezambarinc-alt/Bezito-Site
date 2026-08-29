@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import InquiryButton from '@/components/common/InquiryButton'
+import AtelierBanner from '@/components/common/AtelierBanner'
 import StoryNav from './StoryNav'
 import { ChapterReveal, AnimateChild } from './ChapterReveal'
 import { CHAPTERS, STORY_YEARS } from '@/lib/data/story-chapters'
@@ -208,6 +209,7 @@ export default function TheStoryPage() {
         </ChapterReveal>
       </section>
 
+      <AtelierBanner />
     </main>
   )
 }

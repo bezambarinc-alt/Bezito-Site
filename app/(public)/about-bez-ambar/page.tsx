@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import PageCta from '@/components/common/PageCta'
+import AtelierBanner from '@/components/common/AtelierBanner'
 import { STATS, TIMELINE } from '@/lib/data/about-content'
 import styles from './page.module.css'
 
@@ -109,6 +110,7 @@ export default function AboutPage() {
         ctaLabel="Arrange a Visit"
       />
 
+      <AtelierBanner />
     </main>
   )
 }

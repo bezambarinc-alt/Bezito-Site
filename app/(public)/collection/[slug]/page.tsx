@@ -6,6 +6,7 @@ import LazyVideo from '@/components/common/LazyVideo'
 import ProductCard from '@/components/product/ProductCard'
 import FadeIn from '@/components/common/FadeIn'
 import InquiryButton from '@/components/common/InquiryButton'
+import AtelierBanner from '@/components/common/AtelierBanner'
 
 export const revalidate = 3600
 
@@ -172,6 +173,8 @@ export default async function CollectionPage({
           <InquiryButton className="ba-cta__btn" intent="Commission a Piece">Inquire</InquiryButton>
         </section></FadeIn>
       )}
+
+      <AtelierBanner />
     </main>
   )
 }

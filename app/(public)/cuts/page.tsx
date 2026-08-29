@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import PageCta from '@/components/common/PageCta'
+import AtelierBanner from '@/components/common/AtelierBanner'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
@@ -87,6 +88,7 @@ export default function CutsPage() {
         ctaLabel="Arrange a Consultation"
       />
 
+      <AtelierBanner />
     </main>
   )
 }

@@ -3,6 +3,7 @@ import ScrollWipeCarousel from '@/components/common/ScrollWipeCarousel'
 import HomeSegment from '@/components/home/HomeSegment'
 import HomeHeroImage from '@/components/home/HomeHeroImage'
 import Newsletter from '@/components/home/Newsletter'
+import AtelierBanner from '@/components/common/AtelierBanner'
 import { HERO_SLIDES, CINEMATIC_SLIDES } from '@/lib/data/home-slides'
 
 export const metadata: Metadata = {
@@ -114,6 +115,7 @@ export default function HomePage() {
       {/* Cinematic section — SAME component, different slides */}
       <ScrollWipeCarousel slides={CINEMATIC_SLIDES} />
       <Newsletter />
+      <AtelierBanner />
     </main>
   )
 }

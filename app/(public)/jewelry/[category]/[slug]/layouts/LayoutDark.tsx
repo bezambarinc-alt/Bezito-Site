@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import AtelierBanner from '@/components/common/AtelierBanner'
 import type { ProductLayoutProps } from './types'
 import styles from './LayoutDark.module.css'
 
@@ -145,17 +146,8 @@ export default function LayoutDark({
         </div>
       </section>
 
-      {/* ── 7. Footer ── */}
-      <footer className={styles.footer}>
-        <span className={styles.footerLogo}>Bez Ambar</span>
-        <span>611 Wilshire Blvd · Los Angeles, CA 90017</span>
-        <span>
-          <a href="mailto:bezambar@bezambar.com">bezambar@bezambar.com</a>
-          &nbsp;&middot;&nbsp;
-          <a href="tel:2136299191">(213) 629-9191</a>
-        </span>
-        <span className={styles.footerTag}>Inventor of the Princess Cut · Since 1979</span>
-      </footer>
+      {/* ── 7. Atelier banner ── */}
+      <AtelierBanner />
 
       {/* ── 8. Lightbox ── */}
       {lightboxSrc && (

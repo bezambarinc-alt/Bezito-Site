@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import PageHeader from '@/components/layout/PageHeader'
+import AtelierBanner from '@/components/common/AtelierBanner'
 import { getActiveCategories } from '@/lib/queries'
 import { getCategoryMeta } from '@/lib/data/categories'
 
@@ -33,6 +34,7 @@ export default async function JewelryLanding() {
           })}
         </ul>
       </main>
+      <AtelierBanner />
     </>
   )
 }

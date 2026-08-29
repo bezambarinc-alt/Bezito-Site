@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import PageCta from '@/components/common/PageCta'
+import AtelierBanner from '@/components/common/AtelierBanner'
 import { ELYSIAN_CUTS } from '@/lib/data/elysian-cuts'
 import styles from './page.module.css'
 
@@ -106,6 +107,7 @@ export default function ElysianCutPage() {
         ctaLabel="Arrange a Consultation"
       />
 
+      <AtelierBanner />
     </main>
   )
 }
