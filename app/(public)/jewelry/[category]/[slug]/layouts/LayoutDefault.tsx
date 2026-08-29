@@ -76,7 +76,7 @@ export default function LayoutDefault({
       {/* ── 3. Three Views ── */}
       {views.some(v => v.url) && (
         <section className={styles.views}>
-          <div className={styles.viewsGrid} style={{ gridTemplateColumns: `repeat(${views.filter(v => v.url).length}, 1fr)` }}>
+          <div className={styles.viewsGrid}>
             {views.filter(v => v.url).map((v, i) => (
               <div key={i} className={styles.viewsItem}>
                 <div className={styles.viewsImgWrap}>
@@ -85,7 +85,6 @@ export default function LayoutDefault({
                     src={v.url!}
                     alt={v.label}
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    style={{ objectFit: 'cover', objectPosition: 'center' }}
                   />
                 </div>
                 <p className={styles.viewsLabel}>{v.label}</p>
