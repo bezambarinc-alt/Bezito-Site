@@ -68,7 +68,7 @@ export default function CutsPage() {
               alt={cut.imageAlt}
               fill
               sizes="(max-width: 900px) 100vw, 50vw"
-              style={{ objectFit: 'cover' }}
+              className={styles.cutImg}
             />
           </div>
           <div className={styles.content}>

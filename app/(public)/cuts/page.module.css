@@ -93,6 +93,11 @@
   color: var(--ba-ink);
 }
 
+.cutImg {
+  object-fit: cover;
+  object-position: center center;
+}
+
 /* ── Responsive ── */
 
 @media (max-width: 900px) {

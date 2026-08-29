@@ -194,7 +194,39 @@ All form submissions (InquiryDrawer, ContactForm, ArchiveModal) → Neon Postgre
 - `app/actions/inquiry.ts` — InquiryDrawer + ContactForm (Server Action, full form with intent dropdown)
 - `app/api/admin/leads/retry/route.ts` — admin retry for `crm_status='failed'` leads
 
-### 7. Button aesthetic — ghost pill, no gold fills
+### 7. Image authoring — className always, never inline objectFit (locked 2026-08-28)
+
+**Rule: all `<Image>` components use `className={styles.xxx}` for styling. Zero inline `style={{ objectFit }}` anywhere.**
+
+The `img → next/image` migration (commit `b19ac94`, Aug 23) replaced all raw `<img>` JSX tags with `<Image>` from `next/image`. The only permitted raw `<img>` tags are in lightbox components (LayoutDark.tsx, LayoutMulti.tsx) — full-res zoom, unconstrained dimensions.
+
+**How `fill` works:**
+- `fill` injects inline on the rendered `<img>`: `position:absolute; inset:0; width:100%; height:100%; color:transparent`
+- It does NOT inject `object-fit`
+- Add `className={styles.myClass}` to the `<Image>` — Next.js forwards it to the `<img>`
+- The CSS class owns `object-fit` + `object-position`
+
+**CSS Module pattern — single class selector:**
+```css
+.viewsImg {
+  object-fit: cover;
+  object-position: center center;
+}
+```
+```tsx
+<Image fill src={...} sizes="..." className={styles.viewsImg} />
+```
+
+**Do NOT use:**
+- `style={{ objectFit: 'cover' }}` on any `<Image>` — redundant if CSS already covers it, wrong pattern if it doesn't
+- Element selectors like `.wrapper img { object-fit }` — use className on the Image component instead
+- Compound CSS selectors targeting the rendered img output
+
+**Exception — existing compound selectors in page.module.css:**
+- `.heroVideo video, .heroVideo img` in `page.module.css` — legacy, applies to both `<video>` and `<Image>` in the same container. Do not remove or replicate this pattern for new code.
+- `.ba-portrait-hero img` in `globals.css` — global rule covers all portrait hero images site-wide; do not add redundant inline styles on top of it.
+
+### 8. Button aesthetic — ghost pill, no gold fills
 
 This project follows a Patek-style ghost pill system. No gold-filled buttons anywhere.
 

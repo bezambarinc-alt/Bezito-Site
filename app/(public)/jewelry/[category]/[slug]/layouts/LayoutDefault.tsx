@@ -38,7 +38,6 @@ export default function LayoutDefault({
               alt={product.name}
               width={1400}
               height={1000}
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               priority
             />
           ) : null}
@@ -85,6 +84,7 @@ export default function LayoutDefault({
                     src={v.url!}
                     alt={v.label}
                     sizes="(max-width: 768px) 100vw, 33vw"
+                    className={styles.viewsImg}
                   />
                 </div>
                 <p className={styles.viewsLabel}>{v.label}</p>

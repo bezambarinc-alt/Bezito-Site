@@ -149,12 +149,7 @@
   background: #0d0d0d;
 }
 
-/*
- * Compound selector: class + element = [0,1,1].
- * Beats global img reset [0,0,1]. No inline style needed.
- * next/image fill injects position/inset/dimensions inline; we own object-fit here.
- */
-.viewsImgWrap img {
+.viewsImg {
   object-fit: cover;
   object-position: center center;
 }

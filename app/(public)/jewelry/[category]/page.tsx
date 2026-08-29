@@ -64,7 +64,6 @@ export default async function CategoryPage({
             alt={cat.title}
             width={1600}
             height={900}
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             priority
           />
         ) : null}
