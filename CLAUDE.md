@@ -126,7 +126,7 @@ components/layout/
 - **Audit all mutating actions** — admin + portal mutations go through `audit()` from `lib/audit.ts`.
 - **Lead durability** — always write to Neon before CRM push. CRM failure must never cause a 500.
 - **No `as never` hacks** — if a type needs a new union member, add it to `AuditAction` in `lib/audit.ts`.
-- **Three Views image fill — DO NOT CHANGE (locked 2026-08-29):** `page.module.css` uses `.viewsImgWrap img { object-fit: cover; object-position: center center }` — a compound selector with specificity [0,1,1]. Do NOT refactor this to a single className on `<Image>`. The className approach was tried and caused regressions. Kevin confirmed the compound selector is the correct pattern. No `className={styles.viewsImg}` on the views `<Image>` in `LayoutDefault.tsx`.
+- **Three Views image CSS (updated 2026-08-29):** Use explicit `width={900} height={440}` on `<Image>` (NOT `fill`). CSS module class `.viewsImg { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block }` applied via `className={styles.viewsImg}` is the correct pattern. The compound selector `.viewsImgWrap img` was a specificity workaround for when `fill` was used — it is no longer needed. Do NOT switch back to `fill` without accounting for Next.js inline style injection.
 
 ---
 
