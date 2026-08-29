@@ -2,6 +2,7 @@
    Matches Astro .newsletter (home.css): background var(--white), h2 at 15px gold */
 
 .section {
+  min-height: 300px;
   padding: clamp(60px, 10vw, 120px) 40px;
   background: var(--ba-white);
   color: var(--ba-ink);
