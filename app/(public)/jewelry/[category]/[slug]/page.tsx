@@ -147,7 +147,7 @@ export default async function ProductPage({
   function cropView(url: string | null | undefined): string | undefined {
     if (!url) return undefined
     if (!url.includes('res.cloudinary.com')) return url
-    return url.replace('/upload/', '/upload/c_fill,g_auto:subject,w_900,h_440,f_auto/')
+    return url.replace('/upload/', '/upload/c_fill,g_north,w_900,h_440/')
   }
 
   const views = [
