@@ -66,7 +66,7 @@ export default function AtelierBanner() {
         </p>
 
         <p className={styles.body}>
-          For private clients, retailers, and stone dealers — all inquiries welcome.
+          In partnership with diamond cutters, color stone dealers, and retailers. All inquiries welcome.
         </p>
 
         <InquiryButton intent="Bring Us Your Stone" className={styles.cta}>
