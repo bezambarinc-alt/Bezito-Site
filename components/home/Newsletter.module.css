@@ -28,13 +28,14 @@
 
 /* Astro .newsletter p: 15px, ink-soft, max-width 520px */
 .lede {
-  font-family: var(--ba-font-sans);
-  font-size: 0.9375rem;
+  font-family: var(--ba-font-editorial);
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
   font-weight: 400;
-  color: var(--ba-ink-soft);
+  letter-spacing: 0;
+  line-height: 1.6;
+  color: var(--ba-ink);
   max-width: 520px;
   margin: 0 auto 36px;
-  line-height: 1.85;
 }
 
 /* Astro .newsletter form: flex row with bottom border */
