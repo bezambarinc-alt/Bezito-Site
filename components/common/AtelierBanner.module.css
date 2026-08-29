@@ -2,7 +2,7 @@
   width: 100%;
   background: #000;
   margin-top: clamp(32px, 4vw, 64px);
-  padding: clamp(56px, 9vw, 112px) 0 clamp(48px, 7vw, 88px);
+  padding: clamp(80px, 12vw, 140px) 0 clamp(64px, 9vw, 104px);
   overflow: hidden;
 }
 
@@ -21,40 +21,24 @@
 .eyebrow {
   font-family: var(--ba-font-sans);
   font-size: clamp(9px, 0.85vw, 11px);
-  font-weight: 400;
-  letter-spacing: 0.32em;
+  font-weight: 500;
+  letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: rgba(201, 169, 110, 0.55);
-  margin-bottom: clamp(28px, 4vw, 48px);
+  color: rgba(201, 169, 110, 0.5);
+  margin: 0 0 clamp(32px, 5vw, 56px);
 }
 
-/* ── Chiseled SVG wordmark ───────────────────────────────── */
+/* ── Headline — Patek canonical: thin, large, commanding ─── */
 
-.wordmark {
-  /* Sized to render the wordmark at the header logo's scale (~15px cap height) */
-  width: clamp(130px, 16vw, 165px);
-  height: auto;
-  display: block;
-  margin-bottom: clamp(20px, 2.5vw, 32px);
-}
-
-/* Text base — matches header wordmark (--ba-font-sans, weight 600, no tracking) */
-.baseText {
+.headline {
   font-family: var(--ba-font-sans);
-  font-size: 112px;
-  font-weight: 600;
-  letter-spacing: 0;
+  font-size: clamp(68px, 10vw, 136px);
+  font-weight: 200;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-}
-
-/* Shadow — very dark, offset for depth */
-.shadowText {
-  font-family: var(--ba-font-sans);
-  font-size: 112px;
-  font-weight: 600;
-  letter-spacing: 0;
-  text-transform: uppercase;
-  fill: rgba(0, 0, 0, 0.85);
+  line-height: 1.0;
+  color: rgba(201, 169, 110, 0.88);
+  margin: 0 0 clamp(28px, 4vw, 48px);
 }
 
 /* ── Tagline ─────────────────────────────────────────────── */
@@ -62,23 +46,23 @@
 .tagline {
   font-family: var(--ba-font-editorial);
   font-style: italic;
-  font-size: clamp(0.82rem, 1.1vw, 1rem);
-  color: rgba(255, 255, 255, 0.28);
-  letter-spacing: 0.04em;
-  line-height: 1.6;
-  margin-bottom: clamp(16px, 2vw, 24px);
+  font-size: clamp(0.9rem, 1.25vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.03em;
+  line-height: 1.65;
+  margin: 0 0 clamp(14px, 1.8vw, 20px);
 }
 
 /* ── Sub body ────────────────────────────────────────────── */
 
 .body {
   font-family: var(--ba-font-sans);
-  font-size: clamp(9px, 0.82vw, 11px);
+  font-size: clamp(10px, 0.88vw, 12px);
   font-weight: 400;
   letter-spacing: 0.12em;
   color: rgba(255, 255, 255, 0.35);
-  margin-top: -20px;
-  margin-bottom: clamp(28px, 4vw, 44px);
+  margin: 0 0 clamp(32px, 4.5vw, 52px);
+  max-width: 58ch;
 }
 
 /* ── Consult CTA ─────────────────────────────────────────── */
@@ -86,15 +70,15 @@
 .cta {
   font-family: var(--ba-font-sans);
   font-size: clamp(11px, 0.9vw, 13px);
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font-weight: 500;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(201, 169, 110, 0.85);
   background: none;
   border: none;
   cursor: pointer;
   padding: 0 0 4px;
-  margin-bottom: clamp(32px, 5vw, 56px);
+  margin-bottom: clamp(40px, 6vw, 64px);
   transition: color 0.3s;
 }
 
@@ -110,8 +94,8 @@
   background: linear-gradient(
     to right,
     transparent,
-    rgba(201, 169, 110, 0.55) 40%,
-    rgba(201, 169, 110, 0.55) 60%,
+    rgba(201, 169, 110, 0.5) 40%,
+    rgba(201, 169, 110, 0.5) 60%,
     transparent
   );
 }
