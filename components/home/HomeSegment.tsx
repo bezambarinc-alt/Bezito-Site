@@ -35,7 +35,7 @@ export default function HomeSegment({
   const textBlock = (
     <>
       <p className="ba-eyebrow">{eyebrow}</p>
-      <h2 className={styles.title}>{title}</h2>
+      <h2 className={`ba-title ${styles.title}`}>{title}</h2>
       <p className={styles.body}>{body}</p>
       {openConcierge && ctaLabel ? (
         <ConciergeCtaButton label={ctaLabel} />

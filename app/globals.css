@@ -123,6 +123,19 @@ body.page-dark {
 
 /* ---------- Utility classes ---------- */
 
+/* Segment title: Open Sans 300, uppercase, gold — reusable across any h2 */
+.ba-title {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(1.25rem, 2vw, 2rem);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.045rem;
+  color: #8c7a66;
+  line-height: 125%;
+  margin-top: 0.25rem;
+  margin-bottom: 24px;
+}
+
 /* Eyebrow: Open Sans, 15px, weight 400, uppercase — Astro .segment__eyebrow / .hero__eyebrow */
 .ba-eyebrow {
   font-family: var(--ba-font-sans);

@@ -47,16 +47,8 @@
   justify-self: start;
 }
 
-/* Title: Open Sans, weight 300, uppercase, GOLD — Astro .segment__title */
+/* Title: typography via global .ba-title — only layout override here */
 .title {
-  font-family: var(--ba-font-sans);
-  font-size: clamp(1.25rem, 2vw, 2rem);
-  font-weight: 300;
-  text-transform: uppercase;
-  letter-spacing: 0.045rem;
-  color: #8c7a66;
-  line-height: 125%;
-  margin-top: 0.25rem;
   margin-bottom: 24px;
 }
 
