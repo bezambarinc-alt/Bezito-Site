@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import styles from './HomeHeroImage.module.css'
 
 interface HomeHeroImageProps {
@@ -7,15 +6,12 @@ interface HomeHeroImageProps {
   eyebrow?: string
   title: string
   sub?: string
-  priority?: boolean
 }
 
 /**
  * Full-bleed editorial image with text overlay.
- * Matches Astro .hero-image (home.css):
- *   - eyebrow: var(--paper) = #faf7f2 (cream, not pure white)
- *   - title:   #ffffff (pure white)
- *   - sub:     var(--accent-warm) = #c9b896 (warm gold)
+ * Uses CSS background-image so the section fills its block naturally —
+ * same as ScrollWipeCarousel — avoiding Next.js Image fill constraints.
  */
 export default function HomeHeroImage({
   imageUrl,
@@ -23,21 +19,13 @@ export default function HomeHeroImage({
   eyebrow,
   title,
   sub,
-  priority = false,
 }: HomeHeroImageProps) {
   return (
     <section
       className={styles.hero}
-      style={{ height: `${height}px` }}
+      style={{ height: `${height}px`, backgroundImage: `url(${imageUrl})` }}
+      aria-label={title}
     >
-      <Image
-        src={imageUrl}
-        alt={title}
-        fill
-        priority={priority}
-        sizes="100vw"
-        className={styles.heroImg}
-      />
       <div className={styles.overlay}>
         {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
         <h2 className={styles.title}>{title}</h2>

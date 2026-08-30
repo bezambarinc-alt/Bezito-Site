@@ -6,18 +6,12 @@
      title   → #fff            (Astro: var(--white) = pure white)
      sub     → var(--ba-gold-warm) = #c9b896  (Astro: var(--accent-warm)) */
 
-/* Section — positioning context for the absolute overlay (height set inline) */
+/* Section — block element fills parent naturally; background covers it */
 .hero {
   position: relative;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
   overflow: hidden;
-}
-
-/* Fill image — object-fit via class per CLAUDE.md §7 (never inline style) */
-.heroImg {
-  object-fit: cover;
-  object-position: 35% center;
+  background-size: cover;
+  background-position: 35% center;
 }
 
 /* Gradient scrim + flex column for text positioning */
