@@ -53,9 +53,9 @@
   font-size: clamp(1.25rem, 2vw, 2rem);
   font-weight: 300;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.045rem;
   color: #8c7a66;
-  line-height: 1.15;
+  line-height: 125%;
   margin-top: 0.25rem;
   margin-bottom: 24px;
 }
