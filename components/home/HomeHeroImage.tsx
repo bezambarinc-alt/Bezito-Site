@@ -23,7 +23,7 @@ export default function HomeHeroImage({
   return (
     <section
       className={styles.hero}
-      style={{ height: `${height}px`, backgroundImage: `url(${imageUrl})` }}
+      style={{ height: `${height}px`, backgroundImage: `url('${imageUrl}')` }}
       aria-label={title}
     >
       <div className={styles.overlay}>
