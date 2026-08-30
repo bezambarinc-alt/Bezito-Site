@@ -115,8 +115,8 @@ export default function HomePage() {
 
       {/* Cinematic section — lazy-mounted to prevent double 720p load at page init */}
       <LazyScrollWipeCarousel slides={CINEMATIC_SLIDES} />
-      <Newsletter />
       <AtelierBanner />
+      <Newsletter />
     </main>
   )
 }
