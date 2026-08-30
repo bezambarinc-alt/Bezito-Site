@@ -6,12 +6,21 @@
      title   → #fff            (Astro: var(--white) = pure white)
      sub     → var(--ba-gold-warm) = #c9b896  (Astro: var(--accent-warm)) */
 
-/* Section — block element fills parent naturally; background covers it */
+/* Section — block element fills parent naturally */
 .hero {
   position: relative;
   overflow: hidden;
-  background-size: cover;
-  background-position: 35% center;
+}
+
+/* img fills the section absolutely; max-width: none overrides globals.css img rule */
+.heroImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 35% center;
 }
 
 /* Gradient scrim + flex column for text positioning */

@@ -8,11 +8,6 @@ interface HomeHeroImageProps {
   sub?: string
 }
 
-/**
- * Full-bleed editorial image with text overlay.
- * Uses CSS background-image so the section fills its block naturally —
- * same as ScrollWipeCarousel — avoiding Next.js Image fill constraints.
- */
 export default function HomeHeroImage({
   imageUrl,
   height,
@@ -21,11 +16,9 @@ export default function HomeHeroImage({
   sub,
 }: HomeHeroImageProps) {
   return (
-    <section
-      className={styles.hero}
-      style={{ height: `${height}px`, backgroundImage: `url('${imageUrl}')` }}
-      aria-label={title}
-    >
+    <section className={styles.hero} style={{ height: `${height}px` }}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={imageUrl} alt="" className={styles.heroImg} loading="lazy" />
       <div className={styles.overlay}>
         {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
         <h2 className={styles.title}>{title}</h2>
