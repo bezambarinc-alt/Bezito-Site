@@ -16,6 +16,12 @@
 }
 
 .title {
+  font-family: var(--ba-font-sans);
+  font-size: var(--ba-type-heading);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: var(--ba-gold);
   margin: 0 0 22px;
 }
 
