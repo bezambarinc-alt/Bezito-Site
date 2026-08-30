@@ -1,7 +1,7 @@
 .banner {
   width: 100%;
   background: #000;
-  margin-top: 0;
+  margin-top: 64px;
   padding: 40px 0;
   overflow: hidden;
 }
