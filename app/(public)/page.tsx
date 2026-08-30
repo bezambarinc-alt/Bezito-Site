@@ -24,7 +24,7 @@ export default function HomePage() {
   return (
     <main>
       {/* Top hero — shared scroll-wipe carousel */}
-      <ScrollWipeCarousel slides={HERO_SLIDES} />
+      <ScrollWipeCarousel slides={HERO_SLIDES} primaryHero />
 
       {/* Foundation — Designing Diamond Cuts Since 1979 */}
       <HomeSegment

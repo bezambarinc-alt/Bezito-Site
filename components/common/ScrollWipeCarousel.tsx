@@ -19,9 +19,11 @@ import styles from './ScrollWipeCarousel.module.css'
 
 interface Props {
   slides: [CarouselSlide, CarouselSlide]
+  /** When true, slide 0's headline renders as <h1> — use only on the above-fold hero. */
+  primaryHero?: boolean
 }
 
-export default function ScrollWipeCarousel({ slides }: Props) {
+export default function ScrollWipeCarousel({ slides, primaryHero = false }: Props) {
   const stackRef  = useRef<HTMLDivElement>(null)
   const slide1Ref = useRef<HTMLDivElement>(null)
   const video0Ref = useRef<HTMLVideoElement>(null)
@@ -129,11 +131,14 @@ export default function ScrollWipeCarousel({ slides }: Props) {
             autoPlay muted loop playsInline preload="auto"
             poster={slides[0].posterUrl}
             className={styles.video}
+            onError={(e) => { const v = e.currentTarget; console.error('[Hero] video 0 failed:', v.currentSrc); v.src = '' }}
           />
           <div className={styles.gradient} aria-hidden />
           <div className={styles.overlayLeft}>
             <p className="ba-eyebrow">{slides[0].eyebrow}</p>
-            <h2 className={styles.headline}>{slides[0].headline}</h2>
+            {primaryHero
+              ? <h1 className={styles.headline}>{slides[0].headline}</h1>
+              : <h2 className={styles.headline}>{slides[0].headline}</h2>}
             <p className={styles.sub}>{slides[0].sub}</p>
           </div>
         </div>
@@ -146,6 +151,7 @@ export default function ScrollWipeCarousel({ slides }: Props) {
             muted loop playsInline preload="none"
             poster={slides[1].posterUrl}
             className={styles.video}
+            onError={(e) => { const v = e.currentTarget; console.error('[Hero] video 1 failed:', v.currentSrc); v.src = '' }}
           />
           <div className={styles.gradient} aria-hidden />
           <div className={styles.overlayLeft}>
