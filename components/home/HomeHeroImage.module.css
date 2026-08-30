@@ -12,6 +12,10 @@
   overflow: hidden;
 }
 
+/* Height variants — avoids inline style which CSP nonce suppresses unsafe-inline for */
+.hero--h600 { height: 600px; }
+.hero--h700 { height: 700px; }
+
 /* img fills the section absolutely; max-width: none overrides globals.css img rule */
 .heroImg {
   position: absolute;

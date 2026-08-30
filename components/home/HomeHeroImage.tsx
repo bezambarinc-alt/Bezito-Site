@@ -16,7 +16,7 @@ export default function HomeHeroImage({
   sub,
 }: HomeHeroImageProps) {
   return (
-    <section className={styles.hero} style={{ height: `${height}px` }}>
+    <section className={`${styles.hero} ${styles[`hero--h${height}`] ?? ''}`}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={imageUrl} alt="" className={styles.heroImg} loading="lazy" />
       <div className={styles.overlay}>
