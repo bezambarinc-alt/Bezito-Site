@@ -17,7 +17,7 @@
 /* Fill image — object-fit via class per CLAUDE.md §7 (never inline style) */
 .heroImg {
   object-fit: cover;
-  object-position: center;
+  object-position: 35% center;
 }
 
 /* Gradient scrim + flex column for text positioning */
