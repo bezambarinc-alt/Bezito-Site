@@ -5,7 +5,7 @@ export default function AtelierBanner() {
   return (
     <section className={styles.banner}>
       <div className={styles.inner}>
-        <h2 className={styles.headline}>We Transform Stones Into Art.</h2>
+        <h2 className={`ba-title ${styles.headline}`}>We Transform Stones Into Art.</h2>
 
         <p className={styles.body}>
           In partnership with diamond cutters, color stone dealers, and retailers. All inquiries welcome.
