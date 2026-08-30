@@ -4,8 +4,7 @@ import { getArchiveEntries } from '@/lib/data/archive'
 import type { ArchiveEntry } from '@/lib/data/archive-constants'
 import ArchiveClient from '@/components/archive/ArchiveClient'
 import AtelierBanner from '@/components/common/AtelierBanner'
-import FadeIn from '@/components/common/FadeIn'
-import LazyVideo from '@/components/common/LazyVideo'
+import HomeSegment from '@/components/home/HomeSegment'
 
 export const dynamic = 'force-dynamic'
 
@@ -82,28 +81,15 @@ export default async function ArchivePage({
 
       {/* 2. Editorial spotlight — second archive entry */}
       {editorialEntry && (
-        <div className="ba-segment ba-cat-desktop">
-          <div className="ba-segment__media">
-            {editorialEntry.mp4Url ? (
-              <LazyVideo src={editorialEntry.mp4Url} />
-            ) : null}
-          </div>
-          <div className="ba-segment__text">
-            <FadeIn delay={0.1}>
-              <span className="ba-eyebrow">ref. {editorialEntry.sku}</span>
-              <h2 className="ba-segment__heading">{editorialEntry.title}</h2>
-              {editorialEntry.category && (
-                <p className="ba-segment__ref">{editorialEntry.category}</p>
-              )}
-              <Link
-                className="ba-segment__link"
-                href={`/archive?id=${editorialEntry.slug}`}
-              >
-                View {editorialEntry.title}
-              </Link>
-            </FadeIn>
-          </div>
-        </div>
+        <HomeSegment
+          className="ba-cat-desktop"
+          eyebrow={`ref. ${editorialEntry.sku}`}
+          title={editorialEntry.title}
+          body={editorialEntry.category ?? undefined}
+          videoUrl={editorialEntry.mp4Url ?? undefined}
+          ctaLabel={`View ${editorialEntry.title}`}
+          ctaHref={`/archive?id=${editorialEntry.slug}`}
+        />
       )}
 
       {/* 3. Filter + Carousel (client) — initial search params passed from server to avoid Suspense CLS */}

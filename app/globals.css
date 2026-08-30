@@ -333,25 +333,6 @@ body.page-dark {
 /* Category page responsive utility — desktop sections hidden on mobile */
 @media(max-width:768px){.ba-cat-desktop{display:none!important}}
 
-/* Segment (editorial spotlight) — matches HomeSegment.module.css layout */
-.ba-segment{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(40px,6vw,100px);max-width:1300px;margin:0 auto;padding:clamp(32px,4vw,64px) clamp(40px,5vw,80px)}
-.ba-segment--reverse .ba-segment__media{order:2;justify-self:start}
-.ba-segment--reverse .ba-segment__text{order:1;justify-self:end}
-.ba-segment__media{overflow:hidden;background:transparent;position:relative;width:100%;max-width:540px;aspect-ratio:1/1;justify-self:end}
-.ba-segment__media video,.ba-segment__media img{width:100%;height:100%;object-fit:cover;display:block}
-.ba-segment__text{display:flex;flex-direction:column;justify-content:center;max-width:440px;justify-self:start}
-.ba-segment__text .ba-eyebrow{margin-bottom:20px}
-.ba-segment__heading{font-family:var(--ba-font-sans);font-size:clamp(1.5rem,2.8vw,2.5rem);font-weight:300;text-transform:uppercase;line-height:1.15;color:var(--ba-gold);margin-bottom:20px}
-.ba-segment__ref{font-family:var(--ba-font-editorial);font-style:italic;font-size:15px;color:var(--ink-muted);margin-bottom:16px}
-.ba-segment__body{font-family:var(--ba-font-editorial);font-size:20px;line-height:1.65;color:var(--ba-ink);margin-bottom:28px}
-.ba-segment__link{font-family:var(--ba-font-sans);font-size:15px;font-weight:600;color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px;align-self:flex-start;transition:opacity .3s}
-.ba-segment__link:hover{opacity:.7}
-@media(max-width:900px){
-  .ba-segment{grid-template-columns:1fr;gap:32px;padding:30px 20px}
-  .ba-segment--reverse .ba-segment__media,.ba-segment__media{order:0;justify-self:center;max-width:420px}
-  .ba-segment--reverse .ba-segment__text,.ba-segment__text{order:1;justify-self:center;max-width:560px;text-align:center}
-  .ba-segment__link{align-self:center}
-}
 
 /* Pull quote */
 .ba-pull-quote{background:var(--paper);text-align:center;padding:clamp(3rem,6vw,6rem) clamp(1.25rem,5vw,4rem)}

@@ -5,8 +5,7 @@ import { getCategoryMeta, getCategoryLabel, CATEGORIES } from '@/lib/data/catego
 import { getProductsByCategory } from '@/lib/queries'
 import CinematicCarousel from '@/components/product/CinematicCarousel'
 import AtelierBanner from '@/components/common/AtelierBanner'
-import LazyVideo from '@/components/common/LazyVideo'
-import FadeIn from '@/components/common/FadeIn'
+import HomeSegment from '@/components/home/HomeSegment'
 
 // Pre-render all known category slugs at build time; revalidate hourly.
 export const revalidate = 3600
@@ -83,49 +82,17 @@ export default async function CategoryPage({
 
       {/* 2. Editorial spotlight — 1 product, 2-col */}
       {editorialProduct && (
-        <div className="ba-segment ba-cat-desktop">
-          <div className="ba-segment__media">
-            {editorialProduct.specs.heroVideoUrl ? (
-              <LazyVideo
-                src={editorialProduct.specs.heroVideoUrl}
-                poster={editorialProduct.specs.heroPosterUrl ?? undefined}
-              />
-            ) : editorialProduct.specs.heroPosterUrl ? (
-              <Image
-                src={editorialProduct.specs.heroPosterUrl}
-                alt={editorialProduct.name}
-                width={800}
-                height={900}
-                style={{ width: '100%', height: 'auto' }}
-              />
-            ) : null}
-          </div>
-          <div className="ba-segment__text">
-            <FadeIn delay={0.1}>
-              <span className="ba-eyebrow">ref. {editorialProduct.sku}</span>
-              <h2 className="ba-segment__heading">{editorialProduct.name}</h2>
-              {editorialProduct.specs.subtitle && (
-                <p className="ba-segment__ref">{editorialProduct.specs.subtitle}</p>
-              )}
-              {(editorialProduct.specs.gemStone || editorialProduct.specs.metal) && (
-                <p className="ba-segment__ref">
-                  {[editorialProduct.specs.gemStone, editorialProduct.specs.metal]
-                    .filter(Boolean)
-                    .join(' · ')}
-                </p>
-              )}
-              {editorialProduct.specs.lede && (
-                <p className="ba-segment__body">{editorialProduct.specs.lede}</p>
-              )}
-              <Link
-                className="ba-segment__link"
-                href={`/jewelry/${category}/${editorialProduct.slug}`}
-              >
-                View {editorialProduct.name}
-              </Link>
-            </FadeIn>
-          </div>
-        </div>
+        <HomeSegment
+          className="ba-cat-desktop"
+          eyebrow={`ref. ${editorialProduct.sku}`}
+          title={editorialProduct.name}
+          body={editorialProduct.specs.lede ?? editorialProduct.specs.subtitle ?? undefined}
+          videoUrl={editorialProduct.specs.heroVideoUrl ?? undefined}
+          imageUrl={editorialProduct.specs.heroPosterUrl ?? undefined}
+          posterUrl={editorialProduct.specs.heroPosterUrl ?? undefined}
+          ctaLabel={`View ${editorialProduct.name}`}
+          ctaHref={`/jewelry/${category}/${editorialProduct.slug}`}
+        />
       )}
 
       {/* 3. Cinematic carousel — all products, desktop + mobile */}

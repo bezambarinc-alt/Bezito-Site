@@ -2,11 +2,11 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getProductsByCollection } from '@/lib/queries'
-import LazyVideo from '@/components/common/LazyVideo'
 import ProductCard from '@/components/product/ProductCard'
 import FadeIn from '@/components/common/FadeIn'
 import InquiryButton from '@/components/common/InquiryButton'
 import AtelierBanner from '@/components/common/AtelierBanner'
+import HomeSegment from '@/components/home/HomeSegment'
 
 export const revalidate = 3600
 
@@ -86,47 +86,20 @@ export default async function CollectionPage({
 
       {/* Editorial spotlight segments — first 2 products */}
       {spotlights.map((product, i) => {
-        const video = product.specs.heroVideoUrl
-        const image = product.specs.heroPosterUrl
-        const cat   = product.specs.category ?? 'jewelry'
+        const cat = product.specs.category ?? 'jewelry'
         return (
-          <div
+          <HomeSegment
             key={product.sku}
-            className={`ba-segment${i % 2 === 1 ? ' ba-segment--reverse' : ''}`}
-          >
-            <div className="ba-segment__media">
-              {video ? (
-                <LazyVideo src={video} poster={image ?? undefined} />
-              ) : image ? (
-                <Image
-                  src={image}
-                  alt={product.name}
-                  width={800}
-                  height={900}
-                  style={{ width: '100%', height: 'auto' }}
-                />
-              ) : null}
-            </div>
-            <div className="ba-segment__text">
-              <FadeIn delay={0.1}>
-              <span className="ba-eyebrow">
-                {product.name}&nbsp;&nbsp;&middot;&nbsp;&nbsp;ref. {product.sku}
-              </span>
-              <h2 className="ba-segment__heading">
-                {product.specs.subtitle ?? product.name}
-              </h2>
-              {product.specs.lede && (
-                <p className="ba-segment__body">{product.specs.lede}</p>
-              )}
-              <Link
-                className="ba-segment__link"
-                href={`/jewelry/${cat}/${product.slug}`}
-              >
-                View {product.name}
-              </Link>
-              </FadeIn>
-            </div>
-          </div>
+            reverse={i % 2 === 1}
+            eyebrow={`${product.name}  ·  ref. ${product.sku}`}
+            title={product.specs.subtitle ?? product.name}
+            body={product.specs.lede ?? undefined}
+            videoUrl={product.specs.heroVideoUrl ?? undefined}
+            imageUrl={product.specs.heroPosterUrl ?? undefined}
+            posterUrl={product.specs.heroPosterUrl ?? undefined}
+            ctaLabel={`View ${product.name}`}
+            ctaHref={`/jewelry/${cat}/${product.slug}`}
+          />
         )
       })}
 

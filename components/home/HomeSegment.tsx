@@ -7,7 +7,7 @@ export interface HomeSegmentProps {
   id?: string
   eyebrow: string
   title: string
-  body: string
+  body?: string
   imageUrl?: string
   videoUrl?: string
   posterUrl?: string
@@ -16,6 +16,7 @@ export interface HomeSegmentProps {
   ctaHref?: string
   openConcierge?: boolean
   noMedia?: boolean
+  className?: string
 }
 
 export default function HomeSegment({
@@ -31,12 +32,13 @@ export default function HomeSegment({
   ctaHref,
   openConcierge = false,
   noMedia = false,
+  className,
 }: HomeSegmentProps) {
   const textBlock = (
     <>
       <p className="ba-eyebrow">{eyebrow}</p>
       <h2 className={`ba-title ${styles.title}`}>{title}</h2>
-      <p className={styles.body}>{body}</p>
+      {body && <p className={styles.body}>{body}</p>}
       {openConcierge && ctaLabel ? (
         <ConciergeCtaButton label={ctaLabel} />
       ) : ctaHref && ctaLabel ? (
@@ -56,7 +58,7 @@ export default function HomeSegment({
   }
 
   return (
-    <section id={id} className={`${styles.segment} ${reverse ? styles.reverse : ''}`}>
+    <section id={id} className={`${styles.segment} ${reverse ? styles.reverse : ''} ${className ?? ''}`}>
       <div className={styles.media}>
         {videoUrl ? (
           <LazyVideo src={videoUrl} poster={posterUrl} className={styles.video} />
