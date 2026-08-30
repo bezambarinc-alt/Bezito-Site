@@ -13,13 +13,6 @@ export const metadata: Metadata = {
     'Inventor of the Princess Cut. Fine jewelry from the Los Angeles atelier, since 1979.',
 }
 
-/**
- * Home page — exact structural match to Astro src/pages/index.astro.
- *
- * ALL editorial segments use insetSquare={true} because Astro uses
- * .segment__media--inset-square on every home segment (1:1 ratio with
- * inner padding so the image floats inside a white breathing-room square).
- */
 export default function HomePage() {
   return (
     <main>
@@ -30,7 +23,6 @@ export default function HomePage() {
       <HomeSegment
         id="foundation"
         reverse
-        insetSquare
         imageUrl="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1100/v1785629661/Diamond_Design_Hero_eoykbn.avif"
         eyebrow="Designing Diamond Cuts Since 1979"
         title="We Don't Just Cut the Stone. We Design the Cut."
@@ -40,7 +32,6 @@ export default function HomePage() {
       {/* The Cuts */}
       <HomeSegment
         id="cuts"
-        insetSquare
         imageUrl="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1100/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg"
         eyebrow="The Cuts"
         title="From the Princess to the Elysian"
@@ -62,7 +53,6 @@ export default function HomePage() {
       <HomeSegment
         id="atelier"
         reverse
-        insetSquare
         videoUrl="https://res.cloudinary.com/dlg2mou53/video/upload/v1785655154/Ring_CAD_DESIG_c9mnsf_1_kwjfkb.mp4"
         posterUrl="https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/v1785655154/Ring_CAD_DESIG_c9mnsf_1_kwjfkb.jpg"
         eyebrow="The Design"
@@ -75,7 +65,6 @@ export default function HomePage() {
       {/* The Details — Plissé ring */}
       <HomeSegment
         id="work"
-        insetSquare
         imageUrl="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1100/v1782520989/Jewelry%20Images/Rings/plisse/plisse_macro.jpg"
         eyebrow="The Details"
         title="A Commitment to Perfection"
@@ -91,11 +80,10 @@ export default function HomePage() {
         sub="Los Angeles · Since 1979"
       />
 
-      {/* Service — jewelry box image (NOT noMedia — Astro has a full image segment here) */}
+      {/* Service — jewelry box image */}
       <HomeSegment
         id="service"
         reverse
-        insetSquare
         imageUrl="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto:good,w_800/v1785743826/Jewelry%20Images/Atelier/bez-ambar-box-service.jpg"
         eyebrow="Our Service"
         title="We Are Committed to Service"
@@ -105,7 +93,6 @@ export default function HomePage() {
       {/* Private Viewing */}
       <HomeSegment
         id="private"
-        insetSquare
         imageUrl="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto:good,w_1200/v1785654364/find_a_retailer_in1kpt.avif"
         eyebrow="Private Viewing"
         title="By Appointment, with the Concierge"

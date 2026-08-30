@@ -1,11 +1,10 @@
-import Image from 'next/image'
 import styles from './HomeSegment.module.css'
 import ConciergeCtaButton from './ConciergeCtaButton'
 import LazyVideo from '@/components/common/LazyVideo'
 import FadeIn from '@/components/common/FadeIn'
 
 export interface HomeSegmentProps {
-  id?: string             // maps to section id= (scroll anchors like #segment-foundation)
+  id?: string
   eyebrow: string
   title: string
   body: string
@@ -13,11 +12,10 @@ export interface HomeSegmentProps {
   videoUrl?: string
   posterUrl?: string
   reverse?: boolean
-  insetSquare?: boolean   // Astro: .segment__media--inset-square — 1:1 ratio with inner padding
   ctaLabel?: string
   ctaHref?: string
-  openConcierge?: boolean // opens Concierge drawer
-  noMedia?: boolean       // centered text-only segment (no media column)
+  openConcierge?: boolean
+  noMedia?: boolean
 }
 
 export default function HomeSegment({
@@ -29,7 +27,6 @@ export default function HomeSegment({
   videoUrl,
   posterUrl,
   reverse = false,
-  insetSquare = false,
   ctaLabel,
   ctaHref,
   openConcierge = false,
@@ -58,27 +55,14 @@ export default function HomeSegment({
     )
   }
 
-  const mediaClass = [
-    styles.media,
-    insetSquare ? styles.insetSquare : '',
-  ].filter(Boolean).join(' ')
-
   return (
     <section id={id} className={`${styles.segment} ${reverse ? styles.reverse : ''}`}>
-      <div className={mediaClass}>
+      <div className={styles.media}>
         {videoUrl ? (
           <LazyVideo src={videoUrl} poster={posterUrl} className={styles.video} />
         ) : imageUrl ? (
-          // imageWrap is the positioned parent for Next.js Image fill
-          <div className={styles.imageWrap}>
-            <Image
-              src={imageUrl}
-              alt={title}
-              fill
-              sizes="50vw"
-              className={styles.segmentImg}
-            />
-          </div>
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={imageUrl} alt={title} className={styles.segmentImg} loading="lazy" />
         ) : null}
       </div>
       <div className={styles.text}><FadeIn delay={0.15}>{textBlock}</FadeIn></div>
