@@ -2,7 +2,7 @@
   width: 100%;
   background: #000;
   margin-top: clamp(32px, 4vw, 64px);
-  padding: clamp(80px, 12vw, 140px) 0 clamp(64px, 9vw, 104px);
+  padding: 40px 0;
   overflow: hidden;
 }
 
