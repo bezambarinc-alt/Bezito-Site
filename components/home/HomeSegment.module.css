@@ -50,12 +50,13 @@
 /* Title: Open Sans, weight 300, uppercase, GOLD — Astro .segment__title */
 .title {
   font-family: var(--ba-font-sans);
-  font-size: clamp(1.25rem, 2vw, 2rem);    /* 20–32px, matching Patek's 32px scale */
+  font-size: clamp(1.25rem, 2vw, 2rem);
   font-weight: 300;
   text-transform: uppercase;
-  letter-spacing: 0.04em;                  /* Patek-style tracking */
-  color: var(--ba-gold);
+  letter-spacing: 0.04em;
+  color: #8c7a66;
   line-height: 1.15;
+  margin-top: 0.25rem;
   margin-bottom: 24px;
 }
 
