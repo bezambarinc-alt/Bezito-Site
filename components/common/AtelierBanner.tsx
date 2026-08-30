@@ -5,8 +5,6 @@ export default function AtelierBanner() {
   return (
     <section className={styles.banner}>
       <div className={styles.inner}>
-        <p className={styles.eyebrow}>Los Angeles · Est. 1979</p>
-
         <h2 className={styles.headline}>We Transform Stones Into Art.</h2>
 
         <p className={styles.body}>
@@ -20,6 +18,7 @@ export default function AtelierBanner() {
         <div className={styles.rule} />
 
         <p className={styles.wordmark}>Bez Ambar</p>
+        <p className={styles.eyebrow}>Los Angeles · Est. 1979</p>
       </div>
     </section>
   )

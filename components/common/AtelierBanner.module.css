@@ -25,7 +25,7 @@
   letter-spacing: 0.35em;
   text-transform: uppercase;
   color: rgba(201, 169, 110, 0.5);
-  margin: 0 0 clamp(32px, 5vw, 56px);
+  margin: 8px 0 0;
 }
 
 /* ── Headline — matches ScrollWipeCarousel headline style ─── */
