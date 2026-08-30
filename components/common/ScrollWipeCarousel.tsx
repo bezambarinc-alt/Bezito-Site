@@ -19,11 +19,11 @@ import styles from './ScrollWipeCarousel.module.css'
 
 interface Props {
   slides: [CarouselSlide, CarouselSlide]
-  /** When true, slide 0's headline renders as <h1> — use only on the above-fold hero. */
-  primaryHero?: boolean
+  /** 'h1' only on the above-fold hero; all other instances default to 'h2'. */
+  headingLevel?: 'h1' | 'h2'
 }
 
-export default function ScrollWipeCarousel({ slides, primaryHero = false }: Props) {
+export default function ScrollWipeCarousel({ slides, headingLevel = 'h2' }: Props) {
   const stackRef  = useRef<HTMLDivElement>(null)
   const slide1Ref = useRef<HTMLDivElement>(null)
   const video0Ref = useRef<HTMLVideoElement>(null)
@@ -55,6 +55,11 @@ export default function ScrollWipeCarousel({ slides, primaryHero = false }: Prop
         slide1Ref.current.style.transform = `translateY(${(1 - progress) * 100}%)`
       }
 
+      // Load slide 1 at 25% wipe — enough lead time to buffer before the 45% play trigger
+      if (progress >= 0.25 && !video1Loaded.current) {
+        video1Loaded.current = true
+        video1?.load()
+      }
       if (progress >= 0.45 && !video1Started.current) {
         video1Started.current = true
         video1?.play().catch(() => {})
@@ -86,10 +91,7 @@ export default function ScrollWipeCarousel({ slides, primaryHero = false }: Prop
         setDotsVisible(entry.isIntersecting)
         if (entry.isIntersecting) {
           video0?.play().catch(() => {})
-          if (!video1Loaded.current) {
-            video1Loaded.current = true
-            video1?.load()
-          }
+          // video1 loads lazily at wipe progress >= 0.25, not at IO entry
           if (!reduced) {
             window.addEventListener('scroll', onScroll, { passive: true })
             window.addEventListener('resize', onResize)
@@ -131,12 +133,12 @@ export default function ScrollWipeCarousel({ slides, primaryHero = false }: Prop
             autoPlay muted loop playsInline preload="auto"
             poster={slides[0].posterUrl}
             className={styles.video}
-            onError={(e) => { const v = e.currentTarget; console.error('[Hero] video 0 failed:', v.currentSrc); v.src = '' }}
+            onError={(e) => { const v = e.currentTarget; console.warn('[Hero] video 0 failed:', v.currentSrc); v.src = '' }}
           />
           <div className={styles.gradient} aria-hidden />
           <div className={styles.overlayLeft}>
             <p className="ba-eyebrow">{slides[0].eyebrow}</p>
-            {primaryHero
+            {headingLevel === 'h1'
               ? <h1 className={styles.headline}>{slides[0].headline}</h1>
               : <h2 className={styles.headline}>{slides[0].headline}</h2>}
             <p className={styles.sub}>{slides[0].sub}</p>
@@ -151,7 +153,7 @@ export default function ScrollWipeCarousel({ slides, primaryHero = false }: Prop
             muted loop playsInline preload="none"
             poster={slides[1].posterUrl}
             className={styles.video}
-            onError={(e) => { const v = e.currentTarget; console.error('[Hero] video 1 failed:', v.currentSrc); v.src = '' }}
+            onError={(e) => { const v = e.currentTarget; console.warn('[Hero] video 1 failed:', v.currentSrc); v.src = '' }}
           />
           <div className={styles.gradient} aria-hidden />
           <div className={styles.overlayLeft}>

@@ -81,7 +81,7 @@ export default function LazyVideo({
 
   const handleError: React.EventHandler<React.SyntheticEvent<HTMLVideoElement>> = (e) => {
     const v = e.currentTarget
-    console.error('[LazyVideo] failed to load:', v.currentSrc || v.getAttribute('src') || 'no src')
+    console.warn('[LazyVideo] failed to load:', v.currentSrc || v.getAttribute('src') || 'no src')
     v.removeAttribute('src')
   }
 

@@ -11,6 +11,7 @@ export interface HomeSegmentProps {
   body: string
   imageUrl?: string
   videoUrl?: string
+  posterUrl?: string
   reverse?: boolean
   insetSquare?: boolean   // Astro: .segment__media--inset-square — 1:1 ratio with inner padding
   ctaLabel?: string
@@ -26,6 +27,7 @@ export default function HomeSegment({
   body,
   imageUrl,
   videoUrl,
+  posterUrl,
   reverse = false,
   insetSquare = false,
   ctaLabel,
@@ -65,7 +67,7 @@ export default function HomeSegment({
     <section id={id} className={`${styles.segment} ${reverse ? styles.reverse : ''}`}>
       <div className={mediaClass}>
         {videoUrl ? (
-          <LazyVideo src={videoUrl} className={styles.video} />
+          <LazyVideo src={videoUrl} poster={posterUrl} className={styles.video} />
         ) : imageUrl ? (
           // imageWrap is the positioned parent for Next.js Image fill
           <div className={styles.imageWrap}>

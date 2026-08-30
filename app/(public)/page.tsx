@@ -24,7 +24,7 @@ export default function HomePage() {
   return (
     <main>
       {/* Top hero — shared scroll-wipe carousel */}
-      <ScrollWipeCarousel slides={HERO_SLIDES} primaryHero />
+      <ScrollWipeCarousel slides={HERO_SLIDES} headingLevel="h1" />
 
       {/* Foundation — Designing Diamond Cuts Since 1979 */}
       <HomeSegment
@@ -64,6 +64,7 @@ export default function HomePage() {
         reverse
         insetSquare
         videoUrl="https://res.cloudinary.com/dlg2mou53/video/upload/v1785655154/Ring_CAD_DESIG_c9mnsf_1_kwjfkb.mp4"
+        posterUrl="https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/v1785655154/Ring_CAD_DESIG_c9mnsf_1_kwjfkb.jpg"
         eyebrow="The Design"
         title="Drawn, Engineered, Finished by Hand"
         body="For decades Bez Ambar has pushed the diamond cutting and faceting industry—treating every component as an act of high artistry. We honour the tools of tradition while constantly searching for new directions in style, technology, and technique. Everything we make arrives at uncompromised excellence."

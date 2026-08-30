@@ -29,7 +29,7 @@ export default function LazyScrollWipeCarousel({ slides }: Props) {
           io.disconnect()
         }
       },
-      { rootMargin: '800px 0px' },
+      { rootMargin: '200px 0px' },
     )
     io.observe(el)
     return () => io.disconnect()
