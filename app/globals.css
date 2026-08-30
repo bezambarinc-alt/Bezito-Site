@@ -31,9 +31,9 @@
      next/font vars (--font-*) resolve to the loaded webfonts; Lyon Text is
      first so it takes over automatically once the licensed files are served. */
   --ba-font-sans:  var(--font-opensans), 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --ba-font-serif: 'Lyon Text Regular', Georgia, serif;
+  --ba-font-serif: var(--font-lora), 'Lora', Georgia, serif;
   /* Editorial = same serif/prose stack, used for prose/body copy */
-  --ba-font-editorial: 'Lyon Text Regular', Georgia, serif;
+  --ba-font-editorial: var(--font-lora), 'Lora', Georgia, serif;
 
   --ba-sans-transform:       uppercase;
   --ba-sans-letter-spacing:  0;

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Open_Sans } from 'next/font/google'
+import { Open_Sans, Lora } from 'next/font/google'
 import './globals.css'
 
 const openSans = Open_Sans({
@@ -7,6 +7,14 @@ const openSans = Open_Sans({
   weight: ['300', '400', '500', '600', '700'],
   display: 'swap',
   variable: '--font-opensans',
+})
+
+const lora = Lora({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-lora',
 })
 
 export const metadata: Metadata = {
@@ -39,7 +47,7 @@ export const metadata: Metadata = {
 // Admin chrome lives in (admin)/layout.tsx.
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={openSans.variable}>
+    <html lang="en" className={`${openSans.variable} ${lora.variable}`}>
       <head>
         <link rel="preconnect" href="https://webfonts.fontstand.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://webfonts.fontstand.com" />
