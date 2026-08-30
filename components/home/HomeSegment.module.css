@@ -11,7 +11,7 @@
   gap: clamp(40px, 6vw, 100px);            /* Astro: gap: clamp(40px, 6vw, 100px) */
   max-width: 1300px;                        /* Astro: max-width: 1300px */
   margin: 0 auto;
-  padding: clamp(12px, 1.6vw, 24px) clamp(40px, 5vw, 80px);
+  padding: clamp(80px, 8vw, 120px) clamp(40px, 5vw, 80px);
 }
 
 /* ── Media column ─────────────────────────────────────────── */
@@ -135,7 +135,7 @@
   .segment {
     grid-template-columns: 1fr;
     gap: 32px;
-    padding: 30px 20px;
+    padding: 60px 20px;
   }
 
   /* Reset all ordering — natural DOM order on mobile */
