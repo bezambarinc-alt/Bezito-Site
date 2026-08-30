@@ -26,9 +26,9 @@ export const HERO_SLIDES: [CarouselSlide, CarouselSlide] = [
       'https://res.cloudinary.com/dlg2mou53/video/upload/h_1080,c_limit,q_auto/Jewelry%20Videos/Bands/4k_ovalcut_band_6_v1_rllzya.mp4',
     posterUrl:
       'https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bands/4k_ovalcut_band_6_v1_rllzya.jpg',
-    eyebrow: 'Bez Ambar · Los Angeles',
-    headline: 'The Magic of Light',
-    sub: 'A certificate can grade a stone. It cannot tell how the light dances within it. In lesser hands, light merely touches the stone; done right, it melts into the divine.',
+    eyebrow: 'The Oval Band',
+    headline: 'A Line You Never Take Off',
+    sub: "Cut to fit its place, set to disappear. Every stone calibrated to the hand that wears it. It doesn't announce itself; it stays.",
   },
 ]
 
