@@ -63,10 +63,10 @@
 /* Body: serif 20px ink — Astro .segment__body */
 .body {
   font-family: var(--ba-font-editorial);
-  font-size: 20px;                          /* Astro: font-size: 20px */
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.65;
-  color: var(--ba-ink);                     /* Astro: color: var(--ink) — not muted */
+  color: #2E2E33;
   margin-bottom: 24px;
 }
 
