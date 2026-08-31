@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS pages (
 CREATE TABLE IF NOT EXISTS products (
   sku                TEXT PRIMARY KEY,
   slug               TEXT UNIQUE,   -- URL-safe slug derived from SKU at sync time
-  plytix_id          TEXT UNIQUE NOT NULL,
+  zoho_id            TEXT UNIQUE NOT NULL,
   name               TEXT NOT NULL,
   category           TEXT,
   subtitle           TEXT,

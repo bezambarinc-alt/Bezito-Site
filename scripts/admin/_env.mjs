@@ -15,8 +15,9 @@ export const env = Object.fromEntries(
 )
 
 export const BEZITO_SECRET = env.BEZITO_SECRET
-export const PLYTIX_API_KEY = env.PLYTIX_API_KEY
-export const PLYTIX_API_PASSWORD = env.PLYTIX_API_PASSWORD
+export const ZOHO_CLIENT_ID = env.ZOHO_CLIENT_ID
+export const ZOHO_CLIENT_SECRET = env.ZOHO_CLIENT_SECRET
+export const ZOHO_REFRESH_TOKEN = env.ZOHO_REFRESH_TOKEN
 export const BASE_URL = 'https://bezambar-nextjs.vercel.app'
 
 // BEZITO_NEON_READONLY_URL — optional direct Neon access for read-only queries.
@@ -35,21 +36,36 @@ export const AGENT_TOKEN = await new SignJWT({ sub: 'bezito-agent', actor: 'bezi
   .setExpirationTime('15m')
   .sign(_jwtSecret)
 
-// Plytix auth — cached per process
-let _plytixToken = null
-export async function plytixToken() {
-  if (_plytixToken) return _plytixToken
-  const res = await fetch('https://auth.plytix.com/auth/api/get-token', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ api_key: PLYTIX_API_KEY, api_password: PLYTIX_API_PASSWORD }),
-  })
-  const json = await res.json()
-  _plytixToken = json?.data?.[0]?.access_token ?? json?.data?.[0]?.token
-  if (!_plytixToken) { console.error('Plytix auth failed:', JSON.stringify(json)); process.exit(1) }
-  return _plytixToken
-}
-
 export function agentHeaders(extra = {}) {
   return { 'Authorization': `Bearer ${AGENT_TOKEN}`, 'Content-Type': 'application/json', ...extra }
 }
+
+// Zoho CRM auth — cached per process (access tokens last 1h)
+let _zohoToken = null
+export async function zohoToken() {
+  if (_zohoToken) return _zohoToken
+  if (!ZOHO_CLIENT_ID || !ZOHO_CLIENT_SECRET || !ZOHO_REFRESH_TOKEN) {
+    console.error('Zoho env vars not set in .env.local (ZOHO_CLIENT_ID / ZOHO_CLIENT_SECRET / ZOHO_REFRESH_TOKEN)')
+    process.exit(1)
+  }
+  const res = await fetch('https://accounts.zoho.com/oauth/v2/token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      grant_type: 'refresh_token',
+      client_id: ZOHO_CLIENT_ID,
+      client_secret: ZOHO_CLIENT_SECRET,
+      refresh_token: ZOHO_REFRESH_TOKEN,
+    }),
+  })
+  const json = await res.json()
+  if (!json.access_token) { console.error('Zoho auth failed:', JSON.stringify(json)); process.exit(1) }
+  _zohoToken = json.access_token
+  return _zohoToken
+}
+
+export function zohoHeaders(token) {
+  return { Authorization: `Zoho-oauthtoken ${token}`, 'Content-Type': 'application/json' }
+}
+
+export const ZOHO_CRM = 'https://www.zohoapis.com/crm/v3'

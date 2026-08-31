@@ -41,7 +41,7 @@ export default async function AdminOverview() {
           const s = await getSession()
           if (!s) return
           const base = process.env.APP_URL ?? 'http://localhost:3000'
-          await fetch(`${base}/api/cron/plytix-sync`, {
+          await fetch(`${base}/api/cron/pim-sync`, {
             headers: { Authorization: `Bearer ${process.env.CRON_SECRET}` },
           })
         }} style={{ margin: 0 }}>

@@ -1,11 +1,11 @@
-// trigger-sync.mjs — force Plytix → Neon sync and wait for completion
+// trigger-sync.mjs — force Zoho CRM → Neon sync and wait for completion
 // Usage: node scripts/admin/trigger-sync.mjs [--wait]
 
 import { BASE_URL, agentHeaders } from './_env.mjs'
 
-console.log('Triggering Plytix → Neon sync...')
+console.log('Triggering Zoho CRM → Neon sync...')
 
-const res = await fetch(`${BASE_URL}/api/cron/plytix-sync`, { headers: agentHeaders() })
+const res = await fetch(`${BASE_URL}/api/cron/pim-sync`, { headers: agentHeaders() })
 const json = await res.json().catch(() => ({}))
 
 if (!res.ok) {

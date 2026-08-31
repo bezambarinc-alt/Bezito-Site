@@ -74,7 +74,7 @@ function rowToProduct(r: Record<string, unknown>): Product {
     view1Url:  (r.view_1_url as string | null) ?? null,
     view2Url:  (r.view_2_url as string | null) ?? null,
     view3Url:  (r.view_3_url as string | null) ?? null,
-    plytixId:  r.plytix_id as string,
+    zohoId:    r.zoho_id   as string,
     name:      r.name      as string,
     featured:  Boolean(r.featured),
     specs,
@@ -85,7 +85,7 @@ function rowToProduct(r: Record<string, unknown>): Product {
 }
 
 const COLS = `
-  sku, slug, plytix_id, name, category, subtitle, editorial, description,
+  sku, slug, zoho_id, name, category, subtitle, editorial, description,
   hero_visual, editorial_visual, metal, stone_shape, stone_carats,
   stone_color, stone_clarity, stone_notes, total_carat_weight,
   center_stone_weight, collection, active, featured, sort_order, synced_at,

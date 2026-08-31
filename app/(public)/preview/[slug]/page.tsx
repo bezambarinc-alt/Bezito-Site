@@ -159,7 +159,7 @@ export default async function PreviewPage({ params, searchParams }: Ctx) {
             sku: product.sku,
             name: product.name,
             slug: product.slug,
-            plytixId: '',
+            zohoId: '',
             featured: false,
             price: null,
             media: [],

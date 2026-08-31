@@ -8,7 +8,7 @@
  *   node scripts/admin/test-commands.mjs
  *   node scripts/admin/test-commands.mjs --verbose
  *
- * Requires: BEZITO_SECRET, PLYTIX_API_KEY/PASSWORD, CLOUDINARY_API_KEY/SECRET in .env.local
+ * Requires: BEZITO_SECRET, ZOHO_CLIENT_ID/SECRET/REFRESH_TOKEN (Self Client), CLOUDINARY_API_KEY/SECRET in .env.local
  */
 
 import { test, describe, after } from 'node:test'
@@ -25,7 +25,7 @@ const VERBOSE = process.argv.includes('--verbose')
 // Test slug — timestamp-based so parallel runs don't collide
 const TS = new Date().toISOString().replace(/[-:T]/g, '').slice(0, 12)
 const TEST_SLUG = `qa-test-${TS}`
-const TEST_SKU = 'C0493' // known-good SKU in Plytix + Cloudinary
+const TEST_SKU = 'C0493' // known-good SKU in Zoho CRM + Cloudinary
 
 let createdPageId = null // track for cleanup
 
@@ -141,37 +141,47 @@ describe('Cloudinary (/add-product, /upload-assets)', () => {
 
 })
 
-// ─── plytix ─────────────────────────────────────────────────────────────────
+// ─── zoho crm products ───────────────────────────────────────────────────────
 
-describe('Plytix (/add-product, /edit-product, /publish-product, /unpublish-product)', () => {
+describe('Zoho CRM Products (/add-product, /edit-product, /publish-product, /unpublish-product)', () => {
 
-  test('plytix-update-product resolves SKU and shows current values', async () => {
-    // Using --label only (read-like — still a PATCH but sets same value)
-    // Safest possible non-destructive test: read current label, write it back
-    const findR = await runJson('get-client.mjs', 'kevin', '--json') // just testing auth
-    // Actually test plytix auth directly: find the product
-    const r = await run('plytix-update-product.mjs', TEST_SKU, '--attrs', '{}')
-    // Passing empty attrs with no --label should still resolve the SKU (auth test)
-    // Script exits 1 because --attrs alone without --label is rejected at parse
-    // So instead verify auth works via a benign read-like call
-    // Use plytix-set-status with the SKU already at Completed → detects no-op
-    const statusR = await run('plytix-set-status.mjs', TEST_SKU, 'completed')
-    assert.ok(statusR.ok, `plytix-set-status auth failed: ${statusR.stderr}`)
-    assert.match(statusR.stdout, /no change needed|already Completed/i, 'Expected no-op detection')
-  })
-
-  test('plytix-set-status detects no-op on already-completed SKU', async () => {
-    const r = await run('plytix-set-status.mjs', TEST_SKU, 'completed')
+  test('zoho-get-product finds known SKU', async () => {
+    const r = await run('zoho-get-product.mjs', TEST_SKU)
     assert.ok(r.ok, `Script failed: ${r.stderr}`)
-    assert.match(r.stdout, /already Completed|no change needed/i, 'No-op not detected')
-  })
-
-  test('plytix-update-product resolves SKU and shows label', async () => {
-    // Pass a label that equals current label — no real change
-    const r = await run('plytix-update-product.mjs', TEST_SKU, '--label', 'Prism')
-    assert.ok(r.ok, `Script failed: ${r.stderr}`)
+    assert.match(r.stdout, /Found:/, 'Missing "Found:" line')
     assert.match(r.stdout, new RegExp(TEST_SKU, 'i'), 'SKU not in output')
-    assert.match(r.stdout, /Done\. .+ updated in Plytix/, 'Success message missing')
+  })
+
+  test('zoho-get-product --json returns parseable object on stdout', async () => {
+    const r = await runJson('zoho-get-product.mjs', TEST_SKU, '--json')
+    assert.ok(r.ok, `Script failed: ${r.raw.stderr}`)
+    assert.ok(r.data !== null, 'No JSON on stdout')
+    assert.equal(r.data.Product_Code, TEST_SKU, `Expected Product_Code=${TEST_SKU}`)
+    assert.ok(r.data.id, 'Missing Zoho record id')
+  })
+
+  test('zoho-get-product exits 1 for unknown SKU', async () => {
+    const r = await run('zoho-get-product.mjs', 'ZZZ-NO-SUCH-SKU-99999')
+    assert.ok(!r.ok, 'Expected exit 1 for missing product')
+    assert.match(r.stderr, /not found/i, 'Missing "not found" message')
+  })
+
+  test('zoho-set-status detects no-op on already-active SKU', async () => {
+    // C0493 (Gemini) is active — setting active again should be a no-op
+    const r = await run('zoho-set-status.mjs', TEST_SKU, 'active')
+    assert.ok(r.ok, `Script failed: ${r.stderr}`)
+    assert.match(r.stdout, /Already active/i, 'No-op not detected')
+  })
+
+  test('zoho-update-product resolves SKU and confirms record found', async () => {
+    // Pass --label with the same label as current value — no real change, just confirms auth + SKU resolution
+    const getR = await runJson('zoho-get-product.mjs', TEST_SKU, '--json')
+    assert.ok(getR.ok, `zoho-get-product failed: ${getR.raw.stderr}`)
+    const currentName = getR.data?.Product_Name ?? TEST_SKU
+    const r = await run('zoho-update-product.mjs', TEST_SKU, '--label', currentName)
+    assert.ok(r.ok, `Script failed: ${r.stderr}`)
+    assert.match(r.stdout, /Updating/, 'Missing "Updating" line')
+    assert.match(r.stdout, /Updated:/, 'Missing "Updated:" success line')
   })
 
 })
@@ -187,7 +197,7 @@ describe('Trigger sync (/publish-product backend)', () => {
   })
 
   // NOTE: --wait runs the same sync endpoint. Skip in test suite to avoid
-  // back-to-back Plytix calls that hit the 20 req/10s rate limit.
+  // back-to-back Zoho API calls that could trigger rate limits.
   // Verified manually: --wait adds a 5s cache settle after the sync response.
   test('trigger-sync.mjs --wait flag is accepted (syntax check)', async () => {
     // Just verify the flag is recognized — don't run a full sync back-to-back.

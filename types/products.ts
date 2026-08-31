@@ -47,7 +47,7 @@ export interface Product {
   view1Url: string | null
   view2Url: string | null
   view3Url: string | null
-  plytixId: string
+  zohoId: string
   name: string
   featured: boolean
   specs: ProductSpecs
