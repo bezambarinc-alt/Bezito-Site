@@ -38,7 +38,7 @@
   text-transform: uppercase;
   line-height: 1.1;
   color: var(--ba-gold);
-  margin: 0 0 clamp(20px, 3vw, 36px);
+  margin: 0 0 18px;
 }
 
 /* ── Bottom wordmark signature ───────────────────────────── */
