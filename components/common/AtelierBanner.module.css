@@ -61,7 +61,7 @@
   font-weight: 400;
   letter-spacing: 0;
   line-height: 1.6;
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.55);
   margin: 0 0 clamp(32px, 4.5vw, 52px);
   max-width: 58ch;
 }
