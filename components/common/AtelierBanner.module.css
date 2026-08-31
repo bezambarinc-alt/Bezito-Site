@@ -32,7 +32,7 @@
 
 .headline {
   font-family: var(--ba-font-sans);
-  font-size: clamp(1.5rem, 2.8vw, 2.5rem);
+  font-size: 24px;
   font-weight: 300;
   letter-spacing: 0;
   text-transform: uppercase;
