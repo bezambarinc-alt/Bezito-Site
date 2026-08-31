@@ -8,7 +8,8 @@ export default function AtelierBanner() {
         <h2 className={`ba-title ${styles.headline}`}>Every stone has one right shape. We find it.</h2>
 
         <p className={styles.body}>
-          Bring us your stone, or let us find one for you. The piece is designed around it.
+          Bring us your stone, or let us find one for you.<br />
+          The piece is designed around it.
         </p>
 
         <InquiryButton intent="Bring Us Your Stone" className={styles.cta}>
