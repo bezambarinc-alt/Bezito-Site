@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
 
   const clientId = process.env.ZOHO_CLIENT_ID!
   const clientSecret = process.env.ZOHO_CLIENT_SECRET!
-  const redirectUri = `${process.env.APP_URL ?? 'https://bezambar-web2026.vercel.app'}/api/auth/zoho/callback`
+  const redirectUri = 'https://bezambar.com/api/auth/zoho/callback'
 
   const resp = await fetch('https://accounts.zoho.com/oauth/v2/token', {
     method: 'POST',
