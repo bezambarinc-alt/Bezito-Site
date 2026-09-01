@@ -12,6 +12,23 @@ const ZOHO_LEAD_SOURCE = 'Web Site'
 // Newsletter subscribers go to Neon only until Zoho Campaigns is configured.
 const SKIP_CRM_INTENTS = new Set(['newsletter'])
 
+// Service intents → Zoho Desk tickets, not CRM Leads.
+const SERVICE_INTENTS = new Set(['Repair & Cleaning', 'Ring Resizing', 'Ring Sizing Appointment'])
+const ZOHO_DESK_DEPT_ID = '1432890000000006907'
+let _deskOrgId: string | null = null
+async function getDeskOrgId(token: string): Promise<string | null> {
+  if (_deskOrgId) return _deskOrgId
+  try {
+    const r = await fetch('https://desk.zoho.com/api/v1/organizations', {
+      signal: AbortSignal.timeout(5000),
+      headers: { Authorization: `Zoho-oauthtoken ${token}` },
+    })
+    const j = (await r.json()) as { data?: Array<{ id: string }> }
+    _deskOrgId = j.data?.[0]?.id ?? null
+  } catch { /* non-fatal */ }
+  return _deskOrgId
+}
+
 export async function POST(req: NextRequest) {
   const { ip } = getGeo(req)
   const { allowed } = await checkRateLimit(ip)
@@ -73,54 +90,100 @@ export async function POST(req: NextRequest) {
   const appUrl = process.env.APP_URL ?? 'https://bezambar-web2026.vercel.app'
   const pageUrl = rawPageSlug ? `${appUrl}/${rawPageSlug}` : undefined
 
-  // 2. Push to Zoho CRM Leads (best-effort — 5s timeout, never blocks lead save)
-  // Newsletter and other marketing intents go to Neon only until Zoho Campaigns is wired.
+  // 2. Push to Zoho (best-effort — 5s timeout, never blocks lead save)
+  // Newsletter → Neon only. Service intents → Desk. Everything else → CRM Lead.
   if (SKIP_CRM_INTENTS.has(intent ?? '')) {
     return NextResponse.json({ ok: true })
   }
 
   try {
     const token = await getZohoToken()
-    const nameFields = parseZohoName(name, email)
-    const description = [
-      sku     ? `SKU: ${sku}`        : null,
-      intent  ? `Intent: ${intent}`  : null,
-      message || null,
-    ].filter(Boolean).join('\n') || 'Website inquiry'
+    const appUrl = process.env.APP_URL ?? 'https://bezambar-web2026.vercel.app'
+    const pageUrl = rawPageSlug ? `${appUrl}/${rawPageSlug}` : undefined
 
-    const crm = await fetch('https://www.zohoapis.com/crm/v3/Leads', {
-      method: 'POST',
-      signal: AbortSignal.timeout(5000),
-      headers: {
-        Authorization: `Zoho-oauthtoken ${token}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        data: [{
-          ...nameFields,
-          Email: email,
-          Lead_Source: ZOHO_LEAD_SOURCE,
-          Website: pageUrl,
-          Description: description,
-        }],
-      }),
-    })
+    if (SERVICE_INTENTS.has(intent ?? '')) {
+      // ── Zoho Desk ticket ─────────────────────────────────────────────────
+      const orgId = await getDeskOrgId(token)
+      if (!orgId) throw new Error('Desk orgId unavailable')
 
-    // Zoho returns 207 on per-record validation failure — crm.ok is true.
-    // Must check data[0].status to distinguish success from silent rejection.
-    const json = await crm.json() as {
-      data: Array<{ code: string; status: string; details?: { id?: string } }>
-    }
-    const rec   = json.data?.[0]
-    const crmId = rec?.details?.id
+      const subject = `${intent} — ${name ?? email}`
+      const descLines = [
+        sku     ? `SKU: ${sku}`       : null,
+        intent  ? `Intent: ${intent}` : null,
+        pageUrl ? `Page: ${pageUrl}`  : null,
+        message || null,
+      ].filter(Boolean).join('\n')
 
-    if (crm.status === 401) {
-      invalidateZohoToken()
-      await sql(`UPDATE leads SET crm_status='failed' WHERE id=$1`, [lead.id])
-    } else if (crm.ok && rec?.status === 'success' && rec?.code === 'SUCCESS' && crmId) {
-      await sql(`UPDATE leads SET crm_status='synced', crm_id=$1 WHERE id=$2`, [crmId, lead.id])
+      const desk = await fetch('https://desk.zoho.com/api/v1/tickets', {
+        method: 'POST',
+        signal: AbortSignal.timeout(5000),
+        headers: {
+          Authorization: `Zoho-oauthtoken ${token}`,
+          'Content-Type': 'application/json',
+          orgId,
+        },
+        body: JSON.stringify({
+          subject,
+          departmentId: ZOHO_DESK_DEPT_ID,
+          contactId: null,
+          email,
+          description: descLines,
+          cf: { cf_intent: intent },
+        }),
+      })
+
+      const deskJson = (await desk.json()) as { id?: string }
+      if (desk.status === 401) {
+        invalidateZohoToken()
+        await sql(`UPDATE leads SET crm_status='failed' WHERE id=$1`, [lead.id])
+      } else if (deskJson.id) {
+        await sql(`UPDATE leads SET crm_status='synced', crm_id=$1 WHERE id=$2`, [deskJson.id, lead.id])
+      } else {
+        await sql(`UPDATE leads SET crm_status='failed' WHERE id=$1`, [lead.id])
+      }
     } else {
-      await sql(`UPDATE leads SET crm_status='failed' WHERE id=$1`, [lead.id])
+      // ── Zoho CRM Lead ────────────────────────────────────────────────────
+      const nameFields = parseZohoName(name, email)
+      const description = [
+        sku     ? `SKU: ${sku}`        : null,
+        intent  ? `Intent: ${intent}`  : null,
+        message || null,
+      ].filter(Boolean).join('\n') || 'Website inquiry'
+
+      const crm = await fetch('https://www.zohoapis.com/crm/v3/Leads', {
+        method: 'POST',
+        signal: AbortSignal.timeout(5000),
+        headers: {
+          Authorization: `Zoho-oauthtoken ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          data: [{
+            ...nameFields,
+            Email: email,
+            Lead_Source: ZOHO_LEAD_SOURCE,
+            Website: pageUrl,
+            Description: description,
+          }],
+        }),
+      })
+
+      // Zoho returns 207 on per-record validation failure — crm.ok is true.
+      // Must check data[0].status to distinguish success from silent rejection.
+      const json = await crm.json() as {
+        data: Array<{ code: string; status: string; details?: { id?: string } }>
+      }
+      const rec   = json.data?.[0]
+      const crmId = rec?.details?.id
+
+      if (crm.status === 401) {
+        invalidateZohoToken()
+        await sql(`UPDATE leads SET crm_status='failed' WHERE id=$1`, [lead.id])
+      } else if (crm.ok && rec?.status === 'success' && rec?.code === 'SUCCESS' && crmId) {
+        await sql(`UPDATE leads SET crm_status='synced', crm_id=$1 WHERE id=$2`, [crmId, lead.id])
+      } else {
+        await sql(`UPDATE leads SET crm_status='failed' WHERE id=$1`, [lead.id])
+      }
     }
   } catch {
     await sql(`UPDATE leads SET crm_status='failed' WHERE id=$1`, [lead.id])
