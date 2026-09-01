@@ -32,24 +32,32 @@ export async function GET() {
       `https://desk.zoho.com/api/v1/contacts/search?email=${encodeURIComponent(TEST_EMAIL)}`,
       { headers: h },
     )
-    const searchBody = await searchResp.json() as { data?: Array<{ id: string }> }
+    const searchText = await searchResp.text()
+    let searchBody: { data?: Array<{ id: string }> } = {}
+    try { searchBody = JSON.parse(searchText) } catch { /* empty body = no results */ }
     let contactId = searchBody.data?.[0]?.id ?? null
 
     // Step 3: create contact if not found
     let contactCreated = false
+    let createBody: unknown = null
     if (!contactId) {
       const createResp = await fetch('https://desk.zoho.com/api/v1/contacts', {
         method: 'POST',
         headers: h,
         body: JSON.stringify({ email: TEST_EMAIL, lastName: 'Debug-Test' }),
       })
-      const createBody = await createResp.json() as { id?: string }
-      contactId = createBody.id ?? null
+      const createText = await createResp.text()
+      try { createBody = JSON.parse(createText) } catch { createBody = createText }
+      contactId = (createBody as { id?: string })?.id ?? null
       contactCreated = true
     }
 
     if (!contactId) {
-      return NextResponse.json({ error: 'Could not find or create contact', searchBody })
+      return NextResponse.json({
+        error: 'Could not find or create contact',
+        searchStatus: searchResp.status, searchText,
+        createBody,
+      })
     }
 
     // Step 4: create ticket with contactId
