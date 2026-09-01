@@ -27,47 +27,14 @@ export async function GET() {
 
     const h = await deskHeaders(token, orgId)
 
-    // Step 2: search for existing contact by email
-    const searchResp = await fetch(
-      `https://desk.zoho.com/api/v1/contacts/search?email=${encodeURIComponent(TEST_EMAIL)}`,
-      { headers: h },
-    )
-    const searchText = await searchResp.text()
-    let searchBody: { data?: Array<{ id: string }> } = {}
-    try { searchBody = JSON.parse(searchText) } catch { /* empty body = no results */ }
-    let contactId = searchBody.data?.[0]?.id ?? null
-
-    // Step 3: create contact if not found
-    let contactCreated = false
-    let createBody: unknown = null
-    if (!contactId) {
-      const createResp = await fetch('https://desk.zoho.com/api/v1/contacts', {
-        method: 'POST',
-        headers: h,
-        body: JSON.stringify({ email: TEST_EMAIL, lastName: 'Debug-Test' }),
-      })
-      const createText = await createResp.text()
-      try { createBody = JSON.parse(createText) } catch { createBody = createText }
-      contactId = (createBody as { id?: string })?.id ?? null
-      contactCreated = true
-    }
-
-    if (!contactId) {
-      return NextResponse.json({
-        error: 'Could not find or create contact',
-        searchStatus: searchResp.status, searchText,
-        createBody,
-      })
-    }
-
-    // Step 4: create ticket with contactId
+    // Try creating ticket using contactEmail (Zoho auto-looks up or creates contact)
     const ticketResp = await fetch('https://desk.zoho.com/api/v1/tickets', {
       method: 'POST',
       headers: h,
       body: JSON.stringify({
         subject: 'DEBUG TEST — Ring Resizing — safe to delete',
         departmentId: DEPT_ID,
-        contactId,
+        contactEmail: TEST_EMAIL,
         description: 'Automated debug test',
       }),
     })
@@ -75,7 +42,7 @@ export async function GET() {
     let ticketJson: unknown
     try { ticketJson = JSON.parse(ticketBody) } catch { ticketJson = ticketBody }
 
-    return NextResponse.json({ orgId, contactId, contactCreated, ticketStatus: ticketResp.status, ticketBody: ticketJson })
+    return NextResponse.json({ orgId, approach: 'contactEmail', ticketStatus: ticketResp.status, ticketBody: ticketJson })
   } catch (e) {
     return NextResponse.json({ error: String(e) }, { status: 500 })
   }
