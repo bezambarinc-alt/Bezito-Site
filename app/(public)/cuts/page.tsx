@@ -84,7 +84,7 @@ export default function CutsPage() {
         title="See Them in Person"
         body="The difference between a Bez Ambar cut and any other becomes clear under direct light. Arrange a private viewing at the Los Angeles atelier."
         drawer
-        intent="The Cuts — Private Viewing"
+        intent="A Piece from the Collection"
         ctaLabel="Arrange a Consultation"
       />
 

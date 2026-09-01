@@ -14,7 +14,7 @@ interface Props {
  * closing CTAs, editorial links). Accepts any className so callers keep their
  * own styles without needing to become client components themselves.
  */
-export default function InquiryButton({ children, intent = 'Private Consultation', className }: Props) {
+export default function InquiryButton({ children, intent = '', className }: Props) {
   const { openInquiryDrawer } = useDrawers()
   return (
     <button

@@ -106,7 +106,7 @@ export default function AboutPage() {
         title="Meet Bez in Los Angeles"
         body="Every commission begins with a conversation. Bez is present at every meeting. Arrange a private viewing at 611 Wilshire Blvd."
         drawer
-        intent="Private Consultation"
+        intent="In Person Appointment"
         ctaLabel="Arrange a Visit"
       />
 

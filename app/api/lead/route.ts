@@ -8,6 +8,10 @@ import { getZohoToken, invalidateZohoToken, parseZohoName } from '@/lib/zoho-aut
 // Verify this matches your org's picklist: Zoho CRM → Leads → Fields → Lead Source.
 const ZOHO_LEAD_SOURCE = 'Web Site'
 
+// Intents that should NOT create a CRM Lead — they're marketing contacts, not sales prospects.
+// Newsletter subscribers go to Neon only until Zoho Campaigns is configured.
+const SKIP_CRM_INTENTS = new Set(['newsletter'])
+
 export async function POST(req: NextRequest) {
   const { ip } = getGeo(req)
   const { allowed } = await checkRateLimit(ip)
@@ -70,6 +74,11 @@ export async function POST(req: NextRequest) {
   const pageUrl = rawPageSlug ? `${appUrl}/${rawPageSlug}` : undefined
 
   // 2. Push to Zoho CRM Leads (best-effort — 5s timeout, never blocks lead save)
+  // Newsletter and other marketing intents go to Neon only until Zoho Campaigns is wired.
+  if (SKIP_CRM_INTENTS.has(intent ?? '')) {
+    return NextResponse.json({ ok: true })
+  }
+
   try {
     const token = await getZohoToken()
     const nameFields = parseZohoName(name, email)

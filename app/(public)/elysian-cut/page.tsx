@@ -103,7 +103,7 @@ export default function ElysianCutPage() {
         title="See It on the Finger"
         body="The Elysian Pear and Oval bands are available through the atelier. Arrange a private viewing to experience the continuous line in person."
         drawer
-        intent="Elysian Band"
+        intent="A Piece from the Collection"
         ctaLabel="Arrange a Consultation"
       />
 

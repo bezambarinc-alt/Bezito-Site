@@ -202,7 +202,7 @@ export default function TheStoryPage() {
             </p>
           </AnimateChild>
           <AnimateChild>
-            <InquiryButton className={styles.ctaLink} intent="Bespoke Commission">
+            <InquiryButton className={styles.ctaLink} intent="Commission a Piece">
               Inquire about a bespoke commission →
             </InquiryButton>
           </AnimateChild>

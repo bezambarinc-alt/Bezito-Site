@@ -26,7 +26,7 @@ export default function PageCta({
   href = '/contact',
   ctaLabel = 'Arrange a Consultation',
   drawer = false,
-  intent = 'Private Consultation',
+  intent = '',
 }: Props) {
   return (
     <section className={styles.cta}>

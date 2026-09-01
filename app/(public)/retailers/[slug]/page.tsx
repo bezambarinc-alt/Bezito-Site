@@ -307,7 +307,7 @@ export default async function RetailerPage({
               <Link className={styles.ctaBtnPrimary} href="/retailers">
                 View All Locations
               </Link>
-              <InquiryButton className={styles.ctaBtnGhost} intent="Contact the Atelier">
+              <InquiryButton className={styles.ctaBtnGhost} intent="A Piece from the Collection">
                 Contact the Atelier
               </InquiryButton>
             </div>

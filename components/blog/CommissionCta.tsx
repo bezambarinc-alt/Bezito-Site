@@ -14,7 +14,7 @@ export default function CommissionCta() {
         first reading of the stone to the final pass of the setting wheel.
         Enquire to begin a commission.
       </p>
-      <InquiryButton className={styles.btn} intent="Bespoke Commission">
+      <InquiryButton className={styles.btn} intent="Commission a Piece">
         Enquire About a Commission
       </InquiryButton>
     </div>

@@ -19,14 +19,14 @@ export default function ConciergeDrawer() {
     openInquiryDrawer({ intent, fromConcierge: true })
   }
 
-  // Open Freshchat if loaded, fall back to InquiryDrawer
+  // Open SalesIQ chat if loaded, fall back to InquiryDrawer
   function openChat() {
     close()
-    const fc = (window as Window & { fcWidget?: { open: () => void; isLoaded?: () => boolean } }).fcWidget
-    if (fc && typeof fc.open === 'function') {
-      fc.open()
+    const zsiq = (window as Window & { $zoho?: { salesiq?: { floatwindow?: { visible: (s: string) => void } } } }).$zoho?.salesiq?.floatwindow
+    if (zsiq) {
+      zsiq.visible('show')
     } else {
-      openInquiryDrawer({ intent: '', fromConcierge: true })
+      openInquiryDrawer({ intent: 'In Person Appointment', fromConcierge: true })
     }
   }
 

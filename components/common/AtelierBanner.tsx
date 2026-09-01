@@ -12,7 +12,7 @@ export default function AtelierBanner() {
           The piece is designed around it.
         </p>
 
-        <InquiryButton intent="Bring Us Your Stone" className={styles.cta}>
+        <InquiryButton intent="Commission a Piece" className={styles.cta}>
           Bring Us Your Stone →
         </InquiryButton>
 
