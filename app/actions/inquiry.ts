@@ -141,11 +141,9 @@ export async function submitInquiry(
         body: JSON.stringify({
           subject,
           departmentId: ZOHO_DESK_DEPT_ID,
-          contactId: null,
           email: d.email,
           phone: d.phone || undefined,
           description: descLines,
-          cf: { cf_intent: d.intent },
         }),
       })
 
