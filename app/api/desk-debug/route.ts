@@ -1,6 +1,7 @@
 // TEMPORARY debug endpoint — remove after Desk ticket creation is confirmed working
 import { NextResponse } from 'next/server'
 import { getZohoToken } from '@/lib/zoho-auth'
+import { sql } from '@/lib/db'
 
 const DEPT_ID = '1432890000000006907'
 const TEST_EMAIL = 'test-debug@bezambar-test.com'
@@ -68,7 +69,12 @@ export async function GET() {
     let ticketJson: unknown
     try { ticketJson = JSON.parse(ticketText) } catch { ticketJson = ticketText }
 
-    return NextResponse.json({ orgId, contactId, contactCreated, ticketStatus: ticketResp.status, ticketBody: ticketJson })
+    // Also pull recent service intent leads from Neon
+    const recentLeads = await sql<{ id: number; email: string; intent: string; crm_status: string; crm_id: string | null }>(
+      `SELECT id, email, intent, crm_status, crm_id FROM leads WHERE intent IN ('Ring Resizing','Repair & Cleaning','Ring Sizing Appointment') ORDER BY id DESC LIMIT 10`
+    )
+
+    return NextResponse.json({ orgId, contactId, contactCreated, ticketStatus: ticketResp.status, ticketBody: ticketJson, recentLeads })
   } catch (e) {
     return NextResponse.json({ error: String(e) }, { status: 500 })
   }
