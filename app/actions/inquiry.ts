@@ -30,9 +30,32 @@ async function getDeskOrgId(token: string): Promise<string | null> {
       headers: { Authorization: `Zoho-oauthtoken ${token}` },
     })
     const j = (await r.json()) as { data?: Array<{ id: string }> }
-    _deskOrgId = j.data?.[0]?.id ?? null
-  } catch { /* non-fatal — ticket creation will fail and crm_status stays 'failed' */ }
+    _deskOrgId = String(j.data?.[0]?.id ?? '') || null
+  } catch { /* non-fatal */ }
   return _deskOrgId
+}
+
+async function getDeskContactId(token: string, orgId: string, email: string, name: string): Promise<string | null> {
+  const h = { Authorization: `Zoho-oauthtoken ${token}`, 'Content-Type': 'application/json', orgId }
+  // Search first
+  try {
+    const sr = await fetch(`https://desk.zoho.com/api/v1/contacts/search?email=${encodeURIComponent(email)}`, {
+      signal: AbortSignal.timeout(5000), headers: h,
+    })
+    const sj = (await sr.json()) as { data?: Array<{ id: string }> }
+    if (sj.data?.[0]?.id) return String(sj.data[0].id)
+  } catch { /* fall through to create */ }
+  // Create if not found
+  try {
+    const lastName = name.includes(' ') ? name.split(' ').slice(1).join(' ') : name
+    const firstName = name.includes(' ') ? name.split(' ')[0] : undefined
+    const cr = await fetch('https://desk.zoho.com/api/v1/contacts', {
+      method: 'POST', signal: AbortSignal.timeout(5000), headers: h,
+      body: JSON.stringify({ email, lastName, ...(firstName ? { firstName } : {}) }),
+    })
+    const cj = (await cr.json()) as { id?: string }
+    return cj.id ? String(cj.id) : null
+  } catch { return null }
 }
 
 // Built from the single shared source of truth so the schema can never drift
@@ -120,6 +143,9 @@ export async function submitInquiry(
       const orgId = await getDeskOrgId(token)
       if (!orgId) throw new Error('Desk orgId unavailable')
 
+      const contactId = await getDeskContactId(token, orgId, d.email, d.name)
+      if (!contactId) throw new Error('Desk contactId unavailable')
+
       const subject = `${d.intent} — ${d.name}`
       const descLines = [
         d.sku           ? `SKU: ${d.sku}`                     : null,
@@ -141,7 +167,7 @@ export async function submitInquiry(
         body: JSON.stringify({
           subject,
           departmentId: ZOHO_DESK_DEPT_ID,
-          email: d.email,
+          contactId,
           phone: d.phone || undefined,
           description: descLines,
         }),
