@@ -27,22 +27,48 @@ export async function GET() {
 
     const h = await deskHeaders(token, orgId)
 
-    // Try creating ticket using contactEmail (Zoho auto-looks up or creates contact)
+    // Step 2: search for existing contact by email
+    const searchResp = await fetch(
+      `https://desk.zoho.com/api/v1/contacts/search?email=${encodeURIComponent(TEST_EMAIL)}`,
+      { headers: h },
+    )
+    const searchText = await searchResp.text()
+    let searchBody: { data?: Array<{ id: string }> } = {}
+    try { searchBody = JSON.parse(searchText) } catch { /* empty = no results */ }
+    let contactId = searchBody.data?.[0]?.id ?? null
+
+    // Step 3: create contact if not found
+    let contactCreated = false
+    if (!contactId) {
+      const createResp = await fetch('https://desk.zoho.com/api/v1/contacts', {
+        method: 'POST',
+        headers: h,
+        body: JSON.stringify({ email: TEST_EMAIL, lastName: 'Debug-Test' }),
+      })
+      const createText = await createResp.text()
+      let createBody: { id?: string } = {}
+      try { createBody = JSON.parse(createText) } catch { /* ignore */ }
+      contactId = createBody.id ?? null
+      contactCreated = true
+      if (!contactId) return NextResponse.json({ error: 'Contact create failed', createStatus: createResp.status, createText })
+    }
+
+    // Step 4: create ticket
     const ticketResp = await fetch('https://desk.zoho.com/api/v1/tickets', {
       method: 'POST',
       headers: h,
       body: JSON.stringify({
         subject: 'DEBUG TEST — Ring Resizing — safe to delete',
         departmentId: DEPT_ID,
-        contactEmail: TEST_EMAIL,
+        contactId,
         description: 'Automated debug test',
       }),
     })
-    const ticketBody = await ticketResp.text()
+    const ticketText = await ticketResp.text()
     let ticketJson: unknown
-    try { ticketJson = JSON.parse(ticketBody) } catch { ticketJson = ticketBody }
+    try { ticketJson = JSON.parse(ticketText) } catch { ticketJson = ticketText }
 
-    return NextResponse.json({ orgId, approach: 'contactEmail', ticketStatus: ticketResp.status, ticketBody: ticketJson })
+    return NextResponse.json({ orgId, contactId, contactCreated, ticketStatus: ticketResp.status, ticketBody: ticketJson })
   } catch (e) {
     return NextResponse.json({ error: String(e) }, { status: 500 })
   }
