@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { notFound, redirect } from 'next/navigation'
 import { draftMode, cookies } from 'next/headers'
 import { unstable_cache } from 'next/cache'
-import { getProductBySlug, getProductBySlugPreview, getAllProductParams } from '@/lib/queries'
+import { getProductBySlug, getProductBySlugPreview, getAllProductParams, getAdjacentProducts } from '@/lib/queries'
 import { getCategoryLabel } from '@/lib/data/categories'
 import { sql } from '@/lib/db'
 import { TEMPLATES, isValidTemplateId } from './layouts'
@@ -148,6 +148,8 @@ export default async function ProductPage({
     product.view3Url ? { label: 'Stone Sketch', url: product.view3Url } : null,
   ].filter((v): v is { label: string; url: string } => v !== null)
 
+  const { prev: prevProduct, next: nextProduct } = await getAdjacentProducts(slug, category)
+
   const productSchema = buildProductSchema(product, category)
   const nonce = await getNonce()
 
@@ -176,6 +178,8 @@ export default async function ProductPage({
         categoryLabel={categoryLabel}
         specItems={specItems}
         views={views}
+        prevProduct={prevProduct}
+        nextProduct={nextProduct}
       />
     </>
   )

@@ -175,6 +175,41 @@ export async function getProductsByCollection(collection: string): Promise<Produ
   return rows.map(rowToProduct)
 }
 
+/** Adjacent products within the same category (prev/next) for PDP navigation. */
+export async function getAdjacentProducts(
+  slug: string,
+  category: string,
+): Promise<{
+  prev: { slug: string; name: string } | null
+  next: { slug: string; name: string } | null
+}> {
+  const rows = await sql<{
+    prev_slug: string | null
+    prev_name: string | null
+    next_slug: string | null
+    next_name: string | null
+  }>(
+    `WITH ordered AS (
+       SELECT slug, name,
+              LAG(slug) OVER (ORDER BY featured DESC, sort_order ASC, name ASC)  AS prev_slug,
+              LAG(name) OVER (ORDER BY featured DESC, sort_order ASC, name ASC)  AS prev_name,
+              LEAD(slug) OVER (ORDER BY featured DESC, sort_order ASC, name ASC) AS next_slug,
+              LEAD(name) OVER (ORDER BY featured DESC, sort_order ASC, name ASC) AS next_name
+       FROM products
+       WHERE active = true AND lower(category) = lower($2)
+     )
+     SELECT prev_slug, prev_name, next_slug, next_name
+     FROM ordered WHERE slug = $1 LIMIT 1`,
+    [slug, category],
+  )
+  const row = rows[0]
+  if (!row) return { prev: null, next: null }
+  return {
+    prev: row.prev_slug ? { slug: row.prev_slug, name: row.prev_name! } : null,
+    next: row.next_slug ? { slug: row.next_slug, name: row.next_name! } : null,
+  }
+}
+
 /** For generateStaticParams — { category, slug } pairs for all active products. */
 export async function getAllProductParams(): Promise<{ category: string; slug: string }[]> {
   const rows = await sql<{ slug: string; category: string | null }>(

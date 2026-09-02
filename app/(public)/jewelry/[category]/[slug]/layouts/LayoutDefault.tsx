@@ -18,9 +18,12 @@ export default function LayoutDefault({
   heroVideo,
   heroPoster,
   onHandPhoto,
+  category,
   categoryLabel,
   specItems,
   views,
+  prevProduct,
+  nextProduct,
 }: ProductLayoutProps) {
   const accordionBlock: SpecAccordionBlock = { type: 'spec-accordion', title: '', items: specItems }
 
@@ -99,7 +102,13 @@ export default function LayoutDefault({
       <AtelierBanner />
 
       {/* ── 5. ProdPill ── */}
-      <ProdPill title={product.name} sku={product.sku} />
+      <ProdPill
+        title={product.name}
+        sku={product.sku}
+        category={category}
+        prevProduct={prevProduct}
+        nextProduct={nextProduct}
+      />
     </main>
   )
 }

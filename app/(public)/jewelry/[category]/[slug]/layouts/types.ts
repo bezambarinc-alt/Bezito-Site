@@ -1,6 +1,11 @@
 import type { Product } from '@/types/products'
 import type { SpecItem } from '@/types/blocks'
 
+export interface AdjacentProduct {
+  slug: string
+  name: string
+}
+
 /** Props passed to every product page layout variant. */
 export interface ProductLayoutProps {
   product: Product
@@ -11,4 +16,6 @@ export interface ProductLayoutProps {
   categoryLabel: string
   specItems: SpecItem[]
   views: { label: string; url: string | null | undefined }[]
+  prevProduct?: AdjacentProduct | null
+  nextProduct?: AdjacentProduct | null
 }
