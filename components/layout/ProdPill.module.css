@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   gap: 1.25rem;
-  padding: 0.55rem 0.6rem 0.55rem 1.5rem;
+  padding: 0.55rem 1.2rem 0.55rem 1.5rem;
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(26, 26, 26, 0.18);
@@ -18,22 +18,11 @@
 }
 .visible { transform: translate(-50%, 0); opacity: 1; }
 
-/* When prev/next arrows are present, reset padding — arrows provide the edge */
-.pillWithNav {
-  gap: 0;
-  padding: 0.55rem 0;
-}
-
 .piece {
   font-family: var(--ba-font-serif);
   font-size: 0.95rem;
   color: var(--ba-ink);
   white-space: nowrap;
-}
-
-/* piece needs horizontal breathing room when nav owns the pill edges */
-.pillWithNav .piece {
-  margin: 0 1.25rem;
 }
 
 .btn {
@@ -58,15 +47,6 @@
   box-shadow: 0 4px 16px rgba(26, 26, 26, 0.2);
 }
 
-/* nav divider — hairline between arrows and main content */
-.navDivider {
-  width: 1px;
-  align-self: stretch;
-  background: rgba(26, 26, 26, 0.15);
-  margin: 0.35rem 0;
-  flex-shrink: 0;
-}
-
 /* prev / next arrows */
 .navArrow {
   font-family: var(--ba-font-serif);
@@ -74,7 +54,6 @@
   line-height: 1;
   color: var(--ba-ink);
   text-decoration: none;
-  padding: 0.1rem 1rem;
   opacity: 0.4;
   flex-shrink: 0;
   transition: opacity 0.2s ease;
@@ -84,7 +63,4 @@
 @media (max-width: 520px) {
   .piece { display: none; }
   .pill { padding-left: 0.6rem; }
-  .pillWithNav { padding: 0.55rem 0; }
-  /* without piece, btn needs its own left breathing room */
-  .pillWithNav .btn { margin-left: 0; }
 }

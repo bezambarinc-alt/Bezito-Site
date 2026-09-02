@@ -20,21 +20,17 @@ interface ProdPillProps {
 /** Sticky bottom pill — piece name · inquiry CTA · optional prev/next navigation. */
 export default function ProdPill({ title, sku, category, prevProduct, nextProduct }: ProdPillProps) {
   const { openInquiryDrawer } = useDrawers()
-  const hasNav = !!(prevProduct || nextProduct)
 
   return (
-    <div className={`${styles.pill} ${styles.visible} ${hasNav ? styles.pillWithNav : ''}`}>
+    <div className={`${styles.pill} ${styles.visible}`}>
       {prevProduct && category && (
-        <>
-          <Link
-            href={`/jewelry/${category}/${prevProduct.slug}`}
-            className={styles.navArrow}
-            aria-label={`Previous: ${prevProduct.name}`}
-          >
-            ‹
-          </Link>
-          <span className={styles.navDivider} aria-hidden="true" />
-        </>
+        <Link
+          href={`/jewelry/${category}/${prevProduct.slug}`}
+          className={styles.navArrow}
+          aria-label={`Previous: ${prevProduct.name}`}
+        >
+          ‹
+        </Link>
       )}
 
       {title && <span className={styles.piece}>{title}</span>}
@@ -43,20 +39,17 @@ export default function ProdPill({ title, sku, category, prevProduct, nextProduc
         className={styles.btn}
         onClick={() => openInquiryDrawer({ title, sku, intent: 'A Piece from the Collection' })}
       >
-        Inquire About This Piece
+        Inquire
       </button>
 
       {nextProduct && category && (
-        <>
-          <span className={styles.navDivider} aria-hidden="true" />
-          <Link
-            href={`/jewelry/${category}/${nextProduct.slug}`}
-            className={styles.navArrow}
-            aria-label={`Next: ${nextProduct.name}`}
-          >
-            ›
-          </Link>
-        </>
+        <Link
+          href={`/jewelry/${category}/${nextProduct.slug}`}
+          className={styles.navArrow}
+          aria-label={`Next: ${nextProduct.name}`}
+        >
+          ›
+        </Link>
       )}
     </div>
   )
