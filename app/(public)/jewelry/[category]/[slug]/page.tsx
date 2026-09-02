@@ -143,10 +143,10 @@ export default async function ProductPage({
   ].filter((x): x is SpecItem => x !== null)
 
   const views = [
-    { label: 'Top',          url: product.view1Url ?? heroPoster },
-    { label: 'Concept',      url: product.view2Url ?? heroPoster },
-    { label: 'Stone Sketch', url: product.view3Url ?? heroPoster },
-  ]
+    product.view1Url ? { label: 'Top',          url: product.view1Url } : null,
+    product.view2Url ? { label: 'Concept',      url: product.view2Url } : null,
+    product.view3Url ? { label: 'Stone Sketch', url: product.view3Url } : null,
+  ].filter((v): v is { label: string; url: string } => v !== null)
 
   const productSchema = buildProductSchema(product, category)
   const nonce = await getNonce()

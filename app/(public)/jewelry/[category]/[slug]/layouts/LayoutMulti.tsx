@@ -113,11 +113,13 @@ export default function LayoutMulti({
                 role="button"
                 aria-label={img.label ? `View ${img.label}` : `View image ${i + 1}`}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src={img.url}
                   alt={img.label || `${title} — variation ${i + 1}`}
-                  loading="lazy"
+                  width={1200}
+                  height={900}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  style={{ width: '100%', height: 'auto' }}
                   className={styles.galleryImg}
                 />
                 {img.label && <p className={styles.galleryLabel}>{img.label}</p>}
