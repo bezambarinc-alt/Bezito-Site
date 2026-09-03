@@ -48,9 +48,12 @@ export default function LayoutDefault({
         <div className={styles.heroText}>
           <p className={styles.heroEyebrow}>{categoryLabel}</p>
           <h1 className={styles.heroTitle}>{product.name}</h1>
+          {product.specs.subtitle && (
+            <p className={styles.heroSubtitle}>{product.specs.subtitle}</p>
+          )}
           <p className={styles.heroRefLine}>Ref. {product.sku}</p>
-          {(product.specs.lede || product.specs.subtitle) && (
-            <p className={styles.heroCopy}>{product.specs.lede ?? product.specs.subtitle}</p>
+          {product.specs.lede && (
+            <p className={styles.heroCopy}>{product.specs.lede}</p>
           )}
         </div>
       </section>
