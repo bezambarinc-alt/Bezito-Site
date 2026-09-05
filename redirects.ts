@@ -3,7 +3,9 @@
 //   - 13 stale /jewelry/[name-slug] destinations updated to live SKU-based URLs
 //   - 2 query-param destinations (/collection?cat=) simplified to /collection
 //   - /shop/:slug patterns → /archive (historical catalog, not /collection)
-//   - /retailers redirect removed (new site has /retailers page)
+// Corrections applied 2026-09-05:
+//   - /retailers → /contact restored (new site has no /retailers index page)
+//   - 9 missing WP blog post slugs added → /blog
 
 import type { NextConfig } from 'next'
 
@@ -496,4 +498,25 @@ export const REDIRECTS: Redirect[] = [
     { source: '/diamond-hoop-earrings-guide/', destination: '/blog/diamond-hoop-earrings-guide', permanent: true },
     { source: '/what-is-an-asscher-cut-diamond', destination: '/blog/what-is-an-asscher-cut-diamond', permanent: true },
     { source: '/what-is-an-asscher-cut-diamond/', destination: '/blog/what-is-an-asscher-cut-diamond', permanent: true },
+    // /retailers index — new site has no listing page; individual retailer slugs handled above
+    { source: '/retailers', destination: '/contact', permanent: true },
+    // Remaining WP blog post slugs not in the top-performer list → base blog page
+    { source: '/be-productive-while-working-on-the-road', destination: '/blog', permanent: true },
+    { source: '/be-productive-while-working-on-the-road/', destination: '/blog', permanent: true },
+    { source: '/bezambar-blaze-cut-diamonds', destination: '/blog', permanent: true },
+    { source: '/bezambar-blaze-cut-diamonds/', destination: '/blog', permanent: true },
+    { source: '/bezambar-princess-cut-diamonds', destination: '/blog', permanent: true },
+    { source: '/bezambar-princess-cut-diamonds/', destination: '/blog', permanent: true },
+    { source: '/how-many-words-are-your-pictures-worth', destination: '/blog', permanent: true },
+    { source: '/how-many-words-are-your-pictures-worth/', destination: '/blog', permanent: true },
+    { source: '/new-copywriting-positions-available', destination: '/blog', permanent: true },
+    { source: '/new-copywriting-positions-available/', destination: '/blog', permanent: true },
+    { source: '/print-is-dead-long-live-print', destination: '/blog', permanent: true },
+    { source: '/print-is-dead-long-live-print/', destination: '/blog', permanent: true },
+    { source: '/ring-of-fire', destination: '/blog', permanent: true },
+    { source: '/ring-of-fire/', destination: '/blog', permanent: true },
+    { source: '/silvertooth-opens-new-gym-to-employees', destination: '/blog', permanent: true },
+    { source: '/silvertooth-opens-new-gym-to-employees/', destination: '/blog', permanent: true },
+    { source: '/the-modern-workspace', destination: '/blog', permanent: true },
+    { source: '/the-modern-workspace/', destination: '/blog', permanent: true },
 ]
