@@ -1,4 +1,5 @@
 import type { NextConfig } from 'next'
+import { REDIRECTS } from './redirects'
 
 // CSP is built per-request in proxy.ts (middleware) so it can carry a nonce.
 // Only static security headers live here.
@@ -10,9 +11,7 @@ const nextConfig: NextConfig = {
     ],
   },
   async redirects() {
-    return [
-      { source: '/retailers', destination: '/contact', permanent: false },
-    ]
+    return REDIRECTS
   },
 
   async headers() {
