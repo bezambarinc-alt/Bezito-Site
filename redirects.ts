@@ -71,8 +71,9 @@ export const REDIRECTS: Redirect[] = [
     { source: '/bez-ambar-store-locator1/', destination: '/retailers', permanent: true },
     { source: '/case-studies', destination: '/about-bez-ambar', permanent: true },
     { source: '/case-studies/', destination: '/about-bez-ambar', permanent: true },
-    { source: '/shop/:slug', destination: '/archive', permanent: true },
-    { source: '/shop/:slug/', destination: '/archive', permanent: true },
+    // Preserved legacy pages render at their original /shop/ URL — exempt from the catch-all
+    { source: '/shop/:slug((?!maharajah-ring-with-red-and-green-diamonds$).*)', destination: '/archive', permanent: true },
+    { source: '/shop/:slug((?!maharajah-ring-with-red-and-green-diamonds$).*)/', destination: '/archive', permanent: true },
     { source: '/designer-diamond-rings-bez-ambars-finest-engagement-rings', destination: '/journal', permanent: true },
     { source: '/designer-diamond-rings-bez-ambars-finest-engagement-rings/', destination: '/journal', permanent: true },
     { source: '/blaze-cut-diamonds-unmatched-engagement-rings-wedding-bands', destination: '/blog/blaze-cut-diamond', permanent: true },
