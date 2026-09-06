@@ -8,8 +8,7 @@ import { getZohoToken, invalidateZohoToken, parseZohoName } from '@/lib/zoho-aut
 // Verify this matches your org's picklist: Zoho CRM → Leads → Fields → Lead Source.
 const ZOHO_LEAD_SOURCE = 'Web Site'
 
-// Intents that should NOT create a CRM Lead — they're marketing contacts, not sales prospects.
-const SKIP_CRM_INTENTS = new Set(['newsletter'])
+// Newsletter signups go to Campaigns AND CRM (they're warm leads).
 
 const ZOHO_CAMPAIGNS_NEWSLETTER_LISTKEY = '3zc7a4603e5b59b69537a9ed38ee7112ccbedb1f079c4f5b4db8ae03c2a22107c8'
 
@@ -130,24 +129,17 @@ export async function POST(req: NextRequest) {
     [fkPageSlug, sku, intent ?? null, name ?? null, email, message ?? null],
   )
 
-  // Page URL for Zoho Website field — lets sales see exactly which page the lead came from.
-  const appUrl = process.env.APP_URL ?? 'https://bezambar-web2026.vercel.app'
-  const pageUrl = rawPageSlug ? `${appUrl}/${rawPageSlug}` : undefined
-
   // 2. Push to Zoho (best-effort — 5s timeout, never blocks lead save)
-  // Newsletter → Neon only. Service intents → Desk. Everything else → CRM Lead.
-  if (SKIP_CRM_INTENTS.has(intent ?? '')) {
-    try {
-      const token = await getZohoToken()
-      await subscribeToNewsletter(token, email, name)
-    } catch { /* non-fatal — email is safe in Neon */ }
-    return NextResponse.json({ ok: true })
-  }
-
+  // Newsletter → Campaigns subscribe + CRM Lead. Service intents → Desk. Everything else → CRM Lead.
   try {
     const token = await getZohoToken()
     const appUrl = process.env.APP_URL ?? 'https://bezambar-web2026.vercel.app'
     const pageUrl = rawPageSlug ? `${appUrl}/${rawPageSlug}` : undefined
+
+    // Newsletter: subscribe to Campaigns list (non-fatal), then fall through to CRM Lead.
+    if (intent === 'newsletter') {
+      try { await subscribeToNewsletter(token, email, name) } catch { /* non-fatal */ }
+    }
 
     if (SERVICE_INTENTS.has(intent ?? '')) {
       // ── Zoho Desk ticket ─────────────────────────────────────────────────
