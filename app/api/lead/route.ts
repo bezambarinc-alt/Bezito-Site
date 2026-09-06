@@ -9,8 +9,31 @@ import { getZohoToken, invalidateZohoToken, parseZohoName } from '@/lib/zoho-aut
 const ZOHO_LEAD_SOURCE = 'Web Site'
 
 // Intents that should NOT create a CRM Lead — they're marketing contacts, not sales prospects.
-// Newsletter subscribers go to Neon only until Zoho Campaigns is configured.
 const SKIP_CRM_INTENTS = new Set(['newsletter'])
+
+const ZOHO_CAMPAIGNS_NEWSLETTER_LISTKEY = '3zc7a4603e5b59b69537a9ed38ee7112ccbedb1f079c4f5b4db8ae03c2a22107c8'
+
+async function subscribeToNewsletter(token: string, email: string, name?: string): Promise<void> {
+  const contactInfo: Record<string, string> = { 'Contact Email': email }
+  if (name) {
+    const parts = name.trim().split(' ')
+    contactInfo['First Name'] = parts[0]
+    if (parts.length > 1) contactInfo['Last Name'] = parts.slice(1).join(' ')
+  }
+  await fetch('https://campaigns.zoho.com/api/v1.1/json/listsubscribe', {
+    method: 'POST',
+    signal: AbortSignal.timeout(5000),
+    headers: {
+      Authorization: `Zoho-oauthtoken ${token}`,
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: new URLSearchParams({
+      listkey: ZOHO_CAMPAIGNS_NEWSLETTER_LISTKEY,
+      contactinfo: JSON.stringify(contactInfo),
+      resfmt: 'JSON',
+    }),
+  })
+}
 
 // Service intents → Zoho Desk tickets, not CRM Leads.
 const SERVICE_INTENTS = new Set(['Repair & Cleaning', 'Ring Resizing', 'Ring Sizing Appointment'])
@@ -114,6 +137,10 @@ export async function POST(req: NextRequest) {
   // 2. Push to Zoho (best-effort — 5s timeout, never blocks lead save)
   // Newsletter → Neon only. Service intents → Desk. Everything else → CRM Lead.
   if (SKIP_CRM_INTENTS.has(intent ?? '')) {
+    try {
+      const token = await getZohoToken()
+      await subscribeToNewsletter(token, email, name)
+    } catch { /* non-fatal — email is safe in Neon */ }
     return NextResponse.json({ ok: true })
   }
 
