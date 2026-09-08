@@ -168,7 +168,7 @@ export default function ElysianBandPage() {
       <FloatingCollectionCTA
         collectionName="The Elysian Band"
         eyebrow="Presentation"
-        intent="Elysian Band Inquiry"
+        intent="Commission a Piece"
       />
 
     </main>
