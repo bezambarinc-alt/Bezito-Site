@@ -1,112 +1,19 @@
 /* Elysian Band — Presentation page */
 
-/* ── Hero — mirrors elysian-cut pattern exactly ── */
+/* ── Variant section ── */
 
-.hero {
-  position: relative;
-  height: 100vh;
-  min-height: 600px;
-  overflow: hidden;
-  background: #0d0d0d;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.heroVideo {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: max(100vw, 177.78vh);
-  height: max(100vh, 56.25vw);
-  object-fit: cover;
-  pointer-events: none;
-}
-
-.heroOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.65) 100%);
-}
-
-.heroContent {
-  position: absolute;
-  left: clamp(40px, 6vw, 80px);
-  bottom: clamp(60px, 8vw, 110px);
-  max-width: 560px;
-  color: #fff;
-  padding-top: 64px;
-}
-
-.heroEyebrow {
-  font-family: var(--ba-font-sans);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: var(--ba-gold);
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
-.heroTitle {
-  font-family: var(--ba-font-sans);
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-  font-weight: 200;
-  text-transform: uppercase;
-  color: var(--ba-gold);
-  line-height: 1;
-  margin: 0 0 1.25rem;
-}
-
-.heroRule {
-  width: 48px;
-  height: 1px;
-  background: var(--ba-gold);
-  margin-bottom: 1.5rem;
-}
-
-.heroLede {
-  font-family: var(--ba-font-editorial);
-  font-size: clamp(1rem, 1.5vw, 1.15rem);
-  line-height: 1.65;
-  color: rgba(255,255,255,0.85);
-  max-width: 46ch;
-}
-
-/* ── Intro ── */
-
-.intro {
-  background: var(--ba-white);
-  padding: clamp(2.5rem, 5vw, 4.5rem) clamp(1.25rem, 5vw, 4rem);
-  border-bottom: 1px solid rgba(0,0,0,0.08);
-}
-
-.introInner {
-  max-width: 760px;
-  margin: 0 auto;
-}
-
-.introInner p {
-  font-family: var(--ba-font-editorial);
-  font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
-  line-height: 1.75;
-  color: var(--ba-ink-soft);
-}
-
-/* ── Pricing section ── */
-
-.pricing {
+.variants {
   padding: clamp(3rem, 6vw, 5.5rem) clamp(1.25rem, 5vw, 4rem);
   background: var(--ba-white);
   border-top: 1px solid rgba(0,0,0,0.08);
 }
 
-.pricingHeader {
+.variantsHeader {
   max-width: var(--ba-maxw);
-  margin: 0 auto 3rem;
+  margin: 0 auto 2.5rem;
 }
 
-.pricingEyebrow {
+.variantsEyebrow {
   font-family: var(--ba-font-sans);
   font-size: 0.9375rem;
   font-weight: 600;
@@ -116,7 +23,7 @@
   display: block;
 }
 
-.pricingTitle {
+.variantsTitle {
   font-family: var(--ba-font-sans);
   font-size: clamp(1.25rem, 2.5vw, 2rem);
   font-weight: 200;
@@ -125,141 +32,160 @@
   margin: 0;
 }
 
-/* ── Variant strips ── */
+/* ── Card grid ── */
 
-.variantList {
+.cardsGrid {
   max-width: var(--ba-maxw);
   margin: 0 auto;
-}
-
-.variantStrip {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
-  padding: 2.5rem 0;
-  border-top: 1px solid rgba(0,0,0,0.08);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
 }
 
-.variantStrip:last-child {
-  border-bottom: 1px solid rgba(0,0,0,0.08);
-}
-
-/* Left column */
-.stripLeft {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.stripRef {
-  font-family: var(--ba-font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--ba-ink-muted);
-}
-
-.stripSize {
-  font-family: var(--ba-font-sans);
-  font-size: clamp(1rem, 1.8vw, 1.375rem);
-  font-weight: 200;
-  text-transform: uppercase;
-  color: var(--ba-ink);
-}
-
-.stripDesc {
-  font-family: var(--ba-font-editorial);
-  font-size: 0.9375rem;
-  line-height: 1.65;
-  color: var(--ba-ink-soft);
-  margin: 0.25rem 0 0;
-}
-
-/* Right column — two price sub-columns */
-.stripRight {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-}
-
-.priceCol {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  padding: 1.25rem;
-  border: 1px solid rgba(0,0,0,0.08);
-  border-right: none;
-}
-
-.priceColHalf {
-  border-right: 1px solid rgba(0,0,0,0.08);
+.card {
   background: var(--ba-paper);
+  display: flex;
+  flex-direction: column;
 }
 
-.priceType {
+.cardTop {
+  padding: 2rem 2rem 1.5rem;
+  flex: 1;
+}
+
+.cardEyebrow {
   font-family: var(--ba-font-sans);
   font-size: 0.6875rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   color: var(--ba-gold);
+  display: block;
+  margin-bottom: 0.75rem;
 }
 
-.priceMeta {
+.cardRef {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 200;
+  text-transform: uppercase;
+  color: var(--ba-ink);
+  margin: 0 0 1rem;
+}
+
+.cardDesc {
+  font-family: var(--ba-font-editorial);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--ba-ink-soft);
+  margin: 0 0 1.25rem;
+}
+
+.cardSpecs {
   font-family: var(--ba-font-sans);
   font-size: 0.75rem;
   font-weight: 400;
-  color: var(--ba-ink-muted);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
+  color: var(--ba-ink-muted);
+  margin: 0 0 0.5rem;
 }
 
-.priceRange {
+.cardPrice {
   font-family: var(--ba-font-sans);
-  font-size: clamp(0.875rem, 1.4vw, 1rem);
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
   font-weight: 300;
   color: var(--ba-ink);
-  margin-top: 0.25rem;
+  margin: 0 0 0.25rem;
 }
 
-.priceDash {
-  color: var(--ba-ink-muted);
-}
-
-/* Price note */
-.priceNote {
+.cardPriceNote {
   font-family: var(--ba-font-editorial);
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: var(--ba-ink-muted);
+  margin: 0;
+}
+
+/* Halfway sub-section */
+.cardHalf {
+  border-top: 1px solid var(--ba-border-warm);
+  padding: 1.25rem 2rem 1.5rem;
+  background: rgba(0,0,0,0.025);
+}
+
+.halfLabel {
+  font-family: var(--ba-font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ba-ink-muted);
+  margin: 0 0 0.4rem;
+}
+
+.halfPrice {
+  font-family: var(--ba-font-sans);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--ba-ink);
+  margin: 0 0 0.25rem;
+}
+
+/* ── Closing editorial ── */
+
+.closing {
+  background: var(--ba-white);
+  padding: clamp(2.5rem, 5vw, 4.5rem) clamp(1.25rem, 5vw, 4rem);
+  border-top: 1px solid rgba(0,0,0,0.08);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.closingInner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.closingEyebrow {
+  font-family: var(--ba-font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--ba-gold);
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.closingTitle {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  font-weight: 200;
+  text-transform: uppercase;
+  color: var(--ba-ink);
+  margin: 0 0 1.25rem;
+}
+
+.closingBody {
+  font-family: var(--ba-font-editorial);
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  line-height: 1.75;
+  color: var(--ba-ink-soft);
+  margin: 0 0 1rem;
+}
+
+.closingNote {
+  font-family: var(--ba-font-editorial);
+  font-size: 0.9375rem;
+  font-style: italic;
   line-height: 1.65;
   color: var(--ba-ink-muted);
-  text-align: center;
-  padding: 2rem 0 0;
-  max-width: 640px;
-  margin: 0 auto;
+  margin: 0;
 }
 
 /* ── Responsive ── */
 
-@media (max-width: 900px) {
-  .variantStrip {
+@media (max-width: 768px) {
+  .cardsGrid {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 640px) {
-  .heroContent { left: 20px; right: 20px; }
-
-  .stripRight {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .priceCol {
-    padding: 1rem 0.75rem;
-  }
-
-  .priceRange {
-    font-size: 0.8125rem;
   }
 }
