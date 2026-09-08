@@ -74,8 +74,8 @@ export const REDIRECTS: Redirect[] = [
     { source: '/case-studies', destination: '/about-bez-ambar', permanent: true },
     { source: '/case-studies/', destination: '/about-bez-ambar', permanent: true },
     // Preserved legacy pages render at their original /shop/ URL — exempt from the catch-all
-    { source: '/shop/:slug((?!maharajah-ring-with-red-and-green-diamonds$|ruby-flower-hug-earrings$).*)', destination: '/archive', permanent: true },
-    { source: '/shop/:slug((?!maharajah-ring-with-red-and-green-diamonds$|ruby-flower-hug-earrings$).*)/', destination: '/archive', permanent: true },
+    { source: '/shop/:slug((?!maharajah-ring-with-red-and-green-diamonds$|ruby-flower-hug-earrings$|3-stone-oval-engagement-ring-with-blaze$).*)', destination: '/archive', permanent: true },
+    { source: '/shop/:slug((?!maharajah-ring-with-red-and-green-diamonds$|ruby-flower-hug-earrings$|3-stone-oval-engagement-ring-with-blaze$).*)/', destination: '/archive', permanent: true },
     { source: '/designer-diamond-rings-bez-ambars-finest-engagement-rings', destination: '/journal', permanent: true },
     { source: '/designer-diamond-rings-bez-ambars-finest-engagement-rings/', destination: '/journal', permanent: true },
     { source: '/blaze-cut-diamonds-unmatched-engagement-rings-wedding-bands', destination: '/blog/blaze-cut-diamond', permanent: true },
