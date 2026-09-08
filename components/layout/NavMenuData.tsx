@@ -1,17 +1,18 @@
 /**
  * NavMenuData — server component.
  *
- * Fetches categories + slim product list from Neon and passes them to the
- * (client) MenuOverlay so the navigation is fully data-driven.
+ * Fetches categories, products, and collections from Neon and passes them to
+ * the (client) MenuOverlay so the navigation is fully data-driven.
  * Errors are swallowed so a DB hiccup never breaks the page shell.
  */
-import { getActiveCategories, getNavProducts } from '@/lib/queries'
+import { getActiveCategories, getActiveCollections, getNavProducts } from '@/lib/queries'
 import MenuOverlay from './MenuOverlay'
 
 export default async function NavMenuData() {
-  const [categories, navProducts] = await Promise.all([
+  const [categories, navProducts, collections] = await Promise.all([
     getActiveCategories().catch(() => [] as string[]),
     getNavProducts().catch(() => [] as { slug: string; name: string; category: string }[]),
+    getActiveCollections().catch(() => [] as string[]),
   ])
 
   // Group products by category slug for the third-level drill-down.
@@ -21,5 +22,11 @@ export default async function NavMenuData() {
     categoryProducts[p.category].push({ slug: p.slug, name: p.name })
   }
 
-  return <MenuOverlay categories={categories} categoryProducts={categoryProducts} />
+  return (
+    <MenuOverlay
+      categories={categories}
+      categoryProducts={categoryProducts}
+      collections={collections}
+    />
+  )
 }

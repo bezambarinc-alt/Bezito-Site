@@ -23,6 +23,7 @@ interface SubCol { id: string; items: NavEntry[] }
 
 const ROOT: NavEntry[] = [
   { kind: 'expand', label: 'On the Bench', id: 'jewelry' },
+  { kind: 'expand', label: 'Collections',  id: 'collections' },
   { kind: 'link',   label: 'Archive',      href: '/archive' },
   { kind: 'expand', label: 'Journal',      id: 'journal' },
   { kind: 'expand', label: 'Atelier',      id: 'atelier' },
@@ -34,9 +35,10 @@ const ROOT: NavEntry[] = [
 interface Props {
   categories?: string[]
   categoryProducts?: Record<string, { slug: string; name: string }[]>
+  collections?: string[]
 }
 
-export default function MenuOverlay({ categories = [], categoryProducts = {} }: Props) {
+export default function MenuOverlay({ categories = [], categoryProducts = {}, collections = [] }: Props) {
   const { active, close, openConcierge, openInquiryDrawer } = useDrawers()
   const open = active === 'menu'
   const [sub, setSub] = useState<string | null>(null)
@@ -50,8 +52,17 @@ export default function MenuOverlay({ categories = [], categoryProducts = {} }: 
     cat,
   }))
 
+  const collectionsItems: NavEntry[] = collections.length > 0
+    ? collections.map(col => ({
+        kind: 'link' as const,
+        label: col,
+        href: `/collection/${encodeURIComponent(col)}`,
+      }))
+    : [{ kind: 'soon' as const, label: 'Collections Coming Soon' }]
+
   const subCols: SubCol[] = [
     { id: 'jewelry', items: jewelryItems },
+    { id: 'collections', items: collectionsItems },
     {
       id: 'journal',
       items: [

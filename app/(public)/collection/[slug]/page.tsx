@@ -5,6 +5,7 @@ import { getProductsByCollection } from '@/lib/queries'
 import ProductCard from '@/components/product/ProductCard'
 import FadeIn from '@/components/common/FadeIn'
 import InquiryButton from '@/components/common/InquiryButton'
+import FloatingCollectionCTA from '@/components/common/FloatingCollectionCTA'
 import AtelierBanner from '@/components/common/AtelierBanner'
 import HomeSegment from '@/components/home/HomeSegment'
 
@@ -147,6 +148,7 @@ export default async function CollectionPage({
       )}
 
       <AtelierBanner />
+      <FloatingCollectionCTA collectionName={collectionName} />
     </main>
   )
 }

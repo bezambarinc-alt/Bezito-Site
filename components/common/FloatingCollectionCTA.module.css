@@ -1,0 +1,77 @@
+/* Floating bottom bar — luxury minimal */
+
+.bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(140, 122, 102, 0.20);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 48px;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity   0.45s ease;
+  pointer-events: none;
+}
+
+.visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.eyebrow {
+  font-family: var(--ba-font-sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--ba-gold);
+}
+
+.name {
+  font-family: var(--ba-font-sans);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--ba-ink);
+}
+
+/* Gold pill button — matches brand CTA style */
+.btn {
+  font-family: var(--ba-font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: var(--ba-gold);
+  border: none;
+  border-radius: 2px;
+  padding: 12px 28px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+.btn:hover  { background: var(--ba-ink); }
+.btn:active { transform: scale(0.97); }
+
+@media (max-width: 640px) {
+  .bar    { padding: 12px 20px; }
+  .eyebrow { display: none; }
+  .btn    { padding: 11px 20px; font-size: 10px; }
+}
