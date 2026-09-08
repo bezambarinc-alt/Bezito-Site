@@ -6,11 +6,16 @@ import InquiryDrawer from '@/components/layout/InquiryDrawer'
 import ConciergeDrawer from '@/components/layout/ConciergeDrawer'
 import SearchOverlay from '@/components/layout/SearchOverlay'
 import { getNonce } from '@/lib/nonce'
+import Script from 'next/script'
 
 export default async function SiteLayout({ children }: { children: React.ReactNode }) {
   const nonce = await getNonce()
   return (
     <>
+      <Script
+        src="https://cdn.pagesense.io/js/bezambarinc657/b68a8dcb9f314cfd85f99b87f9cf95a8.js"
+        strategy="afterInteractive"
+      />
       <script
         nonce={nonce}
         type="application/ld+json"
