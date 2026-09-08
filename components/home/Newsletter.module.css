@@ -99,6 +99,15 @@
   text-align: center;
 }
 
+.disclosure {
+  font-family: var(--ba-font-sans);
+  font-size: 0.68rem;
+  color: var(--ba-ink-soft);
+  margin-top: 0.75rem;
+  text-align: center;
+}
+.disclosure a { color: inherit; text-decoration: underline; }
+
 @media (max-width: 380px) {
   .form {
     flex-direction: column;

@@ -164,6 +164,7 @@ export default function ArchiveModal({ entry, onClose }: Props) {
                 <button className={styles.submit} type="submit" disabled={status === 'sending'}>
                   {status === 'sending' ? 'Sending…' : 'Send Inquiry'}
                 </button>
+                <p className={styles.privacy}>By submitting, you agree to our <a href="/privacy-policy">Privacy Policy</a>.</p>
               </form>
             </>
           )}

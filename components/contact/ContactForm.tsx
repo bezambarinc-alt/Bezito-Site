@@ -70,6 +70,7 @@ export default function ContactForm() {
       <button className={styles.submit} type="submit" disabled={pending}>
         {pending ? 'Sending…' : 'Send Inquiry'}
       </button>
+      <p className={styles.disclosure}>By submitting, you agree to our <a href="/privacy-policy">Privacy Policy</a>.</p>
     </form>
   )
 }

@@ -38,6 +38,7 @@ export default function Newsletter() {
         {status === 'success' ? (
           <p className={styles.successMsg}>You&apos;re on the list. We&apos;ll be in touch.</p>
         ) : (
+          <>
           <form className={styles.form} onSubmit={handleSubmit}>
             <input
               className={styles.input}
@@ -53,6 +54,8 @@ export default function Newsletter() {
             </button>
             {status === 'error' && <p className={styles.errorMsg}>{errorMsg}</p>}
           </form>
+          <p className={styles.disclosure}>By joining, you agree to our <a href="/privacy-policy">Privacy Policy</a>.</p>
+          </>
         )}
       </div>
     </section>

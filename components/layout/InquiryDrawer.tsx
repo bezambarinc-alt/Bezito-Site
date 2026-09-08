@@ -184,6 +184,7 @@ export default function InquiryDrawer() {
               <button className={styles.submit} type="submit" disabled={pending}>
                 {pending ? 'Sending…' : 'Send Inquiry'}
               </button>
+              <p className={styles.privacy}>By submitting, you agree to our <a href="/privacy-policy">Privacy Policy</a>.</p>
             </form>
           )}
 
