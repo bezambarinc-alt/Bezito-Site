@@ -379,6 +379,28 @@ html:has(main video[autoplay]):not(:has(main[data-page="pdp"])) #baHeader:not([d
   color: #ffffff;
 }
 
+/* ── Cookie Consent — Bez Ambar brand overrides ───────────────────────────── */
+#cc-main {
+  --cc-font-family: var(--ba-font-sans);
+  --cc-bg: #ffffff;
+  --cc-text: #1a1a1a;
+  --cc-secondary-color: #6b6b6b;
+  --cc-border-radius: 0px;
+  --cc-btn-primary-bg: #8c7a66;
+  --cc-btn-primary-color: #ffffff;
+  --cc-btn-primary-hover-bg: #6f6050;
+  --cc-btn-secondary-bg: transparent;
+  --cc-btn-secondary-color: #1a1a1a;
+  --cc-btn-secondary-hover-bg: rgba(0,0,0,0.04);
+  --cc-btn-border-radius: 0px;
+  --cc-toggle-on-bg: #8c7a66;
+  --cc-toggle-off-bg: #d0c8c0;
+  --cc-cookie-category-block-bg: #fafafa;
+  --cc-overlay-bg: rgba(0,0,0,0.5);
+  font-size: 0.8125rem;
+  letter-spacing: 0.01em;
+}
+
 /* PDP: header solid white, ink text, no transition */
 html:has(main[data-page="pdp"]) #baHeader {
   background: #ffffff;

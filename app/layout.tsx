@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Open_Sans, Lora } from 'next/font/google'
 import './globals.css'
+import CookieConsentBanner from './components/CookieConsent'
 
 const openSans = Open_Sans({
   subsets: ['latin'],
@@ -56,7 +57,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://webfonts.fontstand.com/WF-099839-d89c1d499f0c1f40d1e6d7330af17f97.css"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <CookieConsentBanner />
+      </body>
     </html>
   )
 }

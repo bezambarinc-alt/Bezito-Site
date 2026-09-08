@@ -222,6 +222,7 @@ export default function Footer() {
             <Link href="/privacy-policy">Privacy Policy</Link>
             <Link href="/terms">Terms of Service</Link>
             <Link href="/warranty">Warranty</Link>
+            <Link href="/legal/ccpa-opt-out">Do Not Sell My Info</Link>
           </nav>
         </div>
       </div>
