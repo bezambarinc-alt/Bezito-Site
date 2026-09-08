@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import HomeSegment from '@/components/home/HomeSegment'
+import HomeHeroImage from '@/components/home/HomeHeroImage'
 import PageCta from '@/components/common/PageCta'
 import AtelierBanner from '@/components/common/AtelierBanner'
 import FloatingCollectionCTA from '@/components/common/FloatingCollectionCTA'
@@ -13,42 +14,48 @@ export const metadata: Metadata = {
 
 // ── Variant data ───────────────────────────────────────────────────────────────
 
-interface Half { ref: string; stones: number; carats: string; priceFrom: number; priceTo: number }
 interface Variant {
   ref: string
-  label: string
-  stones: number
-  carats: string
-  priceFrom: number
-  priceTo: number
-  half: Half
+  halfRef: string
+  size: string
+  desc: string
+  full: { stones: number; carats: string; priceFrom: number; priceTo: number }
+  half: { stones: number; carats: string; priceFrom: number; priceTo: number }
 }
 
 const VARIANTS: Variant[] = [
   {
-    ref: '2ELS-25', label: 'Full Eternity',
-    stones: 22, carats: '5.50', priceFrom: 16852, priceTo: 27852,
-    half: { ref: '2ELS-25H', stones: 11, carats: '2.75', priceFrom: 8824, priceTo: 14324 },
+    ref: '2ELS-25', halfRef: '2ELS-25H',
+    size: '0.25 ct per stone',
+    desc: 'The entry. Twenty-two Elysian ovals close the circle without interruption.',
+    full: { stones: 22, carats: '5.50', priceFrom: 16852, priceTo: 27852 },
+    half: { stones: 11, carats: '2.75', priceFrom: 8824,  priceTo: 14324 },
   },
   {
-    ref: '2ELS-30', label: 'Full Eternity',
-    stones: 21, carats: '6.51', priceFrom: 23484, priceTo: 37156,
-    half: { ref: '2ELS-30H', stones: 11, carats: '3.41', priceFrom: 12652, priceTo: 19816 },
+    ref: '2ELS-30', halfRef: '2ELS-30H',
+    size: '0.30 ct per stone',
+    desc: 'The line of light widens. The oval form begins to assert itself.',
+    full: { stones: 21, carats: '6.51', priceFrom: 23484, priceTo: 37156 },
+    half: { stones: 11, carats: '3.41', priceFrom: 12652, priceTo: 19816 },
   },
   {
-    ref: '2ELS-50', label: 'Full Eternity',
-    stones: 18, carats: '9.90', priceFrom: 46552, priceTo: 62392,
-    half: { ref: '2ELS-50H', stones: 9, carats: '4.95', priceFrom: 23676, priceTo: 31596 },
+    ref: '2ELS-50', halfRef: '2ELS-50H',
+    size: '0.50 ct per stone',
+    desc: 'Each stone readable on its own. The edge-to-edge setting keeps the eye moving.',
+    full: { stones: 18, carats: '9.90', priceFrom: 46552, priceTo: 62392 },
+    half: { stones: 9,  carats: '4.95', priceFrom: 23676, priceTo: 31596 },
   },
   {
-    ref: '2ELS-70', label: 'Full Eternity',
-    stones: 17, carats: '11.90', priceFrom: 60312, priceTo: 90060,
-    half: { ref: '2ELS-70H', stones: 7, carats: '4.90', priceFrom: 25412, priceTo: 37660 },
+    ref: '2ELS-70', halfRef: '2ELS-70H',
+    size: '0.70 ct per stone',
+    desc: 'The Elysian at full volume. Seventeen stones, nearly twelve carats, one circle.',
+    full: { stones: 17, carats: '11.90', priceFrom: 60312, priceTo: 90060 },
+    half: { stones: 7,  carats: '4.90',  priceFrom: 25412, priceTo: 37660 },
   },
 ]
 
 function usd(n: number) {
-  return n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })
+  return '$' + n.toLocaleString('en-US', { maximumFractionDigits: 0 })
 }
 
 // ── Page ───────────────────────────────────────────────────────────────────────
@@ -89,101 +96,110 @@ export default function ElysianBandPage() {
         </div>
       </div>
 
-      {/* ── Narrative — The Cut ── */}
+      {/* ── Narrative — two column with video ── */}
       <HomeSegment
         eyebrow="The Oval Band"
         title="A Line You Never Take Off"
-        body="Cut to fit its place, set to disappear. Every stone calibrated to the hand that wears it. The Elysian Cut™ takes the step-cut discipline of a baguette — light in long, directional planes — and bends it into an oval form. Each stone is set edge to edge, no metal, no interruption. Light enters one stone and travels the finger in one unbroken line."
+        body="Cut to fit its place, set to disappear. Every stone calibrated to the hand that wears it. The Elysian Cut™ takes the step-cut discipline — light in long, directional planes — and bends it into an oval form. Each stone edge to edge, no metal between them. Light enters one stone and travels the finger without interruption."
         videoUrl="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.mp4"
-        posterUrl="https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.mp4"
+        posterUrl="https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.jpg"
         reverse
       />
 
-      {/* ── Variant section header ── */}
-      <div className={styles.sectionHeader}>
-        <p className={styles.sectionEyebrow}>The Band — Four Stone Sizes</p>
-        <h2 className={styles.sectionTitle}>Full Eternity &amp; Halfway</h2>
-      </div>
+      {/* ── The Cut — oval stone editorial ── */}
+      <HomeSegment
+        eyebrow="Featuring the Elysian Cut™"
+        title="Calibrated for the Oval"
+        body="A baguette moves light in long, directional planes — that's the step cut at work. The Elysian Cut™ takes that discipline and bends it into an oval form: the broad, sweeping brilliance of a step cut, inside the curve of an oval. Set in a continuous ring, it reads not as a row of diamonds, but as a single, unbroken ribbon of light."
+        imageUrl="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1100/v1779074065/Jewelry%20Images/Stones/Elysian_cut_oval_qcdt5r.jpg"
+      />
 
-      {/* ── Product Variants ── */}
-      <section className={styles.variants}>
-        {VARIANTS.map((v) => (
-          <article key={v.ref} className={styles.variantRow}>
-
-            {/* Full eternity */}
-            <div className={styles.variantBlock}>
-              <header className={styles.variantHead}>
-                <span className={styles.variantRef}>{v.ref}</span>
-                <span className={styles.variantLabel}>{v.label}</span>
-              </header>
-              <dl className={styles.specs}>
-                <div className={styles.specItem}>
-                  <dt>Stones</dt>
-                  <dd>{v.stones}</dd>
-                </div>
-                <div className={styles.specItem}>
-                  <dt>Total weight</dt>
-                  <dd>{v.carats} ct</dd>
-                </div>
-                <div className={styles.specItem}>
-                  <dt>Price range</dt>
-                  <dd>{usd(v.priceFrom)} – {usd(v.priceTo)}</dd>
-                </div>
-              </dl>
-            </div>
-
-            {/* Halfway variant */}
-            <div className={`${styles.variantBlock} ${styles.variantHalf}`}>
-              <header className={styles.variantHead}>
-                <span className={styles.variantRef}>{v.half.ref}</span>
-                <span className={styles.variantLabel}>Halfway</span>
-              </header>
-              <dl className={styles.specs}>
-                <div className={styles.specItem}>
-                  <dt>Stones</dt>
-                  <dd>{v.half.stones}</dd>
-                </div>
-                <div className={styles.specItem}>
-                  <dt>Total weight</dt>
-                  <dd>{v.half.carats} ct</dd>
-                </div>
-                <div className={styles.specItem}>
-                  <dt>Price range</dt>
-                  <dd>{usd(v.half.priceFrom)} – {usd(v.half.priceTo)}</dd>
-                </div>
-              </dl>
-            </div>
-
-          </article>
-        ))}
+      {/* ── Pull quote ── */}
+      <section className="ba-pull-quote">
+        <span className="ba-pull-quote__mark">&ldquo;</span>
+        <p className="ba-pull-quote__text">
+          The certificate grades the stone. The light tells the truth.
+        </p>
+        <span className="ba-pull-quote__attr">Bez Ambar</span>
       </section>
 
-      <p className={styles.priceNote}>
-        Price varies by diamond quality. Larger stones available upon request.
-        The ring in film features a 0.90 ct Elysian Cut; 1 ct and 1.5 ct stones also available.
-      </p>
+      {/* ── Dark image break ── */}
+      <HomeHeroImage
+        imageUrl="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto:good/Jewelry%20Images/Bracelets/axiom-bracelet-model-shot.jpg"
+        height={600}
+        eyebrow="The Band"
+        title="One Unbroken Line"
+        sub="Designed and Made in Los Angeles"
+      />
 
-      {/* ── Coming Soon ── */}
+      {/* ── Pricing section ── */}
+      <section className={styles.pricing}>
+        <div className={styles.pricingHeader}>
+          <p className={styles.pricingEyebrow}>Four Stone Sizes · Full Eternity &amp; Halfway</p>
+          <h2 className={styles.pricingTitle}>The Elysian Band</h2>
+        </div>
+
+        <div className={styles.variantList}>
+          {VARIANTS.map((v) => (
+            <div key={v.ref} className={styles.variantStrip}>
+
+              {/* Left — reference + description */}
+              <div className={styles.stripLeft}>
+                <span className={styles.stripRef}>{v.ref} · {v.halfRef}</span>
+                <span className={styles.stripSize}>{v.size}</span>
+                <p className={styles.stripDesc}>{v.desc}</p>
+              </div>
+
+              {/* Right — two price columns */}
+              <div className={styles.stripRight}>
+                <div className={styles.priceCol}>
+                  <span className={styles.priceType}>Full Eternity</span>
+                  <span className={styles.priceMeta}>{v.full.stones} stones · {v.full.carats} ct</span>
+                  <span className={styles.priceRange}>
+                    {usd(v.full.priceFrom)}<span className={styles.priceDash}> – </span>{usd(v.full.priceTo)}
+                  </span>
+                </div>
+                <div className={`${styles.priceCol} ${styles.priceColHalf}`}>
+                  <span className={styles.priceType}>Halfway</span>
+                  <span className={styles.priceMeta}>{v.half.stones} stones · {v.half.carats} ct</span>
+                  <span className={styles.priceRange}>
+                    {usd(v.half.priceFrom)}<span className={styles.priceDash}> – </span>{usd(v.half.priceTo)}
+                  </span>
+                </div>
+              </div>
+
+            </div>
+          ))}
+        </div>
+
+        <p className={styles.priceNote}>
+          Price varies by diamond quality. Larger stones available upon request.
+          Stones of 1 ct and 1.5 ct available — considerably rarer, and priced accordingly.
+        </p>
+      </section>
+
+      {/* ── Coming Soon — Elysian Pear ── */}
       <HomeSegment
         eyebrow="Coming Soon"
         title="The Elysian Pear"
-        body="A teardrop, reborn. Pear Cut. Continuous Line. Each teardrop calibrated to the next, until light becomes the band itself — the next chapter in the line of brilliance."
-        noMedia
+        body="A teardrop, reborn. The step-cut discipline applied to a pear shape — the next chapter in the line of brilliance. Pear Cut. Continuous Line. Each teardrop calibrated to the next, until light becomes the band itself."
+        videoUrl="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Bracelets/4k_pearshape_bracelet_v1_awqjfc.mp4"
+        posterUrl="https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bracelets/4k_pearshape_bracelet_v1_awqjfc.jpg"
+        reverse
       />
 
       {/* ── Closing CTA ── */}
       <PageCta
         eyebrow="The Elysian Band"
-        title="One Unbroken Line"
-        body="Designed and made in Los Angeles. Full eternity and halfway versions in four stone sizes, by private appointment."
+        title="Arrange a Private Viewing"
+        body="Full eternity and halfway versions in four stone sizes. By private appointment, Los Angeles."
         drawer
         intent="Elysian Band Inquiry"
-        ctaLabel="Arrange a Private Viewing"
+        ctaLabel="Inquire About the Band"
       />
 
       <AtelierBanner />
 
-      {/* ── Floating bar ── */}
       <FloatingCollectionCTA
         collectionName="The Elysian Band"
         eyebrow="Presentation"

@@ -1,7 +1,6 @@
-/* Elysian Band — Presentation page
-   Mirrors the elysian-cut page pattern exactly. */
+/* Elysian Band — Presentation page */
 
-/* ── Hero ── */
+/* ── Hero — mirrors elysian-cut pattern exactly ── */
 
 .hero {
   position: relative;
@@ -94,16 +93,20 @@
   color: var(--ba-ink-soft);
 }
 
-/* ── Section header ── */
+/* ── Pricing section ── */
 
-.sectionHeader {
-  max-width: var(--ba-maxw);
-  margin: 0 auto;
-  padding: clamp(3rem, 6vw, 5.5rem) clamp(1.25rem, 5vw, 4rem) 0;
+.pricing {
+  padding: clamp(3rem, 6vw, 5.5rem) clamp(1.25rem, 5vw, 4rem);
+  background: var(--ba-white);
   border-top: 1px solid rgba(0,0,0,0.08);
 }
 
-.sectionEyebrow {
+.pricingHeader {
+  max-width: var(--ba-maxw);
+  margin: 0 auto 3rem;
+}
+
+.pricingEyebrow {
   font-family: var(--ba-font-sans);
   font-size: 0.9375rem;
   font-weight: 600;
@@ -113,7 +116,7 @@
   display: block;
 }
 
-.sectionTitle {
+.pricingTitle {
   font-family: var(--ba-font-sans);
   font-size: clamp(1.25rem, 2.5vw, 2rem);
   font-weight: 200;
@@ -122,94 +125,107 @@
   margin: 0;
 }
 
-/* ── Variants grid ── */
+/* ── Variant strips ── */
 
-.variants {
+.variantList {
   max-width: var(--ba-maxw);
   margin: 0 auto;
-  padding: clamp(2rem, 4vw, 3.5rem) clamp(1.25rem, 5vw, 4rem);
-  display: flex;
-  flex-direction: column;
-  gap: 0;
 }
 
-.variantRow {
+.variantStrip {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  padding: 2.5rem 0;
   border-top: 1px solid rgba(0,0,0,0.08);
 }
-.variantRow:last-child {
+
+.variantStrip:last-child {
   border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 
-.variantBlock {
-  padding: 2rem clamp(1rem, 3vw, 2.5rem) 2rem 0;
-}
-
-.variantHalf {
-  padding-left: clamp(1rem, 3vw, 2.5rem);
-  border-left: 1px solid rgba(0,0,0,0.08);
-}
-
-.variantHead {
+/* Left column */
+.stripLeft {
   display: flex;
-  align-items: baseline;
-  gap: 1rem;
-  margin-bottom: 1.25rem;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.variantRef {
+.stripRef {
   font-family: var(--ba-font-sans);
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.12em;
+  color: var(--ba-ink-muted);
+}
+
+.stripSize {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(1rem, 1.8vw, 1.375rem);
+  font-weight: 200;
+  text-transform: uppercase;
   color: var(--ba-ink);
 }
 
-.variantLabel {
+.stripDesc {
+  font-family: var(--ba-font-editorial);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--ba-ink-soft);
+  margin: 0.25rem 0 0;
+}
+
+/* Right column — two price sub-columns */
+.stripRight {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.priceCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.25rem;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-right: none;
+}
+
+.priceColHalf {
+  border-right: 1px solid rgba(0,0,0,0.08);
+  background: var(--ba-paper);
+}
+
+.priceType {
   font-family: var(--ba-font-sans);
   font-size: 0.6875rem;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   color: var(--ba-gold);
 }
 
-.specs {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  margin: 0;
-}
-
-.specItem {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-  gap: 1rem;
-}
-.specItem:last-child { border-bottom: none; }
-
-.specItem dt {
+.priceMeta {
   font-family: var(--ba-font-sans);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
   color: var(--ba-ink-muted);
-  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
-.specItem dd {
+.priceRange {
   font-family: var(--ba-font-sans);
-  font-size: 0.8125rem;
-  font-weight: 400;
+  font-size: clamp(0.875rem, 1.4vw, 1rem);
+  font-weight: 300;
   color: var(--ba-ink);
-  text-align: right;
-  margin: 0;
+  margin-top: 0.25rem;
+}
+
+.priceDash {
+  color: var(--ba-ink-muted);
 }
 
 /* Price note */
@@ -219,23 +235,31 @@
   line-height: 1.65;
   color: var(--ba-ink-muted);
   text-align: center;
-  padding: 1.5rem clamp(1.25rem, 5vw, 4rem) clamp(3rem, 6vw, 5.5rem);
-  max-width: 680px;
+  padding: 2rem 0 0;
+  max-width: 640px;
   margin: 0 auto;
 }
 
 /* ── Responsive ── */
 
+@media (max-width: 900px) {
+  .variantStrip {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 640px) {
   .heroContent { left: 20px; right: 20px; }
 
-  .variantRow {
-    grid-template-columns: 1fr;
+  .stripRight {
+    grid-template-columns: 1fr 1fr;
   }
 
-  .variantHalf {
-    padding-left: 0;
-    border-left: none;
-    border-top: 1px solid rgba(0,0,0,0.08);
+  .priceCol {
+    padding: 1rem 0.75rem;
+  }
+
+  .priceRange {
+    font-size: 0.8125rem;
   }
 }
