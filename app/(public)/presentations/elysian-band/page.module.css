@@ -1,59 +1,53 @@
 /* ── Intro ─────────────────────────────────────────────────────────────────── */
 
 .intro {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 3rem);
+  max-width: var(--ba-maxw);
+  margin-inline: auto;
+  padding: clamp(4rem, 10vw, 9rem) var(--ba-gutter);
   text-align: center;
 }
 
-.introEyebrow {
-  font-family: var(--ba-font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ba-gold);
-  margin: 0 0 1.25rem;
-}
-
+/* ba-title override — intro gets a larger display size */
 .introTitle {
-  font-family: var(--ba-font-sans);
   font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 200;
-  text-transform: uppercase;
-  color: var(--ba-ink);
-  letter-spacing: 0.04em;
-  margin: 0 0 2rem;
+  margin-bottom: 2rem;
 }
 
-.introBody {
-  font-family: var(--ba-font-editorial);
-  font-size: clamp(1rem, 1.5vw, 1.125rem);
-  line-height: 1.8;
-  color: var(--ba-ink-soft);
-  margin: 0 0 1rem;
+.introLede {
+  max-width: 640px;
+  margin-inline: auto;
+  margin-bottom: 1rem;
 }
 
-/* ── Alternating segments (mirrors HomeSegment grid) ─────────────────────── */
+/* ── Alternating segments — mirrors HomeSegment.module.css exactly ───────── */
 
 .segment {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: clamp(480px, 60vw, 700px);
-  border-top: 1px solid rgba(0, 0, 0, 0.07);
+  align-items: center;
+  gap: clamp(40px, 6vw, 100px);
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: clamp(80px, 8vw, 120px) clamp(40px, 5vw, 80px);
 }
 
-/* Reverse: swap media to right, text to left */
-.segReverse {
-  direction: rtl;
+/* Reverse: media right, text left — same as HomeSegment .reverse */
+.segReverse .segMedia {
+  order: 2;
+  justify-self: start;
 }
-.segReverse > * {
-  direction: ltr;
+.segReverse .segText {
+  order: 1;
+  justify-self: end;
 }
 
 .segMedia {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 6 / 7;
   overflow: hidden;
+  justify-self: end;
   background: var(--ba-paper);
 }
 
@@ -68,40 +62,21 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(2.5rem, 5vw, 5rem) clamp(2rem, 5vw, 4.5rem);
-  background: var(--ba-white);
-}
-
-.segEyebrow {
-  font-family: var(--ba-font-sans);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ba-gold);
-  margin: 0 0 0.75rem;
-}
-
-.segTitle {
-  font-family: var(--ba-font-sans);
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 200;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--ba-ink);
-  margin: 0 0 1.25rem;
-}
-
-.segBody {
-  font-family: var(--ba-font-editorial);
-  font-size: clamp(0.9375rem, 1.3vw, 1.0625rem);
-  line-height: 1.75;
-  color: var(--ba-ink-soft);
-  margin: 0 0 1.75rem;
   max-width: 440px;
+  justify-self: start;
 }
 
-/* ── Spec + Price (matches reference .spec-line / .price) ─────────────────── */
+/* ba-title override inside segment — slightly larger */
+.segTitle {
+  margin-bottom: 1rem;
+}
+
+/* ba-lede override — tighter bottom margin in segment context */
+.segBody {
+  margin-bottom: 1.75rem;
+}
+
+/* ── Spec + Price ─────────────────────────────────────────────────────────── */
 
 .specLine {
   font-family: var(--ba-font-sans);
@@ -139,35 +114,35 @@
   text-transform: none;
 }
 
-/* Halfway band — top border rule like reference .half-label */
+/* Halfway — top rule separating it from the full eternity block */
 .halfLabel {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid var(--ba-border-warm);
   padding-top: 1rem;
   margin-top: 0.25rem;
 }
 
-/* ── Responsive ─────────────────────────────────────────────────────────────── */
+/* ── Responsive — mirrors HomeSegment breakpoints exactly ────────────────── */
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .segment {
     grid-template-columns: 1fr;
-    min-height: unset;
+    gap: 32px;
+    padding: 60px 20px;
   }
 
-  .segReverse {
-    direction: ltr;
-  }
-
-  .segMedia {
+  .segMedia,
+  .segReverse .segMedia {
+    justify-self: center;
+    max-width: 420px;
+    order: 0;
     aspect-ratio: 4 / 3;
-    height: auto;
   }
 
-  .segText {
-    padding: 2.5rem 1.5rem;
-  }
-
-  .segBody {
-    max-width: 100%;
+  .segText,
+  .segReverse .segText {
+    justify-self: center;
+    max-width: 560px;
+    text-align: center;
+    order: 1;
   }
 }

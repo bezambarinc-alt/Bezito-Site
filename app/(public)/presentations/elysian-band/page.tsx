@@ -3,7 +3,7 @@ import ScrollWipeCarousel from '@/components/common/ScrollWipeCarousel'
 import LazyScrollWipeCarousel from '@/components/common/LazyScrollWipeCarousel'
 import HomeSegment from '@/components/home/HomeSegment'
 import FloatingCollectionCTA from '@/components/common/FloatingCollectionCTA'
-import { HERO_SLIDES, CINEMATIC_SLIDES } from '@/lib/data/home-slides'
+import type { CarouselSlide } from '@/lib/data/home-slides'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
@@ -12,7 +12,51 @@ export const metadata: Metadata = {
     'The Elysian Band — a continuous circle of the Elysian Cut™. Full eternity and halfway versions in four stone sizes. Made in Los Angeles.',
 }
 
-// ── Variant data with actual product images ────────────────────────────────────
+// ── Page-specific carousel slides — bands lead ────────────────────────────────
+
+const HERO_SLIDES: [CarouselSlide, CarouselSlide] = [
+  {
+    videoUrl:
+      'https://res.cloudinary.com/dlg2mou53/video/upload/h_1080,c_limit,q_auto/Jewelry%20Videos/Bands/4k_ovalcut_band_6_v1_rllzya.mp4',
+    posterUrl:
+      'https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bands/4k_ovalcut_band_6_v1_rllzya.jpg',
+    eyebrow: 'The Elysian Band',
+    headline: 'A Line You Never Take Off',
+    sub: "Cut to fit its place, set to disappear. Every stone calibrated to the hand that wears it. It doesn't announce itself; it stays.",
+  },
+  {
+    videoUrl:
+      'https://res.cloudinary.com/dlg2mou53/video/upload/h_1080,c_limit,q_auto/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.mp4',
+    posterUrl:
+      'https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.jpg',
+    eyebrow: 'Bez Ambar · Los Angeles',
+    headline: 'The Magic of Light',
+    sub: 'A certificate can grade a stone. It cannot tell how the light dances within it. In lesser hands, light merely touches the stone; done right, it melts into the divine.',
+  },
+]
+
+const CINEMATIC_SLIDES: [CarouselSlide, CarouselSlide] = [
+  {
+    videoUrl:
+      'https://res.cloudinary.com/dlg2mou53/video/upload/h_1080,c_limit,q_auto/Jewelry%20Videos/Bands/Pearshape_HD_hlvl8l.mp4',
+    posterUrl:
+      'https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bands/Pearshape_HD_hlvl8l.jpg',
+    eyebrow: 'The Elysian Pear Band',
+    headline: 'Pear Cut. Continuous Line.',
+    sub: 'Each teardrop calibrated to the next, until light becomes the band itself.',
+  },
+  {
+    videoUrl:
+      'https://res.cloudinary.com/dlg2mou53/video/upload/h_1080,c_limit,q_auto/Jewelry%20Videos/Bracelets/4k_pearshape_bracelet_v1_awqjfc.mp4',
+    posterUrl:
+      'https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bracelets/4k_pearshape_bracelet_v1_awqjfc.jpg',
+    eyebrow: 'Coming Soon',
+    headline: 'The Elysian Pear',
+    sub: 'A teardrop, reborn — the next chapter in the line of brilliance.',
+  },
+]
+
+// ── Variant data ──────────────────────────────────────────────────────────────
 
 interface Variant {
   ref: string
@@ -64,34 +108,32 @@ function usd(n: number) {
   return '$' + n.toLocaleString('en-US', { maximumFractionDigits: 0 })
 }
 
-// ── Page ───────────────────────────────────────────────────────────────────────
+// ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function ElysianBandPage() {
   return (
     <main>
 
-      {/* ── Top hero carousel — same HERO_SLIDES as home page:
-            "The Magic of Light" + "A Line You Never Take Off" ── */}
+      {/* Top hero — band slide leads */}
       <ScrollWipeCarousel slides={HERO_SLIDES} headingLevel="h1" />
 
-      {/* ── Intro — "Featuring the Elysian Cut™" / "The Elysian." ── */}
+      {/* Intro */}
       <section className={styles.intro}>
-        <p className={styles.introEyebrow}>Featuring the Elysian Cut™</p>
-        <h2 className={styles.introTitle}>The Elysian.</h2>
-        <p className={styles.introBody}>
+        <p className="ba-eyebrow">Featuring the Elysian Cut™</p>
+        <h2 className={`ba-title ${styles.introTitle}`}>The Elysian.</h2>
+        <p className={`ba-lede ${styles.introLede}`}>
           A baguette moves light in long, directional planes — that&rsquo;s the step cut at work.
           An oval softens the silhouette. The Elysian Cut™ takes that step-cut discipline and bends
           it into an oval form: the broad, sweeping brilliance of a baguette, inside the curve of an oval.
         </p>
-        <p className={styles.introBody}>
+        <p className={`ba-lede ${styles.introLede}`}>
           Each stone is set edge to edge — no metal, no interruption. Light enters one stone and
           travels the finger in one unbroken line. Set in a full circle, it reads less like a row of
           diamonds than a continuous ribbon of light.
         </p>
       </section>
 
-      {/* ── 4 alternating segments — each variant with its product image ──
-            Mirrors reference page structure exactly ── */}
+      {/* 4 alternating segments — each with its product image */}
       {VARIANTS.map((v, i) => (
         <section key={v.ref} className={`${styles.segment} ${i % 2 === 1 ? styles.segReverse : ''}`}>
 
@@ -101,9 +143,9 @@ export default function ElysianBandPage() {
           </div>
 
           <div className={styles.segText}>
-            <p className={styles.segEyebrow}>Full Eternity</p>
-            <h2 className={styles.segTitle}>{v.ref}</h2>
-            <p className={styles.segBody}>{v.desc}</p>
+            <p className="ba-eyebrow">Full Eternity</p>
+            <h2 className={`ba-title ${styles.segTitle}`}>{v.ref}</h2>
+            <p className={`ba-lede ${styles.segBody}`}>{v.desc}</p>
 
             <p className={styles.specLine}>
               <strong>{v.stones} stones</strong> · {v.carats} ct total
@@ -125,7 +167,7 @@ export default function ElysianBandPage() {
         </section>
       ))}
 
-      {/* ── "In Motion" segment — the band video + "One Unbroken Line" ── */}
+      {/* Band in motion */}
       <HomeSegment
         eyebrow="In Motion"
         title="One Unbroken Line"
@@ -134,11 +176,10 @@ export default function ElysianBandPage() {
         posterUrl="https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bands/2ELS25.jpg"
       />
 
-      {/* ── Bottom cinematic carousel — CINEMATIC_SLIDES:
-            "Coming Soon — The Elysian Pear" + "Pear Cut. Continuous Line." ── */}
+      {/* Bottom cinematic — pear band leads */}
       <LazyScrollWipeCarousel slides={CINEMATIC_SLIDES} />
 
-      {/* ── Floating inquiry CTA — existing component ── */}
+      {/* Floating inquiry */}
       <FloatingCollectionCTA
         collectionName="The Elysian Band"
         eyebrow="Presentation"
