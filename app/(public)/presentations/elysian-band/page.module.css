@@ -1,191 +1,173 @@
-/* Elysian Band — Presentation page */
+/* ── Intro ─────────────────────────────────────────────────────────────────── */
 
-/* ── Variant section ── */
-
-.variants {
-  padding: clamp(3rem, 6vw, 5.5rem) clamp(1.25rem, 5vw, 4rem);
-  background: var(--ba-white);
-  border-top: 1px solid rgba(0,0,0,0.08);
-}
-
-.variantsHeader {
-  max-width: var(--ba-maxw);
-  margin: 0 auto 2.5rem;
-}
-
-.variantsEyebrow {
-  font-family: var(--ba-font-sans);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: var(--ba-gold);
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
-.variantsTitle {
-  font-family: var(--ba-font-sans);
-  font-size: clamp(1.25rem, 2.5vw, 2rem);
-  font-weight: 200;
-  text-transform: uppercase;
-  color: var(--ba-ink);
-  margin: 0;
-}
-
-/* ── Card grid ── */
-
-.cardsGrid {
-  max-width: var(--ba-maxw);
+.intro {
+  max-width: 720px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
+  padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 3rem);
+  text-align: center;
 }
 
-.card {
-  background: var(--ba-paper);
-  display: flex;
-  flex-direction: column;
-}
-
-.cardTop {
-  padding: 2rem 2rem 1.5rem;
-  flex: 1;
-}
-
-.cardEyebrow {
+.introEyebrow {
   font-family: var(--ba-font-sans);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: var(--ba-gold);
-  display: block;
-  margin-bottom: 0.75rem;
-}
-
-.cardRef {
-  font-family: var(--ba-font-sans);
-  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-  font-weight: 200;
   text-transform: uppercase;
-  color: var(--ba-ink);
-  margin: 0 0 1rem;
-}
-
-.cardDesc {
-  font-family: var(--ba-font-editorial);
-  font-size: 0.9375rem;
-  line-height: 1.65;
-  color: var(--ba-ink-soft);
+  color: var(--ba-gold);
   margin: 0 0 1.25rem;
 }
 
-.cardSpecs {
+.introTitle {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 200;
+  text-transform: uppercase;
+  color: var(--ba-ink);
+  letter-spacing: 0.04em;
+  margin: 0 0 2rem;
+}
+
+.introBody {
+  font-family: var(--ba-font-editorial);
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  line-height: 1.8;
+  color: var(--ba-ink-soft);
+  margin: 0 0 1rem;
+}
+
+/* ── Alternating segments (mirrors HomeSegment grid) ─────────────────────── */
+
+.segment {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: clamp(480px, 60vw, 700px);
+  border-top: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+/* Reverse: swap media to right, text to left */
+.segReverse {
+  direction: rtl;
+}
+.segReverse > * {
+  direction: ltr;
+}
+
+.segMedia {
+  overflow: hidden;
+  background: var(--ba-paper);
+}
+
+.segMedia img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.segText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2.5rem, 5vw, 5rem) clamp(2rem, 5vw, 4.5rem);
+  background: var(--ba-white);
+}
+
+.segEyebrow {
+  font-family: var(--ba-font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ba-gold);
+  margin: 0 0 0.75rem;
+}
+
+.segTitle {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ba-ink);
+  margin: 0 0 1.25rem;
+}
+
+.segBody {
+  font-family: var(--ba-font-editorial);
+  font-size: clamp(0.9375rem, 1.3vw, 1.0625rem);
+  line-height: 1.75;
+  color: var(--ba-ink-soft);
+  margin: 0 0 1.75rem;
+  max-width: 440px;
+}
+
+/* ── Spec + Price (matches reference .spec-line / .price) ─────────────────── */
+
+.specLine {
   font-family: var(--ba-font-sans);
   font-size: 0.75rem;
   font-weight: 400;
-  text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--ba-ink-muted);
-  margin: 0 0 0.5rem;
-}
-
-.cardPrice {
-  font-family: var(--ba-font-sans);
-  font-size: clamp(1rem, 1.8vw, 1.25rem);
-  font-weight: 300;
-  color: var(--ba-ink);
-  margin: 0 0 0.25rem;
-}
-
-.cardPriceNote {
-  font-family: var(--ba-font-editorial);
-  font-size: 0.8125rem;
-  font-style: italic;
-  color: var(--ba-ink-muted);
-  margin: 0;
-}
-
-/* Halfway sub-section */
-.cardHalf {
-  border-top: 1px solid var(--ba-border-warm);
-  padding: 1.25rem 2rem 1.5rem;
-  background: rgba(0,0,0,0.025);
-}
-
-.halfLabel {
-  font-family: var(--ba-font-sans);
-  font-size: 0.75rem;
-  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
   color: var(--ba-ink-muted);
   margin: 0 0 0.4rem;
 }
 
-.halfPrice {
+.specLine strong {
+  font-weight: 600;
+  color: var(--ba-ink);
+}
+
+.price {
   font-family: var(--ba-font-sans);
-  font-size: 1rem;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
   font-weight: 300;
   color: var(--ba-ink);
-  margin: 0 0 0.25rem;
-}
-
-/* ── Closing editorial ── */
-
-.closing {
-  background: var(--ba-white);
-  padding: clamp(2.5rem, 5vw, 4.5rem) clamp(1.25rem, 5vw, 4rem);
-  border-top: 1px solid rgba(0,0,0,0.08);
-  border-bottom: 1px solid rgba(0,0,0,0.08);
-}
-
-.closingInner {
-  max-width: 680px;
-  margin: 0 auto;
-}
-
-.closingEyebrow {
-  font-family: var(--ba-font-sans);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: var(--ba-gold);
-  display: block;
-  margin-bottom: 0.75rem;
-}
-
-.closingTitle {
-  font-family: var(--ba-font-sans);
-  font-size: clamp(1.25rem, 2.5vw, 2rem);
-  font-weight: 200;
-  text-transform: uppercase;
-  color: var(--ba-ink);
-  margin: 0 0 1.25rem;
-}
-
-.closingBody {
-  font-family: var(--ba-font-editorial);
-  font-size: clamp(1rem, 1.5vw, 1.125rem);
-  line-height: 1.75;
-  color: var(--ba-ink-soft);
   margin: 0 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
 }
 
-.closingNote {
+.price small {
+  font-size: 0.6875rem;
   font-family: var(--ba-font-editorial);
-  font-size: 0.9375rem;
   font-style: italic;
-  line-height: 1.65;
+  font-weight: 400;
   color: var(--ba-ink-muted);
-  margin: 0;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
-/* ── Responsive ── */
+/* Halfway band — top border rule like reference .half-label */
+.halfLabel {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 1rem;
+  margin-top: 0.25rem;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────────── */
 
 @media (max-width: 768px) {
-  .cardsGrid {
+  .segment {
     grid-template-columns: 1fr;
+    min-height: unset;
+  }
+
+  .segReverse {
+    direction: ltr;
+  }
+
+  .segMedia {
+    aspect-ratio: 4 / 3;
+    height: auto;
+  }
+
+  .segText {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .segBody {
+    max-width: 100%;
   }
 }
