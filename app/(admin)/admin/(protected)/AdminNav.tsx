@@ -37,6 +37,14 @@ const NAV: NavEntry[] = [
     ],
   },
 
+  {
+    section: true, key: 'newsletter', label: 'Newsletter', defaultOpen: true,
+    children: [
+      { href: '/admin/newsletter',           label: 'Campaigns' },
+      { href: '/admin/newsletter/templates', label: 'Templates' },
+    ],
+  },
+
   { divider: true },
   { href: '/admin/leads',    label: 'Leads'    },
   { href: '/admin/settings', label: 'Settings' },
