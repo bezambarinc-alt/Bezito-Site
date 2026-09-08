@@ -207,6 +207,19 @@
 }
 .legal a:hover { color: var(--ba-gold); }
 
+.legalBtn {
+  font-family: var(--ba-font-sans);
+  font-size: 0.75rem;
+  color: var(--ba-ink-muted);
+  white-space: nowrap;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.legalBtn:hover { color: var(--ba-gold); }
+
 /* ══════════════════════════════════════════════════════════════
    RESPONSIVE
    ══════════════════════════════════════════════════════════════ */
