@@ -8,11 +8,13 @@ import type { SpecAccordionBlock, SpecItem } from '@/types/blocks'
 import styles from '../../jewelry/[category]/[slug]/page.module.css'
 
 /**
- * Legacy page preserved from the WordPress site (bezambar.com/shop/…).
+ * Orphan page preserved from the WordPress site (bezambar.com/shop/…).
  * Intentionally an orphan — no nav link, no catalog entry, no DB row.
  * Exempted from the /shop/:slug → /archive redirect in redirects.ts.
- * Custom layout per Bez (2026-09-04): single image at natural size top-left,
- * headline + copy right, technical details left with light-gray placeholder right.
+ * Style: "Orphan Template" (name locked by Bez 2026-09-08) — distinct from
+ * the standard product-page triptych. Layout per Bez (2026-09-04): single
+ * image at natural size top-left, headline + copy right, technical details
+ * left with light-gray placeholder right.
  */
 
 const IMAGE =
