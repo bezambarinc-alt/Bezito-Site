@@ -6,6 +6,7 @@ import styles from './FloatingCollectionCTA.module.css'
 
 interface Props {
   collectionName: string
+  eyebrow?: string
   intent?: string
 }
 
@@ -13,7 +14,7 @@ interface Props {
  * Floating bottom bar that appears once the user scrolls past the fold.
  * Stays anchored so the inquiry action is always one click away.
  */
-export default function FloatingCollectionCTA({ collectionName, intent }: Props) {
+export default function FloatingCollectionCTA({ collectionName, eyebrow = 'Collection', intent }: Props) {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -25,7 +26,7 @@ export default function FloatingCollectionCTA({ collectionName, intent }: Props)
   return (
     <div className={`${styles.bar} ${visible ? styles.visible : ''}`} aria-hidden={!visible}>
       <div className={styles.info}>
-        <span className={styles.eyebrow}>Collection</span>
+        <span className={styles.eyebrow}>{eyebrow}</span>
         <span className={styles.name}>{collectionName}</span>
       </div>
       <InquiryButton
