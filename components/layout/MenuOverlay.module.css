@@ -12,7 +12,7 @@
 }
 .backdropOpen { opacity: 1; visibility: visible; }
 
-/* Drawer — starts 320px, expands to 640px when sub-col opens */
+/* Drawer — starts 320px, expands to 640px (sub) or 960px (tertiary) */
 .overlay {
   position: fixed;
   top: 0;
@@ -29,8 +29,9 @@
   transition: transform 0.35s ease, width 0.35s ease;
   box-shadow: 4px 0 24px rgba(0, 0, 0, 0.10);
 }
-.open   { transform: translateX(0); }
-.hasSub { width: 640px; max-width: 96vw; }
+.open        { transform: translateX(0); }
+.hasSub      { width: 640px;  max-width: 96vw; }
+.hasTertiary { width: 960px;  max-width: 98vw; }
 
 /* Close × — top left */
 .closeBtn {
@@ -169,12 +170,17 @@
 }
 .backBtn:hover { color: var(--ba-ink); }
 
-
+/* "View All [Category]" link — gold accent to distinguish from product links */
+.viewAll { color: var(--ba-gold); }
+.viewAll:hover { color: var(--ba-ink); }
 
 @media (max-width: 640px) {
-  .overlay { width: 92vw; }
-  .hasSub  { width: 92vw; }
-  .col     { flex: 0 0 100%; width: 100%; }
-  /* Full-width push: hide root col when sub is open */
-  .hasSub .col:first-of-type { display: none; }
+  .overlay     { width: 92vw; }
+  .hasSub      { width: 92vw; }
+  .hasTertiary { width: 92vw; }
+  .col         { flex: 0 0 100%; width: 100%; }
+  /* Full-width push: show only the deepest active column on mobile */
+  .hasSub .col:nth-of-type(1)                          { display: none; }
+  .hasTertiary .col:nth-of-type(1),
+  .hasTertiary .col:nth-of-type(2)                     { display: none; }
 }

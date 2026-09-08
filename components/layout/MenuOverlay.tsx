@@ -9,46 +9,46 @@ import styles from './MenuOverlay.module.css'
 // ── Types ──────────────────────────────────────────────────────────────────────
 
 type NavEntry =
-  | { kind: 'link';    label: string; href: string }
-  | { kind: 'expand';  label: string; id: string }
-  | { kind: 'action';  label: string; target: 'concierge' | 'inquiry'; intent?: string }
-  | { kind: 'soon';    label: string }
-  | { kind: 'label';   text: string }
+  | { kind: 'link';       label: string; href: string }
+  | { kind: 'expand';     label: string; id: string }
+  | { kind: 'expand-cat'; label: string; cat: string }
+  | { kind: 'action';     label: string; target: 'concierge' | 'inquiry'; intent?: string }
+  | { kind: 'soon';       label: string }
+  | { kind: 'label';      text: string }
   | { kind: 'divider' }
 
 interface SubCol { id: string; items: NavEntry[] }
 
-// ── Root items (matches live bezambar-web2026.vercel.app exactly) ─────────────
+// ── Root items ─────────────────────────────────────────────────────────────────
 
 const ROOT: NavEntry[] = [
-  { kind: 'expand', label: 'Collections',      id: 'jewelry' },
-  { kind: 'link',   label: 'Jewelry Archive', href: '/archive' },
-  { kind: 'expand', label: 'Journal',          id: 'journal' },
-  { kind: 'expand', label: 'Atelier',         id: 'atelier' },
-  { kind: 'action', label: 'Service',         target: 'concierge' },
+  { kind: 'expand', label: 'On the Bench', id: 'jewelry' },
+  { kind: 'link',   label: 'Archive',      href: '/archive' },
+  { kind: 'expand', label: 'Journal',      id: 'journal' },
+  { kind: 'expand', label: 'Atelier',      id: 'atelier' },
+  { kind: 'action', label: 'Service',      target: 'concierge' },
 ]
 
 // ── MenuOverlay ────────────────────────────────────────────────────────────────
 
 interface Props {
-  /** Active categories from Neon — drives Browse section. */
   categories?: string[]
+  categoryProducts?: Record<string, { slug: string; name: string }[]>
 }
 
-export default function MenuOverlay({ categories = [] }: Props) {
+export default function MenuOverlay({ categories = [], categoryProducts = {} }: Props) {
   const { active, close, openConcierge, openInquiryDrawer } = useDrawers()
   const open = active === 'menu'
   const [sub, setSub] = useState<string | null>(null)
+  const [tertiary, setTertiary] = useState<string | null>(null)
 
   // Build the jewelry sub-column dynamically from Neon data.
-  const jewelryItems: NavEntry[] = [
-    { kind: 'label' as const, text: 'Collections' },
-    ...categories.map(cat => ({
-      kind: 'link' as const,
-      label: getCategoryLabel(cat),
-      href: `/jewelry/${cat}`,
-    })),
-  ]
+  // Each category is now an expand-cat item — clicking it opens a product list.
+  const jewelryItems: NavEntry[] = categories.map(cat => ({
+    kind: 'expand-cat' as const,
+    label: getCategoryLabel(cat),
+    cat,
+  }))
 
   const subCols: SubCol[] = [
     { id: 'jewelry', items: jewelryItems },
@@ -74,7 +74,23 @@ export default function MenuOverlay({ categories = [] }: Props) {
 
   function handleClose() {
     setSub(null)
+    setTertiary(null)
     close()
+  }
+
+  function handleExpand(id: string) {
+    if (sub === id) {
+      setSub(null)
+      setTertiary(null)
+    } else {
+      setSub(id)
+      setTertiary(null)
+    }
+  }
+
+  function handleBackFromSub() {
+    setSub(null)
+    setTertiary(null)
   }
 
   function handleAction(target: 'concierge' | 'inquiry', intent?: string) {
@@ -84,11 +100,13 @@ export default function MenuOverlay({ categories = [] }: Props) {
   }
 
   const activeSub = subCols.find((c) => c.id === sub)
+  const tertiaryProducts = tertiary ? (categoryProducts[tertiary] ?? []) : []
 
   const overlayClass = [
     styles.overlay,
-    open ? styles.open   : '',
-    sub  ? styles.hasSub : '',
+    open      ? styles.open        : '',
+    sub       ? styles.hasSub      : '',
+    tertiary  ? styles.hasTertiary : '',
   ].filter(Boolean).join(' ')
 
   return (
@@ -100,12 +118,11 @@ export default function MenuOverlay({ categories = [] }: Props) {
         aria-hidden
       />
 
-      {/* Slide-in nav — matches Astro .menu-overlay */}
+      {/* Slide-in nav */}
       <nav className={overlayClass} aria-hidden={!open} aria-label="Main menu">
         <button className={styles.closeBtn} onClick={handleClose} aria-label="Close menu">
           ×
         </button>
-        {/* Logo links back to home and closes menu — Astro uses <a> not <div> */}
         <Link href="/" className={styles.logo} onClick={handleClose}>BEZ AMBAR</Link>
 
         {/* Column 1 — root */}
@@ -116,7 +133,7 @@ export default function MenuOverlay({ categories = [] }: Props) {
                 <button
                   type="button"
                   className={`${styles.item} ${styles.itemExpand} ${sub === item.id ? styles.itemActive : ''}`}
-                  onClick={() => setSub(sub === item.id ? null : item.id)}
+                  onClick={() => handleExpand(item.id)}
                 >
                   {item.label}
                 </button>
@@ -142,16 +159,13 @@ export default function MenuOverlay({ categories = [] }: Props) {
             )
             return null
           })}
-
-
         </ul>
 
-        {/* Column 2 — sub (expands drawer width) */}
+        {/* Column 2 — sub */}
         {activeSub && (
           <ul className={styles.col}>
-            {/* Back button — matches Astro .menu-back */}
             <li className={styles.backItem}>
-              <button type="button" className={styles.backBtn} onClick={() => setSub(null)}>
+              <button type="button" className={styles.backBtn} onClick={handleBackFromSub}>
                 ← Back
               </button>
             </li>
@@ -168,6 +182,17 @@ export default function MenuOverlay({ categories = [] }: Props) {
                   <Link href={item.href} onClick={handleClose} className={styles.item}>
                     {item.label}
                   </Link>
+                </li>
+              )
+              if (item.kind === 'expand-cat') return (
+                <li key={i}>
+                  <button
+                    type="button"
+                    className={`${styles.item} ${styles.itemExpand} ${tertiary === item.cat ? styles.itemActive : ''}`}
+                    onClick={() => setTertiary(tertiary === item.cat ? null : item.cat)}
+                  >
+                    {item.label}
+                  </button>
                 </li>
               )
               if (item.kind === 'soon') return (
@@ -188,6 +213,40 @@ export default function MenuOverlay({ categories = [] }: Props) {
               )
               return null
             })}
+          </ul>
+        )}
+
+        {/* Column 3 — products within the selected category */}
+        {tertiary && (
+          <ul className={styles.col}>
+            <li className={styles.backItem}>
+              <button type="button" className={styles.backBtn} onClick={() => setTertiary(null)}>
+                ← Back
+              </button>
+            </li>
+            <li>
+              <Link
+                href={`/jewelry/${tertiary}`}
+                onClick={handleClose}
+                className={`${styles.item} ${styles.viewAll}`}
+              >
+                View All {getCategoryLabel(tertiary)}
+              </Link>
+            </li>
+            {tertiaryProducts.length > 0 && (
+              <li className={styles.divider} aria-hidden />
+            )}
+            {tertiaryProducts.map((p, i) => (
+              <li key={i}>
+                <Link
+                  href={`/jewelry/${tertiary}/${p.slug}`}
+                  onClick={handleClose}
+                  className={styles.item}
+                >
+                  {p.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         )}
       </nav>

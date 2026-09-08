@@ -217,3 +217,12 @@ export async function getAllProductParams(): Promise<{ category: string; slug: s
   )
   return rows.map(r => ({ category: (r.category ?? 'jewelry').toLowerCase(), slug: r.slug }))
 }
+
+/** Slim product list for nav drill-down — slug, name, category only. */
+export async function getNavProducts(): Promise<{ slug: string; name: string; category: string }[]> {
+  return sql<{ slug: string; name: string; category: string }>(
+    `SELECT slug, name, lower(category) AS category FROM products
+      WHERE active = true AND category IS NOT NULL
+      ORDER BY featured DESC, sort_order ASC, name ASC`,
+  )
+}
