@@ -1,288 +1,209 @@
-/* Elysian Band — Presentation page */
+/* Elysian Band — Presentation page
+   Mirrors the elysian-cut page pattern exactly. */
 
-.page {
-  background: var(--ba-white);
-  color: var(--ba-ink);
-}
-
-/* ── Hero ─────────────────────────────────────────────────────────────────── */
+/* ── Hero ── */
 
 .hero {
   position: relative;
-  width: 100%;
-  height: 100svh;
-  min-height: 560px;
+  height: 100vh;
+  min-height: 600px;
   overflow: hidden;
-  background: var(--ba-black);
+  background: #0d0d0d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .heroVideo {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: max(100vw, 177.78vh);
+  height: max(100vh, 56.25vw);
   object-fit: cover;
-  object-position: center;
-  opacity: 0.72;
+  pointer-events: none;
 }
 
 .heroOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.15) 0%,
-    rgba(0, 0, 0, 0.45) 60%,
-    rgba(0, 0, 0, 0.72) 100%
-  );
+  background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.65) 100%);
 }
 
-.heroInner {
+.heroContent {
   position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0 var(--ba-gutter) clamp(4rem, 8vh, 7rem);
-  text-align: center;
+  left: clamp(40px, 6vw, 80px);
+  bottom: clamp(60px, 8vw, 110px);
+  max-width: 560px;
+  color: #fff;
+  padding-top: 64px;
 }
 
-.eyebrow {
+.heroEyebrow {
   font-family: var(--ba-font-sans);
-  font-size: 10px;
+  font-size: 0.9375rem;
   font-weight: 600;
-  letter-spacing: 0.30em;
   text-transform: uppercase;
-  color: var(--ba-gold-warm);
-  margin-bottom: 1.25rem;
+  color: var(--ba-gold);
+  margin-bottom: 0.5rem;
+  display: block;
 }
 
 .heroTitle {
-  font-family: var(--ba-font-editorial);
-  font-size: clamp(3.5rem, 8vw, 6.5rem);
-  font-weight: 300;
-  letter-spacing: -0.01em;
-  line-height: 1.0;
-  color: #ffffff;
-  margin: 0 0 1rem;
-}
-
-.heroSub {
   font-family: var(--ba-font-sans);
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
-  margin: 0;
-}
-
-/* ── Section eyebrow ─────────────────────────────────────────────────────── */
-
-.sectionEyebrow {
-  display: block;
-  font-family: var(--ba-font-sans);
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.30em;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 200;
   text-transform: uppercase;
   color: var(--ba-gold);
+  line-height: 1;
+  margin: 0 0 1.25rem;
+}
+
+.heroRule {
+  width: 48px;
+  height: 1px;
+  background: var(--ba-gold);
   margin-bottom: 1.5rem;
 }
 
-/* ── Editorial ───────────────────────────────────────────────────────────── */
-
-.editorial {
-  max-width: 680px;
-  margin: 0 auto;
-  padding: clamp(5rem, 10vh, 9rem) var(--ba-gutter);
-  text-align: center;
-}
-
-.editorialBody {
+.heroLede {
   font-family: var(--ba-font-editorial);
-  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
-  font-weight: 300;
-  line-height: 1.72;
-  color: var(--ba-ink-soft);
-  margin: 0;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.65;
+  color: rgba(255,255,255,0.85);
+  max-width: 46ch;
 }
 
-/* ── Feature block ───────────────────────────────────────────────────────── */
+/* ── Intro ── */
 
-.featureBlock {
-  background: var(--ba-paper);
-  padding: clamp(4rem, 8vh, 8rem) var(--ba-gutter);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.featureText {
-  max-width: 600px;
-  text-align: center;
-}
-
-.featureTitle {
-  font-family: var(--ba-font-editorial);
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 300;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-  color: var(--ba-ink);
-  margin: 0 0 1.5rem;
-}
-
-.featureBody {
-  font-family: var(--ba-font-editorial);
-  font-size: clamp(1rem, 1.6vw, 1.2rem);
-  font-weight: 300;
-  line-height: 1.8;
-  color: var(--ba-ink-soft);
-  margin: 0;
-}
-
-/* ── Technical ───────────────────────────────────────────────────────────── */
-
-.technical {
-  padding: clamp(5rem, 10vh, 9rem) var(--ba-gutter);
+.intro {
   background: var(--ba-white);
-  border-top: 1px solid var(--ba-border-warm);
-  border-bottom: 1px solid var(--ba-border-warm);
+  padding: clamp(2.5rem, 5vw, 4.5rem) clamp(1.25rem, 5vw, 4rem);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 
-.technicalInner {
-  max-width: 640px;
+.introInner {
+  max-width: 760px;
   margin: 0 auto;
-  text-align: center;
 }
 
-.technicalBody {
+.introInner p {
   font-family: var(--ba-font-editorial);
-  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
-  font-weight: 300;
-  line-height: 1.85;
+  font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+  line-height: 1.75;
   color: var(--ba-ink-soft);
-  margin: 0 0 1.25rem;
-}
-.technicalBody:last-child { margin-bottom: 0; }
-
-/* ── Section divider ─────────────────────────────────────────────────────── */
-
-.divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 3.5rem var(--ba-gutter) 0;
-  gap: 1.5rem;
 }
 
-.divider::before,
-.divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  max-width: 200px;
-  background: var(--ba-border-warm);
+/* ── Section header ── */
+
+.sectionHeader {
+  max-width: var(--ba-maxw);
+  margin: 0 auto;
+  padding: clamp(3rem, 6vw, 5.5rem) clamp(1.25rem, 5vw, 4rem) 0;
+  border-top: 1px solid rgba(0,0,0,0.08);
 }
 
-.dividerLabel {
+.sectionEyebrow {
   font-family: var(--ba-font-sans);
-  font-size: 9px;
+  font-size: 0.9375rem;
   font-weight: 600;
-  letter-spacing: 0.30em;
   text-transform: uppercase;
   color: var(--ba-gold);
-  white-space: nowrap;
+  margin-bottom: 0.5rem;
+  display: block;
 }
 
-/* ── Products ─────────────────────────────────────────────────────────────── */
-
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1px;
-  background: var(--ba-border-warm);
-  margin: 2.5rem 0 0;
-  border-top: 1px solid var(--ba-border-warm);
-  border-bottom: 1px solid var(--ba-border-warm);
+.sectionTitle {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  font-weight: 200;
+  text-transform: uppercase;
+  color: var(--ba-ink);
+  margin: 0;
 }
 
-.variantCard {
-  background: var(--ba-white);
-  padding: 2.5rem 2rem;
+/* ── Variants grid ── */
+
+.variants {
+  max-width: var(--ba-maxw);
+  margin: 0 auto;
+  padding: clamp(2rem, 4vw, 3.5rem) clamp(1.25rem, 5vw, 4rem);
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  transition: background var(--ba-transition);
+  gap: 0;
 }
 
-.variantCard:hover {
-  background: var(--ba-paper);
+.variantRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+.variantRow:last-child {
+  border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 
-.variantHeader {
+.variantBlock {
+  padding: 2rem clamp(1rem, 3vw, 2.5rem) 2rem 0;
+}
+
+.variantHalf {
+  padding-left: clamp(1rem, 3vw, 2.5rem);
+  border-left: 1px solid rgba(0,0,0,0.08);
+}
+
+.variantHead {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
   gap: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .variantRef {
   font-family: var(--ba-font-sans);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-size: 0.875rem;
+  font-weight: 600;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
   color: var(--ba-ink);
 }
 
-.variantType {
+.variantLabel {
   font-family: var(--ba-font-sans);
-  font-size: 9px;
+  font-size: 0.6875rem;
   font-weight: 500;
-  letter-spacing: 0.18em;
   text-transform: uppercase;
+  letter-spacing: 0.12em;
   color: var(--ba-gold);
 }
 
-.variantDesc {
-  font-family: var(--ba-font-editorial);
-  font-size: 0.9rem;
-  font-weight: 300;
-  line-height: 1.75;
-  color: var(--ba-ink-soft);
+.specs {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
   margin: 0;
 }
 
-.variantSpecs {
-  margin: 0.25rem 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  border-top: 1px solid var(--ba-border-warm);
-  padding-top: 1rem;
-}
-
-.specRow {
+.specItem {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
   gap: 1rem;
 }
+.specItem:last-child { border-bottom: none; }
 
-.specRow dt {
+.specItem dt {
   font-family: var(--ba-font-sans);
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
+  font-size: 0.6875rem;
+  font-weight: 400;
   text-transform: uppercase;
+  letter-spacing: 0.1em;
   color: var(--ba-ink-muted);
   white-space: nowrap;
 }
 
-.specRow dd {
+.specItem dd {
   font-family: var(--ba-font-sans);
   font-size: 0.8125rem;
   font-weight: 400;
@@ -291,171 +212,30 @@
   margin: 0;
 }
 
-.specPrice dd {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.2rem;
-}
-
+/* Price note */
 .priceNote {
-  font-family: var(--ba-font-sans);
-  font-size: 9px;
-  font-weight: 400;
-  letter-spacing: 0.08em;
+  font-family: var(--ba-font-editorial);
+  font-size: 0.875rem;
+  line-height: 1.65;
   color: var(--ba-ink-muted);
-}
-
-/* Half variant */
-.halfVariant {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 0.75rem;
-  border-top: 1px solid var(--ba-border-warm);
-  padding-top: 0.875rem;
-  margin-top: 0.25rem;
-}
-
-.halfRef {
-  font-family: var(--ba-font-sans);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ba-ink-muted);
-}
-
-.halfLabel {
-  font-family: var(--ba-font-sans);
-  font-size: 9px;
-  letter-spacing: 0.08em;
-  color: var(--ba-ink-muted);
-}
-
-.halfPrice {
-  font-family: var(--ba-font-sans);
-  font-size: 0.75rem;
-  font-weight: 400;
-  color: var(--ba-ink-soft);
-  white-space: nowrap;
-}
-
-/* ── Closing ─────────────────────────────────────────────────────────────── */
-
-.closing {
-  background: var(--ba-black);
-  padding: clamp(5rem, 10vh, 9rem) var(--ba-gutter);
   text-align: center;
-}
-
-.closingInner {
+  padding: 1.5rem clamp(1.25rem, 5vw, 4rem) clamp(3rem, 6vw, 5.5rem);
   max-width: 680px;
   margin: 0 auto;
 }
 
-.closingTitle {
-  font-family: var(--ba-font-editorial);
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 300;
-  letter-spacing: -0.01em;
-  color: #ffffff;
-  margin: 0 0 1.5rem;
-}
-
-.closingBody {
-  font-family: var(--ba-font-editorial);
-  font-size: clamp(1rem, 1.6vw, 1.15rem);
-  font-weight: 300;
-  line-height: 1.85;
-  color: rgba(255, 255, 255, 0.65);
-  margin: 0 0 1rem;
-}
-
-.closingNote {
-  font-family: var(--ba-font-editorial);
-  font-size: 0.875rem;
-  font-weight: 300;
-  font-style: italic;
-  line-height: 1.8;
-  color: rgba(255, 255, 255, 0.38);
-  margin: 0;
-}
-
-/* ── Coming Soon ─────────────────────────────────────────────────────────── */
-
-.comingSoon {
-  padding: clamp(5rem, 10vh, 9rem) var(--ba-gutter);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background: var(--ba-paper);
-  border-top: 1px solid var(--ba-border-warm);
-}
-
-.comingSoonEyebrow {
-  font-family: var(--ba-font-sans);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--ba-gold);
-  margin-bottom: 1.5rem;
-}
-
-.comingSoonTitle {
-  font-family: var(--ba-font-editorial);
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 300;
-  letter-spacing: -0.01em;
-  color: var(--ba-ink);
-  margin: 0 0 1rem;
-}
-
-.comingSoonSub {
-  font-family: var(--ba-font-editorial);
-  font-size: clamp(1rem, 1.6vw, 1.2rem);
-  font-weight: 300;
-  font-style: italic;
-  line-height: 1.75;
-  color: var(--ba-ink-soft);
-  max-width: 480px;
-  margin: 0 0 1.5rem;
-}
-
-.comingSoonBody {
-  font-family: var(--ba-font-editorial);
-  font-size: clamp(0.9rem, 1.4vw, 1rem);
-  font-weight: 300;
-  line-height: 1.85;
-  color: var(--ba-ink-muted);
-  max-width: 440px;
-  margin: 0 0 2.5rem;
-}
-
-.comingSoonBrand {
-  font-family: var(--ba-font-sans);
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.30em;
-  text-transform: uppercase;
-  color: var(--ba-ink-muted);
-}
-
-/* ── Mobile ─────────────────────────────────────────────────────────────── */
+/* ── Responsive ── */
 
 @media (max-width: 640px) {
-  .products {
+  .heroContent { left: 20px; right: 20px; }
+
+  .variantRow {
     grid-template-columns: 1fr;
   }
 
-  .halfVariant {
-    grid-template-columns: 1fr;
-    gap: 0.35rem;
-  }
-
-  .halfPrice {
-    font-size: 0.875rem;
+  .variantHalf {
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid rgba(0,0,0,0.08);
   }
 }
