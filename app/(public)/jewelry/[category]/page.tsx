@@ -63,6 +63,7 @@ export default async function CategoryPage({
             alt={cat.title}
             width={1600}
             height={900}
+            sizes="100vw"
             priority
           />
         ) : null}

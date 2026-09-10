@@ -59,6 +59,10 @@ export default function CinematicCarousel({ products, category }: Props) {
 
   // ── Mobile scroll-lock state ───────────────────────────────────────────────
   const [mobileIndex, setMobileIndex] = useState(0)
+  // dvh is iOS 15.4+ / baseline 2023. Render dvh on the server (matches the
+  // CSS default) and downgrade to vh after mount only where dvh is unsupported,
+  // otherwise the stack height collapses and the carousel disappears.
+  const [vhUnit, setVhUnit] = useState('100dvh')
   const mobileStackRef  = useRef<HTMLDivElement>(null)
   const mobileSlideRefs = useRef<(HTMLDivElement | null)[]>([])
   const mobileVideoRefs    = useRef<(HTMLVideoElement | null)[]>([])
@@ -73,16 +77,25 @@ export default function CinematicCarousel({ products, category }: Props) {
   // Slides never overlap → no z-index tricks needed. Blur overlays sit at top/bottom 25%.
   // Text overlays are also rAF-driven: they exit outward during transition.
   useEffect(() => {
-    const stack = mobileStackRef.current
-    if (!stack || total <= 1) return
+    if (typeof CSS === 'undefined' || typeof CSS.supports !== 'function' ||
+        !CSS.supports('height', '1dvh')) {
+      setVhUnit('100vh')
+    }
+  }, [])
+
+  useEffect(() => {
+    if (total <= 1) return
 
     const mq = window.matchMedia('(max-width: 768px)')
-    if (!mq.matches) return
 
-    let ticking = false
+    let ticking  = false
+    let attached = false
+    let rafId    = 0
 
     const update = () => {
       ticking = false
+      const stack = mobileStackRef.current
+      if (!stack) return
       const rect        = stack.getBoundingClientRect()
       const scrollRange = rect.height - window.innerHeight
       if (scrollRange <= 0) return
@@ -119,12 +132,38 @@ export default function CinematicCarousel({ products, category }: Props) {
     }
 
     const onScroll = () => {
-      if (!ticking) { ticking = true; requestAnimationFrame(update) }
+      if (!ticking) { ticking = true; rafId = requestAnimationFrame(update) }
     }
 
-    requestAnimationFrame(update)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    // Attach/detach on breakpoint changes so a desktop→mobile resize (or an
+    // orientation change) still wires up the scroll driver.
+    const attach = () => {
+      if (attached || !mq.matches) return
+      attached = true
+      window.addEventListener('scroll', onScroll, { passive: true })
+      rafId = requestAnimationFrame(update)
+    }
+
+    const detach = () => {
+      if (!attached) return
+      attached = false
+      window.removeEventListener('scroll', onScroll)
+      cancelAnimationFrame(rafId)
+      ticking = false
+    }
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      if (e.matches) attach()
+      else detach()
+    }
+
+    mq.addEventListener('change', handleChange)
+    attach()
+
+    return () => {
+      mq.removeEventListener('change', handleChange)
+      detach()
+    }
   }, [total])
 
   // Play/pause mobile videos on index change
@@ -234,7 +273,7 @@ export default function CinematicCarousel({ products, category }: Props) {
       <div
         ref={mobileStackRef}
         className={styles.mobileStack}
-        style={{ height: `calc(${total} * 100dvh)` }}
+        style={{ height: `calc(${total} * ${vhUnit})` }}
       >
         <div className={styles.mobilePin}>
 
@@ -254,7 +293,7 @@ export default function CinematicCarousel({ products, category }: Props) {
                     src={video}
                     poster={image ?? undefined}
                     muted loop playsInline
-                    preload={i === 0 ? 'auto' : 'none'}
+                    preload={i === 0 ? 'auto' : i === 1 ? 'metadata' : 'none'}
                   />
                 ) : image ? (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -267,6 +306,18 @@ export default function CinematicCarousel({ products, category }: Props) {
           {/* Frosted glass overlays — fixed to pin, videos scroll beneath them */}
           <div className={styles.mobileBlurTop}    aria-hidden />
           <div className={styles.mobileBlurBottom} aria-hidden />
+
+          {/* Scroll position indicator — decorative, sits above the bottom blur */}
+          {total > 1 && (
+            <div className={styles.mobileDots} aria-hidden>
+              {products.map((p, i) => (
+                <span
+                  key={p.sku}
+                  className={`${styles.mobileDot} ${i === mobileIndex ? styles.mobileDotActive : ''}`}
+                />
+              ))}
+            </div>
+          )}
 
           {/* Identity text — above the blur, exits outward on transition via rAF */}
           <div ref={mobileTextTopRef} className={styles.mobileTextTop}>

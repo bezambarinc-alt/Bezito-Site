@@ -195,13 +195,21 @@
   }
 
   /* Sticky pin — below fixed header, fills remaining viewport.
-     dvh (dynamic viewport height) excludes mobile browser chrome. */
+     dvh (dynamic viewport height) excludes mobile browser chrome; vh is the
+     fallback for browsers older than iOS 15.4 / Chrome 108. */
   .mobilePin {
     position: sticky;
     top: var(--ba-header-h, 64px);
-    height: calc(100dvh - var(--ba-header-h, 64px));
+    height: calc(100vh - var(--ba-header-h, 64px));
     overflow: hidden;
+    overscroll-behavior: contain;
     background: #000;
+  }
+
+  @supports (height: 1dvh) {
+    .mobilePin {
+      height: calc(100dvh - var(--ba-header-h, 64px));
+    }
   }
 
   /* 50%-height slides — each exactly fills one zone of the 25/50/25 split.
@@ -264,8 +272,14 @@
     justify-content: center;
     text-align: center;
     padding: 0 clamp(20px, 5vw, 40px);
-    pointer-events: auto;
+    /* The zone itself must not swallow scroll gestures — only the caption text
+       inside it is tappable, so a drag anywhere in the top 25% still scrolls. */
+    pointer-events: none;
     will-change: transform, opacity;
+  }
+
+  .mobileTextTop .captionLink {
+    pointer-events: auto;
   }
 
   .mobileTextBottom {
@@ -280,6 +294,30 @@
     padding: 0 clamp(20px, 5vw, 40px);
     pointer-events: none;
     will-change: transform, opacity;
+  }
+
+  /* Scroll progress dots — decorative, sit just above the bottom blur zone */
+  .mobileDots {
+    position: absolute;
+    bottom: 28%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  .mobileDot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: background 0.3s ease;
+  }
+
+  .mobileDotActive {
+    background: var(--ba-gold, #95826b);
   }
 
   /* Tighten text sizes for the compact peek zones */
