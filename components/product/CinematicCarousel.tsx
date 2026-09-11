@@ -88,9 +88,11 @@ export default function CinematicCarousel({ products, category }: Props) {
 
     const mq = window.matchMedia('(max-width: 768px)')
 
-    let ticking  = false
-    let attached = false
-    let rafId    = 0
+    let ticking    = false
+    let attached   = false
+    let rafId      = 0
+    let snapTimer: ReturnType<typeof setTimeout> | null = null
+    let isSnapping = false
 
     const update = () => {
       ticking = false
@@ -131,8 +133,36 @@ export default function CinematicCarousel({ products, category }: Props) {
       setMobileIndex(prev => prev !== rounded ? rounded : prev)
     }
 
+    // Snap to the nearest product after scrolling stops.
+    // Uses the native scrollend event (Chrome 114+, Safari 16.4+) with a
+    // 100 ms timeout fallback for older browsers.
+    const snapToNearest = () => {
+      if (isSnapping) return
+      const stack = mobileStackRef.current
+      if (!stack) return
+      const rect = stack.getBoundingClientRect()
+      const scrollRange = rect.height - window.innerHeight
+      if (scrollRange <= 0) return
+      const rawProgress = -rect.top / scrollRange
+      if (rawProgress < 0 || rawProgress > 1) return
+      const nearest = Math.max(0, Math.min(total - 1, Math.round(rawProgress * (total - 1))))
+      if (Math.abs(rawProgress * (total - 1) - nearest) < 0.02) return
+      isSnapping = true
+      const targetY = window.scrollY + rect.top + (nearest / (total - 1)) * scrollRange
+      window.scrollTo({ top: targetY, behavior: 'smooth' })
+      // Clear flag after smooth scroll completes (~600 ms) as fallback for
+      // browsers that don't fire scrollend on programmatic scrolls.
+      setTimeout(() => { isSnapping = false }, 700)
+    }
+
+    const onScrollEnd = () => { isSnapping = false; snapToNearest() }
+
     const onScroll = () => {
       if (!ticking) { ticking = true; rafId = requestAnimationFrame(update) }
+      if (!isSnapping) {
+        if (snapTimer) clearTimeout(snapTimer)
+        snapTimer = setTimeout(snapToNearest, 100)
+      }
     }
 
     // Attach/detach on breakpoint changes so a desktop→mobile resize (or an
@@ -141,6 +171,7 @@ export default function CinematicCarousel({ products, category }: Props) {
       if (attached || !mq.matches) return
       attached = true
       window.addEventListener('scroll', onScroll, { passive: true })
+      window.addEventListener('scrollend', onScrollEnd, { passive: true })
       rafId = requestAnimationFrame(update)
     }
 
@@ -148,8 +179,11 @@ export default function CinematicCarousel({ products, category }: Props) {
       if (!attached) return
       attached = false
       window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('scrollend', onScrollEnd)
       cancelAnimationFrame(rafId)
+      if (snapTimer) clearTimeout(snapTimer)
       ticking = false
+      isSnapping = false
     }
 
     const handleChange = (e: MediaQueryListEvent) => {
@@ -293,7 +327,8 @@ export default function CinematicCarousel({ products, category }: Props) {
                     src={video}
                     poster={image ?? undefined}
                     muted loop playsInline
-                    preload={i === 0 ? 'auto' : i === 1 ? 'metadata' : 'none'}
+                    autoPlay={i === 0}
+                    preload={i === 0 ? 'auto' : 'metadata'}
                   />
                 ) : image ? (
                   // eslint-disable-next-line @next/next/no-img-element
