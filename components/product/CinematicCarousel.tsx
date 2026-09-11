@@ -18,8 +18,8 @@ export default function CinematicCarousel({ products, category }: Props) {
 
   // ── Desktop state ──────────────────────────────────────────────────────────
   const [index, setIndex] = useState(0)
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
-  const timerRef  = useRef<ReturnType<typeof setInterval> | null>(null)
+  const videoRefs    = useRef<(HTMLVideoElement | null)[]>([])
+  const timerRef     = useRef<ReturnType<typeof setInterval> | null>(null)
 
   const go = useCallback(
     (next: number) => setIndex(((next % total) + total) % total),
@@ -49,6 +49,7 @@ export default function CinematicCarousel({ products, category }: Props) {
     return () => { if (timerRef.current) clearInterval(timerRef.current) }
   }, [resetTimer])
 
+  // Play active + both neighbours so blurred flanks show live frames.
   useEffect(() => {
     videoRefs.current.forEach((v, i) => {
       if (!v) return
@@ -57,33 +58,216 @@ export default function CinematicCarousel({ products, category }: Props) {
     })
   }, [index, circOffset])
 
-  // ── Mobile state ───────────────────────────────────────────────────────────
-  // CSS scroll-snap-type handles all snap/advance — no JS scroll driver.
-  // IntersectionObserver tracks which slide is active for play/pause + dots.
-  const [mobileIndex, setMobileIndex]   = useState(0)
-  const mobilePinRef    = useRef<HTMLDivElement>(null)
-  const mobileSlideRefs = useRef<(HTMLDivElement | null)[]>([])
-  const mobileVideoRefs = useRef<(HTMLVideoElement | null)[]>([])
+  // ── Mobile scroll-lock state ───────────────────────────────────────────────
+  const [mobileIndex, setMobileIndex] = useState(0)
+  // dvh is iOS 15.4+ / baseline 2023. Render dvh on the server (matches the
+  // CSS default) and downgrade to vh after mount only where dvh is unsupported,
+  // otherwise the stack height collapses and the carousel disappears.
+  const [vhUnit, setVhUnit] = useState('100dvh')
+  const mobileStackRef      = useRef<HTMLDivElement>(null)
+  const mobileSlideRefs     = useRef<(HTMLDivElement | null)[]>([])
+  const mobileVideoRefs     = useRef<(HTMLVideoElement | null)[]>([])
+  const mobileTextTopRef    = useRef<HTMLDivElement>(null)
+  const mobileTextBottomRef = useRef<HTMLDivElement>(null)
+
+  // Scroll-driven rAF — drives 50%-height slide transforms directly.
+  // Each slide is 50% of the pin height. translateY(calc(offset×100% + 50%)) means:
+  //   offset -1 → translateY(-50%)  → slide occupies -25% to +25% of pin → top 25% peeks
+  //   offset  0 → translateY(+50%)  → slide occupies +25% to +75% of pin → active zone
+  //   offset +1 → translateY(+150%) → slide occupies +75% to +125% of pin → bottom 25% peeks
+  // Slides never overlap → no z-index tricks needed. Blur overlays sit at top/bottom 25%.
+  // Text overlays are also rAF-driven: they exit outward during transition.
+  useEffect(() => {
+    if (typeof CSS === 'undefined' || typeof CSS.supports !== 'function' ||
+        !CSS.supports('height', '1dvh')) {
+      setVhUnit('100vh')
+    }
+  }, [])
 
   useEffect(() => {
-    const pin = mobilePinRef.current
-    if (!pin) return
+    if (total <= 1) return
 
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue
-          const idx = mobileSlideRefs.current.indexOf(entry.target as HTMLDivElement)
-          if (idx !== -1) setMobileIndex(idx)
-        }
-      },
-      { root: pin, threshold: 0.5 },
-    )
+    const mq = window.matchMedia('(max-width: 768px)')
 
-    mobileSlideRefs.current.forEach((s) => { if (s) io.observe(s) })
-    return () => io.disconnect()
+    let ticking    = false
+    let attached   = false
+    let rafId      = 0
+    let snapTimer: ReturnType<typeof setTimeout> | null = null
+    let isSnapping = false
+
+    const update = () => {
+      ticking = false
+      const stack = mobileStackRef.current
+      if (!stack) return
+      const rect        = stack.getBoundingClientRect()
+      const scrollRange = rect.height - window.innerHeight
+      if (scrollRange <= 0) return
+      const progress    = Math.max(0, Math.min(1, -rect.top / scrollRange))
+      const fracRaw     = progress * (total - 1)
+      // Smoothstep per segment: active positions get extra dwell, transition is faster in middle
+      const segFloor    = Math.floor(fracRaw)
+      const local       = fracRaw - segFloor
+      const eased       = local * local * (3 - 2 * local)
+      const fracIndex   = segFloor + eased
+      const rounded     = Math.round(fracIndex)
+
+      mobileSlideRefs.current.forEach((slide, i) => {
+        if (!slide) return
+        const offset = i - fracIndex
+        slide.style.transform = `translateY(calc(${offset * 100}% + 50%))`
+      })
+
+      // exitFactor: 0 at rest, 1 at midpoint (content snaps at 1, text is off-screen)
+      const exitFactor = Math.min(1, Math.abs(fracIndex - rounded) * 2)
+      const opacity    = String(Math.max(0, 1 - exitFactor * 1.5))
+      const topText    = mobileTextTopRef.current
+      const botText    = mobileTextBottomRef.current
+      if (topText) {
+        topText.style.transform = `translateY(${-exitFactor * 120}%)`
+        topText.style.opacity   = opacity
+      }
+      if (botText) {
+        botText.style.transform = `translateY(${exitFactor * 120}%)`
+        botText.style.opacity   = opacity
+      }
+
+      setMobileIndex(prev => prev !== rounded ? rounded : prev)
+    }
+
+    const snapToNearest = () => {
+      if (isSnapping) return
+      const stack = mobileStackRef.current
+      if (!stack) return
+      const rect = stack.getBoundingClientRect()
+      const scrollRange = rect.height - window.innerHeight
+      if (scrollRange <= 0) return
+      const rawProgress = -rect.top / scrollRange
+      if (rawProgress < 0 || rawProgress > 1) return
+      const nearest = Math.max(0, Math.min(total - 1, Math.round(rawProgress * (total - 1))))
+      if (Math.abs(rawProgress * (total - 1) - nearest) < 0.02) return
+      isSnapping = true
+      const targetY = window.scrollY + rect.top + (nearest / (total - 1)) * scrollRange
+      window.scrollTo({ top: targetY, behavior: 'smooth' })
+      setTimeout(() => { isSnapping = false }, 700)
+    }
+
+    const onScrollEnd = () => { isSnapping = false; snapToNearest() }
+
+    const onScroll = () => {
+      if (!ticking) { ticking = true; rafId = requestAnimationFrame(update) }
+      if (!isSnapping) {
+        if (snapTimer) clearTimeout(snapTimer)
+        snapTimer = setTimeout(snapToNearest, 100)
+      }
+    }
+
+    // Attach/detach on breakpoint changes so a desktop→mobile resize (or an
+    // orientation change) still wires up the scroll driver.
+    const attach = () => {
+      if (attached || !mq.matches) return
+      attached = true
+      window.addEventListener('scroll', onScroll, { passive: true })
+      window.addEventListener('scrollend', onScrollEnd, { passive: true })
+      rafId = requestAnimationFrame(update)
+    }
+
+    const detach = () => {
+      if (!attached) return
+      attached = false
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('scrollend', onScrollEnd)
+      cancelAnimationFrame(rafId)
+      if (snapTimer) clearTimeout(snapTimer)
+      ticking = false
+      isSnapping = false
+    }
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      if (e.matches) attach()
+      else detach()
+    }
+
+    mq.addEventListener('change', handleChange)
+    attach()
+
+    return () => {
+      mq.removeEventListener('change', handleChange)
+      detach()
+    }
   }, [total])
 
+  // Touch interception — prevents iOS momentum from skipping multiple products.
+  // Intercepts touchmove (non-passive) to cap scroll to ±1 slide per gesture,
+  // then on touchend snaps to exactly the next/prev/current product.
+  useEffect(() => {
+    if (total <= 1) return
+    const stack = mobileStackRef.current
+    if (!stack) return
+
+    let startY        = 0
+    let startScrollY  = 0
+    let startActive   = 0
+    let slideRange    = 0
+    let gestureActive = false
+
+    const getNearestIndex = () => {
+      const rect = stack.getBoundingClientRect()
+      const scrollRange = rect.height - window.innerHeight
+      if (scrollRange <= 0) return 0
+      const progress = Math.max(0, Math.min(1, -rect.top / scrollRange))
+      return Math.round(progress * (total - 1))
+    }
+
+    const snapTo = (idx: number) => {
+      const rect = stack.getBoundingClientRect()
+      const scrollRange = rect.height - window.innerHeight
+      if (scrollRange <= 0) return
+      window.scrollTo({ top: window.scrollY + rect.top + (idx / (total - 1)) * scrollRange, behavior: 'smooth' })
+    }
+
+    const onStart = (e: TouchEvent) => {
+      const rect = stack.getBoundingClientRect()
+      const scrollRange = rect.height - window.innerHeight
+      if (scrollRange <= 0) { gestureActive = false; return }
+      const scrolled = -rect.top
+      // Only intercept when we're actually scrolling through the carousel
+      if (scrolled < -20 || scrolled > scrollRange + 20) { gestureActive = false; return }
+      gestureActive = true
+      startY       = e.touches[0].clientY
+      startScrollY = window.scrollY
+      startActive  = getNearestIndex()
+      slideRange   = scrollRange / (total - 1)
+    }
+
+    const onMove = (e: TouchEvent) => {
+      if (!gestureActive) return
+      e.preventDefault()
+      const dy     = startY - e.touches[0].clientY
+      const capped = Math.max(-slideRange * 0.9, Math.min(slideRange * 0.9, dy))
+      window.scrollTo(0, startScrollY + capped)
+    }
+
+    const onEnd = (e: TouchEvent) => {
+      if (!gestureActive) return
+      gestureActive = false
+      const dy = startY - e.changedTouches[0].clientY
+      if (dy > 30)       snapTo(Math.min(total - 1, startActive + 1))
+      else if (dy < -30) snapTo(Math.max(0, startActive - 1))
+      else               snapTo(startActive)
+    }
+
+    stack.addEventListener('touchstart', onStart, { passive: true })
+    stack.addEventListener('touchmove',  onMove,  { passive: false })
+    stack.addEventListener('touchend',   onEnd,   { passive: true })
+
+    return () => {
+      stack.removeEventListener('touchstart', onStart)
+      stack.removeEventListener('touchmove',  onMove)
+      stack.removeEventListener('touchend',   onEnd)
+    }
+  }, [total])
+
+  // Play/pause mobile videos on index change
   useEffect(() => {
     mobileVideoRefs.current.forEach((v, i) => {
       if (!v) return
@@ -94,8 +278,10 @@ export default function CinematicCarousel({ products, category }: Props) {
 
   if (total === 0) return null
 
-  const current       = products[index]
-  const currentParsed = parseProductName(current.name)
+  const current             = products[index]
+  const mobileCurrent       = products[mobileIndex]
+  const currentParsed       = parseProductName(current.name)
+  const mobileCurrentParsed = parseProductName(mobileCurrent.name)
 
   const handleManual = (next: number) => { resetTimer(); go(next) }
 
@@ -117,7 +303,7 @@ export default function CinematicCarousel({ products, category }: Props) {
                   key={p.sku}
                   className={styles.slide}
                   style={{
-                    transform:     `translateX(calc(-50% + ${offset * 102}%))`,
+                    transform: `translateX(calc(-50% + ${offset * 102}%))`,
                     filter:        isActive ? 'none' : 'blur(18px)',
                     opacity:       isActive ? 1 : isNeighbour ? 0.6 : 0,
                     zIndex:        isActive ? 2 : 1,
@@ -187,15 +373,19 @@ export default function CinematicCarousel({ products, category }: Props) {
         </section>
       </div>
 
-      {/* ── Mobile CSS-snap vertical reel (hidden on desktop) ──────────── */}
-      <div className={styles.mobileStack}>
-        {/* Scroll container — scroll-snap-type + scroll-snap-stop: always
-            gives native one-product-per-swipe; no JS scroll driver needed. */}
-        <div ref={mobilePinRef} className={styles.mobilePin}>
+      {/* ── Mobile scroll-lock vertical stack (hidden on desktop) ──────── */}
+      <div
+        ref={mobileStackRef}
+        className={styles.mobileStack}
+        style={{ height: `calc(${total} * ${vhUnit})` }}
+      >
+        <div className={styles.mobilePin}>
+
+          {/* Full-height video slides — scroll behind the blur overlays */}
           {products.map((p, i) => {
             const video = p.specs.heroVideoUrl
             const image = p.specs.heroPosterUrl
-            const { title: pTitle, variant: pVariant } = parseProductName(p.name)
+            const { title: pTitle } = parseProductName(p.name)
             return (
               <div
                 key={p.sku}
@@ -210,49 +400,51 @@ export default function CinematicCarousel({ products, category }: Props) {
                     muted loop playsInline
                     autoPlay={i === 0}
                     preload={i === 0 ? 'auto' : 'metadata'}
-                    className={styles.mobileVideo}
                   />
                 ) : image ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={image} alt={pTitle} className={styles.mobileVideo} />
+                  <img src={image} alt={pTitle} />
                 ) : null}
-
-                {/* Gradient scrim — top + bottom */}
-                <div className={styles.mobileGradient} aria-hidden />
-
-                {/* Product identity — top of slide */}
-                <div className={styles.mobileTextTop}>
-                  <Link href={`/jewelry/${category}/${p.slug}`} className={styles.captionLink}>
-                    <p className={styles.ref}>ref. {p.sku}</p>
-                    <h2 className={styles.name}>{pTitle}</h2>
-                    {pVariant && <p className={styles.sub}>{pVariant}</p>}
-                    {p.specs.subtitle && <p className={styles.sub}>{p.specs.subtitle}</p>}
-                    <span className={styles.cta}>View Piece →</span>
-                  </Link>
-                </div>
-
-                {/* Editorial lede — bottom of slide */}
-                {p.specs.lede && (
-                  <div className={styles.mobileTextBottom}>
-                    <p className={styles.lede}>{p.specs.lede}</p>
-                  </div>
-                )}
               </div>
             )
           })}
-        </div>
 
-        {/* Progress dots — sibling to scroll container so they never scroll away */}
-        {total > 1 && (
-          <div className={styles.mobileDots} aria-hidden>
-            {products.map((_, i) => (
-              <span
-                key={i}
-                className={`${styles.mobileDot} ${i === mobileIndex ? styles.mobileDotActive : ''}`}
-              />
-            ))}
+          {/* Frosted glass overlays — fixed to pin, videos scroll beneath them */}
+          <div className={styles.mobileBlurTop}    aria-hidden />
+          <div className={styles.mobileBlurBottom} aria-hidden />
+
+          {/* Scroll position indicator — decorative, sits above the bottom blur */}
+          {total > 1 && (
+            <div className={styles.mobileDots} aria-hidden>
+              {products.map((p, i) => (
+                <span
+                  key={p.sku}
+                  className={`${styles.mobileDot} ${i === mobileIndex ? styles.mobileDotActive : ''}`}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Identity text — above the blur, exits outward on transition via rAF */}
+          <div ref={mobileTextTopRef} className={styles.mobileTextTop}>
+            <Link href={`/jewelry/${category}/${mobileCurrent.slug}`} className={styles.captionLink}>
+              <p className={styles.ref}>ref. {mobileCurrent.sku}</p>
+              <h2 className={styles.name}>{mobileCurrentParsed.title}</h2>
+              {mobileCurrentParsed.variant && <p className={styles.sub}>{mobileCurrentParsed.variant}</p>}
+              {mobileCurrent.specs.subtitle && (
+                <p className={styles.sub}>{mobileCurrent.specs.subtitle}</p>
+              )}
+              <span className={styles.cta}>View Piece →</span>
+            </Link>
           </div>
-        )}
+
+          {/* Lede text — above the blur at bottom, exits outward on transition via rAF */}
+          {mobileCurrent.specs.lede && (
+            <div ref={mobileTextBottomRef} className={styles.mobileTextBottom}>
+              <p className={styles.lede}>{mobileCurrent.specs.lede}</p>
+            </div>
+          )}
+        </div>
       </div>
     </>
   )
