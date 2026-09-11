@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import type { Product } from '@/types/products'
 import LazyVideo from '@/components/common/LazyVideo'
+import { parseProductName } from '@/lib/product-name'
 
 /**
  * Product card — matches bezambar-web2026 Astro .ba-card exactly.
@@ -22,9 +23,15 @@ export default function ProductCard({ product, category }: { product: Product; c
         ) : null}
       </div>
       <div className="ba-card__info">
-        <p className="ba-card__collection">{product.specs.category}</p>
-        <p className="ba-card__name">{product.name}</p>
-        <p className="ba-card__ref">ref. {product.sku}</p>
+        {(() => {
+          const { title, variant } = parseProductName(product.name)
+          return (<>
+            <p className="ba-card__collection">{product.specs.category}</p>
+            <p className="ba-card__name">{title}</p>
+            {variant && <p className="ba-card__variant">{variant}</p>}
+            <p className="ba-card__ref">ref. {product.sku}</p>
+          </>)
+        })()}
       </div>
     </Link>
   )

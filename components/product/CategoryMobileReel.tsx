@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import type { Product } from '@/types/products'
 import styles from './CategoryMobileReel.module.css'
+import { parseProductName } from '@/lib/product-name'
 
 interface Props {
   products: Product[]
@@ -102,6 +103,7 @@ export default function CategoryMobileReel({ products, category }: Props) {
     <div ref={containerRef} className={styles.reel}>
       {slides.map(({ p, media }, i) => {
         const isFirst = i === 0
+        const { title: pTitle, variant: pVariant } = parseProductName(p.name)
 
         return (
           <div key={p.slug} className={styles.slide} data-slide="">
@@ -128,7 +130,8 @@ export default function CategoryMobileReel({ products, category }: Props) {
             <div className={styles.gradient} aria-hidden />
             <div className={styles.overlay}>
               <span className={styles.eyebrow}>ref. {p.sku}</span>
-              <h2 className={styles.name}>{p.name}</h2>
+              <h2 className={styles.name}>{pTitle}</h2>
+              {pVariant && <p className={styles.sub}>{pVariant}</p>}
               {p.specs.subtitle && <p className={styles.sub}>{p.specs.subtitle}</p>}
               <Link href={`/jewelry/${category}/${p.slug}`} className={styles.link}>
                 View piece

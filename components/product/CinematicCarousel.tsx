@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import type { Product } from '@/types/products'
 import styles from './CinematicCarousel.module.css'
+import { parseProductName } from '@/lib/product-name'
 
 interface Props {
   products: Product[]
@@ -213,6 +214,8 @@ export default function CinematicCarousel({ products, category }: Props) {
 
   const current       = products[index]
   const mobileCurrent = products[mobileIndex]
+  const currentParsed       = parseProductName(current.name)
+  const mobileCurrentParsed = parseProductName(mobileCurrent.name)
 
   const handleManual = (next: number) => { resetTimer(); go(next) }
 
@@ -267,7 +270,8 @@ export default function CinematicCarousel({ products, category }: Props) {
             <div className={styles.prevOverlay}>
               <Link href={`/jewelry/${category}/${current.slug}`} className={styles.captionLink}>
                 <p className={styles.ref}>ref. {current.sku}</p>
-                <h2 className={styles.name}>{current.name}</h2>
+                <h2 className={styles.name}>{currentParsed.title}</h2>
+                {currentParsed.variant && <p className={styles.sub}>{currentParsed.variant}</p>}
                 {current.specs.subtitle && <p className={styles.sub}>{current.specs.subtitle}</p>}
                 <span className={styles.cta}>View Piece →</span>
               </Link>
@@ -358,7 +362,8 @@ export default function CinematicCarousel({ products, category }: Props) {
           <div ref={mobileTextTopRef} className={styles.mobileTextTop}>
             <Link href={`/jewelry/${category}/${mobileCurrent.slug}`} className={styles.captionLink}>
               <p className={styles.ref}>ref. {mobileCurrent.sku}</p>
-              <h2 className={styles.name}>{mobileCurrent.name}</h2>
+              <h2 className={styles.name}>{mobileCurrentParsed.title}</h2>
+              {mobileCurrentParsed.variant && <p className={styles.sub}>{mobileCurrentParsed.variant}</p>}
               {mobileCurrent.specs.subtitle && (
                 <p className={styles.sub}>{mobileCurrent.specs.subtitle}</p>
               )}

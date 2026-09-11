@@ -115,6 +115,18 @@
 /* Active expanded item */
 .itemActive { color: var(--ba-ink); }
 
+/* Product variant — appears below item label when name contains '|' */
+.itemVariant {
+  display: block;
+  font-family: var(--ba-font-editorial);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #999;
+  margin-top: 2px;
+}
+
 /* Coming-soon items — Astro .menu-item--soon */
 .itemSoon {
   display: block;

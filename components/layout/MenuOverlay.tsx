@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { useDrawers } from './DrawerContext'
 import { getCategoryLabel } from '@/lib/data/categories'
 import styles from './MenuOverlay.module.css'
+import { parseProductName } from '@/lib/product-name'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -244,17 +245,21 @@ export default function MenuOverlay({ categories = [], categoryProducts = {}, co
             {tertiaryProducts.length > 0 && (
               <li className={styles.divider} aria-hidden />
             )}
-            {tertiaryProducts.map((p, i) => (
-              <li key={i}>
-                <Link
-                  href={`/jewelry/${tertiary}/${p.slug}`}
-                  onClick={handleClose}
-                  className={styles.item}
-                >
-                  {p.name}
-                </Link>
-              </li>
-            ))}
+            {tertiaryProducts.map((p, i) => {
+              const { title, variant } = parseProductName(p.name)
+              return (
+                <li key={i}>
+                  <Link
+                    href={`/jewelry/${tertiary}/${p.slug}`}
+                    onClick={handleClose}
+                    className={styles.item}
+                  >
+                    {title}
+                    {variant && <span className={styles.itemVariant}>{variant}</span>}
+                  </Link>
+                </li>
+              )
+            })}
           </ul>
         )}
       </nav>

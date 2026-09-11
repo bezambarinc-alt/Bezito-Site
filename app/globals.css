@@ -356,6 +356,7 @@ body.page-dark {
 .ba-card__info{padding:18px 0 4px}
 .ba-card__collection{font-family:var(--sans);text-transform:var(--sans-transform,none);letter-spacing:var(--sans-letter-spacing,normal);font-size:15px;color:var(--ink-muted);margin-bottom:6px}
 .ba-card__name{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:4px}
+.ba-card__variant{font-family:var(--prose);font-size:14px;color:var(--ink-muted);margin-bottom:4px}
 .ba-card__ref{font-family:var(--sans);text-transform:var(--sans-transform,none);letter-spacing:var(--sans-letter-spacing,normal);font-size:15px;color:var(--ink-muted)}
 
 /* Product grid */

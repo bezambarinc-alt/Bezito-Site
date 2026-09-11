@@ -3,6 +3,7 @@ import { notFound, redirect } from 'next/navigation'
 import { draftMode, cookies } from 'next/headers'
 import { unstable_cache } from 'next/cache'
 import { getProductBySlug, getProductBySlugPreview, getAllProductParams, getAdjacentProducts } from '@/lib/queries'
+import { parseProductName } from '@/lib/product-name'
 import { getCategoryLabel } from '@/lib/data/categories'
 import { sql } from '@/lib/db'
 import { TEMPLATES, isValidTemplateId } from './layouts'
@@ -46,12 +47,13 @@ export async function generateMetadata({
   if (!product) return { title: 'Piece Not Found' }
   const s = product.specs
   const canonicalCategory = (s.category ?? category).toLowerCase()
+  const cleanTitle = parseProductName(product.name).title
   return {
-    title: `${product.name} — Bez Ambar`,
-    description: s.lede ?? s.subtitle ?? `${product.name} by Bez Ambar.`,
+    title: `${cleanTitle} — Bez Ambar`,
+    description: s.lede ?? s.subtitle ?? `${cleanTitle} by Bez Ambar.`,
     openGraph: {
-      title: `${product.name} · Bez Ambar`,
-      description: s.subtitle ?? product.name,
+      title: `${cleanTitle} · Bez Ambar`,
+      description: s.subtitle ?? cleanTitle,
       images: s.heroPosterUrl ? [{ url: s.heroPosterUrl }] : undefined,
     },
     alternates: { canonical: `https://bezambar.com/jewelry/${canonicalCategory}/${product.slug}` },
@@ -63,11 +65,12 @@ function buildProductSchema(
   category: string,
 ) {
   const s = product.specs
+  const cleanTitle = parseProductName(product.name).title
   return {
     '@context': 'https://schema.org',
     '@type': 'Product',
-    name: product.name,
-    description: s.lede ?? s.subtitle ?? `${product.name} — fine jewelry by Bez Ambar.`,
+    name: cleanTitle,
+    description: s.lede ?? s.subtitle ?? `${cleanTitle} — fine jewelry by Bez Ambar.`,
     ...(s.heroPosterUrl ? { image: [s.heroPosterUrl] } : {}),
     sku: product.sku,
     brand: { '@type': 'Brand', name: 'Bez Ambar' },

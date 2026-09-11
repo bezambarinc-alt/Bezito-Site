@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getProductsByCollection } from '@/lib/queries'
+import { parseProductName } from '@/lib/product-name'
 import ProductCard from '@/components/product/ProductCard'
 import FadeIn from '@/components/common/FadeIn'
 import InquiryButton from '@/components/common/InquiryButton'
@@ -88,17 +89,18 @@ export default async function CollectionPage({
       {/* Editorial spotlight segments — first 2 products */}
       {spotlights.map((product, i) => {
         const cat = product.specs.category ?? 'jewelry'
+        const cleanName = parseProductName(product.name).title
         return (
           <HomeSegment
             key={product.sku}
             reverse={i % 2 === 1}
-            eyebrow={`${product.name}  ·  ref. ${product.sku}`}
-            title={product.specs.subtitle ?? product.name}
+            eyebrow={`${cleanName}  ·  ref. ${product.sku}`}
+            title={product.specs.subtitle ?? cleanName}
             body={product.specs.lede ?? undefined}
             videoUrl={product.specs.heroVideoUrl ?? undefined}
             imageUrl={product.specs.heroPosterUrl ?? undefined}
             posterUrl={product.specs.heroPosterUrl ?? undefined}
-            ctaLabel={`View ${product.name}`}
+            ctaLabel={`View ${cleanName}`}
             ctaHref={`/jewelry/${cat}/${product.slug}`}
           />
         )
