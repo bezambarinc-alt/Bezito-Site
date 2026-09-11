@@ -181,146 +181,126 @@
 
 
 /* ═══════════════════════════════════════════════════════════════
-   MOBILE SCROLL-LOCK VERTICAL STACK
+   MOBILE CSS-SNAP VERTICAL REEL
    ═══════════════════════════════════════════════════════════════ */
 
-/* Hidden on desktop; height set inline (total × 100dvh) */
+/* Hidden on desktop */
 .mobileStack { display: none; }
 
 @media (max-width: 768px) {
+  /* Fixed-height section — takes its place in page flow, 1 viewport tall */
   .mobileStack {
     display: block;
     position: relative;
-    background: #000;
-  }
-
-  /* Sticky pin — below fixed header, fills remaining viewport.
-     dvh (dynamic viewport height) excludes mobile browser chrome; vh is the
-     fallback for browsers older than iOS 15.4 / Chrome 108. */
-  .mobilePin {
-    position: sticky;
-    top: var(--ba-header-h, 64px);
     height: calc(100vh - var(--ba-header-h, 64px));
-    overflow: hidden;
-    overscroll-behavior: contain;
     background: #000;
   }
 
   @supports (height: 1dvh) {
-    .mobilePin {
+    .mobileStack {
       height: calc(100dvh - var(--ba-header-h, 64px));
     }
   }
 
-  /* 50%-height slides — each exactly fills one zone of the 25/50/25 split.
-     translateY(calc(offset × 100% + 50%)) positions them:
-       offset -1 → translateY(-50%)  → top 25% of pin (prev peek)
-       offset  0 → translateY(+50%)  → middle 50% of pin (active)
-       offset +1 → translateY(+150%) → bottom 25% of pin (next peek)
-     Slides never overlap so no z-index manipulation needed. */
-  .mobileSlide {
+  /* Internal scroll container.
+     scroll-snap-type: y mandatory  — snaps to each slide automatically.
+     overscroll-behavior: contain   — prevents page from scrolling while
+                                      swiping within the carousel. */
+  .mobilePin {
     position: absolute;
-    left: 0; right: 0; top: 0;
-    height: 50%;
-    will-change: transform;
+    inset: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+    overscroll-behavior: contain;
   }
 
-  .mobileSlide video,
-  .mobileSlide img {
-    width: 100%; height: 100%;
+  /* Full-height snap point — one per product.
+     scroll-snap-stop: always prevents fast flings from skipping products;
+     the browser stops here even if momentum would carry further. */
+  .mobileSlide {
+    position: relative;
+    height: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    overflow: hidden;
+  }
+
+  /* Video / image fills slide */
+  .mobileVideo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: center;
     display: block;
   }
 
-  /* Frosted glass overlays — fixed to the pin, cover top/bottom 25%.
-     backdrop-filter blurs whatever video is scrolling behind them.
-     Text layers sit above at z-index 4. */
-  .mobileBlurTop,
-  .mobileBlurBottom {
+  /* Dual gradient scrim — protects text at top and bottom */
+  .mobileGradient {
     position: absolute;
-    left: 0;
-    width: 100%;
-    height: 25%;
-    z-index: 3;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    inset: 0;
+    z-index: 1;
     pointer-events: none;
+    background:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.55) 0%, transparent 42%),
+      linear-gradient(to top,    rgba(0, 0, 0, 0.42) 0%, transparent 38%);
   }
 
-  .mobileBlurTop {
-    top: 0;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.05) 100%);
-  }
-
-  .mobileBlurBottom {
-    bottom: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.05) 100%);
-  }
-
-  /* Text zones — above the blur, crisp.
-     Position + opacity are driven entirely by rAF — no CSS animation.
-     rAF exits them outward (top goes up, bottom goes down) during transition,
-     content snaps while off-screen, then they re-enter from outside. */
+  /* Product identity — top of each slide, above gradient */
   .mobileTextTop {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 25%;
-    z-index: 4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0 clamp(20px, 5vw, 40px);
-    /* The zone itself must not swallow scroll gestures — only the caption text
-       inside it is tappable, so a drag anywhere in the top 25% still scrolls. */
+    top: 0; left: 0; right: 0;
+    z-index: 2;
+    padding: clamp(20px, 5vw, 40px);
     pointer-events: none;
-    will-change: transform, opacity;
   }
 
+  /* Only the caption link intercepts taps; the surrounding zone passes
+     touch events through so swiping near the top still scrolls the reel. */
   .mobileTextTop .captionLink {
     pointer-events: auto;
   }
 
+  /* Editorial lede — bottom of each slide */
   .mobileTextBottom {
     position: absolute;
-    bottom: 0; left: 0;
-    width: 100%; height: 25%;
-    z-index: 4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    bottom: 0; left: 0; right: 0;
+    z-index: 2;
+    padding: clamp(16px, 4vw, 32px) clamp(20px, 5vw, 40px);
     text-align: center;
-    padding: 0 clamp(20px, 5vw, 40px);
     pointer-events: none;
-    will-change: transform, opacity;
   }
 
-  /* Scroll progress dots — decorative, sit just above the bottom blur zone */
+  /* Progress dots — sibling to the scroll container so they never scroll away.
+     Positioned on the right edge to stay clear of bottom-text overlap. */
   .mobileDots {
     position: absolute;
-    bottom: 28%;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
     display: flex;
+    flex-direction: column;
     gap: 6px;
     z-index: 5;
     pointer-events: none;
   }
 
   .mobileDot {
-    width: 5px;
-    height: 5px;
+    width: 4px;
+    height: 4px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.3);
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.25s ease;
   }
 
   .mobileDotActive {
     background: var(--ba-gold, #95826b);
+    transform: scale(1.5);
   }
 
-  /* Tighten text sizes for the compact peek zones */
+  /* Tighten text for mobile viewport */
   .mobileTextTop .name { font-size: clamp(0.95rem, 4vw, 1.2rem); }
   .mobileTextTop .sub  { font-size: 0.78rem; }
   .mobileTextTop .ref  { font-size: 10px; }
