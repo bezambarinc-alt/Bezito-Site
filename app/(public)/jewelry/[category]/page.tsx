@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { getCategoryMeta, getCategoryLabel, CATEGORIES } from '@/lib/data/categories'
 import { getProductsByCategory } from '@/lib/queries'
+import { parseProductName } from '@/lib/product-name'
 import CinematicCarousel from '@/components/product/CinematicCarousel'
 import AtelierBanner from '@/components/common/AtelierBanner'
 import HomeSegment from '@/components/home/HomeSegment'
@@ -75,7 +76,7 @@ export default async function CategoryPage({
               className="ba-portrait-hero__product-link"
               href={`/jewelry/${category}/${heroProduct.slug}`}
             >
-              View {heroProduct.name} →
+              View {parseProductName(heroProduct.name).title} →
             </Link>
           )}
         </div>
@@ -86,12 +87,12 @@ export default async function CategoryPage({
         <HomeSegment
           className="ba-cat-desktop"
           eyebrow={`ref. ${editorialProduct.sku}`}
-          title={editorialProduct.name}
+          title={parseProductName(editorialProduct.name).title}
           body={editorialProduct.specs.lede ?? editorialProduct.specs.subtitle ?? undefined}
           videoUrl={editorialProduct.specs.heroVideoUrl ?? undefined}
           imageUrl={editorialProduct.specs.heroPosterUrl ?? undefined}
           posterUrl={editorialProduct.specs.heroPosterUrl ?? undefined}
-          ctaLabel={`View ${editorialProduct.name}`}
+          ctaLabel={`View ${parseProductName(editorialProduct.name).title}`}
           ctaHref={`/jewelry/${category}/${editorialProduct.slug}`}
         />
       )}

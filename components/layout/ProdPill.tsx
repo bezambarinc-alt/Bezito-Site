@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useDrawers } from './DrawerContext'
 import styles from './ProdPill.module.css'
+import { parseProductName } from '@/lib/product-name'
 
 interface AdjacentProduct {
   slug: string
@@ -27,7 +28,7 @@ export default function ProdPill({ title, sku, category, prevProduct, nextProduc
         <Link
           href={`/jewelry/${category}/${prevProduct.slug}`}
           className={styles.navArrow}
-          aria-label={`Previous: ${prevProduct.name}`}
+          aria-label={`Previous: ${parseProductName(prevProduct.name).title}`}
         >
           ‹
         </Link>
@@ -46,7 +47,7 @@ export default function ProdPill({ title, sku, category, prevProduct, nextProduc
         <Link
           href={`/jewelry/${category}/${nextProduct.slug}`}
           className={styles.navArrow}
-          aria-label={`Next: ${nextProduct.name}`}
+          aria-label={`Next: ${parseProductName(nextProduct.name).title}`}
         >
           ›
         </Link>

@@ -120,7 +120,7 @@ export default function CategoryMobileReel({ products, category }: Props) {
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={media.url}
-                alt={p.name}
+                alt={pTitle}
                 loading={isFirst ? 'eager' : 'lazy'}
                 className={styles.video}
                 onError={() => markFailed(p.slug)}
