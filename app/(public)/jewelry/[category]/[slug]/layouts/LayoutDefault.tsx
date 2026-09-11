@@ -5,6 +5,7 @@ import AtelierBanner from '@/components/common/AtelierBanner'
 import type { SpecAccordionBlock } from '@/types/blocks'
 import type { ProductLayoutProps } from './types'
 import styles from '../page.module.css'
+import { parseProductName } from '@/lib/product-name'
 
 /**
  * Default — triptych layout
@@ -26,6 +27,7 @@ export default function LayoutDefault({
   nextProduct,
 }: ProductLayoutProps) {
   const accordionBlock: SpecAccordionBlock = { type: 'spec-accordion', title: '', items: specItems }
+  const displayName = parseProductName(product.name).title
 
   return (
     <main data-page="pdp">
@@ -38,7 +40,7 @@ export default function LayoutDefault({
           ) : heroPoster ? (
             <Image
               src={heroPoster}
-              alt={product.name}
+              alt={displayName}
               width={1400}
               height={1000}
               priority
@@ -47,7 +49,7 @@ export default function LayoutDefault({
         </div>
         <div className={styles.heroText}>
           <p className={styles.heroEyebrow}>{categoryLabel}</p>
-          <h1 className={styles.heroTitle}>{product.name}</h1>
+          <h1 className={styles.heroTitle}>{displayName}</h1>
           {product.specs.subtitle && (
             <p className={styles.heroSubtitle}>{product.specs.subtitle}</p>
           )}
@@ -69,7 +71,7 @@ export default function LayoutDefault({
             <Image
               className={styles.contentPhoto}
               src={onHandPhoto}
-              alt={`${product.name} · On Hand`}
+              alt={`${displayName} · On Hand`}
               width={800}
               height={900}
               style={{ width: '100%', height: 'auto' }}
@@ -106,7 +108,7 @@ export default function LayoutDefault({
 
       {/* ── 5. ProdPill ── */}
       <ProdPill
-        title={product.name}
+        title={displayName}
         sku={product.sku}
         category={category}
         prevProduct={prevProduct}
