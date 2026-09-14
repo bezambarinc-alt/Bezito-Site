@@ -64,15 +64,19 @@
   margin: 0 0 2.5rem;
 }
 
-/* Beige panel matching EXTENT's contentSplit background */
-.specsWrap {
-  background: var(--ba-paper);
+/* Technical Details — mirrors regular PDP contentSplit */
+.contentSplit {
+  display: flex;
   border-top: 1px solid var(--ba-border);
-  margin: 0 -1.5rem;
-  padding: 2rem 1.5rem 3rem;
+  background: var(--ba-paper);
 }
 
-.specsLabel {
+.contentLeft {
+  flex: 1;
+  padding: clamp(2.5rem, 5vw, 5rem) clamp(2rem, 4vw, 4rem);
+}
+
+.contentEyebrow {
   font-family: var(--ba-font-sans);
   font-size: 10px;
   font-weight: 500;
@@ -111,11 +115,5 @@
   .inner {
     max-width: 480px;
     width: 100%;
-  }
-
-  /* On desktop the specs panel stays inside the text column */
-  .specsWrap {
-    margin: 0;
-    padding: 2rem 0 3rem;
   }
 }

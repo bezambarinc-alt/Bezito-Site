@@ -74,15 +74,18 @@ export default async function LegacyProductPage({
             <p className={styles.ref}>Ref. {product.sku}</p>
           )}
           <p className={styles.description}>{product.description}</p>
-
-          <div className={styles.specsWrap}>
-            <p className={styles.specsLabel}>Technical Details</p>
-            <SpecAccordion block={accordionBlock} variant="light" />
-          </div>
         </div>
       </section>
 
       </div>{/* end heroContentRow */}
+
+      {/* Technical Details — full-width below hero, mirrors regular PDP contentSplit */}
+      <section className={styles.contentSplit}>
+        <div className={styles.contentLeft}>
+          <p className={styles.contentEyebrow}>Technical Details</p>
+          <SpecAccordion block={accordionBlock} variant="light" />
+        </div>
+      </section>
 
       <AtelierBanner />
 
