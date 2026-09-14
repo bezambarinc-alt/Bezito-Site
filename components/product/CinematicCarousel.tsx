@@ -60,10 +60,9 @@ export default function CinematicCarousel({ products, category }: Props) {
 
   // ── Mobile scroll-lock state ───────────────────────────────────────────────
   const [mobileIndex, setMobileIndex] = useState(0)
-  // dvh is iOS 15.4+ / baseline 2023. Render dvh on the server (matches the
-  // CSS default) and downgrade to vh after mount only where dvh is unsupported,
-  // otherwise the stack height collapses and the carousel disappears.
-  const [vhUnit, setVhUnit] = useState('100dvh')
+  // Stack height in pixels — avoids dvh/vh calc issues in iOS Safari inline styles.
+  // SSR gets a vh fallback; after mount we measure the real innerHeight and update.
+  const [stackHeight, setStackHeight] = useState<string | null>(null)
   const mobileStackRef      = useRef<HTMLDivElement>(null)
   const mobileSlideRefs     = useRef<(HTMLDivElement | null)[]>([])
   const mobileVideoRefs     = useRef<(HTMLVideoElement | null)[]>([])
@@ -78,11 +77,11 @@ export default function CinematicCarousel({ products, category }: Props) {
   // Slides never overlap → no z-index tricks needed. Blur overlays sit at top/bottom 25%.
   // Text overlays are also rAF-driven: they exit outward during transition.
   useEffect(() => {
-    if (typeof CSS === 'undefined' || typeof CSS.supports !== 'function' ||
-        !CSS.supports('height', '1dvh')) {
-      setVhUnit('100vh')
-    }
-  }, [])
+    const update = () => setStackHeight(`${window.innerHeight * total}px`)
+    update()
+    window.addEventListener('resize', update, { passive: true })
+    return () => window.removeEventListener('resize', update)
+  }, [total])
 
   useEffect(() => {
     if (total <= 1) return
@@ -377,7 +376,8 @@ export default function CinematicCarousel({ products, category }: Props) {
       <div
         ref={mobileStackRef}
         className={styles.mobileStack}
-        style={{ height: `calc(${total} * ${vhUnit})` }}
+        style={{ height: stackHeight ?? `calc(${total} * 100vh)` }}
+        suppressHydrationWarning
       >
         <div className={styles.mobilePin}>
 
