@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
 import { getLegacyProductBySlug, getAllLegacySlugs } from '@/lib/data/legacy-products'
 import SpecAccordion from '@/components/blocks/SpecAccordion'
 import ProdPill from '@/components/layout/ProdPill'
@@ -58,12 +57,10 @@ export default async function LegacyProductPage({
 
       {/* Hero image */}
       <div className={styles.hero}>
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src={product.imageUrl}
           alt={product.name}
-          fill
-          priority
-          sizes="(min-width: 769px) 52vw, 100vw"
           className={styles.heroImg}
         />
       </div>
