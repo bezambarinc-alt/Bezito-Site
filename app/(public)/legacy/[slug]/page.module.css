@@ -1,0 +1,92 @@
+/* ── Legacy product page ───────────────────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: #f5f3f1;
+  overflow: hidden;
+}
+
+.heroImg {
+  object-fit: cover;
+  object-position: center;
+}
+
+.content {
+  padding: 3.5rem 1.5rem 6rem;
+}
+
+.inner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  font-family: var(--ba-font-sans);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ba-ink);
+  opacity: 0.5;
+  margin: 0 0 1rem;
+}
+
+.title {
+  font-family: var(--ba-font-serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 300;
+  color: var(--ba-ink);
+  line-height: 1.1;
+  margin: 0 0 0.5rem;
+}
+
+.ref {
+  font-family: var(--ba-font-sans);
+  font-size: 0.8125rem;
+  letter-spacing: 0.12em;
+  color: var(--ba-ink);
+  opacity: 0.45;
+  margin: 0 0 2rem;
+}
+
+.description {
+  font-family: var(--ba-font-sans);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--ba-ink);
+  margin: 0 0 3rem;
+}
+
+.specsWrap {
+  border-top: 1px solid rgba(26, 26, 26, 0.12);
+  padding-top: 2rem;
+}
+
+.specsLabel {
+  font-family: var(--ba-font-sans);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ba-ink);
+  opacity: 0.5;
+  margin: 0 0 1.25rem;
+}
+
+/* ── Desktop ── */
+@media (min-width: 769px) {
+  .hero {
+    aspect-ratio: 16 / 7;
+    max-height: 70vh;
+  }
+
+  .content {
+    padding: 5rem 2rem 8rem;
+  }
+
+  .inner {
+    max-width: 760px;
+  }
+}
