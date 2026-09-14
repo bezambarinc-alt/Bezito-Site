@@ -12,11 +12,10 @@
 .heroImg {
   object-fit: contain;
   object-position: center;
-  background: #f5f3f1;
 }
 
 .content {
-  padding: 3.5rem 1.5rem 6rem;
+  padding: 2.5rem 1.5rem 0;
 }
 
 .inner {
@@ -30,8 +29,7 @@
   font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--ba-ink);
-  opacity: 0.5;
+  color: var(--ba-gold);
   margin: 0 0 1rem;
 }
 
@@ -58,22 +56,24 @@
   font-size: 1rem;
   line-height: 1.75;
   color: var(--ba-ink);
-  margin: 0 0 3rem;
+  margin: 0 0 2.5rem;
 }
 
+/* Beige panel matching EXTENT's contentSplit background */
 .specsWrap {
-  border-top: 1px solid rgba(26, 26, 26, 0.12);
-  padding-top: 2rem;
+  background: var(--ba-paper);
+  border-top: 1px solid var(--ba-border);
+  margin: 0 -1.5rem;
+  padding: 2rem 1.5rem 3rem;
 }
 
 .specsLabel {
   font-family: var(--ba-font-sans);
-  font-size: 0.6875rem;
-  font-weight: 400;
-  letter-spacing: 0.2em;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--ba-ink);
-  opacity: 0.5;
+  color: var(--ba-gold);
   margin: 0 0 1.25rem;
 }
 
@@ -97,7 +97,7 @@
 
   .content {
     flex: 1;
-    padding: 4rem 3rem 6rem;
+    padding: 4rem 3rem 0;
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -106,5 +106,11 @@
   .inner {
     max-width: 480px;
     width: 100%;
+  }
+
+  /* On desktop the specs panel stays inside the text column */
+  .specsWrap {
+    margin: 0;
+    padding: 2rem 0 3rem;
   }
 }
