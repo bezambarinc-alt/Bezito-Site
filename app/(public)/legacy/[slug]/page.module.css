@@ -88,8 +88,11 @@
   .hero {
     flex: 0 0 52%;
     aspect-ratio: unset;
-    height: auto;
-    min-height: 560px;
+    align-self: stretch;
+  }
+
+  .heroImg {
+    object-fit: cover;
   }
 
   .content {
