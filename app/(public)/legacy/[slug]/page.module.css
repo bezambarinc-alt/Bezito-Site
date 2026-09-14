@@ -79,11 +79,6 @@
 
 /* ── Desktop: two-column split — image left, text right ── */
 @media (min-width: 769px) {
-  main[data-page="legacy-pdp"] {
-    display: flex;
-    flex-direction: column;
-  }
-
   .heroContentRow {
     display: flex;
     flex-direction: row;
