@@ -1,16 +1,18 @@
 /* ── Legacy product page ───────────────────────────────────────────────────── */
 
+/* Mobile: square crop matches WooCommerce product images (750×750) */
 .hero {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
   background: #f5f3f1;
   overflow: hidden;
 }
 
 .heroImg {
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
+  background: #f5f3f1;
 }
 
 .content {
@@ -75,18 +77,36 @@
   margin: 0 0 1.25rem;
 }
 
-/* ── Desktop ── */
+/* ── Desktop: two-column split — image left, text right ── */
 @media (min-width: 769px) {
+  main[data-page="legacy-pdp"] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .heroContentRow {
+    display: flex;
+    flex-direction: row;
+    min-height: 600px;
+  }
+
   .hero {
-    aspect-ratio: 16 / 7;
-    max-height: 70vh;
+    flex: 0 0 52%;
+    aspect-ratio: unset;
+    height: auto;
+    min-height: 560px;
   }
 
   .content {
-    padding: 5rem 2rem 8rem;
+    flex: 1;
+    padding: 4rem 3rem 6rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
   }
 
   .inner {
-    max-width: 760px;
+    max-width: 480px;
+    width: 100%;
   }
 }

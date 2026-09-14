@@ -53,6 +53,9 @@ export default async function LegacyProductPage({
 
   return (
     <main data-page="legacy-pdp">
+      {/* Hero + info — stacked mobile, side-by-side desktop */}
+      <div className={styles.heroContentRow}>
+
       {/* Hero image */}
       <div className={styles.hero}>
         <Image
@@ -60,7 +63,7 @@ export default async function LegacyProductPage({
           alt={product.name}
           fill
           priority
-          sizes="100vw"
+          sizes="(min-width: 769px) 52vw, 100vw"
           className={styles.heroImg}
         />
       </div>
@@ -81,6 +84,8 @@ export default async function LegacyProductPage({
           </div>
         </div>
       </section>
+
+      </div>{/* end heroContentRow */}
 
       <AtelierBanner />
 
