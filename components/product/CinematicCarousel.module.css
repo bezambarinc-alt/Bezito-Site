@@ -212,16 +212,16 @@
     }
   }
 
-  /* 50%-height slides — each exactly fills one zone of the 25/50/25 split.
-     translateY(calc(offset × 100% + 50%)) positions them:
-       offset -1 → translateY(-50%)  → top 25% of pin (prev peek)
-       offset  0 → translateY(+50%)  → middle 50% of pin (active)
-       offset +1 → translateY(+150%) → bottom 25% of pin (next peek)
+  /* 75%-height slides — active fills top 75%, next peek shows in bottom 25%.
+     translateY(offset × 100%) positions them (100% = 75% of pin):
+       offset -1 → translateY(-100%) → completely above pin (no prev peek)
+       offset  0 → translateY(0%)    → fills top 75% of pin (active)
+       offset +1 → translateY(+100%) → top 25% of next slide peeks in bottom zone
      Slides never overlap so no z-index manipulation needed. */
   .mobileSlide {
     position: absolute;
     left: 0; right: 0; top: 0;
-    height: 50%;
+    height: 75%;
     will-change: transform;
   }
 
@@ -233,55 +233,22 @@
     display: block;
   }
 
-  /* Frosted glass overlays — fixed to the pin, cover top/bottom 25%.
-     backdrop-filter blurs whatever video is scrolling behind them.
-     Text layers sit above at z-index 4. */
-  .mobileBlurTop,
+  /* Frosted glass overlay — bottom 25% blurs next product peeking through.
+     Text panel sits above this at z-index 4. */
   .mobileBlurBottom {
     position: absolute;
-    left: 0;
+    bottom: 0; left: 0;
     width: 100%;
     height: 25%;
     z-index: 3;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     pointer-events: none;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.1) 100%);
   }
 
-  .mobileBlurTop {
-    top: 0;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.05) 100%);
-  }
-
-  .mobileBlurBottom {
-    bottom: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.05) 100%);
-  }
-
-  /* Text zones — above the blur, crisp.
-     Position + opacity are driven entirely by rAF — no CSS animation.
-     rAF exits them outward (top goes up, bottom goes down) during transition,
-     content snaps while off-screen, then they re-enter from outside. */
-  .mobileTextTop {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 25%;
-    z-index: 4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0 clamp(20px, 5vw, 40px);
-    /* The zone itself must not swallow scroll gestures — only the caption text
-       inside it is tappable, so a drag anywhere in the top 25% still scrolls. */
-    pointer-events: none;
-    will-change: transform, opacity;
-  }
-
-  .mobileTextTop .captionLink {
-    pointer-events: auto;
-  }
-
+  /* Text panel — sits over the bottom blur, shows current product identity.
+     rAF drives opacity + translateY out/in during transitions. */
   .mobileTextBottom {
     position: absolute;
     bottom: 0; left: 0;
@@ -294,6 +261,10 @@
     padding: 0 clamp(20px, 5vw, 40px);
     pointer-events: none;
     will-change: transform, opacity;
+  }
+
+  .mobileTextBottom .captionLink {
+    pointer-events: auto;
   }
 
   /* Scroll progress dots — decorative, sit just above the bottom blur zone */
@@ -320,10 +291,9 @@
     background: var(--ba-gold, #95826b);
   }
 
-  /* Tighten text sizes for the compact peek zones */
-  .mobileTextTop .name { font-size: clamp(0.95rem, 4vw, 1.2rem); }
-  .mobileTextTop .sub  { font-size: 0.78rem; }
-  .mobileTextTop .ref  { font-size: 10px; }
-  .mobileTextTop .cta  { font-size: 10px; }
-  .mobileTextBottom .lede { font-size: clamp(0.78rem, 3.5vw, 0.9rem); }
+  /* Text sizes for the bottom identity panel */
+  .mobileTextBottom .name { font-size: clamp(0.95rem, 4vw, 1.2rem); }
+  .mobileTextBottom .sub  { font-size: 0.78rem; }
+  .mobileTextBottom .ref  { font-size: 10px; }
+  .mobileTextBottom .cta  { font-size: 10px; }
 }

@@ -66,7 +66,6 @@ export default function CinematicCarousel({ products, category }: Props) {
   const mobileStackRef      = useRef<HTMLDivElement>(null)
   const mobileSlideRefs     = useRef<(HTMLDivElement | null)[]>([])
   const mobileVideoRefs     = useRef<(HTMLVideoElement | null)[]>([])
-  const mobileTextTopRef    = useRef<HTMLDivElement>(null)
   const mobileTextBottomRef = useRef<HTMLDivElement>(null)
 
   // Scroll-driven rAF — drives 50%-height slide transforms directly.
@@ -113,18 +112,13 @@ export default function CinematicCarousel({ products, category }: Props) {
       mobileSlideRefs.current.forEach((slide, i) => {
         if (!slide) return
         const offset = i - fracIndex
-        slide.style.transform = `translateY(calc(${offset * 100}% + 50%))`
+        slide.style.transform = `translateY(${offset * 100}%)`
       })
 
       // exitFactor: 0 at rest, 1 at midpoint (content snaps at 1, text is off-screen)
       const exitFactor = Math.min(1, Math.abs(fracIndex - rounded) * 2)
       const opacity    = String(Math.max(0, 1 - exitFactor * 1.5))
-      const topText    = mobileTextTopRef.current
       const botText    = mobileTextBottomRef.current
-      if (topText) {
-        topText.style.transform = `translateY(${-exitFactor * 120}%)`
-        topText.style.opacity   = opacity
-      }
       if (botText) {
         botText.style.transform = `translateY(${exitFactor * 120}%)`
         botText.style.opacity   = opacity
@@ -409,11 +403,10 @@ export default function CinematicCarousel({ products, category }: Props) {
             )
           })}
 
-          {/* Frosted glass overlays — fixed to pin, videos scroll beneath them */}
-          <div className={styles.mobileBlurTop}    aria-hidden />
+          {/* Frosted glass overlay — bottom 25% blurs next product peeking through */}
           <div className={styles.mobileBlurBottom} aria-hidden />
 
-          {/* Scroll position indicator — decorative, sits above the bottom blur */}
+          {/* Scroll position indicator */}
           {total > 1 && (
             <div className={styles.mobileDots} aria-hidden>
               {products.map((p, i) => (
@@ -425,8 +418,8 @@ export default function CinematicCarousel({ products, category }: Props) {
             </div>
           )}
 
-          {/* Identity text — above the blur, exits outward on transition via rAF */}
-          <div ref={mobileTextTopRef} className={styles.mobileTextTop}>
+          {/* Identity text — sits over bottom blur, exits down on transition via rAF */}
+          <div ref={mobileTextBottomRef} className={styles.mobileTextBottom}>
             <Link href={`/jewelry/${category}/${mobileCurrent.slug}`} className={styles.captionLink}>
               <p className={styles.ref}>ref. {mobileCurrent.sku}</p>
               <h2 className={styles.name}>{mobileCurrentParsed.title}</h2>
@@ -437,13 +430,6 @@ export default function CinematicCarousel({ products, category }: Props) {
               <span className={styles.cta}>View Piece →</span>
             </Link>
           </div>
-
-          {/* Lede text — above the blur at bottom, exits outward on transition via rAF */}
-          {mobileCurrent.specs.lede && (
-            <div ref={mobileTextBottomRef} className={styles.mobileTextBottom}>
-              <p className={styles.lede}>{mobileCurrent.specs.lede}</p>
-            </div>
-          )}
         </div>
       </div>
     </>
