@@ -386,19 +386,21 @@ export default function CinematicCarousel({ products, category }: Props) {
                 ref={(el) => { mobileSlideRefs.current[i] = el }}
                 className={styles.mobileSlide}
               >
-                {video ? (
-                  <video
-                    ref={(el) => { mobileVideoRefs.current[i] = el }}
-                    src={video}
-                    poster={image ?? undefined}
-                    muted loop playsInline
-                    autoPlay={i === 0}
-                    preload={i === 0 ? 'auto' : 'metadata'}
-                  />
-                ) : image ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={image} alt={pTitle} />
-                ) : null}
+                <Link href={`/jewelry/${category}/${p.slug}`} className={styles.slideLink} tabIndex={-1} aria-label={pTitle}>
+                  {video ? (
+                    <video
+                      ref={(el) => { mobileVideoRefs.current[i] = el }}
+                      src={video}
+                      poster={image ?? undefined}
+                      muted loop playsInline
+                      autoPlay={i === 0}
+                      preload={i === 0 ? 'auto' : 'metadata'}
+                    />
+                  ) : image ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={image} alt={pTitle} />
+                  ) : null}
+                </Link>
               </div>
             )
           })}
