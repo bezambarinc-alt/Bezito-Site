@@ -1,7 +1,6 @@
 /* CinematicCarousel
    Desktop  — horizontal filmstrip, blurred neighbours, autoscroll + arrows.
-   Mobile   — scroll-lock vertical stack (same pattern as ScrollWipeCarousel),
-              25vh prev peek / 50vh active / 25vh next peek. */
+   Mobile   — scroll-lock vertical stack: 75% active video, 25% bottom blur peek + text. */
 
 /* ═══════════════════════════════════════════════════════════════
    DESKTOP HORIZONTAL CAROUSEL
@@ -226,17 +225,18 @@
   }
 
   .mobileSlide video,
-  .mobileSlide img,
-  .mobileSlide .slideLink {
+  .mobileSlide img {
     width: 100%; height: 100%;
     object-fit: cover;
     object-position: center;
     display: block;
   }
 
+  /* Full-slide tap target — aria-hidden, duplicate of the bottom caption link */
   .slideLink {
     position: absolute;
     inset: 0;
+    display: block;
   }
 
   /* Frosted glass overlay — bottom 25% blurs next product peeking through.

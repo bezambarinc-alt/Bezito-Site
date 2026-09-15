@@ -68,13 +68,8 @@ export default function CinematicCarousel({ products, category }: Props) {
   const mobileVideoRefs     = useRef<(HTMLVideoElement | null)[]>([])
   const mobileTextBottomRef = useRef<HTMLDivElement>(null)
 
-  // Scroll-driven rAF — drives 50%-height slide transforms directly.
-  // Each slide is 50% of the pin height. translateY(calc(offset×100% + 50%)) means:
-  //   offset -1 → translateY(-50%)  → slide occupies -25% to +25% of pin → top 25% peeks
-  //   offset  0 → translateY(+50%)  → slide occupies +25% to +75% of pin → active zone
-  //   offset +1 → translateY(+150%) → slide occupies +75% to +125% of pin → bottom 25% peeks
-  // Slides never overlap → no z-index tricks needed. Blur overlays sit at top/bottom 25%.
-  // Text overlays are also rAF-driven: they exit outward during transition.
+  // Stack height in px — avoids dvh/vh calc issues in iOS Safari inline styles.
+  // SSR gets a vh fallback; after mount we measure real innerHeight.
   useEffect(() => {
     const update = () => setStackHeight(`${window.innerHeight * total}px`)
     update()
@@ -282,7 +277,7 @@ export default function CinematicCarousel({ products, category }: Props) {
     <>
       {/* ── Desktop horizontal filmstrip (hidden on mobile) ─────────────── */}
       <div className={styles.section}>
-        <section className={styles.stage}>
+        <section className={styles.stage} aria-label="Featured pieces" aria-roledescription="carousel">
           <div className={styles.track}>
             {products.map((p, i) => {
               const offset      = circOffset(i)
@@ -371,7 +366,6 @@ export default function CinematicCarousel({ products, category }: Props) {
         ref={mobileStackRef}
         className={styles.mobileStack}
         style={{ height: stackHeight ?? `calc(${total} * 100vh)` }}
-        suppressHydrationWarning
       >
         <div className={styles.mobilePin}>
 
@@ -386,7 +380,7 @@ export default function CinematicCarousel({ products, category }: Props) {
                 ref={(el) => { mobileSlideRefs.current[i] = el }}
                 className={styles.mobileSlide}
               >
-                <Link href={`/jewelry/${category}/${p.slug}`} className={styles.slideLink} tabIndex={-1} aria-label={pTitle}>
+                <Link href={`/jewelry/${category}/${p.slug}`} className={styles.slideLink} tabIndex={-1} aria-hidden="true">
                   {video ? (
                     <video
                       ref={(el) => { mobileVideoRefs.current[i] = el }}
