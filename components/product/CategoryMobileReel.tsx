@@ -131,8 +131,9 @@ export default function CategoryMobileReel({ products, category }: Props) {
             <div className={styles.overlay}>
               <span className={styles.eyebrow}>ref. {p.sku}</span>
               <h2 className={styles.name}>{pTitle}</h2>
-              {pVariant && <p className={styles.sub}>{pVariant}</p>}
-              {p.specs.subtitle && <p className={styles.sub}>{p.specs.subtitle}</p>}
+              {(pVariant ?? p.specs.subtitle) && (
+                <p className={styles.sub}>{pVariant ?? p.specs.subtitle}</p>
+              )}
               <Link href={`/jewelry/${category}/${p.slug}`} className={styles.link}>
                 View piece
               </Link>

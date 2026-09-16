@@ -325,8 +325,9 @@ export default function CinematicCarousel({ products, category }: Props) {
               <Link href={`/jewelry/${category}/${current.slug}`} className={styles.captionLink}>
                 <p className={styles.ref}>ref. {current.sku}</p>
                 <h2 className={styles.name}>{currentParsed.title}</h2>
-                {currentParsed.variant && <p className={styles.sub}>{currentParsed.variant}</p>}
-                {current.specs.subtitle && <p className={styles.sub}>{current.specs.subtitle}</p>}
+                {(currentParsed.variant ?? current.specs.subtitle) && (
+                  <p className={styles.sub}>{currentParsed.variant ?? current.specs.subtitle}</p>
+                )}
                 <span className={styles.cta}>View Piece →</span>
               </Link>
             </div>
@@ -419,9 +420,8 @@ export default function CinematicCarousel({ products, category }: Props) {
             <Link href={`/jewelry/${category}/${mobileCurrent.slug}`} className={styles.captionLink}>
               <p className={styles.ref}>ref. {mobileCurrent.sku}</p>
               <h2 className={styles.name}>{mobileCurrentParsed.title}</h2>
-              {mobileCurrentParsed.variant && <p className={styles.sub}>{mobileCurrentParsed.variant}</p>}
-              {mobileCurrent.specs.subtitle && (
-                <p className={styles.sub}>{mobileCurrent.specs.subtitle}</p>
+              {(mobileCurrentParsed.variant ?? mobileCurrent.specs.subtitle) && (
+                <p className={styles.sub}>{mobileCurrentParsed.variant ?? mobileCurrent.specs.subtitle}</p>
               )}
               <span className={styles.cta}>View Piece →</span>
             </Link>
