@@ -112,20 +112,21 @@
     right: 12px;
   }
 
-  /* Dark/pill variant on mobile — compact, scroll-enabled */
+  /* Dark/pill variant on mobile — centered wrapping grid, all options visible */
   .rowDark {
-    padding: 0 8px;
-    justify-content: flex-start;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    gap: 4px;
+    padding: 6px 12px;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    overflow-x: unset;
+    gap: 6px;
+    height: 100%;
   }
-  .rowDark::-webkit-scrollbar { display: none; }
 
   .rowDark .tab {
     padding: 4px 12px;
     font-size: 9px;
     flex-shrink: 0;
+    white-space: nowrap;
   }
 }

@@ -212,7 +212,6 @@ export default function ArchiveCarousel({
     if (!stack) return
 
     let startY        = 0
-    let startX        = 0
     let startScrollY  = 0
     let startActive   = 0
     let slideRange    = 0
@@ -254,7 +253,6 @@ export default function ArchiveCarousel({
       if (scrolled < -20 || scrolled > scrollRange + 20) { gestureActive = false; return }
       gestureActive = true
       startY       = e.touches[0].clientY
-      startX       = e.touches[0].clientX
       startScrollY = window.scrollY
       startActive  = getNearestIndex()
       slideRange   = scrollRange / (total - 1)
@@ -262,11 +260,8 @@ export default function ArchiveCarousel({
 
     const onMove = (e: TouchEvent) => {
       if (!gestureActive) return
-      const dy = startY - e.touches[0].clientY
-      const dx = Math.abs(e.touches[0].clientX - startX)
-      // Let horizontal swipes pass through to the filter row scroll
-      if (dx > Math.abs(dy) && dx > 8) return
       e.preventDefault()
+      const dy     = startY - e.touches[0].clientY
       const capped = Math.max(-slideRange * 0.9, Math.min(slideRange * 0.9, dy))
       window.scrollTo(0, startScrollY + capped)
     }
