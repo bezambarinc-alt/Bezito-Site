@@ -67,6 +67,12 @@ export default function CinematicCarousel({ products, category }: Props) {
   const mobileSlideRefs     = useRef<(HTMLDivElement | null)[]>([])
   const mobileVideoRefs     = useRef<(HTMLVideoElement | null)[]>([])
   const mobileTextBottomRef = useRef<HTMLDivElement>(null)
+  // isSnappingRef shared between scroll driver and touch effect to prevent double-snap
+  const isSnappingRef   = useRef(false)
+  // mobileActiveRef tracks the currently-playing video index without going through React state
+  const mobileActiveRef = useRef(0)
+  // playPromisesRef stores in-flight play() promises so we can await them before pausing
+  const playPromisesRef = useRef<Promise<void>[]>([])
 
   // Stack height in px — avoids dvh/vh calc issues in iOS Safari inline styles.
   // SSR gets a vh fallback; after mount we measure real innerHeight.
@@ -82,11 +88,38 @@ export default function CinematicCarousel({ products, category }: Props) {
 
     const mq = window.matchMedia('(max-width: 768px)')
 
-    let ticking    = false
-    let attached   = false
-    let rafId      = 0
+    let ticking  = false
+    let attached = false
+    let rafId    = 0
     let snapTimer: ReturnType<typeof setTimeout> | null = null
-    let isSnapping = false
+
+    // Activate a video at the given index: pause the previous (safely), play the new one.
+    // Driven directly from rAF so video state never lags behind scroll position.
+    const activateVideo = (idx: number) => {
+      const prev = mobileActiveRef.current
+      if (idx === prev) return
+      mobileActiveRef.current = idx
+      // Pause previous — if its play() promise is still pending, wait for it first
+      if (prev >= 0) {
+        const pv = mobileVideoRefs.current[prev]
+        if (pv) {
+          const pending = playPromisesRef.current[prev]
+          if (pending !== undefined) {
+            pending.then(() => { if (mobileActiveRef.current !== prev) pv.pause() }).catch(() => {})
+            playPromisesRef.current[prev] = undefined as unknown as Promise<void>
+          } else if (!pv.paused) {
+            pv.pause()
+          }
+        }
+      }
+      // Play new
+      const nv = mobileVideoRefs.current[idx]
+      if (nv) {
+        const p = nv.play()
+        playPromisesRef.current[idx] = p
+        p.catch(() => { playPromisesRef.current[idx] = undefined as unknown as Promise<void> })
+      }
+    }
 
     const update = () => {
       ticking = false
@@ -119,11 +152,12 @@ export default function CinematicCarousel({ products, category }: Props) {
         botText.style.opacity   = opacity
       }
 
+      activateVideo(rounded)
       setMobileIndex(prev => prev !== rounded ? rounded : prev)
     }
 
     const snapToNearest = () => {
-      if (isSnapping) return
+      if (isSnappingRef.current) return
       const stack = mobileStackRef.current
       if (!stack) return
       const rect = stack.getBoundingClientRect()
@@ -133,17 +167,17 @@ export default function CinematicCarousel({ products, category }: Props) {
       if (rawProgress < 0 || rawProgress > 1) return
       const nearest = Math.max(0, Math.min(total - 1, Math.round(rawProgress * (total - 1))))
       if (Math.abs(rawProgress * (total - 1) - nearest) < 0.02) return
-      isSnapping = true
+      isSnappingRef.current = true
       const targetY = window.scrollY + rect.top + (nearest / (total - 1)) * scrollRange
       window.scrollTo({ top: targetY, behavior: 'smooth' })
-      setTimeout(() => { isSnapping = false }, 700)
+      setTimeout(() => { isSnappingRef.current = false }, 600)
     }
 
-    const onScrollEnd = () => { isSnapping = false; snapToNearest() }
+    const onScrollEnd = () => { isSnappingRef.current = false; snapToNearest() }
 
     const onScroll = () => {
       if (!ticking) { ticking = true; rafId = requestAnimationFrame(update) }
-      if (!isSnapping) {
+      if (!isSnappingRef.current) {
         if (snapTimer) clearTimeout(snapTimer)
         snapTimer = setTimeout(snapToNearest, 100)
       }
@@ -167,7 +201,7 @@ export default function CinematicCarousel({ products, category }: Props) {
       cancelAnimationFrame(rafId)
       if (snapTimer) clearTimeout(snapTimer)
       ticking = false
-      isSnapping = false
+      isSnappingRef.current = false
     }
 
     const handleChange = (e: MediaQueryListEvent) => {
@@ -206,14 +240,29 @@ export default function CinematicCarousel({ products, category }: Props) {
       return Math.round(progress * (total - 1))
     }
 
+    let snapEndTimer: ReturnType<typeof setTimeout> | null = null
+
     const snapTo = (idx: number) => {
       const rect = stack.getBoundingClientRect()
       const scrollRange = rect.height - window.innerHeight
       if (scrollRange <= 0) return
       window.scrollTo({ top: window.scrollY + rect.top + (idx / (total - 1)) * scrollRange, behavior: 'smooth' })
+      // Activate video immediately — don't wait for the React state cycle
+      const nv = mobileVideoRefs.current[idx]
+      if (nv) {
+        const prev = mobileActiveRef.current
+        mobileActiveRef.current = idx
+        if (prev >= 0 && prev !== idx) mobileVideoRefs.current[prev]?.pause()
+        const p = nv.play()
+        playPromisesRef.current[idx] = p
+        p.catch(() => { playPromisesRef.current[idx] = undefined as unknown as Promise<void> })
+      }
     }
 
     const onStart = (e: TouchEvent) => {
+      // Clear any pending snap so a new gesture always gets a clean state
+      isSnappingRef.current = false
+      if (snapEndTimer) { clearTimeout(snapEndTimer); snapEndTimer = null }
       const rect = stack.getBoundingClientRect()
       const scrollRange = rect.height - window.innerHeight
       if (scrollRange <= 0) { gestureActive = false; return }
@@ -238,6 +287,10 @@ export default function CinematicCarousel({ products, category }: Props) {
     const onEnd = (e: TouchEvent) => {
       if (!gestureActive) return
       gestureActive = false
+      // Suppress the scroll driver's auto-snap while our gesture snap completes
+      isSnappingRef.current = true
+      if (snapEndTimer) clearTimeout(snapEndTimer)
+      snapEndTimer = setTimeout(() => { isSnappingRef.current = false; snapEndTimer = null }, 600)
       const dy = startY - e.changedTouches[0].clientY
       if (dy > 30)       snapTo(Math.min(total - 1, startActive + 1))
       else if (dy < -30) snapTo(Math.max(0, startActive - 1))
@@ -252,17 +305,9 @@ export default function CinematicCarousel({ products, category }: Props) {
       stack.removeEventListener('touchstart', onStart)
       stack.removeEventListener('touchmove',  onMove)
       stack.removeEventListener('touchend',   onEnd)
+      if (snapEndTimer) clearTimeout(snapEndTimer)
     }
   }, [total])
-
-  // Play/pause mobile videos on index change
-  useEffect(() => {
-    mobileVideoRefs.current.forEach((v, i) => {
-      if (!v) return
-      if (i === mobileIndex) v.play().catch(() => {})
-      else v.pause()
-    })
-  }, [mobileIndex])
 
   if (total === 0) return null
 
