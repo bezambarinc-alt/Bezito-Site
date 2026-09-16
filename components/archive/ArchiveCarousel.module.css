@@ -208,9 +208,14 @@
   .mobilePin {
     position: sticky;
     top: var(--ba-header-h, 64px);
-    height: calc(100dvh - var(--ba-header-h, 64px));
+    height: calc(100vh - var(--ba-header-h, 64px));
     overflow: hidden;
     background: #000;
+  }
+  @supports (height: 1dvh) {
+    .mobilePin {
+      height: calc(100dvh - var(--ba-header-h, 64px));
+    }
   }
 
   /* 50%-height slides — never overlap (same geometry as CinematicCarousel) */
@@ -236,35 +241,37 @@
     animation: shimmer 1.5s ease-in-out infinite;
   }
 
-  /* Frosted glass overlays */
-  .mobileBlurTop,
-  .mobileBlurBottom {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 25%;
-    z-index: 3;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    pointer-events: none;
-  }
-
-  .mobileBlurTop {
-    top: 0;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.05) 100%);
-  }
-
-  .mobileBlurBottom {
-    bottom: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.05) 100%);
-  }
-
-  /* Top text overlay — rAF-driven, exits upward on transition */
-  .mobileTextTop {
+  /* ── Filter zone — top 25%, frosted glass, always accessible ─────────────── */
+  .mobileFilterZone {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 25%;
     z-index: 4;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.15) 100%);
+    display: flex;
+    align-items: stretch;
+  }
+
+  /* ── Bottom blur overlay — next entry peeks through ──────────────────────── */
+  .mobileBlurBottom {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 25%;
+    z-index: 3;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.05) 100%);
+    pointer-events: none;
+  }
+
+  /* ── Identity text — rAF-driven, exits downward on transition ────────────── */
+  .mobileTextBottom {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 25%;
+    z-index: 5;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -8,13 +8,17 @@ interface Props {
   shape:          string
   color:          string
   onFilterChange: (cat: string, shape: string, color: string) => void
+  dark?:          boolean
 }
 
-export default function ArchiveFilterRow({ cat, shape, color, onFilterChange }: Props) {
+export default function ArchiveFilterRow({ cat, shape, color, onFilterChange, dark }: Props) {
   const setCat = (v: string) => onFilterChange(v, shape, color)
 
   return (
-    <nav className={styles.row} aria-label="Filter by collection">
+    <nav
+      className={`${styles.row} ${dark ? styles.rowDark : ''}`}
+      aria-label="Filter by collection"
+    >
       {CATEGORY_FILTERS.map(opt => (
         <button
           key={opt.value}

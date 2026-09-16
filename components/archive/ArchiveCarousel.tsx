@@ -39,13 +39,13 @@ export default function ArchiveCarousel({
     [index, total],
   )
 
-  // Reset carousel position when filter changes (avoids full remount via key prop)
+  // Reset carousel position when filter changes
   useEffect(() => {
     setIndex(0)
     setMobileIndex(0)
   }, [cat, shape, color])
 
-  // Play active + neighbours so blurred flanks show live frames
+  // Play active + both neighbours so blurred flanks show live frames
   useEffect(() => {
     videoRefs.current.forEach((v, i) => {
       if (!v) return
@@ -56,21 +56,65 @@ export default function ArchiveCarousel({
 
   // ── Mobile scroll-lock state ───────────────────────────────────────────────
   const [mobileIndex, setMobileIndex] = useState(0)
-  const mobileStackRef   = useRef<HTMLDivElement>(null)
-  const mobileSlideRefs  = useRef<(HTMLDivElement | null)[]>([])
-  const mobileVideoRefs  = useRef<(HTMLVideoElement | null)[]>([])
-  const mobileTextTopRef = useRef<HTMLDivElement>(null)
+  // Stack height in pixels — avoids dvh/vh calc issues in iOS Safari inline styles.
+  // SSR gets a vh fallback; after mount we measure the real innerHeight and update.
+  const [stackHeight, setStackHeight] = useState<string | null>(null)
+  const mobileStackRef      = useRef<HTMLDivElement>(null)
+  const mobileSlideRefs     = useRef<(HTMLDivElement | null)[]>([])
+  const mobileVideoRefs     = useRef<(HTMLVideoElement | null)[]>([])
+  const mobileTextBottomRef = useRef<HTMLDivElement>(null)
+  // isSnappingRef shared between scroll driver and touch effect to prevent double-snap
+  const isSnappingRef   = useRef(false)
+  // mobileActiveRef tracks the currently-playing video index without going through React state
+  const mobileActiveRef = useRef(0)
+  // playPromisesRef stores in-flight play() promises so we can await them before pausing
+  const playPromisesRef = useRef<Promise<void>[]>([])
 
   useEffect(() => {
-    const stack = mobileStackRef.current
-    if (!stack || total <= 1) return
+    const update = () => setStackHeight(`${window.innerHeight * total}px`)
+    update()
+    window.addEventListener('resize', update, { passive: true })
+    return () => window.removeEventListener('resize', update)
+  }, [total])
 
-    // No matchMedia bailout — scrollRange check handles desktop (stack display:none → height 0)
-    let ticking = false
-    let rafId   = 0
+  useEffect(() => {
+    if (total <= 1) return
+
+    const mq = window.matchMedia('(max-width: 768px)')
+
+    let ticking  = false
+    let attached = false
+    let rafId    = 0
+    let snapTimer: ReturnType<typeof setTimeout> | null = null
+
+    const activateVideo = (idx: number) => {
+      const prev = mobileActiveRef.current
+      if (idx === prev) return
+      mobileActiveRef.current = idx
+      if (prev >= 0) {
+        const pv = mobileVideoRefs.current[prev]
+        if (pv) {
+          const pending = playPromisesRef.current[prev]
+          if (pending !== undefined) {
+            pending.then(() => { if (mobileActiveRef.current !== prev) pv.pause() }).catch(() => {})
+            playPromisesRef.current[prev] = undefined as unknown as Promise<void>
+          } else if (!pv.paused) {
+            pv.pause()
+          }
+        }
+      }
+      const nv = mobileVideoRefs.current[idx]
+      if (nv) {
+        const p = nv.play()
+        playPromisesRef.current[idx] = p
+        p.catch(() => { playPromisesRef.current[idx] = undefined as unknown as Promise<void> })
+      }
+    }
 
     const update = () => {
       ticking = false
+      const stack = mobileStackRef.current
+      if (!stack) return
       const rect        = stack.getBoundingClientRect()
       const scrollRange = rect.height - window.innerHeight
       if (scrollRange <= 0) return
@@ -89,35 +133,162 @@ export default function ArchiveCarousel({
       })
 
       const exitFactor = Math.min(1, Math.abs(fracIndex - rounded) * 2)
-      const topText    = mobileTextTopRef.current
-      if (topText) {
-        topText.style.transform = `translateY(${-exitFactor * 120}%)`
-        topText.style.opacity   = String(Math.max(0, 1 - exitFactor * 1.5))
+      const botText    = mobileTextBottomRef.current
+      if (botText) {
+        botText.style.transform = `translateY(${exitFactor * 120}%)`
+        botText.style.opacity   = String(Math.max(0, 1 - exitFactor * 1.5))
       }
 
+      activateVideo(rounded)
       setMobileIndex(prev => prev !== rounded ? rounded : prev)
     }
 
-    const onScroll = () => {
-      if (!ticking) { ticking = true; rafId = requestAnimationFrame(update) }
+    const snapToNearest = () => {
+      if (isSnappingRef.current) return
+      const stack = mobileStackRef.current
+      if (!stack) return
+      const rect = stack.getBoundingClientRect()
+      const scrollRange = rect.height - window.innerHeight
+      if (scrollRange <= 0) return
+      const rawProgress = -rect.top / scrollRange
+      if (rawProgress < 0 || rawProgress > 1) return
+      const nearest = Math.max(0, Math.min(total - 1, Math.round(rawProgress * (total - 1))))
+      if (Math.abs(rawProgress * (total - 1) - nearest) < 0.02) return
+      isSnappingRef.current = true
+      const targetY = window.scrollY + rect.top + (nearest / (total - 1)) * scrollRange
+      window.scrollTo({ top: targetY, behavior: 'smooth' })
+      setTimeout(() => { isSnappingRef.current = false }, 600)
     }
 
-    rafId = requestAnimationFrame(update)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => {
+    const onScrollEnd = () => { isSnappingRef.current = false; snapToNearest() }
+
+    const onScroll = () => {
+      if (!ticking) { ticking = true; rafId = requestAnimationFrame(update) }
+      if (!isSnappingRef.current) {
+        if (snapTimer) clearTimeout(snapTimer)
+        snapTimer = setTimeout(snapToNearest, 100)
+      }
+    }
+
+    const attach = () => {
+      if (attached || !mq.matches) return
+      attached = true
+      window.addEventListener('scroll', onScroll, { passive: true })
+      window.addEventListener('scrollend', onScrollEnd, { passive: true })
+      rafId = requestAnimationFrame(update)
+    }
+
+    const detach = () => {
+      if (!attached) return
+      attached = false
       window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('scrollend', onScrollEnd)
       cancelAnimationFrame(rafId)
+      if (snapTimer) clearTimeout(snapTimer)
+      ticking = false
+      isSnappingRef.current = false
+    }
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      if (e.matches) attach()
+      else detach()
+    }
+
+    mq.addEventListener('change', handleChange)
+    attach()
+
+    return () => {
+      mq.removeEventListener('change', handleChange)
+      detach()
     }
   }, [total])
 
-  // Play/pause mobile videos on index change
+  // Touch interception — prevents iOS momentum from skipping multiple entries.
+  // Intercepts touchmove (non-passive) to cap scroll to ±1 slide per gesture,
+  // then on touchend snaps to exactly the next/prev/current entry.
   useEffect(() => {
-    mobileVideoRefs.current.forEach((v, i) => {
-      if (!v) return
-      if (i === mobileIndex) v.play().catch(() => {})
-      else v.pause()
-    })
-  }, [mobileIndex])
+    if (total <= 1) return
+    const stack = mobileStackRef.current
+    if (!stack) return
+
+    let startY        = 0
+    let startScrollY  = 0
+    let startActive   = 0
+    let slideRange    = 0
+    let gestureActive = false
+
+    const getNearestIndex = () => {
+      const rect = stack.getBoundingClientRect()
+      const scrollRange = rect.height - window.innerHeight
+      if (scrollRange <= 0) return 0
+      const progress = Math.max(0, Math.min(1, -rect.top / scrollRange))
+      return Math.round(progress * (total - 1))
+    }
+
+    let snapEndTimer: ReturnType<typeof setTimeout> | null = null
+
+    const snapTo = (idx: number) => {
+      const rect = stack.getBoundingClientRect()
+      const scrollRange = rect.height - window.innerHeight
+      if (scrollRange <= 0) return
+      window.scrollTo({ top: window.scrollY + rect.top + (idx / (total - 1)) * scrollRange, behavior: 'smooth' })
+      const nv = mobileVideoRefs.current[idx]
+      if (nv) {
+        const prev = mobileActiveRef.current
+        mobileActiveRef.current = idx
+        if (prev >= 0 && prev !== idx) mobileVideoRefs.current[prev]?.pause()
+        const p = nv.play()
+        playPromisesRef.current[idx] = p
+        p.catch(() => { playPromisesRef.current[idx] = undefined as unknown as Promise<void> })
+      }
+    }
+
+    const onStart = (e: TouchEvent) => {
+      isSnappingRef.current = false
+      if (snapEndTimer) { clearTimeout(snapEndTimer); snapEndTimer = null }
+      const rect = stack.getBoundingClientRect()
+      const scrollRange = rect.height - window.innerHeight
+      if (scrollRange <= 0) { gestureActive = false; return }
+      const scrolled = -rect.top
+      if (scrolled < -20 || scrolled > scrollRange + 20) { gestureActive = false; return }
+      gestureActive = true
+      startY       = e.touches[0].clientY
+      startScrollY = window.scrollY
+      startActive  = getNearestIndex()
+      slideRange   = scrollRange / (total - 1)
+    }
+
+    const onMove = (e: TouchEvent) => {
+      if (!gestureActive) return
+      e.preventDefault()
+      const dy     = startY - e.touches[0].clientY
+      const capped = Math.max(-slideRange * 0.9, Math.min(slideRange * 0.9, dy))
+      window.scrollTo(0, startScrollY + capped)
+    }
+
+    const onEnd = (e: TouchEvent) => {
+      if (!gestureActive) return
+      gestureActive = false
+      isSnappingRef.current = true
+      if (snapEndTimer) clearTimeout(snapEndTimer)
+      snapEndTimer = setTimeout(() => { isSnappingRef.current = false; snapEndTimer = null }, 600)
+      const dy = startY - e.changedTouches[0].clientY
+      if (dy > 30)       snapTo(Math.min(total - 1, startActive + 1))
+      else if (dy < -30) snapTo(Math.max(0, startActive - 1))
+      else               snapTo(startActive)
+    }
+
+    stack.addEventListener('touchstart', onStart, { passive: true })
+    stack.addEventListener('touchmove',  onMove,  { passive: false })
+    stack.addEventListener('touchend',   onEnd,   { passive: true })
+
+    return () => {
+      stack.removeEventListener('touchstart', onStart)
+      stack.removeEventListener('touchmove',  onMove)
+      stack.removeEventListener('touchend',   onEnd)
+      if (snapEndTimer) clearTimeout(snapEndTimer)
+    }
+  }, [total])
 
   if (total === 0) {
     return <div className={styles.empty}>No pieces match the current filters.</div>
@@ -130,12 +301,9 @@ export default function ArchiveCarousel({
     <>
       {/* ── Desktop horizontal filmstrip (hidden on mobile) ─────────────── */}
       <div className={styles.section}>
-        <ArchiveFilterRow
-          cat={cat} shape={shape} color={color}
-          onFilterChange={onFilterChange}
-        />
+        <ArchiveFilterRow cat={cat} shape={shape} color={color} onFilterChange={onFilterChange} />
 
-        <section className={styles.stage}>
+        <section className={styles.stage} aria-label="The Archive" aria-roledescription="carousel">
           <div className={styles.track}>
             {entries.map((e, i) => {
               const offset      = circOffset(i)
@@ -198,21 +366,15 @@ export default function ArchiveCarousel({
           {/* Arrows */}
           {total > 1 && (
             <>
-              <button
-                className={`${styles.arrow} ${styles.arrowPrev}`}
-                onClick={() => go(index - 1)}
-                aria-label="Previous piece"
-              >
+              <button className={`${styles.arrow} ${styles.arrowPrev}`}
+                onClick={() => go(index - 1)} aria-label="Previous piece">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden>
                   <path d="M15 5 L8 12 L15 19" stroke="currentColor" strokeWidth="1.25"
                     strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
-              <button
-                className={`${styles.arrow} ${styles.arrowNext}`}
-                onClick={() => go(index + 1)}
-                aria-label="Next piece"
-              >
+              <button className={`${styles.arrow} ${styles.arrowNext}`}
+                onClick={() => go(index + 1)} aria-label="Next piece">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden>
                   <path d="M9 5 L16 12 L9 19" stroke="currentColor" strokeWidth="1.25"
                     strokeLinecap="round" strokeLinejoin="round" />
@@ -227,10 +389,11 @@ export default function ArchiveCarousel({
       <div
         ref={mobileStackRef}
         className={styles.mobileStack}
-        style={{ height: `calc(${total} * 100dvh)` }}
+        style={{ height: stackHeight ?? `calc(${total} * 100vh)` }}
       >
         <div className={styles.mobilePin}>
 
+          {/* 50%-height video slides — scroll behind top filter and bottom blur */}
           {entries.map((e, i) => {
             const isLoaded = Math.abs(i - mobileIndex) <= 2
             return (
@@ -247,7 +410,8 @@ export default function ArchiveCarousel({
                     ref={(el) => { mobileVideoRefs.current[i] = el }}
                     src={e.mp4Url}
                     muted loop playsInline
-                    preload={i === mobileIndex ? 'auto' : 'none'}
+                    autoPlay={i === 0}
+                    preload={i === 0 ? 'auto' : 'metadata'}
                   />
                 ) : (
                   <div className={styles.mobilePlaceholder} />
@@ -256,11 +420,16 @@ export default function ArchiveCarousel({
             )
           })}
 
-          <div className={styles.mobileBlurTop}    aria-hidden />
+          {/* Filter zone — top 25%, frosted glass, always accessible while browsing */}
+          <div className={styles.mobileFilterZone}>
+            <ArchiveFilterRow cat={cat} shape={shape} color={color} onFilterChange={onFilterChange} dark />
+          </div>
+
+          {/* Frosted glass overlay — bottom 25% blurs next entry peeking through */}
           <div className={styles.mobileBlurBottom} aria-hidden />
 
-          {/* Top text — ref + title + CTA, exits upward on transition */}
-          <div ref={mobileTextTopRef} className={styles.mobileTextTop}>
+          {/* Identity text — sits over bottom blur, exits down on transition via rAF */}
+          <div ref={mobileTextBottomRef} className={styles.mobileTextBottom}>
             <p className={styles.mobileRef}>ref. {mobileCurrent.sku}</p>
             <p className={styles.mobileName}>{mobileCurrent.title}</p>
             <button
