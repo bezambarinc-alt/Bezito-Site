@@ -1,14 +1,6 @@
 'use client'
 
-/**
- * ArchiveClient — filter state + carousel + modal.
- *
- * Hero, editorial section, and AtelierBanner live in the server page component.
- * This component owns URL state for filters (?cat= ?shape= ?color=) and the
- * open piece (?id=<slug>), plus the interactive carousel and modal.
- */
-
-import { useCallback, useMemo } from 'react'
+import { useState, useCallback, useMemo } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import type { ArchiveEntry } from '@/lib/data/archive-constants'
 import ArchiveCarousel from './ArchiveCarousel'
@@ -23,57 +15,42 @@ interface Props {
 }
 
 export default function ArchiveClient({
-  entries,
-  initialCat,
-  initialShape,
-  initialColor,
-  initialOpenId,
+  entries, initialCat, initialShape, initialColor, initialOpenId,
 }: Props) {
   const router = useRouter()
   const params = useSearchParams()
 
-  // Server-passed initials used on first render; URL params take over after hydration
-  const cat    = params?.get('cat')   ?? initialCat
-  const shape  = params?.get('shape') ?? initialShape
-  const color  = params?.get('color') ?? initialColor
-  const openId = params?.get('id')    ?? initialOpenId
+  // Filter state lives in local React state — no router.replace() on filter change.
+  // With force-dynamic on the page, URL navigation triggers a full server re-render;
+  // keeping filters local avoids that completely.
+  const [cat,   setCat]   = useState(initialCat)
+  const [shape, setShape] = useState(initialShape)
+  const [color, setColor] = useState(initialColor)
 
-  const buildQs = useCallback(
-    (next: { cat?: string; shape?: string; color?: string; id?: string | null }) => {
-      const sp = new URLSearchParams()
-      const c  = next.cat   ?? cat
-      const s  = next.shape ?? shape
-      const cl = next.color ?? color
-      const id = next.id === undefined ? openId : next.id
-      if (c  !== 'all') sp.set('cat',   c)
-      if (s  !== 'all') sp.set('shape', s)
-      if (cl !== 'all') sp.set('color', cl)
-      if (id)           sp.set('id',    id)
-      return sp.toString()
-    },
-    [cat, shape, color, openId],
-  )
+  // Only the open piece ID lives in the URL so deep-links work.
+  const openId = params?.get('id') ?? initialOpenId
 
   const handleFilterChange = useCallback(
     (nextCat: string, nextShape: string, nextColor: string) => {
-      const qs = buildQs({ cat: nextCat, shape: nextShape, color: nextColor, id: null })
-      router.replace(qs ? `?${qs}` : '/archive', { scroll: false })
+      setCat(nextCat)
+      setShape(nextShape)
+      setColor(nextColor)
     },
-    [router, buildQs],
+    [],
   )
 
   const openPiece = useCallback(
     (slug: string) => {
-      const qs = buildQs({ id: slug })
-      router.push(`?${qs}`, { scroll: false })
+      const sp = new URLSearchParams()
+      sp.set('id', slug)
+      router.push(`?${sp.toString()}`, { scroll: false })
     },
-    [router, buildQs],
+    [router],
   )
 
   const closePiece = useCallback(() => {
-    const qs = buildQs({ id: null })
-    router.replace(qs ? `?${qs}` : '/archive', { scroll: false })
-  }, [router, buildQs])
+    router.replace('/archive', { scroll: false })
+  }, [router])
 
   const filtered = useMemo(
     () =>
@@ -101,7 +78,6 @@ export default function ArchiveClient({
         color={color}
         onFilterChange={handleFilterChange}
       />
-
       <ArchiveModal entry={openEntry} onClose={closePiece} />
     </>
   )

@@ -54,24 +54,38 @@
   transform: scaleX(1);
 }
 
-/* ── Dark variant (mobile filter zone overlay) ────────────────────────────── */
+/* ── Dark variant (mobile filter zone overlay) — pill chips ──────────────── */
 .rowDark {
   background: transparent;
   height: 100%;
   align-items: center;
   padding: 0 clamp(8px, 3vw, 16px);
+  gap: 6px;
 }
 
+/* Pill base — override the plain underline style */
 .rowDark .tab {
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.5);
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
 }
 
 .rowDark .tab:hover {
   color: rgba(255, 255, 255, 0.85);
 }
 
+/* Active pill — gold ring + faint gold tint fill */
 .rowDark .tabActive {
   color: var(--ba-gold, #95826b);
+  background: rgba(201, 169, 110, 0.12);
+  border-color: rgba(201, 169, 110, 0.45);
+}
+
+/* No underline animation in dark/pill mode */
+.rowDark .tab::after {
+  display: none;
 }
 
 /* ── Mobile ───────────────────────────────────────────────────────────────── */
@@ -98,13 +112,20 @@
     right: 12px;
   }
 
-  /* Dark variant on mobile — compact, scroll-enabled */
+  /* Dark/pill variant on mobile — compact, scroll-enabled */
   .rowDark {
-    padding: 0;
+    padding: 0 8px;
     justify-content: flex-start;
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    gap: 4px;
   }
   .rowDark::-webkit-scrollbar { display: none; }
+
+  .rowDark .tab {
+    padding: 4px 12px;
+    font-size: 9px;
+    flex-shrink: 0;
+  }
 }
