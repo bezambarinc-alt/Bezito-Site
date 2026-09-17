@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { getArchiveEntries } from '@/lib/data/archive'
 import type { ArchiveEntry } from '@/lib/data/archive-constants'
@@ -31,9 +32,11 @@ export default async function ArchivePage({
     // Archive not yet seeded — hit /api/admin/seed-archive to populate
   }
 
-  // Use first two entries for hero + editorial spotlight
-  const heroEntry      = entries[0] ?? null
-  const editorialEntry = entries[1] ?? null
+  // Randomize hero from first 10 entries; editorial = first entry that isn't the hero
+  const heroPool  = entries.slice(0, Math.min(10, entries.length))
+  const heroIdx   = Math.floor(Math.random() * heroPool.length)
+  const heroEntry      = heroPool[heroIdx] ?? null
+  const editorialEntry = entries.find((_, i) => i !== heroIdx) ?? null
 
   if (entries.length === 0) {
     return (
@@ -53,14 +56,24 @@ export default async function ArchivePage({
 
   return (
     <main>
-      {/* 1. Portrait hero — first archive entry's video */}
-      <section className="ba-portrait-hero">
-        {heroEntry?.mp4Url && (
+      {/* 1. Portrait hero — random entry from first 10 */}
+      <section className="ba-portrait-hero ba-portrait-hero--archive">
+        {heroEntry?.mp4Url ? (
           <video
             src={heroEntry.mp4Url}
             autoPlay muted loop playsInline preload="auto"
+            poster={heroEntry.gifUrl ?? undefined}
           />
-        )}
+        ) : heroEntry?.gifUrl ? (
+          <Image
+            src={heroEntry.gifUrl}
+            alt={heroEntry.title}
+            width={1600}
+            height={900}
+            sizes="100vw"
+            priority
+          />
+        ) : null}
         <div className="ba-portrait-hero__overlay">
           <p className="ba-portrait-hero__eyebrow">The Archive</p>
           <h1 className="ba-portrait-hero__title">Every Piece in Motion</h1>
