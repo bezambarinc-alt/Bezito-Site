@@ -87,8 +87,8 @@ export async function GET() {
   let featuredSection = ''
 
   try {
-    const rows = await sql<{ sku: string; name: string | null; category: string | null }>(
-      `SELECT sku, name, category
+    const rows = await sql<{ sku: string; slug: string | null; name: string | null; category: string | null }>(
+      `SELECT sku, slug, name, category
          FROM products
         WHERE active = true AND featured = true
         ORDER BY sort_order ASC, name ASC
@@ -99,7 +99,7 @@ export async function GET() {
       const lines = rows.map((r) => {
         const cat = (r.category ?? 'jewelry').toLowerCase()
         const title = r.name ?? r.sku
-        return `- [${title}](https://bezambar.com/jewelry/${cat}/${r.sku})`
+        return `- [${title}](https://bezambar.com/jewelry/${cat}/${r.slug ?? r.sku})`
       })
       featuredSection = `\n## Featured Pieces\n\n${lines.join('\n')}\n`
     }
