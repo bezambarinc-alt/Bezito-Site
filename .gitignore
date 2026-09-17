@@ -16,3 +16,12 @@ undefined:/
 .lighthouse-*/
 lighthouse.*/
 *.pma
+
+# Playwright output — test-results/ was committed, which is why `npm run lint`
+# reported errors from a run someone did months ago.
+test-results/
+playwright-report/
+
+# Build cache left over from the abandoned Astro migration. Also tracked; the
+# generated .mjs files in here are the source of the remaining lint errors.
+.astro/

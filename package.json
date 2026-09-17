@@ -9,7 +9,6 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@types/bcryptjs": "^2.4.6",
     "@vercel/functions": "^2.0.0",
     "bcryptjs": "^3.0.3",
     "chart.js": "^4.5.1",
@@ -18,11 +17,8 @@
     "next": "^16.3.5",
     "pg": "^8.13.0",
     "react": "^19.2.0",
-    "react-chartjs-2": "^5.3.1",
     "react-dom": "^19.2.0",
     "react-intersection-observer": "^11.0.0",
-    "react-markdown": "^9.1.0",
-    "rehype-sanitize": "^6.0.0",
     "server-only": "^0.0.1",
     "vanilla-cookieconsent": "^3.1.0",
     "zod": "^3.23.8"
