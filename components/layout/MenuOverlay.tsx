@@ -20,6 +20,11 @@ type NavEntry =
 
 interface SubCol { id: string; items: NavEntry[] }
 
+const RING_SHAPES = [
+  'Round', 'Oval', 'Emerald Cut', 'Radiant', 'Cushion',
+  'Pear', 'Princess', 'Marquise', 'Asscher', 'Heart',
+]
+
 // ── Root items ─────────────────────────────────────────────────────────────────
 
 const ROOT: NavEntry[] = [
@@ -242,24 +247,28 @@ export default function MenuOverlay({ categories = [], categoryProducts = {}, co
                 View All {getCategoryLabel(tertiary)}
               </Link>
             </li>
-            {tertiaryProducts.length > 0 && (
-              <li className={styles.divider} aria-hidden />
+            <li className={styles.divider} aria-hidden />
+            {tertiary === 'rings' ? (
+              RING_SHAPES.map((shape, i) => (
+                <li key={i} className={styles.shapeItem}>{shape}</li>
+              ))
+            ) : (
+              tertiaryProducts.map((p, i) => {
+                const { title, variant } = parseProductName(p.name)
+                return (
+                  <li key={i}>
+                    <Link
+                      href={`/jewelry/${tertiary}/${p.slug}`}
+                      onClick={handleClose}
+                      className={styles.item}
+                    >
+                      {title}
+                      {variant && <span className={styles.itemVariant}>{variant}</span>}
+                    </Link>
+                  </li>
+                )
+              })
             )}
-            {tertiaryProducts.map((p, i) => {
-              const { title, variant } = parseProductName(p.name)
-              return (
-                <li key={i}>
-                  <Link
-                    href={`/jewelry/${tertiary}/${p.slug}`}
-                    onClick={handleClose}
-                    className={styles.item}
-                  >
-                    {title}
-                    {variant && <span className={styles.itemVariant}>{variant}</span>}
-                  </Link>
-                </li>
-              )
-            })}
           </ul>
         )}
       </nav>
