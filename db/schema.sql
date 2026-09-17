@@ -16,9 +16,9 @@ CREATE TABLE IF NOT EXISTS pages (
   updated_at  TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
--- 2. products: READ CACHE of Plytix — rebuilt by sync cron, never source of truth
--- Plytix view-angle slugs → Neon columns (migration 014):
---   visual_top → view_1_url, visual_concept → view_2_url, visual_stone_sketch → view_3_url
+-- 2. products: READ CACHE of Zoho CRM Products — rebuilt by pim-sync cron, never source of truth
+-- Zoho CRM view fields → Neon columns (migration 014):
+--   Visual_Top → view_1_url, Visual_Concept → view_2_url, Visual_Stone_Sketch → view_3_url
 CREATE TABLE IF NOT EXISTS products (
   sku                TEXT PRIMARY KEY,
   slug               TEXT UNIQUE,   -- URL-safe slug derived from SKU at sync time
@@ -42,9 +42,9 @@ CREATE TABLE IF NOT EXISTS products (
   active             BOOLEAN NOT NULL DEFAULT true,
   featured           BOOLEAN NOT NULL DEFAULT false,
   sort_order         INTEGER NOT NULL DEFAULT 0,
-  view_1_url         TEXT,         -- Plytix: visual_top
-  view_2_url         TEXT,         -- Plytix: visual_concept
-  view_3_url         TEXT,         -- Plytix: visual_stone_sketch
+  view_1_url         TEXT,         -- Zoho CRM: Visual_Top
+  view_2_url         TEXT,         -- Zoho CRM: Visual_Concept
+  view_3_url         TEXT,         -- Zoho CRM: Visual_Stone_Sketch
   specs              JSONB NOT NULL DEFAULT '{}'::jsonb,
   synced_at          TIMESTAMPTZ NOT NULL DEFAULT now()
 );

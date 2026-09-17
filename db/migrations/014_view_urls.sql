@@ -1,8 +1,8 @@
 -- Add three-view-angle columns to products cache.
--- Plytix attribute slugs (confirmed 2026-08-19):
---   visual_top       → view_1_url
---   visual_concept   → view_2_url
---   visual_stone_sketch → view_3_url
+-- Zoho CRM field mapping:
+--   Visual_Top       → view_1_url
+--   Visual_Concept   → view_2_url
+--   Visual_Stone_Sketch → view_3_url
 -- COALESCE in the sync upsert means manually-patched values survive re-sync.
 
 ALTER TABLE products

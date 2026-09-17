@@ -54,7 +54,7 @@ const { active, openMenu, closeMenu, openSearch, openConcierge, openInquiryDrawe
 ### `ConciergeDrawer`
 Atelier concierge slide panel — `components/layout/ConciergeDrawer.tsx`
 
-Opens from the right. Contains service options (consultation booking, care, custom work). May link to Freshchat if/when the chat integration is re-added.
+Opens from the right. Contains service options (consultation booking, care, custom work). May link to Zoho SalesIQ if/when the chat integration is re-added.
 
 ---
 
