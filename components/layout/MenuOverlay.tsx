@@ -22,7 +22,7 @@ interface SubCol { id: string; items: NavEntry[] }
 
 const RING_SHAPES = [
   'Round', 'Oval', 'Emerald Cut', 'Radiant', 'Cushion',
-  'Pear', 'Princess', 'Marquise', 'Asscher', 'Heart',
+  'Pear', 'Princess', 'Marquise', 'Asscher', 'Heart', 'Blaze®',
 ]
 
 // ── Root items ─────────────────────────────────────────────────────────────────
@@ -273,8 +273,10 @@ export default function MenuOverlay({ categories = [], categoryProducts = {}, co
             <li className={styles.divider} aria-hidden />
 
             {tertiary === 'rings' && shape === null ? (
-              // Shape selector
-              RING_SHAPES.map((s, i) => (
+              // Shape selector — only show shapes that have at least one product
+              RING_SHAPES.filter(s =>
+                tertiaryProducts.some(p => (p.stoneShape ?? '').toLowerCase() === s.toLowerCase())
+              ).map((s, i) => (
                 <li key={i}>
                   <button
                     type="button"
