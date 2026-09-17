@@ -63,9 +63,14 @@ export default function AnalyticsClient() {
   // Load on mount + when the range changes
   useEffect(() => { load(days) }, [load, days])
 
-  // Poll every 30s for real-time KPIs (keeps current range)
+  // Poll for real-time KPIs (keeps current range). 5 minutes, not 30 seconds:
+  // each call runs eight aggregations over page_views, so a dashboard left open
+  // on a second monitor was firing ~2,900 of them a day for numbers that barely
+  // move. Pause while the tab is hidden — a backgrounded tab is nobody watching.
   useEffect(() => {
-    const t = setInterval(() => load(days), 30000)
+    const t = setInterval(() => {
+      if (document.visibilityState === 'visible') load(days)
+    }, 300_000)
     return () => clearInterval(t)
   }, [load, days])
 

@@ -52,7 +52,7 @@ export default async function LeadsPage() {
             {failed}
           </div>
           <div className={adminStyles.kpiLabel}>Failed</div>
-          <div className={adminStyles.kpiSub}>didn't reach Zoho CRM</div>
+          <div className={adminStyles.kpiSub}>didn&rsquo;t reach Zoho CRM</div>
         </div>
         <div className={adminStyles.kpiCard}>
           <div className={adminStyles.kpiValue}>{pending}</div>

@@ -132,31 +132,51 @@ export default function ProductsGrid({ products }: { products: AdminProduct[] })
     setPage(1)
   }, [])
 
-  async function patch(slug: string, body: Partial<RowState>) {
-    const res = await fetch(`/api/admin/products/${encodeURIComponent(slug)}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
-    })
-    if (!res.ok) alert('Update failed')
+  /** Returns false when the write did not land, so callers can roll the row back. */
+  async function patch(slug: string, body: Partial<RowState>): Promise<boolean> {
+    try {
+      const res = await fetch(`/api/admin/products/${encodeURIComponent(slug)}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      })
+      if (!res.ok) {
+        alert(res.status === 401 || res.status === 403
+          ? 'Update failed — your admin session has expired. Sign in again.'
+          : `Update failed (${res.status})`)
+        return false
+      }
+      return true
+    } catch {
+      alert('Update failed — network error')
+      return false
+    }
   }
 
-  function toggle(slug: string, field: 'active' | 'featured') {
-    const next = !rows[slug][field]
+  async function toggle(slug: string, field: 'active' | 'featured') {
+    const prev = rows[slug][field]
+    const next = !prev
     setRows((r) => ({ ...r, [slug]: { ...r[slug], [field]: next } }))
-    patch(slug, { [field]: next })
+    // Optimistic; put the row back if the server rejected the write so the grid
+    // never shows a state the database does not have.
+    if (!await patch(slug, { [field]: next })) {
+      setRows((r) => ({ ...r, [slug]: { ...r[slug], [field]: prev } }))
+    }
   }
 
-  function saveViews(slug: string) {
+  async function saveViews(slug: string) {
     const ev = editViews[slug] ?? {}
+    const prev = rows[slug]
     const update = {
       view_1_url: ev.v1 || null,
       view_2_url: ev.v2 || null,
       view_3_url: ev.v3 || null,
     }
     setRows((r) => ({ ...r, [slug]: { ...r[slug], ...update } }))
-    patch(slug, update)
     setExpanded(null)
+    if (!await patch(slug, update)) {
+      setRows((r) => ({ ...r, [slug]: prev }))
+    }
   }
 
   return (
@@ -250,6 +270,12 @@ export default function ProductsGrid({ products }: { products: AdminProduct[] })
                       title={row.active ? undefined : 'Draft preview (inactive product)'}
                     >
                       {thumb
+                        // next/image is wrong here: hero_visual is free-form DB text and
+                        // cloudinaryThumb() passes non-Cloudinary hosts straight through,
+                        // which would throw at runtime against images.remotePatterns. The
+                        // URL already carries a w_120,h_120 transform, so there is nothing
+                        // for the optimizer to do either.
+                        // eslint-disable-next-line @next/next/no-img-element
                         ? <img src={thumb} alt="" className={styles.thumb} style={row.active ? undefined : { opacity: 0.5 }} />
                         : <div className={styles.thumbFallback} />}
                     </a>

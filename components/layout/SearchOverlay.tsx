@@ -50,6 +50,25 @@ function SkeletonRows() {
 export default function SearchOverlay() {
   const { active, close } = useDrawers()
   const open = active === 'search'
+
+  return (
+    <div
+      className={`${styles.overlay} ${open ? styles.open : ''}`}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Search"
+      aria-hidden={!open}
+      onClick={close}
+    >
+      {/* Panel is remounted on every open and every close (see key) so the
+          query, results and keyboard selection start clean — the reset used to
+          be a setState in an effect, which cost a second render each time. */}
+      <SearchPanel key={open ? 'open' : 'closed'} open={open} close={close} />
+    </div>
+  )
+}
+
+function SearchPanel({ open, close }: { open: boolean; close: () => void }) {
   const router = useRouter()
 
   const [query, setQuery] = useState('')
@@ -61,31 +80,31 @@ export default function SearchOverlay() {
   const inputRef = useRef<HTMLInputElement>(null)
   const listRef = useRef<HTMLUListElement>(null)
 
-  // Focus on open; reset on close
+  // Focus on open
   useEffect(() => {
-    if (open) {
-      const t = setTimeout(() => inputRef.current?.focus(), 60)
-      return () => clearTimeout(t)
-    }
-    setQuery('')
-    setResults([])
-    setSearched(false)
-    setActiveIndex(-1)
+    if (!open) return
+    const t = setTimeout(() => inputRef.current?.focus(), 60)
+    return () => clearTimeout(t)
   }, [open])
 
-  // Reset active index whenever query or results change
-  useEffect(() => { setActiveIndex(-1) }, [query, results.length])
+  // Single entry point for query changes. Clearing the keyboard selection and
+  // raising the loading flag happen here, in the event, rather than in the
+  // fetch effect below — the effect body itself now touches no state.
+  const updateQuery = useCallback((next: string) => {
+    const q = next.trim()
+    setQuery(next)
+    setActiveIndex(-1)
+    setSearched(false)
+    setLoading(q.length >= 2)
+    // Below the threshold there is nothing to show — drop the previous result
+    // set so the suggestion pills render without a stale key hint underneath.
+    if (q.length < 2) setResults([])
+  }, [])
 
   // Debounced fetch — 180ms
   useEffect(() => {
     const q = query.trim()
-    if (q.length < 2) {
-      setResults([])
-      setSearched(false)
-      setLoading(false)
-      return
-    }
-    setLoading(true)
+    if (q.length < 2) return
     const ctrl = new AbortController()
     const t = setTimeout(async () => {
       try {
@@ -137,104 +156,95 @@ export default function SearchOverlay() {
   }, [activeIndex])
 
   const runSuggestion = (s: string) => {
-    setQuery(s)
+    updateQuery(s)
     inputRef.current?.focus()
   }
 
   return (
-    <div
-      className={`${styles.overlay} ${open ? styles.open : ''}`}
-      role="dialog"
-      aria-modal="true"
-      aria-label="Search"
-      aria-hidden={!open}
-      onClick={close}
-    >
-      <div className={styles.panel} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.close} onClick={close} aria-label="Close search">✕</button>
+    <div className={styles.panel} onClick={(e) => e.stopPropagation()}>
+      <button className={styles.close} onClick={close} aria-label="Close search">✕</button>
 
-        <div className={styles.inputRow}>
-          <input
-            ref={inputRef}
-            className={styles.input}
-            placeholder="Search jewelry, collections, archive…"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            aria-label="Search query"
-            aria-autocomplete="list"
-            aria-controls="search-results"
-            aria-activedescendant={activeIndex >= 0 ? `sr-${activeIndex}` : undefined}
-            autoComplete="off"
-            spellCheck={false}
-          />
-          {query && (
-            <button
-              className={styles.clear}
-              onClick={() => { setQuery(''); inputRef.current?.focus() }}
-              aria-label="Clear search"
-            >
-              ✕
-            </button>
-          )}
-        </div>
+      <div className={styles.inputRow}>
+        <input
+          ref={inputRef}
+          className={styles.input}
+          placeholder="Search jewelry, collections, archive…"
+          value={query}
+          onChange={(e) => updateQuery(e.target.value)}
+          aria-label="Search query"
+          aria-autocomplete="list"
+          aria-controls="search-results"
+          aria-activedescendant={activeIndex >= 0 ? `sr-${activeIndex}` : undefined}
+          autoComplete="off"
+          spellCheck={false}
+        />
+        {query && (
+          <button
+            className={styles.clear}
+            onClick={() => { updateQuery(''); inputRef.current?.focus() }}
+            aria-label="Clear search"
+          >
+            ✕
+          </button>
+        )}
+      </div>
 
-        <div className={styles.results} aria-live="polite" id="search-results">
-          {query.trim().length < 2 ? (
-            <div>
-              <p className={styles.suggestLabel}>Try searching for</p>
-              <ul className={styles.suggest}>
-                {SUGGESTIONS.map((s) => (
-                  <li key={s}>
-                    <button className={styles.suggestPill} onClick={() => runSuggestion(s)}>
-                      {s}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : loading ? (
-            <SkeletonRows />
-          ) : results.length > 0 ? (
-            <ul className={styles.resultList} ref={listRef} role="listbox">
-              {results.map((r, i) => (
-                <li key={`${r.type}-${r.sku ?? r.href}-${i}`} role="option" aria-selected={i === activeIndex} id={`sr-${i}`}>
-                  <Link
-                    href={r.href}
-                    className={`${styles.resultRow} ${i === activeIndex ? styles.resultRowActive : ''}`}
-                    style={{ animationDelay: `${i * 30}ms` }}
-                    onClick={close}
-                  >
-                    {r.thumb ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img className={styles.resultThumb} src={r.thumb} alt="" loading="lazy" />
-                    ) : (
-                      <span className={styles.resultThumbFallback} aria-hidden />
-                    )}
-                    <span className={styles.resultText}>
-                      <span className={styles.resultTitle}>
-                        <Highlight text={r.title} query={query.trim()} />
-                      </span>
-                      <span className={styles.resultMeta}>
-                        {r.type === 'archive' ? 'Archive' : 'Collection'}
-                        {r.sku ? ` · ${r.sku}` : ''}
-                      </span>
-                    </span>
-                    <span className={styles.resultArrow} aria-hidden>→</span>
-                  </Link>
+      <div className={styles.results} aria-live="polite" id="search-results">
+        {query.trim().length < 2 ? (
+          <div>
+            <p className={styles.suggestLabel}>Try searching for</p>
+            <ul className={styles.suggest}>
+              {SUGGESTIONS.map((s) => (
+                <li key={s}>
+                  <button className={styles.suggestPill} onClick={() => runSuggestion(s)}>
+                    {s}
+                  </button>
                 </li>
               ))}
             </ul>
-          ) : searched ? (
-            <p className={styles.hint}>No results for &ldquo;{query.trim()}&rdquo;. Try the menu to browse collections.</p>
-          ) : null}
-        </div>
-
-        {results.length > 0 && (
-          <p className={styles.keyHint} aria-hidden="true">
-            <kbd>↑↓</kbd> navigate &nbsp; <kbd>↵</kbd> open &nbsp; <kbd>esc</kbd> close
-          </p>
-        )}
+          </div>
+        ) : loading ? (
+          <SkeletonRows />
+        ) : results.length > 0 ? (
+          <ul className={styles.resultList} ref={listRef} role="listbox">
+            {results.map((r, i) => (
+              <li key={`${r.type}-${r.sku ?? r.href}-${i}`} role="option" aria-selected={i === activeIndex} id={`sr-${i}`}>
+                <Link
+                  href={r.href}
+                  className={`${styles.resultRow} ${i === activeIndex ? styles.resultRowActive : ''}`}
+                  style={{ animationDelay: `${i * 30}ms` }}
+                  onClick={close}
+                >
+                  {r.thumb ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img className={styles.resultThumb} src={r.thumb} alt="" loading="lazy" />
+                  ) : (
+                    <span className={styles.resultThumbFallback} aria-hidden />
+                  )}
+                  <span className={styles.resultText}>
+                    <span className={styles.resultTitle}>
+                      <Highlight text={r.title} query={query.trim()} />
+                    </span>
+                    <span className={styles.resultMeta}>
+                      {r.type === 'archive' ? 'Archive' : 'Collection'}
+                      {r.sku ? ` · ${r.sku}` : ''}
+                    </span>
+                  </span>
+                  <span className={styles.resultArrow} aria-hidden>→</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : searched ? (
+          <p className={styles.hint}>No results for &ldquo;{query.trim()}&rdquo;. Try the menu to browse collections.</p>
+        ) : null}
       </div>
+
+      {results.length > 0 && (
+        <p className={styles.keyHint} aria-hidden="true">
+          <kbd>↑↓</kbd> navigate &nbsp; <kbd>↵</kbd> open &nbsp; <kbd>esc</kbd> close
+        </p>
+      )}
     </div>
   )
 }

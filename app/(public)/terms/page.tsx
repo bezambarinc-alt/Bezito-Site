@@ -19,7 +19,7 @@ export default function TermsPage() {
         <section className={styles.section}>
           <p>
             Please read the following Terms and Conditions carefully before using this website.
-            All users of this site agree that access to and use of bezambar.com (the "Site") are subject to the following terms and conditions and other applicable law.
+            All users of this site agree that access to and use of bezambar.com (the &ldquo;Site&rdquo;) are subject to the following terms and conditions and other applicable law.
             If you do not agree to these terms, please do not use the Site.
           </p>
         </section>
@@ -111,7 +111,7 @@ export default function TermsPage() {
         <section className={styles.section}>
           <h2>9. Disclaimer of Warranties</h2>
           <p>
-            The Site and all materials and products on this Site are provided "as is" and without warranties of any kind, whether express or implied.
+            The Site and all materials and products on this Site are provided &ldquo;as is&rdquo; and without warranties of any kind, whether express or implied.
             To the fullest extent permissible under applicable law, Bez Ambar Inc. disclaims all warranties — express or implied — including implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
             Bez Ambar Inc. does not represent or warrant that the Site will be uninterrupted, error-free, or free of viruses or other harmful components.
           </p>
@@ -149,7 +149,7 @@ export default function TermsPage() {
             Any cause of action or claim you may have with respect to the Site must be commenced within one (1) year after the claim or cause of action arises.
           </p>
           <p>
-            Bez Ambar Inc.'s failure to insist upon or enforce strict performance of any provision of these Terms shall not be construed as a waiver of any provision or right.
+            Bez Ambar Inc.&rsquo;s failure to insist upon or enforce strict performance of any provision of these Terms shall not be construed as a waiver of any provision or right.
             Neither the course of conduct between the parties nor trade practice shall act to modify any of these terms.
             Bez Ambar Inc. may assign its rights and duties under this Agreement to any party at any time without notice to you.
           </p>
@@ -158,7 +158,7 @@ export default function TermsPage() {
         <section className={styles.section}>
           <h2>14. Changes to These Terms</h2>
           <p>
-            We may update these Terms from time to time. The "Last updated" date at the top of this page will reflect any changes.
+            We may update these Terms from time to time. The &ldquo;Last updated&rdquo; date at the top of this page will reflect any changes.
             Your continued use of the Site after changes are posted constitutes acceptance of the revised Terms.
             Provisions relating to Copyright, Trademarks, Disclaimers, Limitation of Liability, and Governing Law shall survive any termination of these Terms.
           </p>

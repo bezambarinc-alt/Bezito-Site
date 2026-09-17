@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+import Link from 'next/link'
 
 /** Root layout error boundary — must render its own html/body. */
 export default function GlobalError({
@@ -30,12 +31,12 @@ export default function GlobalError({
             >
               Try Again
             </button>
-            <a
+            <Link
               href="/"
               style={{ padding: '0.75rem 2rem', border: '1px solid rgba(26,26,26,0.4)', color: '#1a1a1a', textDecoration: 'none', fontFamily: 'inherit', letterSpacing: '0.15em', textTransform: 'uppercase', fontSize: '0.7rem', borderRadius: '999px', display: 'inline-block' }}
             >
               Return Home
-            </a>
+            </Link>
           </div>
         </div>
       </body>

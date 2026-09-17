@@ -11,7 +11,9 @@ export default function CuratorFeed({ nonce }: { nonce?: string }) {
     script.async = true
     if (nonce) script.setAttribute('nonce', nonce)
     document.head.appendChild(script)
-  }, [])
+    // nonce is in deps for correctness; the id guard above keeps the injection
+    // idempotent, so a re-run after a nonce change is a no-op.
+  }, [nonce])
 
   return null
 }

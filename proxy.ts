@@ -11,8 +11,27 @@ const SKIP = /^\/(_next|api|admin|favicon|robots|sitemap|llms|.*\.[a-z0-9]+$)/i
 // Common bot UA patterns — skip Neon writes for known crawlers
 const BOT_UA = /bot|crawl|spider|slurp|mediapartners|googlebot|bingbot|yandexbot|duckduckbot|baiduspider|sogou|exabot|facebot|ia_archiver|semrush|ahrefs|mj12bot/i
 
-// Build a per-request CSP string with a fresh nonce.
-// Nonce replaces 'unsafe-inline' in script-src — no inline script runs without it.
+/**
+ * Build a per-request CSP string with a fresh nonce.
+ * Nonce replaces 'unsafe-inline' in script-src — no inline script runs without it.
+ *
+ * ⚠️ This nonce is why the entire public site renders dynamically, and that is
+ * not an accident anyone can refactor away. Next.js reads the nonce back out of
+ * this header (app-render's parseRequestHeaders) and stamps it onto its own
+ * bootstrap chunks and flight-data scripts. Prerendered HTML is written at build
+ * time, when there is no request and therefore no nonce — so a statically
+ * rendered page ships <script> tags with no nonce attribute, and 'strict-dynamic'
+ * makes the browser ignore 'self', leaving nothing to allow them.
+ *
+ * Measured, not assumed: removing `getNonce()` from (public)/layout.tsx does flip
+ * a dozen routes to static, and Playwright against `next start` then reports 19
+ * CSP violations on /terms — every Next chunk blocked, zero JS. Reverted.
+ *
+ * The trade is therefore CSP-vs-ISR, and it belongs to whoever owns the security
+ * posture. To get static rendering back you must either drop 'strict-dynamic' and
+ * add 'unsafe-inline' (which is most of what this header is protecting against),
+ * or stop setting a nonce and accept inline scripts some other way.
+ */
 function buildCsp(nonce: string): string {
   const isDev = process.env.NODE_ENV !== 'production'
   return [
@@ -22,7 +41,12 @@ function buildCsp(nonce: string): string {
     `font-src 'self' https://fonts.gstatic.com https://webfonts.fontstand.com data:`,
     `img-src 'self' data: blob: https://res.cloudinary.com https://*.curator.io https://*.cdninstagram.com https://curator-assets.b-cdn.net`,
     `media-src 'self' blob: https://res.cloudinary.com`,
-    `connect-src 'self' https://res.cloudinary.com https://*.curator.io`,
+    // pagesense-collect / pagesense-hb-collect are where the Zoho PageSense tag
+    // (loaded inline by (public)/layout.tsx) beacons its data. They were never in
+    // this list, so every PageSense request has been blocked in production since
+    // the CSP shipped — the script loads, collects, and can't report. Caught by a
+    // Playwright run against a local production build, not by anything in CI.
+    `connect-src 'self' https://res.cloudinary.com https://*.curator.io https://*.zoho.com`,
     `frame-src 'self' https://www.google.com https://maps.google.com`,
     `object-src 'none'`,
     `base-uri 'self'`,
@@ -145,8 +169,14 @@ export default async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  // Run on everything EXCEPT api routes, admin login, static assets, image optimizer.
+  // Run on everything EXCEPT api routes, static assets and the image optimizer.
   // Admin auth + public view-logging are branched inside middleware().
-  // Excluding /api and /admin/login here is belt-and-suspenders with the guard above.
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|admin/login|portal/login|.*\\.[a-z0-9]+$).*)'],
+  //
+  // /admin/login and /portal/login are deliberately NOT excluded here. They used
+  // to be, which meant middleware never ran for them — and since the CSP header
+  // is only set by middleware, the two pages where passwords get typed were the
+  // only pages on the site serving no CSP at all. They still skip the auth gate;
+  // that happens in the guard at the top of middleware(), which sets the CSP
+  // header before returning.
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|.*\\.[a-z0-9]+$).*)'],
 }

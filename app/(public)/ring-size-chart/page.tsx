@@ -129,7 +129,7 @@ export default function RingSizeChartPage() {
           <ul className={styles.notes}>
             <li>Ring size can vary by up to half a size depending on temperature, time of day, and hydration. Always measure at body temperature.</li>
             <li>Wide bands (over 6mm) fit tighter than narrow bands of the same nominal size. Size up half a size for wide-band pieces like Bez Ambar eternity bands.</li>
-            <li>Knuckle size and finger tip size can differ. Measure the largest point the ring must pass over — the knuckle — and confirm the ring isn't too loose at the base.</li>
+            <li>Knuckle size and finger tip size can differ. Measure the largest point the ring must pass over — the knuckle — and confirm the ring isn&rsquo;t too loose at the base.</li>
             <li>Every Bez Ambar piece can be resized after purchase. Contact the atelier to arrange a sizing appointment.</li>
           </ul>
         </section>

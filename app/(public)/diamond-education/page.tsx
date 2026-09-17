@@ -38,7 +38,7 @@ export default function DiamondEducationPage() {
           <h1 className={styles.heroTitle}>The Language<br />of Light</h1>
           <div className={styles.heroRule} />
           <p className={styles.heroLede}>
-            Four characteristics determine a diamond's quality. Understanding them is
+            Four characteristics determine a diamond&rsquo;s quality. Understanding them is
             the difference between buying a certificate and choosing a stone you will
             wear for a lifetime.
           </p>
@@ -61,7 +61,7 @@ export default function DiamondEducationPage() {
           <div className={styles.sectionHeader}>
             <span className={styles.eyebrow}>Where to Begin</span>
             <h2 className={styles.heading}>The Four Cs</h2>
-            <p className={styles.intro}>Diamond quality is universally measured by four characteristics. Each plays a distinct role in the stone's beauty. Understanding how they interact will help you find the right stone at the right price.</p>
+            <p className={styles.intro}>Diamond quality is universally measured by four characteristics. Each plays a distinct role in the stone&rsquo;s beauty. Understanding how they interact will help you find the right stone at the right price.</p>
           </div>
           <div className={styles.fourCsGrid}>
             {[
@@ -88,7 +88,7 @@ export default function DiamondEducationPage() {
           <div className={styles.sectionHeader}>
             <span className={`${styles.eyebrow} ${styles.eyebrowWarm}`}>The Most Important C</span>
             <h2 className={`${styles.heading} ${styles.headingLight}`}>Cut</h2>
-            <p className={`${styles.intro} ${styles.introLight}`}>Cut is not the shape of a diamond — it is the quality of its faceting. A diamond's ability to reflect light depends entirely on the precision of its proportions, symmetry, and polish.</p>
+            <p className={`${styles.intro} ${styles.introLight}`}>Cut is not the shape of a diamond — it is the quality of its faceting. A diamond&rsquo;s ability to reflect light depends entirely on the precision of its proportions, symmetry, and polish.</p>
           </div>
           <div className={styles.prose}>
             <h3 className={styles.subheading}>What Cut Measures</h3>
@@ -148,7 +148,7 @@ export default function DiamondEducationPage() {
           <div className={styles.sectionHeader}>
             <span className={styles.eyebrow}>Fourth C</span>
             <h2 className={styles.heading}>Carat</h2>
-            <p className={styles.intro}>Carat is a unit of weight, not size. One carat equals exactly 200 milligrams. A diamond's face-up size (diameter) depends on both its carat weight and its cut proportions.</p>
+            <p className={styles.intro}>Carat is a unit of weight, not size. One carat equals exactly 200 milligrams. A diamond&rsquo;s face-up size (diameter) depends on both its carat weight and its cut proportions.</p>
           </div>
           <div className={styles.prose}>
             <h3 className={styles.subheading}>Weight vs Size</h3>
@@ -199,7 +199,7 @@ export default function DiamondEducationPage() {
           <div className={styles.anatomyGrid}>
             <div className={styles.anatomyPart}>
               <h3 className={styles.anatomyName}>Crown</h3>
-              <p className={styles.anatomyDesc}>The upper portion above the girdle. The crown captures light and directs it into the stone. A well-proportioned crown creates the "sparkle" visible in normal lighting.</p>
+              <p className={styles.anatomyDesc}>The upper portion above the girdle. The crown captures light and directs it into the stone. A well-proportioned crown creates the &ldquo;sparkle&rdquo; visible in normal lighting.</p>
             </div>
             <div className={styles.anatomyPart}>
               <h3 className={styles.anatomyName}>Girdle</h3>

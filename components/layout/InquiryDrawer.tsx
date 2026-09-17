@@ -1,6 +1,6 @@
 'use client'
 
-import { useActionState, useEffect, useState } from 'react'
+import { useActionState, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { useDrawers } from './DrawerContext'
 import { submitInquiry, type InquiryState } from '@/app/actions/inquiry'
@@ -21,9 +21,16 @@ export default function InquiryDrawer() {
   const [state, formAction, pending] = useActionState(submitInquiry, initialState)
   const [intent, setIntent] = useState<string>(inquiryPrefill.intent ?? '')
 
-  useEffect(() => {
-    if (open) setIntent(inquiryPrefill.intent ?? '')
-  }, [open, inquiryPrefill.intent])
+  // Re-seed the intent select every time the drawer opens (or its prefill
+  // changes while open). Adjusted during render — React's "adjusting state when
+  // props change" — rather than in an effect, which rendered the stale intent
+  // for one frame and cost a second pass on every open.
+  const prefillIntent = inquiryPrefill.intent ?? ''
+  const [lastSeed, setLastSeed] = useState({ open, prefillIntent })
+  if (lastSeed.open !== open || lastSeed.prefillIntent !== prefillIntent) {
+    setLastSeed({ open, prefillIntent })
+    if (open) setIntent(prefillIntent)
+  }
 
   const showDate    = APPOINTMENT_INTENTS.has(intent)
   const hideMessage = HIDE_MESSAGE_INTENTS.has(intent)
@@ -175,7 +182,7 @@ export default function InquiryDrawer() {
                 </label>
               )}
 
-              <p className={styles.privacy}>Your enquiry is private and handled directly by Bez's team.</p>
+              <p className={styles.privacy}>Your enquiry is private and handled directly by Bez&rsquo;s team.</p>
 
               {state.status === 'error' && state.message && (
                 <p className={styles.formErr} role="alert">{state.message}</p>

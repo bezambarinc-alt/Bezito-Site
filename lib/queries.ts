@@ -91,11 +91,28 @@ const COLS = `
   center_stone_weight, collection, active, featured, sort_order, synced_at,
   view_1_url, view_2_url, view_3_url`
 
+/**
+ * URL-safe normalisation of the sku column, mirroring deriveSlug()'s SKU
+ * fallback in app/api/cron/pim-sync/route.ts.
+ *
+ * The old backstop was a bare `sku = $1`, which could never fire: Postgres `=`
+ * is case-sensitive and real SKUs are upper-case with spaces around the dash
+ * ('C0536 - 1TSROVPS'), while the URLs that need rescuing are lower-case and
+ * hyphenated ('c0536-1tsrovps'). Normalising both sides makes the fallback do
+ * what its comment always claimed it did.
+ *
+ * Seq-scans instead of using the slug index — fine on a ~100-row table, and
+ * only reached when the indexed `slug = $1` half of the OR misses.
+ */
+const SKU_AS_SLUG = `btrim(lower(regexp_replace(sku, '[^a-zA-Z0-9]+', '-', 'g')), '-')`
+
 export async function getProductBySlug(slug: string): Promise<Product | null> {
-  // Query by slug column (URL-safe, generated from SKU at sync time).
-  // Fallback to raw SKU match for backward compat with any old links.
+  // Query by slug column (URL-safe, derived from the product name at sync time).
+  // Fallback to a normalised SKU match for backward compat with old SKU links.
   const [row] = await sql<Record<string, unknown>>(
-    `SELECT ${COLS} FROM products WHERE (slug = $1 OR sku = $1) AND active = true LIMIT 1`,
+    `SELECT ${COLS} FROM products
+      WHERE (slug = $1 OR ${SKU_AS_SLUG} = lower($1)) AND active = true
+      LIMIT 1`,
     [slug],
   )
   return row ? rowToProduct(row) : null
@@ -104,7 +121,9 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
 /** Same as getProductBySlug but ignores active flag — for admin draft preview. */
 export async function getProductBySlugPreview(slug: string): Promise<Product | null> {
   const [row] = await sql<Record<string, unknown>>(
-    `SELECT ${COLS} FROM products WHERE (slug = $1 OR sku = $1) LIMIT 1`,
+    `SELECT ${COLS} FROM products
+      WHERE slug = $1 OR ${SKU_AS_SLUG} = lower($1)
+      LIMIT 1`,
     [slug],
   )
   return row ? rowToProduct(row) : null

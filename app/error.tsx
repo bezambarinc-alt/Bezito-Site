@@ -6,6 +6,7 @@
  */
 
 import { useEffect } from 'react'
+import Link from 'next/link'
 import styles from './not-found.module.css'
 
 export default function GlobalError({
@@ -30,7 +31,7 @@ export default function GlobalError({
         </p>
         <div className={styles.actions}>
           <button onClick={reset} className={styles.primary}>Try Again</button>
-          <a href="/" className={styles.ghost}>Return Home</a>
+          <Link href="/" className={styles.ghost}>Return Home</Link>
         </div>
       </div>
     </main>

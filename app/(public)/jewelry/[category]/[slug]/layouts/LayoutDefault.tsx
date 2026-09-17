@@ -35,7 +35,6 @@ export default function LayoutDefault({
       <section className={styles.heroSplit}>
         <div className={styles.heroVideo}>
           {heroVideo ? (
-            // eslint-disable-next-line @next/next/no-img-element
             <video src={heroVideo} autoPlay muted loop playsInline preload="auto" poster={heroPoster ?? undefined} />
           ) : heroPoster ? (
             <Image

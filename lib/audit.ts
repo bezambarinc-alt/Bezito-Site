@@ -22,6 +22,7 @@ export type AuditAction =
   | 'admin.page.created'
   | 'admin.page.updated'
   | 'admin.page.archived'
+  | 'admin.product.updated'
   | 'admin.template.activated'
   | 'portal.pin.generated'
   | 'portal.pin.revoked'

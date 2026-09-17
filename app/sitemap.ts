@@ -60,14 +60,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ── Products (Neon DB) ───────────────────────────────────────────────────
   let productEntries: MetadataRoute.Sitemap = []
   try {
-    const rows = await sql<{ slug: string; category: string | null; synced_at: string | null }>(
+    // category IS NOT NULL is load-bearing. 18 active products have no category,
+    // and the old `category ?? 'jewelry'` fallback submitted them to Google as
+    // /jewelry/jewelry/<slug> — a URL with no page behind it. Those pieces are
+    // also invisible in nav and on every category page, so the sitemap was the
+    // only thing claiming they exist. Give them a category in Zoho and they
+    // reappear here automatically; until then, don't advertise a 404.
+    const rows = await sql<{ slug: string; category: string; synced_at: string | null }>(
       `SELECT slug, category, synced_at
          FROM products
-        WHERE active = true
+        WHERE active = true AND category IS NOT NULL AND category <> ''
         ORDER BY sort_order ASC, name ASC`,
     )
     productEntries = rows.map((r) => ({
-      url: `${BASE}/jewelry/${(r.category ?? 'jewelry').toLowerCase()}/${r.slug}`,
+      url: `${BASE}/jewelry/${r.category.toLowerCase()}/${r.slug}`,
       lastModified: r.synced_at ? new Date(r.synced_at) : now,
       changeFrequency: 'weekly' as Freq,
       priority: 0.7,

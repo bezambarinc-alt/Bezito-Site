@@ -39,12 +39,6 @@ export default function ArchiveCarousel({
     [index, total],
   )
 
-  // Reset carousel position when filter changes
-  useEffect(() => {
-    setIndex(0)
-    setMobileIndex(0)
-  }, [cat, shape, color])
-
   // Play active + both neighbours so blurred flanks show live frames
   useEffect(() => {
     videoRefs.current.forEach((v, i) => {
@@ -69,6 +63,18 @@ export default function ArchiveCarousel({
   const mobileActiveRef = useRef(0)
   // playPromisesRef stores in-flight play() promises so we can await them before pausing
   const playPromisesRef = useRef<Promise<void>[]>([])
+
+  // Reset both carousel positions in the filter event itself. This used to be an
+  // effect keyed on [cat, shape, color], which cost an extra render pass on every
+  // filter tap; the filter row is the only thing that changes those props.
+  const handleFilterChange = useCallback(
+    (nextCat: string, nextShape: string, nextColor: string) => {
+      setIndex(0)
+      setMobileIndex(0)
+      onFilterChange(nextCat, nextShape, nextColor)
+    },
+    [onFilterChange],
+  )
 
   useEffect(() => {
     const update = () => setStackHeight(`${window.innerHeight * total}px`)
@@ -301,7 +307,7 @@ export default function ArchiveCarousel({
     <>
       {/* ── Desktop horizontal filmstrip (hidden on mobile) ─────────────── */}
       <div className={styles.section}>
-        <ArchiveFilterRow cat={cat} shape={shape} color={color} onFilterChange={onFilterChange} />
+        <ArchiveFilterRow cat={cat} shape={shape} color={color} onFilterChange={handleFilterChange} />
 
         <section className={styles.stage} aria-label="The Archive" aria-roledescription="carousel">
           <div className={styles.track}>
@@ -422,7 +428,7 @@ export default function ArchiveCarousel({
 
           {/* Filter zone — top 25%, frosted glass, always accessible while browsing */}
           <div className={styles.mobileFilterZone}>
-            <ArchiveFilterRow cat={cat} shape={shape} color={color} onFilterChange={onFilterChange} dark />
+            <ArchiveFilterRow cat={cat} shape={shape} color={color} onFilterChange={handleFilterChange} dark />
           </div>
 
           {/* Frosted glass overlay — bottom 25% blurs next entry peeking through */}

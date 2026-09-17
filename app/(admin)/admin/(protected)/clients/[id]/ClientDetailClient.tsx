@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import adminStyles from '../../admin.module.css'
 import styles from './client.module.css'
 
@@ -95,7 +96,7 @@ export default function ClientDetailClient({ client: initial, proposals, pages, 
           </p>
         </div>
         <div className={styles.actions}>
-          <a href="/admin/clients" className="admin-link">← All Clients</a>
+          <Link href="/admin/clients" className="admin-link">← All Clients</Link>
           {!editMode && (
             <button className={styles.editBtn} onClick={openEdit}>Edit</button>
           )}

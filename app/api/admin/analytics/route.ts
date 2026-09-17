@@ -18,9 +18,12 @@ export async function GET(req: NextRequest) {
   const days = [7, 30, 90].includes(daysParam) ? daysParam : 30
   const since = `${days} days`
 
-  const [
-    kpis, timeseries, sources, geo, devices, topPages, funnel, realtime,
-  ] = await Promise.all([
+  // Two waves of four rather than one Promise.all of eight. lib/db.ts caps the
+  // pool at 10 connections for the whole function instance, so a single
+  // dashboard load was claiming 8 of them — two admins refreshing at the same
+  // time starved every other request on that instance. Four at a time keeps
+  // headroom, at the cost of one extra round-trip of latency.
+  const [kpis, timeseries, sources, geo] = await Promise.all([
     // KPIs — bounded to window
     sql<{ total: string; unique: string; today: string; leads_week: string }>(
       `SELECT
@@ -52,6 +55,9 @@ export async function GET(req: NextRequest) {
        GROUP BY country ORDER BY views DESC LIMIT 15`,
       [since],
     ),
+  ])
+
+  const [devices, topPages, funnel, realtime] = await Promise.all([
     // Devices (bounded)
     sql<{ device: string; views: string }>(
       `SELECT device, COUNT(*) AS views FROM page_views

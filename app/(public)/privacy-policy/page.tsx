@@ -19,8 +19,8 @@ export default function PrivacyPolicyPage() {
         <section className={styles.section}>
           <h2>Overview</h2>
           <p>
-            The website located at bezambar.com (the "Site") is operated by Bez Ambar Inc. ("Bez Ambar," "we," "us," or "our").
-            This Bez Ambar Data Use &amp; Security Policy ("Privacy Policy") covers information collected or submitted by you through the Site.
+            The website located at bezambar.com (the &ldquo;Site&rdquo;) is operated by Bez Ambar Inc. (&ldquo;Bez Ambar,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;).
+            This Bez Ambar Data Use &amp; Security Policy (&ldquo;Privacy Policy&rdquo;) covers information collected or submitted by you through the Site.
             By using or accessing the Site, you accept the terms of this Privacy Policy and the{' '}
             <a href="/terms">Terms of Service</a> of this website.
           </p>
@@ -107,7 +107,7 @@ export default function PrivacyPolicyPage() {
           </ul>
           <p>
             To exercise these rights, contact us at{' '}
-            <a href="mailto:bez@bezambar.com?subject=Privacy%20Request">bez@bezambar.com</a> with the subject line "Privacy Request,"
+            <a href="mailto:bez@bezambar.com?subject=Privacy%20Request">bez@bezambar.com</a> with the subject line &ldquo;Privacy Request,&rdquo;
             or visit our <a href="/legal/ccpa-opt-out">CCPA Opt-Out page</a>.
           </p>
         </section>
@@ -133,7 +133,7 @@ export default function PrivacyPolicyPage() {
         <section className={styles.section}>
           <h2>9. Changes to This Policy</h2>
           <p>
-            We may update this policy from time to time. The "Last updated" date at the top of this page reflects when changes were last made.
+            We may update this policy from time to time. The &ldquo;Last updated&rdquo; date at the top of this page reflects when changes were last made.
             Continued use of our site after updates constitutes acceptance of the revised policy.
           </p>
         </section>

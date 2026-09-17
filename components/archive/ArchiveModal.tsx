@@ -23,7 +23,14 @@ interface Props {
 }
 
 export default function ArchiveModal({ entry, onClose }: Props) {
-  const open = entry !== null
+  if (!entry) return null
+  // Keyed on the slug so opening a different piece remounts the panel: name,
+  // email, status and error all start clean from useState, instead of being
+  // cleared by a setState inside an effect on every open.
+  return <ArchiveModalPanel key={entry.slug} entry={entry} onClose={onClose} />
+}
+
+function ArchiveModalPanel({ entry, onClose }: { entry: ArchiveEntry; onClose: () => void }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const nameRef  = useRef<HTMLInputElement>(null)
 
@@ -32,44 +39,40 @@ export default function ArchiveModal({ entry, onClose }: Props) {
   const [status, setStatus] = useState<FormStatus>('idle')
   const [errMsg, setErrMsg] = useState('')
 
-  // Autoplay video on open; pause + clear on close
+  // Autoplay video on mount; pause + clear on unmount
   useEffect(() => {
     const vid = videoRef.current
-    if (!vid) return
-    if (open && entry?.mp4Url) {
-      vid.src = entry.mp4Url
-      vid.load()
-      vid.play().catch(() => {})
-    } else {
+    if (!vid || !entry.mp4Url) return
+    vid.src = entry.mp4Url
+    vid.load()
+    vid.play().catch(() => {})
+    return () => {
       vid.pause()
       vid.removeAttribute('src')
       vid.load()
     }
-  }, [open, entry?.mp4Url])
+  }, [entry.mp4Url])
 
-  // Reset form + focus name when opening a new piece; lock body scroll
+  // Focus name on mount; lock body scroll while the modal is up
   useEffect(() => {
-    if (!open) return
-    setName(''); setEmail(''); setStatus('idle'); setErrMsg('')
     document.body.style.overflow = 'hidden'
     const t = setTimeout(() => nameRef.current?.focus(), 60)
     return () => {
       clearTimeout(t)
       document.body.style.overflow = ''
     }
-  }, [open, entry?.slug])
+  }, [])
 
   // ESC to close
   useEffect(() => {
-    if (!open) return
     const h = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
     window.addEventListener('keydown', h)
     return () => window.removeEventListener('keydown', h)
-  }, [open, onClose])
+  }, [onClose])
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (!name || !email || !entry) return
+    if (!name || !email) return
     setStatus('sending')
     try {
       const res = await fetch('/api/lead', {
@@ -93,8 +96,6 @@ export default function ArchiveModal({ entry, onClose }: Props) {
       setErrMsg('Something went wrong. Please email us at bez@bezambar.com.')
     }
   }
-
-  if (!open || !entry) return null
 
   return (
     <div className={styles.overlay} role="dialog" aria-modal="true" aria-label="Piece detail">

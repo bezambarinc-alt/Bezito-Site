@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import styles from './dashboard.module.css'
 
 interface PortalPage {
@@ -18,7 +19,14 @@ interface Props {
   clientName: string
 }
 
+/** A 401 means the portal session lapsed — say so rather than "try again". */
+function pinErrorText(status: number, action: string): string {
+  if (status === 401 || status === 403) return 'Your session has expired. Please sign in again.'
+  return `Couldn’t ${action}. Please try again.`
+}
+
 export default function DashboardClient({ pages, clientName }: Props) {
+  const router = useRouter()
   const proposals = pages.filter(p => p.doc_type === 'proposal')
   const showcases  = pages.filter(p => p.doc_type === 'showcase')
 
@@ -29,6 +37,9 @@ export default function DashboardClient({ pages, clientName }: Props) {
     Object.fromEntries(pages.map(p => [p.slug, p.pin_expires_at])),
   )
   const [loading, setLoading] = useState<Record<string, boolean>>({})
+  // Per-card error text — a failed pin call used to be swallowed, leaving the
+  // card looking unchanged with no explanation.
+  const [pinError, setPinError] = useState<Record<string, string | null>>({})
 
   // Request form state
   const [reqSku, setReqSku]       = useState('')
@@ -37,13 +48,18 @@ export default function DashboardClient({ pages, clientName }: Props) {
 
   async function generatePin(slug: string) {
     setLoading(l => ({ ...l, [slug]: true }))
+    setPinError(e => ({ ...e, [slug]: null }))
     try {
       const res = await fetch(`/api/portal/pages/${slug}/pin`, { method: 'POST' })
       if (res.ok) {
         const d = await res.json()
         setPinState(s => ({ ...s, [slug]: d.pin }))
         setPinExpiry(s => ({ ...s, [slug]: d.expires }))
+      } else {
+        setPinError(e => ({ ...e, [slug]: pinErrorText(res.status, 'generate an access code') }))
       }
+    } catch {
+      setPinError(e => ({ ...e, [slug]: 'Network error — check your connection and try again.' }))
     } finally {
       setLoading(l => ({ ...l, [slug]: false }))
     }
@@ -51,12 +67,17 @@ export default function DashboardClient({ pages, clientName }: Props) {
 
   async function revokePin(slug: string) {
     setLoading(l => ({ ...l, [slug]: true }))
+    setPinError(e => ({ ...e, [slug]: null }))
     try {
       const res = await fetch(`/api/portal/pages/${slug}/pin`, { method: 'DELETE' })
       if (res.ok) {
         setPinState(s => ({ ...s, [slug]: null }))
         setPinExpiry(s => ({ ...s, [slug]: null }))
+      } else {
+        setPinError(e => ({ ...e, [slug]: pinErrorText(res.status, 'revoke the access code') }))
       }
+    } catch {
+      setPinError(e => ({ ...e, [slug]: 'Network error — check your connection and try again.' }))
     } finally {
       setLoading(l => ({ ...l, [slug]: false }))
     }
@@ -99,7 +120,10 @@ export default function DashboardClient({ pages, clientName }: Props) {
             className={styles.signout}
             onClick={async () => {
               await fetch('/api/portal/auth', { method: 'DELETE' })
-              window.location.href = '/portal/login'
+              // refresh() drops the cached RSC payload for the dashboard so the
+              // signed-out state can't be served back from the client router.
+              router.replace('/portal/login')
+              router.refresh()
             }}
           >Sign out</button>
         </div>
@@ -139,6 +163,7 @@ export default function DashboardClient({ pages, clientName }: Props) {
                 const pin    = pinState[p.slug]
                 const expiry = pinExpiry[p.slug]
                 const busy   = loading[p.slug]
+                const err    = pinError[p.slug]
                 const isLive = p.status === 'live'
 
                 return (
@@ -149,6 +174,8 @@ export default function DashboardClient({ pages, clientName }: Props) {
                         {isLive ? 'Live' : p.status}
                       </span>
                     </div>
+
+                    {err && <p className={styles.formError} role="alert">{err}</p>}
 
                     {pin ? (
                       <div className={styles.pinRow}>
@@ -190,10 +217,10 @@ export default function DashboardClient({ pages, clientName }: Props) {
         {/* ── Request a Page ── */}
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Request a Page</h2>
-          <p className={styles.sectionSub}>Tell us what you'd like and we'll build it for you.</p>
+          <p className={styles.sectionSub}>Tell us what you&rsquo;d like and we&rsquo;ll build it for you.</p>
 
           {reqStatus === 'sent' ? (
-            <p className={styles.success}>Request received — we'll be in touch.</p>
+            <p className={styles.success}>Request received — we&rsquo;ll be in touch.</p>
           ) : (
             <form className={styles.requestForm} onSubmit={submitRequest}>
               {reqStatus === 'error' && <p className={styles.formError}>Something went wrong. Please try again.</p>}

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import styles from './Reveal.module.css'
 
 /**
@@ -25,24 +25,27 @@ export default function Reveal({
   className?: string
 }) {
   const ref = useRef<HTMLElement>(null)
-  const [shown, setShown] = useState(false)
 
+  // The reveal is a single class toggle on our own node, so it is applied
+  // straight to the DOM rather than held in React state — no re-render, and
+  // no cascading render pass for every Reveal on the page.
   useEffect(() => {
     const el = ref.current
     if (!el) return
+    const reveal = () => el.classList.add(styles.in)
     if (
       typeof window === 'undefined' ||
       !('IntersectionObserver' in window) ||
       window.matchMedia('(prefers-reduced-motion: reduce)').matches
     ) {
-      setShown(true)
+      reveal()
       return
     }
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {
           if (e.isIntersecting) {
-            setShown(true)
+            reveal()
             io.disconnect()
           }
         }
@@ -56,7 +59,7 @@ export default function Reveal({
   return (
     <Tag
       ref={ref}
-      className={`${styles.reveal} ${shown ? styles.in : ''} ${className}`}
+      className={`${styles.reveal} ${className}`}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
     >
       {children}
