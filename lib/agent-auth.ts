@@ -1,6 +1,7 @@
 import 'server-only'
 import { NextRequest } from 'next/server'
 import { jwtVerify } from 'jose'
+import { timingSafeEqual } from 'node:crypto'
 
 /**
  * Agent auth — short-lived JWT signed with BEZITO_SECRET.
@@ -28,4 +29,31 @@ export async function isAuthorizedAgent(req: NextRequest): Promise<boolean> {
   } catch {
     return false
   }
+}
+
+/**
+ * Constant-time check of `Authorization: Bearer <secret>` against one or more
+ * named env secrets. Node runtime only (uses node:crypto).
+ *
+ * Fail-closed by construction. The pattern this replaces —
+ *   `auth !== \`Bearer ${process.env.CRON_SECRET}\``
+ * — interpolates an unset env var to the literal string "Bearer undefined",
+ * so anyone who sent that header authenticated. An unset secret here is simply
+ * skipped, and with no candidates left the function returns false.
+ */
+export function hasValidBearerSecret(req: NextRequest, ...envVars: string[]): boolean {
+  const auth = req.headers.get('authorization') ?? ''
+  if (!auth.startsWith('Bearer ')) return false
+  const presented = Buffer.from(auth.slice(7), 'utf8')
+
+  let ok = false
+  for (const name of envVars) {
+    const secret = process.env[name]
+    if (!secret) continue // unset → not a valid credential, never a match
+    const expected = Buffer.from(secret, 'utf8')
+    // timingSafeEqual throws on length mismatch, so length is checked first.
+    // No early return: keep the work uniform across candidates.
+    if (expected.length === presented.length && timingSafeEqual(expected, presented)) ok = true
+  }
+  return ok
 }

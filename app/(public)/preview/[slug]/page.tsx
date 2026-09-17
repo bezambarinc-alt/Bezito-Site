@@ -3,6 +3,7 @@ import { getClientSession } from '@/lib/client-auth'
 import { cookies } from 'next/headers'
 import { sql } from '@/lib/db'
 import { jwtVerify } from 'jose'
+import { isAdminRole } from '@/lib/roles'
 import { TEMPLATES, isValidTemplateId } from '@/app/(public)/jewelry/[category]/[slug]/layouts'
 import { getCategoryLabel } from '@/lib/data/categories'
 import type { SpecItem } from '@/types/blocks'
@@ -30,7 +31,9 @@ export default async function PreviewPage({ params, searchParams }: Ctx) {
   if (adminToken) {
     try {
       const { payload } = await jwtVerify(adminToken, JWT_SECRET)
-      isAdmin = !!payload.sub
+      // `sub` alone is not proof of admin — portal-client tokens share JWT_SECRET
+      // and also carry a `sub`. Require an allowlisted admin role.
+      isAdmin = isAdminRole(payload.role)
     } catch { /* invalid session */ }
   }
   const isAdminPreview = isAdmin && tplParam !== null
@@ -72,17 +75,21 @@ export default async function PreviewPage({ params, searchParams }: Ctx) {
     // page.shared === true → publicly accessible, fall through
   }
 
-  // PIN check — showcases only (proposals are client-gated, not PIN-gated)
-  if (!isAdminPreview && page.doc_type === 'showcase') {
-    const requiresPin =
+  // PIN gate — showcases only (proposals are client-gated above).
+  // Default deny: a showcase is readable only while it has an unexpired PIN AND
+  // the visitor has entered it. Previously a null/expired PIN skipped the gate
+  // entirely, so "revoke access code" published the page to anyone with the URL.
+  if (!isAdmin && page.doc_type === 'showcase') {
+    const pinActive =
       page.customer_pin !== null &&
       page.pin_expires_at !== null &&
       new Date(page.pin_expires_at) > new Date()
 
-    if (requiresPin) {
-      const granted = jar.get(`ba_preview_${slug}`)?.value === '1'
-      if (!granted) return <PinGate slug={slug} />
-    }
+    // Revoked or expired → locked, not public. 404 so the slug isn't enumerable.
+    if (!pinActive) notFound()
+
+    const granted = jar.get(`ba_preview_${slug}`)?.value === '1'
+    if (!granted) return <PinGate slug={slug} />
   }
 
   // Template resolution: ?tpl param (admin preview) → page's own template_id → showcase global → product global
@@ -105,8 +112,10 @@ export default async function PreviewPage({ params, searchParams }: Ctx) {
   const storedGlobal = globalRow?.value
   const globalActive = (storedGlobal && isValidForPreview(storedGlobal)) ? storedGlobal : showcaseFallback
 
-  // Per-page override and admin tpl param also scope-checked
-  const resolvedId   = tplParam ?? page.template_id ?? globalActive
+  // Per-page override and admin tpl param also scope-checked.
+  // ?tpl= is honoured only for a real admin session — it's a preview affordance,
+  // not something an anonymous visitor should be able to force.
+  const resolvedId   = (isAdminPreview ? tplParam : null) ?? page.template_id ?? globalActive
   const templateId   = isValidForPreview(resolvedId ?? '') ? resolvedId! : showcaseFallback
   const Layout       = TEMPLATES[templateId].component
 

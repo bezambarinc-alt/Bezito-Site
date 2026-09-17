@@ -1,5 +1,6 @@
 import 'server-only'
 import type { NextRequest } from 'next/server'
+import { getClientIp } from './client-ip'
 
 /**
  * Extract client IP + geolocation from request headers.
@@ -13,10 +14,9 @@ export interface GeoInfo {
 }
 
 export function getGeo(req: NextRequest): GeoInfo {
-  const ip =
-    req.headers.get('x-forwarded-for')?.split(',')[0].trim() ??
-    req.headers.get('x-real-ip') ??
-    'unknown'
+  // Platform-injected headers only — a client-supplied x-forwarded-for entry
+  // must never become the rate-limit key. See lib/client-ip.ts.
+  const ip = getClientIp(req.headers)
 
   // Vercel geo headers (present in production on Vercel)
   const city =

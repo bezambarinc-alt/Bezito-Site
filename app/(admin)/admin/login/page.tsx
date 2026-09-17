@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
 import { headers } from 'next/headers'
 import { isIpWhitelisted } from '@/lib/whitelist'
+import { getClientIp } from '@/lib/client-ip'
 import LoginForm from './LoginForm'
 
 /**
@@ -10,7 +11,9 @@ import LoginForm from './LoginForm'
  */
 export default async function LoginPage() {
   const hdrs = await headers()
-  const ip = hdrs.get('x-forwarded-for')?.split(',')[0].trim() ?? 'unknown'
+  // Same extraction as /api/auth/pin, so the tab default matches what the
+  // server will actually accept.
+  const ip = getClientIp(hdrs)
   const whitelisted = await isIpWhitelisted(ip)
 
   return (

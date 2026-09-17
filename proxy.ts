@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { jwtVerify } from 'jose'
+import { isAdminRole } from '@/lib/roles'
+import { getClientIp } from '@/lib/client-ip'
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET!)
 
@@ -41,8 +43,7 @@ function logView(req: NextRequest): void {
     path,
     referer: req.headers.get('referer') || '',
     ua,
-    ip: req.headers.get('x-forwarded-for')?.split(',')[0].trim()
-        || req.headers.get('x-real-ip') || 'unknown',
+    ip: getClientIp(req.headers),
     city:    req.headers.get('x-vercel-ip-city') || '',
     region:  req.headers.get('x-vercel-ip-country-region') || '',
     country: req.headers.get('x-vercel-ip-country') || '',
@@ -130,7 +131,11 @@ export default async function middleware(req: NextRequest) {
   if (!token) return NextResponse.redirect(loginUrl(from))
 
   try {
-    await jwtVerify(token, JWT_SECRET)
+    const { payload } = await jwtVerify(token, JWT_SECRET)
+    // Admin and portal-client JWTs share JWT_SECRET, so signature validity alone
+    // is not authorization — a replayed client_session would pass. Fail closed
+    // on any role outside the admin allowlist.
+    if (!isAdminRole(payload.role)) return NextResponse.redirect(loginUrl(from))
     const res = NextResponse.next({ request: { headers: requestHeaders } })
     res.headers.set('Content-Security-Policy', csp)
     return res

@@ -1,6 +1,7 @@
 import 'server-only'
 import { cookies } from 'next/headers'
 import { jwtVerify } from 'jose'
+import { isAdminRole } from './roles'
 
 /**
  * Admin session auth — JWT verification for the admin dashboard.
@@ -27,6 +28,10 @@ export async function getSession(): Promise<SessionPayload | null> {
   if (!token) return null
   try {
     const { payload } = await jwtVerify(token, JWT_SECRET)
+    // Portal-client tokens are signed with the same secret and therefore verify
+    // here. Without this check a `client_session` JWT replayed as `session`
+    // grants full admin. Mirror of the guard in lib/client-auth.ts.
+    if (!isAdminRole(payload.role)) return null
     return payload as SessionPayload
   } catch {
     return null

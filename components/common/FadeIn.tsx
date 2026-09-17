@@ -20,6 +20,16 @@ import type { ReactNode } from 'react'
 
 const EASE = [0.25, 0.1, 0.25, 1] as const
 
+// Server Components can't import motion/react directly (it needs 'use client').
+// `as` lets a page keep its semantic element — <header>, <section> — instead of
+// reaching for motion.* itself and crashing the route at render time.
+const TAGS = {
+  div: motion.div,
+  header: motion.header,
+  section: motion.section,
+  article: motion.article,
+} as const
+
 interface Props {
   children: ReactNode
   /** Seconds before the animation starts. Use to stagger sibling elements. */
@@ -27,11 +37,14 @@ interface Props {
   /** Vertical offset to drift from. Default 20px. */
   y?: number
   className?: string
+  /** Rendered element. Default 'div'. */
+  as?: keyof typeof TAGS
 }
 
-export default function FadeIn({ children, delay = 0, y = 20, className }: Props) {
+export default function FadeIn({ children, delay = 0, y = 20, className, as = 'div' }: Props) {
+  const Tag = TAGS[as]
   return (
-    <motion.div
+    <Tag
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
@@ -39,6 +52,6 @@ export default function FadeIn({ children, delay = 0, y = 20, className }: Props
       className={className}
     >
       {children}
-    </motion.div>
+    </Tag>
   )
 }

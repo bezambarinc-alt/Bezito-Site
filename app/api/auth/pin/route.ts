@@ -6,6 +6,7 @@ import { sql } from '@/lib/db'
 import { checkRateLimit, recordAttempt } from '@/lib/rate-limit'
 import { audit } from '@/lib/audit'
 import { getGeo, formatLocation } from '@/lib/geo'
+import { isIpWhitelisted } from '@/lib/whitelist'
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET!)
 const SESSION_TTL = 60 * 60 * 8 // 8h — whitelisted/trusted (PIN)
@@ -23,6 +24,22 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(
       { error: 'Too many attempts. Try again in 15 minutes.' },
       { status: 429, headers: { 'Retry-After': '900' } },
+    )
+  }
+
+  // A 4-digit PIN is only safe because it's meant to be a second factor for an
+  // already-trusted device. The whitelist check was documented (see SESSION_TTL)
+  // but never called, so the PIN alone granted full admin from anywhere —
+  // ~10k guesses against a rate limiter. Enforce it before touching the PIN.
+  // Recovery from a new IP: sign in with email + password and trustDevice.
+  if (!(await isIpWhitelisted(ip))) {
+    await recordAttempt(ip, false)
+    await audit('auth.pin.blocked', 'pin', {
+      ip, reason: 'ip-not-whitelisted', location: formatLocation(geo),
+    })
+    return NextResponse.json(
+      { error: 'PIN sign-in is not available from this device. Use email + password.' },
+      { status: 403 },
     )
   }
 

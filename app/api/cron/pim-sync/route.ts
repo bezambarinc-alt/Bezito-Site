@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { revalidatePath } from 'next/cache'
 import { sql } from '@/lib/db'
-import { isAuthorizedAgent } from '@/lib/agent-auth'
+import { isAuthorizedAgent, hasValidBearerSecret } from '@/lib/agent-auth'
 import { getZohoToken, invalidateZohoToken } from '@/lib/zoho-auth'
 
 /**
@@ -133,13 +133,11 @@ async function fetchAllProducts(token: string): Promise<ZohoProduct[]> {
 }
 
 export async function GET(req: NextRequest) {
-  const auth = req.headers.get('authorization') ?? ''
+  // Fail closed. This route ends in a DELETE that can empty the products table,
+  // so an unset CRON_SECRET must mean "nobody gets in", not "Bearer undefined
+  // gets in". hasValidBearerSecret skips unset vars and compares in constant time.
   const agentOk = await isAuthorizedAgent(req)
-  if (
-    !agentOk &&
-    auth !== `Bearer ${process.env.CRON_SECRET}` &&
-    auth !== `Bearer ${process.env.BEZITO_SECRET}`
-  ) {
+  if (!agentOk && !hasValidBearerSecret(req, 'CRON_SECRET', 'BEZITO_SECRET')) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
   }
 

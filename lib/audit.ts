@@ -6,6 +6,7 @@ export type AuditAction =
   | 'auth.login.failed'
   | 'auth.pin.success'
   | 'auth.pin.failed'
+  | 'auth.pin.blocked'   // PIN attempted from a non-whitelisted IP
   | 'auth.logout'
   | 'auth.whitelist.added'
   | 'auth.whitelist.removed'
