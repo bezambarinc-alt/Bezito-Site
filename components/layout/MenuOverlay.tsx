@@ -22,7 +22,7 @@ interface SubCol { id: string; items: NavEntry[] }
 
 const RING_SHAPES = [
   'Round', 'Oval', 'Emerald Cut', 'Radiant', 'Cushion',
-  'Pear', 'Princess', 'Marquise', 'Asscher', 'Heart', 'Blaze®',
+  'Pear', 'Princess', 'Marquise', 'Asscher', 'Heart', 'Blaze',
 ]
 
 // ── Root items ─────────────────────────────────────────────────────────────────
