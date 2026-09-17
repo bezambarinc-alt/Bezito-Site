@@ -186,14 +186,14 @@ Scroll-reveal wrapper for blog content — `components/blog/Reveal.tsx`
 ### `ArchiveClient`
 Client-side archive grid with filtering — `components/archive/ArchiveClient.tsx`
 
-### `ArchiveGrid`
-Masonry grid of archive items — `components/archive/ArchiveGrid.tsx`
+### `ArchiveCarousel`
+Horizontal carousel of archive items — `components/archive/ArchiveCarousel.tsx`
+
+### `ArchiveFilterRow`
+Category/material filter controls — `components/archive/ArchiveFilterRow.tsx`
 
 ### `ArchiveModal`
 Video player + inquiry modal for archive items — `components/archive/ArchiveModal.tsx`
-
-### `ArchiveFilterPill` / `ArchiveGifCard`
-Filter controls + individual archive item card.
 
 ---
 

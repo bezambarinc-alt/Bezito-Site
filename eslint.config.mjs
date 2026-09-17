@@ -16,11 +16,6 @@ const eslintConfig = defineConfig([
     '.astro/**',
     'test-results/**',
     'playwright-report/**',
-    // Dead components kept for reference — nothing in app/, components/, lib/,
-    // scripts/ or tests/ imports them (verified by grep). Linting them only
-    // manufactures errors nobody can act on. Deleting the directory outright is
-    // queued behind Kevin's sign-off.
-    'components/archive/_archived/**',
   ]),
 ])
 
