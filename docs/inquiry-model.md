@@ -17,7 +17,7 @@ InquiryDrawer opens (slide-right panel)
     ↓
 Submits name + email + message
     ↓
-POST /api/lead → Neon (durable) → Freshsales CRM (best-effort)
+POST /api/lead → Neon (durable) → Zoho CRM (best-effort)
     ↓
 Bez / team follows up by phone or email
 ```
@@ -82,7 +82,7 @@ leads (
   email       -- required
   message     -- optional free text
   crm_status  -- pending | synced | failed
-  crm_id      -- Freshsales contact ID if synced
+  crm_id      -- Zoho CRM contact ID if synced
   created_at
 )
 ```

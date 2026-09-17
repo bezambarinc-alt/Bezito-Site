@@ -26,8 +26,8 @@ The site serves three audiences:
 | Framework | Next.js 15 App Router + TypeScript |
 | Database | Neon Postgres — raw SQL via `pg`, no ORM |
 | Auth | Jose JWT — separate admin + client session cookies |
-| PIM | Plytix (product data source of truth) |
-| CRM | Freshsales — inquiry leads |
+| PIM | Zoho CRM Products — product data source of truth |
+| CRM | Zoho CRM — inquiry leads |
 | Media | Cloudinary `dlg2mou53` — all images + video |
 | Deployment | Vercel `bezambar-nextjs` — auto-deploys on push to `main` |
 | Fonts | Cormorant Garamond + Open Sans (next/font) · Lyon Text (Fontstand CDN) |
@@ -110,8 +110,8 @@ docs/                          # Technical documentation (read before changing t
 ## Key workflows
 
 ### Product appears on the site
-1. Update/add product in Plytix (source of truth)
-2. Trigger sync: `GET /api/cron/plytix-sync` with `Authorization: Bearer <BEZITO_SECRET>`
+1. Update/add product in Zoho CRM Products (source of truth)
+2. Trigger sync: `GET /api/cron/pim-sync` with `Authorization: Bearer <BEZITO_SECRET>`
    — or wait for the automatic 4h cron
 3. Product appears in `/jewelry/[category]/[slug]`
 
@@ -143,7 +143,7 @@ psql $DATABASE_URL -f db/migrations/NNN_description.sql
 | [docs/api.md](docs/api.md) | All API routes — method, auth, params, response |
 | [docs/auth.md](docs/auth.md) | Auth model — admin, client portal, preview PIN |
 | [docs/db.md](docs/db.md) | Database schema + table reference |
-| [docs/integrations.md](docs/integrations.md) | Plytix, Freshsales, Cloudinary |
+| [docs/integrations.md](docs/integrations.md) | Zoho CRM, Cloudinary |
 | [docs/brand.md](docs/brand.md) | Brand positioning, voice, hard copy rules |
 | [docs/colors.md](docs/colors.md) | CSS design tokens |
 | [docs/typography.md](docs/typography.md) | Font stacks + usage |

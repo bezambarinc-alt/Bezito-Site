@@ -31,14 +31,14 @@ Full schema: `db/schema.sql`. Apply migrations in order from `db/migrations/`.
 ## Table reference
 
 ### `products`
-Plytix read cache. **Never write manually** — rebuilt by the cron sync every 4h.
+Zoho CRM read cache. **Never write manually** — rebuilt by the pim-sync cron every 4h.
 
 | Column | Type | Notes |
 |---|---|---|
-| `sku` | TEXT PK | Plytix SKU (e.g. `C0493`) |
-| `slug` | TEXT UNIQUE | URL-safe (generated from SKU at sync time) |
-| `plytix_id` | TEXT UNIQUE | Plytix internal UUID |
-| `name` | TEXT | Display name (from Plytix `label`) |
+| `sku` | TEXT PK | Product SKU (e.g. `C0493`) |
+| `slug` | TEXT UNIQUE | SEO slug derived from `Product_Name + category` by pim-sync |
+| `zoho_id` | TEXT UNIQUE | Zoho CRM record ID |
+| `name` | TEXT | Display name |
 | `category` | TEXT | `rings`, `bracelets`, `earrings`, `necklaces`, `pendants`, `bands` |
 | `subtitle` | TEXT | Secondary descriptor |
 | `editorial` | TEXT | Long editorial copy |
@@ -60,7 +60,7 @@ Plytix read cache. **Never write manually** — rebuilt by the cron sync every 4
 | `view_1_url` | TEXT | Three-views image 1 (Cloudinary) |
 | `view_2_url` | TEXT | Three-views image 2 |
 | `view_3_url` | TEXT | Three-views image 3 |
-| `synced_at` | TIMESTAMPTZ | Last Plytix sync timestamp |
+| `synced_at` | TIMESTAMPTZ | Last pim-sync timestamp |
 
 Indexes: `(active, featured DESC, sort_order ASC)`, `(category)`.
 
@@ -116,7 +116,7 @@ Inquiry leads. Written before CRM push — durable copy.
 | `email` | TEXT | Required |
 | `message` | TEXT | Free text (nullable) |
 | `crm_status` | TEXT | `pending` \| `synced` \| `failed` |
-| `crm_id` | TEXT | Freshsales contact ID if synced (nullable) |
+| `crm_id` | TEXT | Zoho CRM contact ID if synced (nullable) |
 | `created_at` | TIMESTAMPTZ | |
 
 ---

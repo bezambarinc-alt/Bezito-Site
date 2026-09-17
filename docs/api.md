@@ -28,7 +28,7 @@ Inquiry lead capture. No auth required.
 }
 ```
 
-**Flow:** Writes to `leads` table first (always). Then pushes to Freshsales CRM (best-effort). Returns 200 regardless of CRM outcome.
+**Flow:** Writes to `leads` table first (always). Then pushes to Zoho CRM (best-effort). Returns 200 regardless of CRM outcome.
 
 **Response:** `{ ok: true }`
 
@@ -204,7 +204,7 @@ Toggles `active` or `featured` flags on a product.
 
 **Auth:** Admin session required.
 
-Note: `active` and `featured` are **intentionally excluded** from the Plytix sync upsert — admin-managed only.
+Note: `active` and `featured` are **intentionally excluded** from the pim-sync upsert — admin-managed only.
 
 ---
 
@@ -268,12 +268,12 @@ Manage the server-side IP whitelist.
 
 ## Cron
 
-### `GET /api/cron/plytix-sync`
-Plytix → Neon products cache sync.
+### `GET /api/cron/pim-sync`
+Zoho CRM Products → Neon products cache sync.
 
 **Auth:** `Authorization: Bearer <CRON_SECRET>` (Vercel injects automatically) or `Bearer <BEZITO_SECRET>` (manual trigger).
 
-**Flow:** Lists all Plytix `Completed` products → fetches detail per product → upserts to `products` table → deletes stale rows → `revalidateTag('products')`.
+**Flow:** Authenticates with Zoho CRM OAuth → lists all active products → derives SEO slugs → upserts to `products` table → deletes stale rows → `revalidatePath('/jewelry', 'layout')`.
 
 **Response:** `{ ok: true, listed: N, upserted: N, deleted: N, errors: [] }`
 

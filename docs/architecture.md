@@ -8,8 +8,8 @@ Browser
   ├─► Vercel (Next.js 15 App Router)
   │     ├─► Server Components → Neon Postgres (read)
   │     ├─► API Routes → Neon Postgres (read/write)
-  │     └─► API Routes → Plytix (read, sync cron)
-  │                    → Freshsales (write, best-effort)
+  │     └─► API Routes → Zoho CRM (read, pim-sync cron)
+  │                    → Zoho CRM (write leads, best-effort)
   │
   ├─► Cloudinary CDN (media delivery — images + video)
   └─► Fontstand CDN (Lyon Text font license)
@@ -51,7 +51,7 @@ Browser
 1. Validate email (basic regex — intentionally minimal, reduces false negatives)
 2. Check if `sku` is a real page slug (FK lookup) — write `fkPageSlug` only if valid
 3. `INSERT INTO leads` — **always succeeds first** (durable write)
-4. Push to Freshsales API (best-effort) — update `crm_status` to `synced` or `failed`
+4. Push to Zoho CRM API (best-effort) — update `crm_status` to `synced` or `failed`
 5. Return 200 regardless of CRM outcome — lead is never lost
 
 ### Analytics hit (`POST /api/track`)
@@ -67,7 +67,7 @@ Browser
 
 | Data | Strategy | Bust trigger |
 |---|---|---|
-| Product pages (`/jewelry/*`) | ISR 1h | `revalidateTag('products')` after Plytix sync |
+| Product pages (`/jewelry/*`) | ISR 1h | `revalidatePath('/jewelry', 'layout')` after pim-sync |
 | Active product template | `unstable_cache` tagged `product-template` | `revalidatePath('/jewelry', 'layout')` on template activate |
 | Active showcase template | Fetched fresh per preview request | n/a (force-dynamic) |
 | Category listing pages | ISR 1h | — |
@@ -81,11 +81,11 @@ Browser
 
 | Job | Schedule | Endpoint | Auth |
 |---|---|---|---|
-| Plytix → Neon sync | Every 4h | `GET /api/cron/plytix-sync` | Vercel cron Bearer token or BEZITO_SECRET |
+| Zoho CRM → Neon pim-sync | Every 4h | `GET /api/cron/pim-sync` | Vercel cron Bearer token or BEZITO_SECRET |
 
 Vercel cron config lives in `vercel.json`:
 ```json
-{ "crons": [{ "path": "/api/cron/plytix-sync", "schedule": "0 */4 * * *" }] }
+{ "crons": [{ "path": "/api/cron/pim-sync", "schedule": "0 */4 * * *" }] }
 ```
 
 ---
@@ -93,8 +93,8 @@ Vercel cron config lives in `vercel.json`:
 ## Data flow
 
 ```
-Plytix (PIM — source of truth for products)
-    ↓  every 4h (GET /api/cron/plytix-sync)
+Zoho CRM Products (PIM — source of truth for products)
+    ↓  every 4h (GET /api/cron/pim-sync)
 Neon: products table (read cache — never write manually)
     ↓  via lib/queries.ts
 Server Components → product pages, category pages, nav menu
@@ -103,7 +103,7 @@ User inquiry form
     ↓  POST /api/lead
 Neon: leads table (durable)
     ↓  best-effort push
-Freshsales CRM
+Zoho CRM (leads)
 
 Browser page views
     ↓  POST /api/track
@@ -135,7 +135,7 @@ All API routes validate input with Zod before any DB operation. Invalid input re
 All queries use parameterized statements via the `sql<T>(text, params[])` helper. No string concatenation in SQL.
 
 ### CSP
-Configured in `next.config.ts`. Allows Cloudinary (media), Freshworks (CRM), Fontstand (fonts). `unsafe-eval` only in development.
+Configured in `proxy.ts`. Allows Cloudinary (media), Fontstand (fonts). `unsafe-eval` only in development.
 
 ### Timing attacks
 Bcrypt comparison always runs even when the email doesn't match (dummy hash). Prevents timing side-channel that reveals email existence.

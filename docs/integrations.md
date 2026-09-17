@@ -5,91 +5,102 @@ Five external systems. Each has a specific role — they do not overlap.
 | System | Role | Credentials |
 |---|---|---|
 | **Neon** | Primary database | `DATABASE_URL` env var |
-| **Plytix** | Product data source of truth (PIM) | `PLYTIX_API_KEY` + `PLYTIX_API_PASSWORD` |
-| **Freshsales** | CRM — all inquiry leads | `FRESHSALES_API_KEY` |
+| **Zoho CRM** | Product PIM + lead CRM | `ZOHO_CLIENT_ID`, `ZOHO_CLIENT_SECRET`, `ZOHO_REFRESH_TOKEN` |
 | **Cloudinary** | All video + image media | Credentials in workspace Controller dir |
 | **Vercel** | Hosting + auto-deployment | Token at `~/.openclaw/credentials/vercel.json` |
 | **Fontstand** | Lyon Text font CDN license | Domain-locked CDN — no credentials needed |
 
 ---
 
-## Plytix (PIM)
+## Zoho CRM (PIM + CRM)
 
-**Plytix** is the single source of truth for all product data. Nothing about a product should be changed anywhere other than Plytix. The Neon `products` table is a read cache — rebuilt by cron, never written manually.
+Zoho CRM serves two roles: **product data source of truth** (via Products module) and **lead CRM** (via Leads module). Replaced Plytix (PIM) on 2026-08-31 and Freshsales (CRM) on 2026-08-28.
 
 ### Auth
 
-Plytix uses a short-lived Bearer token obtained per session:
+OAuth 2.0 with a long-lived refresh token. The token exchange is handled by `lib/zoho-auth.ts`:
 
 ```
-POST https://auth.plytix.com/auth/api/get-token
-Body: { api_key, api_password }
-Response: { data: [{ access_token }] }
+POST https://accounts.zoho.com/oauth/v2/token
+Body: { grant_type: 'refresh_token', client_id, client_secret, refresh_token }
+Response: { access_token, expires_in }
 ```
 
-Note: the token is at `data[0].access_token` (not `.token`) — a documented Plytix quirk.
+Token is cached in memory with a TTL buffer. Every Zoho API call goes through `lib/zoho-auth.ts` — never call the Zoho API directly without it.
 
-### Sync flow
+**Env vars required in Vercel (`bezambar-nextjs` project):**
+- `ZOHO_CLIENT_ID`
+- `ZOHO_CLIENT_SECRET`
+- `ZOHO_REFRESH_TOKEN`
+- DC is US (`accounts.zoho.com`) — if org moves DC, add `ZOHO_ACCOUNTS_URL`
+
+### Product sync (PIM)
 
 ```
-GET /api/cron/plytix-sync (every 4h via Vercel cron)
+GET /api/cron/pim-sync (every 4h via Vercel cron)
   │
-  ├─ Auth → get access_token
-  ├─ POST /products/search (paginated, page_size=100, filter: status=Completed)
-  │    ← Returns product IDs + labels only. Attributes always come back EMPTY here.
-  ├─ For each ID: GET /products/{id}
-  │    ← Returns full attributes (description, editorial, hero_visual, metal, stone_*, etc.)
-  ├─ For each ID: GET /products/{id}/categories (taxonomy link → category name)
+  ├─ Authenticate → get access_token
+  ├─ GET /crm/v6/Products (paginated, Product_Active=true)
+  ├─ For each product: derive SEO slug via deriveSlug(Product_Name, category)
   ├─ Upsert into Neon products table
   │    ← active + featured excluded from ON CONFLICT UPDATE (admin-managed)
-  ├─ Delete stale rows (not returned by Plytix this run)
-  └─ revalidateTag('products') → bust ISR product page cache
+  ├─ Delete stale rows (not returned by Zoho this run, unless zoho_id starts with 'pending-')
+  └─ revalidatePath('/jewelry', 'layout') → bust ISR product page cache
 ```
 
-Rate limiting: Plytix 429s on rapid GETs. The sync uses 200ms sleep between products and exponential backoff (up to 6 retries, 1500ms×attempt) on 429.
+Slug formula: `Product_Name` parts split on `|`, joined + singular category keyword appended + SKU collision fallback.
 
-Function timeout: `export const maxDuration = 300` — 66 products + sequential fetches + upserts exceeds the default 10s limit.
+Function timeout: `export const maxDuration = 300` — 98 products + upserts exceeds the default limit.
 
-### Plytix data model quirks
+### Zoho CRM Products field mapping
 
-- `POST /products/search` → attributes always empty, use for IDs only
-- `GET /products/{id}` → real attributes live here
-- Categories live in a taxonomy (not an attribute) — fetch via `/products/{id}/categories`
-- `featured` attribute: may be boolean, string `'true'`, or other truthy value — normalize on read
+| Zoho CRM field | Neon column | Notes |
+|---|---|---|
+| `id` | `zoho_id` | Zoho record ID |
+| `Product_Code` | `sku` | Primary key |
+| `Product_Name` | `name` | `"NAME \| Variant"` format |
+| `Product_Category` | `category` | Title-case in Zoho → lowercase in Neon |
+| `Subtitle` | `subtitle` | |
+| `Editorial` | `editorial` | |
+| `Metal` | `metal` | |
+| `Stone_Shape` | `stone_shape` | |
+| `Stone_Color` | `stone_color` | |
+| `Stone_Clarity` | `stone_clarity` | |
+| `Stone_Carats` | `stone_carats` | |
+| `Total_Carat_Weight` | `total_carat_weight` | |
+| `Center_Stone_Weight` | `center_stone_weight` | |
+| `Collection` | `collection` | |
+| `Hero_Visual` | `hero_visual` | Cloudinary URL (video preferred) |
+| `Editorial_Visual` | `editorial_visual` | Cloudinary URL (image) |
+| `Visual_Top` | `view_1_url` | |
+| `Visual_Concept` | `view_2_url` | |
+| `Visual_Stone_Sketch` | `view_3_url` | |
 
-### Category attribute
-
-Products use a single-select `category` attribute in Plytix (added 2026-08-08). The sync prefers this over the taxonomy link. Fallback order: `attribute.category` → taxonomy link → `'jewelry'`.
-
----
-
-## Freshsales (CRM)
-
-Freshsales Enterprise handles all inquiry leads.
-
-- **Domain:** `bezambar.myfreshworks.com`
-- **API base:** `https://bezambar.myfreshworks.com/crm/sales/api`
-- **Auth:** `Authorization: Token token=<FRESHSALES_API_KEY>`
-
-### Lead flow
+### Lead ingestion (CRM)
 
 ```
 POST /api/lead (browser → Next.js)
   │
   ├─ Validate email
   ├─ INSERT INTO leads (always succeeds first)
-  └─ POST https://bezambar.myfreshworks.com/crm/sales/api/contacts (best-effort)
+  └─ POST https://www.zohoapis.com/crm/v6/Leads (best-effort)
        │
-       ├─ Success: UPDATE leads SET crm_status='synced', crm_id=contact.id
+       ├─ Success: UPDATE leads SET crm_status='synced', crm_id=lead.id
        └─ Failure: UPDATE leads SET crm_status='failed'
            (lead is safe in Neon — CRM failure is non-fatal)
 ```
 
-The browser never calls Freshsales directly. The API key never appears in client-side code.
+Key rules (see `CLAUDE.md` § 6 for full detail):
+- `Lead_Source` is always `'Web Site'` — hardcoded, never dynamic
+- `Last_Name` is required — use `parseZohoName()` from `lib/zoho-auth.ts`
+- Check `data[0].status === 'success'` — Zoho returns 207 on per-record failure
+- `AbortSignal.timeout(5000)` on every fetch — CRM is best-effort
 
-### Freshworks integrations (pending)
-
-Full Freshworks integration (chat widget, live visitor tracking) is planned but not yet implemented. The Freshchat widget was evaluated and removed (2026-08-12). The CSP in `next.config.ts` includes Freshworks domains for the remaining CRM API calls from `/api/lead`.
+**Files:**
+- `lib/zoho-auth.ts` — token cache + `parseZohoName` + `invalidateZohoToken`
+- `app/api/lead/route.ts` — newsletter/archive modal leads
+- `app/actions/inquiry.ts` — InquiryDrawer + ContactForm leads
+- `app/api/admin/leads/retry/route.ts` — admin retry for `crm_status='failed'` leads
 
 ---
 
@@ -98,7 +109,7 @@ Full Freshworks integration (chat widget, live visitor tracking) is planned but 
 All media (video + images) is hosted on Cloudinary and served via Cloudinary's CDN.
 
 - **Account ID:** `dlg2mou53`
-- **CSP:** `next.config.ts` already includes `res.cloudinary.com` in `img-src` and `media-src`
+- **CSP:** `proxy.ts` already includes `res.cloudinary.com` in `img-src` and `media-src`
 
 ### URL patterns
 
@@ -150,9 +161,9 @@ This handles the case where a still image lives under `/video/upload/` in Cloudi
 - **Neon:** provisioned via Vercel Marketplace
 
 `vercel.json` controls:
-- Cron schedule (`/api/cron/plytix-sync` every 4h)
+- Cron schedule (`/api/cron/pim-sync` every 4h)
 
-Security headers + CSP are set in `next.config.ts` (not `vercel.json`).
+Security headers + CSP are set in `proxy.ts` (not `vercel.json`).
 
 ---
 
@@ -165,6 +176,6 @@ Lyon Text is loaded via Fontstand CDN under a domain-licensed webfont agreement:
 ```
 
 - Licensed for `bezambar.com` only — will not render on other domains or localhost
-- In local dev the fallback kicks in (Cormorant Garamond)
+- In local dev the fallback kicks in (Georgia)
 - Do not self-host or copy the CSS file — violates the license
 - If Fontstand sends a new key URL, update it in `app/layout.tsx`
