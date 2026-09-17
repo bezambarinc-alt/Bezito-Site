@@ -48,7 +48,7 @@ export async function generateMetadata({
   const canonicalCategory = (s.category ?? category).toLowerCase()
   const cleanTitle = parseProductName(product.name).title
   return {
-    title: `${cleanTitle} — Bez Ambar`,
+    title: cleanTitle,
     description: s.lede ?? s.subtitle ?? `${cleanTitle} by Bez Ambar.`,
     openGraph: {
       title: `${cleanTitle} · Bez Ambar`,

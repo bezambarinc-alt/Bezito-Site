@@ -8,7 +8,7 @@ import styles from './page.module.css'
 // fetched client-side.
 
 export const metadata: Metadata = {
-  title: 'From the Bench — Bez Ambar',
+  title: 'From the Bench',
   description:
     'Behind the craft. Inside the atelier. The latest from the Bez Ambar workbench — shared as it happens on Instagram.',
 }

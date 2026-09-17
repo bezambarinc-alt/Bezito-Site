@@ -5,7 +5,7 @@ import AtelierBanner from '@/components/common/AtelierBanner'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
-  title: 'The Cuts — Bez Ambar',
+  title: 'The Cuts',
   description:
     'Three patented diamond cuts invented at the Bez Ambar atelier: the Quadrillion® (Princess), the Blaze®, and the Divine Cut®.',
 }

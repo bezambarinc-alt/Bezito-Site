@@ -31,7 +31,7 @@ const specItems: SpecItem[] = [
 const accordionBlock: SpecAccordionBlock = { type: 'spec-accordion', title: '', items: specItems }
 
 export const metadata: Metadata = {
-  title: '3 Stone Oval Engagement Ring with Blaze | Bez Ambar',
+  title: '3 Stone Oval Engagement Ring with Blaze',
   description:
     'Trio Oval Wedding Set — a classic yet modern three stone engagement ring with an oval center, a halfway shank of Blaze® cut diamonds, and black and white ring enhancer bookend bands.',
   openGraph: {

@@ -6,7 +6,7 @@ import { STATS, TIMELINE } from '@/lib/data/about-content'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
-  title: 'About Bez Ambar — Artist, Designer & Inventor of the Princess Cut',
+  title: { absolute: 'About Bez Ambar — Artist, Designer & Inventor of the Princess Cut' },
   description:
     'About Bez Ambar: Israeli-American diamond artist, designer, and inventor of the Princess cut. Three patented cuts. One atelier in Los Angeles, since 1979.',
   openGraph: {

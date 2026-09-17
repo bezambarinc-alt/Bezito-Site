@@ -8,7 +8,7 @@ import { CHAPTERS, STORY_YEARS } from '@/lib/data/story-chapters'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
-  title: 'The Story — Bez Ambar',
+  title: 'The Story',
   description:
     'The history of Bez Ambar: from Jerusalem to Los Angeles, from the Princess Cut to the Elysian Cut™. Four decades of independent diamond design.',
   openGraph: {

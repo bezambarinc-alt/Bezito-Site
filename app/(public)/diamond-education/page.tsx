@@ -4,7 +4,7 @@ import ScrollSpyTabs from './ScrollSpyTabs'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
-  title: 'Diamond Education — The 4Cs, Shapes & Anatomy | Bez Ambar',
+  title: 'Diamond Education — The 4Cs, Shapes & Anatomy',
   description:
     'Master the fundamentals of diamond quality. The 4Cs (cut, color, clarity, carat), diamond shapes, and how to select your stone — from the Bez Ambar atelier.',
 }

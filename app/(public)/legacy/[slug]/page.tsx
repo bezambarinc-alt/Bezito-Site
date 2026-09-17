@@ -22,7 +22,7 @@ export async function generateMetadata({
   const product = getLegacyProductBySlug(slug)
   if (!product) return { title: 'Piece Not Found' }
   return {
-    title: `${product.name} — Bez Ambar`,
+    title: product.name,
     description: product.description,
     openGraph: {
       title: `${product.name} · Bez Ambar`,

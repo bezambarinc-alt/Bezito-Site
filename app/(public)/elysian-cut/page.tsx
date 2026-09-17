@@ -6,7 +6,7 @@ import { ELYSIAN_CUTS } from '@/lib/data/elysian-cuts'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
-  title: 'The Elysian Cut™ — A Family of Cuts | Bez Ambar',
+  title: 'The Elysian Cut™ — A Family of Cuts',
   description:
     'The Elysian Cut™ is a family of original step-cut geometries engineered for calibrated precision. Seven shapes, one philosophy. By Bez Ambar, Los Angeles.',
 }

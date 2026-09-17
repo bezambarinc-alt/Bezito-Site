@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import styles from '../../legal.module.css'
 
 export const metadata: Metadata = {
-  title: 'Do Not Sell My Personal Information — Bez Ambar',
+  title: 'Do Not Sell My Personal Information',
   description:
     'California residents: exercise your CCPA rights. Bez Ambar does not sell personal information.',
 }

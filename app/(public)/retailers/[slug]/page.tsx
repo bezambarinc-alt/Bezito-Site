@@ -48,7 +48,7 @@ export async function generateMetadata({
   const description = `Shop Bez Ambar diamond jewelry at ${r.name} in ${r.cityState}. ${r.about.slice(0, 120)}...`
 
   return {
-    title,
+    title: { absolute: title },
     description,
     openGraph: {
       title,

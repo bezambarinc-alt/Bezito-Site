@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import styles from '../legal.module.css'
 
 export const metadata: Metadata = {
-  title: 'Warranty & Policies — Bez Ambar',
+  title: 'Warranty & Policies',
   description:
     'Bez Ambar lifetime warranty on craftsmanship and materials. Quality jewelry backed by our commitment to excellence since 1979.',
 }

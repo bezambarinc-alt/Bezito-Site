@@ -5,7 +5,7 @@ import LazyVideo from '@/components/common/LazyVideo'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
-  title: 'THE ELYSIAN. — Bez Ambar',
+  title: 'THE ELYSIAN.',
   description:
     'The Elysian Band — a continuous circle of the Elysian Cut™. Full eternity and halfway versions in four stone sizes. Made in Los Angeles.',
 }

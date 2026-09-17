@@ -42,7 +42,7 @@ function rotatingIndex(length: number): number {
 }
 
 export const metadata: Metadata = {
-  title: 'The Archive — Every Piece in Motion | Bez Ambar',
+  title: 'The Archive — Every Piece in Motion',
   description:
     'Over five hundred Bez Ambar pieces, filmed at the atelier in Los Angeles. Watch each stone under light before you inquire.',
   openGraph: {

@@ -24,7 +24,7 @@ export async function generateMetadata({
   const cat = getCategoryMeta(category)
   const label = getCategoryLabel(category)
   return {
-    title: `${label} — Bez Ambar`,
+    title: label,
     description: cat.intro,
   }
 }

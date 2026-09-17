@@ -4,7 +4,7 @@ import ContactForm from '@/components/contact/ContactForm'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
-  title: 'Contact & Consultation — Bez Ambar',
+  title: 'Contact & Consultation',
   description:
     'Schedule a private consultation, inquire about a bespoke piece, or visit our Los Angeles atelier at 611 Wilshire Blvd.',
   openGraph: {

@@ -57,5 +57,5 @@ export default async function ClientPage({
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const [page] = await sql<{ title: string }>(`SELECT title FROM pages WHERE slug=$1`, [slug])
-  return { title: page?.title ?? 'Bez Ambar' }
+  return { title: page?.title ?? 'Client Page' }
 }

@@ -30,7 +30,7 @@ const specItems: SpecItem[] = [
 const accordionBlock: SpecAccordionBlock = { type: 'spec-accordion', title: '', items: specItems }
 
 export const metadata: Metadata = {
-  title: 'Five Row Diamond and Ruby Flower Hug Earrings | Bez Ambar',
+  title: 'Five Row Diamond and Ruby Flower Hug Earrings',
   description:
     'Five row flower hug earrings in 18K white gold with high-quality ruby and black diamonds. 1.18 total carat weight.',
   openGraph: {

@@ -30,7 +30,7 @@ const specItems: SpecItem[] = [
 const accordionBlock: SpecAccordionBlock = { type: 'spec-accordion', title: '', items: specItems }
 
 export const metadata: Metadata = {
-  title: 'Maharajah Ring — Rare Colored Diamonds | Bez Ambar',
+  title: 'Maharajah Ring — Rare Colored Diamonds',
   description:
     'The Maharajah ring is a unique design with rare colored diamonds. Available in platinum, 18K white, rose and yellow gold.',
   openGraph: {

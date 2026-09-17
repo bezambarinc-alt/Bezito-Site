@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import styles from '../legal.module.css'
 
 export const metadata: Metadata = {
-  title: 'Terms of Service — Bez Ambar',
+  title: 'Terms of Service',
   description:
     'Terms and conditions governing use of bezambar.com and all services offered by Bez Ambar Inc.',
 }

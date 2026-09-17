@@ -8,7 +8,7 @@ import AtelierBanner from '@/components/common/AtelierBanner'
 import { HERO_SLIDES, CINEMATIC_SLIDES } from '@/lib/data/home-slides'
 
 export const metadata: Metadata = {
-  title: 'Bez Ambar — Chiseling Light',
+  title: { absolute: 'Bez Ambar — Chiseling Light' },
   description:
     'Inventor of the Princess Cut. Fine jewelry from the Los Angeles atelier, since 1979.',
 }

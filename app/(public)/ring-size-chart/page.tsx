@@ -3,7 +3,7 @@ import InquiryButton from '@/components/common/InquiryButton'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
-  title: 'Ring Size Chart — Bez Ambar',
+  title: 'Ring Size Chart',
   description:
     'Find your ring size with the Bez Ambar measurement guide. String and diameter methods, US–to–mm conversion table, and professional fitting options.',
 }

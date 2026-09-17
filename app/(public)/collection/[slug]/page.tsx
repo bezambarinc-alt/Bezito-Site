@@ -24,7 +24,7 @@ export async function generateMetadata({
   const { slug } = await params
   const name = titleCase(slug)
   return {
-    title: `${name} Collection — Bez Ambar`,
+    title: `${name} Collection`,
     description: `The ${name} Collection — fine jewelry from the Bez Ambar atelier.`,
   }
 }
