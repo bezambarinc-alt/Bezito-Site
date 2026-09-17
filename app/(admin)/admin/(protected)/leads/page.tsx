@@ -43,7 +43,7 @@ export default async function LeadsPage() {
     <div>
       <div className={adminStyles.pageHeader}>
         <h1 className={adminStyles.pageTitle}>Leads</h1>
-        <span className={adminStyles.syncLink}>failed + pending only — successful leads in Freshsales</span>
+        <span className={adminStyles.syncLink}>failed + pending only — successful leads in Zoho CRM</span>
       </div>
 
       <div className={adminStyles.kpiGrid} style={{ marginBottom: '2rem' }}>
@@ -52,7 +52,7 @@ export default async function LeadsPage() {
             {failed}
           </div>
           <div className={adminStyles.kpiLabel}>Failed</div>
-          <div className={adminStyles.kpiSub}>didn't reach Freshsales</div>
+          <div className={adminStyles.kpiSub}>didn't reach Zoho CRM</div>
         </div>
         <div className={adminStyles.kpiCard}>
           <div className={adminStyles.kpiValue}>{pending}</div>
@@ -63,7 +63,7 @@ export default async function LeadsPage() {
 
       {rows.length === 0 ? (
         <div className={styles.allGood}>
-          <p className={styles.allGoodText}>✓ All leads reached Freshsales</p>
+          <p className={styles.allGoodText}>✓ All leads reached Zoho CRM</p>
         </div>
       ) : (
         <div className={styles.tableWrap}>

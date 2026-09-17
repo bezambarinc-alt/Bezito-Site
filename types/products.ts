@@ -1,6 +1,6 @@
 /**
  * Product type — mirrors the Neon `products` table, which is a READ CACHE of
- * Plytix (rebuilt by the 4h cron, never the source of truth).
+ * Zoho CRM Products (rebuilt by the pim-sync cron, never the source of truth).
  * See db/schema.sql table 2.
  */
 
@@ -14,8 +14,8 @@ export interface ProductMedia {
 }
 
 /**
- * Free-form spec bag synced from Plytix attributes. Keys are stable Plytix
- * attribute slugs. All optional — never assume presence.
+ * Free-form spec bag synced from Zoho CRM Products fields.
+ * All optional — never assume presence.
  */
 export interface ProductSpecs {
   category?: string

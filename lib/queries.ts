@@ -3,8 +3,8 @@ import type { Product, ProductMedia, ProductSpecs } from '@/types/products'
 import { CATEGORY_ORDER } from '@/lib/data/categories'
 
 /**
- * Read helpers for the `products` cache (Plytix mirror).
- * Reads from individual columns (populated by the Plytix sync).
+ * Read helpers for the `products` cache (Zoho CRM mirror).
+ * Reads from individual columns (populated by pim-sync).
  * The `specs` / `media` JSONB columns are legacy — do not query them.
  */
 
