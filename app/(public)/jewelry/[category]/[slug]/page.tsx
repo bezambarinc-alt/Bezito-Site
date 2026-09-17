@@ -10,7 +10,6 @@ import { TEMPLATES, isValidTemplateId } from './layouts'
 import type { TemplateId } from './layouts'
 import type { SpecItem } from '@/types/blocks'
 import DraftModeBanner from '@/components/layout/DraftModeBanner'
-import { getNonce } from '@/lib/nonce'
 
 export const revalidate = 3600
 export const dynamicParams = true
@@ -154,12 +153,10 @@ export default async function ProductPage({
   const { prev: prevProduct, next: nextProduct } = await getAdjacentProducts(slug, category)
 
   const productSchema = buildProductSchema(product, category)
-  const nonce = await getNonce()
 
   return (
     <>
       <script
-        nonce={nonce}
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema).replace(/</g, '\\u003c') }}
       />

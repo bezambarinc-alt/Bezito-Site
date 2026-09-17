@@ -2,18 +2,19 @@
 
 import { useEffect } from 'react'
 
-export default function CuratorFeed({ nonce }: { nonce?: string }) {
+// No nonce prop. Public routes run the nonce-free CSP (see proxy.ts), which
+// allows cdn.curator.io by host — the page had to read headers() to get a nonce
+// here, and that was enough to keep /journal off static rendering.
+export default function CuratorFeed() {
   useEffect(() => {
     if (document.getElementById('curator-script')) return
     const script = document.createElement('script')
     script.id = 'curator-script'
     script.src = 'https://cdn.curator.io/published/8a90bee5-25c8-4b36-a23b-0db33a392762.js'
     script.async = true
-    if (nonce) script.setAttribute('nonce', nonce)
     document.head.appendChild(script)
-    // nonce is in deps for correctness; the id guard above keeps the injection
-    // idempotent, so a re-run after a nonce change is a no-op.
-  }, [nonce])
+    // The id guard keeps the injection idempotent under Strict Mode's double-run.
+  }, [])
 
   return null
 }

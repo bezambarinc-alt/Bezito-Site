@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { RETAILERS, getRetailer, mapEmbedUrl, directionsUrl } from '@/lib/data/retailers'
 import InquiryButton from '@/components/common/InquiryButton'
-import { getNonce } from '@/lib/nonce'
 import styles from './page.module.css'
 
 const COLLECTION_ITEMS = [
@@ -77,7 +76,6 @@ export default async function RetailerPage({
   const r = getRetailer(slug)
   if (!r) notFound()
 
-  const nonce = await getNonce()
   const multi = r.locations.length > 1
 
   // JSON-LD for each location
@@ -109,7 +107,6 @@ export default async function RetailerPage({
       {jsonLd.map((data, i) => (
         <script
           key={i}
-          nonce={nonce}
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, '\\u003c') }}
         />

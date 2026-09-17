@@ -1,9 +1,11 @@
-import { headers } from 'next/headers'
 import type { Metadata } from 'next'
 import CuratorFeed from './CuratorFeed'
 import styles from './page.module.css'
 
-export const dynamic = 'force-dynamic'
+// `force-dynamic` was here only because the page read x-nonce out of headers()
+// to hand a nonce to CuratorFeed. The public CSP allows cdn.curator.io by host
+// now, so there is nothing per-request left on this page — the feed itself is
+// fetched client-side.
 
 export const metadata: Metadata = {
   title: 'From the Bench — Bez Ambar',
@@ -11,8 +13,7 @@ export const metadata: Metadata = {
     'Behind the craft. Inside the atelier. The latest from the Bez Ambar workbench — shared as it happens on Instagram.',
 }
 
-export default async function JournalPage() {
-  const nonce = (await headers()).get('x-nonce') ?? undefined
+export default function JournalPage() {
   return (
     <main>
 
@@ -31,7 +32,7 @@ export default async function JournalPage() {
         <div className={styles.feedWrap}>
           {/* Feed target div — server-rendered, Curator script fills it client-side */}
           <div id="curator-feed-default-feed-layout" className={styles.curatorContainer} />
-          <CuratorFeed nonce={nonce} />
+          <CuratorFeed />
         </div>
 
         {/* Fallback grid — always visible */}

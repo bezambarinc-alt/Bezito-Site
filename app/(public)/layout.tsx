@@ -5,20 +5,23 @@ import NavMenuData from '@/components/layout/NavMenuData'
 import InquiryDrawer from '@/components/layout/InquiryDrawer'
 import ConciergeDrawer from '@/components/layout/ConciergeDrawer'
 import SearchOverlay from '@/components/layout/SearchOverlay'
-import { getNonce } from '@/lib/nonce'
+
+// No getNonce() here, deliberately. Reading the nonce calls headers(), and that
+// one call opts every route under this layout out of static rendering — see the
+// CSP note in proxy.ts. The public policy allows these by host instead.
 
 export default async function SiteLayout({ children }: { children: React.ReactNode }) {
-  const nonce = await getNonce()
   return (
     <>
+      {/* Zoho PageSense. This used to be an inline IIFE whose entire body was a
+          document.createElement of this same script tag; loading it directly
+          does the same job without needing an inline-script allowance, and puts
+          the host in the CSP rather than relying on nonce propagation. */}
       <script
-        nonce={nonce}
-        dangerouslySetInnerHTML={{
-          __html: `(function(w,s){var e=document.createElement("script");e.type="text/javascript";e.async=true;e.src="https://cdn.pagesense.io/js/bezambarinc657/b68a8dcb9f314cfd85f99b87f9cf95a8.js";var x=document.getElementsByTagName("script")[0];x.parentNode.insertBefore(e,x);})(window,"script");`,
-        }}
+        async
+        src="https://cdn.pagesense.io/js/bezambarinc657/b68a8dcb9f314cfd85f99b87f9cf95a8.js"
       />
       <script
-        nonce={nonce}
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({

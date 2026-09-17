@@ -3,7 +3,6 @@ import Image from 'next/image'
 import SpecAccordion from '@/components/blocks/SpecAccordion'
 import ProdPill from '@/components/layout/ProdPill'
 import AtelierBanner from '@/components/common/AtelierBanner'
-import { getNonce } from '@/lib/nonce'
 import type { SpecAccordionBlock, SpecItem } from '@/types/blocks'
 import styles from '../../jewelry/[category]/[slug]/page.module.css'
 
@@ -63,11 +62,9 @@ const productSchema = {
 }
 
 export default async function RubyFlowerHugEarringsPage() {
-  const nonce = await getNonce()
   return (
     <>
       <script
-        nonce={nonce}
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema).replace(/</g, '\\u003c') }}
       />

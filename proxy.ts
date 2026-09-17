@@ -12,35 +12,76 @@ const SKIP = /^\/(_next|api|admin|favicon|robots|sitemap|llms|.*\.[a-z0-9]+$)/i
 const BOT_UA = /bot|crawl|spider|slurp|mediapartners|googlebot|bingbot|yandexbot|duckduckbot|baiduspider|sogou|exabot|facebot|ia_archiver|semrush|ahrefs|mj12bot/i
 
 /**
- * Build a per-request CSP string with a fresh nonce.
- * Nonce replaces 'unsafe-inline' in script-src — no inline script runs without it.
- *
- * ⚠️ This nonce is why the entire public site renders dynamically, and that is
- * not an accident anyone can refactor away. Next.js reads the nonce back out of
- * this header (app-render's parseRequestHeaders) and stamps it onto its own
- * bootstrap chunks and flight-data scripts. Prerendered HTML is written at build
- * time, when there is no request and therefore no nonce — so a statically
- * rendered page ships <script> tags with no nonce attribute, and 'strict-dynamic'
- * makes the browser ignore 'self', leaving nothing to allow them.
- *
- * Measured, not assumed: removing `getNonce()` from (public)/layout.tsx does flip
- * a dozen routes to static, and Playwright against `next start` then reports 19
- * CSP violations on /terms — every Next chunk blocked, zero JS. Reverted.
- *
- * The trade is therefore CSP-vs-ISR, and it belongs to whoever owns the security
- * posture. To get static rendering back you must either drop 'strict-dynamic' and
- * add 'unsafe-inline' (which is most of what this header is protecting against),
- * or stop setting a nonce and accept inline scripts some other way.
+ * Routes that keep the strict, nonce-based CSP. Everything else gets the public
+ * policy. See buildCsp below for why the site runs two policies instead of one.
  */
-function buildCsp(nonce: string): string {
+const STRICT_CSP = /^\/(admin|portal|preview)(\/|$)/
+
+/**
+ * Build a CSP string. Two policies, chosen by path:
+ *
+ *   strict (nonce != null) — /admin, /portal, /preview.
+ *     script-src 'self' 'nonce-…' 'strict-dynamic'. No inline script runs
+ *     without the nonce. These routes are force-dynamic regardless (sessions,
+ *     cookies, PIN gates), so the nonce costs nothing here, and this is where
+ *     credentials and client work actually live.
+ *
+ *   public (nonce == null) — the marketing site and catalog.
+ *     script-src 'self' 'unsafe-inline' + an explicit host allowlist.
+ *
+ * ⚠️ Why the public policy is weaker, measured rather than assumed:
+ *
+ * Next.js stamps a nonce onto its own bootstrap chunks and flight-data scripts
+ * by reading it back per request (app-render's parseRequestHeaders). Verified
+ * against `next start`: /terms ships 22 <script> tags and all 22 carry the
+ * request's nonce. Prerendered HTML is written at build time, when there is no
+ * request and therefore no nonce — so a static page ships those same 22 tags
+ * bare, and 'strict-dynamic' makes the browser ignore 'self', leaving nothing to
+ * allow them. An earlier attempt to drop the nonce while keeping 'strict-dynamic'
+ * flipped a dozen routes to static and produced 19 CSP violations on /terms —
+ * every chunk blocked, zero JS. That is not a bug to fix; it is the trade.
+ *
+ * So: a nonce and static rendering are mutually exclusive in the App Router, and
+ * without a nonce the framework's own inline flight-data scripts need
+ * 'unsafe-inline'. Hashes are not an option — the flight payload differs per page.
+ *
+ * What makes that acceptable on the public side specifically:
+ *   - Nothing anonymous is rendered. Public copy comes from Zoho CRM and the
+ *     admin, both authenticated.
+ *   - The two raw-HTML sinks are sanitized already: BlogBody.tsx runs a tag/attr
+ *     allowlist that strips on* handlers and javascript:, and Richtext.tsx is
+ *     sanitized by the /api/pages write guard before storage.
+ *   - No public route echoes searchParams into markup, and every JSON-LD block
+ *     escapes < before serialising.
+ *   - 'unsafe-inline' is scoped to script-src on these routes only; object-src
+ *     'none', base-uri 'self' and form-action 'self' still hold everywhere.
+ *
+ * If a public route ever renders untrusted input, move it under STRICT_CSP and
+ * accept the dynamic render — do not weaken the strict policy to match.
+ */
+function buildCsp(nonce: string | null): string {
   const isDev = process.env.NODE_ENV !== 'production'
+  const unsafeEval = isDev ? " 'unsafe-eval'" : ''
+  // Without 'strict-dynamic' the host allowlist is honoured again, so anything
+  // the page pulls in has to be named here — including second-hop loads that
+  // 'strict-dynamic' used to wave through: cdn.pagesense.io is injected by the
+  // tag in (public)/layout.tsx, cdn.curator.io by journal/CuratorFeed.tsx, and
+  // connect.facebook.net is pulled in turn by Curator to render the Instagram
+  // embeds on /journal. Trust no longer propagates, so each one is explicit.
+  const scriptSrc = nonce
+    ? `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${unsafeEval} https://cdn.curator.io`
+    : `script-src 'self' 'unsafe-inline'${unsafeEval} https://cdn.curator.io https://cdn.pagesense.io https://connect.facebook.net`
   return [
     `default-src 'self'`,
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${isDev ? " 'unsafe-eval'" : ''} https://cdn.curator.io`,
+    scriptSrc,
     `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://webfonts.fontstand.com https://d3a1s2k5oq9b60.cloudfront.net https://cdn.curator.io`,
     `font-src 'self' https://fonts.gstatic.com https://webfonts.fontstand.com data:`,
     `img-src 'self' data: blob: https://res.cloudinary.com https://*.curator.io https://*.cdninstagram.com https://curator-assets.b-cdn.net`,
-    `media-src 'self' blob: https://res.cloudinary.com`,
+    // The Curator feed serves Instagram video posts from its own CDN and from
+    // cdninstagram; both were in img-src but not here, so every video tile on
+    // /journal has been blocked since the CSP shipped. Unrelated to the policy
+    // split — media-src was never affected by 'strict-dynamic'.
+    `media-src 'self' blob: https://res.cloudinary.com https://curator-assets.b-cdn.net https://*.cdninstagram.com`,
     // pagesense-collect / pagesense-hb-collect are where the Zoho PageSense tag
     // (loaded inline by (public)/layout.tsx) beacons its data. They were never in
     // this list, so every PageSense request has been blocked in production since
@@ -87,14 +128,17 @@ function logView(req: NextRequest): void {
 export default async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname
 
-  // Per-request nonce — base64-encoded UUID. Injected into CSP and forwarded
-  // to RSC via x-nonce so JSON-LD <script nonce> tags can match.
-  const nonce = btoa(crypto.randomUUID())
+  // Per-request nonce — base64-encoded UUID — but only on the routes that run
+  // the strict policy. Minting one for a public route would be worse than
+  // useless: reading it back in a server component calls headers(), and that
+  // single call is what opts the whole public tree out of static rendering.
+  const nonce = STRICT_CSP.test(path) ? btoa(crypto.randomUUID()) : null
   const csp = buildCsp(nonce)
 
-  // Forward nonce to server components via request header
+  // Forward the nonce to server components. Absent on public routes by design —
+  // getNonce() must not be called there.
   const requestHeaders = new Headers(req.headers)
-  requestHeaders.set('x-nonce', nonce)
+  if (nonce) requestHeaders.set('x-nonce', nonce)
 
   // Never gate login pages or API routes (prevents redirect loops)
   if (path === '/admin/login' || path === '/portal/login' || path.startsWith('/api/') || path.startsWith('/preview/')) {
