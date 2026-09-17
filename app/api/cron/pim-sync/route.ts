@@ -54,6 +54,24 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
 const str = (v: unknown): string | undefined =>
   typeof v === 'string' && v.trim() ? v.trim() : undefined
 
+const CAT_SINGULAR: Record<string, string> = {
+  rings: 'ring', necklaces: 'necklace', bracelets: 'bracelet',
+  bands: 'band', earrings: 'earring', pendants: 'pendant',
+}
+
+function deriveSlug(name: string, category: string | null, skuFallback: string): string {
+  const parts = name.split('|').map(p => p.trim()).filter(Boolean)
+  const base = parts.join(' ')
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]+/g, '')
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/^-+|-+$/g, '')
+  if (!base) return skuFallback.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+  const catWord = CAT_SINGULAR[category?.toLowerCase() ?? ''] ?? ''
+  return catWord && !base.includes(catWord) ? `${base}-${catWord}` : base
+}
+
 interface ZohoProduct {
   id: string
   Product_Name?: string
@@ -132,6 +150,7 @@ export async function GET(req: NextRequest) {
     let upserted = 0
     const syncedSkus: string[] = []
     const errors: { sku?: string; error: string }[] = []
+    const seenSlugs = new Map<string, string>() // slug → sku, for collision detection
 
     for (const p of products) {
       const sku = str(p.Product_Code)
@@ -139,7 +158,12 @@ export async function GET(req: NextRequest) {
 
       try {
         const category = str(p.Product_Category)?.toLowerCase().replace(/\s+/g, '-') ?? null
-        const slug = sku.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+        const skuSlug = sku.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+        let slug = deriveSlug(str(p.Product_Name) ?? sku, category, sku)
+        if (seenSlugs.has(slug) && seenSlugs.get(slug) !== sku) {
+          slug = `${slug}-${skuSlug}`
+        }
+        seenSlugs.set(slug, sku)
 
         const totalCaratWeight =
           p.Total_Carat_Weight != null ? parseFloat(String(p.Total_Carat_Weight)) : null
