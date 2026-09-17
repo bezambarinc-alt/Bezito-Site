@@ -11,15 +11,15 @@ import MenuOverlay from './MenuOverlay'
 export default async function NavMenuData() {
   const [categories, navProducts, collections] = await Promise.all([
     getActiveCategories().catch(() => [] as string[]),
-    getNavProducts().catch(() => [] as { slug: string; name: string; category: string }[]),
+    getNavProducts().catch(() => [] as { slug: string; name: string; category: string; stoneShape: string | null }[]),
     getActiveCollections().catch(() => [] as string[]),
   ])
 
   // Group products by category slug for the third-level drill-down.
-  const categoryProducts: Record<string, { slug: string; name: string }[]> = {}
+  const categoryProducts: Record<string, { slug: string; name: string; stoneShape: string | null }[]> = {}
   for (const p of navProducts) {
     if (!categoryProducts[p.category]) categoryProducts[p.category] = []
-    categoryProducts[p.category].push({ slug: p.slug, name: p.name })
+    categoryProducts[p.category].push({ slug: p.slug, name: p.name, stoneShape: p.stoneShape })
   }
 
   return (

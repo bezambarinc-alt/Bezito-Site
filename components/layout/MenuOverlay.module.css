@@ -182,17 +182,18 @@
 }
 .backBtn:hover { color: var(--ba-ink); }
 
-/* Stone shape labels — non-interactive, informational only */
+/* Empty state for shape-filtered product list */
 .shapeItem {
   display: block;
   font-family: var(--ba-font-sans);
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #888888;
-  padding: 11px 40px;
+  color: #aaaaaa;
+  padding: 16px 40px;
   list-style: none;
+  font-style: italic;
 }
 
 /* "View All [Category]" link — gold accent to distinguish from product links */
