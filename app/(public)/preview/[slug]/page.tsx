@@ -43,11 +43,15 @@ export default async function PreviewPage({ params, searchParams }: Ctx) {
     slug: string; title: string; status: string; doc_type: string;
     client_id: number | null;
     shared: boolean;
-    customer_pin: string | null; pin_expires_at: string | null;
+    has_pin: boolean; pin_expires_at: string | null;
     template_id: string | null; tenant: string; blocks: unknown;
   }>(
+    // Only the existence of a code matters here — verification happens in
+    // /api/preview/[slug]/verify-pin. Selecting the hash would put a credential
+    // in a server component whose other fields are serialised into props.
     `SELECT slug, title, status, doc_type, client_id, shared,
-            customer_pin, pin_expires_at, template_id, tenant, blocks
+            customer_pin IS NOT NULL AS has_pin,
+            pin_expires_at, template_id, tenant, blocks
      FROM pages
      WHERE slug = $1 AND doc_type IN ('showcase','proposal') AND status = 'live'
      LIMIT 1`,
@@ -81,7 +85,7 @@ export default async function PreviewPage({ params, searchParams }: Ctx) {
   // entirely, so "revoke access code" published the page to anyone with the URL.
   if (!isAdmin && page.doc_type === 'showcase') {
     const pinActive =
-      page.customer_pin !== null &&
+      page.has_pin &&
       page.pin_expires_at !== null &&
       new Date(page.pin_expires_at) > new Date()
 

@@ -88,11 +88,13 @@ export async function GET(req: NextRequest) {
   const pages = await sql<{
     slug: string; title: string; doc_type: string; status: string;
     client_id: number | null; client_name: string | null; client_slug: string | null;
-    customer_pin: string | null; pin_expires_at: string | null;
+    has_pin: boolean; pin_expires_at: string | null;
     created_at: string; updated_at: string;
   }>(
+    // customer_pin is a bcrypt hash; neither it nor the code belongs in a JSON
+    // response. Admins get "is there a code and until when", same as the portal.
     `SELECT p.slug, p.title, p.doc_type, p.status,
-            p.client_id, p.customer_pin, p.pin_expires_at,
+            p.client_id, p.customer_pin IS NOT NULL AS has_pin, p.pin_expires_at,
             p.created_at, p.updated_at,
             c.name AS client_name, c.slug AS client_slug
      FROM pages p

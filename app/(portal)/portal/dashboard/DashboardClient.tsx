@@ -9,7 +9,8 @@ interface PortalPage {
   title: string
   doc_type: 'showcase' | 'proposal'
   status: string
-  customer_pin: string | null
+  /** Whether a code is set — the code itself is hashed and never comes back. */
+  has_pin: boolean
   pin_expires_at: string | null
   updated_at: string
 }
@@ -30,9 +31,14 @@ export default function DashboardClient({ pages, clientName }: Props) {
   const proposals = pages.filter(p => p.doc_type === 'proposal')
   const showcases  = pages.filter(p => p.doc_type === 'showcase')
 
-  const [pinState, setPinState] = useState<Record<string, string | null>>(
-    Object.fromEntries(pages.map(p => [p.slug, p.customer_pin])),
+  // Whether a code exists, from the server. Separate from the code itself.
+  const [hasPin, setHasPin] = useState<Record<string, boolean>>(
+    Object.fromEntries(pages.map(p => [p.slug, p.has_pin])),
   )
+  // The code in plaintext, which only exists for the tab that generated it —
+  // the server stores a bcrypt hash and has no way to hand it back. Reloading
+  // clears this, which is why the card offers a regenerate once it's gone.
+  const [pinState, setPinState] = useState<Record<string, string | null>>({})
   const [pinExpiry, setPinExpiry] = useState<Record<string, string | null>>(
     Object.fromEntries(pages.map(p => [p.slug, p.pin_expires_at])),
   )
@@ -55,6 +61,7 @@ export default function DashboardClient({ pages, clientName }: Props) {
         const d = await res.json()
         setPinState(s => ({ ...s, [slug]: d.pin }))
         setPinExpiry(s => ({ ...s, [slug]: d.expires }))
+        setHasPin(s => ({ ...s, [slug]: true }))
       } else {
         setPinError(e => ({ ...e, [slug]: pinErrorText(res.status, 'generate an access code') }))
       }
@@ -73,6 +80,7 @@ export default function DashboardClient({ pages, clientName }: Props) {
       if (res.ok) {
         setPinState(s => ({ ...s, [slug]: null }))
         setPinExpiry(s => ({ ...s, [slug]: null }))
+        setHasPin(s => ({ ...s, [slug]: false }))
       } else {
         setPinError(e => ({ ...e, [slug]: pinErrorText(res.status, 'revoke the access code') }))
       }
@@ -161,6 +169,7 @@ export default function DashboardClient({ pages, clientName }: Props) {
             <div className={styles.cards}>
               {showcases.map(p => {
                 const pin    = pinState[p.slug]
+                const active = hasPin[p.slug]
                 const expiry = pinExpiry[p.slug]
                 const busy   = loading[p.slug]
                 const err    = pinError[p.slug]
@@ -177,11 +186,15 @@ export default function DashboardClient({ pages, clientName }: Props) {
 
                     {err && <p className={styles.formError} role="alert">{err}</p>}
 
+                    {/* Three states, because the code is only legible once:
+                        just generated (show the digits), set but not in this
+                        tab (show that it's live, offer a new one), none. */}
                     {pin ? (
                       <div className={styles.pinRow}>
                         <span className={styles.pinLabel}>Access code</span>
                         <span className={styles.pin}>{pin}</span>
                         <span className={styles.pinExpiry}>{fmtExpiry(expiry)}</span>
+                        <span className={styles.noPin}>Copy it now — it isn’t shown again.</span>
                         <div className={styles.pinActions}>
                           <a
                             href={`/preview/${p.slug}`}
@@ -189,6 +202,30 @@ export default function DashboardClient({ pages, clientName }: Props) {
                             rel="noreferrer"
                             className={styles.previewLink}
                           >Preview →</a>
+                          <button
+                            className={styles.revokeBtn}
+                            onClick={() => revokePin(p.slug)}
+                            disabled={busy}
+                          >{busy ? '…' : 'Revoke'}</button>
+                        </div>
+                      </div>
+                    ) : active ? (
+                      <div className={styles.pinRow}>
+                        <span className={styles.pinLabel}>Access code</span>
+                        <span className={styles.pinExpiry}>Active — {fmtExpiry(expiry)}</span>
+                        <div className={styles.pinActions}>
+                          <a
+                            href={`/preview/${p.slug}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className={styles.previewLink}
+                          >Preview →</a>
+                          <button
+                            className={styles.generateBtn}
+                            onClick={() => generatePin(p.slug)}
+                            disabled={busy}
+                            title="Replaces the current code with a new one"
+                          >{busy ? '…' : 'New code'}</button>
                           <button
                             className={styles.revokeBtn}
                             onClick={() => revokePin(p.slug)}

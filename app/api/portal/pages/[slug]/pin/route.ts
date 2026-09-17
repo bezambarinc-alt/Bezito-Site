@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { randomInt } from 'node:crypto'
+import bcrypt from 'bcryptjs'
 import { sql } from '@/lib/db'
 import { getClientSession } from '@/lib/client-auth'
 import { audit } from '@/lib/audit'
@@ -12,9 +13,20 @@ export async function POST(_req: NextRequest, { params }: Ctx) {
 
   const { slug } = await params
 
-  // Crypto-random 4-digit PIN
-  const pin = randomInt(1000, 9999).toString().padStart(4, '0')
+  // Crypto-random 4-digit PIN. randomInt's upper bound is exclusive and the old
+  // range was (1000, 9999) — which never emitted 9999 and never emitted a
+  // leading zero, making the padStart dead and shrinking the space from 10000
+  // to 8998. Full range now; padStart is what actually does the work.
+  const pin = randomInt(0, 10000).toString().padStart(4, '0')
   const expires = new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString()
+
+  // Stored hashed. The plaintext is returned exactly once, in this response —
+  // after that only the holder of the code has it. Nothing reads the column
+  // back for display any more; the UIs show "active until <date>" and offer a
+  // regenerate. A 4-digit secret is small enough to brute-force offline, so the
+  // real defences are the rate limiter on verify-pin and the 48h expiry — the
+  // hash just stops a DB dump from being a list of live access codes.
+  const pinHash = await bcrypt.hash(pin, 10)
 
   // Ownership is enforced by the UPDATE's own WHERE, not by a preceding SELECT.
   // The old shape was a SELECT that checked `slug AND client_id` followed by an
@@ -26,7 +38,7 @@ export async function POST(_req: NextRequest, { params }: Ctx) {
     `UPDATE pages SET customer_pin = $1, pin_expires_at = $2
       WHERE slug = $3 AND client_id = $4
       RETURNING id`,
-    [pin, expires, slug, session.clientId],
+    [pinHash, expires, slug, session.clientId],
   )
   if (!updated.length) return NextResponse.json({ error: 'Not found' }, { status: 404 })
 

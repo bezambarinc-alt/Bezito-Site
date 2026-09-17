@@ -43,9 +43,10 @@ export default async function ClientDetailPage({ params }: Ctx) {
     ),
     sql<{
       slug: string; title: string; status: string;
-      customer_pin: string | null; updated_at: string;
+      has_pin: boolean; updated_at: string;
     }>(
-      `SELECT slug, title, status, customer_pin, updated_at
+      // customer_pin is a bcrypt hash — see app/api/portal/pages/[slug]/pin.
+      `SELECT slug, title, status, customer_pin IS NOT NULL AS has_pin, updated_at
        FROM pages WHERE client_id = $1 AND doc_type = 'showcase'
        ORDER BY updated_at DESC`,
       [clientId],

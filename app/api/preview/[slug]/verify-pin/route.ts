@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
+import bcrypt from 'bcryptjs'
 import { sql } from '@/lib/db'
 import { checkRateLimit, recordAttempt } from '@/lib/rate-limit'
 import { getGeo } from '@/lib/geo'
@@ -9,6 +10,10 @@ type Ctx = { params: Promise<{ slug: string }> }
 const schema = z.object({
   pin: z.string().regex(/^\d{4}$/),
 })
+
+// Cost-10 hash of a value no PIN can ever be (PINs are exactly 4 digits), used
+// only to burn the same ~100ms bcrypt.compare costs on a real one.
+const DUMMY_HASH = '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy'
 
 export async function POST(req: NextRequest, { params }: Ctx) {
   const geo = getGeo(req)
@@ -41,10 +46,18 @@ export async function POST(req: NextRequest, { params }: Ctx) {
     [slug],
   )
 
+  // customer_pin holds a bcrypt hash — see the POST in
+  // app/api/portal/pages/[slug]/pin/route.ts. Compare against a dummy hash when
+  // the page or the PIN is missing so a wrong slug and a wrong code take the
+  // same time; otherwise the 401 doubles as an oracle for which slugs are gated.
+  const unusable = page?.customer_pin == null
+  const matches = await bcrypt.compare(pin, unusable ? DUMMY_HASH : page!.customer_pin!)
+
   const valid =
-    page?.customer_pin === pin &&
-    page?.pin_expires_at !== null &&
-    new Date(page.pin_expires_at) > new Date()
+    !unusable &&
+    matches &&
+    page!.pin_expires_at !== null &&
+    new Date(page!.pin_expires_at!) > new Date()
 
   await recordAttempt(ip, valid)
 

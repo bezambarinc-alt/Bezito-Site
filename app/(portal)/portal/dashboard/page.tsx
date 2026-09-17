@@ -12,9 +12,13 @@ export default async function PortalDashboard() {
 
   const pages = await sql<{
     slug: string; title: string; doc_type: string; status: string;
-    customer_pin: string | null; pin_expires_at: string | null; updated_at: string;
+    has_pin: boolean; pin_expires_at: string | null; updated_at: string;
   }>(
-    `SELECT slug, title, doc_type, status, customer_pin, pin_expires_at, updated_at
+    // customer_pin is a bcrypt hash now, so there is nothing display-worthy to
+    // select — only whether a code is set. The plaintext is shown once, in the
+    // response to the POST that generates it.
+    `SELECT slug, title, doc_type, status,
+            customer_pin IS NOT NULL AS has_pin, pin_expires_at, updated_at
      FROM pages
      WHERE client_id = $1
      ORDER BY doc_type DESC, updated_at DESC`,

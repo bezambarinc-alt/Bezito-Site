@@ -17,7 +17,8 @@ interface Proposal {
 }
 interface ShowcasePage {
   slug: string; title: string; status: string;
-  customer_pin: string | null; updated_at: string;
+  /** Whether a code is set — the code itself is hashed and never comes back. */
+  has_pin: boolean; updated_at: string;
 }
 interface PageRequest {
   id: number; product_sku: string | null; message: string;
@@ -247,8 +248,9 @@ export default function ClientDetailClient({ client: initial, proposals, pages, 
                     <code className={styles.slug}>{p.slug}</code>
                   </td>
                   <td className="admin-td">
-                    {p.customer_pin
-                      ? <span style={{ color: 'var(--accent)' }}>{p.customer_pin}</span>
+                    {/* Hashed — the digits are unreadable by design. */}
+                    {p.has_pin
+                      ? <span style={{ color: 'var(--accent)' }}>Set</span>
                       : <span style={{ color: 'var(--ink-faint)' }}>—</span>
                     }
                   </td>

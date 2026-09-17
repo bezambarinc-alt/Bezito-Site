@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo, useCallback } from 'react'
+import { Fragment, useState, useMemo, useCallback } from 'react'
 import type { AdminProduct } from './page'
 import styles from './ProductsGrid.module.css'
 
@@ -256,8 +256,12 @@ export default function ProductsGrid({ products }: { products: AdminProduct[] })
             const isExpanded = expanded === p.slug
 
             return (
-              <>
-                <tr key={p.slug} className="admin-row">
+              // The key belongs on the fragment — it is the element of the
+              // mapped array. Keys on the inner <tr>s did nothing, so every
+              // edit reconciled by position and in-progress view-URL edits
+              // jumped rows whenever the sort or filter changed.
+              <Fragment key={p.slug}>
+                <tr className="admin-row">
                   {/* Thumbnail — active → public page; inactive → draft preview */}
                   <td className="admin-td">
                     <a
@@ -342,7 +346,7 @@ export default function ProductsGrid({ products }: { products: AdminProduct[] })
 
                 {/* Inline view edit */}
                 {isExpanded && (
-                  <tr key={`${p.slug}-views`} className={styles.editRow}>
+                  <tr className={styles.editRow}>
                     <td colSpan={8} className={styles.editCell}>
                       <div className={styles.editInner}>
                         {(['v1', 'v2', 'v3'] as const).map((k, i) => (
@@ -367,7 +371,7 @@ export default function ProductsGrid({ products }: { products: AdminProduct[] })
                     </td>
                   </tr>
                 )}
-              </>
+              </Fragment>
             )
           })}
         </tbody>

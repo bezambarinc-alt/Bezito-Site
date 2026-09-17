@@ -12,7 +12,8 @@ interface ClientPage {
   client_id: number | null
   client_name: string | null
   client_slug: string | null
-  customer_pin: string | null
+  /** Whether a code is set — the code itself is hashed and never comes back. */
+  has_pin: boolean
   pin_expires_at: string | null
   template_id: string | null
   updated_at: string
@@ -164,7 +165,7 @@ export default function PagesClient({ pages: initial, clients, templatesByScope,
           )}
           {filtered.map(p => {
             const busy = saving[p.slug]
-            const pinActive = p.customer_pin && p.pin_expires_at && new Date(p.pin_expires_at) > new Date()
+            const pinActive = p.has_pin && p.pin_expires_at && new Date(p.pin_expires_at) > new Date()
 
             return (
               <tr key={p.slug} className="admin-row">
@@ -247,8 +248,11 @@ export default function PagesClient({ pages: initial, clients, templatesByScope,
                       {p.shared ? '🌐 Shared' : '🔒 Private'}
                     </button>
                   ) : (
+                    // The digits used to be printed here. They're hashed now,
+                    // and an admin has no reason to read a customer's code
+                    // back — only to see that one is live.
                     pinActive
-                      ? <span className={styles.pinOn}>{p.customer_pin}</span>
+                      ? <span className={styles.pinOn} title="Access code set">Set</span>
                       : <span className={styles.pinOff}>—</span>
                   )}
                 </td>

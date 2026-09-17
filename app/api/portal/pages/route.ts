@@ -8,10 +8,14 @@ export async function GET(_req: NextRequest) {
 
   const pages = await sql<{
     slug: string; title: string; doc_type: string; status: string;
-    customer_pin: string | null; pin_expires_at: string | null;
+    has_pin: boolean; pin_expires_at: string | null;
     created_at: string; updated_at: string;
   }>(
-    `SELECT slug, title, doc_type, status, customer_pin, pin_expires_at, created_at, updated_at
+    // Only whether a code is set — customer_pin holds a bcrypt hash, and this
+    // response is JSON the browser can read, so it must not carry either one.
+    `SELECT slug, title, doc_type, status,
+            customer_pin IS NOT NULL AS has_pin, pin_expires_at,
+            created_at, updated_at
      FROM pages
      WHERE client_id = $1
      ORDER BY updated_at DESC`,
