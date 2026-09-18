@@ -13,27 +13,26 @@ interface Props {
 
 const AUTOSCROLL_MS = 5000
 
+// Virtual window sizes — only this many slide DOM nodes exist at a time.
+// Categories are small today, but this keeps the carousel flat if a category
+// ever grows large (future-proofing), and matches the shipped ArchiveCarousel.
+const DESK_WIN   = 2  // ±2 around active → ≤5 nodes on desktop
+const MOBILE_WIN = 1  // ±1 around active → ≤3 nodes on mobile
+
 export default function CinematicCarousel({ products, category }: Props) {
   const total = products.length
 
   // ── Desktop state ──────────────────────────────────────────────────────────
   const [index, setIndex] = useState(0)
-  const videoRefs    = useRef<(HTMLVideoElement | null)[]>([])
-  const timerRef     = useRef<ReturnType<typeof setInterval> | null>(null)
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
+  const timerRef  = useRef<ReturnType<typeof setInterval> | null>(null)
+  // Mirrors the rendered desktopSlots so the [index] play effect knows each
+  // slot's true offset (synced in render body, same pattern as mobileWindowRef).
+  const desktopSlotsRef = useRef<{ entryIdx: number; offset: number }[]>([])
 
   const go = useCallback(
     (next: number) => setIndex(((next % total) + total) % total),
     [total],
-  )
-
-  const circOffset = useCallback(
-    (i: number) => {
-      let o = i - index
-      if (o > total / 2) o -= total
-      else if (o < -total / 2) o += total
-      return o
-    },
-    [index, total],
   )
 
   const resetTimer = useCallback(() => {
@@ -50,13 +49,16 @@ export default function CinematicCarousel({ products, category }: Props) {
   }, [resetTimer])
 
   // Play active + both neighbours so blurred flanks show live frames.
+  // Offset read from the real rendered slot, so tiny totals (1–2 pieces) still
+  // play the active slide instead of pausing a phantom-offset one.
   useEffect(() => {
-    videoRefs.current.forEach((v, i) => {
+    videoRefs.current.forEach((v, slotIdx) => {
       if (!v) return
-      if (Math.abs(circOffset(i)) <= 1) v.play().catch(() => {})
+      const offset = desktopSlotsRef.current[slotIdx]?.offset ?? DESK_WIN * 2
+      if (Math.abs(offset) <= 1) v.play().catch(() => {})
       else { v.pause(); v.currentTime = 0 }
     })
-  }, [index, circOffset])
+  }, [index])
 
   // ── Mobile scroll-lock state ───────────────────────────────────────────────
   const [mobileIndex, setMobileIndex] = useState(0)
@@ -64,15 +66,18 @@ export default function CinematicCarousel({ products, category }: Props) {
   // SSR gets a vh fallback; after mount we measure the real innerHeight and update.
   const [stackHeight, setStackHeight] = useState<string | null>(null)
   const mobileStackRef      = useRef<HTMLDivElement>(null)
-  const mobileSlideRefs     = useRef<(HTMLDivElement | null)[]>([])
-  const mobileVideoRefs     = useRef<(HTMLVideoElement | null)[]>([])
+  const mobileSlideRefs     = useRef<(HTMLDivElement | null)[]>([])    // slot-indexed, ≤3
+  const mobileVideoRefs     = useRef<(HTMLVideoElement | null)[]>([])  // slot-indexed, ≤3
   const mobileTextBottomRef = useRef<HTMLDivElement>(null)
   // isSnappingRef shared between scroll driver and touch effect to prevent double-snap
   const isSnappingRef   = useRef(false)
-  // mobileActiveRef tracks the currently-playing video index without going through React state
+  // mobileActiveRef tracks the currently-playing entry index without going through React state
   const mobileActiveRef = useRef(0)
   // playPromisesRef stores in-flight play() promises so we can await them before pausing
-  const playPromisesRef = useRef<Promise<void>[]>([])
+  const playPromisesRef = useRef<Promise<void>[]>([])                  // slot-indexed, ≤3
+  // Tracks which entry index occupies each mobile slot so scroll/touch closures
+  // can compute transforms and locate video refs without going through React state.
+  const mobileWindowRef = useRef<number[]>([])
 
   // Stack height in px — avoids dvh/vh calc issues in iOS Safari inline styles.
   // SSR gets a vh fallback; after mount we measure real innerHeight.
@@ -93,31 +98,37 @@ export default function CinematicCarousel({ products, category }: Props) {
     let rafId    = 0
     let snapTimer: ReturnType<typeof setTimeout> | null = null
 
-    // Activate a video at the given index: pause the previous (safely), play the new one.
-    // Driven directly from rAF so video state never lags behind scroll position.
+    // idx is entry index — look up slot via mobileWindowRef to reach the video ref.
+    // Pause the previous (safely), play the new one. Driven directly from rAF so
+    // video state never lags behind scroll position.
     const activateVideo = (idx: number) => {
       const prev = mobileActiveRef.current
       if (idx === prev) return
       mobileActiveRef.current = idx
+
       // Pause previous — if its play() promise is still pending, wait for it first
-      if (prev >= 0) {
-        const pv = mobileVideoRefs.current[prev]
+      const prevSlot = mobileWindowRef.current.indexOf(prev)
+      if (prevSlot >= 0) {
+        const pv = mobileVideoRefs.current[prevSlot]
         if (pv) {
-          const pending = playPromisesRef.current[prev]
+          const pending = playPromisesRef.current[prevSlot]
           if (pending !== undefined) {
             pending.then(() => { if (mobileActiveRef.current !== prev) pv.pause() }).catch(() => {})
-            playPromisesRef.current[prev] = undefined as unknown as Promise<void>
+            playPromisesRef.current[prevSlot] = undefined as unknown as Promise<void>
           } else if (!pv.paused) {
             pv.pause()
           }
         }
       }
       // Play new
-      const nv = mobileVideoRefs.current[idx]
-      if (nv) {
-        const p = nv.play()
-        playPromisesRef.current[idx] = p
-        p.catch(() => { playPromisesRef.current[idx] = undefined as unknown as Promise<void> })
+      const newSlot = mobileWindowRef.current.indexOf(idx)
+      if (newSlot >= 0) {
+        const nv = mobileVideoRefs.current[newSlot]
+        if (nv) {
+          const p = nv.play()
+          playPromisesRef.current[newSlot] = p
+          p.catch(() => { playPromisesRef.current[newSlot] = undefined as unknown as Promise<void> })
+        }
       }
     }
 
@@ -137,9 +148,14 @@ export default function CinematicCarousel({ products, category }: Props) {
       const fracIndex   = segFloor + eased
       const rounded     = Math.round(fracIndex)
 
-      mobileSlideRefs.current.forEach((slide, i) => {
+      // Each slot's transform is derived from its actual entry index vs fracIndex.
+      // 100% = 75% of the pin (see .mobileSlide CSS) — active fills top 75%,
+      // next peeks in the bottom 25%.
+      mobileSlideRefs.current.forEach((slide, slotIdx) => {
         if (!slide) return
-        const offset = i - fracIndex
+        const entryIdx = mobileWindowRef.current[slotIdx]
+        if (entryIdx === undefined) return
+        const offset = entryIdx - fracIndex
         slide.style.transform = `translateY(${offset * 100}%)`
       })
 
@@ -218,6 +234,17 @@ export default function CinematicCarousel({ products, category }: Props) {
     }
   }, [total])
 
+  // Single-result mobile: the scroll driver above bails at total<=1 and never
+  // sets the positioning transform, so the lone slide sits untransformed at the
+  // top of the pin. Place it explicitly whenever the window collapses to one.
+  useEffect(() => {
+    if (total > 1) return
+    const slide = mobileSlideRefs.current[0]
+    if (slide) slide.style.transform = 'translateY(0%)'
+    const botText = mobileTextBottomRef.current
+    if (botText) { botText.style.transform = 'translateY(0)'; botText.style.opacity = '1' }
+  }, [total])
+
   // Touch interception — prevents iOS momentum from skipping multiple products.
   // Intercepts touchmove (non-passive) to cap scroll to ±1 slide per gesture,
   // then on touchend snaps to exactly the next/prev/current product.
@@ -248,14 +275,18 @@ export default function CinematicCarousel({ products, category }: Props) {
       if (scrollRange <= 0) return
       window.scrollTo({ top: window.scrollY + rect.top + (idx / (total - 1)) * scrollRange, behavior: 'smooth' })
       // Activate video immediately — don't wait for the React state cycle
-      const nv = mobileVideoRefs.current[idx]
-      if (nv) {
-        const prev = mobileActiveRef.current
-        mobileActiveRef.current = idx
-        if (prev >= 0 && prev !== idx) mobileVideoRefs.current[prev]?.pause()
-        const p = nv.play()
-        playPromisesRef.current[idx] = p
-        p.catch(() => { playPromisesRef.current[idx] = undefined as unknown as Promise<void> })
+      const newSlot = mobileWindowRef.current.indexOf(idx)
+      if (newSlot >= 0) {
+        const nv = mobileVideoRefs.current[newSlot]
+        if (nv) {
+          const prev     = mobileActiveRef.current
+          const prevSlot = mobileWindowRef.current.indexOf(prev)
+          mobileActiveRef.current = idx
+          if (prevSlot >= 0 && prev !== idx) mobileVideoRefs.current[prevSlot]?.pause()
+          const p = nv.play()
+          playPromisesRef.current[newSlot] = p
+          p.catch(() => { playPromisesRef.current[newSlot] = undefined as unknown as Promise<void> })
+        }
       }
     }
 
@@ -311,12 +342,60 @@ export default function CinematicCarousel({ products, category }: Props) {
 
   if (total === 0) return null
 
-  const current             = products[index]
-  const mobileCurrent       = products[mobileIndex]
+  const safeIndex           = Math.min(index, total - 1)
+  const safeMobileIndex     = Math.min(mobileIndex, total - 1)
+  const current             = products[safeIndex]
+  const mobileCurrent       = products[safeMobileIndex]
   const currentParsed       = parseProductName(current.name)
   const mobileCurrentParsed = parseProductName(mobileCurrent.name)
 
   const handleManual = (next: number) => { resetTimer(); go(next) }
+
+  // ── Desktop virtual window: ≤5 slides, circular, deduped for tiny totals ───
+  // Cap the window at total-1 so tiny sets (1–2 pieces) never assign the active
+  // entry a non-zero offset. total=1 → only o=0 (active). total=2 → o=-1,0,1
+  // deduped to the active + its single neighbour, active still at 0.
+  const desktopSlots: { entryIdx: number; offset: number }[] = []
+  {
+    const halfWin = Math.min(DESK_WIN, total - 1)
+    const seen = new Set<number>()
+    for (let o = -halfWin; o <= halfWin; o++) {
+      const entryIdx = ((safeIndex + o) % total + total) % total
+      if (!seen.has(entryIdx)) {
+        seen.add(entryIdx)
+        desktopSlots.push({ entryIdx, offset: o })
+      }
+    }
+  }
+  // Sync for the [index] play/pause effect — idempotent assignment safe in render.
+  // eslint-disable-next-line react-hooks/refs
+  desktopSlotsRef.current = desktopSlots
+  // Drop trailing slots when the window shrinks, so the play effect never
+  // iterates refs to unmounted videos. Slots 0..N-1 are always rewritten by the
+  // map's ref callbacks below, so truncation only removes dead tail refs.
+  // eslint-disable-next-line react-hooks/refs
+  if (videoRefs.current.length > desktopSlots.length) videoRefs.current.length = desktopSlots.length
+
+  // ── Mobile virtual window: ≤3 slides, linear, deduped at edges ─────────────
+  const mobileWindow: number[] = []
+  {
+    const seen = new Set<number>()
+    for (let o = -MOBILE_WIN; o <= MOBILE_WIN; o++) {
+      const idx = Math.max(0, Math.min(total - 1, safeMobileIndex + o))
+      if (!seen.has(idx)) { seen.add(idx); mobileWindow.push(idx) }
+    }
+  }
+  // Sync for scroll/touch closures — idempotent assignment safe in render body
+  // eslint-disable-next-line react-hooks/refs
+  mobileWindowRef.current = mobileWindow
+  // Same trailing-slot truncation as desktop — keeps the scroll/touch closures
+  // from reaching video/slide refs left over from a wider previous window.
+  /* eslint-disable react-hooks/refs */
+  if (mobileSlideRefs.current.length > mobileWindow.length) mobileSlideRefs.current.length = mobileWindow.length
+  if (mobileVideoRefs.current.length > mobileWindow.length) mobileVideoRefs.current.length = mobileWindow.length
+  if (playPromisesRef.current.length > mobileWindow.length) playPromisesRef.current.length = mobileWindow.length
+  /* eslint-enable react-hooks/refs */
+  const mobileActiveSlot = mobileWindow.indexOf(safeMobileIndex)
 
   return (
     <>
@@ -324,11 +403,10 @@ export default function CinematicCarousel({ products, category }: Props) {
       <div className={styles.section}>
         <section className={styles.stage} aria-label="Featured pieces" aria-roledescription="carousel">
           <div className={styles.track}>
-            {products.map((p, i) => {
-              const offset      = circOffset(i)
+            {desktopSlots.map(({ entryIdx, offset }, slotIdx) => {
+              const p           = products[entryIdx]
               const isActive    = offset === 0
               const isNeighbour = Math.abs(offset) === 1
-              const isLoaded    = Math.abs(offset) <= 2
               const video = p.specs.heroVideoUrl
               const image = p.specs.heroPosterUrl
               return (
@@ -347,12 +425,12 @@ export default function CinematicCarousel({ products, category }: Props) {
                   <div className={styles.media}>
                     {video ? (
                       <video
-                        ref={(el) => { videoRefs.current[i] = el }}
-                        src={isLoaded ? video : undefined}
+                        ref={(el) => { videoRefs.current[slotIdx] = el }}
+                        src={video}
                         poster={image ?? undefined}
                         muted loop playsInline
-                        autoPlay={Math.abs(offset) <= 1}
-                        preload={Math.abs(offset) <= 1 ? 'auto' : isLoaded ? 'metadata' : 'none'}
+                        autoPlay={isActive || isNeighbour}
+                        preload={isActive || isNeighbour ? 'auto' : 'metadata'}
                       />
                     ) : image ? (
                       // eslint-disable-next-line @next/next/no-img-element
@@ -416,25 +494,26 @@ export default function CinematicCarousel({ products, category }: Props) {
         <div className={styles.mobilePin}>
 
           {/* Full-height video slides — scroll behind the blur overlays */}
-          {products.map((p, i) => {
+          {mobileWindow.map((entryIdx, slotIdx) => {
+            const p = products[entryIdx]
             const video = p.specs.heroVideoUrl
             const image = p.specs.heroPosterUrl
             const { title: pTitle } = parseProductName(p.name)
             return (
               <div
                 key={p.sku}
-                ref={(el) => { mobileSlideRefs.current[i] = el }}
+                ref={(el) => { mobileSlideRefs.current[slotIdx] = el }}
                 className={styles.mobileSlide}
               >
                 <Link href={`/jewelry/${category}/${p.slug}`} className={styles.slideLink} tabIndex={-1} aria-hidden="true">
                   {video ? (
                     <video
-                      ref={(el) => { mobileVideoRefs.current[i] = el }}
+                      ref={(el) => { mobileVideoRefs.current[slotIdx] = el }}
                       src={video}
                       poster={image ?? undefined}
                       muted loop playsInline
-                      autoPlay={i === 0}
-                      preload={i === 0 ? 'auto' : 'metadata'}
+                      autoPlay={slotIdx === mobileActiveSlot}
+                      preload={slotIdx === mobileActiveSlot ? 'auto' : 'metadata'}
                     />
                   ) : image ? (
                     // eslint-disable-next-line @next/next/no-img-element
@@ -448,13 +527,13 @@ export default function CinematicCarousel({ products, category }: Props) {
           {/* Frosted glass overlay — bottom 25% blurs next product peeking through */}
           <div className={styles.mobileBlurBottom} aria-hidden />
 
-          {/* Scroll position indicator */}
+          {/* Scroll position indicator — cheap decorative spans, one per piece */}
           {total > 1 && (
             <div className={styles.mobileDots} aria-hidden>
               {products.map((p, i) => (
                 <span
                   key={p.sku}
-                  className={`${styles.mobileDot} ${i === mobileIndex ? styles.mobileDotActive : ''}`}
+                  className={`${styles.mobileDot} ${i === safeMobileIndex ? styles.mobileDotActive : ''}`}
                 />
               ))}
             </div>
