@@ -237,7 +237,7 @@ export default function ArchiveCarousel({
     if (slide) slide.style.transform = 'translateY(50%)'
     const botText = mobileTextBottomRef.current
     if (botText) { botText.style.transform = 'translateY(0)'; botText.style.opacity = '1' }
-  }, [total, mobileIndex])
+  }, [total])
 
   // Touch interception — prevents iOS momentum from skipping multiple entries.
   useEffect(() => {
@@ -356,6 +356,11 @@ export default function ArchiveCarousel({
   // Sync for the [index] play/pause effect — idempotent assignment safe in render.
   // eslint-disable-next-line react-hooks/refs
   desktopSlotsRef.current = desktopSlots
+  // Drop trailing slots when the window shrinks (total 5→2), so the play effect
+  // never iterates refs to unmounted videos. Slots 0..N-1 are always rewritten
+  // by the map's ref callbacks below, so truncation only removes dead tail refs.
+  // eslint-disable-next-line react-hooks/refs
+  if (videoRefs.current.length > desktopSlots.length) videoRefs.current.length = desktopSlots.length
 
   // ── Mobile virtual window: ≤3 slides, linear, deduped at edges ─────────────
   const mobileWindow: number[] = []
@@ -369,6 +374,13 @@ export default function ArchiveCarousel({
   // Sync for scroll/touch closures — idempotent assignment safe in render body
   // eslint-disable-next-line react-hooks/refs
   mobileWindowRef.current = mobileWindow
+  // Same trailing-slot truncation as desktop — keeps the scroll/touch closures
+  // from reaching video/slide refs left over from a wider previous window.
+  /* eslint-disable react-hooks/refs */
+  if (mobileSlideRefs.current.length > mobileWindow.length) mobileSlideRefs.current.length = mobileWindow.length
+  if (mobileVideoRefs.current.length > mobileWindow.length) mobileVideoRefs.current.length = mobileWindow.length
+  if (playPromisesRef.current.length > mobileWindow.length) playPromisesRef.current.length = mobileWindow.length
+  /* eslint-enable react-hooks/refs */
   const mobileActiveSlot  = mobileWindow.indexOf(safeMobileIndex)
 
   return (
