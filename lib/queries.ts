@@ -238,9 +238,9 @@ export async function getAllProductParams(): Promise<{ category: string; slug: s
 }
 
 /** Slim product list for nav drill-down — slug, name, category only. */
-export async function getNavProducts(): Promise<{ slug: string; name: string; category: string; stoneShape: string | null }[]> {
-  return sql<{ slug: string; name: string; category: string; stoneShape: string | null }>(
-    `SELECT slug, name, lower(category) AS category, stone_shape AS "stoneShape" FROM products
+export async function getNavProducts(): Promise<{ slug: string; name: string; category: string }[]> {
+  return sql<{ slug: string; name: string; category: string }>(
+    `SELECT slug, name, lower(category) AS category FROM products
       WHERE active = true AND category IS NOT NULL
       ORDER BY featured DESC, sort_order ASC, name ASC`,
   )

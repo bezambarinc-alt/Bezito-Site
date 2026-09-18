@@ -20,11 +20,6 @@ type NavEntry =
 
 interface SubCol { id: string; items: NavEntry[] }
 
-const RING_SHAPES = [
-  'Round', 'Oval', 'Emerald Cut', 'Radiant', 'Cushion',
-  'Pear', 'Princess', 'Marquise', 'Asscher', 'Heart', 'Blaze',
-]
-
 // ── Root items ─────────────────────────────────────────────────────────────────
 
 const ROOT: NavEntry[] = [
@@ -40,7 +35,7 @@ const ROOT: NavEntry[] = [
 
 interface Props {
   categories?: string[]
-  categoryProducts?: Record<string, { slug: string; name: string; stoneShape?: string | null }[]>
+  categoryProducts?: Record<string, { slug: string; name: string }[]>
   collections?: string[]
 }
 
@@ -49,7 +44,6 @@ export default function MenuOverlay({ categories = [], categoryProducts = {}, co
   const open = active === 'menu'
   const [sub, setSub] = useState<string | null>(null)
   const [tertiary, setTertiary] = useState<string | null>(null)
-  const [shape, setShape] = useState<string | null>(null)
 
   // Build the jewelry sub-column dynamically from Neon data.
   // Each category is now an expand-cat item — clicking it opens a product list.
@@ -90,7 +84,6 @@ export default function MenuOverlay({ categories = [], categoryProducts = {}, co
   function handleClose() {
     setSub(null)
     setTertiary(null)
-    setShape(null)
     close()
   }
 
@@ -98,23 +91,15 @@ export default function MenuOverlay({ categories = [], categoryProducts = {}, co
     if (sub === id) {
       setSub(null)
       setTertiary(null)
-      setShape(null)
     } else {
       setSub(id)
       setTertiary(null)
-      setShape(null)
     }
   }
 
   function handleBackFromSub() {
     setSub(null)
     setTertiary(null)
-    setShape(null)
-  }
-
-  function handleExpandCat(cat: string) {
-    setTertiary(tertiary === cat ? null : cat)
-    setShape(null)
   }
 
   function handleAction(target: 'concierge' | 'inquiry', intent?: string) {
@@ -125,9 +110,6 @@ export default function MenuOverlay({ categories = [], categoryProducts = {}, co
 
   const activeSub = subCols.find((c) => c.id === sub)
   const tertiaryProducts = tertiary ? (categoryProducts[tertiary] ?? []) : []
-  const shapedProducts = shape
-    ? tertiaryProducts.filter(p => (p.stoneShape ?? '').toLowerCase() === shape.toLowerCase())
-    : []
 
   const overlayClass = [
     styles.overlay,
@@ -216,7 +198,7 @@ export default function MenuOverlay({ categories = [], categoryProducts = {}, co
                   <button
                     type="button"
                     className={`${styles.item} ${styles.itemExpand} ${tertiary === item.cat ? styles.itemActive : ''}`}
-                    onClick={() => handleExpandCat(item.cat)}
+                    onClick={() => setTertiary(tertiary === item.cat ? null : item.cat)}
                   >
                     {item.label}
                   </button>
@@ -243,21 +225,11 @@ export default function MenuOverlay({ categories = [], categoryProducts = {}, co
           </ul>
         )}
 
-        {/* Column 3 — shapes (rings) or products (other categories) */}
+        {/* Column 3 — products within the selected category */}
         {tertiary && (
           <ul className={styles.col}>
             <li className={styles.backItem}>
-              <button
-                type="button"
-                className={styles.backBtn}
-                onClick={() => {
-                  if (tertiary === 'rings' && shape !== null) {
-                    setShape(null)
-                  } else {
-                    setTertiary(null)
-                  }
-                }}
-              >
+              <button type="button" className={styles.backBtn} onClick={() => setTertiary(null)}>
                 ← Back
               </button>
             </li>
@@ -270,62 +242,24 @@ export default function MenuOverlay({ categories = [], categoryProducts = {}, co
                 View All {getCategoryLabel(tertiary)}
               </Link>
             </li>
-            <li className={styles.divider} aria-hidden />
-
-            {tertiary === 'rings' && shape === null ? (
-              // Shape selector — only show shapes that have at least one product
-              RING_SHAPES.filter(s =>
-                tertiaryProducts.some(p => (p.stoneShape ?? '').toLowerCase() === s.toLowerCase())
-              ).map((s, i) => (
-                <li key={i}>
-                  <button
-                    type="button"
-                    className={`${styles.item} ${styles.itemExpand}`}
-                    onClick={() => setShape(s)}
-                  >
-                    {s}
-                  </button>
-                </li>
-              ))
-            ) : tertiary === 'rings' && shape !== null ? (
-              // Rings filtered by shape
-              shapedProducts.length > 0 ? (
-                shapedProducts.map((p, i) => {
-                  const { title, variant } = parseProductName(p.name)
-                  return (
-                    <li key={i}>
-                      <Link
-                        href={`/jewelry/${tertiary}/${p.slug}`}
-                        onClick={handleClose}
-                        className={styles.item}
-                      >
-                        {title}
-                        {variant && <span className={styles.itemVariant}>{variant}</span>}
-                      </Link>
-                    </li>
-                  )
-                })
-              ) : (
-                <li className={styles.shapeItem}>No pieces found</li>
-              )
-            ) : (
-              // Default: product list for all other categories
-              tertiaryProducts.map((p, i) => {
-                const { title, variant } = parseProductName(p.name)
-                return (
-                  <li key={i}>
-                    <Link
-                      href={`/jewelry/${tertiary}/${p.slug}`}
-                      onClick={handleClose}
-                      className={styles.item}
-                    >
-                      {title}
-                      {variant && <span className={styles.itemVariant}>{variant}</span>}
-                    </Link>
-                  </li>
-                )
-              })
+            {tertiaryProducts.length > 0 && (
+              <li className={styles.divider} aria-hidden />
             )}
+            {tertiaryProducts.map((p, i) => {
+              const { title, variant } = parseProductName(p.name)
+              return (
+                <li key={i}>
+                  <Link
+                    href={`/jewelry/${tertiary}/${p.slug}`}
+                    onClick={handleClose}
+                    className={styles.item}
+                  >
+                    {title}
+                    {variant && <span className={styles.itemVariant}>{variant}</span>}
+                  </Link>
+                </li>
+              )
+            })}
           </ul>
         )}
       </nav>
