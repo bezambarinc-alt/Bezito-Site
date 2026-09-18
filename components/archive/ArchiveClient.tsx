@@ -63,6 +63,28 @@ export default function ArchiveClient({
     [entries, cat, shape, color],
   )
 
+  // Available options per facet — computed against the entries that pass the
+  // OTHER two active filters, so a facet never offers a value that would land
+  // on an empty carousel. Each facet excludes its own selection from the test
+  // (picking Shape=Heart shouldn't collapse the Shape list to just Heart).
+  const available = useMemo(() => {
+    const matches = (e: ArchiveEntry, skip: 'cat' | 'shape' | 'color') => {
+      const catOk   = skip === 'cat'   || cat   === 'all' || e.category === cat
+      const shapeOk = skip === 'shape' || shape === 'all' || e.shapes.includes(shape)
+      const colorOk = skip === 'color' || color === 'all' || e.colors.includes(color)
+      return catOk && shapeOk && colorOk
+    }
+    const cats   = new Set<string>()
+    const shapes = new Set<string>()
+    const colors = new Set<string>()
+    for (const e of entries) {
+      if (matches(e, 'cat')   && e.category) cats.add(e.category)
+      if (matches(e, 'shape')) for (const s of e.shapes) shapes.add(s)
+      if (matches(e, 'color')) for (const c of e.colors) colors.add(c)
+    }
+    return { cats, shapes, colors }
+  }, [entries, cat, shape, color])
+
   const openEntry = useMemo(
     () => (openId ? entries.find(e => e.slug === openId) ?? null : null),
     [entries, openId],
@@ -77,6 +99,9 @@ export default function ArchiveClient({
         shape={shape}
         color={color}
         onFilterChange={handleFilterChange}
+        availableCats={available.cats}
+        availableShapes={available.shapes}
+        availableColors={available.colors}
       />
       <ArchiveModal entry={openEntry} onClose={closePiece} />
     </>

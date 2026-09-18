@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import {
   CATEGORY_FILTERS,
   SHAPE_FILTERS,
@@ -10,11 +10,27 @@ import {
 import styles from './ArchiveFilterRow.module.css'
 
 interface Props {
-  cat:            string
-  shape:          string
-  color:          string
-  onFilterChange: (cat: string, shape: string, color: string) => void
-  dark?:          boolean
+  cat:             string
+  shape:           string
+  color:           string
+  onFilterChange:  (cat: string, shape: string, color: string) => void
+  availableCats:   Set<string>
+  availableShapes: Set<string>
+  availableColors: Set<string>
+  dark?:           boolean
+}
+
+/**
+ * Trim a filter list to only the values that currently have pieces behind them.
+ * "all" always survives; the active value survives even if it momentarily has
+ * no siblings, so the trigger can still show what's selected. Everything else
+ * is dropped when its set doesn't contain it — no dead options, no empty
+ * carousels.
+ */
+function availableOptions(
+  options: FilterOption[], have: Set<string>, active: string,
+): FilterOption[] {
+  return options.filter(o => o.value === 'all' || o.value === active || have.has(o.value))
 }
 
 /**
@@ -26,9 +42,16 @@ interface Props {
  * shows the choice inline. A hairline "Reset" appears only once something is
  * narrowed. Same three triggers in the light (desktop) and dark (mobile) mounts.
  */
-export default function ArchiveFilterRow({ cat, shape, color, onFilterChange, dark }: Props) {
+export default function ArchiveFilterRow({
+  cat, shape, color, onFilterChange,
+  availableCats, availableShapes, availableColors, dark,
+}: Props) {
   const [open, setOpen] = useState<string | null>(null)
   const rootRef = useRef<HTMLDivElement>(null)
+
+  const catOptions   = availableOptions(CATEGORY_FILTERS, availableCats,   cat)
+  const shapeOptions = availableOptions(SHAPE_FILTERS,    availableShapes, shape)
+  const colorOptions = availableOptions(COLOR_FILTERS,    availableColors, color)
 
   // Close the open panel on outside click / Escape.
   useEffect(() => {
@@ -56,6 +79,14 @@ export default function ArchiveFilterRow({ cat, shape, color, onFilterChange, da
 
   const reset = () => { onFilterChange('all', 'all', 'all'); setOpen(null) }
 
+  // A facet is worth showing only if it offers a real choice (more than just
+  // "All"). A lone "All" with nothing behind it is dead chrome — drop it.
+  const selectors = [
+    { id: 'cat',   key: 'cat'   as const, label: 'Category', options: catOptions,   value: cat },
+    { id: 'shape', key: 'shape' as const, label: 'Shape',    options: shapeOptions, value: shape },
+    { id: 'color', key: 'color' as const, label: 'Stone',    options: colorOptions, value: color },
+  ].filter(s => s.options.length > 1)
+
   return (
     <div
       ref={rootRef}
@@ -63,23 +94,16 @@ export default function ArchiveFilterRow({ cat, shape, color, onFilterChange, da
       role="group"
       aria-label="Filter the archive"
     >
-      <Selector
-        id="cat"   label="Category" options={CATEGORY_FILTERS} value={cat}
-        open={open === 'cat'}   onToggle={() => setOpen(open === 'cat' ? null : 'cat')}
-        onPick={v => pick('cat', v)}   dark={dark}
-      />
-      <span className={styles.sep} aria-hidden="true" />
-      <Selector
-        id="shape" label="Shape" options={SHAPE_FILTERS} value={shape}
-        open={open === 'shape'} onToggle={() => setOpen(open === 'shape' ? null : 'shape')}
-        onPick={v => pick('shape', v)} dark={dark}
-      />
-      <span className={styles.sep} aria-hidden="true" />
-      <Selector
-        id="color" label="Stone" options={COLOR_FILTERS} value={color}
-        open={open === 'color'} onToggle={() => setOpen(open === 'color' ? null : 'color')}
-        onPick={v => pick('color', v)} dark={dark}
-      />
+      {selectors.map((s, i) => (
+        <Fragment key={s.id}>
+          {i > 0 && <span className={styles.sep} aria-hidden="true" />}
+          <Selector
+            id={s.id} label={s.label} options={s.options} value={s.value}
+            open={open === s.id} onToggle={() => setOpen(open === s.id ? null : s.id)}
+            onPick={v => pick(s.key, v)} dark={dark}
+          />
+        </Fragment>
+      ))}
 
       {anyActive && (
         <button type="button" className={styles.reset} onClick={reset}>

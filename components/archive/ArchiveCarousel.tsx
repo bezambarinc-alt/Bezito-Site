@@ -6,17 +6,21 @@ import ArchiveFilterRow from './ArchiveFilterRow'
 import styles from './ArchiveCarousel.module.css'
 
 interface Props {
-  entries:        ArchiveEntry[]
-  onOpen:         (slug: string) => void
-  cat:            string
-  shape:          string
-  color:          string
-  onFilterChange: (cat: string, shape: string, color: string) => void
+  entries:         ArchiveEntry[]
+  onOpen:          (slug: string) => void
+  cat:             string
+  shape:           string
+  color:           string
+  onFilterChange:  (cat: string, shape: string, color: string) => void
+  availableCats:   Set<string>
+  availableShapes: Set<string>
+  availableColors: Set<string>
 }
 
 export default function ArchiveCarousel({
   entries, onOpen,
   cat, shape, color, onFilterChange,
+  availableCats, availableShapes, availableColors,
 }: Props) {
   const total = entries.length
 
@@ -307,7 +311,10 @@ export default function ArchiveCarousel({
     <>
       {/* ── Desktop horizontal filmstrip (hidden on mobile) ─────────────── */}
       <div className={styles.section}>
-        <ArchiveFilterRow cat={cat} shape={shape} color={color} onFilterChange={handleFilterChange} />
+        <ArchiveFilterRow
+          cat={cat} shape={shape} color={color} onFilterChange={handleFilterChange}
+          availableCats={availableCats} availableShapes={availableShapes} availableColors={availableColors}
+        />
 
         <section className={styles.stage} aria-label="The Archive" aria-roledescription="carousel">
           <div className={styles.track}>
@@ -428,7 +435,11 @@ export default function ArchiveCarousel({
 
           {/* Filter zone — top 25%, frosted glass, always accessible while browsing */}
           <div className={styles.mobileFilterZone}>
-            <ArchiveFilterRow cat={cat} shape={shape} color={color} onFilterChange={handleFilterChange} dark />
+            <ArchiveFilterRow
+              cat={cat} shape={shape} color={color} onFilterChange={handleFilterChange}
+              availableCats={availableCats} availableShapes={availableShapes} availableColors={availableColors}
+              dark
+            />
           </div>
 
           {/* Frosted glass overlay — bottom 25% blurs next entry peeking through */}
