@@ -400,17 +400,15 @@ export default function ArchiveCarousel({
             })}
           </div>
 
-          {total > 1 && (
-            <div className={styles.prevOverlay}>
-              <div className={styles.captionGroup}>
-                <p className={styles.ref}>ref. {current.sku}</p>
-                <h2 className={styles.name}>{current.title}</h2>
-                <button className={styles.cta} onClick={() => onOpen(current.slug)}>
-                  View Piece →
-                </button>
-              </div>
+          <div className={styles.prevOverlay}>
+            <div className={styles.captionGroup}>
+              <p className={styles.ref}>ref. {current.sku}</p>
+              <h2 className={styles.name}>{current.title}</h2>
+              <button className={styles.cta} onClick={() => onOpen(current.slug)}>
+                View Piece →
+              </button>
             </div>
-          )}
+          </div>
 
           {total > 1 && (
             <>
