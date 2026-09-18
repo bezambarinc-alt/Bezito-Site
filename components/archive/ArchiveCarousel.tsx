@@ -17,6 +17,10 @@ interface Props {
   availableColors: Set<string>
 }
 
+// Virtual window sizes — only this many slide DOM nodes exist at a time
+const DESK_WIN   = 2  // ±2 around active → ≤5 nodes on desktop
+const MOBILE_WIN = 1  // ±1 around active → ≤3 nodes on mobile
+
 export default function ArchiveCarousel({
   entries, onOpen,
   cat, shape, color, onFilterChange,
@@ -26,6 +30,7 @@ export default function ArchiveCarousel({
 
   // ── Desktop state ──────────────────────────────────────────────────────────
   const [index, setIndex] = useState(0)
+  // Slot-indexed: slotIdx 0 = offset -DESK_WIN … slotIdx DESK_WIN = active
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
 
   const go = useCallback(
@@ -33,52 +38,30 @@ export default function ArchiveCarousel({
     [total],
   )
 
-  const circOffset = useCallback(
-    (i: number) => {
-      let o = i - index
-      if (o > total / 2) o -= total
-      else if (o < -total / 2) o += total
-      return o
-    },
-    [index, total],
-  )
-
-  // Play active + both neighbours so blurred flanks show live frames
+  // offset = slotIdx - DESK_WIN; play active + neighbours, pause the rest
   useEffect(() => {
-    videoRefs.current.forEach((v, i) => {
+    videoRefs.current.forEach((v, slotIdx) => {
       if (!v) return
-      if (Math.abs(circOffset(i)) <= 1) v.play().catch(() => {})
+      const offset = slotIdx - DESK_WIN
+      if (Math.abs(offset) <= 1) v.play().catch(() => {})
       else { v.pause(); v.currentTime = 0 }
     })
-  }, [index, circOffset])
+  }, [index])
 
   // ── Mobile scroll-lock state ───────────────────────────────────────────────
   const [mobileIndex, setMobileIndex] = useState(0)
-  // Stack height in pixels — avoids dvh/vh calc issues in iOS Safari inline styles.
-  // SSR gets a vh fallback; after mount we measure the real innerHeight and update.
   const [stackHeight, setStackHeight] = useState<string | null>(null)
   const mobileStackRef      = useRef<HTMLDivElement>(null)
-  const mobileSlideRefs     = useRef<(HTMLDivElement | null)[]>([])
-  const mobileVideoRefs     = useRef<(HTMLVideoElement | null)[]>([])
+  const mobileSlideRefs     = useRef<(HTMLDivElement | null)[]>([])    // slot-indexed, ≤3
+  const mobileVideoRefs     = useRef<(HTMLVideoElement | null)[]>([])  // slot-indexed, ≤3
   const mobileTextBottomRef = useRef<HTMLDivElement>(null)
-  // isSnappingRef shared between scroll driver and touch effect to prevent double-snap
-  const isSnappingRef   = useRef(false)
-  // mobileActiveRef tracks the currently-playing video index without going through React state
-  const mobileActiveRef = useRef(0)
-  // playPromisesRef stores in-flight play() promises so we can await them before pausing
-  const playPromisesRef = useRef<Promise<void>[]>([])
+  const isSnappingRef       = useRef(false)
+  const mobileActiveRef     = useRef(0)
+  const playPromisesRef     = useRef<Promise<void>[]>([])              // slot-indexed, ≤3
+  // Tracks which entry index occupies each mobile slot so scroll/touch closures
+  // can compute transforms and locate video refs without going through React state.
+  const mobileWindowRef     = useRef<number[]>([])
 
-  // Reset both carousel positions in the filter event itself. This used to be an
-  // effect keyed on [cat, shape, color], which cost an extra render pass on every
-  // filter tap; the filter row is the only thing that changes those props.
-  //
-  // The new filtered set is a different length and reconciles by slug, so the
-  // position-indexed video ref arrays would otherwise keep stale entries that
-  // point at detached/mismatched <video> nodes — that's the "sometimes doesn't
-  // load properly" glitch. Clear them so the remount repopulates cleanly.
-  // Mobile is scroll-driven, so resetting mobileIndex alone leaves the window
-  // scrolled into the middle of a now-shorter stack (garbage frame) — snap the
-  // scroll back to the top of the stack too.
   const handleFilterChange = useCallback(
     (nextCat: string, nextShape: string, nextColor: string) => {
       setIndex(0)
@@ -113,27 +96,33 @@ export default function ArchiveCarousel({
     let rafId    = 0
     let snapTimer: ReturnType<typeof setTimeout> | null = null
 
+    // idx is entry index — look up slot via mobileWindowRef to reach video ref
     const activateVideo = (idx: number) => {
       const prev = mobileActiveRef.current
       if (idx === prev) return
       mobileActiveRef.current = idx
-      if (prev >= 0) {
-        const pv = mobileVideoRefs.current[prev]
+
+      const prevSlot = mobileWindowRef.current.indexOf(prev)
+      if (prevSlot >= 0) {
+        const pv = mobileVideoRefs.current[prevSlot]
         if (pv) {
-          const pending = playPromisesRef.current[prev]
+          const pending = playPromisesRef.current[prevSlot]
           if (pending !== undefined) {
             pending.then(() => { if (mobileActiveRef.current !== prev) pv.pause() }).catch(() => {})
-            playPromisesRef.current[prev] = undefined as unknown as Promise<void>
+            playPromisesRef.current[prevSlot] = undefined as unknown as Promise<void>
           } else if (!pv.paused) {
             pv.pause()
           }
         }
       }
-      const nv = mobileVideoRefs.current[idx]
-      if (nv) {
-        const p = nv.play()
-        playPromisesRef.current[idx] = p
-        p.catch(() => { playPromisesRef.current[idx] = undefined as unknown as Promise<void> })
+      const newSlot = mobileWindowRef.current.indexOf(idx)
+      if (newSlot >= 0) {
+        const nv = mobileVideoRefs.current[newSlot]
+        if (nv) {
+          const p = nv.play()
+          playPromisesRef.current[newSlot] = p
+          p.catch(() => { playPromisesRef.current[newSlot] = undefined as unknown as Promise<void> })
+        }
       }
     }
 
@@ -152,9 +141,12 @@ export default function ArchiveCarousel({
       const fracIndex = segFloor + eased
       const rounded   = Math.round(fracIndex)
 
-      mobileSlideRefs.current.forEach((slide, i) => {
+      // Each slot's transform is derived from its actual entry index vs fracIndex
+      mobileSlideRefs.current.forEach((slide, slotIdx) => {
         if (!slide) return
-        const offset = i - fracIndex
+        const entryIdx = mobileWindowRef.current[slotIdx]
+        if (entryIdx === undefined) return
+        const offset = entryIdx - fracIndex
         slide.style.transform = `translateY(calc(${offset * 100}% + 50%))`
       })
 
@@ -230,8 +222,6 @@ export default function ArchiveCarousel({
   }, [total])
 
   // Touch interception — prevents iOS momentum from skipping multiple entries.
-  // Intercepts touchmove (non-passive) to cap scroll to ±1 slide per gesture,
-  // then on touchend snaps to exactly the next/prev/current entry.
   useEffect(() => {
     if (total <= 1) return
     const stack = mobileStackRef.current
@@ -258,14 +248,18 @@ export default function ArchiveCarousel({
       const scrollRange = rect.height - window.innerHeight
       if (scrollRange <= 0) return
       window.scrollTo({ top: window.scrollY + rect.top + (idx / (total - 1)) * scrollRange, behavior: 'smooth' })
-      const nv = mobileVideoRefs.current[idx]
-      if (nv) {
-        const prev = mobileActiveRef.current
-        mobileActiveRef.current = idx
-        if (prev >= 0 && prev !== idx) mobileVideoRefs.current[prev]?.pause()
-        const p = nv.play()
-        playPromisesRef.current[idx] = p
-        p.catch(() => { playPromisesRef.current[idx] = undefined as unknown as Promise<void> })
+      const newSlot = mobileWindowRef.current.indexOf(idx)
+      if (newSlot >= 0) {
+        const nv = mobileVideoRefs.current[newSlot]
+        if (nv) {
+          const prev     = mobileActiveRef.current
+          const prevSlot = mobileWindowRef.current.indexOf(prev)
+          mobileActiveRef.current = idx
+          if (prevSlot >= 0 && prev !== idx) mobileVideoRefs.current[prevSlot]?.pause()
+          const p = nv.play()
+          playPromisesRef.current[newSlot] = p
+          p.catch(() => { playPromisesRef.current[newSlot] = undefined as unknown as Promise<void> })
+        }
       }
     }
 
@@ -320,13 +314,36 @@ export default function ArchiveCarousel({
     return <div className={styles.empty}>No pieces match the current filters.</div>
   }
 
-  // Clamp defensively: on a filter change the shorter entries array can arrive
-  // one render before the index reset commits, so a raw entries[index] would be
-  // undefined and current.sku would throw a blank/broken frame.
   const safeIndex       = Math.min(index, total - 1)
   const safeMobileIndex = Math.min(mobileIndex, total - 1)
   const current         = entries[safeIndex]
   const mobileCurrent   = entries[safeMobileIndex]
+
+  // ── Desktop virtual window: ≤5 slides, circular, deduped for tiny totals ───
+  const desktopSlots: { entryIdx: number; offset: number }[] = []
+  {
+    const seen = new Set<number>()
+    for (let o = -DESK_WIN; o <= DESK_WIN; o++) {
+      const entryIdx = ((safeIndex + o) % total + total) % total
+      if (!seen.has(entryIdx)) {
+        seen.add(entryIdx)
+        desktopSlots.push({ entryIdx, offset: o })
+      }
+    }
+  }
+
+  // ── Mobile virtual window: ≤3 slides, linear, deduped at edges ─────────────
+  const mobileWindow: number[] = []
+  {
+    const seen = new Set<number>()
+    for (let o = -MOBILE_WIN; o <= MOBILE_WIN; o++) {
+      const idx = Math.max(0, Math.min(total - 1, safeMobileIndex + o))
+      if (!seen.has(idx)) { seen.add(idx); mobileWindow.push(idx) }
+    }
+  }
+  // Sync for scroll/touch closures — idempotent assignment safe in render body
+  mobileWindowRef.current = mobileWindow
+  const mobileActiveSlot  = mobileWindow.indexOf(safeMobileIndex)
 
   return (
     <>
@@ -339,11 +356,10 @@ export default function ArchiveCarousel({
 
         <section className={styles.stage} aria-label="The Archive" aria-roledescription="carousel">
           <div className={styles.track}>
-            {entries.map((e, i) => {
-              const offset      = circOffset(i)
+            {desktopSlots.map(({ entryIdx, offset }, slotIdx) => {
+              const e           = entries[entryIdx]
               const isActive    = offset === 0
               const isNeighbour = Math.abs(offset) === 1
-              const isLoaded    = Math.abs(offset) <= 2
 
               return (
                 <div
@@ -359,9 +375,9 @@ export default function ArchiveCarousel({
                   aria-hidden={!isActive}
                 >
                   <div className={styles.media}>
-                    {isLoaded && e.mp4Url ? (
+                    {e.mp4Url ? (
                       <video
-                        ref={(el) => { videoRefs.current[i] = el }}
+                        ref={(el) => { videoRefs.current[slotIdx] = el }}
                         src={e.mp4Url}
                         muted loop playsInline
                         autoPlay={isActive || isNeighbour}
@@ -384,7 +400,6 @@ export default function ArchiveCarousel({
             })}
           </div>
 
-          {/* Left peek panel — identity + CTA */}
           {total > 1 && (
             <div className={styles.prevOverlay}>
               <div className={styles.captionGroup}>
@@ -397,7 +412,6 @@ export default function ArchiveCarousel({
             </div>
           )}
 
-          {/* Arrows */}
           {total > 1 && (
             <>
               <button className={`${styles.arrow} ${styles.arrowPrev}`}
@@ -427,25 +441,24 @@ export default function ArchiveCarousel({
       >
         <div className={styles.mobilePin}>
 
-          {/* 50%-height video slides — scroll behind top filter and bottom blur */}
-          {entries.map((e, i) => {
-            const isLoaded = Math.abs(i - mobileIndex) <= 2
+          {mobileWindow.map((entryIdx, slotIdx) => {
+            const e = entries[entryIdx]
             return (
               <div
                 key={e.slug}
-                ref={(el) => { mobileSlideRefs.current[i] = el }}
+                ref={(el) => { mobileSlideRefs.current[slotIdx] = el }}
                 className={styles.mobileSlide}
-                onClick={() => { if (i === mobileIndex) onOpen(e.slug) }}
-                role={i === mobileIndex ? 'button' : undefined}
-                aria-label={i === mobileIndex ? `View ${e.title}` : undefined}
+                onClick={() => { if (entryIdx === safeMobileIndex) onOpen(e.slug) }}
+                role={entryIdx === safeMobileIndex ? 'button' : undefined}
+                aria-label={entryIdx === safeMobileIndex ? `View ${e.title}` : undefined}
               >
-                {isLoaded && e.mp4Url ? (
+                {e.mp4Url ? (
                   <video
-                    ref={(el) => { mobileVideoRefs.current[i] = el }}
+                    ref={(el) => { mobileVideoRefs.current[slotIdx] = el }}
                     src={e.mp4Url}
                     muted loop playsInline
-                    autoPlay={i === 0}
-                    preload={i === 0 ? 'auto' : 'metadata'}
+                    autoPlay={slotIdx === mobileActiveSlot}
+                    preload={slotIdx === mobileActiveSlot ? 'auto' : 'metadata'}
                   />
                 ) : (
                   <div className={styles.mobilePlaceholder} />
@@ -454,7 +467,6 @@ export default function ArchiveCarousel({
             )
           })}
 
-          {/* Filter zone — top 25%, frosted glass, always accessible while browsing */}
           <div className={styles.mobileFilterZone}>
             <ArchiveFilterRow
               cat={cat} shape={shape} color={color} onFilterChange={handleFilterChange}
@@ -463,10 +475,8 @@ export default function ArchiveCarousel({
             />
           </div>
 
-          {/* Frosted glass overlay — bottom 25% blurs next entry peeking through */}
           <div className={styles.mobileBlurBottom} aria-hidden />
 
-          {/* Identity text — sits over bottom blur, exits down on transition via rAF */}
           <div ref={mobileTextBottomRef} className={styles.mobileTextBottom}>
             <p className={styles.mobileName}>{mobileCurrent.title}</p>
             <button
