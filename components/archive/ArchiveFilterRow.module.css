@@ -1,15 +1,40 @@
-/* ArchiveFilterRow — centered editorial filter bar on light background.
-   Sits between the editorial section and the dark carousel stage.
-   Dark variant (.rowDark) is used inside the mobile filter zone overlay. */
+/* ArchiveFilterRow — centered editorial filter bars on light background.
+   Three stacked groups (Category / Shape / Stone) sit between the editorial
+   section and the dark carousel stage. The dark variant (.filtersDark /
+   .rowDark) is used inside the mobile filter-zone overlay. */
+
+/* Wrapper: stacks the three filter groups vertically. */
+.filters {
+  width: 100%;
+  background: var(--ba-cream, #faf9f7);
+  padding: 36px clamp(20px, 4vw, 60px) 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
 
 .row {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px clamp(20px, 4vw, 60px) 36px;
-  background: var(--ba-cream, #faf9f7);
-  gap: 4px;
+  flex-wrap: wrap;
+  gap: 4px 2px;
+}
+
+/* Group label — small caps, sits before the options in each row. */
+.groupLabel {
+  font-family: var(--ba-font-sans);
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: rgba(0, 0, 0, 0.32);
+  margin-right: 10px;
+  white-space: nowrap;
+  min-width: 62px;
+  text-align: right;
 }
 
 /* Category tab — spaced caps, dark muted text */
@@ -55,12 +80,34 @@
 }
 
 /* ── Dark variant (mobile filter zone overlay) — pill chips ──────────────── */
-.rowDark {
+/* The wrapper owns the fixed 25% frosted zone and scrolls internally so all
+   three groups stay reachable without spilling over the carousel. */
+.filtersDark {
   background: transparent;
   height: 100%;
+  padding: 8px clamp(8px, 3vw, 16px);
+  gap: 4px;
+  justify-content: center;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.filtersDark::-webkit-scrollbar { display: none; }
+
+.rowDark {
+  background: transparent;
   align-items: center;
-  padding: 0 clamp(8px, 3vw, 16px);
+  padding: 0;
   gap: 6px;
+}
+
+/* Group label in dark/pill mode — faint, uppercase, per-row lead-in. */
+.rowDark .groupLabel {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 8px;
+  letter-spacing: 0.22em;
+  margin-right: 6px;
+  min-width: 48px;
 }
 
 /* Pill base — override the plain underline style */
@@ -90,15 +137,32 @@
 
 /* ── Mobile ───────────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
+  /* Light bar (desktop-editorial section shown narrow): tighten, keep each
+     group on its own horizontally-scrollable line so long rows don't wrap. */
+  .filters {
+    padding: 22px 14px 18px;
+    gap: 6px;
+  }
+
   .row {
-    padding: 20px 0 16px;
-    overflow-x: auto;
+    flex-wrap: nowrap;
     justify-content: flex-start;
+    overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
     gap: 0;
   }
   .row::-webkit-scrollbar { display: none; }
+
+  .groupLabel {
+    position: sticky;
+    left: 0;
+    min-width: 52px;
+    flex-shrink: 0;
+    background: var(--ba-cream, #faf9f7);
+    padding-right: 6px;
+    z-index: 1;
+  }
 
   .tab {
     font-size: 9px;
@@ -112,19 +176,33 @@
     right: 12px;
   }
 
-  /* Dark/pill variant on mobile — centered wrapping grid, all options visible */
-  .rowDark {
-    padding: 6px 12px;
-    justify-content: center;
-    align-content: center;
-    flex-wrap: wrap;
-    overflow-x: unset;
+  /* Dark/pill variant on mobile — the wrapper scrolls; each group wraps its
+     pills so every option is reachable inside the fixed 25% frosted zone. */
+  .filtersDark {
+    padding: 8px 10px;
     gap: 6px;
-    height: 100%;
+    justify-content: flex-start;
+  }
+
+  .rowDark {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: center;
+    overflow-x: unset;
+    gap: 5px;
+  }
+
+  .rowDark .groupLabel {
+    position: static;
+    background: none;
+    width: 100%;
+    min-width: 0;
+    margin: 0 0 1px;
+    text-align: left;
   }
 
   .rowDark .tab {
-    padding: 4px 12px;
+    padding: 4px 11px;
     font-size: 9px;
     flex-shrink: 0;
     white-space: nowrap;
