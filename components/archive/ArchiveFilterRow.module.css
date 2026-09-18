@@ -1,210 +1,238 @@
-/* ArchiveFilterRow — centered editorial filter bars on light background.
-   Three stacked groups (Category / Shape / Stone) sit between the editorial
-   section and the dark carousel stage. The dark variant (.filtersDark /
-   .rowDark) is used inside the mobile filter-zone overlay. */
+/* ArchiveFilterRow — editorial filter bar, restraint over exposure.
+   At rest: one centred line of three quiet selectors (Category · Shape · Stone).
+   On click: a single refined dropdown panel. The dark variant (.barDark /
+   .panelDark) is used inside the mobile filter-zone overlay. */
 
-/* Wrapper: stacks the three filter groups vertically. */
-.filters {
+/* ── Bar: one calm centred line ─────────────────────────────────────────────── */
+.bar {
   width: 100%;
   background: var(--ba-cream, #faf9f7);
-  padding: 36px clamp(20px, 4vw, 60px) 32px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-.row {
-  width: 100%;
+  padding: 30px clamp(20px, 4vw, 60px) 28px;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 4px;
   flex-wrap: wrap;
-  gap: 4px 2px;
 }
 
-/* Group label — small caps, sits before the options in each row. */
-.groupLabel {
+/* Hairline divider between selectors. */
+.sep {
+  width: 1px;
+  height: 14px;
+  background: rgba(0, 0, 0, 0.14);
+  margin: 0 6px;
+}
+
+.selector {
+  position: relative;
+}
+
+/* ── Trigger: label at rest, chosen option once narrowed ────────────────────── */
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 6px;
   font-family: var(--ba-font-sans);
-  font-size: 9px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.28em;
-  color: rgba(0, 0, 0, 0.32);
-  margin-right: 10px;
-  white-space: nowrap;
-  min-width: 62px;
-  text-align: right;
+  letter-spacing: 0.22em;
+  color: rgba(0, 0, 0, 0.42);
+  transition: color 0.2s ease;
 }
 
-/* Category tab — spaced caps, dark muted text */
-.tab {
+.trigger:hover,
+.triggerOpen {
+  color: rgba(0, 0, 0, 0.78);
+}
+
+.triggerActive {
+  color: var(--ba-gold, #95826b);
+}
+
+.triggerLabel {
+  white-space: nowrap;
+}
+
+/* Caret — a small down chevron drawn from a rotated square edge. */
+.caret {
+  width: 5px;
+  height: 5px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  opacity: 0.55;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.triggerOpen .caret {
+  transform: translateY(1px) rotate(225deg);
+  opacity: 0.9;
+}
+
+/* ── Reset — hairline, appears only when something is narrowed ───────────────── */
+.reset {
+  margin-left: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
   font-family: var(--ba-font-sans);
   font-size: 10px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: rgba(0, 0, 0, 0.28);
+  color: rgba(0, 0, 0, 0.34);
+  padding: 8px 4px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.reset:hover {
+  color: var(--ba-gold, #95826b);
+  border-color: var(--ba-gold, #95826b);
+}
+
+/* ── Panel: the single refined dropdown ─────────────────────────────────────── */
+.panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  min-width: 168px;
+  max-height: 320px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 6px 0;
+  list-style: none;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.14);
+  scrollbar-width: thin;
+  animation: panelIn 0.16s ease;
+}
+
+@keyframes panelIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(-4px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.option {
+  display: block;
+  width: 100%;
+  text-align: left;
   background: none;
   border: none;
-  padding: 8px 18px;
   cursor: pointer;
+  padding: 9px 20px;
+  font-family: var(--ba-font-sans);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.6);
   white-space: nowrap;
-  position: relative;
-  transition: color 0.2s ease;
+  transition: background 0.15s ease, color 0.15s ease;
 }
-
-/* Animated underline */
-.tab::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 18px;
-  right: 18px;
-  height: 1px;
-  background: var(--ba-gold, #95826b);
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.25s ease;
+.option:hover {
+  background: rgba(0, 0, 0, 0.04);
+  color: rgba(0, 0, 0, 0.88);
 }
-
-.tab:hover {
-  color: rgba(0, 0, 0, 0.65);
-}
-
-.tabActive {
+.optionActive {
   color: var(--ba-gold, #95826b);
-}
-.tabActive::after {
-  transform: scaleX(1);
+  font-weight: 600;
 }
 
-/* ── Dark variant (mobile filter zone overlay) — pill chips ──────────────── */
-/* The wrapper owns the fixed 25% frosted zone and scrolls internally so all
-   three groups stay reachable without spilling over the carousel. */
-.filtersDark {
+/* ── Dark variant (mobile filter zone overlay) ──────────────────────────────── */
+.barDark {
   background: transparent;
   height: 100%;
-  padding: 8px clamp(8px, 3vw, 16px);
-  gap: 4px;
-  justify-content: center;
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-.filtersDark::-webkit-scrollbar { display: none; }
-
-.rowDark {
-  background: transparent;
-  align-items: center;
-  padding: 0;
-  gap: 6px;
+  padding: 0 clamp(10px, 3vw, 18px);
+  gap: 2px;
 }
 
-/* Group label in dark/pill mode — faint, uppercase, per-row lead-in. */
-.rowDark .groupLabel {
-  color: rgba(255, 255, 255, 0.45);
-  font-size: 8px;
-  letter-spacing: 0.22em;
-  margin-right: 6px;
-  min-width: 48px;
+.barDark .sep {
+  background: rgba(255, 255, 255, 0.22);
 }
 
-/* Pill base — override the plain underline style */
-.rowDark .tab {
+.barDark .trigger {
+  color: rgba(255, 255, 255, 0.62);
+  padding: 8px 5px;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+}
+.barDark .trigger:hover,
+.barDark .triggerOpen {
+  color: rgba(255, 255, 255, 0.95);
+}
+.barDark .triggerActive {
+  color: var(--ba-gold, #c9a96e);
+}
+
+.barDark .reset {
   color: rgba(255, 255, 255, 0.5);
-  padding: 5px 14px;
-  border-radius: 20px;
-  border: 1px solid transparent;
-  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+.barDark .reset:hover {
+  color: var(--ba-gold, #c9a96e);
+  border-color: var(--ba-gold, #c9a96e);
 }
 
-.rowDark .tab:hover {
-  color: rgba(255, 255, 255, 0.85);
+/* Panel opens upward in the dark mount — it sits in a band near the top of the
+   carousel, so drop it below the trigger but cap height and keep it on-screen. */
+.panelDark {
+  background: #14110d;
+  border: 1px solid rgba(201, 169, 110, 0.28);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55);
+}
+.panelDark .option {
+  color: rgba(255, 255, 255, 0.7);
+}
+.panelDark .option:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+}
+.panelDark .optionActive {
+  color: var(--ba-gold, #c9a96e);
 }
 
-/* Active pill — gold ring + faint gold tint fill */
-.rowDark .tabActive {
-  color: var(--ba-gold, #95826b);
-  background: rgba(201, 169, 110, 0.12);
-  border-color: rgba(201, 169, 110, 0.45);
-}
-
-/* No underline animation in dark/pill mode */
-.rowDark .tab::after {
-  display: none;
-}
-
-/* ── Mobile ───────────────────────────────────────────────────────────────── */
+/* ── Mobile ─────────────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  /* Light bar (desktop-editorial section shown narrow): tighten, keep each
-     group on its own horizontally-scrollable line so long rows don't wrap. */
-  .filters {
-    padding: 22px 14px 18px;
+  .bar {
+    padding: 20px 12px 16px;
+    gap: 2px;
+  }
+
+  .trigger {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    padding: 8px 4px;
     gap: 6px;
   }
 
-  .row {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+  .sep {
+    margin: 0 3px;
+  }
+
+  .panel {
+    min-width: 150px;
+    max-height: 240px;
+  }
+
+  .option {
+    padding: 10px 18px;
+    font-size: 11px;
+  }
+
+  /* Dark mount lives inside the fixed 25% frosted zone — keep the line centred
+     and let the panel overlay the carousel rather than stretch the band. */
+  .barDark {
     gap: 0;
   }
-  .row::-webkit-scrollbar { display: none; }
-
-  .groupLabel {
-    position: sticky;
-    left: 0;
-    min-width: 52px;
-    flex-shrink: 0;
-    background: var(--ba-cream, #faf9f7);
-    padding-right: 6px;
-    z-index: 1;
-  }
-
-  .tab {
+  .barDark .trigger {
     font-size: 9px;
-    padding: 6px 12px;
-    flex-shrink: 0;
-    letter-spacing: 0.16em;
-  }
-
-  .tab::after {
-    left: 12px;
-    right: 12px;
-  }
-
-  /* Dark/pill variant on mobile — the wrapper scrolls; each group wraps its
-     pills so every option is reachable inside the fixed 25% frosted zone. */
-  .filtersDark {
-    padding: 8px 10px;
-    gap: 6px;
-    justify-content: flex-start;
-  }
-
-  .rowDark {
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-content: center;
-    overflow-x: unset;
-    gap: 5px;
-  }
-
-  .rowDark .groupLabel {
-    position: static;
-    background: none;
-    width: 100%;
-    min-width: 0;
-    margin: 0 0 1px;
-    text-align: left;
-  }
-
-  .rowDark .tab {
-    padding: 4px 11px;
-    font-size: 9px;
-    flex-shrink: 0;
-    white-space: nowrap;
+    letter-spacing: 0.12em;
   }
 }
