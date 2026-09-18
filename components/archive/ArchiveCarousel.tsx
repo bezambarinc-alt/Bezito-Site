@@ -30,19 +30,25 @@ export default function ArchiveCarousel({
 
   // ── Desktop state ──────────────────────────────────────────────────────────
   const [index, setIndex] = useState(0)
-  // Slot-indexed: slotIdx 0 = offset -DESK_WIN … slotIdx DESK_WIN = active
+  // Slot-indexed. For total ≥ 5 slot 0 = offset -DESK_WIN … but for tiny totals
+  // the window is capped, so the active slot is NOT always DESK_WIN — the play
+  // effect must read each slot's real offset from desktopSlotsRef, not derive it.
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
+  // Mirrors the rendered desktopSlots so the [index] effect knows each slot's
+  // true offset (synced in render body, same pattern as mobileWindowRef).
+  const desktopSlotsRef = useRef<{ entryIdx: number; offset: number }[]>([])
 
   const go = useCallback(
     (next: number) => setIndex(((next % total) + total) % total),
     [total],
   )
 
-  // offset = slotIdx - DESK_WIN; play active + neighbours, pause the rest
+  // Play active + immediate neighbours, pause the rest — offset read from the
+  // real rendered slot, so tiny totals (1–2 results) still play the active slide.
   useEffect(() => {
     videoRefs.current.forEach((v, slotIdx) => {
       if (!v) return
-      const offset = slotIdx - DESK_WIN
+      const offset = desktopSlotsRef.current[slotIdx]?.offset ?? DESK_WIN * 2
       if (Math.abs(offset) <= 1) v.play().catch(() => {})
       else { v.pause(); v.currentTime = 0 }
     })
@@ -67,6 +73,7 @@ export default function ArchiveCarousel({
       setIndex(0)
       setMobileIndex(0)
       videoRefs.current       = []
+      desktopSlotsRef.current = []
       mobileVideoRefs.current = []
       mobileActiveRef.current = 0
       playPromisesRef.current = []
@@ -221,6 +228,17 @@ export default function ArchiveCarousel({
     }
   }, [total])
 
+  // Single-result mobile: the scroll driver above bails at total<=1 and never
+  // sets the centering transform, so the lone slide sits at the top of the pin.
+  // Center it explicitly whenever the window collapses to one entry.
+  useEffect(() => {
+    if (total > 1) return
+    const slide = mobileSlideRefs.current[0]
+    if (slide) slide.style.transform = 'translateY(50%)'
+    const botText = mobileTextBottomRef.current
+    if (botText) { botText.style.transform = 'translateY(0)'; botText.style.opacity = '1' }
+  }, [total, mobileIndex])
+
   // Touch interception — prevents iOS momentum from skipping multiple entries.
   useEffect(() => {
     if (total <= 1) return
@@ -320,10 +338,14 @@ export default function ArchiveCarousel({
   const mobileCurrent   = entries[safeMobileIndex]
 
   // ── Desktop virtual window: ≤5 slides, circular, deduped for tiny totals ───
+  // Cap the window at total-1 so tiny result sets (1–2 pieces) never assign the
+  // active entry a non-zero offset. total=1 → only o=0 (active). total=2 →
+  // o=-1,0,1 deduped to the active + its single neighbour, active still at 0.
   const desktopSlots: { entryIdx: number; offset: number }[] = []
   {
+    const halfWin = Math.min(DESK_WIN, total - 1)
     const seen = new Set<number>()
-    for (let o = -DESK_WIN; o <= DESK_WIN; o++) {
+    for (let o = -halfWin; o <= halfWin; o++) {
       const entryIdx = ((safeIndex + o) % total + total) % total
       if (!seen.has(entryIdx)) {
         seen.add(entryIdx)
@@ -331,6 +353,9 @@ export default function ArchiveCarousel({
       }
     }
   }
+  // Sync for the [index] play/pause effect — idempotent assignment safe in render.
+  // eslint-disable-next-line react-hooks/refs
+  desktopSlotsRef.current = desktopSlots
 
   // ── Mobile virtual window: ≤3 slides, linear, deduped at edges ─────────────
   const mobileWindow: number[] = []
@@ -342,6 +367,7 @@ export default function ArchiveCarousel({
     }
   }
   // Sync for scroll/touch closures — idempotent assignment safe in render body
+  // eslint-disable-next-line react-hooks/refs
   mobileWindowRef.current = mobileWindow
   const mobileActiveSlot  = mobileWindow.indexOf(safeMobileIndex)
 
