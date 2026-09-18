@@ -71,10 +71,26 @@ export default function ArchiveCarousel({
   // Reset both carousel positions in the filter event itself. This used to be an
   // effect keyed on [cat, shape, color], which cost an extra render pass on every
   // filter tap; the filter row is the only thing that changes those props.
+  //
+  // The new filtered set is a different length and reconciles by slug, so the
+  // position-indexed video ref arrays would otherwise keep stale entries that
+  // point at detached/mismatched <video> nodes — that's the "sometimes doesn't
+  // load properly" glitch. Clear them so the remount repopulates cleanly.
+  // Mobile is scroll-driven, so resetting mobileIndex alone leaves the window
+  // scrolled into the middle of a now-shorter stack (garbage frame) — snap the
+  // scroll back to the top of the stack too.
   const handleFilterChange = useCallback(
     (nextCat: string, nextShape: string, nextColor: string) => {
       setIndex(0)
       setMobileIndex(0)
+      videoRefs.current       = []
+      mobileVideoRefs.current = []
+      mobileActiveRef.current = 0
+      playPromisesRef.current = []
+      if (typeof window !== 'undefined') {
+        const stackTop = mobileStackRef.current?.getBoundingClientRect().top ?? 0
+        if (stackTop < 0) window.scrollTo({ top: window.scrollY + stackTop, behavior: 'auto' })
+      }
       onFilterChange(nextCat, nextShape, nextColor)
     },
     [onFilterChange],
@@ -304,8 +320,13 @@ export default function ArchiveCarousel({
     return <div className={styles.empty}>No pieces match the current filters.</div>
   }
 
-  const current       = entries[index]
-  const mobileCurrent = entries[mobileIndex]
+  // Clamp defensively: on a filter change the shorter entries array can arrive
+  // one render before the index reset commits, so a raw entries[index] would be
+  // undefined and current.sku would throw a blank/broken frame.
+  const safeIndex       = Math.min(index, total - 1)
+  const safeMobileIndex = Math.min(mobileIndex, total - 1)
+  const current         = entries[safeIndex]
+  const mobileCurrent   = entries[safeMobileIndex]
 
   return (
     <>
