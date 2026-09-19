@@ -78,8 +78,8 @@ export default async function CategoryPage({
         </div>
       </section>
 
-      {/* 2. White breath between hero and carousel */}
-      <div style={{ height: 'clamp(80px, 8vw, 120px)', background: 'var(--white)' }} />
+      {/* 2. White breath between hero and carousel — matches AtelierBanner margin-top below */}
+      <div style={{ height: '64px', background: 'var(--white)' }} />
 
       {/* 3. Cinematic carousel — all products, desktop + mobile */}
       {products.length > 0 && (
