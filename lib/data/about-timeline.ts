@@ -93,10 +93,9 @@ export const ABOUT_CHAPTERS: AboutChapter[] = [
     reverse: true,
     headline: 'The Blaze®.',
     body: 'The Blaze® accent stone is introduced — a patent-pending triangular brilliant cut designed to nestle against channel-set stones and amplify their collective light output. Where previous accent cuts sat passively between main stones, the Blaze® interacts with them, redirecting light across the setting. It becomes a registered trademark and a protected design innovation.',
-    video: {
-      src: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1782855871/Jewelry%20Videos/Bracelets/emerald-cut-flex-bracelet-c0834-2026.mp4',
-      poster:
-        'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1782876014/Jewelry%20Images/Necklaces/single-row-lifestyle.jpg',
+    img: {
+      src: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1789347748/Jewelry%20Images/Legacy/woocommerce-archive/arcdt-rd-cosmic-fire-01.jpg',
+      alt: 'A radiant-cut center framed with triangular Blaze® accent stones channel-set down the shank',
     },
   },
   {
