@@ -82,9 +82,10 @@ export const ABOUT_CHAPTERS: AboutChapter[] = [
     layout: 'split',
     headline: 'Micro-Pavé.',
     body: 'Bez introduces micro-pavé setting to the Los Angeles market — a technique requiring stones smaller than 1mm, set under magnification with hand-cut prongs barely visible to the naked eye. The effect is a continuous field of light rather than individual stones. The technique redefines what delicate means in fine jewelry.',
-    img: {
-      src: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1785482739/Jewelry%20Images/Atelier/jeweler-loupe-2026.jpg',
-      alt: 'A jeweler working under a loupe, setting stones by hand — micro-pavé precision',
+    video: {
+      src: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1783797335/archive/videos/b0323-lpb11.mp4',
+      poster:
+        'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1783657789/archive/gifs/bands/b0323-lpb11.avif',
     },
   },
   {
