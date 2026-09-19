@@ -108,7 +108,7 @@ export const ABOUT_CHAPTERS: AboutChapter[] = [
     video: {
       src: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1783061546/Jewelry%20Videos/Rings/c0747-hd-2026.mp4',
       poster:
-        'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1775549202/Jewelry%20Images/Rings/C0625_Baguette_band_Master_e4azkj.jpg',
+        'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1783241034/Jewelry%20Images/Atelier/designer-portrait-2026.jpg',
     },
   },
 ]
