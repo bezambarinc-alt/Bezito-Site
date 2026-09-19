@@ -6,7 +6,6 @@ import { getProductsByCategory } from '@/lib/queries'
 import { parseProductName } from '@/lib/product-name'
 import CinematicCarousel from '@/components/product/CinematicCarousel'
 import AtelierBanner from '@/components/common/AtelierBanner'
-import HomeSegment from '@/components/home/HomeSegment'
 
 // Pre-render all known category slugs at build time; revalidate hourly.
 export const revalidate = 3600
@@ -40,9 +39,6 @@ export default async function CategoryPage({
 
   // Hero = featured product, or most recent (first in list, sorted featured DESC)
   const heroProduct = products.find((p) => p.featured) ?? products[0] ?? null
-  // Editorial = next product that isn't the hero
-  const editorialProduct = products.find((p) => p.slug !== heroProduct?.slug) ?? null
-
   const heroVideo  = cat.heroImageUrl ? null : (heroProduct?.specs.heroVideoUrl ?? null)
   const heroPoster = cat.heroImageUrl ?? heroProduct?.specs.heroPosterUrl ?? null
 
@@ -82,22 +78,7 @@ export default async function CategoryPage({
         </div>
       </section>
 
-      {/* 2. Editorial spotlight — 1 product, 2-col */}
-      {editorialProduct && (
-        <HomeSegment
-          className="ba-cat-desktop"
-          eyebrow={`ref. ${editorialProduct.sku}`}
-          title={parseProductName(editorialProduct.name).title}
-          body={editorialProduct.specs.lede ?? editorialProduct.specs.subtitle ?? undefined}
-          videoUrl={editorialProduct.specs.heroVideoUrl ?? undefined}
-          imageUrl={editorialProduct.specs.heroPosterUrl ?? undefined}
-          posterUrl={editorialProduct.specs.heroPosterUrl ?? undefined}
-          ctaLabel={`View ${parseProductName(editorialProduct.name).title}`}
-          ctaHref={`/jewelry/${category}/${editorialProduct.slug}`}
-        />
-      )}
-
-      {/* 3. Cinematic carousel — all products, desktop + mobile */}
+      {/* 2. Cinematic carousel — all products, desktop + mobile */}
       {products.length > 0 && (
         <CinematicCarousel products={products} category={category} />
       )}
