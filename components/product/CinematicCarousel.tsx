@@ -22,6 +22,15 @@ const MOBILE_WIN = 1  // ±1 around active → ≤3 nodes on mobile
 export default function CinematicCarousel({ products, category }: Props) {
   const total = products.length
 
+  // Videos that failed to load (404 / stalled). Once a URL is marked dead we
+  // fall back to its poster <img> for good — this both stops the browser from
+  // endlessly retrying the bad asset (the freeze) and shows the next-best
+  // visual. Marking is one-shot per URL, so it can never re-trigger in a loop.
+  const [deadVideos, setDeadVideos] = useState<Set<string>>(new Set())
+  const markDead = useCallback((url: string) => {
+    setDeadVideos((prev) => (prev.has(url) ? prev : new Set(prev).add(url)))
+  }, [])
+
   // ── Desktop state ──────────────────────────────────────────────────────────
   const [index, setIndex] = useState(0)
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
@@ -407,7 +416,8 @@ export default function CinematicCarousel({ products, category }: Props) {
               const p           = products[entryIdx]
               const isActive    = offset === 0
               const isNeighbour = Math.abs(offset) === 1
-              const video = p.specs.heroVideoUrl
+              const rawVideo = p.specs.heroVideoUrl
+              const video = rawVideo && !deadVideos.has(rawVideo) ? rawVideo : null
               const image = p.specs.heroPosterUrl
               return (
                 <div
@@ -431,6 +441,7 @@ export default function CinematicCarousel({ products, category }: Props) {
                         muted loop playsInline
                         autoPlay={isActive || isNeighbour}
                         preload={isActive || isNeighbour ? 'auto' : 'metadata'}
+                        onError={() => markDead(video)}
                       />
                     ) : image ? (
                       // eslint-disable-next-line @next/next/no-img-element
@@ -496,7 +507,8 @@ export default function CinematicCarousel({ products, category }: Props) {
           {/* Full-height video slides — scroll behind the blur overlays */}
           {mobileWindow.map((entryIdx, slotIdx) => {
             const p = products[entryIdx]
-            const video = p.specs.heroVideoUrl
+            const rawVideo = p.specs.heroVideoUrl
+            const video = rawVideo && !deadVideos.has(rawVideo) ? rawVideo : null
             const image = p.specs.heroPosterUrl
             const { title: pTitle } = parseProductName(p.name)
             return (
@@ -514,6 +526,7 @@ export default function CinematicCarousel({ products, category }: Props) {
                       muted loop playsInline
                       autoPlay={slotIdx === mobileActiveSlot}
                       preload={slotIdx === mobileActiveSlot ? 'auto' : 'metadata'}
+                      onError={() => markDead(video)}
                     />
                   ) : image ? (
                     // eslint-disable-next-line @next/next/no-img-element

@@ -20,6 +20,7 @@ import styles from './HeroVideo.module.css'
 
 export default function HeroVideo({ block }: { block: HeroVideoBlock }) {
   const [videoPlaying, setVideoPlaying] = useState(false)
+  const [videoDead, setVideoDead] = useState(false)
   const pos = block.overlay?.position ?? 'bottom-left'
 
   return (
@@ -38,18 +39,22 @@ export default function HeroVideo({ block }: { block: HeroVideoBlock }) {
         </div>
       )}
 
-      {/* Video — z-index:1, preload aggressively (always above fold) */}
-      <video
-        className={styles.video}
-        src={block.videoUrl}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        poster={block.posterUrl}
-        onPlaying={() => setVideoPlaying(true)}
-      />
+      {/* Video — z-index:1, preload aggressively (always above fold).
+          On error: unmount so the browser stops retrying and the poster stays pinned. */}
+      {!videoDead && block.videoUrl && (
+        <video
+          className={styles.video}
+          src={block.videoUrl}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster={block.posterUrl}
+          onPlaying={() => setVideoPlaying(true)}
+          onError={() => setVideoDead(true)}
+        />
+      )}
 
       <div className={styles.scrim} aria-hidden />
 

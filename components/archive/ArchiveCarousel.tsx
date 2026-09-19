@@ -28,6 +28,15 @@ export default function ArchiveCarousel({
 }: Props) {
   const total = entries.length
 
+  // Videos that failed to load (404 / stalled). Once a URL is marked dead we
+  // stop rendering its <video> and fall back to the piece's avif poster — this
+  // kills the browser's endless retry on a bad asset (the freeze) and shows the
+  // next-best visual instead of a blank slide. One-shot per URL: never loops.
+  const [deadVideos, setDeadVideos] = useState<Set<string>>(new Set())
+  const markDead = useCallback((url: string) => {
+    setDeadVideos((prev) => (prev.has(url) ? prev : new Set(prev).add(url)))
+  }, [])
+
   // ── Desktop state ──────────────────────────────────────────────────────────
   const [index, setIndex] = useState(0)
   // Slot-indexed. For total ≥ 5 slot 0 = offset -DESK_WIN … but for tiny totals
@@ -413,14 +422,19 @@ export default function ArchiveCarousel({
                   aria-hidden={!isActive}
                 >
                   <div className={styles.media}>
-                    {e.mp4Url ? (
+                    {e.mp4Url && !deadVideos.has(e.mp4Url) ? (
                       <video
                         ref={(el) => { videoRefs.current[slotIdx] = el }}
                         src={e.mp4Url}
+                        poster={e.gifUrl || undefined}
                         muted loop playsInline
                         autoPlay={isActive || isNeighbour}
                         preload={isActive || isNeighbour ? 'auto' : 'metadata'}
+                        onError={() => markDead(e.mp4Url)}
                       />
+                    ) : e.gifUrl ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={e.gifUrl} alt={e.title} />
                     ) : (
                       <div className={styles.placeholder} />
                     )}
@@ -488,14 +502,19 @@ export default function ArchiveCarousel({
                 role={entryIdx === safeMobileIndex ? 'button' : undefined}
                 aria-label={entryIdx === safeMobileIndex ? `View ${e.title}` : undefined}
               >
-                {e.mp4Url ? (
+                {e.mp4Url && !deadVideos.has(e.mp4Url) ? (
                   <video
                     ref={(el) => { mobileVideoRefs.current[slotIdx] = el }}
                     src={e.mp4Url}
+                    poster={e.gifUrl || undefined}
                     muted loop playsInline
                     autoPlay={slotIdx === mobileActiveSlot}
                     preload={slotIdx === mobileActiveSlot ? 'auto' : 'metadata'}
+                    onError={() => markDead(e.mp4Url)}
                   />
+                ) : e.gifUrl ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={e.gifUrl} alt={e.title} />
                 ) : (
                   <div className={styles.mobilePlaceholder} />
                 )}
