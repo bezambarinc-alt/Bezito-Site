@@ -2,7 +2,10 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import PageCta from '@/components/common/PageCta'
 import AtelierBanner from '@/components/common/AtelierBanner'
-import { STATS, TIMELINE } from '@/lib/data/about-content'
+import TimelineNav from './TimelineNav'
+import { ChapterReveal, AnimateChild } from './ChapterReveal'
+import { STATS } from '@/lib/data/about-content'
+import { ABOUT_CHAPTERS, ABOUT_YEARS } from '@/lib/data/about-timeline'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
@@ -76,27 +79,119 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div className={styles.timelineList}>
-          {TIMELINE.map((entry) => (
-            <div key={entry.year} className={styles.tlEntry}>
-              <div className={styles.tlYear}>{entry.year}</div>
-              <div className={styles.tlContent}>
-                <h3 className={styles.tlTitle}>{entry.title}</h3>
-                <p className={styles.tlBody}>{entry.body}</p>
-                {entry.imgUrl && (
-                  <div className={styles.tlImg}>
-                    <Image
-                      src={entry.imgUrl}
-                      alt={entry.imgAlt ?? entry.title}
-                      fill
-                      sizes="(max-width: 900px) 100vw, 50vw"
-                      className={styles.tlPhoto}
-                    />
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
+        <div className={styles.timelineOuter} id="about-timeline">
+          {/* Sticky year nav — client component */}
+          <TimelineNav years={ABOUT_YEARS} />
+
+          {/* Chapters — server-rendered for SEO */}
+          <div className={styles.chapters}>
+            {ABOUT_CHAPTERS.map((ch) => {
+              const chapterClass = [
+                styles.chapter,
+                styles[`layout_${ch.layout}`],
+                ch.reverse ? styles.reverse : '',
+              ].filter(Boolean).join(' ')
+
+              return (
+                <ChapterReveal
+                  key={ch.year}
+                  id={`year-${ch.year}`}
+                  data-year={ch.year}
+                  className={chapterClass}
+                >
+                  {/* horz: year left, text right */}
+                  {ch.layout === 'horz' && (
+                    <div className={styles.inner}>
+                      <AnimateChild><div className={styles.ynum}>{ch.year}</div></AnimateChild>
+                      <div>
+                        <AnimateChild><h3 className={styles.headline}>{ch.headline}</h3></AnimateChild>
+                        <AnimateChild><div className={styles.body}><p>{ch.body}</p></div></AnimateChild>
+                        {ch.pullquote && (
+                          <AnimateChild>
+                            <blockquote className={styles.pullquote}>{ch.pullquote}</blockquote>
+                          </AnimateChild>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* split: text + media side-by-side */}
+                  {ch.layout === 'split' && (
+                    <>
+                      <AnimateChild><div className={styles.ynum}>{ch.year}</div></AnimateChild>
+                      <div className={styles.inner}>
+                        <div>
+                          <AnimateChild><h3 className={styles.headline}>{ch.headline}</h3></AnimateChild>
+                          <AnimateChild><div className={styles.body}><p>{ch.body}</p></div></AnimateChild>
+                          {ch.pullquote && (
+                            <AnimateChild>
+                              <blockquote className={styles.pullquote}>{ch.pullquote}</blockquote>
+                            </AnimateChild>
+                          )}
+                        </div>
+                        <AnimateChild>
+                          <figure className={styles.media}>
+                            {ch.video ? (
+                              <video
+                                src={ch.video.src}
+                                poster={ch.video.poster}
+                                autoPlay muted loop playsInline preload="none"
+                              />
+                            ) : ch.img ? (
+                              <Image
+                                src={ch.img.src}
+                                alt={ch.img.alt}
+                                width={600}
+                                height={400}
+                                loading="lazy"
+                                className={styles.chapterImg}
+                              />
+                            ) : null}
+                          </figure>
+                        </AnimateChild>
+                      </div>
+                    </>
+                  )}
+
+                  {/* normal: stacked */}
+                  {ch.layout === 'normal' && (
+                    <>
+                      <AnimateChild><div className={styles.ynum}>{ch.year}</div></AnimateChild>
+                      <AnimateChild><h3 className={styles.headline}>{ch.headline}</h3></AnimateChild>
+                      <AnimateChild><div className={styles.body}><p>{ch.body}</p></div></AnimateChild>
+                      {ch.pullquote && (
+                        <AnimateChild>
+                          <blockquote className={styles.pullquote}>{ch.pullquote}</blockquote>
+                        </AnimateChild>
+                      )}
+                      {(ch.img || ch.video) && (
+                        <AnimateChild>
+                          <figure className={`${styles.media} ${styles.mediaBelow}`}>
+                            {ch.video ? (
+                              <video
+                                src={ch.video.src}
+                                poster={ch.video.poster}
+                                autoPlay muted loop playsInline preload="none"
+                              />
+                            ) : ch.img ? (
+                              <Image
+                                src={ch.img.src}
+                                alt={ch.img.alt}
+                                width={600}
+                                height={400}
+                                loading="lazy"
+                                className={styles.chapterImg}
+                              />
+                            ) : null}
+                          </figure>
+                        </AnimateChild>
+                      )}
+                    </>
+                  )}
+                </ChapterReveal>
+              )
+            })}
+          </div>
         </div>
       </section>
 
