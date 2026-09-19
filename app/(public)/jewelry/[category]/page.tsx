@@ -6,6 +6,7 @@ import { getProductsByCategory } from '@/lib/queries'
 import { parseProductName } from '@/lib/product-name'
 import CinematicCarousel from '@/components/product/CinematicCarousel'
 import AtelierBanner from '@/components/common/AtelierBanner'
+import styles from './page.module.css'
 
 // Pre-render all known category slugs at build time; revalidate hourly.
 export const revalidate = 3600
@@ -47,7 +48,7 @@ export default async function CategoryPage({
       {/* ── Desktop-only sections ───────────────────────────────────────────── */}
 
       {/* 1. Hero — full-height on both desktop and mobile */}
-      <section className={`ba-portrait-hero ba-portrait-hero--${category}`}>
+      <section className={`ba-portrait-hero ba-portrait-hero--${category} ${styles.hero}`}>
         {heroVideo ? (
           <video
             src={heroVideo}
