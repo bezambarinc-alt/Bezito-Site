@@ -16,7 +16,7 @@ export const HERO_SLIDES: [CarouselSlide, CarouselSlide] = [
     videoUrl:
       'https://res.cloudinary.com/dlg2mou53/video/upload/h_1080,c_limit,q_auto/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.mp4',
     posterUrl:
-      'https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.jpg',
+      'https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_auto,q_auto,w_1080/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.jpg',
     eyebrow: 'Bez Ambar · Los Angeles',
     headline: 'The Magic of Light',
     sub: 'A certificate can grade a stone. It cannot tell how the light dances within it. In lesser hands, light merely touches the stone; done right, it melts into the divine.',
@@ -25,7 +25,7 @@ export const HERO_SLIDES: [CarouselSlide, CarouselSlide] = [
     videoUrl:
       'https://res.cloudinary.com/dlg2mou53/video/upload/h_1080,c_limit,q_auto/Jewelry%20Videos/Bands/4k_ovalcut_band_6_v1_rllzya.mp4',
     posterUrl:
-      'https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bands/4k_ovalcut_band_6_v1_rllzya.jpg',
+      'https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_auto,q_auto,w_1080/Jewelry%20Videos/Bands/4k_ovalcut_band_6_v1_rllzya.jpg',
     eyebrow: 'The Oval Band',
     headline: 'A Line You Never Take Off',
     sub: "Cut to fit its place, set to disappear. Every stone calibrated to the hand that wears it. It doesn't announce itself; it stays.",
@@ -37,7 +37,7 @@ export const CINEMATIC_SLIDES: [CarouselSlide, CarouselSlide] = [
     videoUrl:
       'https://res.cloudinary.com/dlg2mou53/video/upload/h_1080,c_limit,q_auto/Jewelry%20Videos/Bracelets/4k_pearshape_bracelet_v1_awqjfc.mp4',
     posterUrl:
-      'https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bracelets/4k_pearshape_bracelet_v1_awqjfc.jpg',
+      'https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_auto,q_auto,w_1080/Jewelry%20Videos/Bracelets/4k_pearshape_bracelet_v1_awqjfc.jpg',
     eyebrow: 'Coming Soon',
     headline: 'The Elysian Pear',
     sub: 'A teardrop, reborn — the next chapter in the line of brilliance.',
@@ -46,7 +46,7 @@ export const CINEMATIC_SLIDES: [CarouselSlide, CarouselSlide] = [
     videoUrl:
       'https://res.cloudinary.com/dlg2mou53/video/upload/h_1080,c_limit,q_auto/Jewelry%20Videos/Bands/Pearshape_HD_hlvl8l.mp4',
     posterUrl:
-      'https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bands/Pearshape_HD_hlvl8l.jpg',
+      'https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_auto,q_auto,w_1080/Jewelry%20Videos/Bands/Pearshape_HD_hlvl8l.jpg',
     eyebrow: 'The Elysian Pear Band',
     headline: 'Pear Cut. Continuous Line.',
     sub: 'Each teardrop calibrated to the next, until light becomes the band itself.',

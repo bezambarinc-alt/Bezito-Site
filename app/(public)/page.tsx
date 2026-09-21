@@ -23,7 +23,7 @@ export default function HomePage() {
       <HomeSegment
         id="foundation"
         reverse
-        imageUrl="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1100/v1785629661/Diamond_Design_Hero_eoykbn.avif"
+        imageUrl="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1785629661/Diamond_Design_Hero_eoykbn.avif"
         eyebrow="Designing Diamond Cuts Since 1979"
         title="We Don't Just Cut the Stone. We Design the Cut."
         body="Most jewelry houses source pre-cut diamonds and build around them. Some cut their own—using other people's geometries. Bez Ambar designs the facets themselves, executes every cut in-house, and shapes each stone to fit its exact position in the piece. That's not craftsmanship. It's a different discipline entirely."
@@ -32,7 +32,7 @@ export default function HomePage() {
       {/* The Cuts */}
       <HomeSegment
         id="cuts"
-        imageUrl="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1100/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg"
+        imageUrl="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg"
         eyebrow="The Cuts"
         title="From the Princess to the Elysian"
         body="Bez Ambar is one of the original architects of the modern princess cut—a cut now part of the global language of fine jewelry. The same instinct continues through the Blaze®, the Elysian Cut™ and everything that follows."
@@ -54,7 +54,7 @@ export default function HomePage() {
         id="atelier"
         reverse
         videoUrl="https://res.cloudinary.com/dlg2mou53/video/upload/v1785655154/Ring_CAD_DESIG_c9mnsf_1_kwjfkb.mp4"
-        posterUrl="https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/v1785655154/Ring_CAD_DESIG_c9mnsf_1_kwjfkb.jpg"
+        posterUrl="https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_auto,q_auto,w_900/v1785655154/Ring_CAD_DESIG_c9mnsf_1_kwjfkb.jpg"
         eyebrow="The Design"
         title="Drawn, Engineered, Finished by Hand"
         body="For decades Bez Ambar has pushed the diamond cutting and faceting industry—treating every component as an act of high artistry. We honour the tools of tradition while constantly searching for new directions in style, technology, and technique. Everything we make arrives at uncompromised excellence."
