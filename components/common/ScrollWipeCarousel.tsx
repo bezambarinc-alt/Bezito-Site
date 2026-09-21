@@ -23,6 +23,22 @@ interface Props {
   headingLevel?: 'h1' | 'h2'
 }
 
+// The .video is object-fit:cover over a full 100vh pin, so it must cover the
+// device's *physical* pixels (CSS px × devicePixelRatio), not CSS px. The slide
+// data ships the desktop tier (w_1920,c_limit,q_auto). On mobile/retina — where
+// physical width is <= ~1300px (e.g. a 3× iPhone at ~393 CSS px = ~1179 px) —
+// we downgrade the Cloudinary transform to w_1180,q_auto:good: sharp on iPhone,
+// ~half the desktop weight. Desktop keeps the w_1920 URL untouched.
+const MOBILE_TRANSFORM = 'w_1180,c_limit,q_auto:good'
+const DESKTOP_TRANSFORM = 'w_1920,c_limit,q_auto'
+
+function pickVideoUrl(url: string): string {
+  if (typeof window === 'undefined') return url
+  const physicalWidth = window.innerWidth * (window.devicePixelRatio || 1)
+  if (physicalWidth > 1300) return url // desktop — keep w_1920 as authored
+  return url.replace(DESKTOP_TRANSFORM, MOBILE_TRANSFORM)
+}
+
 export default function ScrollWipeCarousel({ slides, headingLevel = 'h2' }: Props) {
   const stackRef  = useRef<HTMLDivElement>(null)
   const slide1Ref = useRef<HTMLDivElement>(null)
@@ -30,9 +46,25 @@ export default function ScrollWipeCarousel({ slides, headingLevel = 'h2' }: Prop
   const video1Ref = useRef<HTMLVideoElement>(null)
   const [activeDot, setActiveDot]   = useState(0)
   const [dotsVisible, setDotsVisible] = useState(false)
+  // Resolve the device-appropriate video transform client-side, before any src
+  // is emitted. Starts empty so the server-rendered hero doesn't preload the
+  // heavy desktop (w_1920) file on a phone; the poster shows until the mount
+  // effect fills in the correct tier. Prevents a mobile device from fetching
+  // the 10 MB desktop video before the w_1180 swap can happen.
+  const [videoUrls, setVideoUrls] = useState<[string, string]>(['', ''])
   const video1Started = useRef(false)
   const video1Loaded  = useRef(false)
   const ticking = useRef(false)
+
+  // Pick the device-appropriate video transform once on mount. Runs before the
+  // IO/scroll effect below triggers playback, so the correct src is in place.
+  useEffect(() => {
+    // One-shot client-only read of window size/DPR — can't run during render
+    // without an SSR hydration mismatch, so a mount effect + setState is the
+    // correct pattern here.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setVideoUrls([pickVideoUrl(slides[0].videoUrl), pickVideoUrl(slides[1].videoUrl)])
+  }, [slides])
 
   useEffect(() => {
     const stack = stackRef.current
@@ -129,11 +161,11 @@ export default function ScrollWipeCarousel({ slides, headingLevel = 'h2' }: Prop
           {/* preload="auto" — above fold hero, must buffer immediately for autoplay */}
           <video
             ref={video0Ref}
-            src={slides[0].videoUrl}
+            {...(videoUrls[0] ? { src: videoUrls[0] } : {})}
             autoPlay muted loop playsInline preload="auto"
             poster={slides[0].posterUrl}
             className={styles.video}
-            onError={(e) => { const v = e.currentTarget; console.warn('[Hero] video 0 failed:', v.currentSrc); v.src = '' }}
+            onError={(e) => { const v = e.currentTarget; if (!v.currentSrc) return; console.warn('[Hero] video 0 failed:', v.currentSrc); v.src = '' }}
           />
           <div className={styles.gradient} aria-hidden />
           <div className={styles.overlayLeft}>
@@ -149,11 +181,11 @@ export default function ScrollWipeCarousel({ slides, headingLevel = 'h2' }: Prop
         <div ref={slide1Ref} className={styles.slide1}>
           <video
             ref={video1Ref}
-            src={slides[1].videoUrl}
+            {...(videoUrls[1] ? { src: videoUrls[1] } : {})}
             muted loop playsInline preload="none"
             poster={slides[1].posterUrl}
             className={styles.video}
-            onError={(e) => { const v = e.currentTarget; console.warn('[Hero] video 1 failed:', v.currentSrc); v.src = '' }}
+            onError={(e) => { const v = e.currentTarget; if (!v.currentSrc) return; console.warn('[Hero] video 1 failed:', v.currentSrc); v.src = '' }}
           />
           <div className={styles.gradient} aria-hidden />
           <div className={styles.overlayLeft}>

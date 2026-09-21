@@ -14,7 +14,7 @@ export interface CarouselSlide {
 export const HERO_SLIDES: [CarouselSlide, CarouselSlide] = [
   {
     videoUrl:
-      'https://res.cloudinary.com/dlg2mou53/video/upload/w_720,c_limit,q_auto:eco/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.mp4',
+      'https://res.cloudinary.com/dlg2mou53/video/upload/w_1920,c_limit,q_auto/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.mp4',
     posterUrl:
       'https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_auto,q_auto,w_1080/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.jpg',
     eyebrow: 'Bez Ambar · Los Angeles',
@@ -23,7 +23,7 @@ export const HERO_SLIDES: [CarouselSlide, CarouselSlide] = [
   },
   {
     videoUrl:
-      'https://res.cloudinary.com/dlg2mou53/video/upload/w_720,c_limit,q_auto:eco/Jewelry%20Videos/Bands/4k_ovalcut_band_6_v1_rllzya.mp4',
+      'https://res.cloudinary.com/dlg2mou53/video/upload/w_1920,c_limit,q_auto/Jewelry%20Videos/Bands/4k_ovalcut_band_6_v1_rllzya.mp4',
     posterUrl:
       'https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_auto,q_auto,w_1080/Jewelry%20Videos/Bands/4k_ovalcut_band_6_v1_rllzya.jpg',
     eyebrow: 'The Oval Band',
@@ -35,7 +35,7 @@ export const HERO_SLIDES: [CarouselSlide, CarouselSlide] = [
 export const CINEMATIC_SLIDES: [CarouselSlide, CarouselSlide] = [
   {
     videoUrl:
-      'https://res.cloudinary.com/dlg2mou53/video/upload/w_720,c_limit,q_auto:eco/Jewelry%20Videos/Bracelets/4k_pearshape_bracelet_v1_awqjfc.mp4',
+      'https://res.cloudinary.com/dlg2mou53/video/upload/w_1920,c_limit,q_auto/Jewelry%20Videos/Bracelets/4k_pearshape_bracelet_v1_awqjfc.mp4',
     posterUrl:
       'https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_auto,q_auto,w_1080/Jewelry%20Videos/Bracelets/4k_pearshape_bracelet_v1_awqjfc.jpg',
     eyebrow: 'Coming Soon',
@@ -44,7 +44,7 @@ export const CINEMATIC_SLIDES: [CarouselSlide, CarouselSlide] = [
   },
   {
     videoUrl:
-      'https://res.cloudinary.com/dlg2mou53/video/upload/w_720,c_limit,q_auto:eco/Jewelry%20Videos/Bands/Pearshape_HD_hlvl8l.mp4',
+      'https://res.cloudinary.com/dlg2mou53/video/upload/w_1920,c_limit,q_auto/Jewelry%20Videos/Bands/Pearshape_HD_hlvl8l.mp4',
     posterUrl:
       'https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_auto,q_auto,w_1080/Jewelry%20Videos/Bands/Pearshape_HD_hlvl8l.jpg',
     eyebrow: 'The Elysian Pear Band',
