@@ -5,6 +5,7 @@ import { REDIRECTS } from './redirects'
 // Only static security headers live here.
 
 const nextConfig: NextConfig = {
+  experimental: { inlineCss: true },
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'res.cloudinary.com', pathname: '/dlg2mou53/**' },
