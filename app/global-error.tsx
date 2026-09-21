@@ -17,7 +17,7 @@ export default function GlobalError({
 
   return (
     <html lang="en">
-      <body style={{ margin: 0, background: '#faf7f2', fontFamily: "'Lyon Text Regular', Georgia, serif", display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh' }}>
+      <body style={{ margin: 0, background: '#faf7f2', fontFamily: "'Lora', Georgia, serif", display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh' }}>
         <div style={{ textAlign: 'center', padding: '4rem 2rem', maxWidth: '480px' }}>
           <span style={{ display: 'block', fontSize: '1.5rem', color: '#c5a258', marginBottom: '1.5rem' }} aria-hidden>—</span>
           <h1 style={{ fontWeight: 400, fontSize: 'clamp(1.5rem, 4vw, 2.25rem)', color: '#1a1a1a', margin: '0 0 0.75rem', letterSpacing: '-0.01em' }}>Something went wrong.</h1>

@@ -74,8 +74,8 @@ function buildCsp(nonce: string | null): string {
   return [
     `default-src 'self'`,
     scriptSrc,
-    `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://webfonts.fontstand.com https://d3a1s2k5oq9b60.cloudfront.net https://cdn.curator.io`,
-    `font-src 'self' https://fonts.gstatic.com https://webfonts.fontstand.com data:`,
+    `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.curator.io`,
+    `font-src 'self' https://fonts.gstatic.com data:`,
     `img-src 'self' data: blob: https://res.cloudinary.com https://*.curator.io https://*.cdninstagram.com https://curator-assets.b-cdn.net`,
     // The Curator feed serves Instagram video posts from its own CDN and from
     // cdninstagram; both were in img-src but not here, so every video tile on

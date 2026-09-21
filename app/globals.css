@@ -1,7 +1,7 @@
 /* ============================================================
    Bez Ambar — global tokens, resets, base typography
    Reference: src/styles/global.css (Astro) — matched 1:1
-   Fonts: Open Sans (headings/UI) · Lyon Text (body/prose)
+   Fonts: Open Sans (headings/UI) · Lora (body/prose)
    "Chiseling Light." Los Angeles · Est. 1979
    ============================================================ */
 
@@ -28,8 +28,9 @@
   --ba-light-bg:     #f7f5f2;              /* --light-bg */
 
   /* Typography — font stacks (match Astro --sans / --serif / --prose)
-     next/font vars (--font-*) resolve to the loaded webfonts; Lyon Text is
-     first so it takes over automatically once the licensed files are served. */
+     next/font vars (--font-*) resolve to the self-hosted Google fonts.
+     Note: Open Sans's weight axis starts at 300 — `font-weight: 200`
+     declarations elsewhere render as 300, they are not hairline. */
   --ba-font-sans:  var(--font-opensans), 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --ba-font-serif: var(--font-lora), 'Lora', Georgia, serif;
   /* Editorial = same serif/prose stack, used for prose/body copy */

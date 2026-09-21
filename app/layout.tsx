@@ -49,14 +49,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${openSans.variable} ${lora.variable}`}>
-      <head>
-        <link rel="preconnect" href="https://webfonts.fontstand.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://webfonts.fontstand.com" />
-        <link
-          rel="stylesheet"
-          href="https://webfonts.fontstand.com/WF-099839-d89c1d499f0c1f40d1e6d7330af17f97.css"
-        />
-      </head>
       <body>
         {children}
         <CookieConsentBanner />
