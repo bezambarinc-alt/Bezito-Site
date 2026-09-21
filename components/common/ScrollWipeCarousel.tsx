@@ -14,6 +14,7 @@
  */
 
 import { useEffect, useRef, useState } from 'react'
+import ReactDOM from 'react-dom'
 import type { CarouselSlide } from '@/lib/data/home-slides'
 import styles from './ScrollWipeCarousel.module.css'
 
@@ -40,6 +41,18 @@ function pickVideoUrl(url: string): string {
 }
 
 export default function ScrollWipeCarousel({ slides, headingLevel = 'h2' }: Props) {
+  // LCP: the above-fold hero (headingLevel 'h1') shows slide 0's poster first —
+  // the video src resolves client-side (DPR tier), so without this the poster
+  // isn't fetched until hydration. Preloading it here SSR-hoists a
+  // <link rel="preload" as="image" fetchpriority="high"> into <head>, so the
+  // LCP image download starts with the HTML instead of after hydration. Gated
+  // to the hero only — the lazy cinematic carousel must NOT preload and compete
+  // with the real LCP. Poster URL is DPR-independent (single w_1080), so this
+  // matches the <video poster> request byte-for-byte.
+  if (headingLevel === 'h1') {
+    ReactDOM.preload(slides[0].posterUrl, { as: 'image', fetchPriority: 'high' })
+  }
+
   const stackRef  = useRef<HTMLDivElement>(null)
   const slide1Ref = useRef<HTMLDivElement>(null)
   const video0Ref = useRef<HTMLVideoElement>(null)
