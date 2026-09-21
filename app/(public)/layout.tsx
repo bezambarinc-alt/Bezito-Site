@@ -1,3 +1,4 @@
+import Script from 'next/script'
 import { DrawerProvider } from '@/components/layout/DrawerContext'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
@@ -17,8 +18,8 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
           document.createElement of this same script tag; loading it directly
           does the same job without needing an inline-script allowance, and puts
           the host in the CSP rather than relying on nonce propagation. */}
-      <script
-        async
+      <Script
+        strategy="lazyOnload"
         src="https://cdn.pagesense.io/js/bezambarinc657/b68a8dcb9f314cfd85f99b87f9cf95a8.js"
       />
       <script

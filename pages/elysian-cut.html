@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE ELYSIAN. — Bez Ambar</title>
+<meta name="description" content="The Elysian Band — a continuous circle of the Elysian Cut™, Bez Ambar's elongated oval-baguette hybrid. Full eternity and halfway versions. Made in Los Angeles.">
+<link rel="canonical" href="https://bezito.co/page/elysian-cut">
+<meta property="og:type" content="product">
+<meta property="og:title" content="THE ELYSIAN. — Bez Ambar">
+<meta property="og:description" content="A continuous circle of the Elysian Cut™ — light travels the finger in one unbroken line.">
+<meta property="og:image" content="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1200/Jewelry%20Images/Bands/2ELS-50_gydi1e.png">
+<meta property="og:url" content="https://bezito.co/page/elysian-cut">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-muted: #888888;
+    --accent: #8c7a66;
+    --paper: #ffffff;
+    --sans: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --editorial: 'Lora', Georgia, serif;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--editorial); -webkit-font-smoothing: antialiased; }
+  img, video { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+
+  /* Header */
+  .ba-header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(0,0,0,.07);
+    padding: 22px 20px; text-align: center;
+  }
+  .ba-header__logo {
+    font-family: var(--sans); font-size: 15px; font-weight: 600;
+    letter-spacing: 6px; text-transform: uppercase; color: var(--ink);
+  }
+
+  /* Intro hero */
+  .intro {
+    max-width: 900px; margin: 0 auto; text-align: center;
+    padding: clamp(70px, 9vw, 110px) clamp(24px, 5vw, 80px) clamp(30px, 4vw, 50px);
+  }
+  .eyebrow {
+    font-family: var(--sans); font-size: 12px; font-weight: 400;
+    letter-spacing: .22em; text-transform: uppercase; color: var(--ink-muted);
+    margin-bottom: 14px;
+  }
+  .ba-title {
+    font-family: var(--sans); font-size: clamp(1.6rem, 3.4vw, 2.6rem); font-weight: 300;
+    text-transform: uppercase; letter-spacing: .045rem; color: var(--accent); line-height: 125%;
+    margin-bottom: 24px;
+  }
+  .intro__body {
+    font-family: var(--editorial); font-size: 17px; line-height: 1.7; color: #2E2E33;
+    max-width: 640px; margin: 0 auto;
+  }
+
+  /* Alternating segments */
+  .segment {
+    display: grid; grid-template-columns: 1fr 1fr; align-items: center;
+    gap: clamp(40px, 6vw, 100px); max-width: 1300px; margin: 0 auto;
+    padding: clamp(30px, 3.5vw, 55px) clamp(40px, 5vw, 80px);
+  }
+  .segment__media {
+    position: relative; width: 100%; max-width: 600px; aspect-ratio: 6/7;
+    overflow: hidden; justify-self: end; background: #f4f2ef;
+  }
+  .segment__media img, .segment__media video { width: 100%; height: 100%; object-fit: cover; }
+  .segment__text { max-width: 440px; justify-self: start; }
+  .segment--reverse .segment__media { order: 2; justify-self: start; }
+  .segment--reverse .segment__text { order: 1; justify-self: end; }
+  .segment__title {
+    font-family: var(--sans); font-size: clamp(1.25rem, 2vw, 2rem); font-weight: 300;
+    text-transform: uppercase; letter-spacing: .045rem; color: var(--accent);
+    line-height: 125%; margin: .25rem 0 24px;
+  }
+  .segment__body { font-family: var(--editorial); font-size: 16px; line-height: 1.65; color: #2E2E33; margin-bottom: 18px; }
+  .spec-line { font-family: var(--sans); font-size: 13px; letter-spacing: .04em; color: var(--ink-soft); line-height: 2; }
+  .spec-line strong { font-weight: 600; color: var(--ink); }
+  .price { font-family: var(--sans); font-size: 15px; font-weight: 600; letter-spacing: .06em; color: var(--ink); margin-top: 14px; }
+  .price small { display: block; font-weight: 400; font-size: 12px; color: var(--ink-muted); letter-spacing: .04em; margin-top: 4px; }
+  .half-label { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(0,0,0,.08); }
+
+  /* Cinematic carousel (bottom) */
+  .cinematic { position: relative; }
+  .cine-slide { position: relative; height: 92vh; min-height: 540px; overflow: hidden; }
+  .cine-slide video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .cine-slide__overlay {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: flex-end; text-align: center;
+    padding: 0 24px 9vh; background: linear-gradient(to top, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 45%);
+    color: #fff;
+  }
+  .cine-slide__eyebrow { font-family: var(--sans); font-size: 11px; letter-spacing: .3em; text-transform: uppercase; opacity: .85; margin-bottom: 10px; }
+  .cine-slide__headline { font-family: var(--sans); font-size: clamp(22px, 4vw, 40px); font-weight: 300; text-transform: uppercase; letter-spacing: .05em; color: #958268; margin: 8px 0 14px; }
+  .cine-slide__sub { font-family: var(--editorial); font-style: italic; font-size: 15px; line-height: 1.6; max-width: 520px; opacity: .92; }
+
+  /* Inquire footer */
+  .inquire { text-align: center; padding: clamp(70px, 9vw, 110px) 24px; }
+  .inquire__brand { font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; margin-bottom: 10px; }
+  .inquire__piece { font-family: var(--editorial); font-style: italic; font-size: 15px; color: var(--ink-soft); margin-bottom: 26px; }
+  .inquire__contact { font-family: var(--editorial); font-size: 14px; line-height: 1.7; }
+  .inquire__contact a { border-bottom: 1px solid rgba(0,0,0,.15); }
+  .inquire__contact a:hover { border-bottom-color: var(--accent); }
+  .inquire__cta {
+    display: inline-block; margin-top: 28px; font-family: var(--sans);
+    text-transform: uppercase; letter-spacing: .1em; font-size: 12px; font-weight: 500;
+    color: var(--ink); border: 1px solid var(--ink); border-radius: 999px;
+    padding: 12px 30px; transition: all .25s ease;
+  }
+  .inquire__cta:hover { background: var(--ink); color: #fff; }
+
+  /* Top hero carousel */
+  .hero-carousel { position: relative; height: 92vh; min-height: 560px; overflow: hidden; background: #000; }
+  .hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.4s ease; }
+  .hero-slide.is-active { opacity: 1; }
+  .hero-slide video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero-slide__overlay {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: flex-end; text-align: center;
+    padding: 0 24px 10vh; background: linear-gradient(to top, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 45%);
+    color: #fff;
+  }
+  .hero-slide__eyebrow { font-family: var(--sans); font-size: 11px; letter-spacing: .3em; text-transform: uppercase; opacity: .85; margin-bottom: 10px; }
+  .hero-slide__headline { font-family: var(--sans); font-size: clamp(22px, 4vw, 40px); font-weight: 300; text-transform: uppercase; letter-spacing: .05em; color: #958268; margin: 8px 0 14px; }
+  .hero-slide__sub { font-family: var(--editorial); font-style: italic; font-size: 15px; line-height: 1.6; max-width: 560px; opacity: .92; }
+  .hero-dots { position: absolute; bottom: 26px; left: 0; right: 0; display: flex; justify-content: center; gap: 10px; z-index: 5; }
+  .hero-dots button { width: 8px; height: 8px; border-radius: 50%; border: none; background: rgba(255,255,255,.4); cursor: pointer; padding: 0; transition: background .3s; }
+  .hero-dots button.is-active { background: #fff; }
+
+  @media (max-width: 900px) {
+    .segment { grid-template-columns: 1fr; gap: 32px; padding: 50px 20px; }
+    .segment__media, .segment--reverse .segment__media { justify-self: center; max-width: 460px; order: 0; }
+    .segment__text, .segment--reverse .segment__text { justify-self: center; max-width: 560px; text-align: center; order: 1; }
+    .cine-slide { height: 70vh; }
+    .hero-carousel { height: 72vh; }
+  }
+</style>
+</head>
+<body>
+
+<header class="ba-header">
+  <a class="ba-header__logo" href="https://bezambar.com">BEZ AMBAR</a>
+</header>
+
+<!-- Top hero carousel -->
+<section class="hero-carousel" id="hero-carousel">
+  <div class="hero-slide is-active">
+    <video src="https://res.cloudinary.com/dlg2mou53/video/upload/h_1080,c_limit,q_auto/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.mp4" poster="https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.jpg" autoplay loop muted playsinline preload="auto"></video>
+    <div class="hero-slide__overlay">
+      <div class="hero-slide__eyebrow">Bez Ambar · Los Angeles</div>
+      <h1 class="hero-slide__headline">The Magic of Light</h1>
+      <div class="hero-slide__sub">A certificate can grade a stone. It cannot tell how the light dances within it. In lesser hands, light merely touches the stone; done right, it melts into the divine.</div>
+    </div>
+  </div>
+  <div class="hero-slide">
+    <video src="https://res.cloudinary.com/dlg2mou53/video/upload/h_1080,c_limit,q_auto/Jewelry%20Videos/Bands/4k_ovalcut_band_6_v1_rllzya.mp4" poster="https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bands/4k_ovalcut_band_6_v1_rllzya.jpg" loop muted playsinline preload="metadata"></video>
+    <div class="hero-slide__overlay">
+      <div class="hero-slide__eyebrow">The Oval Band</div>
+      <div class="hero-slide__headline">A Line You Never Take Off</div>
+      <div class="hero-slide__sub">Cut to fit its place, set to disappear. Every stone calibrated to the hand that wears it. It doesn't announce itself; it stays.</div>
+    </div>
+  </div>
+  <div class="hero-dots">
+    <button class="is-active" data-slide="0" aria-label="Slide 1"></button>
+    <button data-slide="1" aria-label="Slide 2"></button>
+  </div>
+</section>
+<script>
+(function(){
+  var slides = document.querySelectorAll('#hero-carousel .hero-slide');
+  var dots = document.querySelectorAll('#hero-carousel .hero-dots button');
+  var current = 0, timer;
+  function go(i){
+    slides[current].classList.remove('is-active');
+    dots[current].classList.remove('is-active');
+    current = i % slides.length;
+    slides[current].classList.add('is-active');
+    dots[current].classList.add('is-active');
+    var v = slides[current].querySelector('video');
+    if (v && v.paused) v.play().catch(function(){});
+  }
+  function auto(){ timer = setInterval(function(){ go(current + 1); }, 8000); }
+  dots.forEach(function(d){
+    d.addEventListener('click', function(){
+      clearInterval(timer);
+      go(parseInt(d.dataset.slide, 10));
+      auto();
+    });
+  });
+  auto();
+})();
+</script>
+
+<!-- Intro -->
+<section class="intro">
+  <div class="eyebrow">Featuring the Elysian Cut™</div>
+  <h1 class="ba-title">The Elysian.</h1>
+  <p class="intro__body">A baguette moves light in long, directional planes — that's the step cut at work. An oval softens the silhouette. The Elysian Cut™ takes that step-cut discipline and bends it into an oval form: the broad, sweeping brilliance of a baguette, inside the curve of an oval.<br><br>Each stone is set edge to edge — no metal, no interruption. Light enters one stone and travels the finger in one unbroken line. Set in a full circle, it reads less like a row of diamonds than a continuous ribbon of light.</p>
+</section>
+
+<!-- 2ELS-25 -->
+<section class="segment">
+  <div class="segment__media">
+    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1100/Jewelry%20Images/Bands/2ELS-25_n7nkk4.png" alt="The Elysian Band 2ELS-25" loading="lazy">
+  </div>
+  <div class="segment__text">
+    <div class="eyebrow">Full Eternity</div>
+    <h2 class="segment__title">2ELS-25</h2>
+    <p class="segment__body">The entry to the line — the smallest Elysian, and the purest reading of the idea. Twenty-two stones close the circle without a visible seam.</p>
+    <div class="spec-line"><strong>22 stones</strong> · 5.50 ct total</div>
+    <div class="price">$16,852 – $27,852<small>Price varies by diamond quality</small></div>
+    <div class="spec-line half-label"><strong>2ELS-25H</strong> · Halfway · 11 stones · 2.75 ct</div>
+    <div class="price">$8,824 – $14,324<small>Price varies by diamond quality</small></div>
+  </div>
+</section>
+
+<!-- 2ELS-30 -->
+<section class="segment segment--reverse">
+  <div class="segment__media">
+    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1100/Jewelry%20Images/Bands/2ELS-30_r1chph.png" alt="The Elysian Band 2ELS-30" loading="lazy">
+  </div>
+  <div class="segment__text">
+    <div class="eyebrow">Full Eternity</div>
+    <h2 class="segment__title">2ELS-30</h2>
+    <p class="segment__body">A step up in presence. The elongated form begins to assert itself — the line of light widens without losing its continuity.</p>
+    <div class="spec-line"><strong>21 stones</strong> · 6.51 ct total</div>
+    <div class="price">$23,484 – $37,156<small>Price varies by diamond quality</small></div>
+    <div class="spec-line half-label"><strong>2ELS-30H</strong> · Halfway · 11 stones · 3.41 ct</div>
+    <div class="price">$12,652 – $19,816<small>Price varies by diamond quality</small></div>
+  </div>
+</section>
+
+<!-- 2ELS-50 -->
+<section class="segment">
+  <div class="segment__media">
+    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1100/Jewelry%20Images/Bands/2ELS-50_gydi1e.png" alt="The Elysian Band 2ELS-50" loading="lazy">
+  </div>
+  <div class="segment__text">
+    <div class="eyebrow">Full Eternity</div>
+    <h2 class="segment__title">2ELS-50</h2>
+    <p class="segment__body">The center of the range. Each stone is large enough to be read on its own, yet the edge-to-edge setting keeps the eye moving — around, not across.</p>
+    <div class="spec-line"><strong>18 stones</strong> · 9.90 ct total</div>
+    <div class="price">$46,552 – $62,392<small>Price varies by diamond quality</small></div>
+    <div class="spec-line half-label"><strong>2ELS-50H</strong> · Halfway · 9 stones · 4.95 ct</div>
+    <div class="price">$23,676 – $31,596<small>Price varies by diamond quality</small></div>
+  </div>
+</section>
+
+<!-- 2ELS-70 -->
+<section class="segment segment--reverse">
+  <div class="segment__media">
+    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1100/Jewelry%20Images/Bands/2ELS-70_dovft0.png" alt="The Elysian Band 2ELS-70" loading="lazy">
+  </div>
+  <div class="segment__text">
+    <div class="eyebrow">Full Eternity</div>
+    <h2 class="segment__title">2ELS-70</h2>
+    <p class="segment__body">The statement of the line. Seventeen stones, nearly twelve carats, one continuous circle — the Elysian at full volume.</p>
+    <div class="spec-line"><strong>17 stones</strong> · 11.90 ct total</div>
+    <div class="price">$60,312 – $90,060<small>Price varies by diamond quality</small></div>
+    <div class="spec-line half-label"><strong>2ELS-70H</strong> · Halfway · 7 stones · 4.90 ct</div>
+    <div class="price">$25,412 – $37,660<small>Price varies by diamond quality</small></div>
+  </div>
+</section>
+
+<!-- The band in motion -->
+<section class="segment">
+  <div class="segment__media">
+    <video src="https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Bands/2ELS25.mp4" autoplay loop muted playsinline preload="metadata"></video>
+  </div>
+  <div class="segment__text">
+    <div class="eyebrow">In Motion</div>
+    <h2 class="segment__title">One Unbroken Line</h2>
+    <p class="segment__body">The name states the intent: the Elysian — a place made entirely of light. Designed and made in Los Angeles. Full eternity and halfway versions in four stone sizes, by private appointment.</p>
+    <p class="segment__body" style="margin-top:1.2em;padding-top:1.2em;border-top:1px solid rgba(0,0,0,.08);"><strong>Larger stones available upon request.</strong> The ring shown in film features a 0.90 ct Elysian Cut. Stones of 1 ct and 1.5 ct are also available — considerably rarer, and priced accordingly.</p>
+  </div>
+</section>
+
+<!-- Bottom cinematic carousel — the pearshapes -->
+<section class="cinematic">
+  <div class="cine-slide">
+    <video src="https://res.cloudinary.com/dlg2mou53/video/upload/h_1080,c_limit,q_auto/Jewelry%20Videos/Bracelets/4k_pearshape_bracelet_v1_awqjfc.mp4" poster="https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bracelets/4k_pearshape_bracelet_v1_awqjfc.jpg" autoplay loop muted playsinline preload="metadata"></video>
+    <div class="cine-slide__overlay">
+      <div class="cine-slide__eyebrow">Coming Soon</div>
+      <div class="cine-slide__headline">The Elysian Pear</div>
+      <div class="cine-slide__sub">A teardrop, reborn — the next chapter in the line of brilliance.</div>
+    </div>
+  </div>
+  <div class="cine-slide">
+    <video src="https://res.cloudinary.com/dlg2mou53/video/upload/h_1080,c_limit,q_auto/Jewelry%20Videos/Bands/Pearshape_HD_hlvl8l.mp4" poster="https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_jpg,q_auto,w_1080/Jewelry%20Videos/Bands/Pearshape_HD_hlvl8l.jpg" autoplay loop muted playsinline preload="metadata"></video>
+    <div class="cine-slide__overlay">
+      <div class="cine-slide__eyebrow">The Elysian Pear Band</div>
+      <div class="cine-slide__headline">Pear Cut. Continuous Line.</div>
+      <div class="cine-slide__sub">Each teardrop calibrated to the next, until light becomes the band itself.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Inquire -->
+<section class="inquire">
+  <div class="inquire__brand">Bez Ambar — Los Angeles</div>
+  <div class="inquire__piece">The Elysian Band · 2ELS</div>
+  <div class="inquire__contact">
+    <a href="tel:+12136299191">Office 213 · 629 · 9191</a><br>
+    <a href="tel:+13232172778">Cell 323 · 217 · 2778</a><br>
+    <a href="mailto:bezambar@bezambar.com">bezambar@bezambar.com</a><br>
+    <a href="https://bezambar.com" target="_blank" rel="noopener">bezambar.com</a>
+  </div>
+</section>
+
+</body>
+</html>

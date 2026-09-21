@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>R&amp;L — Bez Ambar</title>
+<meta name="description" content="A preliminary CAD design for a radiant-cut diamond ring. Bez Ambar, Los Angeles.">
+<link rel="canonical" href="https://bezito.co/pub/rl">
+<meta property="og:title" content="R&amp;L — Bez Ambar">
+<meta property="og:description" content="A preliminary CAD design for a radiant-cut diamond ring. Bez Ambar, Los Angeles.">
+<meta property="og:url" content="https://bezito.co/pub/rl">
+<meta property="og:image" content="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/Studio/Ramesh/ramesh_ring_render">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231a1a1a'/%3E%3Ctext x='16' y='22' font-family='Inter,sans-serif' font-size='18' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://webfonts.fontstand.com/WF-099839-d89c1d499f0c1f40d1e6d7330af17f97.css" type="text/css"/>
+<style>
+  :root {
+    --serif: 'Lyon Text Regular', 'EB Garamond', Georgia, serif;
+    --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --paper: #ffffff;
+    --paper-warm: #faf7f2;
+    --rule: rgba(0,0,0,.08);
+    --accent: #95826b;
+    --gutter: clamp(1.25rem, 5vw, 4rem);
+    --max-wide: 1200px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 20px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  img, video { display: block; max-width: 100%; height: auto; }
+
+  .ba-header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: transparent;
+    padding: 18px 20px;
+    text-align: center;
+    pointer-events: none;
+  }
+  .ba-header__logo {
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: var(--ink);
+    text-transform: uppercase;
+    text-decoration: none;
+    pointer-events: auto;
+    transition: color 0.3s ease;
+  }
+
+  /* Split hero: image left, copy right */
+  .hero-split {
+    display: flex;
+    min-height: 40vh;
+    margin-top: 68px;
+    background: var(--paper);
+  }
+  .hero-split__image {
+    flex: 0 0 55%;
+    background: #000;
+  }
+  .hero-split__image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .hero-split__text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(3rem, 5vw, 5rem) clamp(2.5rem, 5vw, 5rem);
+    border-left: 1px solid var(--rule);
+  }
+  .split-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.30em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .split-heading {
+    font-family: var(--sans);
+    font-size: clamp(30px, 3.8vw, 52px);
+    font-weight: 200;
+    letter-spacing: 0.03em;
+    line-height: 1.08;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  .split-copy {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.78;
+    margin-bottom: 2.2rem;
+    max-width: 480px;
+  }
+  .split-subtitle {
+    font-family: var(--sans);
+    font-size: clamp(14px, 1.6vw, 20px);
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 1.8rem;
+  }
+  .split-btn {
+    display: inline-block;
+    align-self: flex-start;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 14px 30px;
+    text-decoration: none;
+    border-radius: 40px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .split-btn:hover { background: var(--ink); color: var(--paper); }
+
+  @media (max-width: 768px) {
+    .hero-split { flex-direction: column; }
+    .hero-split__image { flex: 0 0 auto; height: 70vh; }
+    .hero-split__text { border-left: none; border-top: 1px solid var(--rule); }
+  }
+
+  /* Content split: tech details left, on-hand photo right */
+  .content-split {
+    display: flex;
+    border-top: 1px solid var(--rule);
+    background: var(--paper-warm);
+  }
+  .content-split__left {
+    flex: 0 0 55%;
+    padding: clamp(2.5rem, 5vw, 5rem) clamp(2rem, 4vw, 4rem);
+    border-right: 1px solid var(--rule);
+  }
+  .content-split__right {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+  }
+  .content-split__photo {
+    width: 100%;
+    height: 100%;
+    min-height: 450px;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
+  .content-split__eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.30em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2rem;
+  }
+
+  .technical__list { display: flex; flex-direction: column; gap: 0; }
+  .tech-item {
+    border-top: 1px solid var(--rule);
+    padding: 0;
+  }
+  .tech-item:last-child { border-bottom: 1px solid var(--rule); }
+  .tech-item__head {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.1rem 0;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--ink);
+    user-select: none;
+  }
+  .tech-item__head::-webkit-details-marker { display: none; }
+  .tech-item__head::after {
+    content: '+';
+    font-size: 18px;
+    font-weight: 200;
+    color: var(--accent);
+    transition: transform 0.2s ease;
+  }
+  details[open] .tech-item__head::after { transform: rotate(45deg); }
+  .tech-item__body {
+    padding-bottom: 1.2rem;
+    font-family: var(--serif);
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 520px;
+  }
+
+  @media (max-width: 768px) {
+    .content-split { flex-direction: column; }
+    .content-split__left { flex: 0 0 auto; border-right: none; border-bottom: 1px solid var(--rule); }
+    .content-split__right { min-height: 50vh; }
+  }
+
+  /* Technical details — full width at bottom */
+  .tech-full {
+    border-top: 1px solid var(--rule);
+    background: var(--paper-warm);
+    padding: clamp(2.5rem, 5vw, 5rem) var(--gutter);
+  }
+  .tech-full__inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  /* Inquire footer */
+  .inquire {
+    border-top: 1px solid var(--rule);
+    padding: clamp(3rem, 6vw, 6rem) var(--gutter);
+    text-align: center;
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .inquire__brand {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 200;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .inquire__piece {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 200;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+  .inquire__contact {
+    font-family: var(--serif);
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.55;
+  }
+  .inquire__contact a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(0,0,0,.15); }
+  .inquire__contact a:hover { border-bottom-color: var(--accent); }
+
+  /* Views grid */
+  .views {
+    border-top: 1px solid var(--rule);
+    background: var(--paper);
+    padding: clamp(3rem, 5vw, 5rem) var(--gutter);
+  }
+  .views__eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.30em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+  .views__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 500px);
+    gap: 2px;
+    justify-content: center;
+  }
+  .views__item { display: flex; flex-direction: column; }
+  .views__img-wrap {
+    width: 500px;
+    height: 600px;
+    overflow: hidden;
+    background: #f8f8f8;
+    margin: 0 auto;
+  }
+  .views__img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+  .views__label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding: 0.8rem 0 0;
+    text-align: center;
+  }
+  @media (max-width: 600px) {
+    .views__grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="ba-header" id="ba-header">
+  <span class="ba-header__logo">BEZ AMBAR</span>
+</header>
+
+<div class="hero-split" id="hero-split">
+  <div class="hero-split__image">
+    <img src="https://res.cloudinary.com/dlg2mou53/image/upload/v1788487553/Studio/Ramesh/ramesh_stone.png" alt="R&amp;L · Bez Ambar">
+  </div>
+  <div class="hero-split__text">
+    <div class="split-eyebrow">The Ring</div>
+    <h1 class="split-heading">R&amp;L</h1>
+    <div class="split-subtitle">5 Carat Radiant</div>
+    <p class="split-copy">What you are looking at is a preliminary CAD — a computer-aided design sketch of the ring we discussed, shown with your radiant-cut diamond. Please regard it as early-stage. There is more to refine together, and that is exactly the point of sharing it now.<br><br>The most important question at this stage is whether this is the direction you want to take. Call us to talk it through, or reply with your thoughts.<br><br>A note on what you see across the three sketches: the angle of the Blaze® cut reads differently from each vantage — more pronounced in the front view, nearly flat in the profile, and subtly angled in the perspective. This is the nature of the cut. It is not inconsistency — it is the design behaving as intended, showing you a different face depending on where you stand.</p>
+  </div>
+</div>
+
+<section class="views">
+  <div class="views__eyebrow">Preliminary Sketches</div>
+  <div class="views__grid">
+    <div class="views__item">
+      <div class="views__img-wrap">
+        <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/Studio/Ramesh/ramesh_ring_render" alt="R&amp;L · Front View">
+      </div>
+      <div class="views__label">Perspective</div>
+    </div>
+    <div class="views__item">
+      <div class="views__img-wrap">
+        <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/Studio/Ramesh/ramesh_ring_side_view" alt="R&amp;L · Profile View">
+      </div>
+      <div class="views__label">Profile</div>
+    </div>
+    <div class="views__item">
+      <div class="views__img-wrap">
+        <img src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/Studio/Ramesh/front2" alt="R&amp;L · Front View">
+      </div>
+      <div class="views__label">Front View</div>
+    </div>
+  </div>
+</section>
+
+<section class="tech-full">
+  <div class="tech-full__inner">
+    <div class="content-split__eyebrow">Technical Details</div>
+    <div class="technical__list">
+      <details class="tech-item">
+        <summary class="tech-item__head">Center Stone</summary>
+        <div class="tech-item__body"><p>Rectangular cushion brilliant-cut diamond, set high in platinum. Crushed-ice faceting pattern — full fire and scintillation across the table, characteristic of the modern cushion brilliant cut.</p></div>
+      </details>
+      <details class="tech-item">
+        <summary class="tech-item__head">Hidden Halo</summary>
+        <div class="tech-item__body"><p>A single row of micro-pavé round brilliant diamonds set into the underside of the bezel, encircling the stone's entire girdle. Invisible from above. A continuous line of light visible at eye level and from the side.</p></div>
+      </details>
+      <details class="tech-item">
+        <summary class="tech-item__head">Shank</summary>
+        <div class="tech-item__body"><p>Two fully independent platinum pavé bands — not a split shank, but two complete arms that begin at the setting base and run parallel the full circumference. A hairline gap of open space between them, consistent from the halo base to the base of the ring. Each arm fully encrusted with small round brilliant micro-pavé diamonds, hairline bead prongs, stone to stone.</p></div>
+      </details>
+      <details class="tech-item">
+        <summary class="tech-item__head">Metal</summary>
+        <div class="tech-item__body"><p>Platinum throughout. High-polish finish on the setting base and cathedral shoulders. Micro-pavé bead-prong setting covering both arms entirely — no polished shank metal visible from any angle.</p></div>
+      </details>
+      <details class="tech-item">
+        <summary class="tech-item__head">More Details</summary>
+        <div class="tech-item__body"><p>Designed and made in Los Angeles. Available by private inquiry. Center stone, carat weight, and grading specifications confirmed at time of order. Finger sizing confirmed at time of commission.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="inquire">
+  <div class="inquire__brand">Bez Ambar — Los Angeles</div>
+  <div class="inquire__piece">R&amp;L · Private Commission</div>
+  <div class="inquire__contact">
+    <a href="tel:+12136299191">Office 213 · 629 · 9191</a><br>
+    <a href="tel:+13232172778">Cell 323 · 217 · 2778</a><br>
+    <a href="mailto:bezambar@bezambar.com">bezambar@bezambar.com</a><br>
+    <a href="https://bezambar.com" target="_blank" rel="noopener">bezambar.com</a>
+  </div>
+</section>
+
+</body>
+</html>

@@ -380,6 +380,21 @@
     <div class="divider"></div>
     <p class="sec-sub">Items from the July 25 session. Green = shipped. Gold = pending — awaiting content or direction from Bez/Kevin.</p>
 
+    <div class="card todo">
+      <div class="card-date">2026 · 09 · 04</div>
+      <div class="card-title">Orphan Pages — preserved old-site pages ("Orphan Template" style, do not build yet)</div>
+      <div class="card-body">
+        First one is live: the <strong>Maharajah ring</strong> page from the old WordPress site, preserved as an <strong>orphan page</strong> at its original URL —
+        <a href="https://bezambar-web2026.vercel.app/shop/maharajah-ring-with-red-and-green-diamonds" target="_blank">/shop/maharajah-ring-with-red-and-green-diamonds</a>
+        (becomes bezambar.com/shop/… after cutover). No nav link, no catalog entry, no DB row — reachable only by direct URL, so old Google links and bookmarks survive the migration.<br><br>
+        <strong>How it works (commit <code>65369f6</code>):</strong> standalone route at <code>app/(public)/shop/&lt;old-slug&gt;/page.tsx</code>, photo rescued from the old site to Cloudinary, currently rendered with the default product template. The slug is exempted from the <code>/shop/:slug → /archive</code> catch-all in <code>redirects.ts</code>; all other old shop URLs still redirect to The Archive as before.<br><br>
+        <strong>Direction from Bez (2026-09-04, name locked 2026-09-08):</strong> these preserved pages get their own dedicated <strong>"Orphan Template"</strong> — visually distinct from the current product pages, archive/heritage character. Defining layout (per Bez, on the Maharajah page now): single image at natural size top-left · headline + copy right · technical details left with light-gray panel right. <strong>Full template not designed yet — do not build.</strong> More old pages can be preserved the same way.<br><br>
+        <strong>Second orphan page shipped 2026-09-08:</strong> <a href="https://bezambar-web2026.vercel.app/shop/ruby-flower-hug-earrings" target="_blank">/shop/ruby-flower-hug-earrings</a> — Five Row Diamond and Ruby Flower Hug Earrings (Ref. HUG5FLWRB), image rescued to Cloudinary, slug exempted in <code>redirects.ts</code>, Orphan Template layout (commit <code>12a04a2</code>).<br><br>
+        <strong>Third orphan page shipped 2026-09-08:</strong> <a href="https://bezambar-web2026.vercel.app/shop/3-stone-oval-engagement-ring-with-blaze" target="_blank">/shop/3-stone-oval-engagement-ring-with-blaze</a> — Trio Oval Wedding Set (Ref. 1TRI2CZ12-OV + 35602TB), oval center with Blaze® halfway shank + bookend bands, image rescued to Cloudinary, slug exempted, Orphan Template layout (commit <code>ab7f553</code>).
+      </div>
+      <div class="owner">@bez (Legacy template design direction) · @bezito — Maharajah orphan page ✓ shipped 2026-09-04</div>
+    </div>
+
     <div class="card done">
       <div class="card-date">2026 · 07 · 25</div>
       <div class="card-title">Homepage CTA — "By Appointment, with the Concierge" (was: Designer)</div>

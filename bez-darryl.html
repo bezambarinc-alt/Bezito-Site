@@ -3,429 +3,1532 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bez × Darryl — Working Page</title>
+<title>Bez × Darryl — Site Review</title>
 <meta name="robots" content="noindex, nofollow">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --serif: 'EB Garamond', Georgia, serif;
     --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    --ink: #1a1a1a;
-    --ink-soft: #4a4a4a;
-    --ink-muted: #8a8a8a;
-    --paper: #ffffff;
-    --paper-warm: #faf7f2;
-    --rule: rgba(0,0,0,.08);
-    --accent: #95826b;
-    --green: #2e7d52;
-    --amber: #b07d2e;
-    --blue: #2b5ea7;
+    --ink: #1a1a1a; --ink-soft: #4a4a4a; --ink-muted: #8a8a8a;
+    --paper: #ffffff; --paper-warm: #faf7f2;
+    --rule: rgba(0,0,0,.08); --accent: #95826b;
+    --green: #2e7d52; --amber: #b07d2e; --blue: #2b5ea7;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { background: var(--paper); color: var(--ink); font-family: var(--serif); -webkit-font-smoothing: antialiased; }
-
-  header {
-    padding: 40px 8vw 28px;
-    border-bottom: 1px solid var(--rule);
-    text-align: center;
-  }
-  .brand { font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase; color: var(--ink); margin-bottom: 28px; }
-  .eyebrow { font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
-  h1 { font-family: var(--sans); font-size: clamp(22px, 2.6vw, 30px); font-weight: 200; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); line-height: 1.3; margin-bottom: 10px; }
-  .lede { font-family: var(--serif); font-size: 15px; color: var(--ink-soft); margin-top: 8px; }
-
-  main { max-width: 900px; margin: 0 auto; padding: 0 6vw 80px; }
-
-  .section { margin-top: 52px; border-top: 1px solid var(--rule); padding-top: 32px; }
-  .section__label { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 20px; }
-  .section__label--inprogress { color: var(--amber); }
-  .section__label--next { color: var(--blue); }
-  .section__label--done { color: var(--green); }
-  .section__label--ref { color: #6b35c2; }
-
-  .card { border: 1px solid var(--rule); border-radius: 6px; padding: 20px 24px; margin-bottom: 14px; background: var(--paper-warm); }
-  .card__title { font-family: var(--sans); font-size: 14px; font-weight: 500; letter-spacing: 0.04em; color: var(--ink); margin-bottom: 6px; }
-  .card__meta { font-family: var(--sans); font-size: 11px; color: var(--ink-muted); letter-spacing: 0.06em; margin-bottom: 10px; }
-  .card__note { font-family: var(--serif); font-size: 14px; color: var(--ink-soft); line-height: 1.65; margin-bottom: 14px; }
-  .card__links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-  .card__link { font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; border: 1px solid var(--rule); padding: 6px 14px; border-radius: 20px; transition: border-color 0.2s, color 0.2s; }
+  header { padding: 40px 8vw 28px; border-bottom: 1px solid var(--rule); text-align: center; }
+  .brand { font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: .32em; text-transform: uppercase; margin-bottom: 28px; }
+  .eyebrow { font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: .28em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  h1 { font-family: var(--sans); font-size: clamp(22px, 2.6vw, 30px); font-weight: 200; letter-spacing: .08em; text-transform: uppercase; line-height: 1.3; margin-bottom: 10px; }
+  .lede { font-size: 15px; color: var(--ink-soft); margin-top: 8px; }
+  .howto { max-width: 700px; margin: 18px auto 0; font-family: var(--sans); font-size: 12px; color: var(--ink-muted); line-height: 1.7; }
+  main { max-width: 940px; margin: 0 auto; padding: 0 5vw 80px; }
+  .section { margin-top: 44px; border-top: 1px solid var(--rule); padding-top: 26px; }
+  .section__label { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; margin-bottom: 18px; cursor: default; }
+  summary.section__label { cursor: pointer; list-style: none; }
+  summary.section__label::before { content: '▸ '; }
+  details[open] > summary.section__label::before { content: '▾ '; }
+  .count { color: var(--ink-muted); font-weight: 400; letter-spacing: .1em; }
+  .lbl-core { color: var(--blue); } .lbl-cat { color: var(--accent); } .lbl-prod { color: var(--green); }
+  .lbl-ret { color: #6b35c2; } .lbl-blog { color: var(--ink-muted); }
+  .card { border: 1px solid var(--rule); border-radius: 6px; padding: 16px 20px; margin-bottom: 12px; background: var(--paper-warm); }
+  .card__head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+  .card__title { font-family: var(--sans); font-size: 14px; font-weight: 500; letter-spacing: .04em; }
+  .card__meta { font-family: var(--sans); font-size: 11px; color: var(--ink-muted); letter-spacing: .04em; margin-top: 3px; }
+  .card__right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .card__link { font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; border: 1px solid var(--rule); padding: 5px 13px; border-radius: 20px; }
   .card__link:hover { border-color: var(--accent); color: var(--accent); }
-  .card__link--primary { background: var(--ink); color: #fff; border-color: var(--ink); }
-  .card__link--primary:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
-
-  .tag { display: inline-block; font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; padding: 3px 10px; border-radius: 12px; margin-right: 6px; }
-  .tag--live { background: #e8f5ee; color: var(--green); }
-  .tag--wip  { background: #fdf3e3; color: var(--amber); }
-
-  .tracker-legend { display: grid; grid-template-columns: 1fr 60px 60px 60px 60px 60px 60px; gap: 0; padding: 10px 16px; margin-bottom: 0; border-bottom: 1px solid var(--rule); }
-  .tracker-legend span { font-family: var(--sans); font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-muted); text-align: center; white-space: nowrap; }
-  .tracker-legend span:first-child { text-align: left; }
-  .tracker-group { margin-top: 24px; }
-  .tracker-group__label { font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); padding: 10px 16px; background: var(--paper-warm); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
-  .tracker-group__label--pending { color: var(--amber); background: #fdf3e3; border-color: rgba(176,125,46,.2); }
-  .tracker-row { display: grid; grid-template-columns: 1fr 60px 60px 60px 60px 60px 60px; align-items: center; padding: 11px 16px; border-bottom: 1px solid rgba(0,0,0,.05); }
-  .tracker-row:last-child { border-bottom: 1px solid var(--rule); }
-  .t-name { font-family: var(--sans); font-size: 13px; font-weight: 500; color: var(--ink); text-decoration: none; letter-spacing: 0.01em; }
-  .t-name:hover { color: var(--accent); }
-  .t-cell { text-align: center; font-size: 15px; line-height: 1; }
-  .t-cell a { text-decoration: none; font-size: 15px; }
-  .t-cell a:hover { opacity: 0.7; }
-
-  footer { text-align: center; padding: 32px 6vw; border-top: 1px solid var(--rule); font-family: var(--sans); font-size: 11px; color: var(--ink-muted); letter-spacing: 0.10em; }
+  .tag { font-family: var(--sans); font-size: 9px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding: 4px 10px; border-radius: 12px; }
+  .tag--done { background: #e8f5ee; color: var(--green); }
+  .tag--open { background: #fdf3e3; color: var(--amber); }
+  .tag--bez  { background: #e3ecf7; color: var(--blue); }
+  .tag--none { background: #f2f2f2; color: var(--ink-muted); }
+  .thread { margin-top: 12px; }
+  .thread__empty { font-family: var(--sans); font-size: 11px; color: var(--ink-muted); font-style: italic; padding: 6px 0 0; }
+  .thread__msg { border-left: 3px solid var(--rule); padding: 8px 14px; margin-top: 8px; border-radius: 0 4px 4px 0; background: #fff; }
+  .thread__msg--bez { border-left-color: var(--blue); }
+  .thread__msg--darryl { border-left-color: var(--green); }
+  .thread__msg p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; margin-top: 4px; }
+  .who { font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--blue); }
+  .who--d { color: var(--green); }
+  .when { font-family: var(--sans); font-size: 10px; color: var(--ink-muted); margin-left: 10px; }
+  footer { text-align: center; font-family: var(--sans); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-muted); padding: 30px 0 50px; border-top: 1px solid var(--rule); }
 </style>
 </head>
 <body>
-
 <header>
   <div class="brand">Bez Ambar</div>
-  <div class="eyebrow">Working Page</div>
+  <div class="eyebrow">Internal · Site Review</div>
   <h1>Bez × Darryl</h1>
-  <p class="lede">Active projects, priorities, and shipped work.</p>
+  <div class="lede">Every page on bezambar-web2026 — Bez's change instructions and Darryl's responses, page by page.</div>
+  <div class="howto">How it works: Bez tells Bezito the page + what to change → it appears here as an instruction. Darryl reports done in the Marketing group → his response is logged and the page flips to ✓ Done.</div>
 </header>
-
 <main>
-
-  <!-- UP NEXT -->
-  <section class="section">
-    <div class="section__label section__label--next">⏭ Up Next</div>
-    <div class="card">
-      <div class="card__title">Fancy Very Pink Oval</div>
-      <div class="card__meta">bezito.co/page/fancy-very-pink-oval</div>
-      <div class="card__note">Page is live — needs review and content pass.</div>
-      <div class="card__links">
-        <a href="https://bezito.co/page/fancy-very-pink-oval" class="card__link card__link--primary" target="_blank">View Page</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- DONE -->
-  <section class="section">
-    <div class="section__label section__label--done">✅ Done</div>
-
-    <!-- 2026-08-11/12 -->
-    <div class="card">
-      <div class="card__title">The Pink Octet — C0863 <span class="tag tag--live">Live</span></div>
-      <div class="card__meta">2026-08-12 · bezito.co/page/pink-octet · C0863 · 1.41ct Fancy Light Pink Radiant · Drop Earrings</div>
-      <div class="card__note">Converted to split-hero golden hour template. New video upload. Top + sketch views added. PS + AE project files linked. On-hand shot pending.</div>
-      <div class="card__links">
-        <a href="https://bezito.co/page/pink-octet" class="card__link card__link--primary" target="_blank">View Live Page</a>
-        <a href="https://www.dropbox.com/scl/fi/o05ogxldunw965rpqk0sd/C0863-Pink-Earrings-master.psd?rlkey=vj5dsykb3emzdqmqtl4rl8sg6&dl=0" class="card__link" target="_blank">Photoshop · C0863.psd</a>
-        <a href="https://www.dropbox.com/scl/fi/z0wb1o43tqykrw9dq9tuv/C0863.aep?rlkey=xd810jsiqhbo06fr540eqvm9c&dl=0" class="card__link" target="_blank">After Effects · C0863.aep</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card__title">C0766 — 1DUET Duet Ring <span class="tag tag--live">Live</span></div>
-      <div class="card__meta">2026-08-11 · bezito.co/page/c0766 · 1DUET · 2 × Pear Shape Yellow · 10.40ct total</div>
-      <div class="card__note">New page. Split-hero golden hour template. Video, model, top + sketch views. PS + AE project files linked. Story copy pending from Bez.</div>
-      <div class="card__links">
-        <a href="https://bezito.co/page/c0766" class="card__link card__link--primary" target="_blank">View Live Page</a>
-        <a href="https://www.dropbox.com/scl/fi/bs7e8qpip7u20uvldchhq/C0766-Master.psd?rlkey=tmhi44a02sap889susbero2um&dl=0" class="card__link" target="_blank">Photoshop · C0766-Master.psd</a>
-        <a href="https://www.dropbox.com/scl/fi/dwzr5nj2ytnl10c4p5kmw/C0766.aep?rlkey=t3cijkd2ncrfx9ssk37vnt3qx&dl=0" class="card__link" target="_blank">After Effects · C0766.aep</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card__title">C0765 — 1DUET Ring <span class="tag tag--live">Live</span></div>
-      <div class="card__meta">2026-08-11 · bezito.co/page/c0765 · 1DUET</div>
-      <div class="card__note">Converted to split-hero golden hour template. Photos + views pending.</div>
-      <div class="card__links">
-        <a href="https://bezito.co/page/c0765" class="card__link card__link--primary" target="_blank">View Live Page</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card__title">Single Row Asscher Cut — C0755 <span class="tag tag--live">Live</span></div>
-      <div class="card__meta">2026-08-11 · bezito.co/page/single-row-asscher-cut · 5FLX33ASC · Flex Bracelet</div>
-      <div class="card__note">Converted to split-hero golden hour template. New video + model + top + sketch uploaded. PS + AE project files linked.</div>
-      <div class="card__links">
-        <a href="https://bezito.co/page/single-row-asscher-cut" class="card__link card__link--primary" target="_blank">View Live Page</a>
-        <a href="https://www.dropbox.com/scl/fi/erhdy5ubij7uvzeca5a0o/C0755-ASCH-Bracelet-Master.psd?rlkey=x38wi9682q6s41wedr38yhnpd&dl=0" class="card__link" target="_blank">Photoshop · C0755.psd</a>
-        <a href="https://www.dropbox.com/scl/fi/imr37tqwd0femnglljf2q/Ascher-Bracelet.aep?rlkey=vapu3g1rf204o4ot3taxt96f7&dl=0" class="card__link" target="_blank">After Effects · Ascher.aep</a>
-      </div>
-    </div>
-
-    <!-- 2026-08-10 -->
-    <div class="card">
-      <div class="card__title">LANTERN — C0737 <span class="tag tag--live">Live</span></div>
-      <div class="card__meta">2026-08-10 · bezito.co/page/lantern · 3.77ct Round Brilliant · Blaze Cut Ring</div>
-      <div class="card__note">Split-hero template. Video, model on hand, top + sketch views. Project files linked.</div>
-      <div class="card__links">
-        <a href="https://bezito.co/page/lantern" class="card__link card__link--primary" target="_blank">View Live Page</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card__title">TRIPTYCH — B3233 <span class="tag tag--live">Live</span></div>
-      <div class="card__meta">2026-08-10 · bezito.co/page/triptych · Pear Shape Ring</div>
-      <div class="card__note">Split-hero template. Video, model on hand, top + sketch views. Project files linked.</div>
-      <div class="card__links">
-        <a href="https://bezito.co/page/triptych" class="card__link card__link--primary" target="_blank">View Live Page</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card__title">Dentelle Oval — C0787 <span class="tag tag--live">Live</span></div>
-      <div class="card__meta">2026-08-10 · bezito.co/page/c0787 · 7.5ct Oval Band</div>
-      <div class="card__note">Split-hero template. Video (v2), model on hand, top + sketch views. Project files linked.</div>
-      <div class="card__links">
-        <a href="https://bezito.co/page/c0787" class="card__link card__link--primary" target="_blank">View Live Page</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card__title">Dentelle Pear — C0786 <span class="tag tag--live">Live</span></div>
-      <div class="card__meta">2026-08-10 · bezito.co/page/dentelle-pear · 8.06ct Pear Band</div>
-      <div class="card__note">Converted old template to split-hero. New video upload. Model on hand, top + sketch views. Project files linked.</div>
-      <div class="card__links">
-        <a href="https://bezito.co/page/dentelle-pear" class="card__link card__link--primary" target="_blank">View Live Page</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card__title">Dentelle Cushion — C0788 <span class="tag tag--live">Live</span></div>
-      <div class="card__meta">2026-08-10 · bezito.co/page/dentelle-cushion · 5.10ct Cushion Band</div>
-      <div class="card__note">Converted old template to split-hero. Photos + project files pending.</div>
-      <div class="card__links">
-        <a href="https://bezito.co/page/dentelle-cushion" class="card__link card__link--primary" target="_blank">View Live Page</a>
-      </div>
-    </div>
-
-    <!-- 2026-08-05 -->
-    <div class="card">
-      <div class="card__title">Meridian — C0799 On-Model Photo Fix <span class="tag tag--live">Live</span></div>
-      <div class="card__meta">2026-08-05 · bezito.co/page/meridian · SKU C0799</div>
-      <div class="card__note">Pendant scaled to correct size on-neck relative to actual center stone dimensions.</div>
-      <div class="card__links">
-        <a href="https://bezito.co/page/meridian" class="card__link card__link--primary" target="_blank">View Live Page</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card__title">Golden Hour Ring Page — C0895 <span class="tag tag--live">Live</span></div>
-      <div class="card__meta">2026-08-05 · bezito.co/page/golden-hour · SKU C0895 · 1C3S</div>
-      <div class="card__note">Split-hero layout: CAD video left, title + copy right. Second hero: Fancy Yellow Radiant on-hand shot. Project files linked.</div>
-      <div class="card__links">
-        <a href="https://bezito.co/page/golden-hour" class="card__link card__link--primary" target="_blank">View Live Page</a>
-        <a href="https://www.dropbox.com/scl/fi/ek0vnkm2qmqgtbzovmwlc/C0895.aep?rlkey=xhglkfzoz4ol2l3dlo43d4992&dl=0" class="card__link" target="_blank">After Effects · C0895.aep</a>
-        <a href="https://www.dropbox.com/scl/fi/h50f3b7ovfyahjd7je3jb/C0895-Fancy-Yellow-Radiant-ONHAND.psd?rlkey=gksefy1ifftwm6pe5tntzv1ad&dl=0" class="card__link" target="_blank">Photoshop · On-Hand.psd</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card__title">Golden Hour Hero Video + AE Background <span class="tag tag--live">Live</span></div>
-      <div class="card__meta">2026-08-02</div>
-      <div class="card__note">Updated hero video to C0895_fmqkvd.mp4. Animated background white → gray in After Effects using Fill effect + keyframes.</div>
-    </div>
-
-  </section>
-
-  <!-- ASSET TRACKER -->
-  <section class="section">
-    <div class="section__label section__label--ref">📐 Asset Tracker</div>
-
-    <div class="tracker-legend">
-      <span>Page</span>
-      <span>Video</span>
-      <span>Shot</span>
-      <span>Model</span>
-      <span>Sketch</span>
-      <span>PS</span>
-      <span>AE</span>
-    </div>
-
-    <!-- RINGS -->
-    <div class="tracker-group">
-      <div class="tracker-group__label">💍 Rings</div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/c0766" class="t-name" target="_blank">C0766 <span style="font-weight:300;color:var(--ink-muted)">1DUET · 10.40ct Yellow Pear</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">✅</div>
-        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/bs7e8qpip7u20uvldchhq/C0766-Master.psd?rlkey=tmhi44a02sap889susbero2um&dl=0" target="_blank">✅</a></div>
-        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/dwzr5nj2ytnl10c4p5kmw/C0766.aep?rlkey=t3cijkd2ncrfx9ssk37vnt3qx&dl=0" target="_blank">✅</a></div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/c0765" class="t-name" target="_blank">C0765 <span style="font-weight:300;color:var(--ink-muted)">1DUET</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/golden-hour" class="t-name" target="_blank">Golden Hour <span style="font-weight:300;color:var(--ink-muted)">C0895</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">⬜</div>
-        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/h50f3b7ovfyahjd7je3jb/C0895-Fancy-Yellow-Radiant-ONHAND.psd?rlkey=gksefy1ifftwm6pe5tntzv1ad&dl=0" target="_blank">✅</a></div>
-        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/ek0vnkm2qmqgtbzovmwlc/C0895.aep?rlkey=xhglkfzoz4ol2l3dlo43d4992&dl=0" target="_blank">✅</a></div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/lantern" class="t-name" target="_blank">LANTERN <span style="font-weight:300;color:var(--ink-muted)">C0737</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/triptych" class="t-name" target="_blank">TRIPTYCH <span style="font-weight:300;color:var(--ink-muted)">B3233</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/fancy-deep-brownish-yellow-cushion" class="t-name" target="_blank">DEEP. ECLIPSE. <span style="font-weight:300;color:var(--ink-muted)">C0752</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/fancy-very-pink-oval" class="t-name" target="_blank">ARGYLE. COURT. <span style="font-weight:300;color:var(--ink-muted)">C0747</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/fancy-yellow-three-stone" class="t-name" target="_blank">GLACIAL. FIRE. <span style="font-weight:300;color:var(--ink-muted)">C0536</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/vega" class="t-name" target="_blank">Vega</a>
-        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">⬜</div>
-        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/idzrlciywi9jrfifim23d/Julio-Ring-Cushion-Rubies-Master.psd?rlkey=lqud9xvtb5ikco8nnl3qyllba&dl=0" target="_blank">✅</a></div>
-        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/4h7bursvv1f7hkhmblri7/Julios-Ring.aep?rlkey=chml6dcy5dqvgcn3ow09gpanj&dl=0" target="_blank">✅</a></div>
-      </div>
-    </div>
-
-    <!-- EARRINGS -->
-    <div class="tracker-group">
-      <div class="tracker-group__label">✦ Earrings</div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/pink-octet" class="t-name" target="_blank">The Pink Octet <span style="font-weight:300;color:var(--ink-muted)">C0863 · 1.41ct FLP</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">✅</div>
-        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/o05ogxldunw965rpqk0sd/C0863-Pink-Earrings-master.psd?rlkey=vj5dsykb3emzdqmqtl4rl8sg6&dl=0" target="_blank">✅</a></div>
-        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/z0wb1o43tqykrw9dq9tuv/C0863.aep?rlkey=xd810jsiqhbo06fr540eqvm9c&dl=0" target="_blank">✅</a></div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/r09059" class="t-name" target="_blank">GOLDEN. RAMPART. <span style="font-weight:300;color:var(--ink-muted)">R09059</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/c0670" class="t-name" target="_blank">TRIAD. DROP. <span style="font-weight:300;color:var(--ink-muted)">C0670</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/c0513" class="t-name" target="_blank">YELLOW. DESCENT. <span style="font-weight:300;color:var(--ink-muted)">C0513</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/3hoop30rb" class="t-name" target="_blank">The Triple Hoop <span style="font-weight:300;color:var(--ink-muted)">3HOOP30RB</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
-      </div>
-    </div>
-
-    <!-- BRACELETS -->
-    <div class="tracker-group">
-      <div class="tracker-group__label">◻ Bracelets</div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/single-row-asscher-cut" class="t-name" target="_blank">Single Row Asscher Cut <span style="font-weight:300;color:var(--ink-muted)">C0755 · 5FLX33ASC</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">✅</div>
-        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/erhdy5ubij7uvzeca5a0o/C0755-ASCH-Bracelet-Master.psd?rlkey=x38wi9682q6s41wedr38yhnpd&dl=0" target="_blank">✅</a></div>
-        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/imr37tqwd0femnglljf2q/Ascher-Bracelet.aep?rlkey=vapu3g1rf204o4ot3taxt96f7&dl=0" target="_blank">✅</a></div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/obsidian" class="t-name" target="_blank">Obsidian <span style="font-weight:300;color:var(--ink-muted)">B5671</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/lexicon" class="t-name" target="_blank">The Lexicon <span style="font-weight:300;color:var(--ink-muted)">C0869</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/prism" class="t-name" target="_blank">Prism <span style="font-weight:300;color:var(--ink-muted)">C0493</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">⬜</div>
-        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/2s06ikd5xkelmz4kuvxux/C0493-Bracelet-Emerald-Master.psd?rlkey=6k3vvjgmwe47wu92cc8c8fm1a&dl=0" target="_blank">✅</a></div>
-        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/7na7ed7np065rrln6i5sy/C0493-8K.aep?rlkey=ivb3rzyxxfyqvii03dex72vom&dl=0" target="_blank">✅</a></div>
-      </div>
-    </div>
-
-    <!-- BANDS -->
-    <div class="tracker-group">
-      <div class="tracker-group__label">◻ Bands</div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/c0787" class="t-name" target="_blank">Dentelle Oval <span style="font-weight:300;color:var(--ink-muted)">C0787</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/dentelle-pear" class="t-name" target="_blank">Dentelle Pear <span style="font-weight:300;color:var(--ink-muted)">C0786</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/dentelle-cushion" class="t-name" target="_blank">Dentelle Cushion <span style="font-weight:300;color:var(--ink-muted)">C0788</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
-      </div>
-    </div>
-
-    <!-- NECKLACES -->
-    <div class="tracker-group">
-      <div class="tracker-group__label">◯ Necklaces</div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/solar-empress" class="t-name" target="_blank">The Solar Empress <span style="font-weight:300;color:var(--ink-muted)">C0711</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/duetto" class="t-name" target="_blank">Duetto <span style="font-weight:300;color:var(--ink-muted)">B9925</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/c0396" class="t-name" target="_blank">Graduated Diamond <span style="font-weight:300;color:var(--ink-muted)">C0396</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/product-in101" class="t-name" target="_blank">The Baguette Line <span style="font-weight:300;color:var(--ink-muted)">IN101</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
-      </div>
-    </div>
-
-    <!-- PENDANTS -->
-    <div class="tracker-group">
-      <div class="tracker-group__label">◇ Pendants</div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/meridian" class="t-name" target="_blank">Meridian <span style="font-weight:300;color:var(--ink-muted)">C0799</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div>
-        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/hyo2iqrydlxb47g56ydtc/C0799-Pendant-Fancy-yellow-Round-Master.psd?rlkey=b8icwq1lz67qzi7c5tv6ma9w6&dl=0" target="_blank">✅</a></div>
-        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/zqz3kmexzlcg9wjnq72ue/C0799.aep?rlkey=lf6zyfp7pa3fe6v4ik4kwld91&dl=0" target="_blank">✅</a></div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/c0346" class="t-name" target="_blank">Devotion <span style="font-weight:300;color:var(--ink-muted)">C0346</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div>
-        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/alez1yqwmsakuq8n9lcuk/C0346-Pendant-Fancy-Yellow-Heart-Master.psd?rlkey=9qehx36dqiyx0e0endm19cls0&dl=0" target="_blank">✅</a></div>
-        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/n4zl05d6ih9y8pw1m1r40/C0346-converted.aep?rlkey=f3m6zgwl16i4o9mei8168mzhw&dl=0" target="_blank">✅</a></div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/c0785" class="t-name" target="_blank">Zenith <span style="font-weight:300;color:var(--ink-muted)">C0785</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">✅</div><div class="t-cell">⬜</div>
-        <div class="t-cell"><a href="https://www.dropbox.com/scl/fi/v1155nkzz9q2bigu0iihx/C0785.aep?rlkey=p3mbwbrhdikl58ol98us54sy2&dl=0" target="_blank">✅</a></div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/c0701" class="t-name" target="_blank">Fancy Pink Pear <span style="font-weight:300;color:var(--ink-muted)">C0701</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
-      </div>
-    </div>
-
-    <!-- PENDING -->
-    <div class="tracker-group">
-      <div class="tracker-group__label tracker-group__label--pending">⏳ Pending</div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/c0846" class="t-name" target="_blank">COUNTERPOINT. <span style="font-weight:300;color:var(--ink-muted)">C0846</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/rain" class="t-name" target="_blank">RAIN <span style="font-weight:300;color:var(--ink-muted)">C0844</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/cardinal" class="t-name" target="_blank">Cardinal <span style="font-weight:300;color:var(--ink-muted)">C0779</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/three-row-round-flex-bracelet" class="t-name" target="_blank">Three Row Round Flex <span style="font-weight:300;color:var(--ink-muted)">B5993</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
-      </div>
-      <div class="tracker-row">
-        <a href="https://bezito.co/page/heart-ruby" class="t-name" target="_blank">The Heart Ruby <span style="font-weight:300;color:var(--ink-muted)">BA-HR-001</span></a>
-        <div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">✅</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div><div class="t-cell">⬜</div>
-      </div>
-    </div>
-
-  </section>
-
+<div class="section"><div class="section__label lbl-core">Site Pages <span class="count">14</span></div><div class="card" id="_">
+  <div class="card__head">
+    <div><div class="card__title">Homepage</div><div class="card__meta">/</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_about-bez-ambar">
+  <div class="card__head">
+    <div><div class="card__title">About Bez Ambar</div><div class="card__meta">/about-bez-ambar</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/about-bez-ambar" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_elysian-cut">
+  <div class="card__head">
+    <div><div class="card__title">Elysian Cut</div><div class="card__meta">/elysian-cut</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/elysian-cut" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_cuts">
+  <div class="card__head">
+    <div><div class="card__title">Cuts</div><div class="card__meta">/cuts</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/cuts" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_archive">
+  <div class="card__head">
+    <div><div class="card__title">Archive</div><div class="card__meta">/archive</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/archive" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_journal">
+  <div class="card__head">
+    <div><div class="card__title">Journal</div><div class="card__meta">/journal</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/journal" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog">
+  <div class="card__head">
+    <div><div class="card__title">Blog</div><div class="card__meta">/blog</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_contact">
+  <div class="card__head">
+    <div><div class="card__title">Contact</div><div class="card__meta">/contact</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/contact" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_diamond-education">
+  <div class="card__head">
+    <div><div class="card__title">Diamond Education</div><div class="card__meta">/diamond-education</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/diamond-education" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_the-story">
+  <div class="card__head">
+    <div><div class="card__title">The Story</div><div class="card__meta">/the-story</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/the-story" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_ring-size-chart">
+  <div class="card__head">
+    <div><div class="card__title">Ring Size Chart</div><div class="card__meta">/ring-size-chart</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/ring-size-chart" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_warranty">
+  <div class="card__head">
+    <div><div class="card__title">Warranty</div><div class="card__meta">/warranty</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/warranty" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_privacy-policy">
+  <div class="card__head">
+    <div><div class="card__title">Privacy Policy</div><div class="card__meta">/privacy-policy</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/privacy-policy" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_terms">
+  <div class="card__head">
+    <div><div class="card__title">Terms</div><div class="card__meta">/terms</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/terms" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div></div>
+<div class="section"><div class="section__label lbl-cat">Jewelry Categories <span class="count">8</span></div><div class="card" id="_jewelry_rings">
+  <div class="card__head">
+    <div><div class="card__title">Rings</div><div class="card__meta">/jewelry/rings</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/rings" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_engagement-rings">
+  <div class="card__head">
+    <div><div class="card__title">Engagement Rings</div><div class="card__meta">/jewelry/engagement-rings</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/engagement-rings" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_bands">
+  <div class="card__head">
+    <div><div class="card__title">Bands</div><div class="card__meta">/jewelry/bands</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/bands" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_wedding-bands">
+  <div class="card__head">
+    <div><div class="card__title">Wedding Bands</div><div class="card__meta">/jewelry/wedding-bands</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/wedding-bands" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_bracelets">
+  <div class="card__head">
+    <div><div class="card__title">Bracelets</div><div class="card__meta">/jewelry/bracelets</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/bracelets" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_earrings">
+  <div class="card__head">
+    <div><div class="card__title">Earrings</div><div class="card__meta">/jewelry/earrings</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/earrings" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_necklaces">
+  <div class="card__head">
+    <div><div class="card__title">Necklaces</div><div class="card__meta">/jewelry/necklaces</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/necklaces" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_pendants">
+  <div class="card__head">
+    <div><div class="card__title">Pendants</div><div class="card__meta">/jewelry/pendants</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/pendants" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div></div>
+<details class="section"><summary class="section__label lbl-prod">Product Pages <span class="count">42</span></summary><div class="card" id="_jewelry_bands_2els-25">
+  <div class="card__head">
+    <div><div class="card__title">2ELS-25</div><div class="card__meta">/jewelry/bands/2els-25</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/bands/2els-25" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_earrings_3hoop30rb">
+  <div class="card__head">
+    <div><div class="card__title">3HOOP30RB</div><div class="card__meta">/jewelry/earrings/3hoop30rb</div></div>
+    <div class="card__right"><span class="tag tag--done">✓ Done</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/earrings/3hoop30rb" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__msg thread__msg--bez"><span class="who">Bez</span><span class="when">Sep 2, 2026</span><p>Change the model image — the model should be face-forward, to fit the Orbit name (hoops orbiting the face).</p></div><div class="thread__empty">Awaiting Darryl's response</div><div class="thread__msg thread__msg--darryl"><span class="who who--d">Darryl</span><span class="when">Sep 3, 2026</span><p>PSD master: <a href="https://www.dropbox.com/scl/fi/l85mvjoawl8f512maqb6v/3HOOP30RB-Rounds-4k-Master.psd?rlkey=f7vo1pcx5g2mtcw1lbvy6e7bz&amp;dl=0" target="_blank" rel="noopener">3HOOP30RB-Rounds-4k-Master.psd ↓</a></p></div></div>
+</div>
+<div class="card" id="_jewelry_bracelets_5flx25">
+  <div class="card__head">
+    <div><div class="card__title">5FLX25</div><div class="card__meta">/jewelry/bracelets/5flx25</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/bracelets/5flx25" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_bracelets_5flx30">
+  <div class="card__head">
+    <div><div class="card__title">5FLX30</div><div class="card__meta">/jewelry/bracelets/5flx30</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/bracelets/5flx30" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_bracelets_5flx65r">
+  <div class="card__head">
+    <div><div class="card__title">5FLX65R</div><div class="card__meta">/jewelry/bracelets/5flx65r</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/bracelets/5flx65r" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_rings_b3233">
+  <div class="card__head">
+    <div><div class="card__title">B3233</div><div class="card__meta">/jewelry/rings/b3233</div></div>
+    <div class="card__right"><span class="tag tag--done">✓ Done</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/rings/b3233" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__msg thread__msg--bez"><span class="who">Bez</span><span class="when">Sep 3, 2026</span><p>The ring is too small in the model image. UPDATE Sep 3: size fixed — model image is good now. NEW: the video looks like CZ (cubic zirconia) — the diamonds need to read as real diamonds in the video.</p></div><div class="thread__empty">Awaiting Darryl's response</div><div class="thread__msg thread__msg--darryl"><span class="who who--d">Darryl</span><span class="when">Sep 3, 2026</span><p>PSD master: <a href="https://www.dropbox.com/scl/fi/hgoz8k0lpkb9sevrlu1nr/B3233-Pearshape-ring-master-file.psd?rlkey=uc8mlt7cal1b4kowwa197rde6&amp;dl=0" target="_blank" rel="noopener">B3233-Pearshape-ring-master-file.psd ↓</a></p></div><div class="thread__msg thread__msg--darryl"><span class="who who--d">Darryl</span><span class="when">Sep 4, 2026</span><p>AE project: <a href="https://www.dropbox.com/scl/fi/jye8yc1zslhe7q9cwnddm/B3233.aep?rlkey=904aqpen5xh955e6v60cnhpgn&amp;dl=0" target="_blank" rel="noopener">B3233.aep ↓</a></p></div></div>
+</div>
+<div class="card" id="_jewelry_rings_b9792">
+  <div class="card__head">
+    <div><div class="card__title">B9792</div><div class="card__meta">/jewelry/rings/b9792</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/rings/b9792" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_necklaces_b9925">
+  <div class="card__head">
+    <div><div class="card__title">B9925</div><div class="card__meta">/jewelry/necklaces/b9925</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/necklaces/b9925" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_earrings_c0211-3hoop30hs">
+  <div class="card__head">
+    <div><div class="card__title">C0211-3HOOP30HS</div><div class="card__meta">/jewelry/earrings/c0211-3hoop30hs</div></div>
+    <div class="card__right"><span class="tag tag--done">✓ Done</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/earrings/c0211-3hoop30hs" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__msg thread__msg--bez"><span class="who">Bez</span><span class="when">Sep 2, 2026</span><p>Change the model image — the earrings are too small and not natural.</p></div><div class="thread__empty">Awaiting Darryl's response</div><div class="thread__msg thread__msg--darryl"><span class="who who--d">Darryl</span><span class="when">Sep 3, 2026</span><p>PSD master: <a href="https://www.dropbox.com/scl/fi/zaydra45kcwbu8xrf9trm/C0211-masterfile-4k.psd?rlkey=yste1rvm4gink4i5voyz0bzje&amp;dl=0" target="_blank" rel="noopener">C0211-masterfile-4k.psd ↓</a></p></div></div>
+</div>
+<div class="card" id="_jewelry_rings_c0304-1c3s">
+  <div class="card__head">
+    <div><div class="card__title">C0304-1C3S</div><div class="card__meta">/jewelry/rings/c0304-1c3s</div></div>
+    <div class="card__right"><span class="tag tag--done">✓ Done</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/rings/c0304-1c3s" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__msg thread__msg--bez"><span class="who">Bez</span><span class="when">Sep 2, 2026</span><p>The image on the model is good but the ring is proportionally too big.</p></div><div class="thread__empty">Awaiting Darryl's response</div><div class="thread__msg thread__msg--darryl"><span class="who who--d">Darryl</span><span class="when">Sep 3, 2026</span><p>PSD master: <a href="https://www.dropbox.com/scl/fi/n0q9w72rreh2ql47ia1hb/C0304-Fancy-Yellow-Pearshape-Master.psd?rlkey=spo5v6kkglav0o4o2ccw7zvv9&amp;dl=0" target="_blank" rel="noopener">C0304-Fancy-Yellow-Pearshape-Master.psd ↓</a></p></div></div>
+</div>
+<div class="card" id="_jewelry_rings_c0305-1c3s">
+  <div class="card__head">
+    <div><div class="card__title">C0305-1C3S</div><div class="card__meta">/jewelry/rings/c0305-1c3s</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/rings/c0305-1c3s" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_pendants_c0346">
+  <div class="card__head">
+    <div><div class="card__title">C0346</div><div class="card__meta">/jewelry/pendants/c0346</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/pendants/c0346" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_necklaces_c0396">
+  <div class="card__head">
+    <div><div class="card__title">C0396</div><div class="card__meta">/jewelry/necklaces/c0396</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/necklaces/c0396" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_rings_c0434">
+  <div class="card__head">
+    <div><div class="card__title">C0434</div><div class="card__meta">/jewelry/rings/c0434</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/rings/c0434" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_bands_c0486">
+  <div class="card__head">
+    <div><div class="card__title">C0486</div><div class="card__meta">/jewelry/bands/c0486</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/bands/c0486" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_bracelets_c0493">
+  <div class="card__head">
+    <div><div class="card__title">C0493</div><div class="card__meta">/jewelry/bracelets/c0493</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/bracelets/c0493" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_necklaces_c0508">
+  <div class="card__head">
+    <div><div class="card__title">C0508</div><div class="card__meta">/jewelry/necklaces/c0508</div></div>
+    <div class="card__right"><span class="tag tag--done">✓ Done</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/necklaces/c0508" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__msg thread__msg--bez"><span class="who">Bez</span><span class="when">Sep 3, 2026</span><p>The model picture needs more believable diamonds. UPDATE Sep 3: still too big — reduce the necklace size further.</p></div><div class="thread__empty">Awaiting Darryl's response</div><div class="thread__msg thread__msg--darryl"><span class="who who--d">Darryl</span><span class="when">Sep 3, 2026</span><p>PSD master: <a href="https://www.dropbox.com/scl/fi/786vu2cacxpe3czcggucc/C0508-Pearshape-Necklace-4k-Master.psd?rlkey=21iagg70vaum13mm0j2dyp54m&amp;dl=0" target="_blank" rel="noopener">C0508-Pearshape-Necklace-4k-Master.psd ↓</a></p></div></div>
+</div>
+<div class="card" id="_jewelry_earrings_c0513">
+  <div class="card__head">
+    <div><div class="card__title">C0513</div><div class="card__meta">/jewelry/earrings/c0513</div></div>
+    <div class="card__right"><span class="tag tag--done">✓ Done</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/earrings/c0513" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__msg thread__msg--bez"><span class="who">Bez</span><span class="when">Sep 2, 2026</span><p>Rename to PENDULUM (drop 'Pear Yellow' from the name) and replace the editorial copy with the revised PENDULUM text.</p></div><div class="thread__msg thread__msg--darryl"><span class="who who--d">Darryl</span><span class="when">Sep 2, 2026</span><p>Done by Bezito — updated directly in Zoho CRM, synced to the site, verified live. No action needed from Darryl.</p></div></div>
+</div>
+<div class="card" id="_jewelry_rings_c0536-1tsrovps">
+  <div class="card__head">
+    <div><div class="card__title">C0536-1TSROVPS</div><div class="card__meta">/jewelry/rings/c0536-1tsrovps</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/rings/c0536-1tsrovps" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_bracelets_c0635">
+  <div class="card__head">
+    <div><div class="card__title">C0635</div><div class="card__meta">/jewelry/bracelets/c0635</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/bracelets/c0635" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_pendants_c0701">
+  <div class="card__head">
+    <div><div class="card__title">C0701</div><div class="card__meta">/jewelry/pendants/c0701</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/pendants/c0701" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_rings_c0709">
+  <div class="card__head">
+    <div><div class="card__title">C0709</div><div class="card__meta">/jewelry/rings/c0709</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/rings/c0709" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_necklaces_c0711">
+  <div class="card__head">
+    <div><div class="card__title">C0711</div><div class="card__meta">/jewelry/necklaces/c0711</div></div>
+    <div class="card__right"><span class="tag tag--done">✓ Done</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/necklaces/c0711" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__msg thread__msg--bez"><span class="who">Bez</span><span class="when">Sep 2, 2026</span><p>Model picture looks good but the piece is proportionally too big — fix the size, the center stone in particular. Also work on the dark rectangle in the middle of the stone in the top picture.</p></div><div class="thread__empty">Awaiting Darryl's response</div><div class="thread__msg thread__msg--darryl"><span class="who who--d">Darryl</span><span class="when">Sep 3, 2026</span><p>PSD master: <a href="https://www.dropbox.com/scl/fi/4bb1rfbb7m82y2ri20929/C0711-Neckalce-Fancy-Yellow-Cuhsion-Radiant-princess-Cut-MAster.psd?rlkey=xtddlin8co47fl2lycsd4i84d&amp;dl=0" target="_blank" rel="noopener">C0711-Necklace-Fancy-Yellow-Cushion-Radiant-Princess-Cut-Master.psd ↓</a></p></div></div>
+</div>
+<div class="card" id="_jewelry_rings_c0728">
+  <div class="card__head">
+    <div><div class="card__title">C0728</div><div class="card__meta">/jewelry/rings/c0728</div></div>
+    <div class="card__right"><span class="tag tag--done">✓ Done</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/rings/c0728" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__msg thread__msg--bez"><span class="who">Bez</span><span class="when">Sep 6, 2026</span><p>Rework the video and the sketch image so the flower at the bottom of the ring clearly shows — this is the most important part of the design. The floral basket of marquise + pear-shape petals under the center stone reads as a flower from the side; that profile view must be front and center in both assets, not just the face-up look. (Ring renamed FLEURON, Sep 6.)</p></div><div class="thread__empty">Awaiting Darryl's response</div><div class="thread__msg thread__msg--darryl"><span class="who who--d">Darryl</span><span class="when">Sep 7, 2026</span><p>Video: <a href="https://www.dropbox.com/scl/fi/f0wgeibjntlvo8eutaep8/C0728-HD_2.mp4?rlkey=cvc5a7jogovxnsvqc5rrkzcrk&amp;dl=0" target="_blank" rel="noopener">C0728-HD_2.mp4 ↓</a></p></div></div>
+</div>
+<div class="card" id="_jewelry_rings_c0747">
+  <div class="card__head">
+    <div><div class="card__title">C0747</div><div class="card__meta">/jewelry/rings/c0747</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/rings/c0747" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_rings_c0752-1c3s">
+  <div class="card__head">
+    <div><div class="card__title">C0752-1C3S</div><div class="card__meta">/jewelry/rings/c0752-1c3s</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/rings/c0752-1c3s" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_bracelets_c0754-5flx33asc2">
+  <div class="card__head">
+    <div><div class="card__title">C0754-5FLX33ASC2</div><div class="card__meta">/jewelry/bracelets/c0754-5flx33asc2</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/bracelets/c0754-5flx33asc2" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_rings_c0765">
+  <div class="card__head">
+    <div><div class="card__title">C0765</div><div class="card__meta">/jewelry/rings/c0765</div></div>
+    <div class="card__right"><span class="tag tag--done">✓ Done</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/rings/c0765" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__msg thread__msg--bez"><span class="who">Bez</span><span class="when">Sep 7, 2026</span><p>The Stone Sketch image position is off — the sketch sits too low in its frame on the page. The Three Views slots crop to a wide window, and the ring ends up pushed toward the bottom. Please fix the positioning — a re-crop of the stone sketch to a landscape framing centered on the ring (like the Top view) should do it.</p></div><div class="thread__empty">Awaiting Darryl's response</div></div>
+</div>
+<div class="card" id="_jewelry_rings_c0765-1duet">
+  <div class="card__head">
+    <div><div class="card__title">C0765-1DUET</div><div class="card__meta">/jewelry/rings/c0765-1duet</div></div>
+    <div class="card__right"><span class="tag tag--done">✓ Done</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/rings/c0765-1duet" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__msg thread__msg--bez"><span class="who">Bez</span><span class="when">Sep 3, 2026</span><p>Model picture is bad — the ring looks washed out and not natural. UPDATE Sep 3: this is good, but the ring is a bit too big on the model — make it about 20% smaller.</p></div><div class="thread__empty">Awaiting Darryl's response</div><div class="thread__msg thread__msg--darryl"><span class="who who--d">Darryl</span><span class="when">Sep 4, 2026</span><p>PSD master: <a href="https://www.dropbox.com/scl/fi/b0lx9ro40h08vtmxjto3o/C0765-Duet-Pearshape-Ring-Fancy-Yellow-Master.psd?rlkey=r7kbnwuc07j9i7j374ftdln5x&amp;dl=0" target="_blank" rel="noopener">C0765-Duet-Pearshape-Ring-Fancy-Yellow-Master.psd ↓</a></p></div></div>
+</div>
+<div class="card" id="_jewelry_pendants_c0785">
+  <div class="card__head">
+    <div><div class="card__title">C0785</div><div class="card__meta">/jewelry/pendants/c0785</div></div>
+    <div class="card__right"><span class="tag tag--done">✓ Done</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/pendants/c0785" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__msg thread__msg--bez"><span class="who">Bez</span><span class="when">Sep 3, 2026</span><p>Reviewed by Bez Sep 3 — approved as-is, no changes needed.</p></div><div class="thread__empty">Awaiting Darryl's response</div></div>
+</div>
+<div class="card" id="_jewelry_bands_c0786">
+  <div class="card__head">
+    <div><div class="card__title">C0786</div><div class="card__meta">/jewelry/bands/c0786</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/bands/c0786" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_bands_c0787">
+  <div class="card__head">
+    <div><div class="card__title">C0787</div><div class="card__meta">/jewelry/bands/c0787</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/bands/c0787" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_bands_c0788">
+  <div class="card__head">
+    <div><div class="card__title">C0788</div><div class="card__meta">/jewelry/bands/c0788</div></div>
+    <div class="card__right"><span class="tag tag--done">✓ Done</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/bands/c0788" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__msg thread__msg--bez"><span class="who">Bez</span><span class="when">Sep 3, 2026</span><p>Fix the concept image — the stones look too much like ovals; they need to read clearly as cushions. ALSO (Sep 3): on the model-finger shot, the stones in the ring should read as LONG (elongated) cushions.</p></div><div class="thread__empty">Awaiting Darryl's response</div><div class="thread__msg thread__msg--darryl"><span class="who who--d">Darryl</span><span class="when">Sep 4, 2026</span><p>PSD master: <a href="https://www.dropbox.com/scl/fi/yjjs7e1ianrlvydqflidq/C0788-Dentelle-Cushion-Band-Master-4K.psd?rlkey=lb3vgostrjuvh3ltn1dd5ynv7&amp;dl=0" target="_blank" rel="noopener">C0788-Dentelle-Cushion-Band-Master-4K.psd ↓</a></p></div></div>
+</div>
+<div class="card" id="_jewelry_pendants_c0799">
+  <div class="card__head">
+    <div><div class="card__title">C0799</div><div class="card__meta">/jewelry/pendants/c0799</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/pendants/c0799" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_pendants_c0826">
+  <div class="card__head">
+    <div><div class="card__title">C0826</div><div class="card__meta">/jewelry/pendants/c0826</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/pendants/c0826" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_bracelets_c0834-5flx40ecns">
+  <div class="card__head">
+    <div><div class="card__title">C0834-5FLX40ECNS</div><div class="card__meta">/jewelry/bracelets/c0834-5flx40ecns</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/bracelets/c0834-5flx40ecns" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_earrings_c0863">
+  <div class="card__head">
+    <div><div class="card__title">C0863</div><div class="card__meta">/jewelry/earrings/c0863</div></div>
+    <div class="card__right"><span class="tag tag--done">✓ Done</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/earrings/c0863" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__msg thread__msg--bez"><span class="who">Bez</span><span class="when">Sep 2, 2026</span><p>The earrings need to be fixed on the model post (on-model photo).</p></div><div class="thread__empty">Awaiting Darryl's response</div><div class="thread__msg thread__msg--darryl"><span class="who who--d">Darryl</span><span class="when">Sep 3, 2026</span><p>PSD master: <a href="https://www.dropbox.com/scl/fi/0h9elsjd73d9t4jldfsjq/C0863-4k-master-file.psd?rlkey=fnjjylbrjn17ofm4wpvkj30g2&amp;dl=0" target="_blank" rel="noopener">C0863-4k-master-file.psd ↓</a></p></div></div>
+</div>
+<div class="card" id="_jewelry_rings_c0908">
+  <div class="card__head">
+    <div><div class="card__title">C0908</div><div class="card__meta">/jewelry/rings/c0908</div></div>
+    <div class="card__right"><span class="tag tag--done">✓ Done</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/rings/c0908" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__msg thread__msg--bez"><span class="who">Bez</span><span class="when">Sep 3, 2026</span><p>Model image: the pear sapphire looks too big in relationship to the hand. Good image, but not the right proportions. UPDATE Sep 3: looks good now — only fix the color (stone color needs correcting).</p></div><div class="thread__empty">Awaiting Darryl's response</div><div class="thread__msg thread__msg--darryl"><span class="who who--d">Darryl</span><span class="when">Sep 4, 2026</span><p>PSD master: <a href="https://www.dropbox.com/scl/fi/yza9g65bjed89hk96r37r/C0908-Sapphire-Pear-Master-File.psd?rlkey=6pfjq6mop2toegbrq9nv3f5j8&amp;dl=0" target="_blank" rel="noopener">C0908-Sapphire-Pear-Master-File.psd ↓</a></p></div></div>
+</div>
+<div class="card" id="_jewelry_necklaces_in100">
+  <div class="card__head">
+    <div><div class="card__title">IN100</div><div class="card__meta">/jewelry/necklaces/in100</div></div>
+    <div class="card__right"><span class="tag tag--done">✓ Done</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/necklaces/in100" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__msg thread__msg--bez"><span class="who">Bez</span><span class="when">Sep 3, 2026</span><p>Model image: the necklace looks too thick and the stones read almost like rounds. It needs to be a line of PRINCESS cut diamonds, and more delicate overall.</p></div><div class="thread__msg thread__msg--darryl"><span class="who who--d">Darryl</span><span class="when">Sep 4, 2026</span><p>SKU reference updated: R09073. Model image replaced with new princess-cut version.</p></div><div class="thread__msg thread__msg--darryl"><span class="who who--d">Darryl</span><span class="when">Sep 4, 2026</span><p>PSD master: <a href="https://www.dropbox.com/scl/fi/b85f80to5hzd45snr848q/R09073-Princess-cut-IN100.psd?rlkey=s37s9xbtpq0yg5jooc1sgyb1v&amp;dl=0" target="_blank" rel="noopener">R09073-Princess-cut-IN100.psd ↓</a></p></div></div>
+</div>
+<div class="card" id="_jewelry_necklaces_in101">
+  <div class="card__head">
+    <div><div class="card__title">IN101</div><div class="card__meta">/jewelry/necklaces/in101</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/necklaces/in101" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_rings_r01943">
+  <div class="card__head">
+    <div><div class="card__title">R01943</div><div class="card__meta">/jewelry/rings/r01943</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/rings/r01943" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_jewelry_earrings_r09059">
+  <div class="card__head">
+    <div><div class="card__title">R09059</div><div class="card__meta">/jewelry/earrings/r09059</div></div>
+    <div class="card__right"><span class="tag tag--done">✓ Done</span><a class="card__link" href="https://bezambar-web2026.vercel.app/jewelry/earrings/r09059" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__msg thread__msg--bez"><span class="who">Bez</span><span class="when">Sep 2, 2026</span><p>Same problem as C0863 — the model image needs to be fixed.</p></div><div class="thread__empty">Awaiting Darryl's response</div><div class="thread__msg thread__msg--darryl"><span class="who who--d">Darryl</span><span class="when">Sep 3, 2026</span><p>PSD master: <a href="https://www.dropbox.com/scl/fi/obiorxpr2mnbp64v0sm1g/GOLDEN.-RAMPART.-R09059-Fancy-yellow-cushion-Earring-4K.psd?rlkey=qzsmu7a9bp20ek74oitwh1393&amp;dl=0" target="_blank" rel="noopener">GOLDEN.-RAMPART.-R09059-Fancy-yellow-cushion-Earring-4K.psd ↓</a></p></div></div>
+</div></details>
+<details class="section"><summary class="section__label lbl-ret">Retailer Pages <span class="count">13</span></summary><div class="card" id="_retailers_ahee-jewelers">
+  <div class="card__head">
+    <div><div class="card__title">Ahee Jewelers</div><div class="card__meta">/retailers/ahee-jewelers</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/retailers/ahee-jewelers" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_retailers_alson-jewelers">
+  <div class="card__head">
+    <div><div class="card__title">Alson Jewelers</div><div class="card__meta">/retailers/alson-jewelers</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/retailers/alson-jewelers" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_retailers_ascot-diamonds">
+  <div class="card__head">
+    <div><div class="card__title">Ascot Diamonds</div><div class="card__meta">/retailers/ascot-diamonds</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/retailers/ascot-diamonds" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_retailers_bigham-jewelers">
+  <div class="card__head">
+    <div><div class="card__title">Bigham Jewelers</div><div class="card__meta">/retailers/bigham-jewelers</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/retailers/bigham-jewelers" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_retailers_eiseman-jewels">
+  <div class="card__head">
+    <div><div class="card__title">Eiseman Jewels</div><div class="card__meta">/retailers/eiseman-jewels</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/retailers/eiseman-jewels" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_retailers_i-gorman-jewelers">
+  <div class="card__head">
+    <div><div class="card__title">I Gorman Jewelers</div><div class="card__meta">/retailers/i-gorman-jewelers</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/retailers/i-gorman-jewelers" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_retailers_james-elliott-jewelers">
+  <div class="card__head">
+    <div><div class="card__title">James Elliott Jewelers</div><div class="card__meta">/retailers/james-elliott-jewelers</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/retailers/james-elliott-jewelers" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_retailers_kassab-jewelers">
+  <div class="card__head">
+    <div><div class="card__title">Kassab Jewelers</div><div class="card__meta">/retailers/kassab-jewelers</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/retailers/kassab-jewelers" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_retailers_london-jewelers-long-island">
+  <div class="card__head">
+    <div><div class="card__title">London Jewelers Long Island</div><div class="card__meta">/retailers/london-jewelers-long-island</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/retailers/london-jewelers-long-island" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_retailers_radcliffe-jewelers">
+  <div class="card__head">
+    <div><div class="card__title">Radcliffe Jewelers</div><div class="card__meta">/retailers/radcliffe-jewelers</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/retailers/radcliffe-jewelers" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_retailers_royal-jewelers-andover">
+  <div class="card__head">
+    <div><div class="card__title">Royal Jewelers Andover</div><div class="card__meta">/retailers/royal-jewelers-andover</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/retailers/royal-jewelers-andover" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_retailers_sid-potts">
+  <div class="card__head">
+    <div><div class="card__title">Sid Potts</div><div class="card__meta">/retailers/sid-potts</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/retailers/sid-potts" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_retailers_t-bird-jewelers">
+  <div class="card__head">
+    <div><div class="card__title">T Bird Jewelers</div><div class="card__meta">/retailers/t-bird-jewelers</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/retailers/t-bird-jewelers" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div></details>
+<details class="section"><summary class="section__label lbl-blog">Blog Posts <span class="count">132</span></summary><div class="card" id="_blog_half-carat-diamond-engagement-ring">
+  <div class="card__head">
+    <div><div class="card__title">Half Carat Diamond Engagement Ring</div><div class="card__meta">/blog/half-carat-diamond-engagement-ring</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/half-carat-diamond-engagement-ring" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_three-carat-diamond-engagement-ring">
+  <div class="card__head">
+    <div><div class="card__title">Three Carat Diamond Engagement Ring</div><div class="card__meta">/blog/three-carat-diamond-engagement-ring</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/three-carat-diamond-engagement-ring" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_mens-wedding-band-buying-guide">
+  <div class="card__head">
+    <div><div class="card__title">Mens Wedding Band Buying Guide</div><div class="card__meta">/blog/mens-wedding-band-buying-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/mens-wedding-band-buying-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_two-carat-diamond-engagement-ring">
+  <div class="card__head">
+    <div><div class="card__title">Two Carat Diamond Engagement Ring</div><div class="card__meta">/blog/two-carat-diamond-engagement-ring</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/two-carat-diamond-engagement-ring" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_ideal-cut-diamond-explained">
+  <div class="card__head">
+    <div><div class="card__title">Ideal Cut Diamond Explained</div><div class="card__meta">/blog/ideal-cut-diamond-explained</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/ideal-cut-diamond-explained" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_right-hand-diamond-ring-guide">
+  <div class="card__head">
+    <div><div class="card__title">Right Hand Diamond Ring Guide</div><div class="card__meta">/blog/right-hand-diamond-ring-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/right-hand-diamond-ring-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_14k-vs-18k-gold-jewelry-guide">
+  <div class="card__head">
+    <div><div class="card__title">14K-VS-18K-GOLD-JEWELRY-GUIDE</div><div class="card__meta">/blog/14k-vs-18k-gold-jewelry-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/14k-vs-18k-gold-jewelry-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_promise-ring-vs-engagement-ring">
+  <div class="card__head">
+    <div><div class="card__title">Promise Ring Vs Engagement Ring</div><div class="card__meta">/blog/promise-ring-vs-engagement-ring</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/promise-ring-vs-engagement-ring" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_yellow-gold-vs-rose-gold-vs-white-gold">
+  <div class="card__head">
+    <div><div class="card__title">Yellow Gold Vs Rose Gold Vs White Gold</div><div class="card__meta">/blog/yellow-gold-vs-rose-gold-vs-white-gold</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/yellow-gold-vs-rose-gold-vs-white-gold" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_diamond-inclusion-types-guide">
+  <div class="card__head">
+    <div><div class="card__title">Diamond Inclusion Types Guide</div><div class="card__meta">/blog/diamond-inclusion-types-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/diamond-inclusion-types-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_aquamarine-engagement-ring-guide">
+  <div class="card__head">
+    <div><div class="card__title">Aquamarine Engagement Ring Guide</div><div class="card__meta">/blog/aquamarine-engagement-ring-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/aquamarine-engagement-ring-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_gold-bracelet-buying-guide">
+  <div class="card__head">
+    <div><div class="card__title">Gold Bracelet Buying Guide</div><div class="card__meta">/blog/gold-bracelet-buying-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/gold-bracelet-buying-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_bezel-set-diamond-pendant-guide">
+  <div class="card__head">
+    <div><div class="card__title">Bezel Set Diamond Pendant Guide</div><div class="card__meta">/blog/bezel-set-diamond-pendant-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/bezel-set-diamond-pendant-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_alexandrite-engagement-ring-guide">
+  <div class="card__head">
+    <div><div class="card__title">Alexandrite Engagement Ring Guide</div><div class="card__meta">/blog/alexandrite-engagement-ring-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/alexandrite-engagement-ring-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_platinum-vs-white-gold-complete-guide">
+  <div class="card__head">
+    <div><div class="card__title">Platinum Vs White Gold Complete Guide</div><div class="card__meta">/blog/platinum-vs-white-gold-complete-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/platinum-vs-white-gold-complete-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_conflict-free-diamonds-guide">
+  <div class="card__head">
+    <div><div class="card__title">Conflict Free Diamonds Guide</div><div class="card__meta">/blog/conflict-free-diamonds-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/conflict-free-diamonds-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_amethyst-jewelry-buying-guide">
+  <div class="card__head">
+    <div><div class="card__title">Amethyst Jewelry Buying Guide</div><div class="card__meta">/blog/amethyst-jewelry-buying-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/amethyst-jewelry-buying-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_ruby-engagement-ring-guide">
+  <div class="card__head">
+    <div><div class="card__title">Ruby Engagement Ring Guide</div><div class="card__meta">/blog/ruby-engagement-ring-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/ruby-engagement-ring-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_when-to-upgrade-engagement-ring">
+  <div class="card__head">
+    <div><div class="card__title">When To Upgrade Engagement Ring</div><div class="card__meta">/blog/when-to-upgrade-engagement-ring</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/when-to-upgrade-engagement-ring" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_baguette-diamond-guide">
+  <div class="card__head">
+    <div><div class="card__title">Baguette Diamond Guide</div><div class="card__meta">/blog/baguette-diamond-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/baguette-diamond-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_diamond-eternity-bracelet-guide">
+  <div class="card__head">
+    <div><div class="card__title">Diamond Eternity Bracelet Guide</div><div class="card__meta">/blog/diamond-eternity-bracelet-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/diamond-eternity-bracelet-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_moissanite-vs-diamond-engagement-ring">
+  <div class="card__head">
+    <div><div class="card__title">Moissanite Vs Diamond Engagement Ring</div><div class="card__meta">/blog/moissanite-vs-diamond-engagement-ring</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/moissanite-vs-diamond-engagement-ring" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_birthstone-necklace-fine-jewelry-guide">
+  <div class="card__head">
+    <div><div class="card__title">Birthstone Necklace Fine Jewelry Guide</div><div class="card__meta">/blog/birthstone-necklace-fine-jewelry-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/birthstone-necklace-fine-jewelry-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_trillion-cut-diamond-guide">
+  <div class="card__head">
+    <div><div class="card__title">Trillion Cut Diamond Guide</div><div class="card__meta">/blog/trillion-cut-diamond-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/trillion-cut-diamond-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_opal-engagement-ring-guide">
+  <div class="card__head">
+    <div><div class="card__title">Opal Engagement Ring Guide</div><div class="card__meta">/blog/opal-engagement-ring-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/opal-engagement-ring-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_lab-grown-diamond-engagement-ring">
+  <div class="card__head">
+    <div><div class="card__title">Lab Grown Diamond Engagement Ring</div><div class="card__meta">/blog/lab-grown-diamond-engagement-ring</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/lab-grown-diamond-engagement-ring" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_ear-climber-earrings-guide">
+  <div class="card__head">
+    <div><div class="card__title">Ear Climber Earrings Guide</div><div class="card__meta">/blog/ear-climber-earrings-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/ear-climber-earrings-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_princess-cut-diamond-ring-guide">
+  <div class="card__head">
+    <div><div class="card__title">Princess Cut Diamond Ring Guide</div><div class="card__meta">/blog/princess-cut-diamond-ring-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/princess-cut-diamond-ring-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_what-to-ask-a-jeweler-consultation">
+  <div class="card__head">
+    <div><div class="card__title">What To Ask A Jeweler Consultation</div><div class="card__meta">/blog/what-to-ask-a-jeweler-consultation</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/what-to-ask-a-jeweler-consultation" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_morganite-engagement-ring-guide">
+  <div class="card__head">
+    <div><div class="card__title">Morganite Engagement Ring Guide</div><div class="card__meta">/blog/morganite-engagement-ring-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/morganite-engagement-ring-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_ceylon-sapphire-origin-guide">
+  <div class="card__head">
+    <div><div class="card__title">Ceylon Sapphire Origin Guide</div><div class="card__meta">/blog/ceylon-sapphire-origin-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/ceylon-sapphire-origin-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_diamond-flex-bracelet-guide">
+  <div class="card__head">
+    <div><div class="card__title">Diamond Flex Bracelet Guide</div><div class="card__meta">/blog/diamond-flex-bracelet-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/diamond-flex-bracelet-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_internally-flawless-diamond-worth-it">
+  <div class="card__head">
+    <div><div class="card__title">Internally Flawless Diamond Worth IT</div><div class="card__meta">/blog/internally-flawless-diamond-worth-it</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/internally-flawless-diamond-worth-it" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_tension-set-diamond-ring-guide">
+  <div class="card__head">
+    <div><div class="card__title">Tension Set Diamond Ring Guide</div><div class="card__meta">/blog/tension-set-diamond-ring-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/tension-set-diamond-ring-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_fine-jewelry-care-and-maintenance">
+  <div class="card__head">
+    <div><div class="card__title">Fine Jewelry Care And Maintenance</div><div class="card__meta">/blog/fine-jewelry-care-and-maintenance</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/fine-jewelry-care-and-maintenance" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_lab-created-sapphire-vs-natural-sapphire">
+  <div class="card__head">
+    <div><div class="card__title">Lab Created Sapphire Vs Natural Sapphire</div><div class="card__meta">/blog/lab-created-sapphire-vs-natural-sapphire</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/lab-created-sapphire-vs-natural-sapphire" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_chandelier-diamond-earrings-guide">
+  <div class="card__head">
+    <div><div class="card__title">Chandelier Diamond Earrings Guide</div><div class="card__meta">/blog/chandelier-diamond-earrings-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/chandelier-diamond-earrings-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_how-to-read-diamond-grading-report">
+  <div class="card__head">
+    <div><div class="card__title">How To Read Diamond Grading Report</div><div class="card__meta">/blog/how-to-read-diamond-grading-report</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/how-to-read-diamond-grading-report" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_split-shank-engagement-ring">
+  <div class="card__head">
+    <div><div class="card__title">Split Shank Engagement Ring</div><div class="card__meta">/blog/split-shank-engagement-ring</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/split-shank-engagement-ring" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_traveling-with-fine-jewelry-guide">
+  <div class="card__head">
+    <div><div class="card__title">Traveling With Fine Jewelry Guide</div><div class="card__meta">/blog/traveling-with-fine-jewelry-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/traveling-with-fine-jewelry-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_tourmaline-jewelry-guide">
+  <div class="card__head">
+    <div><div class="card__title">Tourmaline Jewelry Guide</div><div class="card__meta">/blog/tourmaline-jewelry-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/tourmaline-jewelry-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_gold-chain-types-guide">
+  <div class="card__head">
+    <div><div class="card__title">Gold Chain Types Guide</div><div class="card__meta">/blog/gold-chain-types-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/gold-chain-types-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_diamond-weight-vs-face-up-size">
+  <div class="card__head">
+    <div><div class="card__title">Diamond Weight Vs Face UP Size</div><div class="card__meta">/blog/diamond-weight-vs-face-up-size</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/diamond-weight-vs-face-up-size" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_art-deco-engagement-rings">
+  <div class="card__head">
+    <div><div class="card__title">Art Deco Engagement Rings</div><div class="card__meta">/blog/art-deco-engagement-rings</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/art-deco-engagement-rings" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_rose-gold-diamond-earrings-guide">
+  <div class="card__head">
+    <div><div class="card__title">Rose Gold Diamond Earrings Guide</div><div class="card__meta">/blog/rose-gold-diamond-earrings-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/rose-gold-diamond-earrings-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_garnet-engagement-ring-guide">
+  <div class="card__head">
+    <div><div class="card__title">Garnet Engagement Ring Guide</div><div class="card__meta">/blog/garnet-engagement-ring-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/garnet-engagement-ring-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_fine-jewelry-safe-storage-guide">
+  <div class="card__head">
+    <div><div class="card__title">Fine Jewelry Safe Storage Guide</div><div class="card__meta">/blog/fine-jewelry-safe-storage-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/fine-jewelry-safe-storage-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_diamonds-as-investment-guide">
+  <div class="card__head">
+    <div><div class="card__title">Diamonds AS Investment Guide</div><div class="card__meta">/blog/diamonds-as-investment-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/diamonds-as-investment-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_vintage-antique-engagement-rings">
+  <div class="card__head">
+    <div><div class="card__title">Vintage Antique Engagement Rings</div><div class="card__meta">/blog/vintage-antique-engagement-rings</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/vintage-antique-engagement-rings" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_bar-necklace-fine-jewelry-guide">
+  <div class="card__head">
+    <div><div class="card__title">Bar Necklace Fine Jewelry Guide</div><div class="card__meta">/blog/bar-necklace-fine-jewelry-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/bar-necklace-fine-jewelry-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_yellow-gold-diamond-earrings-guide">
+  <div class="card__head">
+    <div><div class="card__title">Yellow Gold Diamond Earrings Guide</div><div class="card__meta">/blog/yellow-gold-diamond-earrings-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/yellow-gold-diamond-earrings-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_morganite-gemstone-guide">
+  <div class="card__head">
+    <div><div class="card__title">Morganite Gemstone Guide</div><div class="card__meta">/blog/morganite-gemstone-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/morganite-gemstone-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_old-mine-cut-old-european-cut">
+  <div class="card__head">
+    <div><div class="card__title">Old Mine Cut Old European Cut</div><div class="card__meta">/blog/old-mine-cut-old-european-cut</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/old-mine-cut-old-european-cut" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_bangle-vs-bracelet-fine-jewelry">
+  <div class="card__head">
+    <div><div class="card__title">Bangle Vs Bracelet Fine Jewelry</div><div class="card__meta">/blog/bangle-vs-bracelet-fine-jewelry</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/bangle-vs-bracelet-fine-jewelry" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_bezel-set-engagement-ring-guide">
+  <div class="card__head">
+    <div><div class="card__title">Bezel Set Engagement Ring Guide</div><div class="card__meta">/blog/bezel-set-engagement-ring-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/bezel-set-engagement-ring-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_oval-diamond-earrings-guide">
+  <div class="card__head">
+    <div><div class="card__title">Oval Diamond Earrings Guide</div><div class="card__meta">/blog/oval-diamond-earrings-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/oval-diamond-earrings-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_aquamarine-jewelry-buying-guide">
+  <div class="card__head">
+    <div><div class="card__title">Aquamarine Jewelry Buying Guide</div><div class="card__meta">/blog/aquamarine-jewelry-buying-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/aquamarine-jewelry-buying-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_what-is-an-asscher-cut-diamond">
+  <div class="card__head">
+    <div><div class="card__title">What IS AN Asscher Cut Diamond</div><div class="card__meta">/blog/what-is-an-asscher-cut-diamond</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/what-is-an-asscher-cut-diamond" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_why-a-1-carat-diamond">
+  <div class="card__head">
+    <div><div class="card__title">Why A 1 Carat Diamond</div><div class="card__meta">/blog/why-a-1-carat-diamond</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/why-a-1-carat-diamond" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_how-to-clean-diamond-jewelry-at-home">
+  <div class="card__head">
+    <div><div class="card__title">How To Clean Diamond Jewelry AT Home</div><div class="card__meta">/blog/how-to-clean-diamond-jewelry-at-home</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/how-to-clean-diamond-jewelry-at-home" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_station-diamond-necklace-guide">
+  <div class="card__head">
+    <div><div class="card__title">Station Diamond Necklace Guide</div><div class="card__meta">/blog/station-diamond-necklace-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/station-diamond-necklace-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_pave-engagement-ring-guide">
+  <div class="card__head">
+    <div><div class="card__title">Pave Engagement Ring Guide</div><div class="card__meta">/blog/pave-engagement-ring-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/pave-engagement-ring-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_diamond-shape-vs-cut-difference">
+  <div class="card__head">
+    <div><div class="card__title">Diamond Shape Vs Cut Difference</div><div class="card__meta">/blog/diamond-shape-vs-cut-difference</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/diamond-shape-vs-cut-difference" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_alexandrite-color-change-gemstone-guide">
+  <div class="card__head">
+    <div><div class="card__title">Alexandrite Color Change Gemstone Guide</div><div class="card__meta">/blog/alexandrite-color-change-gemstone-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/alexandrite-color-change-gemstone-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_three-stone-engagement-ring-guide">
+  <div class="card__head">
+    <div><div class="card__title">Three Stone Engagement Ring Guide</div><div class="card__meta">/blog/three-stone-engagement-ring-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/three-stone-engagement-ring-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_fine-jewelry-insurance-guide">
+  <div class="card__head">
+    <div><div class="card__title">Fine Jewelry Insurance Guide</div><div class="card__meta">/blog/fine-jewelry-insurance-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/fine-jewelry-insurance-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_pear-shaped-diamond-earrings-guide">
+  <div class="card__head">
+    <div><div class="card__title">Pear Shaped Diamond Earrings Guide</div><div class="card__meta">/blog/pear-shaped-diamond-earrings-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/pear-shaped-diamond-earrings-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_fancy-yellow-diamond-rings">
+  <div class="card__head">
+    <div><div class="card__title">Fancy Yellow Diamond Rings</div><div class="card__meta">/blog/fancy-yellow-diamond-rings</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/fancy-yellow-diamond-rings" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_solitaire-diamond-pendant-guide">
+  <div class="card__head">
+    <div><div class="card__title">Solitaire Diamond Pendant Guide</div><div class="card__meta">/blog/solitaire-diamond-pendant-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/solitaire-diamond-pendant-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_solitaire-engagement-ring-guide">
+  <div class="card__head">
+    <div><div class="card__title">Solitaire Engagement Ring Guide</div><div class="card__meta">/blog/solitaire-engagement-ring-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/solitaire-engagement-ring-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_tanzanite-jewelry-guide">
+  <div class="card__head">
+    <div><div class="card__title">Tanzanite Jewelry Guide</div><div class="card__meta">/blog/tanzanite-jewelry-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/tanzanite-jewelry-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_huggie-earrings-guide">
+  <div class="card__head">
+    <div><div class="card__title">Huggie Earrings Guide</div><div class="card__meta">/blog/huggie-earrings-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/huggie-earrings-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_jewelry-appraisal-how-it-works">
+  <div class="card__head">
+    <div><div class="card__title">Jewelry Appraisal How IT Works</div><div class="card__meta">/blog/jewelry-appraisal-how-it-works</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/jewelry-appraisal-how-it-works" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_lab-grown-vs-natural-diamond-guide">
+  <div class="card__head">
+    <div><div class="card__title">Lab Grown Vs Natural Diamond Guide</div><div class="card__meta">/blog/lab-grown-vs-natural-diamond-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/lab-grown-vs-natural-diamond-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_layering-fine-jewelry-necklaces">
+  <div class="card__head">
+    <div><div class="card__title">Layering Fine Jewelry Necklaces</div><div class="card__meta">/blog/layering-fine-jewelry-necklaces</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/layering-fine-jewelry-necklaces" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_heart-shaped-diamond-ring">
+  <div class="card__head">
+    <div><div class="card__title">Heart Shaped Diamond Ring</div><div class="card__meta">/blog/heart-shaped-diamond-ring</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/heart-shaped-diamond-ring" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_emerald-gemstone-buying-guide">
+  <div class="card__head">
+    <div><div class="card__title">Emerald Gemstone Buying Guide</div><div class="card__meta">/blog/emerald-gemstone-buying-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/emerald-gemstone-buying-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_diamond-drop-earrings-guide">
+  <div class="card__head">
+    <div><div class="card__title">Diamond Drop Earrings Guide</div><div class="card__meta">/blog/diamond-drop-earrings-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/diamond-drop-earrings-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_diamond-tennis-bracelet-guide">
+  <div class="card__head">
+    <div><div class="card__title">Diamond Tennis Bracelet Guide</div><div class="card__meta">/blog/diamond-tennis-bracelet-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/diamond-tennis-bracelet-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_ruby-gemstone-buying-guide">
+  <div class="card__head">
+    <div><div class="card__title">Ruby Gemstone Buying Guide</div><div class="card__meta">/blog/ruby-gemstone-buying-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/ruby-gemstone-buying-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_diamond-tennis-necklace-guide">
+  <div class="card__head">
+    <div><div class="card__title">Diamond Tennis Necklace Guide</div><div class="card__meta">/blog/diamond-tennis-necklace-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/diamond-tennis-necklace-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_marquise-cut-diamond-engagement-ring">
+  <div class="card__head">
+    <div><div class="card__title">Marquise Cut Diamond Engagement Ring</div><div class="card__meta">/blog/marquise-cut-diamond-engagement-ring</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/marquise-cut-diamond-engagement-ring" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_diamond-hoop-earrings-guide">
+  <div class="card__head">
+    <div><div class="card__title">Diamond Hoop Earrings Guide</div><div class="card__meta">/blog/diamond-hoop-earrings-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/diamond-hoop-earrings-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_diamond-anatomy-explained">
+  <div class="card__head">
+    <div><div class="card__title">Diamond Anatomy Explained</div><div class="card__meta">/blog/diamond-anatomy-explained</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/diamond-anatomy-explained" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_how-long-does-custom-jewelry-take">
+  <div class="card__head">
+    <div><div class="card__title">How Long Does Custom Jewelry Take</div><div class="card__meta">/blog/how-long-does-custom-jewelry-take</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/how-long-does-custom-jewelry-take" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_the-return-of-pear-shaped-diamond-rings">
+  <div class="card__head">
+    <div><div class="card__title">The Return Of Pear Shaped Diamond Rings</div><div class="card__meta">/blog/the-return-of-pear-shaped-diamond-rings</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/the-return-of-pear-shaped-diamond-rings" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_blue-diamond-ring-vs-blue-sapphire-diamond-ring">
+  <div class="card__head">
+    <div><div class="card__title">Blue Diamond Ring Vs Blue Sapphire Diamond Ring</div><div class="card__meta">/blog/blue-diamond-ring-vs-blue-sapphire-diamond-ring</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/blue-diamond-ring-vs-blue-sapphire-diamond-ring" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_blue-diamond-rings">
+  <div class="card__head">
+    <div><div class="card__title">Blue Diamond Rings</div><div class="card__meta">/blog/blue-diamond-rings</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/blue-diamond-rings" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_the-los-angeles-diamond-district">
+  <div class="card__head">
+    <div><div class="card__title">The Los Angeles Diamond District</div><div class="card__meta">/blog/the-los-angeles-diamond-district</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/the-los-angeles-diamond-district" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_princess-cut-diamond-earrings">
+  <div class="card__head">
+    <div><div class="card__title">Princess Cut Diamond Earrings</div><div class="card__meta">/blog/princess-cut-diamond-earrings</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/princess-cut-diamond-earrings" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_cushion-cut-diamond-earrings-video">
+  <div class="card__head">
+    <div><div class="card__title">Cushion Cut Diamond Earrings Video</div><div class="card__meta">/blog/cushion-cut-diamond-earrings-video</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/cushion-cut-diamond-earrings-video" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_choosing-semi-precious-stones">
+  <div class="card__head">
+    <div><div class="card__title">Choosing Semi Precious Stones</div><div class="card__meta">/blog/choosing-semi-precious-stones</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/choosing-semi-precious-stones" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_online-jewelry-stores">
+  <div class="card__head">
+    <div><div class="card__title">Online Jewelry Stores</div><div class="card__meta">/blog/online-jewelry-stores</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/online-jewelry-stores" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_choosing-your-diamond-earrings-studs">
+  <div class="card__head">
+    <div><div class="card__title">Choosing Your Diamond Earrings Studs</div><div class="card__meta">/blog/choosing-your-diamond-earrings-studs</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/choosing-your-diamond-earrings-studs" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_gia-vs-ags-diamond-certification">
+  <div class="card__head">
+    <div><div class="card__title">Gia Vs Ags Diamond Certification</div><div class="card__meta">/blog/gia-vs-ags-diamond-certification</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/gia-vs-ags-diamond-certification" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_radiant-cut-diamond-engagement-ring">
+  <div class="card__head">
+    <div><div class="card__title">Radiant Cut Diamond Engagement Ring</div><div class="card__meta">/blog/radiant-cut-diamond-engagement-ring</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/radiant-cut-diamond-engagement-ring" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_custom-jewelry-design-process">
+  <div class="card__head">
+    <div><div class="card__title">Custom Jewelry Design Process</div><div class="card__meta">/blog/custom-jewelry-design-process</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/custom-jewelry-design-process" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_should-you-buy-emerald-engagement-rings">
+  <div class="card__head">
+    <div><div class="card__title">Should You Buy Emerald Engagement Rings</div><div class="card__meta">/blog/should-you-buy-emerald-engagement-rings</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/should-you-buy-emerald-engagement-rings" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_is-a-pink-diamond-engagement-ring-right-for-you">
+  <div class="card__head">
+    <div><div class="card__title">IS A Pink Diamond Engagement Ring Right For You</div><div class="card__meta">/blog/is-a-pink-diamond-engagement-ring-right-for-you</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/is-a-pink-diamond-engagement-ring-right-for-you" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_cushion-cut-diamond-engagement-ring">
+  <div class="card__head">
+    <div><div class="card__title">Cushion Cut Diamond Engagement Ring</div><div class="card__meta">/blog/cushion-cut-diamond-engagement-ring</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/cushion-cut-diamond-engagement-ring" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_diamond-fluorescence-guide">
+  <div class="card__head">
+    <div><div class="card__title">Diamond Fluorescence Guide</div><div class="card__meta">/blog/diamond-fluorescence-guide</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/diamond-fluorescence-guide" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_black-diamond-jewelry">
+  <div class="card__head">
+    <div><div class="card__title">Black Diamond Jewelry</div><div class="card__meta">/blog/black-diamond-jewelry</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/black-diamond-jewelry" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_sapphire-engagement-rings-yes-no">
+  <div class="card__head">
+    <div><div class="card__title">Sapphire Engagement Rings Yes NO</div><div class="card__meta">/blog/sapphire-engagement-rings-yes-no</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/sapphire-engagement-rings-yes-no" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_oval-cut-diamond-engagement-ring">
+  <div class="card__head">
+    <div><div class="card__title">Oval Cut Diamond Engagement Ring</div><div class="card__meta">/blog/oval-cut-diamond-engagement-ring</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/oval-cut-diamond-engagement-ring" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_secret-behind-ring-sizing">
+  <div class="card__head">
+    <div><div class="card__title">Secret Behind Ring Sizing</div><div class="card__meta">/blog/secret-behind-ring-sizing</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/secret-behind-ring-sizing" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_chocolate-brown-diamond-rings">
+  <div class="card__head">
+    <div><div class="card__title">Chocolate Brown Diamond Rings</div><div class="card__meta">/blog/chocolate-brown-diamond-rings</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/chocolate-brown-diamond-rings" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_engagement-rings-for-women-heirloom-or-new">
+  <div class="card__head">
+    <div><div class="card__title">Engagement Rings For Women Heirloom OR New</div><div class="card__meta">/blog/engagement-rings-for-women-heirloom-or-new</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/engagement-rings-for-women-heirloom-or-new" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_anniversary-rings-wedding-rings-eternity-rings">
+  <div class="card__head">
+    <div><div class="card__title">Anniversary Rings Wedding Rings Eternity Rings</div><div class="card__meta">/blog/anniversary-rings-wedding-rings-eternity-rings</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/anniversary-rings-wedding-rings-eternity-rings" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_rose-cut-diamond-rings-by-bez-ambar">
+  <div class="card__head">
+    <div><div class="card__title">Rose Cut Diamond Rings BY Bez Ambar</div><div class="card__meta">/blog/rose-cut-diamond-rings-by-bez-ambar</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/rose-cut-diamond-rings-by-bez-ambar" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_diamond-clarity-explained">
+  <div class="card__head">
+    <div><div class="card__title">Diamond Clarity Explained</div><div class="card__meta">/blog/diamond-clarity-explained</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/diamond-clarity-explained" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_white-gold-diamond-hoop-earrings">
+  <div class="card__head">
+    <div><div class="card__title">White Gold Diamond Hoop Earrings</div><div class="card__meta">/blog/white-gold-diamond-hoop-earrings</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/white-gold-diamond-hoop-earrings" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_fancy-intense-blue-diamond-ring">
+  <div class="card__head">
+    <div><div class="card__title">Fancy Intense Blue Diamond Ring</div><div class="card__meta">/blog/fancy-intense-blue-diamond-ring</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/fancy-intense-blue-diamond-ring" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_round-brilliant-cut-diamond-ring">
+  <div class="card__head">
+    <div><div class="card__title">Round Brilliant Cut Diamond Ring</div><div class="card__meta">/blog/round-brilliant-cut-diamond-ring</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/round-brilliant-cut-diamond-ring" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_diamond-color-grade-explained">
+  <div class="card__head">
+    <div><div class="card__title">Diamond Color Grade Explained</div><div class="card__meta">/blog/diamond-color-grade-explained</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/diamond-color-grade-explained" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_fancy-colored-diamond-jewelry">
+  <div class="card__head">
+    <div><div class="card__title">Fancy Colored Diamond Jewelry</div><div class="card__meta">/blog/fancy-colored-diamond-jewelry</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/fancy-colored-diamond-jewelry" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_round-brilliant-diamond-cut-quality">
+  <div class="card__head">
+    <div><div class="card__title">Round Brilliant Diamond Cut Quality</div><div class="card__meta">/blog/round-brilliant-diamond-cut-quality</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/round-brilliant-diamond-cut-quality" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_unusual-engagement-rings-round-crossover">
+  <div class="card__head">
+    <div><div class="card__title">Unusual Engagement Rings Round Crossover</div><div class="card__meta">/blog/unusual-engagement-rings-round-crossover</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/unusual-engagement-rings-round-crossover" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_rose-gold-wedding-band">
+  <div class="card__head">
+    <div><div class="card__title">Rose Gold Wedding Band</div><div class="card__meta">/blog/rose-gold-wedding-band</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/rose-gold-wedding-band" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_diamond-pendant-necklaces">
+  <div class="card__head">
+    <div><div class="card__title">Diamond Pendant Necklaces</div><div class="card__meta">/blog/diamond-pendant-necklaces</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/diamond-pendant-necklaces" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_blue-sapphire-engagement-ring">
+  <div class="card__head">
+    <div><div class="card__title">Blue Sapphire Engagement Ring</div><div class="card__meta">/blog/blue-sapphire-engagement-ring</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/blue-sapphire-engagement-ring" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_bez-ambars-new-patented-design-divine-cut-diamond">
+  <div class="card__head">
+    <div><div class="card__title">Bez Ambars New Patented Design Divine Cut Diamond</div><div class="card__meta">/blog/bez-ambars-new-patented-design-divine-cut-diamond</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/bez-ambars-new-patented-design-divine-cut-diamond" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_ring-size-guide-choosing-ring-size">
+  <div class="card__head">
+    <div><div class="card__title">Ring Size Guide Choosing Ring Size</div><div class="card__meta">/blog/ring-size-guide-choosing-ring-size</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/ring-size-guide-choosing-ring-size" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_halo-ring-setting">
+  <div class="card__head">
+    <div><div class="card__title">Halo Ring Setting</div><div class="card__meta">/blog/halo-ring-setting</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/halo-ring-setting" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_blaze-halo-setting-makes-diamond-look-bigger">
+  <div class="card__head">
+    <div><div class="card__title">Blaze Halo Setting Makes Diamond Look Bigger</div><div class="card__meta">/blog/blaze-halo-setting-makes-diamond-look-bigger</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/blaze-halo-setting-makes-diamond-look-bigger" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_what-to-do-with-a-chipped-diamond">
+  <div class="card__head">
+    <div><div class="card__title">What To DO With A Chipped Diamond</div><div class="card__meta">/blog/what-to-do-with-a-chipped-diamond</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/what-to-do-with-a-chipped-diamond" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_5-carat-diamond-ring">
+  <div class="card__head">
+    <div><div class="card__title">5-CARAT-DIAMOND-RING</div><div class="card__meta">/blog/5-carat-diamond-ring</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/5-carat-diamond-ring" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_blaze-cut-diamond">
+  <div class="card__head">
+    <div><div class="card__title">Blaze Cut Diamond</div><div class="card__meta">/blog/blaze-cut-diamond</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/blaze-cut-diamond" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_titanium-rings-men-pros-and-cons">
+  <div class="card__head">
+    <div><div class="card__title">Titanium Rings Men Pros And Cons</div><div class="card__meta">/blog/titanium-rings-men-pros-and-cons</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/titanium-rings-men-pros-and-cons" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_authentic-bez-ambar-buyer-beware">
+  <div class="card__head">
+    <div><div class="card__title">Authentic Bez Ambar Buyer Beware</div><div class="card__meta">/blog/authentic-bez-ambar-buyer-beware</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/authentic-bez-ambar-buyer-beware" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_invisible-setting-for-diamonds-a-bez-ambar-innovation">
+  <div class="card__head">
+    <div><div class="card__title">Invisible Setting For Diamonds A Bez Ambar Innovation</div><div class="card__meta">/blog/invisible-setting-for-diamonds-a-bez-ambar-innovation</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/invisible-setting-for-diamonds-a-bez-ambar-innovation" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_quadrillion-cut-different-princess-cut">
+  <div class="card__head">
+    <div><div class="card__title">Quadrillion Cut Different Princess Cut</div><div class="card__meta">/blog/quadrillion-cut-different-princess-cut</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/quadrillion-cut-different-princess-cut" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div>
+<div class="card" id="_blog_princess-cut-diamond-inventor">
+  <div class="card__head">
+    <div><div class="card__title">Princess Cut Diamond Inventor</div><div class="card__meta">/blog/princess-cut-diamond-inventor</div></div>
+    <div class="card__right"><span class="tag tag--none">No instruction yet</span><a class="card__link" href="https://bezambar-web2026.vercel.app/blog/princess-cut-diamond-inventor" target="_blank" rel="noopener">View Page</a></div>
+  </div>
+  <div class="thread"><div class="thread__empty">No instruction yet</div></div>
+</div></details>
 </main>
-
-<footer>Bez Ambar · Internal · bezito.co</footer>
+<footer>Updated September 8, 2026 · Maintained by Bezito</footer>
 </body>
 </html>
