@@ -177,7 +177,6 @@ export default function Footer() {
           {/* ── Discover ── */}
           <FooterCol title="Discover">
             <Link href="/about-bez-ambar">About Bez Ambar</Link>
-            <Link href="/the-story">The Story</Link>
             <Link href="/cuts">The Cuts</Link>
             <Link href="/elysian-cut">Elysian Cut™</Link>
             <Link href="/blog">Journal</Link>

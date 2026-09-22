@@ -31,7 +31,6 @@ const STATIC_ROUTES: Array<{ path: string; priority: number; freq: Freq }> = [
   { path: '/jewelry/earrings',      priority: 0.75, freq: 'weekly' },
   { path: '/jewelry/necklaces',     priority: 0.75, freq: 'weekly' },
   { path: '/jewelry/pendants',      priority: 0.7, freq: 'weekly'  },
-  { path: '/the-story',             priority: 0.6, freq: 'yearly'  },
   { path: '/ring-size-chart',       priority: 0.6, freq: 'yearly'  },
   { path: '/warranty',              priority: 0.4, freq: 'yearly'  },
   { path: '/privacy-policy',        priority: 0.3, freq: 'yearly'  },
