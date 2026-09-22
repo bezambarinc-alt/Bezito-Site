@@ -127,6 +127,7 @@ components/layout/
 - **Lead durability** — always write to Neon before CRM push. CRM failure must never cause a 500.
 - **No `as never` hacks** — if a type needs a new union member, add it to `AuditAction` in `lib/audit.ts`.
 - **Three Views image CSS (updated 2026-08-29):** Use explicit `width={900} height={440}` on `<Image>` (NOT `fill`). CSS module class `.viewsImg { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block }` applied via `className={styles.viewsImg}` is the correct pattern. The compound selector `.viewsImgWrap img` was a specificity workaround for when `fill` was used — it is no longer needed. Do NOT switch back to `fill` without accounting for Next.js inline style injection.
+- **⚠️ Twin carousels — edit BOTH (2026-09-21):** `components/archive/ArchiveCarousel.tsx` and `components/product/CinematicCarousel.tsx` share a ~230-line copy-pasted scroll/video engine (mobile scroll driver, iOS touch-interception, `activateVideo`, desktop ≤5 / mobile ≤3 virtual-window slot math, trailing-ref truncation, `deadVideos` freeze-guard). They are deliberately **not** abstracted into a shared hook (refactoring live iOS scroll physics judged higher-risk than the drift). **Any fix to that shared engine must be mirrored in BOTH files in the same commit.** Their data models, autoscroll, filters, mobile transforms, and navigation legitimately differ — do not try to merge those. `ScrollWipeCarousel.tsx` is a separate, simpler component — not part of this pair.
 
 ---
 
