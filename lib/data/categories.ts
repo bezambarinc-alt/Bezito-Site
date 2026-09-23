@@ -48,6 +48,8 @@ export const CATEGORIES: Record<string, CategoryMeta> = {
     intro: 'Studs, drops, and hoops in signature Bez Ambar cuts.',
     videoUrl:
       'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Earrings/R09059_4k_final_diylja.mp4',
+    heroImageUrl:
+      'https://res.cloudinary.com/dlg2mou53/image/upload/v1775202736/Jewelry%20Videos/Earrings/Hero_Earrings_lu15zz.jpg',
   },
   pendants: {
     eyebrow: 'The Collection',
