@@ -52,9 +52,13 @@ export const ABOUT_CHAPTERS: AboutChapter[] = [
   },
   {
     year: '1985',
-    layout: 'horz',
+    layout: 'split',
     headline: 'The De Beers Award.',
-    body: "Bez receives the De Beers Diamond Award for Innovation — recognition from the most powerful institution in the diamond trade that a cutter working independently in Los Angeles has changed the industry. It is one of the most prestigious honors in the field, and he is among the youngest recipients in the award's history.",
+    body: "Bez receives the De Beers Diamond Award for Innovation — recognition from the most powerful institution in the diamond trade that a cutter working independently in Los Angeles has changed the industry. It is one of the most prestigious honors in the field, and he is among the youngest recipients in the award's history. The ring he created to present the Quadrillion® cut — the ATW — stood as evidence of what the cut could do.",
+    video: {
+      src: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1790124713/Jewelry%20Videos/Bracelets/B3978-about.mp4',
+      poster: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto,w_900,so_0/v1790124713/Jewelry%20Videos/Bracelets/B3978-about.jpg',
+    },
   },
   {
     year: '1988',
