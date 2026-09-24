@@ -15,7 +15,7 @@ export interface ProductLayoutProps {
   category: string
   categoryLabel: string
   specItems: SpecItem[]
-  views: { label: string; url: string | null | undefined }[]
+  views: { label: string; url: string | null | undefined; embedUrl?: string }[]
   prevProduct?: AdjacentProduct | null
   nextProduct?: AdjacentProduct | null
 }

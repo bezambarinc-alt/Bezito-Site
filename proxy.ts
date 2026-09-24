@@ -88,7 +88,7 @@ function buildCsp(nonce: string | null): string {
     // the CSP shipped — the script loads, collects, and can't report. Caught by a
     // Playwright run against a local production build, not by anything in CI.
     `connect-src 'self' https://res.cloudinary.com https://*.curator.io https://*.zoho.com`,
-    `frame-src 'self' https://www.google.com https://maps.google.com`,
+    `frame-src 'self' https://www.google.com https://maps.google.com https://ijewel.design`,
     `object-src 'none'`,
     `base-uri 'self'`,
     `form-action 'self'`,

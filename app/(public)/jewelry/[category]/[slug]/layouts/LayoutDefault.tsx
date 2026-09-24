@@ -80,20 +80,30 @@ export default function LayoutDefault({
       </section>
 
       {/* ── 3. Three Views ── */}
-      {views.some(v => v.url) && (
+      {views.some(v => v.url || v.embedUrl) && (
         <section className={styles.views}>
           <div className={styles.viewsGrid}>
-            {views.filter(v => v.url).map((v, i) => (
+            {views.filter(v => v.url || v.embedUrl).map((v, i) => (
               <div key={i} className={styles.viewsItem}>
                 <div className={styles.viewsImgWrap}>
-                  <Image
-                    src={v.url!}
-                    alt={v.label}
-                    width={900}
-                    height={440}
-                    sizes="(max-width: 768px) 100vw, 34vw"
-                    className={styles.viewsImg}
-                  />
+                  {v.embedUrl ? (
+                    <iframe
+                      src={v.embedUrl}
+                      title={v.label}
+                      frameBorder={0}
+                      allow="camera; autoplay; clipboard-write; fullscreen; xr-spatial-tracking; web-share"
+                      style={{ width: '100%', height: '100%', display: 'block', border: 'none' }}
+                    />
+                  ) : (
+                    <Image
+                      src={v.url!}
+                      alt={v.label}
+                      width={900}
+                      height={440}
+                      sizes="(max-width: 768px) 100vw, 34vw"
+                      className={styles.viewsImg}
+                    />
+                  )}
                 </div>
                 <p className={styles.viewsLabel}>{v.label}</p>
               </div>
