@@ -333,6 +333,8 @@ body.page-dark {
 .ba-portrait-hero__product-link:hover{opacity:.7}
 /* Bracelets hero — light background image, remove opacity dim but keep gradient */
 .ba-portrait-hero--bracelets img,.ba-portrait-hero--bracelets video{opacity:1}
+/* Earrings hero — shift image down ~100px to bring eyes into the 300px crop */
+.ba-portrait-hero--earrings img,.ba-portrait-hero--earrings video{object-position:center 35%}
 /* Category page responsive utility — desktop sections hidden on mobile */
 @media(max-width:768px){.ba-cat-desktop{display:none!important}}
 
