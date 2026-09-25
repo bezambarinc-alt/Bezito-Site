@@ -18,6 +18,8 @@ export const CATEGORIES: Record<string, CategoryMeta> = {
     intro: 'Engagement, cocktail, and eternity — each stone chiseled to catch the light.',
     videoUrl:
       'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1786669104/C0765-HD.mp4',
+    heroImageUrl:
+      'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1790376378/Jewelry%20Images/Rings/rings-hero-c0305.avif',
   },
   bands: {
     eyebrow: 'The Collection',
@@ -26,7 +28,7 @@ export const CATEGORIES: Record<string, CategoryMeta> = {
     videoUrl:
       'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.mp4',
     heroImageUrl:
-      'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/Jewelry%20Images/Bands/C0945-model.avif',
+      'https://res.cloudinary.com/dlg2mou53/image/upload/v1787612988/Jewelry%20Images/Bands/C0786-concept.avif',
   },
   bracelets: {
     eyebrow: 'The Collection',
