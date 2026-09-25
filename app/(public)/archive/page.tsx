@@ -104,8 +104,8 @@ export default async function ArchivePage({
           />
         ) : null}
         <div className="ba-portrait-hero__overlay">
-          <p className="ba-portrait-hero__eyebrow">Creating since 1979</p>
-          <h1 className="ba-portrait-hero__title">Every Piece in Motion</h1>
+          <p className="ba-portrait-hero__eyebrow">Every Piece in Motion</p>
+          <h1 className="ba-portrait-hero__title">Creating since 1979</h1>
           <p className="ba-portrait-hero__lede">
             Over five hundred Bez Ambar pieces, filmed at the atelier in Los Angeles.
             Watch each stone under light before you inquire.
