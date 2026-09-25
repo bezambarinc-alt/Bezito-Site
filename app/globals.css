@@ -336,7 +336,7 @@ body.page-dark {
 /* Earrings hero — shift image down ~100px to bring eyes into the 300px crop */
 .ba-portrait-hero--earrings img,.ba-portrait-hero--earrings video{object-position:center 35%}
 /* Bands hero — shift focal point left on mobile to keep ring visible */
-@media(max-width:768px){.ba-portrait-hero--bands img{object-position:35% center}}
+@media(max-width:768px){.ba-portrait-hero--bands img{object-position:65% center}}
 /* Category page responsive utility — desktop sections hidden on mobile */
 @media(max-width:768px){.ba-cat-desktop{display:none!important}}
 
