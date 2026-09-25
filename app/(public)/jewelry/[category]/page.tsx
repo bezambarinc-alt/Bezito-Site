@@ -1,9 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
 import { getCategoryMeta, getCategoryLabel, CATEGORIES } from '@/lib/data/categories'
 import { getProductsByCategory } from '@/lib/queries'
-import { parseProductName } from '@/lib/product-name'
 import CinematicCarousel from '@/components/product/CinematicCarousel'
 import AtelierBanner from '@/components/common/AtelierBanner'
 import styles from './page.module.css'
@@ -68,14 +66,6 @@ export default async function CategoryPage({
         <div className="ba-portrait-hero__overlay">
           <h1 className="ba-portrait-hero__title">{cat.title}</h1>
           {cat.intro && <p className="ba-portrait-hero__lede">{cat.intro}</p>}
-          {heroProduct && (
-            <Link
-              className="ba-portrait-hero__product-link"
-              href={`/jewelry/${category}/${heroProduct.slug}`}
-            >
-              View {parseProductName(heroProduct.name).title} →
-            </Link>
-          )}
         </div>
       </section>
 
