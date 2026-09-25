@@ -387,6 +387,21 @@ CREATE INDEX IF NOT EXISTS idx_schema_migrations_applied_at
   ON schema_migrations (applied_at DESC);
 
 
+-- ══ 7. OAuth tokens ═════════════════════════════════════════════════════════
+
+-- zoho_tokens: persist Zoho OAuth refresh tokens across deploys.
+-- Written by /api/auth/zoho/callback; read by lib/zoho-auth.ts (env var fallback).
+-- One row per app (default id: 'bezambar_site').
+-- Added: migration 018_zoho_tokens.sql (applied 2026-09-25).
+CREATE TABLE IF NOT EXISTS zoho_tokens (
+  id            TEXT PRIMARY KEY DEFAULT 'bezambar_site',
+  refresh_token TEXT NOT NULL,
+  updated_at    TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+COMMENT ON TABLE zoho_tokens IS
+  'Zoho OAuth refresh tokens written by /api/auth/zoho/callback. One row per app (default: bezambar_site).';
+
+
 -- ── Seed rows ───────────────────────────────────────────────────────────────
 -- Minimum config a fresh database needs to boot the admin dashboard.
 -- The admin user + PIN are seeded by db/migrations/002_admin_auth.sql; run the
