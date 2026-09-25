@@ -72,8 +72,8 @@ export default async function ArchivePage({
       <main>
         <section className="ba-portrait-hero">
           <div className="ba-portrait-hero__overlay">
-            <p className="ba-portrait-hero__eyebrow">Creating since 1979</p>
-            <h1 className="ba-portrait-hero__title">Every Piece in Motion</h1>
+            <p className="ba-portrait-hero__eyebrow">Every Piece in Motion</p>
+            <h1 className="ba-portrait-hero__title">Creating since 1979</h1>
           </div>
         </section>
         <p style={{ textAlign: 'center', padding: '4rem 2rem', color: '#888' }}>
