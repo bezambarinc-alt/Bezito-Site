@@ -337,6 +337,9 @@ body.page-dark {
 .ba-portrait-hero--earrings img,.ba-portrait-hero--earrings video{object-position:center 35%}
 /* Bands hero — shift focal point left on mobile to keep ring visible */
 @media(max-width:768px){.ba-portrait-hero--bands img{object-position:65% center}}
+/* Archive hero — explicit 600px lock */
+.ba-portrait-hero--archive{height:600px}
+@media(max-width:768px){.ba-portrait-hero--archive{height:100dvh}}
 /* Category page responsive utility — desktop sections hidden on mobile */
 @media(max-width:768px){.ba-cat-desktop{display:none!important}}
 
