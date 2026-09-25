@@ -25,6 +25,8 @@ export const CATEGORIES: Record<string, CategoryMeta> = {
     intro: 'Eternity bands and wedding bands — one continuous line of light.',
     videoUrl:
       'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.mp4',
+    heroImageUrl:
+      'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/Jewelry%20Images/Bands/C0945-model.avif',
   },
   bracelets: {
     eyebrow: 'The Collection',
