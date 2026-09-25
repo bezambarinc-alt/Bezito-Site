@@ -6,7 +6,6 @@ import { getArchiveEntries } from '@/lib/data/archive'
 import type { ArchiveEntry } from '@/lib/data/archive-constants'
 import ArchiveClient from '@/components/archive/ArchiveClient'
 import AtelierBanner from '@/components/common/AtelierBanner'
-import HomeSegment from '@/components/home/HomeSegment'
 
 /**
  * `force-dynamic` used to sit here, and the only thing that needed it was a
@@ -64,11 +63,9 @@ export default async function ArchivePage({
     // Archive not yet seeded — hit /api/admin/seed-archive to populate
   }
 
-  // Rotate hero hourly through the first 10 entries; editorial = first entry that isn't the hero
   const heroPool  = entries.slice(0, Math.min(10, entries.length))
   const heroIdx   = rotatingIndex(heroPool.length)
-  const heroEntry      = heroPool[heroIdx] ?? null
-  const editorialEntry = entries.find((_, i) => i !== heroIdx) ?? null
+  const heroEntry = heroPool[heroIdx] ?? null
 
   if (entries.length === 0) {
     return (
@@ -124,18 +121,8 @@ export default async function ArchivePage({
         </div>
       </section>
 
-      {/* 2. Editorial spotlight — second archive entry */}
-      {editorialEntry && (
-        <HomeSegment
-          className="ba-cat-desktop"
-          eyebrow={`ref. ${editorialEntry.sku}`}
-          title={editorialEntry.title}
-          body={editorialEntry.category ?? undefined}
-          videoUrl={editorialEntry.mp4Url ?? undefined}
-          ctaLabel={`View ${editorialEntry.title}`}
-          ctaHref={`/archive?id=${editorialEntry.slug}`}
-        />
-      )}
+      {/* 2. Spacer between hero and carousel */}
+      <div style={{ height: 64, background: 'var(--white)' }} />
 
       {/* 3. Filter + Carousel (client) — initial search params passed from server to avoid Suspense CLS */}
       <ArchiveClient
