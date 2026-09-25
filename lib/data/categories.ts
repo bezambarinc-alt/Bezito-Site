@@ -45,8 +45,6 @@ export const CATEGORIES: Record<string, CategoryMeta> = {
     intro: 'Statement and everyday, drawn from the atelier.',
     videoUrl:
       'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1779254420/Jewelry%20Videos/Necklaces/C0508_4k_noykv3.mp4',
-    heroImageUrl:
-      'https://res.cloudinary.com/dlg2mou53/image/upload/v1787871120/Jewelry%20Images/Pendants/C0346-concept.avif',
   },
   earrings: {
     eyebrow: 'The Collection',
@@ -63,6 +61,8 @@ export const CATEGORIES: Record<string, CategoryMeta> = {
     intro: 'Single stones and sculptural forms — light held at the throat.',
     videoUrl:
       'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1784671452/Jewelry%20Videos/Pendants/C0785_qkjsfm.mp4',
+    heroImageUrl:
+      'https://res.cloudinary.com/dlg2mou53/image/upload/v1787871120/Jewelry%20Images/Pendants/C0346-concept.avif',
   },
   'wedding-bands': {
     eyebrow: 'The Collection',
