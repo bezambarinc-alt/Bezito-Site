@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
 import { unstable_cache } from 'next/cache'
 import { getArchiveEntries } from '@/lib/data/archive'
 import type { ArchiveEntry } from '@/lib/data/archive-constants'
@@ -110,14 +109,6 @@ export default async function ArchivePage({
             Over five hundred Bez Ambar pieces, filmed at the atelier in Los Angeles.
             Watch each stone under light before you inquire.
           </p>
-          {heroEntry && (
-            <Link
-              className="ba-portrait-hero__product-link"
-              href={`/archive?id=${heroEntry.slug}`}
-            >
-              View {heroEntry.title} →
-            </Link>
-          )}
         </div>
       </section>
 
