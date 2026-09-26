@@ -1,18 +1,18 @@
-/* Category page hero — half the global ba-portrait-hero height */
+/* Category page hero — 300px desktop, 75dvh mobile */
 .hero {
   height: 300px;
 }
 
 @media (max-width: 768px) {
   .hero {
-    height: 50vh;
+    height: 75vh;
   }
 }
 
 @supports (height: 1dvh) {
   @media (max-width: 768px) {
     .hero {
-      height: 50dvh;
+      height: 75dvh;
     }
   }
 }
