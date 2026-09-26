@@ -112,10 +112,7 @@ export default async function ArchivePage({
         </div>
       </section>
 
-      {/* 2. Spacer between hero and carousel */}
-      <div style={{ height: 64, background: 'var(--white)' }} />
-
-      {/* 3. Filter + Carousel (client) — initial search params passed from server to avoid Suspense CLS */}
+      {/* 2. Filter + Carousel (client) — initial search params passed from server to avoid Suspense CLS */}
       <ArchiveClient
         entries={entries}
         initialCat={sp.cat   ?? 'all'}
