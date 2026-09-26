@@ -28,7 +28,7 @@ export const CATEGORIES: Record<string, CategoryMeta> = {
     videoUrl:
       'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.mp4',
     heroImageUrl:
-      'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1790385586/Jewelry%20Images/Bands/bands-hero-stone-sketch.avif',
+      'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1790385712/Jewelry%20Images/Bands/bands-hero-v2.avif',
   },
   bracelets: {
     eyebrow: 'The Collection',
