@@ -432,22 +432,45 @@ export default function CinematicCarousel({ products, category }: Props) {
                   }}
                   aria-hidden={!isActive}
                 >
-                  <div className={styles.media}>
-                    {video ? (
-                      <video
-                        ref={(el) => { videoRefs.current[slotIdx] = el }}
-                        src={video}
-                        poster={image ?? undefined}
-                        muted loop playsInline
-                        autoPlay={isActive || isNeighbour}
-                        preload={isActive || isNeighbour ? 'auto' : 'metadata'}
-                        onError={() => markDead(video)}
-                      />
-                    ) : image ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={image} alt={p.name} />
-                    ) : null}
-                  </div>
+                  {/* Active slide links to PDP. To restore non-clickable: remove the Link wrapper,
+                      keep the inner <div className={styles.media}> and its children. */}
+                  {isActive ? (
+                    <Link href={`/jewelry/${category}/${p.slug}`} style={{ display: 'block' }}>
+                      <div className={styles.media}>
+                        {video ? (
+                          <video
+                            ref={(el) => { videoRefs.current[slotIdx] = el }}
+                            src={video}
+                            poster={image ?? undefined}
+                            muted loop playsInline
+                            autoPlay={isActive || isNeighbour}
+                            preload={isActive || isNeighbour ? 'auto' : 'metadata'}
+                            onError={() => markDead(video)}
+                          />
+                        ) : image ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={image} alt={p.name} />
+                        ) : null}
+                      </div>
+                    </Link>
+                  ) : (
+                    <div className={styles.media}>
+                      {video ? (
+                        <video
+                          ref={(el) => { videoRefs.current[slotIdx] = el }}
+                          src={video}
+                          poster={image ?? undefined}
+                          muted loop playsInline
+                          autoPlay={isActive || isNeighbour}
+                          preload={isActive || isNeighbour ? 'auto' : 'metadata'}
+                          onError={() => markDead(video)}
+                        />
+                      ) : image ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={image} alt={p.name} />
+                      ) : null}
+                    </div>
+                  )}
                 </div>
               )
             })}
@@ -467,12 +490,13 @@ export default function CinematicCarousel({ products, category }: Props) {
             </div>
           )}
 
-          {/* Right peek panel — editorial lede */}
-          {total > 1 && current.specs.lede && (
+          {/* Right peek panel — editorial lede hidden per Kevin 2026-09-27.
+              To restore: uncomment the block below. */}
+          {/* total > 1 && current.specs.lede && (
             <div className={styles.nextOverlay}>
               <p className={styles.lede}>{current.specs.lede}</p>
             </div>
-          )}
+          ) */}
 
           {/* Arrows */}
           {total > 1 && (

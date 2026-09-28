@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
 import { getCategoryMeta, getCategoryLabel, CATEGORIES } from '@/lib/data/categories'
 import { getProductsByCategory } from '@/lib/queries'
 import CinematicCarousel from '@/components/product/CinematicCarousel'
@@ -49,23 +48,11 @@ export default async function CategoryPage({
       {/* 1. Hero — full-height on both desktop and mobile */}
       <section className={`ba-portrait-hero ba-portrait-hero--${category} ${styles.hero}`}>
         {heroVideo ? (
-          // Video links to the hero product's PDP. To restore non-clickable video, remove the
-          // Link wrapper and render <video> directly (same props).
-          heroProduct?.slug ? (
-            <Link href={`/jewelry/${category}/${heroProduct.slug}`} aria-label={heroProduct.name ?? cat.title}>
-              <video
-                src={heroVideo}
-                autoPlay muted loop playsInline preload="auto"
-                poster={heroPoster ?? undefined}
-              />
-            </Link>
-          ) : (
-            <video
-              src={heroVideo}
-              autoPlay muted loop playsInline preload="auto"
-              poster={heroPoster ?? undefined}
-            />
-          )
+          <video
+            src={heroVideo}
+            autoPlay muted loop playsInline preload="auto"
+            poster={heroPoster ?? undefined}
+          />
         ) : heroPoster ? (
           <Image
             src={heroPoster}
@@ -78,8 +65,7 @@ export default async function CategoryPage({
         ) : null}
         <div className="ba-portrait-hero__overlay">
           <h1 className="ba-portrait-hero__title">{cat.title}</h1>
-          {/* Intro lede hidden per Kevin 2026-09-27. To restore: uncomment the line below. */}
-          {/* cat.intro && <p className="ba-portrait-hero__lede">{cat.intro}</p> */}
+          {cat.intro && <p className="ba-portrait-hero__lede">{cat.intro}</p>}
         </div>
       </section>
 
