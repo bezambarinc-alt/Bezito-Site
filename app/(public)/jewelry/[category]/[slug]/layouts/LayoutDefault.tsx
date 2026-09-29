@@ -9,10 +9,18 @@ import { parseProductName } from '@/lib/product-name'
 
 /**
  * Default — triptych layout
+ *
+ * Sections are authored in PHONE reading order, which is therefore also the
+ * DOM / tab / screen-reader order:
+ *   hero → on-hand photo → three views → technical details → banner → pill
+ *
+ * At desktop, `.pdpMain` in page.module.css is a two-column grid that places
+ * the specs and the photo back into a single 55/45 row under the hero, so the
+ * triptych renders exactly as it always has:
  * 1. Hero split    — 55% video left · 45% text right
  * 2. Content split — 55% specs left · 45% on-hand photo right
  * 3. Three Views   — black bg · 3-col · 440px per box
- * 4. ProdPill      — sticky inquiry CTA
+ * 4. ProdPill      — fixed inquiry CTA
  */
 export default function LayoutDefault({
   product,
@@ -59,25 +67,19 @@ export default function LayoutDefault({
         </div>
       </section>
 
-      {/* ── 2. Content split ── */}
-      <section className={styles.contentSplit}>
-        <div className={styles.contentLeft}>
-          <p className={styles.contentEyebrow}>Technical Details</p>
-          <SpecAccordion block={accordionBlock} variant="light" />
-        </div>
-        <div className={styles.contentRight}>
-          {onHandPhoto && (
-            <Image
-              className={styles.contentPhoto}
-              src={onHandPhoto}
-              alt={`${displayName} · On Hand`}
-              width={800}
-              height={900}
-              style={{ width: '100%', height: 'auto' }}
-            />
-          )}
-        </div>
-      </section>
+      {/* ── 2. On-hand photo — desktop: right half of the content row ── */}
+      <div className={styles.contentRight}>
+        {onHandPhoto && (
+          <Image
+            className={styles.contentPhoto}
+            src={onHandPhoto}
+            alt={`${displayName} · On Hand`}
+            width={800}
+            height={900}
+            style={{ width: '100%', height: 'auto' }}
+          />
+        )}
+      </div>
 
       {/* ── 3. Three Views ── */}
       {views.some(v => v.url || v.embedUrl) && (
@@ -112,10 +114,16 @@ export default function LayoutDefault({
         </section>
       )}
 
-      {/* ── 4. Atelier banner ── */}
+      {/* ── 4. Technical Details — desktop: left half of the content row ── */}
+      <section className={styles.contentLeft}>
+        <p className={styles.contentEyebrow}>Technical Details</p>
+        <SpecAccordion block={accordionBlock} variant="light" />
+      </section>
+
+      {/* ── 5. Atelier banner ── */}
       <AtelierBanner />
 
-      {/* ── 5. ProdPill ── */}
+      {/* ── 6. ProdPill ── */}
       <ProdPill
         title={displayName}
         sku={product.sku}
