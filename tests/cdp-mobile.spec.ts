@@ -92,11 +92,15 @@ test('CDP mobile — CinematicCarousel UI/UX (iPhone 14 Pro)', async ({ page }) 
     expect(txt.includes('|'), `Visible <h2> contains raw pipe: "${txt}"`).toBe(false)
   }
 
-  // ── Assertion 6: mobileTextTop caption zone has pointer-events: none ───────
-  const textTop = page.locator('[class*="mobileTextTop"]').first()
-  await expect(textTop).toHaveCount(1)
-  const pe = await textTop.evaluate((el) => getComputedStyle(el).pointerEvents)
-  console.log(`[cdp-mobile] mobileTextTop pointer-events: ${pe}`)
+  // ── Assertion 6: caption zone has pointer-events: none ────────────────────
+  // Was `mobileTextTop` until 93f2224 ("75/25 layout — video top 75%, identity
+  // panel over blur bottom 25%") moved the caption to the bottom. The zone must
+  // not swallow the touch gestures that drive the scroll-lock stack; the link
+  // inside it opts back in via `.captionLink { pointer-events: auto }`.
+  const caption = page.locator('[class*="mobileTextBottom"]').first()
+  await expect(caption).toHaveCount(1)
+  const pe = await caption.evaluate((el) => getComputedStyle(el).pointerEvents)
+  console.log(`[cdp-mobile] mobileTextBottom pointer-events: ${pe}`)
   expect(pe).toBe('none')
 
   // ── Assertion 7: safe-area / section renders with real height ─────────────

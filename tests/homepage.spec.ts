@@ -28,16 +28,24 @@ test('homepage — no console errors, one h1, hero videos buffer', async ({ page
   const h1Count = await page.locator('h1').count()
   expect(h1Count).toBe(1)
 
-  // Both top-hero <video> elements reach readyState >= 2 within 8 seconds
-  const videos = page.locator('.ScrollWipeCarousel-module__pin video')
+  // Substring match — the build injects a hash segment into module class names
+  // (ScrollWipeCarousel-module__<hash>__pin), so a literal selector never matches.
+  const videos = page.locator('[class*="ScrollWipeCarousel-module"][class*="__pin"] video')
   await expect(videos).toHaveCount(2)
 
-  for (let i = 0; i < 2; i++) {
-    await expect
-      .poll(
-        () => videos.nth(i).evaluate((v: HTMLVideoElement) => v.readyState),
-        { timeout: 8_000, message: `Hero video ${i} did not reach readyState >= 2` },
-      )
-      .toBeGreaterThanOrEqual(2)
-  }
+  // Slide 0 is the LCP hero: preload="auto", autoplays on entry, must buffer.
+  await expect
+    .poll(
+      () => videos.nth(0).evaluate((v: HTMLVideoElement) => v.readyState),
+      { timeout: 8_000, message: 'Hero video 0 did not reach readyState >= 2' },
+    )
+    .toBeGreaterThanOrEqual(2)
+
+  // Slide 1 is deliberately deferred (fb3d89f) — preload="none", .load() only
+  // once wipe progress passes 0.25. Asserting it buffers at rest would fight
+  // that decision, so guard the decision itself: it must stay unloaded until
+  // the user scrolls.
+  await expect(videos.nth(1)).toHaveAttribute('preload', 'none')
+  const readyState1 = await videos.nth(1).evaluate((v: HTMLVideoElement) => v.readyState)
+  expect(readyState1, `Slide 1 buffered without scrolling (readyState ${readyState1})`).toBe(0)
 })
