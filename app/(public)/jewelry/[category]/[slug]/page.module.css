@@ -186,8 +186,8 @@
   }
   .heroVideo {
     flex: 0 0 auto;
-    height: 72vw;
-    max-height: 520px;
+    height: 94vw;
+    max-height: 676px;
     position: relative;
   }
   .heroText {
