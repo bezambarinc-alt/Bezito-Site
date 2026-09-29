@@ -30,7 +30,7 @@ export default function LayoutDefault({
   const displayName = parseProductName(product.name).title
 
   return (
-    <main data-page="pdp">
+    <main data-page="pdp" className={styles.pdpMain}>
       {/* ── 1. Hero split ── */}
       <section className={styles.heroSplit}>
         <div className={styles.heroVideo}>

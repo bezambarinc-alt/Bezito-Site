@@ -185,7 +185,7 @@
      halves of the content split into main's flex flow so Technical Details can
      be ordered past the Three Views section. Negative orders keep AtelierBanner
      and ProdPill (both order 0) at the end in DOM order. */
-  main[data-page='pdp'] {
+  .pdpMain {
     display: flex;
     flex-direction: column;
   }
