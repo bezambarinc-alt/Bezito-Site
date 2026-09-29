@@ -578,4 +578,63 @@ export const REDIRECTS: Redirect[] = [
     { source: '/silvertooth-opens-new-gym-to-employees/', destination: '/blog', permanent: true },
     { source: '/the-modern-workspace', destination: '/blog', permanent: true },
     { source: '/the-modern-workspace/', destination: '/blog', permanent: true },
+
+    // ── Old-homepage navigation (added 2026-09-29) ───────────────────────────
+    // Crawled the live WP homepage: 64 unique internal links, 26 of which had no
+    // rule here and would 404 on cutover. These are the 20 with a destination
+    // that carries real content. Held back pending a decision: /easyfit-* (3)
+    // and /the-gemstone-eternity-collection-2 — those product families exist
+    // only in legacy-products.ts, with no page of their own.
+    //
+    // Destinations are DB-verified, not route-verified. `/jewelry/wedding-bands`
+    // and `/jewelry/engagement-rings` are prerendered from CATEGORIES and return
+    // 200, but products.category holds neither value — both listings are empty.
+    // The 10 band/engagement URLs below therefore land on /jewelry/bands and
+    // /jewelry/rings, which have 6 and 16 active products.
+    //
+    // Exact paths only, no patterns: five of these are shaped /jewelry/<a>/<b>
+    // and a pattern rule would shadow every real product URL.
+    { source: '/fine-jewelry', destination: '/jewelry', permanent: true },
+    { source: '/fine-jewelry/', destination: '/jewelry', permanent: true },
+    { source: '/online-store', destination: '/jewelry', permanent: true },
+    { source: '/online-store/', destination: '/jewelry', permanent: true },
+    { source: '/bez-ambar-catalogs', destination: '/jewelry', permanent: true },
+    { source: '/bez-ambar-catalogs/', destination: '/jewelry', permanent: true },
+    { source: '/fine-jewelry-rings-bez-ambar', destination: '/jewelry/rings', permanent: true },
+    { source: '/fine-jewelry-rings-bez-ambar/', destination: '/jewelry/rings', permanent: true },
+    { source: '/fine-jewelry-earrings-bez-ambar', destination: '/jewelry/earrings', permanent: true },
+    { source: '/fine-jewelry-earrings-bez-ambar/', destination: '/jewelry/earrings', permanent: true },
+    { source: '/jewelry/earrings/hug-earrings', destination: '/jewelry/earrings', permanent: true },
+    { source: '/jewelry/earrings/hug-earrings/', destination: '/jewelry/earrings', permanent: true },
+    { source: '/fine-jewelry-bracelets-bez-ambar', destination: '/jewelry/bracelets', permanent: true },
+    { source: '/fine-jewelry-bracelets-bez-ambar/', destination: '/jewelry/bracelets', permanent: true },
+    { source: '/pendants-and-charms-by-bez-ambar', destination: '/jewelry/pendants', permanent: true },
+    { source: '/pendants-and-charms-by-bez-ambar/', destination: '/jewelry/pendants', permanent: true },
+    // Wedding-band family → /jewelry/bands (not /jewelry/wedding-bands, which is empty)
+    { source: '/mens-wedding-bands', destination: '/jewelry/bands', permanent: true },
+    { source: '/mens-wedding-bands/', destination: '/jewelry/bands', permanent: true },
+    { source: '/diamond-band-rings', destination: '/jewelry/bands', permanent: true },
+    { source: '/diamond-band-rings/', destination: '/jewelry/bands', permanent: true },
+    { source: '/jewelry/wedding-bands-for-women/diamond-bands', destination: '/jewelry/bands', permanent: true },
+    { source: '/jewelry/wedding-bands-for-women/diamond-bands/', destination: '/jewelry/bands', permanent: true },
+    { source: '/jewelry/wedding-bands-for-women/thin-diamond-band', destination: '/jewelry/bands', permanent: true },
+    { source: '/jewelry/wedding-bands-for-women/thin-diamond-band/', destination: '/jewelry/bands', permanent: true },
+    { source: '/jewelry/wedding-bands-for-women/wide-diamond-bands', destination: '/jewelry/bands', permanent: true },
+    { source: '/jewelry/wedding-bands-for-women/wide-diamond-bands/', destination: '/jewelry/bands', permanent: true },
+    // Engagement/bridal family → /jewelry/rings (not /jewelry/engagement-rings, which is empty)
+    { source: '/wedding-bridal', destination: '/jewelry/rings', permanent: true },
+    { source: '/wedding-bridal/', destination: '/jewelry/rings', permanent: true },
+    { source: '/engagement-rings-3-2', destination: '/jewelry/rings', permanent: true },
+    { source: '/engagement-rings-3-2/', destination: '/jewelry/rings', permanent: true },
+    { source: '/jewelry/engagement-rings/solitaire-engagement-rings', destination: '/jewelry/rings', permanent: true },
+    { source: '/jewelry/engagement-rings/solitaire-engagement-rings/', destination: '/jewelry/rings', permanent: true },
+    { source: '/jewelry/engagement-rings/three-stone-engagement-rings', destination: '/jewelry/rings', permanent: true },
+    { source: '/jewelry/engagement-rings/three-stone-engagement-rings/', destination: '/jewelry/rings', permanent: true },
+    { source: '/jewelry/engagement-rings/gemstones', destination: '/jewelry/rings', permanent: true },
+    { source: '/jewelry/engagement-rings/gemstones/', destination: '/jewelry/rings', permanent: true },
+    // Brand + archive
+    { source: '/world-of-bez-ambar', destination: '/about-bez-ambar', permanent: true },
+    { source: '/world-of-bez-ambar/', destination: '/about-bez-ambar', permanent: true },
+    { source: '/10-carat-diamond-ring', destination: '/archive', permanent: true },
+    { source: '/10-carat-diamond-ring/', destination: '/archive', permanent: true },
 ]
