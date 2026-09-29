@@ -136,15 +136,9 @@
 }
 
 /* ── 2. Content split ──
-   `.contentSplit` is now used only by the orphan /shop/* pages — the PDP
-   renders `.contentLeft` / `.contentRight` as direct grid children instead.
-   Leave it alone; the orphan template is Bez-gated. */
-
-.contentSplit {
-  display: flex;
-  border-top: 1px solid var(--ba-border);
-  background: var(--ba-paper);
-}
+   The PDP renders `.contentLeft` / `.contentRight` as direct grid children.
+   The old `.contentSplit` flex wrapper was removed 2026-09-29 when the three
+   hand-built /shop/ pages moved onto the /legacy/[slug] template. */
 
 .contentLeft {
   flex: 0 0 55%;
@@ -249,9 +243,6 @@
     border-left: none;
     border-top: 1px solid var(--ba-border);
     padding: 2rem 1.5rem;
-  }
-  .contentSplit {
-    flex-direction: column;
   }
   .contentLeft {
     flex: none;

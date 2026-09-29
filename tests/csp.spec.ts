@@ -32,7 +32,7 @@ const STATIC_ROUTES = [
   '/journal',
   '/jewelry',
   '/blog',
-  '/shop/ruby-flower-hug-earrings',
+  '/legacy/ruby-flower-hug-earrings',
 ]
 
 const SSG_ROUTES = [

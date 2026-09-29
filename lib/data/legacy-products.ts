@@ -1,6 +1,8 @@
 /**
- * Static data for the top-20 WooCommerce legacy product pages.
+ * Static data for the archived WooCommerce legacy product pages.
  * Keyed by the original WooCommerce /shop/ slug.
+ * 19 top-traffic WooCommerce pages + 3 pieces migrated off hand-built
+ * /shop/ pages on 2026-09-29 (Flower Hug, Maharajah, Trio Oval).
  * Images are served from Cloudinary — named by the upload script:
  *   {slugify(sku)}-{slugify(internalName)}-{n:02d}  (or sku-only / name-only fallbacks)
  */
@@ -328,6 +330,63 @@ const PRODUCTS: LegacyProduct[] = [
       { label: 'Collection', body: 'Ring of Fire' },
       { label: 'Made In', body: 'Los Angeles' },
       { label: 'Inquiry', body: 'Setting only. Presented privately by appointment. Reference this piece when you inquire.' },
+    ],
+  },
+  {
+    slug: 'ruby-flower-hug-earrings',
+    name: 'Flower Hug Earrings',
+    sku: 'HUG5FLWRB',
+    category: 'earrings',
+    categoryLabel: 'Earrings',
+    description:
+      'Five row flower hug earrings in 18K white gold, set with high-quality rubies and black diamonds at 1.18 total carat weight.',
+    imageUrl:
+      'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/Jewelry%20Images/Earrings/ruby-flower-hug-earrings.jpg',
+    specs: [
+      { label: 'Gem Stone', body: 'High-quality ruby and black diamonds' },
+      { label: 'Metal', body: '18K white gold' },
+      { label: 'Total Carat Weight', body: '1.18 CT · Quality: RB White H-VS' },
+      { label: 'Reference', body: 'HUG5FLWRB' },
+      { label: 'Made In', body: 'Los Angeles' },
+      { label: 'Inquiry', body: 'Presented privately by appointment. Reference this piece when you inquire.' },
+    ],
+  },
+  {
+    slug: 'maharajah-ring-with-red-and-green-diamonds',
+    name: 'Maharajah Ring',
+    sku: 'MAHARAJAH',
+    category: 'rings',
+    categoryLabel: 'Rings',
+    description:
+      'A unique design with rare colored diamonds. Available in platinum, 18K white, rose and yellow gold.',
+    imageUrl:
+      'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/Jewelry%20Images/Rings/maharajah-ring-red-green-diamonds.jpg',
+    specs: [
+      { label: 'Gem Stone', body: 'Rare red and green diamonds' },
+      { label: 'Metal', body: 'Platinum · 18K white, rose or yellow gold' },
+      { label: 'Center Stone', body: 'Accommodates different shapes, sizes, and colored center stones' },
+      { label: 'Made In', body: 'Los Angeles' },
+      { label: 'Inquiry', body: 'Presented privately by appointment. Reference this piece when you inquire.' },
+    ],
+  },
+  {
+    slug: '3-stone-oval-engagement-ring-with-blaze',
+    name: 'Trio Oval Wedding Set',
+    sku: '1TRI2CZ12-OV',
+    category: 'rings',
+    categoryLabel: 'Rings',
+    description:
+      'A classic yet modern three stone engagement ring with an oval center, a halfway shank of Blaze® cut diamonds, and black and white ring enhancer bookend bands.',
+    imageUrl:
+      'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/Jewelry%20Images/Rings/3-stone-oval-engagement-ring-with-blaze.jpg',
+    specs: [
+      { label: 'Center Stone', body: 'Oval center · engagement ring prices do not include center stones' },
+      { label: 'Side Diamonds', body: 'Halfway shank of Blaze® cut diamonds' },
+      { label: 'Bands', body: 'Black and white ring enhancer bookend bands · sold separately or as a set' },
+      { label: 'Metal', body: 'Platinum · rose or yellow gold' },
+      { label: 'Reference', body: '1TRI2CZ12-OV + 35602TB' },
+      { label: 'Made In', body: 'Los Angeles' },
+      { label: 'Inquiry', body: 'Presented privately by appointment. Reference this piece when you inquire.' },
     ],
   },
 ]

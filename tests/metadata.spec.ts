@@ -34,7 +34,7 @@ const TEMPLATED = [
   '/archive',
   '/journal',
   '/legal/ccpa-opt-out',
-  '/shop/ruby-flower-hug-earrings',
+  '/legacy/ruby-flower-hug-earrings',
   '/jewelry/rings/firestorm-blaze-ring',
 ]
 

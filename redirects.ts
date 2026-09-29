@@ -125,9 +125,16 @@ export const REDIRECTS: Redirect[] = [
     { source: '/shop/three-stone-ring-emerald-center-trapezoids/', destination: '/legacy/three-stone-ring-emerald-center-trapezoids', permanent: true },
     { source: '/shop/10-carat-radiant-pink-diamond-engagement-ring', destination: '/legacy/10-carat-radiant-pink-diamond-engagement-ring', permanent: true },
     { source: '/shop/10-carat-radiant-pink-diamond-engagement-ring/', destination: '/legacy/10-carat-radiant-pink-diamond-engagement-ring', permanent: true },
-    // Preserved legacy pages render at their original /shop/ URL — exempt from the catch-all
-    { source: '/shop/:slug((?!maharajah-ring-with-red-and-green-diamonds$|ruby-flower-hug-earrings$|3-stone-oval-engagement-ring-with-blaze$).*)', destination: '/archive', permanent: true },
-    { source: '/shop/:slug((?!maharajah-ring-with-red-and-green-diamonds$|ruby-flower-hug-earrings$|3-stone-oval-engagement-ring-with-blaze$).*)/', destination: '/archive', permanent: true },
+    // Three pieces formerly hand-built at /shop/ — migrated into the legacy template 2026-09-29
+    { source: '/shop/ruby-flower-hug-earrings', destination: '/legacy/ruby-flower-hug-earrings', permanent: true },
+    { source: '/shop/ruby-flower-hug-earrings/', destination: '/legacy/ruby-flower-hug-earrings', permanent: true },
+    { source: '/shop/maharajah-ring-with-red-and-green-diamonds', destination: '/legacy/maharajah-ring-with-red-and-green-diamonds', permanent: true },
+    { source: '/shop/maharajah-ring-with-red-and-green-diamonds/', destination: '/legacy/maharajah-ring-with-red-and-green-diamonds', permanent: true },
+    { source: '/shop/3-stone-oval-engagement-ring-with-blaze', destination: '/legacy/3-stone-oval-engagement-ring-with-blaze', permanent: true },
+    { source: '/shop/3-stone-oval-engagement-ring-with-blaze/', destination: '/legacy/3-stone-oval-engagement-ring-with-blaze', permanent: true },
+    // Everything else under /shop/ goes to the archive
+    { source: '/shop/:slug', destination: '/archive', permanent: true },
+    { source: '/shop/:slug/', destination: '/archive', permanent: true },
     { source: '/designer-diamond-rings-bez-ambars-finest-engagement-rings', destination: '/journal', permanent: true },
     { source: '/designer-diamond-rings-bez-ambars-finest-engagement-rings/', destination: '/journal', permanent: true },
     { source: '/blaze-cut-diamonds-unmatched-engagement-rings-wedding-bands', destination: '/blog/blaze-cut-diamond', permanent: true },
