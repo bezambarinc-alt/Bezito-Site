@@ -581,10 +581,10 @@ export const REDIRECTS: Redirect[] = [
 
     // ── Old-homepage navigation (added 2026-09-29) ───────────────────────────
     // Crawled the live WP homepage: 64 unique internal links, 26 of which had no
-    // rule here and would 404 on cutover. These are the 20 with a destination
-    // that carries real content. Held back pending a decision: /easyfit-* (3)
-    // and /the-gemstone-eternity-collection-2 — those product families exist
-    // only in legacy-products.ts, with no page of their own.
+    // rule here and would 404 on cutover. The first 20 landed immediately; the
+    // remaining 4 (/easyfit-* and /the-gemstone-eternity-collection-2) were held
+    // for a product decision and resolved by Kevin the same day — see the two
+    // blocks at the end of this file. All 24 are now covered.
     //
     // Destinations are DB-verified, not route-verified. `/jewelry/wedding-bands`
     // and `/jewelry/engagement-rings` are prerendered from CATEGORIES and return
@@ -641,10 +641,22 @@ export const REDIRECTS: Redirect[] = [
     // Extent pieces are products.category = 'bracelets'; there is no EXTENT row
     // in products.collection, so /collection/extent would be an empty page.
     // /jewelry/bracelets is the listing that actually shows all five.
-    { source: '/easyfit-ring-shanks', destination: '/jewelry/bracelets', permanent: true },
-    { source: '/easyfit-ring-shanks/', destination: '/jewelry/bracelets', permanent: true },
     { source: '/easyfit-stretch-jewelry', destination: '/jewelry/bracelets', permanent: true },
     { source: '/easyfit-stretch-jewelry/', destination: '/jewelry/bracelets', permanent: true },
     { source: '/easyfit-stretchable-fine-jewelry', destination: '/jewelry/bracelets', permanent: true },
     { source: '/easyfit-stretchable-fine-jewelry/', destination: '/jewelry/bracelets', permanent: true },
+    // Ring shanks is editorial, not a product family (Kevin, 2026-09-29: "should
+    // likely be like a blog page"). No post covers it yet — blog_posts holds
+    // split-shank-engagement-ring and diamond-eternity-bracelet-guide, neither
+    // about the EasyFit shank. Interim destination is /blog, the real editorial
+    // index (132 posts). NOT /journal — despite the name, /journal is a
+    // client-side Instagram embed with zero articles in its HTML. Repoint to
+    // /blog/<slug> once the post exists.
+    { source: '/easyfit-ring-shanks', destination: '/blog', permanent: true },
+    { source: '/easyfit-ring-shanks/', destination: '/blog', permanent: true },
+    // Gemstone Eternity → /jewelry/bands (Kevin, 2026-09-29). The only DB match
+    // is products.slug 'diamond-eternity', active = false with a null category,
+    // so there is no collection or piece page to land on.
+    { source: '/the-gemstone-eternity-collection-2', destination: '/jewelry/bands', permanent: true },
+    { source: '/the-gemstone-eternity-collection-2/', destination: '/jewelry/bands', permanent: true },
 ]
