@@ -180,7 +180,17 @@
 /* ── Mobile ── */
 
 @media (max-width: 768px) {
+  /* Phone section order: hero → on-hand photo → three views (Stone Sketch last)
+     → Technical Details → Atelier banner. `display: contents` lifts the two
+     halves of the content split into main's flex flow so Technical Details can
+     be ordered past the Three Views section. Negative orders keep AtelierBanner
+     and ProdPill (both order 0) at the end in DOM order. */
+  main[data-page='pdp'] {
+    display: flex;
+    flex-direction: column;
+  }
   .heroSplit {
+    order: -4;
     flex-direction: column;
     min-height: auto;
   }
@@ -196,12 +206,23 @@
     padding: 2rem 1.5rem;
   }
   .contentSplit {
-    flex-direction: column;
+    display: contents;
+  }
+  .contentRight {
+    order: -3;
+    flex: none;
+    border-top: 1px solid var(--ba-border);
+    background: var(--ba-paper);
+  }
+  .views {
+    order: -2;
   }
   .contentLeft {
+    order: -1;
     flex: none;
     border-right: none;
     border-bottom: 1px solid var(--ba-border);
+    background: var(--ba-paper);
   }
   .contentPhoto {
     aspect-ratio: 1 / 1;
