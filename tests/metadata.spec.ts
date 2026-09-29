@@ -19,7 +19,6 @@ import { test, expect } from '@playwright/test'
 
 // Templated routes: page supplies the leaf, layout appends " · Bez Ambar".
 const TEMPLATED = [
-  '/the-story',
   '/blog',
   '/contact',
   '/jewelry',

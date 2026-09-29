@@ -25,7 +25,7 @@ const STATIC_ROUTES = [
   '/warranty',
   '/privacy-policy',
   '/ring-size-chart',
-  '/the-story',
+  '/about-bez-ambar',
   '/cuts',
   '/diamond-education',
   '/contact',
