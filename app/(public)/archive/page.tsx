@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { unstable_cache } from 'next/cache'
 import { getArchiveEntries } from '@/lib/data/archive'
 import type { ArchiveEntry } from '@/lib/data/archive-constants'
+import { staticPoster } from '@/lib/data/archive-constants'
 import ArchiveClient from '@/components/archive/ArchiveClient'
 import AtelierBanner from '@/components/common/AtelierBanner'
 
@@ -90,7 +91,7 @@ export default async function ArchivePage({
           <video
             src={heroEntry.mp4Url}
             autoPlay muted loop playsInline preload="auto"
-            poster={heroEntry.gifUrl ?? undefined}
+            poster={staticPoster(heroEntry.gifUrl) || undefined}
           />
         ) : heroEntry?.gifUrl ? (
           <Image

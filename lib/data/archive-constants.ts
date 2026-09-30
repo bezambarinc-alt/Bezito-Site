@@ -21,6 +21,16 @@ export interface ArchiveEntry {
   colors:   string[]
 }
 
+/**
+ * Derives a static first-frame poster URL from a Cloudinary animated GIF URL.
+ * Replaces f_auto (which preserves GIF animation) with f_jpg so the browser
+ * receives a static JPEG — no animated GIF flicker while the video loads.
+ */
+export function staticPoster(gifUrl: string): string {
+  if (!gifUrl) return ''
+  return gifUrl.replace('/f_auto,', '/f_jpg,')
+}
+
 // ── Filter group definitions ──────────────────────────────────────────────────
 
 export interface FilterOption {

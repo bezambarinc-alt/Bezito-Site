@@ -37,7 +37,7 @@ export async function getArchiveEntries() {
   const rows = await sql<ArchiveRow>(
     `SELECT slug, title, sku, category, gif_url, mp4_url, shapes, colors
        FROM archive
-      WHERE gif_url != ''
+      WHERE mp4_url IS NOT NULL AND mp4_url != ''
       ORDER BY display_order ASC, slug ASC`,
   )
 

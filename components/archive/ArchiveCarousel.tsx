@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import type { ArchiveEntry } from '@/lib/data/archive-constants'
+import { staticPoster } from '@/lib/data/archive-constants'
 import ArchiveFilterRow from './ArchiveFilterRow'
 import styles from './ArchiveCarousel.module.css'
 
@@ -426,7 +427,7 @@ export default function ArchiveCarousel({
                       <video
                         ref={(el) => { videoRefs.current[slotIdx] = el }}
                         src={e.mp4Url}
-                        poster={e.gifUrl || undefined}
+                        poster={staticPoster(e.gifUrl) || undefined}
                         muted loop playsInline
                         autoPlay={isActive || isNeighbour}
                         preload={isActive || isNeighbour ? 'auto' : 'metadata'}
@@ -506,7 +507,7 @@ export default function ArchiveCarousel({
                   <video
                     ref={(el) => { mobileVideoRefs.current[slotIdx] = el }}
                     src={e.mp4Url}
-                    poster={e.gifUrl || undefined}
+                    poster={staticPoster(e.gifUrl) || undefined}
                     muted loop playsInline
                     autoPlay={slotIdx === mobileActiveSlot}
                     preload={slotIdx === mobileActiveSlot ? 'auto' : 'metadata'}
