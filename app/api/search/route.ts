@@ -12,7 +12,7 @@ import { sql } from '@/lib/db'
  *
  * Result URLs:
  *   product  ->  /jewelry/<category>/<sku>   (detail page; slug === sku)
- *   archive  ->  /archive?id=<slug>          (opens the archive modal)
+ *   archive  ->  /archive/<slug>             (intercepting route opens modal; direct load shows standalone page)
  */
 
 export const dynamic = 'force-dynamic'
@@ -108,7 +108,7 @@ export async function GET(req: NextRequest) {
         title: r.title,
         sku: r.sku,
         category: r.category,
-        href: `/archive?id=${encodeURIComponent(r.slug)}`,
+        href: `/archive/${encodeURIComponent(r.slug)}`,
         thumb: r.gif_url || null,
       })
     }

@@ -5,10 +5,9 @@
  *   left 60%  = autoplay MP4 of the piece in motion
  *   right 40% = "Inquiring about <piece>" + 2-field inquiry form
  *
- * Deep-linking: open state is driven by the `?id=<slug>` URL param (owned by
- * ArchiveClient). This component is presentational — it receives the resolved
- * entry + an onClose callback. ESC / backdrop click call onClose, which clears
- * the URL param.
+ * Open state is route-driven via intercepting routes (@modal/(.)[slug]).
+ * This component is presentational — it receives the resolved entry + an onClose
+ * callback. ESC / backdrop click call onClose (router.back()).
  */
 
 import { useEffect, useRef, useState } from 'react'
