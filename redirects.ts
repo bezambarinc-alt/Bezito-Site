@@ -897,11 +897,27 @@ export const REDIRECTS: Redirect[] = [
     { source: '/product-tag/blaze', destination: '/blog/blaze-halo-setting-makes-diamond-look-bigger', permanent: true },
     { source: '/product-tag/bez-ambar-custom-design', destination: '/contact', permanent: true },
 
-    // HELD, deliberately unrouted (9 URLs) — do not add a rule without a decision:
-    //   Bucket B, 8 URLs awaiting new content (mens-black-diamond-rings 41,931 impr,
-    //   mens-diamond-rings, modern-mens-wedding-rings, baguette-wedding-bands-women,
-    //   ring-enhancers-wedding, silvet-ring-enhancers, stretch-rings,
-    //   easyfit-stretchable-band-collection/bracelets-easyfit-…
+    // ─── Bucket B: new posts live 2026-09-30 ────────────────────────────────────
+    { source: '/jewelry/mens-black-diamond-rings', destination: '/blog/mens-diamond-rings', permanent: true },
+    { source: '/jewelry/mens-black-diamond-rings/', destination: '/blog/mens-diamond-rings', permanent: true },
+    { source: '/jewelry/mens-diamond-rings', destination: '/blog/mens-diamond-rings', permanent: true },
+    { source: '/jewelry/mens-diamond-rings/', destination: '/blog/mens-diamond-rings', permanent: true },
+    { source: '/jewelry/modern-mens-wedding-rings', destination: '/blog/mens-diamond-rings', permanent: true },
+    { source: '/jewelry/modern-mens-wedding-rings/', destination: '/blog/mens-diamond-rings', permanent: true },
+    { source: '/stretch-band-rings', destination: '/blog/stretch-band-rings', permanent: true },
+    { source: '/stretch-band-rings/', destination: '/blog/stretch-band-rings', permanent: true },
+    { source: '/easyfit-stretchable-band-collection', destination: '/blog/stretch-band-rings', permanent: true },
+    { source: '/easyfit-stretchable-band-collection/', destination: '/blog/stretch-band-rings', permanent: true },
+    { source: '/bracelets/easyfit-stretchable-band-collection', destination: '/blog/stretch-band-rings', permanent: true },
+    { source: '/jewelry/ring-enhancers-wedding', destination: '/blog/ring-enhancers-and-guards', permanent: true },
+    { source: '/jewelry/ring-enhancers-wedding/', destination: '/blog/ring-enhancers-and-guards', permanent: true },
+    { source: '/jewelry/silvet-ring-enhancers', destination: '/blog/ring-enhancers-and-guards', permanent: true },
+    { source: '/jewelry/silvet-ring-enhancers/', destination: '/blog/ring-enhancers-and-guards', permanent: true },
+    { source: '/product-tag/book-end-bands-ring-enhancers', destination: '/blog/ring-enhancers-and-guards', permanent: true },
+    { source: '/jewelry/baguette-wedding-bands-women', destination: '/blog/baguette-diamond-bands-for-women', permanent: true },
+    { source: '/jewelry/baguette-wedding-bands-women/', destination: '/blog/baguette-diamond-bands-for-women', permanent: true },
+
+    // HELD, deliberately unrouted — do not add a rule without a decision:
     //   /jewelry/100k-club — 55 clicks / 14,157 impr at position 8.3, but a 0.4% CTR
     //   at that position suggests the impressions are non-jewelry intent. Check the
     //   GSC query report before routing it (Kevin: possible new post).
