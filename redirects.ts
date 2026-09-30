@@ -776,6 +776,11 @@ export const REDIRECTS: Redirect[] = [
     // Bucket C — commercial intent → product listing, not editorial (27 URLs).
     // blaze-engagement-rings → /jewelry/rings is Kevin's explicit call; a dedicated
     // Blaze collection page would serve it better if one is ever built.
+    // The two empty CATEGORIES keys, removed from lib/data/categories.ts 2026-09-29.
+    // /jewelry/engagement-rings carried 291 clicks / 10,933 impr / pos 7.38 on the old
+    // site and was landing on an empty 200 — these rules are what stop it soft-404ing.
+    { source: '/jewelry/engagement-rings', destination: '/jewelry/rings', permanent: true },
+    { source: '/jewelry/wedding-bands', destination: '/jewelry/bands', permanent: true },
     { source: '/jewelry/wedding-bands-for-women', destination: '/jewelry/bands', permanent: true },
     { source: '/jewelry/wedding-bands-for-women/', destination: '/jewelry/bands', permanent: true },
     { source: '/jewelry/eternity-bands-wedding', destination: '/jewelry/bands', permanent: true },

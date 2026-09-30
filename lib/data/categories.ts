@@ -66,28 +66,15 @@ export const CATEGORIES: Record<string, CategoryMeta> = {
     heroImageUrl:
       'https://res.cloudinary.com/dlg2mou53/image/upload/v1787871120/Jewelry%20Images/Pendants/C0346-concept.avif',
   },
-  'wedding-bands': {
-    eyebrow: 'The Collection',
-    title: 'Wedding Bands',
-    intro: 'Eternity bands and wedding rings — the Elysian Cut™ in continuous line.',
-    videoUrl:
-      'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Bands/4k_ovalcut_band_6_v1_rllzya.mp4',
-  },
-  'engagement-rings': {
-    eyebrow: 'The Collection',
-    title: 'Engagement Rings',
-    intro: 'Every engagement ring begins with the stone. We cut it here.',
-  },
 }
 
 /** Human-readable label for breadcrumbs. */
 export const CATEGORY_LABELS: Record<string, string> = {
   rings: 'Rings',
+  bands: 'Bands',
   bracelets: 'Bracelets',
   necklaces: 'Necklaces',
   earrings: 'Earrings',
-  'wedding-bands': 'Wedding Bands',
-  'engagement-rings': 'Engagement Rings',
   pendants: 'Pendants',
 }
 
@@ -102,8 +89,6 @@ export const CATEGORY_ORDER = [
   'earrings',
   'necklaces',
   'pendants',
-  'wedding-bands',
-  'engagement-rings',
 ]
 
 /** Fallback for unknown slugs. */
