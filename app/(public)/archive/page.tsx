@@ -127,7 +127,6 @@ export default async function ArchivePage({
         initialCat={sp.cat   ?? 'all'}
         initialShape={sp.shape ?? 'all'}
         initialColor={sp.color ?? 'all'}
-        initialOpenId={sp.id   ?? null}
       />
 
       {/* 5. Atelier banner */}
