@@ -1,0 +1,129 @@
+.page {
+  min-height: 100vh;
+  background: var(--white, #fff);
+  padding: 2rem;
+}
+
+.back {
+  margin-bottom: 2rem;
+}
+
+.back a {
+  font-family: var(--prose, serif);
+  font-size: 0.9rem;
+  color: var(--ink-muted, #666);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
+
+.back a:hover {
+  color: var(--ink, #1a1a1a);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.media {
+  position: sticky;
+  top: 2rem;
+}
+
+.video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 2px;
+}
+
+.info {
+  padding-top: 1rem;
+}
+
+.sku {
+  font-family: var(--mono, monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-muted, #888);
+  text-transform: uppercase;
+  margin: 0 0 0.5rem;
+}
+
+.title {
+  font-family: var(--display, serif);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 400;
+  color: var(--ink, #1a1a1a);
+  margin: 0 0 1.5rem;
+  line-height: 1.2;
+}
+
+.description {
+  font-family: var(--prose, serif);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink, #1a1a1a);
+  margin: 0 0 1.5rem;
+}
+
+.tags {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tags li {
+  font-family: var(--prose, serif);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: capitalize;
+  color: var(--ink-muted, #888);
+  border: 1px solid var(--border, #e0e0e0);
+  padding: 0.25rem 0.75rem;
+  border-radius: 2px;
+}
+
+.cta {
+  display: inline-block;
+  font-family: var(--prose, serif);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white, #fff);
+  background: var(--ink, #1a1a1a);
+  padding: 0.875rem 2rem;
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+}
+
+.cta:hover {
+  background: var(--ink-muted, #444);
+}
+
+.archiveLink {
+  display: block;
+  font-family: var(--prose, serif);
+  font-size: 0.85rem;
+  color: var(--ink-muted, #888);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
+
+.archiveLink:hover {
+  color: var(--ink, #1a1a1a);
+}

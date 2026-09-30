@@ -15,14 +15,15 @@ export { CATEGORY_FILTERS } from './archive-constants'
 // ── Internal row shape from Neon ──────────────────────────────────────────────
 
 interface ArchiveRow {
-  slug:     string
-  title:    string
-  sku:      string
-  category: string
-  gif_url:  string
-  mp4_url:  string
-  shapes:   string[]
-  colors:   string[]
+  slug:        string
+  title:       string
+  sku:         string
+  category:    string
+  gif_url:     string
+  mp4_url:     string
+  shapes:      string[]
+  colors:      string[]
+  description: string | null
 }
 
 // ── Public query ──────────────────────────────────────────────────────────────
@@ -50,4 +51,31 @@ export async function getArchiveEntries() {
     shapes:   Array.isArray(row.shapes) ? row.shapes : [],
     colors:   Array.isArray(row.colors) ? row.colors : [],
   }))
+}
+
+/**
+ * Fetch a single archive entry by slug.
+ * Returns null if not found — callers should call notFound().
+ */
+export async function getArchiveBySlug(slug: string) {
+  const rows = await sql<ArchiveRow>(
+    `SELECT slug, title, sku, category, gif_url, mp4_url, shapes, colors, description
+       FROM archive
+      WHERE slug = $1
+      LIMIT 1`,
+    [slug],
+  )
+  if (!rows[0]) return null
+  const row = rows[0]
+  return {
+    slug:        row.slug,
+    title:       row.title,
+    sku:         row.sku,
+    gifUrl:      row.gif_url,
+    mp4Url:      row.mp4_url,
+    category:    row.category,
+    shapes:      Array.isArray(row.shapes) ? row.shapes : [],
+    colors:      Array.isArray(row.colors) ? row.colors : [],
+    description: row.description ?? null,
+  }
 }

@@ -112,7 +112,16 @@ export default async function ArchivePage({
         </div>
       </section>
 
-      {/* 2. Filter + Carousel (client) — initial search params passed from server to avoid Suspense CLS */}
+      {/* 2. Crawler-only link list — visually hidden, in server HTML so Googlebot discovers all archive piece pages */}
+      <ul style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap', border: 0 }} aria-hidden="true">
+        {entries.map((e) => (
+          <li key={e.slug}>
+            <a href={`/archive/${e.slug}`}>{e.title}</a>
+          </li>
+        ))}
+      </ul>
+
+      {/* 3. Filter + Carousel (client) — initial search params passed from server to avoid Suspense CLS */}
       <ArchiveClient
         entries={entries}
         initialCat={sp.cat   ?? 'all'}
@@ -121,7 +130,7 @@ export default async function ArchivePage({
         initialOpenId={sp.id   ?? null}
       />
 
-      {/* 4. Atelier banner */}
+      {/* 5. Atelier banner */}
       <AtelierBanner />
     </main>
   )
