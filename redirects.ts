@@ -917,10 +917,8 @@ export const REDIRECTS: Redirect[] = [
     { source: '/jewelry/baguette-wedding-bands-women', destination: '/blog/baguette-diamond-bands-for-women', permanent: true },
     { source: '/jewelry/baguette-wedding-bands-women/', destination: '/blog/baguette-diamond-bands-for-women', permanent: true },
 
-    // HELD, deliberately unrouted — do not add a rule without a decision:
-    //   /jewelry/100k-club — 55 clicks / 14,157 impr at position 8.3, but a 0.4% CTR
-    //   at that position suggests the impressions are non-jewelry intent. Check the
-    //   GSC query report before routing it (Kevin: possible new post).
+    { source: '/jewelry/100k-club', destination: '/jewelry/rings', permanent: true },
+    { source: '/jewelry/100k-club/', destination: '/jewelry/rings', permanent: true },
 
     // MUST STAY LAST. Catches every /product-tag/* URL the export never showed us,
     // plus the taxonomy's /page/2 pagination. Exact rules above win — this only
