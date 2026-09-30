@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getProductsByCollection } from '@/lib/queries'
@@ -37,6 +38,11 @@ export default async function CollectionPage({
   const { slug } = await params
   const products = await getProductsByCollection(slug)
 
+  // No products means the slug names no real collection. Without this the route
+  // title-cases any string, caches it for an hour and serves a 200 — an
+  // unbounded soft-404 surface. 404 instead.
+  if (products.length === 0) notFound()
+
   // Derive display name from first product's collection attribute (canonical case)
   // or fall back to title-casing the slug
   const collectionName = products[0]?.specs.collection ?? titleCase(slug)
@@ -69,22 +75,6 @@ export default async function CollectionPage({
           <h1 className="ba-portrait-hero__title">{collectionName}</h1>
         </div>
       </section>
-
-      {/* Empty state */}
-      {products.length === 0 && (
-        <p
-          style={{
-            fontFamily: 'var(--prose)',
-            fontSize: '1.1rem',
-            color: 'var(--ink-muted)',
-            textAlign: 'center',
-            padding: '6rem 2rem',
-            background: 'var(--white)',
-          }}
-        >
-          New pieces for this collection are being catalogued. Please inquire for availability.
-        </p>
-      )}
 
       {/* Editorial spotlight segments — first 2 products */}
       {spotlights.map((product, i) => {

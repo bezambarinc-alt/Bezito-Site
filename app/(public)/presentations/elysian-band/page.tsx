@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: 'THE ELYSIAN.',
   description:
     'The Elysian Band — a continuous circle of the Elysian Cut™. Full eternity and halfway versions in four stone sizes. Made in Los Angeles.',
+  // Client-facing presentation carrying a wholesale price ladder. Keep it
+  // reachable by link, keep it out of the index.
+  robots: { index: false, follow: false },
 }
 
 // ── Variant data ──────────────────────────────────────────────────────────────

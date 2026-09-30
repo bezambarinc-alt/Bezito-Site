@@ -97,7 +97,7 @@ export default async function RetailerPage({
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Bez Ambar Diamond Jewelry',
-      url: 'https://bezambar.com/collection',
+      url: 'https://bezambar.com/jewelry',
     },
   }))
 

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import { getCategoryMeta, getCategoryLabel, CATEGORIES } from '@/lib/data/categories'
 import { getProductsByCategory } from '@/lib/queries'
@@ -33,6 +34,11 @@ export default async function CategoryPage({
   params: Promise<{ category: string }>
 }) {
   const { category } = await params
+
+  // getCategoryMeta falls through to a title-case fallback for any unknown slug,
+  // so without this guard every /jewelry/<anything> returns a 200 empty grid.
+  if (!CATEGORIES[category]) notFound()
+
   const cat = getCategoryMeta(category)
   const products = await getProductsByCategory(category)
 

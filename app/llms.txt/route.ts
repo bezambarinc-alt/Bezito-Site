@@ -40,7 +40,7 @@ const STATIC = `# Bez Ambar
 - [Elysian Cut](https://bezambar.com/elysian-cut): The atelier's signature patented elongated square-brilliant diamond cut.
 - [Flex Bracelets](https://bezambar.com/jewelry/bracelets): Bez Ambar's flexible diamond bracelet line, available in multiple diamond sizes and row configurations.
 - [Crossover Ashoka](https://bezambar.com/jewelry/rings): Crossover ring featuring the Ashoka® diamond shape under license from William Goldberg.
-- [Heart Ruby Pendant](https://bezambar.com/jewelry/pendants/heart-ruby): Heart-shaped ruby pendant — one of the atelier's most recognized statement pieces.
+- [Ruby Heart Pendant](https://bezambar.com/jewelry/pendants/ruby-heart-pendant): Heart-shaped ruby pendant — one of the atelier's most recognized statement pieces.
 
 ## Site Sections
 
@@ -52,7 +52,9 @@ const STATIC = `# Bez Ambar
 - [Full Collection — Necklaces](https://bezambar.com/jewelry/necklaces): Necklaces and pendants in the Bez Ambar collection.
 - [Diamond Education](https://bezambar.com/diamond-education): Cut, clarity, color, and carat — the atelier's take on diamond quality.
 - [The Archive](https://bezambar.com/archive): Historical pieces and legacy designs from across Bez Ambar's 40+ year career.
-- [Journal](https://bezambar.com/journal): Essays and stories from the atelier.
+- [The Blog](https://bezambar.com/blog): Essays and stories from the atelier — diamond cuts, setting technique, and design history.
+- [Instagram Feed](https://bezambar.com/journal): Live Instagram feed of atelier work in progress and finished pieces.
+- [Authorized Retailers](https://bezambar.com/retailers): The full network of authorized Bez Ambar fine jewelry retailers.
 - [Contact](https://bezambar.com/contact): Private consultations and atelier appointments.
 
 ## Authorized Retailers
