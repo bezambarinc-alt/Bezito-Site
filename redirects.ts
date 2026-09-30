@@ -61,7 +61,8 @@ export const REDIRECTS: Redirect[] = [
     { source: '/diamond-anatomy/', destination: '/diamond-education', permanent: true },
     { source: '/bezwarranty', destination: '/warranty', permanent: true },
     { source: '/bezwarranty/', destination: '/warranty', permanent: true },
-    { source: '/ring-size-chart/', destination: '/ring-size-chart', permanent: true },
+    { source: '/choose-a-diamond', destination: '/diamond-education', permanent: true },
+    { source: '/choose-a-diamond/', destination: '/diamond-education', permanent: true },
     { source: '/pdf_lv_category/bez-betzalel-ambar-press', destination: '/about-bez-ambar', permanent: true },
     { source: '/pdf_lv_category/bez-betzalel-ambar-press/', destination: '/about-bez-ambar', permanent: true },
 
@@ -126,8 +127,8 @@ export const REDIRECTS: Redirect[] = [
     { source: '/shipping-information/', destination: '/terms', permanent: true },
     { source: '/returns-exchanges', destination: '/terms', permanent: true },
     { source: '/returns-exchanges/', destination: '/terms', permanent: true },
-    { source: '/bez-ambar-store-locator1', destination: '/contact', permanent: true },
-    { source: '/bez-ambar-store-locator1/', destination: '/contact', permanent: true },
+    { source: '/bez-ambar-store-locator1', destination: '/retailers', permanent: true },
+    { source: '/bez-ambar-store-locator1/', destination: '/retailers', permanent: true },
     { source: '/case-studies', destination: '/about-bez-ambar', permanent: true },
     { source: '/case-studies/', destination: '/about-bez-ambar', permanent: true },
     // Top-20 WooCommerce legacy products — individual pages at /legacy/[slug]
@@ -601,8 +602,9 @@ export const REDIRECTS: Redirect[] = [
     { source: '/diamond-hoop-earrings-guide/', destination: '/blog/diamond-hoop-earrings-guide', permanent: true },
     { source: '/what-is-an-asscher-cut-diamond', destination: '/blog/what-is-an-asscher-cut-diamond', permanent: true },
     { source: '/what-is-an-asscher-cut-diamond/', destination: '/blog/what-is-an-asscher-cut-diamond', permanent: true },
-    // /retailers index — new site has no listing page; individual retailer slugs handled above
-    { source: '/retailers', destination: '/contact', permanent: true },
+    // /retailers now has a real listing page (app/(public)/retailers/page.tsx).
+    // The rule that used to send it to /contact is gone — a redirect here would
+    // run before routing and shadow the page.
     // Remaining WP blog post slugs not in the top-performer list → base blog page
     { source: '/be-productive-while-working-on-the-road', destination: '/blog', permanent: true },
     { source: '/be-productive-while-working-on-the-road/', destination: '/blog', permanent: true },
@@ -616,8 +618,8 @@ export const REDIRECTS: Redirect[] = [
     { source: '/new-copywriting-positions-available/', destination: '/blog', permanent: true },
     { source: '/print-is-dead-long-live-print', destination: '/blog', permanent: true },
     { source: '/print-is-dead-long-live-print/', destination: '/blog', permanent: true },
-    { source: '/ring-of-fire', destination: '/blog', permanent: true },
-    { source: '/ring-of-fire/', destination: '/blog', permanent: true },
+    { source: '/ring-of-fire', destination: '/blog/blaze-halo-setting-makes-diamond-look-bigger', permanent: true },
+    { source: '/ring-of-fire/', destination: '/blog/blaze-halo-setting-makes-diamond-look-bigger', permanent: true },
     { source: '/silvertooth-opens-new-gym-to-employees', destination: '/blog', permanent: true },
     { source: '/silvertooth-opens-new-gym-to-employees/', destination: '/blog', permanent: true },
     { source: '/the-modern-workspace', destination: '/blog', permanent: true },
@@ -860,6 +862,41 @@ export const REDIRECTS: Redirect[] = [
     { source: '/jewelry/eternity-bands-wedding/page/2/', destination: '/jewelry/bands', permanent: true },
     { source: '/jewelry/engagement-rings/three-stone-engagement-rings/page/2', destination: '/blog/three-stone-engagement-ring-guide', permanent: true },
     { source: '/jewelry/engagement-rings/three-stone-engagement-rings/page/2/', destination: '/blog/three-stone-engagement-ring-guide', permanent: true },
+    // ── Blog slug corrections ───────────────────────────────────────────────
+    // /blog/divine-cut-diamond is an inbound URL that never existed on this site;
+    // the live post is the long slug. Ranked at position 8 and hard-404ing.
+    { source: '/blog/divine-cut-diamond', destination: '/blog/bez-ambars-new-patented-design-divine-cut-diamond', permanent: true },
+
+    // ── WordPress /product-tag/* taxonomy (20 URLs, 39 clicks / 3,540 impr) ──
+    // Mapped per-slug rather than swept into one catch-all: the tag slug names the
+    // product type, so the mapping is mechanical, and 12 of these sit at position
+    // 10 or better — a generic /jewelry landing would shed those rankings.
+    //
+    // No trailing-slash twins below. Next strips a trailing slash with its own 308
+    // *before* custom redirects are matched, so a `/foo/` source can never fire.
+    // Verified live: /ring-of-fire/ → /ring-of-fire → /blog, two hops, and the
+    // slashed rule is never consulted. The twins elsewhere in this file are
+    // historical dead weight, safe to delete in a separate pass.
+    { source: '/product-tag/colored-diamond-bracelets', destination: '/jewelry/bracelets', permanent: true },
+    { source: '/product-tag/quadrillion-tennis-bracelets', destination: '/jewelry/bracelets', permanent: true },
+    { source: '/product-tag/blaze-and-quadrillion-tennis-bracelets', destination: '/jewelry/bracelets', permanent: true },
+    { source: '/product-tag/octopus-ring', destination: '/jewelry/rings', permanent: true },
+    { source: '/product-tag/equinox-ring', destination: '/jewelry/rings', permanent: true },
+    { source: '/product-tag/knife-edge', destination: '/jewelry/rings', permanent: true },
+    { source: '/product-tag/heart-shape-2', destination: '/jewelry/rings', permanent: true },
+    { source: '/product-tag/frame-of-fire-ring-collection', destination: '/jewelry/rings', permanent: true },
+    { source: '/product-tag/blaze-wedding-band-collection', destination: '/jewelry/bands', permanent: true },
+    { source: '/product-tag/blaze-halo-ring-wedding-set-collection', destination: '/jewelry/bands', permanent: true },
+    { source: '/product-tag/eternity', destination: '/jewelry/bands', permanent: true },
+    { source: '/product-tag/band', destination: '/jewelry/bands', permanent: true },
+    { source: '/product-tag/stud-earrings-collection', destination: '/jewelry/earrings', permanent: true },
+    { source: '/product-tag/blaze-and-pave-hug-earrings', destination: '/jewelry/earrings', permanent: true },
+    { source: '/product-tag/diamond-hug-earrings', destination: '/jewelry/earrings', permanent: true },
+    { source: '/product-tag/bezel-set-diamond-pendant', destination: '/jewelry/pendants', permanent: true },
+    { source: '/product-tag/quadrillion', destination: '/blog/quadrillion-cut-different-princess-cut', permanent: true },
+    { source: '/product-tag/blaze', destination: '/blog/blaze-halo-setting-makes-diamond-look-bigger', permanent: true },
+    { source: '/product-tag/bez-ambar-custom-design', destination: '/contact', permanent: true },
+
     // HELD, deliberately unrouted (9 URLs) — do not add a rule without a decision:
     //   Bucket B, 8 URLs awaiting new content (mens-black-diamond-rings 41,931 impr,
     //   mens-diamond-rings, modern-mens-wedding-rings, baguette-wedding-bands-women,
@@ -868,4 +905,10 @@ export const REDIRECTS: Redirect[] = [
     //   /jewelry/100k-club — 55 clicks / 14,157 impr at position 8.3, but a 0.4% CTR
     //   at that position suggests the impressions are non-jewelry intent. Check the
     //   GSC query report before routing it (Kevin: possible new post).
+
+    // MUST STAY LAST. Catches every /product-tag/* URL the export never showed us,
+    // plus the taxonomy's /page/2 pagination. Exact rules above win — this only
+    // runs when none matched. /product-tag/book-end-bands-ring-enhancers lands here
+    // on purpose until the ring-enhancers post exists, then it gets an exact rule.
+    { source: '/product-tag/:path*', destination: '/jewelry', permanent: true },
 ]
