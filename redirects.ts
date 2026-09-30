@@ -65,6 +65,17 @@ export const REDIRECTS: Redirect[] = [
     { source: '/pdf_lv_category/bez-betzalel-ambar-press', destination: '/about-bez-ambar', permanent: true },
     { source: '/pdf_lv_category/bez-betzalel-ambar-press/', destination: '/about-bez-ambar', permanent: true },
 
+    // WordPress `pdf_lv` custom post type — scanned press clippings and catalog PDFs
+    // (JCK 1999, Modern Jeweler, JQ, Rapaport, LA Magazine, the 2005/2006/2010/2014
+    // catalogs, Flex Collection catalogs). 13 known URLs, all HTTP 200 on WP today.
+    // Catch-all rather than 13 exact rules on purpose: the WP URL export omits at
+    // least one member of this family (`/pdf_lv_category/bez-betzalel-ambar-press`
+    // above came from GSC, not the export), so an enumerated list would miss any
+    // clipping we can't see. `/pdf_lv` is not a route on the new site, so there is
+    // nothing for the pattern to shadow. Destination approved by Kevin 2026-09-29.
+    { source: '/pdf_lv/:path*', destination: '/about-bez-ambar', permanent: true },
+    { source: '/pdf_lv_category/:path*', destination: '/about-bez-ambar', permanent: true },
+
     // WordPress `timeline` custom post type — brand-invention history, folded into the About timeline
     { source: '/timeline/quadrillion', destination: '/about-bez-ambar', permanent: true },
     { source: '/timeline/quadrillion/', destination: '/about-bez-ambar', permanent: true },
