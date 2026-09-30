@@ -19,7 +19,6 @@ interface ArchiveRow {
   title:       string
   sku:         string
   category:    string
-  gif_url:     string
   mp4_url:     string
   shapes:      string[]
   colors:      string[]
@@ -35,7 +34,7 @@ interface ArchiveRow {
  */
 export async function getArchiveEntries() {
   const rows = await sql<ArchiveRow>(
-    `SELECT slug, title, sku, category, gif_url, mp4_url, shapes, colors
+    `SELECT slug, title, sku, category, mp4_url, shapes, colors
        FROM archive
       WHERE mp4_url IS NOT NULL AND mp4_url != ''
       ORDER BY display_order ASC, slug ASC`,
@@ -45,7 +44,6 @@ export async function getArchiveEntries() {
     slug:     row.slug,
     title:    row.title,
     sku:      row.sku,
-    gifUrl:   row.gif_url,
     mp4Url:   row.mp4_url,
     category: row.category,
     shapes:   Array.isArray(row.shapes) ? row.shapes : [],
@@ -59,9 +57,10 @@ export async function getArchiveEntries() {
  */
 export async function getArchiveBySlug(slug: string) {
   const rows = await sql<ArchiveRow>(
-    `SELECT slug, title, sku, category, gif_url, mp4_url, shapes, colors, description
+    `SELECT slug, title, sku, category, mp4_url, shapes, colors, description
        FROM archive
       WHERE slug = $1
+        AND mp4_url IS NOT NULL AND mp4_url != ''
       LIMIT 1`,
     [slug],
   )
@@ -71,7 +70,6 @@ export async function getArchiveBySlug(slug: string) {
     slug:        row.slug,
     title:       row.title,
     sku:         row.sku,
-    gifUrl:      row.gif_url,
     mp4Url:      row.mp4_url,
     category:    row.category,
     shapes:      Array.isArray(row.shapes) ? row.shapes : [],

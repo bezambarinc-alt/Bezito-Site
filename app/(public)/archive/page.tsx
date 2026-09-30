@@ -1,9 +1,7 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import { unstable_cache } from 'next/cache'
 import { getArchiveEntries } from '@/lib/data/archive'
 import type { ArchiveEntry } from '@/lib/data/archive-constants'
-import { staticPoster } from '@/lib/data/archive-constants'
 import ArchiveClient from '@/components/archive/ArchiveClient'
 import AtelierBanner from '@/components/common/AtelierBanner'
 
@@ -87,22 +85,12 @@ export default async function ArchivePage({
     <main>
       {/* 1. Portrait hero — random entry from first 10 */}
       <section className="ba-portrait-hero ba-portrait-hero--archive">
-        {heroEntry?.mp4Url ? (
+        {heroEntry?.mp4Url && (
           <video
             src={heroEntry.mp4Url}
             autoPlay muted loop playsInline preload="auto"
-            poster={staticPoster(heroEntry.gifUrl) || undefined}
           />
-        ) : heroEntry?.gifUrl ? (
-          <Image
-            src={heroEntry.gifUrl}
-            alt={heroEntry.title}
-            width={1600}
-            height={900}
-            sizes="100vw"
-            priority
-          />
-        ) : null}
+        )}
         <div className="ba-portrait-hero__overlay">
           <p className="ba-portrait-hero__eyebrow">Every Piece in Motion</p>
           <h1 className="ba-portrait-hero__title">Creating since 1979</h1>

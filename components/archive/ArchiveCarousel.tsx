@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import type { ArchiveEntry } from '@/lib/data/archive-constants'
-import { staticPoster } from '@/lib/data/archive-constants'
 import ArchiveFilterRow from './ArchiveFilterRow'
 import styles from './ArchiveCarousel.module.css'
 
@@ -427,15 +426,11 @@ export default function ArchiveCarousel({
                       <video
                         ref={(el) => { videoRefs.current[slotIdx] = el }}
                         src={e.mp4Url}
-                        poster={staticPoster(e.gifUrl) || undefined}
                         muted loop playsInline
                         autoPlay={isActive || isNeighbour}
                         preload={isActive || isNeighbour ? 'auto' : 'metadata'}
                         onError={() => markDead(e.mp4Url)}
                       />
-                    ) : e.gifUrl ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={e.gifUrl} alt={e.title} />
                     ) : (
                       <div className={styles.placeholder} />
                     )}
@@ -507,15 +502,11 @@ export default function ArchiveCarousel({
                   <video
                     ref={(el) => { mobileVideoRefs.current[slotIdx] = el }}
                     src={e.mp4Url}
-                    poster={staticPoster(e.gifUrl) || undefined}
                     muted loop playsInline
                     autoPlay={slotIdx === mobileActiveSlot}
                     preload={slotIdx === mobileActiveSlot ? 'auto' : 'metadata'}
                     onError={() => markDead(e.mp4Url)}
                   />
-                ) : e.gifUrl ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={e.gifUrl} alt={e.title} />
                 ) : (
                   <div className={styles.mobilePlaceholder} />
                 )}

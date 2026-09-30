@@ -25,7 +25,6 @@ export async function generateMetadata({
     openGraph: {
       title: entry.title,
       description: entry.description ?? `${entry.title} · Bez Ambar`,
-      images: entry.gifUrl ? [{ url: entry.gifUrl }] : [],
     },
   }
 }
@@ -50,16 +49,11 @@ export default async function ArchiveSlugPage({
       <div className={styles.layout}>
         {/* Media */}
         <div className={styles.media}>
-          {entry.mp4Url ? (
-            <video
-              src={entry.mp4Url}
-              autoPlay muted loop playsInline preload="auto"
-              poster={entry.gifUrl ?? undefined}
-              className={styles.video}
-            />
-          ) : entry.gifUrl ? (
-            <img src={entry.gifUrl} alt={entry.title} className={styles.video} />
-          ) : null}
+          <video
+            src={entry.mp4Url}
+            autoPlay muted loop playsInline preload="auto"
+            className={styles.video}
+          />
         </div>
 
         {/* Info */}
