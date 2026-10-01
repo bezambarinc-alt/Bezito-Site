@@ -643,8 +643,8 @@ export const REDIRECTS: Redirect[] = [
     // Brand + archive
     { source: '/world-of-bez-ambar', destination: '/about-bez-ambar', permanent: true },
     { source: '/world-of-bez-ambar/', destination: '/about-bez-ambar', permanent: true },
-    { source: '/10-carat-diamond-ring', destination: '/archive', permanent: true },
-    { source: '/10-carat-diamond-ring/', destination: '/archive', permanent: true },
+    { source: '/10-carat-diamond-ring', destination: '/blog/10-carat-diamond-ring', permanent: true },
+    { source: '/10-carat-diamond-ring/', destination: '/blog/10-carat-diamond-ring', permanent: true },
     // EasyFit family → the Extent bracelets (Kevin, 2026-09-29). All five live
     // Extent pieces are products.category = 'bracelets'; there is no EXTENT row
     // in products.collection, so /collection/extent would be an empty page.
