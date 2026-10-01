@@ -47,8 +47,11 @@ export const REDIRECTS: Redirect[] = [
     { source: '/the-bez-ambar-story-4', destination: '/about-bez-ambar', permanent: true },
     { source: '/the-bez-ambar-story-4/', destination: '/about-bez-ambar', permanent: true },
     { source: '/the-bez-ambar-story', destination: '/about-bez-ambar', permanent: true },
+    { source: '/the-bez-ambar-story/', destination: '/about-bez-ambar', permanent: true },
     { source: '/our-story', destination: '/about-bez-ambar', permanent: true },
+    { source: '/our-story/', destination: '/about-bez-ambar', permanent: true },
     { source: '/about', destination: '/about-bez-ambar', permanent: true },
+    { source: '/about/', destination: '/about-bez-ambar', permanent: true },
     { source: '/bez-ambar-jewelry-design-videos-2', destination: '/archive', permanent: true },
     { source: '/bez-ambar-jewelry-design-videos-2/', destination: '/archive', permanent: true },
     { source: '/diamond-education-2', destination: '/diamond-education', permanent: true },
@@ -644,13 +647,12 @@ export const REDIRECTS: Redirect[] = [
     { source: '/easyfit-stretch-jewelry/', destination: '/jewelry/bracelets', permanent: true },
     { source: '/easyfit-stretchable-fine-jewelry', destination: '/jewelry/bracelets', permanent: true },
     { source: '/easyfit-stretchable-fine-jewelry/', destination: '/jewelry/bracelets', permanent: true },
-    // Ring shanks is editorial, not a product family (Kevin, 2026-09-29: "should
-    // likely be like a blog page"). No post covers it yet — blog_posts holds
-    // split-shank-engagement-ring and diamond-eternity-bracelet-guide, neither
-    // about the EasyFit shank. Interim destination is /blog, the real editorial
-    // index (132 posts). NOT /journal — despite the name, /journal is a
-    // client-side Instagram embed with zero articles in its HTML. Repoint to
-    // /blog/<slug> once the post exists.
+    // Ring shanks → /jewelry/bands (Kevin, 2026-09-30: "or actually bands",
+    // commit 937bde4). Originally considered for an editorial /blog page, then
+    // briefly pointed at /jewelry/rings; Kevin's correction lands the EasyFit
+    // shank family on /jewelry/bands, alongside the other stretch/easyfit band
+    // content. (NOT /journal — despite the name, /journal is a client-side
+    // Instagram embed with no articles in its HTML.)
     { source: '/easyfit-ring-shanks', destination: '/jewelry/bands', permanent: true },
     { source: '/easyfit-ring-shanks/', destination: '/jewelry/bands', permanent: true },
     // Gemstone Eternity → /jewelry/bands (Kevin, 2026-09-29). The only DB match
@@ -735,7 +737,9 @@ export const REDIRECTS: Redirect[] = [
     // /jewelry/engagement-rings carried 291 clicks / 10,933 impr / pos 7.38 on the old
     // site and was landing on an empty 200 — these rules are what stop it soft-404ing.
     { source: '/jewelry/engagement-rings', destination: '/jewelry/rings', permanent: true },
+    { source: '/jewelry/engagement-rings/', destination: '/jewelry/rings', permanent: true },
     { source: '/jewelry/wedding-bands', destination: '/jewelry/bands', permanent: true },
+    { source: '/jewelry/wedding-bands/', destination: '/jewelry/bands', permanent: true },
     { source: '/jewelry/wedding-bands-for-women', destination: '/jewelry/bands', permanent: true },
     { source: '/jewelry/wedding-bands-for-women/', destination: '/jewelry/bands', permanent: true },
     { source: '/jewelry/eternity-bands-wedding', destination: '/jewelry/bands', permanent: true },
@@ -819,6 +823,7 @@ export const REDIRECTS: Redirect[] = [
     // /blog/divine-cut-diamond is an inbound URL that never existed on this site;
     // the live post is the long slug. Ranked at position 8 and hard-404ing.
     { source: '/blog/divine-cut-diamond', destination: '/blog/bez-ambars-new-patented-design-divine-cut-diamond', permanent: true },
+    { source: '/blog/divine-cut-diamond/', destination: '/blog/bez-ambars-new-patented-design-divine-cut-diamond', permanent: true },
 
     // ── WordPress /product-tag/* taxonomy (20 URLs, 39 clicks / 3,540 impr) ──
     // Mapped per-slug rather than swept into one catch-all: the tag slug names the
@@ -862,6 +867,7 @@ export const REDIRECTS: Redirect[] = [
     { source: '/easyfit-stretchable-band-collection', destination: '/jewelry/bands', permanent: true },
     { source: '/easyfit-stretchable-band-collection/', destination: '/jewelry/bands', permanent: true },
     { source: '/bracelets/easyfit-stretchable-band-collection', destination: '/jewelry/bands', permanent: true },
+    { source: '/bracelets/easyfit-stretchable-band-collection/', destination: '/jewelry/bands', permanent: true },
     { source: '/jewelry/ring-enhancers-wedding', destination: '/blog/ring-enhancers-and-guards', permanent: true },
     { source: '/jewelry/ring-enhancers-wedding/', destination: '/blog/ring-enhancers-and-guards', permanent: true },
     { source: '/jewelry/silvet-ring-enhancers', destination: '/blog/ring-enhancers-and-guards', permanent: true },
