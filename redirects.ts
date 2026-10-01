@@ -1251,7 +1251,6 @@ export const REDIRECTS: Redirect[] = [
     { source: '/home-4/', destination: '/', permanent: true },
     { source: '/bez-ambar-store-locator1', destination: '/retailers', permanent: true },
     { source: '/bez-ambar-store-locator1/', destination: '/retailers', permanent: true },
-    { source: '/jewelry/online-store/page/4', destination: '/jewelry/rings', permanent: true },
     { source: '/jewelry/easyfit-stretchable-band-collection/bracelets-easyfit-stretchable-band-collection', destination: '/jewelry/bands', permanent: true },
     { source: '/jewelry/easyfit-stretchable-band-collection/bracelets-easyfit-stretchable-band-collection/', destination: '/jewelry/bands', permanent: true },
 ]
