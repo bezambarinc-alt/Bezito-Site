@@ -651,8 +651,8 @@ export const REDIRECTS: Redirect[] = [
     // index (132 posts). NOT /journal — despite the name, /journal is a
     // client-side Instagram embed with zero articles in its HTML. Repoint to
     // /blog/<slug> once the post exists.
-    { source: '/easyfit-ring-shanks', destination: '/jewelry/rings', permanent: true },
-    { source: '/easyfit-ring-shanks/', destination: '/jewelry/rings', permanent: true },
+    { source: '/easyfit-ring-shanks', destination: '/jewelry/bands', permanent: true },
+    { source: '/easyfit-ring-shanks/', destination: '/jewelry/bands', permanent: true },
     // Gemstone Eternity → /jewelry/bands (Kevin, 2026-09-29). The only DB match
     // is products.slug 'diamond-eternity', active = false with a null category,
     // so there is no collection or piece page to land on.
@@ -857,11 +857,11 @@ export const REDIRECTS: Redirect[] = [
     { source: '/jewelry/mens-diamond-rings/', destination: '/blog/mens-diamond-rings', permanent: true },
     { source: '/jewelry/modern-mens-wedding-rings', destination: '/blog/mens-diamond-rings', permanent: true },
     { source: '/jewelry/modern-mens-wedding-rings/', destination: '/blog/mens-diamond-rings', permanent: true },
-    { source: '/stretch-band-rings', destination: '/jewelry/rings', permanent: true },
-    { source: '/stretch-band-rings/', destination: '/jewelry/rings', permanent: true },
-    { source: '/easyfit-stretchable-band-collection', destination: '/jewelry/rings', permanent: true },
-    { source: '/easyfit-stretchable-band-collection/', destination: '/jewelry/rings', permanent: true },
-    { source: '/bracelets/easyfit-stretchable-band-collection', destination: '/jewelry/rings', permanent: true },
+    { source: '/stretch-band-rings', destination: '/jewelry/bands', permanent: true },
+    { source: '/stretch-band-rings/', destination: '/jewelry/bands', permanent: true },
+    { source: '/easyfit-stretchable-band-collection', destination: '/jewelry/bands', permanent: true },
+    { source: '/easyfit-stretchable-band-collection/', destination: '/jewelry/bands', permanent: true },
+    { source: '/bracelets/easyfit-stretchable-band-collection', destination: '/jewelry/bands', permanent: true },
     { source: '/jewelry/ring-enhancers-wedding', destination: '/blog/ring-enhancers-and-guards', permanent: true },
     { source: '/jewelry/ring-enhancers-wedding/', destination: '/blog/ring-enhancers-and-guards', permanent: true },
     { source: '/jewelry/silvet-ring-enhancers', destination: '/blog/ring-enhancers-and-guards', permanent: true },
