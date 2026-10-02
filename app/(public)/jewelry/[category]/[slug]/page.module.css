@@ -1,8 +1,6 @@
-/* ── Product Detail Page — triptych-style layout ──────────────────────────────
-   1. Hero split    — 55% video left · 45% text right
-   2. Content split — 55% accordion left · 45% on-hand photo right
-   3. Three Views   — black bg · 3-col · 440px per box
-   4. InquireCta    (unchanged)
+/* ── Product Detail Page ──────────────────────────────────────────────────────
+   Desktop: 55% media left · 45% specs right · 2-col banner below · atelier · pill
+   Mobile:  stacked — media · specs · banner · atelier · pill
 
    SHARED FILE — also imported by the three orphan /shop/* pages. Anything
    here that is NOT scoped under `.pdpMain` lands on those pages too. Keep
@@ -10,15 +8,11 @@
    ─────────────────────────────────────────────────────────────────────────── */
 
 /* ── 0. PDP shell ──
-   LayoutDefault authors its sections in phone reading order
-   (sticky viewer → product details → banner → atelier → pill), so DOM order
-   equals tab order equals mobile visual order. At desktop this grid places a
-   sticky 55% viewer left and a scrollable 45% specs column right, with a 2-col
-   banner below. `.pdpMain > *` makes every direct child full-bleed by default;
-   the two halves then claim their own columns. The orphan /shop pages carry no
-   `.pdpMain`, so none of this reaches them. The standalone triptych classes
-   below (.heroSplit, .heroVideo, .heroText, .contentLeft/Right, .views) remain
-   for those legacy /shop pages. */
+   DOM order = mobile visual order = tab order. `.pdpMain > *` makes every
+   direct child full-bleed by default; `.mediaLeft` and `.specCol` then each
+   claim their own grid column. The orphan /shop pages carry no `.pdpMain`,
+   so the legacy classes below (.heroSplit, .heroVideo, .heroText,
+   .contentLeft/Right, .views) are only reached by those pages. */
 
 .pdpMain {
   display: grid;
@@ -32,15 +26,16 @@
   grid-column: 1 / -1;
 }
 
-.stickyLeft {
+.mediaLeft {
   grid-column: 1;
   grid-row: 1;
+  position: relative;
   height: calc(100vh - var(--ba-header-h));
   overflow: hidden;
   background: #0d0d0d;
 }
 
-.scrollRight {
+.specCol {
   grid-column: 2;
   grid-row: 1;
   padding: clamp(3rem, 5vw, 5rem) clamp(2.5rem, 5vw, 5rem);
@@ -238,17 +233,16 @@
 /* ── Mobile ── */
 
 @media (max-width: 768px) {
-  /* Drop the desktop grid — DOM order is already the phone order, so normal
-     flow gives: sticky viewer → product details → banner → atelier → pill.
-     The `.pdpMain > …` placement rules above go inert under `display: block`. */
+  /* Drop the desktop grid — DOM order is already the phone order so normal
+     flow gives: media · specs · banner · atelier · pill. */
   .pdpMain {
     display: block;
   }
-  .stickyLeft {
+  .mediaLeft {
     position: static;
     height: 100svh;
   }
-  .scrollRight {
+  .specCol {
     border-left: none;
     border-top: 1px solid var(--ba-border);
     padding: 2rem 1.5rem;
@@ -262,9 +256,6 @@
   }
   .bannerCell {
     height: 60vw;
-  }
-  .bannerCell:first-child img {
-    transform: none;
   }
   .heroSplit {
     flex-direction: column;

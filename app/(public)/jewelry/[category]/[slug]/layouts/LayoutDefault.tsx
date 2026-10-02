@@ -8,15 +8,14 @@ import styles from '../page.module.css'
 import { parseProductName } from '@/lib/product-name'
 
 /**
- * Default — sticky viewer left · scrollable specs right · 2-col banner below
+ * Default PDP layout — 55% media left · 45% specs right · 2-col banner below
  *
- * DOM / tab / screen-reader order matches mobile visual order:
- *   sticky viewer → product details → banner → atelier → pill
+ * DOM order = mobile visual order = tab order:
+ *   media col → spec col → banner → atelier → pill
  *
- * At desktop, `.pdpMain` places the viewer (55%) and specs (45%) side by
- * side in a single sticky/scroll pair. The banner below maps:
- *   - Left (55%, model photo)  ← onHandPhoto editorial photo
- *   - Right (1fr, sketch)      ← views Concept entry
+ * Banner maps:
+ *   - Left 55%  — onHandPhoto (editorial model photo)
+ *   - Right 1fr — Concept sketch from views
  */
 export default function LayoutDefault({
   product,
@@ -39,8 +38,8 @@ export default function LayoutDefault({
   return (
     <main data-page="pdp" className={styles.pdpMain}>
 
-      {/* ── 1. Left col: sticky viewer ── */}
-      <div className={styles.stickyLeft}>
+      {/* ── 1. Left col: media ── */}
+      <div className={styles.mediaLeft}>
         {embedView ? (
           <iframe
             src={embedView.embedUrl}
@@ -71,8 +70,8 @@ export default function LayoutDefault({
         ) : null}
       </div>
 
-      {/* ── 2. Right col: product details ── */}
-      <div className={styles.scrollRight}>
+      {/* ── 2. Right col: specs ── */}
+      <div className={styles.specCol}>
         <p className={styles.heroEyebrow}>{categoryLabel}</p>
         <h1 className={styles.heroTitle}>{displayName}</h1>
         {product.specs.subtitle && (

@@ -25,7 +25,7 @@ export const TEMPLATES: Record<string, TemplateEntry> = {
   // ── Product page layouts — /jewelry/[category]/[slug] only ──────────────
   default: {
     name: 'Default',
-    description: 'Default — sticky viewer left · scrollable specs right · 2-col banner below',
+    description: 'Default — 55% media left · 45% specs right · 2-col banner below',
     component: LayoutDefault,
     status: 'active',
     scope: ['product'],
