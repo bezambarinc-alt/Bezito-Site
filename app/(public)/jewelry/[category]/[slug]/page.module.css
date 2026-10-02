@@ -19,7 +19,7 @@
   grid-template-columns: 55% 45%;
   align-items: stretch;
   margin-top: var(--ba-header-h);
-  --atelier-banner-mt: 40px;
+  --atelier-banner-mt: 0;
 }
 
 .pdpMain > * {
@@ -49,7 +49,7 @@
   display: grid;
   grid-template-columns: 55% 1fr;
   column-gap: 40px;
-  margin-top: 40px;
+  margin: 40px 0;
   height: 60vh;
 }
 
