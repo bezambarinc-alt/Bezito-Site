@@ -25,6 +25,7 @@
   grid-template-columns: 55% 45%;
   align-items: stretch;
   margin-top: var(--ba-header-h);
+  --atelier-banner-mt: 40px;
 }
 
 .pdpMain > * {
@@ -57,10 +58,6 @@
   height: 60vh;
 }
 
-/* AtelierBanner ships with margin-top: 64px; override to keep the 40px rhythm */
-.pdpMain > section {
-  margin-top: 40px;
-}
 
 .bannerCell {
   position: relative;

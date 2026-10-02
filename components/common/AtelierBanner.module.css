@@ -1,7 +1,7 @@
 .banner {
   width: 100%;
   background: #000;
-  margin-top: 64px;
+  margin-top: var(--atelier-banner-mt, 64px);
   padding: 80px 0 40px;
   overflow: hidden;
 }
