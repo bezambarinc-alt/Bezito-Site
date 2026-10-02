@@ -47,6 +47,7 @@ const FIELDS = [
   'Total_Carat_Weight', 'Center_Stone_Weight', 'Collection',
   'Hero_Visual', 'Editorial_Visual',
   'Visual_Top', 'Visual_Concept', 'Visual_Stone_Sketch',
+  'Related_Products',
 ].join(',')
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
@@ -94,6 +95,15 @@ interface ZohoProduct {
   Visual_Top?: string
   Visual_Concept?: string
   Visual_Stone_Sketch?: string
+  Related_Products?: string
+}
+
+const parseRelatedSkus = (v: unknown): string[] | null => {
+  if (typeof v !== 'string' || !v.trim()) return null
+  const codes = v.split(',')
+    .map(s => s.trim().toUpperCase())
+    .filter(Boolean)
+  return codes.length ? Array.from(new Set(codes)) : null
 }
 
 async function fetchAllProducts(token: string): Promise<ZohoProduct[]> {
@@ -175,9 +185,9 @@ export async function GET(req: NextRequest) {
             hero_visual, editorial_visual,
             metal, stone_shape, stone_carats, stone_color, stone_clarity, stone_notes,
             total_carat_weight, center_stone_weight, collection,
-            view_1_url, view_2_url, view_3_url,
+            view_1_url, view_2_url, view_3_url, related_skus,
             synced_at
-          ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,now())
+          ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22::text[],now())
           ON CONFLICT (sku) DO UPDATE SET
             slug             = EXCLUDED.slug,
             zoho_id          = EXCLUDED.zoho_id,
@@ -199,6 +209,7 @@ export async function GET(req: NextRequest) {
             view_1_url       = COALESCE(EXCLUDED.view_1_url, products.view_1_url),
             view_2_url       = COALESCE(EXCLUDED.view_2_url, products.view_2_url),
             view_3_url       = COALESCE(EXCLUDED.view_3_url, products.view_3_url),
+            related_skus     = EXCLUDED.related_skus,
             synced_at        = now()
             -- active + featured intentionally excluded: Neon-only, managed via admin PATCH
           `,
@@ -224,6 +235,7 @@ export async function GET(req: NextRequest) {
             str(p.Visual_Top) ?? null,    // $19 view_1_url
             str(p.Visual_Concept) ?? null, // $20 view_2_url
             str(p.Visual_Stone_Sketch) ?? null, // $21 view_3_url
+            parseRelatedSkus(p.Related_Products), // $22 related_skus
           ],
         )
 

@@ -69,18 +69,19 @@ function rowToProduct(r: Record<string, unknown>): Product {
   }
 
   return {
-    sku:       r.sku       as string,
-    slug:      r.slug      as string ?? (r.sku as string),
-    view1Url:  (r.view_1_url as string | null) ?? null,
-    view2Url:  (r.view_2_url as string | null) ?? null,
-    view3Url:  (r.view_3_url as string | null) ?? null,
-    zohoId:    r.zoho_id   as string,
-    name:      r.name      as string,
-    featured:  Boolean(r.featured),
+    sku:         r.sku       as string,
+    slug:        r.slug      as string ?? (r.sku as string),
+    view1Url:    (r.view_1_url as string | null) ?? null,
+    view2Url:    (r.view_2_url as string | null) ?? null,
+    view3Url:    (r.view_3_url as string | null) ?? null,
+    zohoId:      r.zoho_id   as string,
+    name:        r.name      as string,
+    featured:    Boolean(r.featured),
     specs,
-    price:     null,
+    price:       null,
     media,
-    syncedAt:  r.synced_at as string,
+    syncedAt:    r.synced_at as string,
+    relatedSkus: (r.related_skus as string[] | null) ?? [],
   }
 }
 
@@ -89,7 +90,7 @@ const COLS = `
   hero_visual, editorial_visual, metal, stone_shape, stone_carats,
   stone_color, stone_clarity, stone_notes, total_carat_weight,
   center_stone_weight, collection, active, featured, sort_order, synced_at,
-  view_1_url, view_2_url, view_3_url`
+  view_1_url, view_2_url, view_3_url, related_skus`
 
 /**
  * URL-safe normalisation of the sku column, mirroring deriveSlug()'s SKU
@@ -244,4 +245,44 @@ export async function getNavProducts(): Promise<{ slug: string; name: string; ca
       WHERE active = true AND category IS NOT NULL
       ORDER BY featured DESC, sort_order ASC, name ASC`,
   )
+}
+
+export interface RelatedCard {
+  slug: string
+  name: string
+  category: string
+  heroPosterUrl?: string
+}
+
+/**
+ * Fetch related products by their leading SKU code (the alphanumeric prefix before
+ * any suffix, e.g. "C0536" matches "C0536-1TSROVPS"). Preserves authored order.
+ * Returns empty array if skus is empty.
+ */
+export async function getRelatedProducts(skus: string[], currentSku: string): Promise<RelatedCard[]> {
+  const codes = skus
+    .map(s => (s.match(/^[A-Za-z0-9]+/)?.[0] ?? '').toUpperCase())
+    .filter(Boolean)
+  if (!codes.length) return []
+  const rows = await sql<Record<string, unknown>>(
+    `SELECT ${COLS} FROM products
+      WHERE active = true
+        AND sku <> $2
+        AND upper(regexp_replace(sku, '^[[:space:]]*([A-Za-z0-9]+).*$', '\\1')) = ANY($1::text[])`,
+    [codes, currentSku],
+  )
+  const byCode = new Map<string, RelatedCard>()
+  for (const r of rows) {
+    const p = rowToProduct(r)
+    const code = (p.sku.match(/^[A-Za-z0-9]+/)?.[0] ?? '').toUpperCase()
+    if (!byCode.has(code)) {
+      byCode.set(code, {
+        slug: p.slug,
+        name: p.name,
+        category: (p.specs.category ?? '').toLowerCase(),
+        heroPosterUrl: p.specs.heroPosterUrl,
+      })
+    }
+  }
+  return codes.map(c => byCode.get(c)).filter((x): x is RelatedCard => !!x)
 }

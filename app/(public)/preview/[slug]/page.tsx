@@ -180,6 +180,7 @@ export default async function PreviewPage({ params, searchParams }: Ctx) {
             view1Url: product.view_1_url ?? null,
             view2Url: product.view_2_url ?? null,
             view3Url: product.view_3_url ?? null,
+            relatedSkus: [],
             specs: {
               codeName:      product.sku,
               subtitle:      product.subtitle      ?? undefined,

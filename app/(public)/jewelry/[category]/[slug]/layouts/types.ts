@@ -1,5 +1,6 @@
 import type { Product } from '@/types/products'
 import type { SpecItem } from '@/types/blocks'
+import type { RelatedCard } from '@/lib/queries'
 
 export interface AdjacentProduct {
   slug: string
@@ -18,4 +19,5 @@ export interface ProductLayoutProps {
   views: { label: string; url: string | null | undefined; embedUrl?: string }[]
   prevProduct?: AdjacentProduct | null
   nextProduct?: AdjacentProduct | null
+  relatedProducts?: RelatedCard[]
 }

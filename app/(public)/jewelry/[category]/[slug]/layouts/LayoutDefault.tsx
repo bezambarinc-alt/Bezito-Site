@@ -2,6 +2,7 @@ import Image from 'next/image'
 import SpecAccordion from '@/components/blocks/SpecAccordion'
 import ProdPill from '@/components/layout/ProdPill'
 import AtelierBanner from '@/components/common/AtelierBanner'
+import RelatedCarousel from '@/components/common/RelatedCarousel'
 import type { SpecAccordionBlock } from '@/types/blocks'
 import type { ProductLayoutProps } from './types'
 import styles from '../page.module.css'
@@ -28,6 +29,7 @@ export default function LayoutDefault({
   views,
   prevProduct,
   nextProduct,
+  relatedProducts = [],
 }: ProductLayoutProps) {
   const accordionBlock: SpecAccordionBlock = { type: 'spec-accordion', title: '', items: specItems }
   const displayName = parseProductName(product.name).title
@@ -110,10 +112,13 @@ export default function LayoutDefault({
         </div>
       )}
 
-      {/* ── 4. Atelier banner ── */}
+      {/* ── 4. Related products carousel (only when curated SKUs exist) ── */}
+      {relatedProducts.length > 0 && <RelatedCarousel products={relatedProducts} />}
+
+      {/* ── 5. Atelier banner ── */}
       <AtelierBanner />
 
-      {/* ── 5. ProdPill ── */}
+      {/* ── 6. ProdPill ── */}
       <ProdPill
         title={displayName}
         sku={product.sku}

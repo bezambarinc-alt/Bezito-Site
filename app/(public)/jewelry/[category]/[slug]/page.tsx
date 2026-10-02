@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { notFound, redirect } from 'next/navigation'
 import { draftMode, cookies } from 'next/headers'
 import { unstable_cache } from 'next/cache'
-import { getProductBySlug, getProductBySlugPreview, getAllProductParams, getAdjacentProducts } from '@/lib/queries'
+import { getProductBySlug, getProductBySlugPreview, getAllProductParams, getAdjacentProducts, getRelatedProducts } from '@/lib/queries'
 import { parseProductName } from '@/lib/product-name'
 import { getCategoryLabel } from '@/lib/data/categories'
 import { sql } from '@/lib/db'
@@ -158,6 +158,9 @@ export default async function ProductPage({
   )
 
   const { prev: prevProduct, next: nextProduct } = await getAdjacentProducts(slug, category)
+  const relatedProducts = product.relatedSkus.length
+    ? await getRelatedProducts(product.relatedSkus, product.sku)
+    : []
 
   const productSchema = buildProductSchema(product, category)
 
@@ -187,6 +190,7 @@ export default async function ProductPage({
         views={views}
         prevProduct={prevProduct}
         nextProduct={nextProduct}
+        relatedProducts={relatedProducts}
       />
     </>
   )

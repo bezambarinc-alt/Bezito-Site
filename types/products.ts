@@ -54,6 +54,8 @@ export interface Product {
   price: number | null
   media: ProductMedia[]
   syncedAt: string
+  /** SKUs of manually curated related products (Zoho Related_Products field). */
+  relatedSkus: string[]
 }
 
 // toProduct() removed — JSONB-era mapper, superseded by rowToProduct() in lib/queries.ts
