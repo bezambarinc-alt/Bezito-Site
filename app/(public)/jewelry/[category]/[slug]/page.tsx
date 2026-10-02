@@ -134,14 +134,12 @@ export default async function ProductPage({
   const category      = (s.category ?? urlCategory).toLowerCase()
   const categoryLabel = getCategoryLabel(category)
 
+  const stoneParts = [s.gemStone, s.color, s.clarity, s.caratWeight].filter(Boolean)
   const specItems: SpecItem[] = [
-    s.gemStone    ? { label: 'Gem Stone',    body: s.gemStone }    : null,
-    s.metal       ? { label: 'Metal',        body: s.metal }       : null,
-    s.caratWeight ? { label: 'Carat Weight', body: s.caratWeight } : null,
-    s.color       ? { label: 'Color',        body: s.color }       : null,
-    s.clarity     ? { label: 'Clarity',      body: s.clarity }     : null,
-    { label: 'Made In',  body: 'Los Angeles' },
-    { label: 'Inquiry',  body: 'Presented privately by appointment. Reference this piece when you inquire.' },
+    stoneParts.length ? { label: 'Stone',    body: stoneParts.join(' · ') } : null,
+    s.metal           ? { label: 'Metal',    body: s.metal }               : null,
+    { label: 'Shipping',  body: 'Complimentary worldwide shipping · Fully insured' },
+    { label: 'Warranty',  body: 'Lifetime warranty on craftsmanship and materials. Complimentary annual inspection.' },
   ].filter((x): x is SpecItem => x !== null)
 
   const IJEWEL_EMBEDS: Record<string, string> = {

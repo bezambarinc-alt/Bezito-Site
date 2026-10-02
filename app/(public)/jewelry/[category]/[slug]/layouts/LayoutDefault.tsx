@@ -84,6 +84,10 @@ export default function LayoutDefault({
         <div className={styles.specDetails}>
           <SpecAccordion block={accordionBlock} variant="light" />
         </div>
+        <div className={styles.inquiryCta}>
+          <p className={styles.inquiryText}>Presented privately by appointment.</p>
+          <a href="/contact" className={styles.inquiryLink}>Inquire about this piece →</a>
+        </div>
       </div>
 
       {/* ── 3. Banner: model (wide) left · concept sketch (thin) right ── */}
