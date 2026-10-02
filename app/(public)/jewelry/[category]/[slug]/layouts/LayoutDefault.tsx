@@ -81,7 +81,9 @@ export default function LayoutDefault({
         {product.specs.lede && (
           <p className={styles.heroCopy}>{product.specs.lede}</p>
         )}
-        <SpecAccordion block={accordionBlock} variant="light" />
+        <div className={styles.specDetails}>
+          <SpecAccordion block={accordionBlock} variant="light" />
+        </div>
       </div>
 
       {/* ── 3. Banner: model (wide) left · concept sketch (thin) right ── */}

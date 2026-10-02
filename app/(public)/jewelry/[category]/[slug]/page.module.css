@@ -142,8 +142,11 @@
   font-size: 15px;
   line-height: 1.78;
   color: var(--ba-ink);
-  max-width: 480px;
   margin: 0;
+}
+
+.specDetails {
+  margin-top: clamp(3rem, 5vw, 5rem);
 }
 
 /* ── 2. Content split ──
