@@ -54,6 +54,7 @@
   grid-template-columns: 55% 1fr;
   column-gap: 40px;
   margin-top: 40px;
+  margin-bottom: 40px;
   height: 60vh;
 }
 
