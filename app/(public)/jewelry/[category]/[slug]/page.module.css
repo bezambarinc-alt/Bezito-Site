@@ -54,8 +54,12 @@
   grid-template-columns: 55% 1fr;
   column-gap: 40px;
   margin-top: 40px;
-  margin-bottom: 40px;
   height: 60vh;
+}
+
+/* AtelierBanner ships with margin-top: 64px; override to keep the 40px rhythm */
+.pdpMain > section {
+  margin-top: 40px;
 }
 
 .bannerCell {
