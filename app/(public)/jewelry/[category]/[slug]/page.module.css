@@ -30,7 +30,7 @@
   grid-column: 1;
   grid-row: 1;
   position: relative;
-  min-height: clamp(480px, 65vh, 820px);
+  min-height: calc(100vh - var(--ba-header-h));
   overflow: hidden;
   background: #0d0d0d;
 }
