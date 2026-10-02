@@ -261,3 +261,85 @@
     height: 320px;
   }
 }
+
+/* ── Camlia layout ──────────────────────────────────────────────────────────
+   Sticky 55% viewer left · scrollable 45% specs right · 2-col banner below
+   Typography (heroEyebrow, heroTitle, etc.) is shared from above. */
+
+.pdpCamlia {
+  display: grid;
+  grid-template-columns: 55% 45%;
+  align-items: start;
+  margin-top: var(--ba-header-h);
+}
+
+.pdpCamlia > * {
+  grid-column: 1 / -1;
+}
+
+.camilaLeft {
+  grid-column: 1;
+  grid-row: 1;
+  position: sticky;
+  top: var(--ba-header-h);
+  height: calc(100vh - var(--ba-header-h));
+  overflow: hidden;
+  background: #0d0d0d;
+}
+
+.camilaRight {
+  grid-column: 2;
+  grid-row: 1;
+  padding: clamp(3rem, 5vw, 5rem) clamp(2.5rem, 5vw, 5rem);
+  border-left: 1px solid var(--ba-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.camilaBanner {
+  display: grid;
+  grid-template-columns: 55% 1fr;
+  column-gap: 40px;
+  margin-top: 40px;
+  height: 60vh;
+}
+
+.camilaBannerCell {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.camilaBannerCell:first-child img {
+  transform: scale(1.3);
+  transform-origin: center center;
+}
+
+@media (max-width: 768px) {
+  .pdpCamlia {
+    display: block;
+  }
+  .camilaLeft {
+    position: static;
+    height: 100svh;
+  }
+  .camilaRight {
+    border-left: none;
+    border-top: 1px solid var(--ba-border);
+    padding: 2rem 1.5rem;
+  }
+  .camilaBanner {
+    grid-template-columns: 1fr;
+    height: auto;
+    column-gap: 0;
+    row-gap: 2px;
+    margin-top: 24px;
+  }
+  .camilaBannerCell {
+    height: 60vw;
+  }
+  .camilaBannerCell:first-child img {
+    transform: none;
+  }
+}

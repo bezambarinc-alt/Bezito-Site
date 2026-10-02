@@ -1,6 +1,7 @@
 import type { ComponentType } from 'react'
 import type { ProductLayoutProps } from './types'
 import LayoutDefault from './LayoutDefault'
+import LayoutCamlia from './LayoutCamlia'
 import LayoutDark from './LayoutDark'
 import LayoutMulti from './LayoutMulti'
 
@@ -25,6 +26,13 @@ export const TEMPLATES: Record<string, TemplateEntry> = {
   // ── Product page layouts — /jewelry/[category]/[slug] only ──────────────
   default: {
     name: 'Default',
+    description: 'Camlia — sticky viewer left · scrollable specs right · 2-col banner below',
+    component: LayoutCamlia,
+    status: 'active',
+    scope: ['product'],
+  },
+  triptych: {
+    name: 'Triptych',
     description: 'Triptych — 55/45 hero split · specs left · on-hand photo right · three views black',
     component: LayoutDefault,
     status: 'active',
