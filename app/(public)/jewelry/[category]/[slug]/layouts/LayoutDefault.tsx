@@ -86,30 +86,26 @@ export default function LayoutDefault({
       </div>
 
       {/* ── 3. Banner: model (wide) left · concept sketch (thin) right ── */}
-      {(onHandPhoto || conceptView?.url) && (
+      {onHandPhoto && conceptView?.url && (
         <div className={styles.heroBanner}>
-          {onHandPhoto && (
-            <div className={styles.bannerCell}>
-              <Image
-                src={onHandPhoto}
-                alt={`${displayName} · On Hand`}
-                fill
-                sizes="(max-width: 768px) 100vw, 55vw"
-                style={{ objectFit: 'cover', objectPosition: 'top' }}
-              />
-            </div>
-          )}
-          {conceptView?.url && (
-            <div className={styles.bannerCell}>
-              <Image
-                src={conceptView.url}
-                alt="Concept Sketch"
-                fill
-                sizes="(max-width: 768px) 100vw, 45vw"
-                style={{ objectFit: 'cover', objectPosition: 'center' }}
-              />
-            </div>
-          )}
+          <div className={styles.bannerCell}>
+            <Image
+              src={onHandPhoto}
+              alt={`${displayName} · On Hand`}
+              fill
+              sizes="(max-width: 768px) 100vw, 55vw"
+              style={{ objectFit: 'cover', objectPosition: 'top' }}
+            />
+          </div>
+          <div className={styles.bannerCell}>
+            <Image
+              src={conceptView.url}
+              alt="Concept Sketch"
+              fill
+              sizes="(max-width: 768px) 100vw, 45vw"
+              style={{ objectFit: 'cover', objectPosition: 'center' }}
+            />
+          </div>
         </div>
       )}
 
