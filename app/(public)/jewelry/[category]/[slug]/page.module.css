@@ -243,6 +243,7 @@
   }
   .mediaLeft {
     position: static;
+    min-height: unset;
     height: 75svh;
   }
   .specCol {
