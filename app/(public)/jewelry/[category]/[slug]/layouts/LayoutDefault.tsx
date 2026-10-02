@@ -8,19 +8,15 @@ import styles from '../page.module.css'
 import { parseProductName } from '@/lib/product-name'
 
 /**
- * Default — triptych layout
+ * Default — sticky viewer left · scrollable specs right · 2-col banner below
  *
- * Sections are authored in PHONE reading order, which is therefore also the
- * DOM / tab / screen-reader order:
- *   hero → on-hand photo → three views → technical details → banner → pill
+ * DOM / tab / screen-reader order matches mobile visual order:
+ *   sticky viewer → product details → banner → atelier → pill
  *
- * At desktop, `.pdpMain` in page.module.css is a two-column grid that places
- * the specs and the photo back into a single 55/45 row under the hero, so the
- * triptych renders exactly as it always has:
- * 1. Hero split    — 55% video left · 45% text right
- * 2. Content split — 55% specs left · 45% on-hand photo right
- * 3. Three Views   — black bg · 3-col · 440px per box
- * 4. ProdPill      — fixed inquiry CTA
+ * At desktop, `.pdpMain` places the viewer (55%) and specs (45%) side by
+ * side in a single sticky/scroll pair. The banner below maps:
+ *   - Left (55%, model photo)  ← onHandPhoto editorial photo
+ *   - Right (1fr, sketch)      ← views Concept entry
  */
 export default function LayoutDefault({
   product,
@@ -37,93 +33,90 @@ export default function LayoutDefault({
   const accordionBlock: SpecAccordionBlock = { type: 'spec-accordion', title: '', items: specItems }
   const displayName = parseProductName(product.name).title
 
+  const embedView   = views.find(v => v.embedUrl)
+  const conceptView = views.find(v => v.label === 'Concept')
+
   return (
     <main data-page="pdp" className={styles.pdpMain}>
-      {/* ── 1. Hero split ── */}
-      <section className={styles.heroSplit}>
-        <div className={styles.heroVideo}>
-          {heroVideo ? (
-            <video src={heroVideo} autoPlay muted loop playsInline preload="auto" poster={heroPoster ?? undefined} />
-          ) : heroPoster ? (
-            <Image
-              src={heroPoster}
-              alt={displayName}
-              width={1400}
-              height={1000}
-              priority
-            />
-          ) : null}
-        </div>
-        <div className={styles.heroText}>
-          <p className={styles.heroEyebrow}>{categoryLabel}</p>
-          <h1 className={styles.heroTitle}>{displayName}</h1>
-          {product.specs.subtitle && (
-            <p className={styles.heroSubtitle}>{product.specs.subtitle}</p>
-          )}
-          <p className={styles.heroRefLine}>Ref. {product.sku}</p>
-          {product.specs.lede && (
-            <p className={styles.heroCopy}>{product.specs.lede}</p>
-          )}
-        </div>
-      </section>
 
-      {/* ── 2. On-hand photo — desktop: right half of the content row ── */}
-      <div className={styles.contentRight}>
-        {onHandPhoto && (
-          <Image
-            className={styles.contentPhoto}
-            src={onHandPhoto}
-            alt={`${displayName} · On Hand`}
-            width={800}
-            height={900}
-            style={{ width: '100%', height: 'auto' }}
+      {/* ── 1. Left col: sticky viewer ── */}
+      <div className={styles.stickyLeft}>
+        {embedView ? (
+          <iframe
+            src={embedView.embedUrl}
+            title={displayName}
+            frameBorder={0}
+            allow="camera; autoplay; clipboard-write; fullscreen; xr-spatial-tracking; web-share"
+            style={{ width: '100%', height: '100%', display: 'block', border: 'none' }}
           />
-        )}
+        ) : heroVideo ? (
+          <video
+            src={heroVideo}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster={heroPoster ?? undefined}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+          />
+        ) : heroPoster ? (
+          <Image
+            src={heroPoster}
+            alt={displayName}
+            fill
+            priority
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+          />
+        ) : null}
       </div>
 
-      {/* ── 3. Three Views ── */}
-      {views.some(v => v.url || v.embedUrl) && (
-        <section className={styles.views}>
-          <div className={styles.viewsGrid}>
-            {views.filter(v => v.url || v.embedUrl).map((v, i) => (
-              <div key={i} className={styles.viewsItem}>
-                <div className={styles.viewsImgWrap}>
-                  {v.embedUrl ? (
-                    <iframe
-                      src={v.embedUrl}
-                      title={v.label}
-                      frameBorder={0}
-                      allow="camera; autoplay; clipboard-write; fullscreen; xr-spatial-tracking; web-share"
-                      style={{ width: '100%', height: '100%', display: 'block', border: 'none' }}
-                    />
-                  ) : (
-                    <Image
-                      src={v.url!}
-                      alt={v.label}
-                      width={900}
-                      height={440}
-                      sizes="(max-width: 768px) 100vw, 34vw"
-                      className={styles.viewsImg}
-                    />
-                  )}
-                </div>
-                <p className={styles.viewsLabel}>{v.label}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+      {/* ── 2. Right col: product details ── */}
+      <div className={styles.scrollRight}>
+        <p className={styles.heroEyebrow}>{categoryLabel}</p>
+        <h1 className={styles.heroTitle}>{displayName}</h1>
+        {product.specs.subtitle && (
+          <p className={styles.heroSubtitle}>{product.specs.subtitle}</p>
+        )}
+        <p className={styles.heroRefLine}>Ref. {product.sku}</p>
+        {product.specs.lede && (
+          <p className={styles.heroCopy}>{product.specs.lede}</p>
+        )}
+        <SpecAccordion block={accordionBlock} variant="light" />
+      </div>
+
+      {/* ── 3. Banner: model (wide) left · concept sketch (thin) right ── */}
+      {(onHandPhoto || conceptView?.url) && (
+        <div className={styles.heroBanner}>
+          {onHandPhoto && (
+            <div className={styles.bannerCell}>
+              <Image
+                src={onHandPhoto}
+                alt={`${displayName} · On Hand`}
+                fill
+                sizes="(max-width: 768px) 100vw, 55vw"
+                style={{ objectFit: 'cover', objectPosition: 'top' }}
+              />
+            </div>
+          )}
+          {conceptView?.url && (
+            <div className={styles.bannerCell}>
+              <Image
+                src={conceptView.url}
+                alt="Concept Sketch"
+                fill
+                sizes="(max-width: 768px) 100vw, 45vw"
+                style={{ objectFit: 'cover', objectPosition: 'center' }}
+              />
+            </div>
+          )}
+        </div>
       )}
 
-      {/* ── 4. Technical Details — desktop: left half of the content row ── */}
-      <section className={styles.contentLeft}>
-        <p className={styles.contentEyebrow}>Technical Details</p>
-        <SpecAccordion block={accordionBlock} variant="light" />
-      </section>
-
-      {/* ── 5. Atelier banner ── */}
+      {/* ── 4. Atelier banner ── */}
       <AtelierBanner />
 
-      {/* ── 6. ProdPill ── */}
+      {/* ── 5. ProdPill ── */}
       <ProdPill
         title={displayName}
         sku={product.sku}

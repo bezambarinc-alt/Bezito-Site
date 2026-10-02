@@ -11,43 +11,63 @@
 
 /* ── 0. PDP shell ──
    LayoutDefault authors its sections in phone reading order
-   (hero → on-hand photo → three views → technical details), so DOM order
-   equals tab order equals mobile visual order. This grid puts the specs and
-   the photo back side by side in one 55/45 row at desktop. `.pdpMain > *`
-   makes every direct child full-bleed by default; the two halves then claim
-   their own columns. The orphan /shop pages carry no `.pdpMain`, so none of
-   this reaches them. */
+   (sticky viewer → product details → banner → atelier → pill), so DOM order
+   equals tab order equals mobile visual order. At desktop this grid places a
+   sticky 55% viewer left and a scrollable 45% specs column right, with a 2-col
+   banner below. `.pdpMain > *` makes every direct child full-bleed by default;
+   the two halves then claim their own columns. The orphan /shop pages carry no
+   `.pdpMain`, so none of this reaches them. The standalone triptych classes
+   below (.heroSplit, .heroVideo, .heroText, .contentLeft/Right, .views) remain
+   for those legacy /shop pages. */
 
 .pdpMain {
   display: grid;
   grid-template-columns: 55% 45%;
+  align-items: start;
+  margin-top: var(--ba-header-h);
 }
 
 .pdpMain > * {
   grid-column: 1 / -1;
 }
 
-.pdpMain > .heroSplit {
-  grid-row: 1;
-}
-
-.pdpMain > .contentLeft,
-.pdpMain > .contentRight {
-  grid-row: 2;
-  border-top: 1px solid var(--ba-border);
-  background: var(--ba-paper);
-}
-
-.pdpMain > .contentLeft {
+.stickyLeft {
   grid-column: 1;
+  grid-row: 1;
+  position: sticky;
+  top: var(--ba-header-h);
+  height: calc(100vh - var(--ba-header-h));
+  overflow: hidden;
+  background: #0d0d0d;
 }
 
-.pdpMain > .contentRight {
+.scrollRight {
   grid-column: 2;
+  grid-row: 1;
+  padding: clamp(3rem, 5vw, 5rem) clamp(2.5rem, 5vw, 5rem);
+  border-left: 1px solid var(--ba-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.pdpMain > .views {
-  grid-row: 3;
+.heroBanner {
+  display: grid;
+  grid-template-columns: 55% 1fr;
+  column-gap: 40px;
+  margin-top: 40px;
+  height: 60vh;
+}
+
+.bannerCell {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.bannerCell:first-child img {
+  transform: scale(1.3);
+  transform-origin: center center;
 }
 
 /* ── 1. Hero split ── */
@@ -223,11 +243,32 @@
 
 @media (max-width: 768px) {
   /* Drop the desktop grid — DOM order is already the phone order, so normal
-     flow gives: hero → on-hand photo → three views (Stone Sketch last) →
-     Technical Details → Atelier banner. The `.pdpMain > …` placement rules
-     above go inert under `display: block`. */
+     flow gives: sticky viewer → product details → banner → atelier → pill.
+     The `.pdpMain > …` placement rules above go inert under `display: block`. */
   .pdpMain {
     display: block;
+  }
+  .stickyLeft {
+    position: static;
+    height: 100svh;
+  }
+  .scrollRight {
+    border-left: none;
+    border-top: 1px solid var(--ba-border);
+    padding: 2rem 1.5rem;
+  }
+  .heroBanner {
+    grid-template-columns: 1fr;
+    height: auto;
+    column-gap: 0;
+    row-gap: 2px;
+    margin-top: 24px;
+  }
+  .bannerCell {
+    height: 60vw;
+  }
+  .bannerCell:first-child img {
+    transform: none;
   }
   .heroSplit {
     flex-direction: column;
@@ -259,87 +300,5 @@
   }
   .viewsImgWrap {
     height: 320px;
-  }
-}
-
-/* ── Camlia layout ──────────────────────────────────────────────────────────
-   Sticky 55% viewer left · scrollable 45% specs right · 2-col banner below
-   Typography (heroEyebrow, heroTitle, etc.) is shared from above. */
-
-.pdpCamlia {
-  display: grid;
-  grid-template-columns: 55% 45%;
-  align-items: start;
-  margin-top: var(--ba-header-h);
-}
-
-.pdpCamlia > * {
-  grid-column: 1 / -1;
-}
-
-.camilaLeft {
-  grid-column: 1;
-  grid-row: 1;
-  position: sticky;
-  top: var(--ba-header-h);
-  height: calc(100vh - var(--ba-header-h));
-  overflow: hidden;
-  background: #0d0d0d;
-}
-
-.camilaRight {
-  grid-column: 2;
-  grid-row: 1;
-  padding: clamp(3rem, 5vw, 5rem) clamp(2.5rem, 5vw, 5rem);
-  border-left: 1px solid var(--ba-border);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.camilaBanner {
-  display: grid;
-  grid-template-columns: 55% 1fr;
-  column-gap: 40px;
-  margin-top: 40px;
-  height: 60vh;
-}
-
-.camilaBannerCell {
-  position: relative;
-  overflow: hidden;
-  height: 100%;
-}
-
-.camilaBannerCell:first-child img {
-  transform: scale(1.3);
-  transform-origin: center center;
-}
-
-@media (max-width: 768px) {
-  .pdpCamlia {
-    display: block;
-  }
-  .camilaLeft {
-    position: static;
-    height: 100svh;
-  }
-  .camilaRight {
-    border-left: none;
-    border-top: 1px solid var(--ba-border);
-    padding: 2rem 1.5rem;
-  }
-  .camilaBanner {
-    grid-template-columns: 1fr;
-    height: auto;
-    column-gap: 0;
-    row-gap: 2px;
-    margin-top: 24px;
-  }
-  .camilaBannerCell {
-    height: 60vw;
-  }
-  .camilaBannerCell:first-child img {
-    transform: none;
   }
 }
