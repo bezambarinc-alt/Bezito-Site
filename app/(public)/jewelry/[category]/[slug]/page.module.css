@@ -150,9 +150,7 @@
 }
 
 .inquiryCta {
-  margin-top: clamp(2.5rem, 4vw, 4rem);
-  padding-top: clamp(2rem, 3vw, 3rem);
-  border-top: 1px solid var(--ba-border);
+  margin-top: 2rem;
 }
 
 .inquiryText {
