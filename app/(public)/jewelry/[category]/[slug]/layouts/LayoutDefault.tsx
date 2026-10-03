@@ -112,8 +112,8 @@ export default function LayoutDefault({
         </div>
       )}
 
-      {/* ── 4. Related products carousel (only when curated SKUs exist) ── */}
-      {relatedProducts.length > 0 && <RelatedCarousel products={relatedProducts} />}
+      {/* ── 4. Related products carousel (disabled) ── */}
+      {/* {relatedProducts.length > 0 && <RelatedCarousel products={relatedProducts} />} */}
 
       {/* ── 5. Atelier banner ── */}
       <AtelierBanner />
