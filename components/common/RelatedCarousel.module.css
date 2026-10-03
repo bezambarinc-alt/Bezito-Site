@@ -1,6 +1,7 @@
 .section {
-  padding: 0 0 0;
+  padding: clamp(4rem, 6vw, 7rem) 0 clamp(4rem, 6vw, 7rem);
   border-top: 1px solid var(--ba-border);
+  text-align: center;
 }
 
 .eyebrow {
@@ -10,18 +11,20 @@
   letter-spacing: 0.30em;
   text-transform: uppercase;
   color: var(--ba-gold);
-  margin: 0;
-  padding: clamp(2rem, 3vw, 3rem) clamp(2.5rem, 5vw, 5rem) 1.5rem;
+  margin: 0 0 clamp(2rem, 3vw, 3rem);
+  padding: 0;
 }
 
 .strip {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  gap: 2px;
+  gap: clamp(1.5rem, 3vw, 3rem);
   scrollbar-width: none;
   -ms-overflow-style: none;
+  padding: 0 clamp(2rem, 5vw, 6rem);
 }
 
 .strip::-webkit-scrollbar {
@@ -29,7 +32,7 @@
 }
 
 .card {
-  flex: 0 0 280px;
+  flex: 0 0 clamp(220px, 22vw, 320px);
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
@@ -63,13 +66,15 @@
   text-transform: uppercase;
   color: var(--ba-ink);
   margin: 0;
-  padding: 0.75rem 0.5rem 1.5rem;
+  padding: 1rem 0 0;
   transition: color 0.2s ease;
 }
 
 @media (max-width: 768px) {
-  .eyebrow {
-    padding: 2rem 1.5rem 1rem;
+  .strip {
+    justify-content: flex-start;
+    padding: 0 1.5rem;
+    gap: 1rem;
   }
 
   .card {
