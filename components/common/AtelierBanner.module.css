@@ -1,6 +1,6 @@
 .banner {
   width: 100%;
-  background: #000;
+  background: var(--ba-ink);
   margin-top: var(--atelier-banner-mt, 0px);
   padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 4rem) 40px;
   overflow: hidden;
