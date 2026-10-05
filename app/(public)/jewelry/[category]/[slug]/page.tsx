@@ -142,19 +142,14 @@ export default async function ProductPage({
     { label: 'Warranty',  body: 'Lifetime warranty on craftsmanship and materials. Complimentary annual inspection.' },
   ].filter((x): x is SpecItem => x !== null)
 
-  const IJEWEL_EMBEDS: Record<string, string> = {
-    'extent-rounds-30-bracelet':
-      'https://ijewel.design/embedded?slug=cf5ed08&isTitle=false&isRemoveLogo=true&isRemoveLogoLink=true&isTurntableAnimation=true&isAutoplay=true',
-  }
-
-  type ViewEntry = { label: string; url: string | null | undefined; embedUrl?: string }
+  type ViewEntry = { label: string; url: string | null | undefined }
   const rawViews: (ViewEntry | null)[] = [
-    { label: 'Top', url: product.view1Url, embedUrl: IJEWEL_EMBEDS[slug] },
+    product.view1Url ? { label: 'Top',          url: product.view1Url } : null,
     product.view2Url ? { label: 'Concept',      url: product.view2Url } : null,
     product.view3Url ? { label: 'Stone Sketch', url: product.view3Url } : null,
   ]
   const views: ViewEntry[] = rawViews.filter(
-    (v): v is ViewEntry => v !== null && (!!v.url || !!v.embedUrl)
+    (v): v is ViewEntry => v !== null && !!v.url
   )
 
   const { prev: prevProduct, next: nextProduct } = await getAdjacentProducts(slug, category)

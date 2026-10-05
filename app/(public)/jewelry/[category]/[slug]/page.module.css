@@ -60,6 +60,14 @@
   height: 100%;
 }
 
+/* Full-width media banner slot (iJewel viewer or video overflow when both are present) */
+.mediaBanner {
+  grid-column: 1 / -1;
+  height: 60vh;
+  overflow: hidden;
+  background: #0d0d0d;
+}
+
 
 /* ── 1. Hero split ── */
 

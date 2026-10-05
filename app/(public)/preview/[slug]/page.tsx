@@ -181,6 +181,8 @@ export default async function PreviewPage({ params, searchParams }: Ctx) {
             view2Url: product.view_2_url ?? null,
             view3Url: product.view_3_url ?? null,
             relatedSkus: [],
+            ijewelUrl: null,
+            interactiveIsHero: false,
             specs: {
               codeName:      product.sku,
               subtitle:      product.subtitle      ?? undefined,

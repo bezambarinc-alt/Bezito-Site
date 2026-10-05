@@ -2,7 +2,7 @@ import Image from 'next/image'
 import SpecAccordion from '@/components/blocks/SpecAccordion'
 import ProdPill from '@/components/layout/ProdPill'
 import AtelierBanner from '@/components/common/AtelierBanner'
-import RelatedCarousel from '@/components/common/RelatedCarousel'
+import IJewelViewer from '@/components/pdp/IJewelViewer'
 import type { SpecAccordionBlock } from '@/types/blocks'
 import type { ProductLayoutProps } from './types'
 import styles from '../page.module.css'
@@ -12,7 +12,16 @@ import { parseProductName } from '@/lib/product-name'
  * Default PDP layout — 55% media left · 45% specs right · 2-col banner below
  *
  * DOM order = mobile visual order = tab order:
- *   media col → spec col → banner → atelier → pill
+ *   media col → spec col → banner → [media banner] → atelier → pill
+ *
+ * Hero slot rules:
+ *   - iJewel URL + interactiveIsHero=true  → iJewel viewer in hero
+ *   - otherwise heroVideo                  → video in hero
+ *   - otherwise heroPoster                 → image in hero
+ *
+ * Media banner (60vh, below heroBanner, above AtelierBanner):
+ *   Appears only when BOTH ijewelUrl AND heroVideo are present.
+ *   The non-hero medium fills this slot.
  *
  * Banner maps:
  *   - Left 55%  — onHandPhoto (editorial model photo)
@@ -34,7 +43,16 @@ export default function LayoutDefault({
   const accordionBlock: SpecAccordionBlock = { type: 'spec-accordion', title: '', items: specItems }
   const displayName = parseProductName(product.name).title
 
-  const embedView   = views.find(v => v.embedUrl)
+  const { ijewelUrl, interactiveIsHero } = product
+
+  // Hero slot: iJewel wins when it's the designated hero; otherwise video; otherwise poster
+  const heroIsIJewel = Boolean(ijewelUrl && interactiveIsHero)
+  const heroIsVideo  = !heroIsIJewel && Boolean(heroVideo)
+
+  // Media banner appears when both are present; shows the non-hero medium
+  const showMediaBanner = Boolean(ijewelUrl && heroVideo)
+  const mediaBannerIsIJewel = showMediaBanner && !interactiveIsHero
+
   const conceptView = views.find(v => v.label === 'Concept')
 
   return (
@@ -42,15 +60,9 @@ export default function LayoutDefault({
 
       {/* ── 1. Left col: media ── */}
       <div className={styles.mediaLeft}>
-        {embedView ? (
-          <iframe
-            src={embedView.embedUrl}
-            title={displayName}
-            frameBorder={0}
-            allow="camera; autoplay; clipboard-write; fullscreen; xr-spatial-tracking; web-share"
-            style={{ width: '100%', height: '100%', display: 'block', border: 'none' }}
-          />
-        ) : heroVideo ? (
+        {heroIsIJewel ? (
+          <IJewelViewer src={ijewelUrl!} title={displayName} />
+        ) : heroIsVideo ? (
           <video
             src={heroVideo}
             autoPlay
@@ -112,13 +124,33 @@ export default function LayoutDefault({
         </div>
       )}
 
-      {/* ── 4. Related products carousel (disabled) ── */}
+      {/* ── 4. Media banner: non-hero medium at 60vh (only when both exist) ── */}
+      {showMediaBanner && (
+        <div className={styles.mediaBanner}>
+          {mediaBannerIsIJewel ? (
+            <IJewelViewer src={ijewelUrl!} title={displayName} />
+          ) : (
+            <video
+              src={heroVideo!}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              poster={heroPoster ?? undefined}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            />
+          )}
+        </div>
+      )}
+
+      {/* ── 5. Related products carousel (disabled) ── */}
       {/* {relatedProducts.length > 0 && <RelatedCarousel products={relatedProducts} />} */}
 
-      {/* ── 5. Atelier banner ── */}
+      {/* ── 6. Atelier banner ── */}
       <AtelierBanner />
 
-      {/* ── 6. ProdPill ── */}
+      {/* ── 7. ProdPill ── */}
       <ProdPill
         title={displayName}
         sku={product.sku}

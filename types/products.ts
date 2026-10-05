@@ -56,6 +56,10 @@ export interface Product {
   syncedAt: string
   /** SKUs of manually curated related products (Zoho Related_Products field). */
   relatedSkus: string[]
+  /** iJewel 360° viewer embed URL (from Zoho iJewel_URL field). */
+  ijewelUrl: string | null
+  /** When true, the iJewel viewer occupies the hero slot; the video goes to the media banner. */
+  interactiveIsHero: boolean
 }
 
 // toProduct() removed — JSONB-era mapper, superseded by rowToProduct() in lib/queries.ts

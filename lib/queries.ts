@@ -81,7 +81,9 @@ function rowToProduct(r: Record<string, unknown>): Product {
     price:       null,
     media,
     syncedAt:    r.synced_at as string,
-    relatedSkus: (r.related_skus as string[] | null) ?? [],
+    relatedSkus:        (r.related_skus as string[] | null) ?? [],
+    ijewelUrl:          (r.ijewel_url as string | null) ?? null,
+    interactiveIsHero:  Boolean(r.interactive_is_hero),
   }
 }
 
@@ -90,7 +92,8 @@ const COLS = `
   hero_visual, editorial_visual, metal, stone_shape, stone_carats,
   stone_color, stone_clarity, stone_notes, total_carat_weight,
   center_stone_weight, collection, active, featured, sort_order, synced_at,
-  view_1_url, view_2_url, view_3_url, related_skus`
+  view_1_url, view_2_url, view_3_url, related_skus,
+  ijewel_url, interactive_is_hero`
 
 /**
  * URL-safe normalisation of the sku column, mirroring deriveSlug()'s SKU

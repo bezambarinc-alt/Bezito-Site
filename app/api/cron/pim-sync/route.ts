@@ -48,6 +48,7 @@ const FIELDS = [
   'Hero_Visual', 'Editorial_Visual',
   'Visual_Top', 'Visual_Concept', 'Visual_Stone_Sketch',
   'Related_Products',
+  'iJewel_URL', 'Interactive_Is_Hero',
 ].join(',')
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
@@ -96,6 +97,8 @@ interface ZohoProduct {
   Visual_Concept?: string
   Visual_Stone_Sketch?: string
   Related_Products?: string
+  iJewel_URL?: string
+  Interactive_Is_Hero?: boolean
 }
 
 const parseRelatedSkus = (v: unknown): string[] | null => {
@@ -186,8 +189,9 @@ export async function GET(req: NextRequest) {
             metal, stone_shape, stone_carats, stone_color, stone_clarity, stone_notes,
             total_carat_weight, center_stone_weight, collection,
             view_1_url, view_2_url, view_3_url, related_skus,
+            ijewel_url, interactive_is_hero,
             synced_at
-          ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22::text[],now())
+          ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22::text[],$23,$24,now())
           ON CONFLICT (sku) DO UPDATE SET
             slug             = EXCLUDED.slug,
             zoho_id          = EXCLUDED.zoho_id,
@@ -210,6 +214,8 @@ export async function GET(req: NextRequest) {
             view_2_url       = COALESCE(EXCLUDED.view_2_url, products.view_2_url),
             view_3_url       = COALESCE(EXCLUDED.view_3_url, products.view_3_url),
             related_skus     = EXCLUDED.related_skus,
+            ijewel_url       = EXCLUDED.ijewel_url,
+            interactive_is_hero = EXCLUDED.interactive_is_hero,
             synced_at        = now()
             -- active + featured intentionally excluded: Neon-only, managed via admin PATCH
           `,
@@ -236,6 +242,8 @@ export async function GET(req: NextRequest) {
             str(p.Visual_Concept) ?? null, // $20 view_2_url
             str(p.Visual_Stone_Sketch) ?? null, // $21 view_3_url
             parseRelatedSkus(p.Related_Products), // $22 related_skus
+            str(p.iJewel_URL) ?? null,    // $23 ijewel_url
+            p.Interactive_Is_Hero === true, // $24 interactive_is_hero
           ],
         )
 
