@@ -104,7 +104,7 @@ export default function ElysianCutPage() {
         body="The Elysian Pear and Oval bands are available through the atelier. Arrange a private viewing to experience the continuous line in person."
         drawer
         intent="A Piece from the Collection"
-        ctaLabel="Arrange a Consultation"
+        ctaLabel="Meet the Concierge"
       />
 
       <AtelierBanner />
