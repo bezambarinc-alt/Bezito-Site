@@ -64,9 +64,10 @@ export const ABOUT_CHAPTERS: AboutChapter[] = [
     reverse: true,
     headline: 'The Laserset® Setting.',
     body: 'Precision laser-cut channels allow diamonds to be set directly into metal — no prongs, no bezel wall, no visible metal between stone and stone. Each diamond drops into a machined seat; edges touch edges; the surface reads as continuous diamond. The Laserset® is the invisible-set channel system behind pieces like the Millennium collar: row after row of Quadrillion-cut diamonds, edges aligned, the metal disappearing beneath them.',
-    img: {
-      src: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1782876014/Jewelry%20Images/Necklaces/single-row-lifestyle.jpg',
-      alt: 'Single row flex bracelet — Laserset® invisible channel setting',
+    pullquote: 'Invisible set for diamonds.',
+    video: {
+      src: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Necklaces/vm2439-hd.mp4',
+      poster: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/Jewelry%20Images/Necklaces/vm2439-model',
     },
   },
   {
