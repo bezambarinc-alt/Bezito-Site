@@ -60,9 +60,9 @@
   height: 100%;
 }
 
-/* Media banner slot — left col only, same dimensions as the top hero */
+/* Media banner slot — full width, above AtelierBanner */
 .mediaBanner {
-  grid-column: 1;
+  grid-column: 1 / -1;
   min-height: calc(100vh - var(--ba-header-h));
   overflow: hidden;
   background: #0d0d0d;
