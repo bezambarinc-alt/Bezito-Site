@@ -16,7 +16,7 @@ export default function Newsletter() {
       const res = await fetch('/api/lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: 'Newsletter', email, intent: 'newsletter', page_slug: 'home' }),
+        body: JSON.stringify({ email, intent: 'newsletter', page_slug: 'home' }),
       })
       if (!res.ok) throw new Error('Request failed')
       setStatus('success')
