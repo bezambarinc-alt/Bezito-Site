@@ -12,9 +12,14 @@ export default function AtelierBanner() {
           consultations — in Los Angeles or virtually, wherever you are. Private clients,
           collectors, and industry partners welcome.
         </p>
-        <InquiryButton intent="In Person Appointment" className={styles.btn}>
-          Arrange a Consultation
-        </InquiryButton>
+        <div className={styles.btnRow}>
+          <InquiryButton intent="In Person Appointment" className={styles.btn}>
+            Arrange a Consultation
+          </InquiryButton>
+          <InquiryButton intent="Authorized Retailers" className={styles.btn}>
+            Authorized Retailers
+          </InquiryButton>
+        </div>
 
         <div className={styles.rule} />
 

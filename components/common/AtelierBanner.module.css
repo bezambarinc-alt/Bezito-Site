@@ -50,6 +50,16 @@
   margin: 0 auto 2rem;
 }
 
+/* ── Button row — side by side on desktop, stacked on mobile ─ */
+
+.btnRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: clamp(3rem, 5vw, 4.5rem);
+}
+
 /* ── Ghost pill button — matches PageCta .btn ────────────── */
 
 .btn {
@@ -66,7 +76,6 @@
   background: transparent;
   cursor: pointer;
   transition: border-color 0.35s ease, background 0.35s ease, color 0.35s ease;
-  margin-bottom: clamp(3rem, 5vw, 4.5rem);
 }
 
 .btn:hover {
