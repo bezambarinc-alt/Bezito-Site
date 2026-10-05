@@ -189,9 +189,13 @@ CREATE UNIQUE INDEX IF NOT EXISTS products_slug_idx ON products (slug);
 -- Zoho outage can never lose a lead. Retried by /api/admin/leads/retry.
 --   sku    — product the inquiry came from, when the form was on a product page
 --   intent — form intent: newsletter, repair, appraisal, custom, … (see app/api/lead/route.ts)
+-- page_slug is attribution only — the raw path the form was submitted from
+-- (e.g. "contact", "jewelry/rings/c-0754"). It is NOT a FK to pages.slug: most
+-- submissions originate from hardcoded routes and piece slugs that are not pages
+-- rows. See migration 019 (dropped the former REFERENCES pages(slug)).
 CREATE TABLE IF NOT EXISTS leads (
   id          BIGSERIAL PRIMARY KEY,
-  page_slug   TEXT REFERENCES pages(slug),
+  page_slug   TEXT,
   name        TEXT,
   email       TEXT NOT NULL,
   message     TEXT,

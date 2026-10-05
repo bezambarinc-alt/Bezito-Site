@@ -38,9 +38,11 @@ export async function POST(req: NextRequest) {
     const nameFields = parseZohoName(lead.name, lead.email)
     const appUrl = process.env.APP_URL ?? 'https://bezambar-web2026.vercel.app'
     const pageUrl = lead.page_slug ? `${appUrl}/${lead.page_slug}` : undefined
+    // Label mirrors lib/leads.ts buildCrmDescription() so retried leads read
+    // identically to first-attempt ones in Zoho CRM.
     const description = [
-      lead.sku    ? `SKU: ${lead.sku}`       : null,
-      lead.intent ? `Intent: ${lead.intent}` : null,
+      lead.sku    ? `SKU: ${lead.sku}`                : null,
+      lead.intent ? `How can we help: ${lead.intent}` : null,
     ].filter(Boolean).join('\n') || 'Website inquiry'
 
     const crm = await fetch('https://www.zohoapis.com/crm/v3/Leads', {
