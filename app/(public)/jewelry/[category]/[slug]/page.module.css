@@ -60,12 +60,13 @@
   height: 100%;
 }
 
-/* Full-width media banner slot (iJewel viewer or video overflow when both are present) */
+/* Media banner slot — left col only, same dimensions as the top hero */
 .mediaBanner {
-  grid-column: 1 / -1;
-  height: 60vh;
+  grid-column: 1;
+  min-height: calc(100vh - var(--ba-header-h));
   overflow: hidden;
   background: #0d0d0d;
+  position: relative;
 }
 
 
