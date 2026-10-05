@@ -39,6 +39,7 @@ export default function ConciergeDrawer() {
         aria-modal="true"
         aria-label="Contact Us"
         aria-hidden={!open}
+        inert={!open}
       >
         <div className={styles.panel}>
           <button className={styles.close} onClick={close} aria-label="Close">

@@ -63,6 +63,11 @@
   --ba-z-header:  100;
   --ba-z-overlay: 200;
   --ba-z-drawer:  300;
+
+  /* Interaction */
+  --ba-scrim:      rgba(0, 0, 0, 0.45);  /* drawer/modal overlay */
+  --ba-error:      #b54242;               /* form error states */
+  --ba-ink-hover:  #2a2a2a;              /* ink CTA hover */
 }
 
 @media (max-width: 768px) {
@@ -204,8 +209,8 @@ body.page-dark {
 }
 .btn-primary:hover,
 .btn-ink:hover {
-  background: #2a2a2a;
-  border-color: #2a2a2a;
+  background: var(--ba-ink-hover);
+  border-color: var(--ba-ink-hover);
   transform: translateY(-1px);
   box-shadow: 0 4px 16px rgba(26, 26, 26, 0.15);
 }

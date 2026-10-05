@@ -51,7 +51,9 @@ export default function InquiryDrawer() {
         aria-modal="true"
         aria-labelledby="inq-heading"
         aria-hidden={!open}
+        inert={!open}
       >
+        <div className={styles.panel}>
         {/* Back + Close bar */}
         <div className={styles.bar}>
           {showBack ? (
@@ -64,7 +66,11 @@ export default function InquiryDrawer() {
           ) : (
             <span />
           )}
-          <button className={styles.close} onClick={close} aria-label="Close inquiry panel">✕</button>
+          <button className={styles.close} onClick={close} aria-label="Close inquiry panel">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
+              <path d="M1 1l10 10M11 1L1 11" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+            </svg>
+          </button>
         </div>
 
         {/* Context panel — "Inquiring about <piece>" */}
@@ -209,6 +215,7 @@ export default function InquiryDrawer() {
               </span>
             </div>
           </div>
+        </div>
         </div>
       </aside>
     </>

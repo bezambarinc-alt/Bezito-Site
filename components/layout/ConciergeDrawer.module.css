@@ -4,7 +4,7 @@
   position: fixed;
   inset: 0;
   z-index: var(--ba-z-drawer);
-  background: rgba(0, 0, 0, 0.45);
+  background: var(--ba-scrim);
   opacity: 0;
   visibility: hidden;
   transition: opacity var(--ba-transition), visibility var(--ba-transition);
@@ -45,13 +45,10 @@
 }
 .close:hover { color: var(--ba-gold); }
 
-/* Heading — global h2: sans 300 uppercase */
+/* Heading — inherits h2 globals (sans 300 uppercase); override size, tracking, color */
 .heading {
-  font-family: var(--ba-font-sans);
   font-size: 0.85rem;
-  font-weight: 300;
   letter-spacing: 0.2em;
-  text-transform: uppercase;
   color: var(--ba-ink);
   margin: 1.25rem 0 1.5rem;
 }
@@ -70,27 +67,22 @@
   gap: 0.85rem;
   width: 100%;
   padding: 1rem 0;
-  border-top: 1px solid var(--ba-border);
   text-align: left;
   color: var(--ba-ink);
   text-decoration: none;
   cursor: pointer;
-  background: none;
-  border-left: 0;
-  border-right: 0;
-  border-bottom: 0;
   transition: color 0.2s;
 }
 .row:hover { color: var(--ba-gold); }
 
-/* Last item gets a bottom border too */
-.list > li:last-child > .row {
-  border-bottom: 1px solid var(--ba-border);
-}
+/* Dividers: top border on all rows except indented sub-rows */
+.row:not(.rowSub) { border-top: 1px solid var(--ba-border); }
+
+/* Last item: bottom border on the li so it encompasses expanded sub-rows */
+.list > li:last-child { border-bottom: 1px solid var(--ba-border); }
 
 /* Sub-row */
 .rowSub {
-  border-top: 0;
   padding: 0.6rem 0 0.6rem 2.75rem;
   font-size: 0.82rem;
 }
