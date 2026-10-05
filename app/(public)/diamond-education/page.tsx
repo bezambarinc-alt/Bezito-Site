@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import PageCta from '@/components/common/PageCta'
+import AtelierBanner from '@/components/common/AtelierBanner'
 import ScrollSpyTabs from './ScrollSpyTabs'
 import styles from './page.module.css'
 
@@ -213,14 +213,7 @@ export default function DiamondEducationPage() {
         </div>
       </section>
 
-      <PageCta
-        eyebrow="Choose Your Stone"
-        title="Talk to the Cutter"
-        body="At Bez Ambar, stone selection is part of the commission process. We evaluate each stone by eye — not just by certificate. Arrange a consultation to begin."
-        drawer
-        intent="Commission a Piece"
-        ctaLabel="Arrange a Consultation"
-      />
+      <AtelierBanner />
 
     </main>
   )

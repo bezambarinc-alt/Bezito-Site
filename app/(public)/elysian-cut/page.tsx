@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import PageCta from '@/components/common/PageCta'
 import AtelierBanner from '@/components/common/AtelierBanner'
 import { ELYSIAN_CUTS } from '@/lib/data/elysian-cuts'
 import styles from './page.module.css'
@@ -96,16 +95,6 @@ export default function ElysianCutPage() {
           ))}
         </div>
       </section>
-
-      {/* ── CTA ── */}
-      <PageCta
-        eyebrow="The Elysian Band"
-        title="See It on the Finger"
-        body="The Elysian Pear and Oval bands are available through the atelier. Arrange a private viewing to experience the continuous line in person."
-        drawer
-        intent="A Piece from the Collection"
-        ctaLabel="Arrange a Consultation"
-      />
 
       <AtelierBanner />
     </main>

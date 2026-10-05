@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import PageCta from '@/components/common/PageCta'
 import AtelierBanner from '@/components/common/AtelierBanner'
 import styles from './page.module.css'
 
@@ -78,15 +77,6 @@ export default function CutsPage() {
           </div>
         </section>
       ))}
-
-      <PageCta
-        eyebrow="Experience the Cuts"
-        title="See Them in Person"
-        body="The difference between a Bez Ambar cut and any other becomes clear under direct light. Arrange a private viewing at the Los Angeles atelier."
-        drawer
-        intent="A Piece from the Collection"
-        ctaLabel="Arrange a Consultation"
-      />
 
       <AtelierBanner />
     </main>

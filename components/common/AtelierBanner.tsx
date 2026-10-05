@@ -5,21 +5,21 @@ export default function AtelierBanner() {
   return (
     <section className={styles.banner}>
       <div className={styles.inner}>
-        <h2 className={`ba-title ${styles.headline}`}>Every stone has one right shape. We find it.</h2>
-
+        <p className={styles.consultEyebrow}>Private Consultation</p>
+        <h2 className={styles.headline}>Meet the Concierge</h2>
         <p className={styles.body}>
-          Bring us your stone, or let us find one for you.<br />
-          The piece is designed around it.
+          Every commission begins with a conversation. Our concierge is available for private
+          consultations — in Los Angeles or virtually, wherever you are. Private clients,
+          collectors, and industry partners welcome.
         </p>
-
-        <InquiryButton intent="Commission a Piece" className={styles.cta}>
-          Bring Us Your Stone →
+        <InquiryButton intent="In Person Appointment" className={styles.btn}>
+          Arrange a Consultation
         </InquiryButton>
 
         <div className={styles.rule} />
 
         <p className={styles.wordmark}>Bez Ambar</p>
-        <p className={styles.eyebrow}>Los Angeles · Est. 1979</p>
+        <p className={styles.estLine}>Los Angeles · Est. 1979</p>
       </div>
     </section>
   )

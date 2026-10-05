@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import PageCta from '@/components/common/PageCta'
 import AtelierBanner from '@/components/common/AtelierBanner'
 import TimelineNav from './TimelineNav'
 import { ChapterReveal, AnimateChild } from './ChapterReveal'
@@ -194,16 +193,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      {/* ── CTA ── */}
-      <PageCta
-        eyebrow="Private Consultation"
-        title="Meet the Concierge"
-        body="Every commission begins with a conversation. Our concierge is available for private consultations — in Los Angeles or virtually, wherever you are. Private clients, collectors, and industry partners welcome."
-        drawer
-        intent="In Person Appointment"
-        ctaLabel="Arrange a Consultation"
-      />
 
       <AtelierBanner />
     </main>

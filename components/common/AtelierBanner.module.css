@@ -1,90 +1,78 @@
 .banner {
   width: 100%;
   background: #000;
-  margin-top: var(--atelier-banner-mt, 64px);
-  padding: 80px 0 40px;
+  margin-top: var(--atelier-banner-mt, 0px);
+  padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 4rem) 40px;
   overflow: hidden;
 }
 
 .inner {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 clamp(24px, 5vw, 64px);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
 
-/* ── Eyebrow ─────────────────────────────────────────────── */
+/* ── Consultation eyebrow ─────────────────────────────────── */
 
-.eyebrow {
-  font-family: var(--ba-font-sans);
-  font-size: clamp(9px, 0.85vw, 11px);
-  font-weight: 500;
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
-  color: rgba(201, 169, 110, 0.5);
-  margin: 8px 0 0;
-}
-
-/* ── Headline — matches ScrollWipeCarousel headline style ─── */
-
-.headline {
-  font-family: var(--ba-font-sans);
-  font-size: 24px;
-  font-weight: 300;
-  letter-spacing: 0;
-  text-transform: uppercase;
-  line-height: 1.1;
-  color: var(--ba-gold);
-  margin: 0 0 18px;
-}
-
-/* ── Bottom wordmark signature ───────────────────────────── */
-
-.wordmark {
+.consultEyebrow {
   font-family: var(--ba-font-sans);
   font-size: 0.9375rem;
   font-weight: 600;
-  letter-spacing: 0;
   text-transform: uppercase;
-  color: var(--ba-gold);
-  margin-top: clamp(24px, 3vw, 36px);
+  color: var(--ba-gold-warm);
+  margin: 0 0 1rem;
+  display: block;
+  letter-spacing: 0.05em;
 }
 
-/* ── Sub body ────────────────────────────────────────────── */
+/* ── Headline — large, white, matches PageCta title ──────── */
+
+.headline {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 200;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0 0 1rem;
+}
+
+/* ── Body copy ───────────────────────────────────────────── */
 
 .body {
   font-family: var(--ba-font-editorial);
-  font-size: clamp(1rem, 1.3vw, 1.15rem);
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.55);
-  margin: 0 0 clamp(32px, 4.5vw, 52px);
-  max-width: 58ch;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 50ch;
+  margin: 0 auto 2rem;
 }
 
-/* ── Consult CTA ─────────────────────────────────────────── */
+/* ── Ghost pill button — matches PageCta .btn ────────────── */
 
-.cta {
+.btn {
+  display: inline-block;
   font-family: var(--ba-font-sans);
-  font-size: clamp(11px, 0.9vw, 13px);
-  font-weight: 500;
-  letter-spacing: 0.22em;
+  font-size: 0.6875rem;
+  font-weight: 400;
   text-transform: uppercase;
-  color: rgba(201, 169, 110, 0.85);
-  background: none;
-  border: none;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  padding: 14px 40px;
+  background: transparent;
   cursor: pointer;
-  padding: 0 0 4px;
-  margin-bottom: clamp(40px, 6vw, 64px);
-  transition: color 0.3s;
+  transition: border-color 0.35s ease, background 0.35s ease, color 0.35s ease;
+  margin-bottom: clamp(3rem, 5vw, 4.5rem);
 }
 
-.cta:hover {
-  color: #f0dbb0;
+.btn:hover {
+  border-color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
 }
 
 /* ── Thin gold rule ──────────────────────────────────────── */
@@ -99,4 +87,26 @@
     rgba(201, 169, 110, 0.5) 60%,
     transparent
   );
+}
+
+/* ── Bottom wordmark signature ───────────────────────────── */
+
+.wordmark {
+  font-family: var(--ba-font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--ba-gold);
+  margin-top: clamp(24px, 3vw, 36px);
+}
+
+.estLine {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(9px, 0.85vw, 11px);
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(201, 169, 110, 0.5);
+  margin: 8px 0 0;
 }
