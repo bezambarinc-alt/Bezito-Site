@@ -49,9 +49,12 @@ export default function LayoutDefault({
   const heroIsIJewel = Boolean(ijewelUrl && interactiveIsHero)
   const heroIsVideo  = !heroIsIJewel && Boolean(heroVideo)
 
-  // Media banner appears when both are present; shows the non-hero medium
-  const showMediaBanner = Boolean(ijewelUrl && heroVideo)
-  const mediaBannerIsIJewel = showMediaBanner && !interactiveIsHero
+  // iJewel in banner: URL set + not designated hero (works with or without video)
+  // Video in banner: video exists + iJewel is taking the hero slot
+  const showIJewelInBanner = Boolean(ijewelUrl && !interactiveIsHero)
+  const showVideoInBanner  = Boolean(heroVideo && interactiveIsHero && ijewelUrl)
+  const showMediaBanner    = showIJewelInBanner || showVideoInBanner
+  const mediaBannerIsIJewel = showIJewelInBanner
 
   const conceptView = views.find(v => v.label === 'Concept')
 
