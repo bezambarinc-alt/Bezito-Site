@@ -1,10 +1,10 @@
-/* ConciergeDrawer — matches Astro .cg-drawer: dark panel, right slide-in, icon rows */
+/* ConciergeDrawer — light panel, right slide-in, 480px */
 
 .scrim {
   position: fixed;
   inset: 0;
   z-index: var(--ba-z-drawer);
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(0, 0, 0, 0.45);
   opacity: 0;
   visibility: hidden;
   transition: opacity var(--ba-transition), visibility var(--ba-transition);
@@ -17,8 +17,9 @@
   right: 0;
   z-index: calc(var(--ba-z-drawer) + 1);
   height: 100dvh;
-  width: min(380px, 100%);
-  background: var(--ba-dark);
+  width: min(480px, 100%);
+  background: var(--ba-white);
+  border-left: 1px solid var(--ba-border-warm);
   transform: translateX(100%);
   transition: transform 0.45s var(--ba-ease-lux);
   overflow: hidden;
@@ -31,7 +32,7 @@
   padding: 1.5rem clamp(1.25rem, 3vw, 2rem) 2.5rem;
 }
 
-/* Close × — matches Astro .cg-drawer__close */
+/* Close × */
 .close {
   display: flex;
   align-items: center;
@@ -39,19 +40,19 @@
   width: 32px;
   height: 32px;
   margin-left: auto;
-  color: var(--ba-cream);
+  color: var(--ba-ink-muted);
   transition: color 0.2s;
 }
 .close:hover { color: var(--ba-gold); }
 
-/* Heading — matches Astro .cg-drawer__heading */
+/* Heading — global h2: sans 300 uppercase */
 .heading {
   font-family: var(--ba-font-sans);
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.22em;
+  font-size: 0.85rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--ba-white);
+  color: var(--ba-ink);
   margin: 1.25rem 0 1.5rem;
 }
 
@@ -62,16 +63,16 @@
   flex-direction: column;
 }
 
-/* Row — matches Astro .cg-row */
+/* Row */
 .row {
   display: flex;
   align-items: center;
   gap: 0.85rem;
   width: 100%;
   padding: 1rem 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  border-top: 1px solid var(--ba-border);
   text-align: left;
-  color: var(--ba-cream);
+  color: var(--ba-ink);
   text-decoration: none;
   cursor: pointer;
   background: none;
@@ -84,27 +85,27 @@
 
 /* Last item gets a bottom border too */
 .list > li:last-child > .row {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  border-bottom: 1px solid var(--ba-border);
 }
 
-/* Sub-row (inside expandable) */
+/* Sub-row */
 .rowSub {
   border-top: 0;
   padding: 0.6rem 0 0.6rem 2.75rem;
   font-size: 0.82rem;
 }
 
-/* Icon — matches Astro .cg-row__icon */
+/* Icon */
 .rowIcon {
   flex-shrink: 0;
   width: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.7;
+  opacity: 0.45;
 }
 
-/* Label — matches Astro .cg-row__label */
+/* Label */
 .rowLabel {
   flex: 1;
   font-family: var(--ba-font-sans);
@@ -113,19 +114,19 @@
   letter-spacing: 0.04em;
 }
 
-/* Chevron — matches Astro .cg-row__chevron */
+/* Chevron */
 .rowChevron {
   flex-shrink: 0;
   font-size: 1.1rem;
-  opacity: 0.5;
+  opacity: 0.3;
   transition: transform 0.25s, opacity 0.2s;
 }
 .chevronOpen {
   transform: rotate(90deg);
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
-/* Expandable wrapper — sub-list hidden by default */
+/* Expandable wrapper */
 .expandWrap .subList {
   display: none;
   list-style: none;
