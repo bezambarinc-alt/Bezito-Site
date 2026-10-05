@@ -80,7 +80,7 @@ function ArchiveModalPanel({ entry, onClose }: { entry: ArchiveEntry; onClose: (
         body: JSON.stringify({
           name,
           email,
-          intent: 'archive-inquiry',
+          intent: 'Archive Inquiry',
           // SKU goes to the dedicated leads.sku column. page_slug is the archive
           // piece's own slug (not a page FK), left for reference only.
           sku: entry.sku || null,
