@@ -198,11 +198,11 @@ export default function AboutPage() {
       {/* ── CTA ── */}
       <PageCta
         eyebrow="Private Consultation"
-        title="Meet Bez in Los Angeles"
-        body="Every commission begins with a conversation. Bez is present at every meeting. Arrange a private viewing at 611 Wilshire Blvd."
+        title="Meet the Concierge"
+        body="Every commission begins with a conversation. Our concierge is available for private consultations — in Los Angeles or virtually, wherever you are. Private clients, collectors, and industry partners welcome."
         drawer
         intent="In Person Appointment"
-        ctaLabel="Arrange a Visit"
+        ctaLabel="Arrange a Consultation"
       />
 
       <AtelierBanner />
