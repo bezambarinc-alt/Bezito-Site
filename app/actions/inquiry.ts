@@ -118,13 +118,26 @@ export async function submitInquiry(
     .filter(Boolean)
     .join('\n') || null
 
+  // Resolve FK-safe page slug — leads.page_slug REFERENCES pages(slug).
+  // Hardcoded routes ("/contact") and product paths are NOT pages rows.
+  // Mirrors the guard in app/api/lead/route.ts.
+  let fkPageSlug: string | null = null
+  if (d.pageSlug) {
+    try {
+      const hit = await sql<{ slug: string }>(
+        `SELECT slug FROM pages WHERE slug = $1 LIMIT 1`, [d.pageSlug],
+      )
+      if (hit.length > 0) fkPageSlug = d.pageSlug
+    } catch { fkPageSlug = null }
+  }
+
   // 1. Durable audit copy FIRST.
   let leadId: number | null = null
   try {
     const [lead] = await sql<{ id: number }>(
       `INSERT INTO leads(page_slug, sku, intent, name, email, message, crm_status)
        VALUES ($1,$2,$3,$4,$5,$6,'pending') RETURNING id`,
-      [d.pageSlug || null, d.sku || null, d.intent, d.name, d.email, composedMessage],
+      [fkPageSlug, d.sku || null, d.intent, d.name, d.email, composedMessage],
     )
     leadId = lead?.id ?? null
   } catch {
