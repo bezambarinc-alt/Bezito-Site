@@ -60,9 +60,9 @@
   height: 100%;
 }
 
-/* Media banner slot — full width, above AtelierBanner */
+/* Media banner slot — left column (55%), above AtelierBanner */
 .mediaBanner {
-  grid-column: 1 / -1;
+  grid-column: 1;
   min-height: calc(100vh - var(--ba-header-h));
   overflow: hidden;
   background: #0d0d0d;
