@@ -219,7 +219,7 @@ export default function DiamondEducationPage() {
         body="At Bez Ambar, stone selection is part of the commission process. We evaluate each stone by eye — not just by certificate. Arrange a consultation to begin."
         drawer
         intent="Commission a Piece"
-        ctaLabel="Meet the Concierge"
+        ctaLabel="Arrange a Consultation"
       />
 
     </main>

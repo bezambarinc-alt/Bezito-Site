@@ -202,7 +202,7 @@ export default function AboutPage() {
         body="Every commission begins with a conversation. Our concierge is available for private consultations — in Los Angeles or virtually, wherever you are. Private clients, collectors, and industry partners welcome."
         drawer
         intent="In Person Appointment"
-        ctaLabel="Meet the Concierge"
+        ctaLabel="Arrange a Consultation"
       />
 
       <AtelierBanner />

@@ -85,7 +85,7 @@ export default function CutsPage() {
         body="The difference between a Bez Ambar cut and any other becomes clear under direct light. Arrange a private viewing at the Los Angeles atelier."
         drawer
         intent="A Piece from the Collection"
-        ctaLabel="Meet the Concierge"
+        ctaLabel="Arrange a Consultation"
       />
 
       <AtelierBanner />

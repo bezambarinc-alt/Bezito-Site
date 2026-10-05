@@ -97,7 +97,7 @@ export default function HomePage() {
         eyebrow="Private Viewing"
         title="By Appointment, with the Concierge"
         body="Some pieces ask to be seen alone. Arrange a private viewing at the Los Angeles atelier—an existing piece, a single stone, or a commission of your own. Our concierge will guide you through the collection personally. No showroom, no crowd. Just the work, and the people who know it best."
-        ctaLabel="Meet the Concierge"
+        ctaLabel="Arrange a Consultation"
         openConcierge
       />
 
