@@ -3,10 +3,25 @@ import { getGeo } from '@/lib/geo'
 import { checkRateLimit, recordAttempt } from '@/lib/rate-limit'
 import { createLead } from '@/lib/leads'
 
+// Allowed origins — same-origin fetch from any bezambar Vercel deployment or localhost.
+function isAllowedOrigin(origin: string | null): boolean {
+  if (!origin) return true // server-side callers have no Origin header
+  return (
+    origin === (process.env.APP_URL ?? 'https://bezambar-web2026.vercel.app') ||
+    /^https:\/\/bezambar[a-z0-9-]*\.vercel\.app$/.test(origin) ||
+    /^https:\/\/bezambar\.com$/.test(origin) ||
+    /^http:\/\/localhost:\d+$/.test(origin)
+  )
+}
+
 // REST entry point for client-side fetch callers (ArchiveModal, Newsletter).
 // All lead-creation + Zoho logic lives in lib/leads.ts — this handler owns only
-// the HTTP concerns: rate limiting, input validation, and status codes.
+// the HTTP concerns: origin check, rate limiting, input validation, status codes.
 export async function POST(req: NextRequest) {
+  if (!isAllowedOrigin(req.headers.get('origin'))) {
+    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+  }
+
   const { ip } = getGeo(req)
   const { allowed } = await checkRateLimit(ip)
   if (!allowed) {

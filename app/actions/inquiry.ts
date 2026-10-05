@@ -1,8 +1,11 @@
 'use server'
 
 import { z } from 'zod'
+import { headers } from 'next/headers'
 import { INQUIRY_INTENTS } from '@/lib/data/inquiry-constants'
 import { createLead } from '@/lib/leads'
+import { checkRateLimit, recordAttempt } from '@/lib/rate-limit'
+import { getClientIp } from '@/lib/client-ip'
 
 // Built from the single shared source of truth so the schema can never drift
 // from the UI (this exact duplication caused a submission-breaking bug before).
@@ -30,6 +33,13 @@ export async function submitInquiry(
   _prev: InquiryState,
   formData: FormData,
 ): Promise<InquiryState> {
+  const ip = getClientIp(await headers())
+  const { allowed } = await checkRateLimit(ip)
+  if (!allowed) {
+    return { status: 'error', message: 'Too many requests. Please try again later.' }
+  }
+  await recordAttempt(ip, true)
+
   const raw = {
     name: formData.get('name'),
     email: formData.get('email'),
