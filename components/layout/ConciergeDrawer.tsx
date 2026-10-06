@@ -114,7 +114,7 @@ export default function ConciergeDrawer() {
               </ul>
             </li>
 
-            {/* Find a Retailer */}
+            {/* Authorized Retailers */}
             <li>
               <button className={styles.row} onClick={() => toInquiry('Authorized Retailers')}>
                 <span className={styles.rowIcon} aria-hidden>
@@ -123,7 +123,7 @@ export default function ConciergeDrawer() {
                     <circle cx="9" cy="7" r="1.8" stroke="currentColor" strokeWidth="1.1" />
                   </svg>
                 </span>
-                <span className={styles.rowLabel}>Find a Retailer</span>
+                <span className={styles.rowLabel}>Authorized Retailers</span>
                 <span className={styles.rowChevron} aria-hidden>›</span>
               </button>
             </li>
