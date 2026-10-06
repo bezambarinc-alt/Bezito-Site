@@ -86,7 +86,11 @@ export default function InquiryDrawer() {
 
         <div className={styles.body}>
           <h2 id="inq-heading" className={styles.heading}>{prefillIntent || 'Connect with the Atelier'}</h2>
-          <p className={styles.subhead}>We respond personally within one business day.</p>
+          <p className={styles.subhead}>
+            {prefillIntent === 'Authorized Retailers'
+              ? 'Bez Ambar is available through a select network of authorized retail partners worldwide. Share your location and we\'ll connect you directly.'
+              : 'We respond personally within one business day.'}
+          </p>
 
           {success ? (
             <div className={styles.success}>

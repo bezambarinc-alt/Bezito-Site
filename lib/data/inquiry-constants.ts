@@ -18,7 +18,7 @@ export const INQUIRY_INTENTS = [
   'A Piece from the Collection',
   'Repair & Cleaning',
   'Ring Resizing',
-  'Find a Retailer',
+  'Authorized Retailers',
   'Ring Sizing Appointment',
 ] as const
 
