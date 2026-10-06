@@ -269,7 +269,14 @@ export async function GET(req: NextRequest) {
       if (deleted) console.log(`Deleted stale: ${stale.map((r) => r.sku).join(', ')}`)
     }
 
+    // Bust ISR cache for the top-level jewelry page and every category listing.
+    // revalidatePath('/jewelry', 'layout') alone doesn't reliably bust /jewelry/[category]
+    // pages on Vercel's CDN edge — explicit per-category calls are required.
     revalidatePath('/jewelry', 'layout')
+    const { CATEGORIES } = await import('@/lib/data/categories')
+    for (const cat of Object.keys(CATEGORIES)) {
+      revalidatePath(`/jewelry/${cat}`)
+    }
 
     return NextResponse.json({ ok: true, listed: products.length, upserted, deleted, errors: errors.slice(0, 5) })
   } catch (e) {

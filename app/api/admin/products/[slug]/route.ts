@@ -72,9 +72,10 @@ export async function PATCH(req: NextRequest, { params }: Ctx) {
   if (!rows.length) return NextResponse.json({ error: 'Product not found' }, { status: 404 })
 
   const product = rows[0]
-  // Bust ISR cache for this product page so active/featured changes are visible immediately.
+  // Bust ISR cache for this product page and its category listing.
   if (product.category) {
     revalidatePath(`/jewelry/${product.category}/${slug}`)
+    revalidatePath(`/jewelry/${product.category}`)
   }
   revalidatePath('/jewelry', 'layout')
 
