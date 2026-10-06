@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: '%s · Bez Ambar',
   },
   description:
-    'Bez Ambar — co-inventor of the modern Princess cut. Fine jewelry from the Los Angeles atelier.',
+    'Bez Ambar — co-inventor of the modern Princess Cut. Fine jewelry from the Los Angeles atelier.',
   openGraph: {
     type: 'website',
     siteName: 'Bez Ambar',

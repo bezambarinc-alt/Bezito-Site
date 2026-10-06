@@ -96,7 +96,7 @@ export default function HomePage() {
         imageUrl="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto:good,w_1200/v1785654364/find_a_retailer_in1kpt.avif"
         eyebrow="Private Viewing"
         title="By Appointment, with the Concierge"
-        body="Some pieces ask to be seen alone. Arrange a private viewing at the Los Angeles atelier—an existing piece, a single stone, or a commission of your own. Our concierge will guide you through the collection personally. No showroom, no crowd. Just the work, and the people who know it best."
+        body="Some pieces ask to be seen alone. Arrange a private viewing at the Los Angeles atelier—an existing piece, a single stone, or a commission of your own. Our Concierge will guide you through the collection personally. No showroom, no crowd. Just the work, and the people who know it best."
         ctaLabel="Arrange a Consultation"
         openConcierge
       />

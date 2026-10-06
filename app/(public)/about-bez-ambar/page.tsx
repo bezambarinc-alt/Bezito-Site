@@ -10,7 +10,7 @@ import styles from './page.module.css'
 export const metadata: Metadata = {
   title: { absolute: 'About Bez Ambar — Artist, Designer & Co-Inventor of the Princess Cut' },
   description:
-    'About Bez Ambar: Israeli-American diamond artist, designer, and co-inventor of the modern Princess cut. Three patented cuts. One atelier in Los Angeles.',
+    'About Bez Ambar: Israeli-American diamond artist, designer, and co-inventor of the modern Princess Cut. Three patented cuts. One atelier in Los Angeles.',
   openGraph: {
     title: 'About Bez Ambar',
     description: 'Co-Inventor of the Modern Princess Cut. Four decades of chiseling light from a Los Angeles atelier.',
@@ -37,7 +37,7 @@ export default function AboutPage() {
           <p className={styles.heroEyebrow}>Co-Inventor</p>
           <h1 className={styles.heroTitle}>Bez Ambar</h1>
           <p className={styles.heroLede}>
-            Diamond cutter. Designer. Co-inventor of the modern Princess cut. One atelier,
+            Diamond cutter. Designer. Co-inventor of the modern Princess Cut. One atelier,
             Los Angeles, forty-seven years.
           </p>
         </div>
@@ -62,7 +62,7 @@ export default function AboutPage() {
           <div className={styles.introText}>
             <p>Most jewelry houses source pre-cut diamonds. Some cut their own — using other people&apos;s geometries. Bez Ambar designs the facets themselves, executes every cut in-house, and shapes each stone to fit its exact position in the piece.</p>
             <p>That discipline began in 1979, when Bez arrived in Los Angeles as a cutter. It hasn&apos;t changed. Every diamond that leaves this atelier has been evaluated, cut, and set by the same team that designed the geometry it was cut to.</p>
-            <p>The Princess cut, the Blaze®, the Divine Cut® — three patented diamond geometries invented at 611 Wilshire. Each one a different answer to the same question: how does light move inside a stone, and how do you make it move better?</p>
+            <p>The Princess Cut, the Blaze®, the Divine Cut® — three patented diamond geometries invented at 611 Wilshire. Each one a different answer to the same question: how does light move inside a stone, and how do you make it move better?</p>
           </div>
         </div>
       </div>

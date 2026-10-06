@@ -121,7 +121,7 @@ const PRODUCTS: LegacyProduct[] = [
   },
   {
     slug: 'quadrillion-and-baguette-diamonds-wedding-band',
-    name: 'Quadrillion & Baguette Band',
+    name: 'Quadrillion® & Baguette Band',
     sku: 'SIGMA135',
     category: 'bands',
     categoryLabel: 'Bands',

@@ -8,7 +8,7 @@ export default function AtelierBanner() {
         <p className={styles.consultEyebrow}>Private Consultation</p>
         <h2 className={styles.headline}>Meet the Concierge</h2>
         <p className={styles.body}>
-          Every commission begins with a conversation. Our concierge is available for private
+          Every commission begins with a conversation. Our Concierge is available for private
           consultations — in Los Angeles or virtually, wherever you are. Private clients,
           collectors, and industry partners welcome.
         </p>

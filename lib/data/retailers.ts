@@ -316,7 +316,7 @@ export const RETAILERS: Retailer[] = [
     shortName: 'Sid Potts',
     cityState: 'Shreveport, LA',
     heroImg: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto:good,w_1600,c_fill,g_center/Jewelry%20Images/Bracelets/flex-bracelet-on-black',
-    about: "Shreveport\u2019s landmark diamond destination. Sid Potts has been an authorized Bez Ambar retailer since the early years of the collection, bringing princess-cut and fine diamond jewelry to the Gulf South with the expertise of a multi-generational jeweler.",
+    about: "Shreveport\u2019s landmark diamond destination. Sid Potts has been an authorized Bez Ambar retailer since the early years of the collection, bringing Princess Cut and fine diamond jewelry to the Gulf South with the expertise of a multi-generational jeweler.",
     website: 'https://www.sidpotts.com',
     ctaCity: 'Shreveport',
     locations: [

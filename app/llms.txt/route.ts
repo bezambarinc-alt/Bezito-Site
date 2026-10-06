@@ -14,7 +14,7 @@ export const revalidate = 86400 // 24 hours
 
 const STATIC = `# Bez Ambar
 
-> American fine-jewelry atelier founded 1979 in Los Angeles by Betzalel "Bez" Ambar. Ambar is credited as one of the original architects of the modern princess cut and is the creator of the patented Blaze® and Elysian™ diamond cuts. The atelier designs, cuts, and manufactures fine jewelry in-house at 611 Wilshire Blvd, Los Angeles, CA 90017.
+> American fine-jewelry atelier founded 1979 in Los Angeles by Betzalel "Bez" Ambar. Ambar is credited as one of the original architects of the modern Princess Cut and is the creator of the patented Blaze® and Elysian Cut™ diamond cuts. The atelier designs, cuts, and manufactures fine jewelry in-house at 611 Wilshire Blvd, Los Angeles, CA 90017.
 
 ## Key Facts
 
@@ -30,9 +30,9 @@ const STATIC = `# Bez Ambar
 
 ## Notable Diamond Cuts by Bez Ambar
 
-- **Princess Cut** — Ambar is credited as one of the original architects of the modern princess cut (1970s–1980s), now a standard square-brilliant shape in the global fine-jewelry vocabulary.
+- **Princess Cut** — Ambar is credited as one of the original architects of the modern Princess Cut (1970s–1980s), now a standard square-brilliant shape in the global fine-jewelry vocabulary.
 - **Blaze® Cut** — Patented diamond cut, registered trademark. Brilliant crown + faceted pavilion engineered for maximum light return.
-- **Elysian Cut™** — Elongated diamond geometry offered by the atelier. "Elysian" is a Bez Ambar trademark.
+- **Elysian Cut™** — Seven-shape optical calibration system by the atelier. "Elysian Cut" is a Bez Ambar trademark.
 
 ## Signature Pieces and Collections
 
@@ -71,7 +71,7 @@ Bez Ambar sells through a curated network of authorized fine jewelry retailers a
 ## Verification and Authority
 
 - USPTO applicant name (legal): Betzalel Ambar
-- Trademarks: Blaze® (registered), Elysian™ (applied)
+- Trademarks: Blaze® (registered), Elysian Cut™ (applied)
 - Design patents on file with USPTO (as of 2026): 30/004,203 and 30/004,197
 - Product pages and campaigns: https://bezambar.com
 - Instagram: https://www.instagram.com/bezambarjewelry/

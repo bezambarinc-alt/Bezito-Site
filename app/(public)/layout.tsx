@@ -32,7 +32,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
             name: 'Bez Ambar',
             url: 'https://bezambar.com',
             description:
-              'Independent jewelry designer and maker based in Los Angeles. Co-Inventor of the modern Princess cut. Creator of the patented Blaze® and Elysian Cut™ diamond cuts.',
+              'Independent jewelry designer and maker based in Los Angeles. Co-Inventor of the modern Princess Cut. Creator of the patented Blaze® and Elysian Cut™ diamond cuts.',
             logo: { '@type': 'ImageObject', url: 'https://bezambar.com/logo.svg', width: 200, height: 60 },
             address: {
               '@type': 'PostalAddress',

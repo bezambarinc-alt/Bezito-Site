@@ -37,7 +37,7 @@ export default function ConciergeDrawer() {
         className={`${styles.drawer} ${open ? styles.open : ''}`}
         role="dialog"
         aria-modal="true"
-        aria-label="Contact Us"
+        aria-label="The Concierge"
         aria-hidden={!open}
         inert={!open}
       >
@@ -48,7 +48,7 @@ export default function ConciergeDrawer() {
             </svg>
           </button>
 
-          <h2 className={styles.heading}>Contact Us</h2>
+          <h2 className={styles.heading}>The Concierge</h2>
 
           <ul className={styles.list} role="list">
 

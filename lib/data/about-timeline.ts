@@ -63,7 +63,7 @@ export const ABOUT_CHAPTERS: AboutChapter[] = [
     layout: 'split',
     reverse: true,
     headline: 'The Laserset® Setting.',
-    body: 'Precision laser-cut channels allow diamonds to be set directly into metal — no prongs, no bezel wall, no visible metal between stone and stone. Each diamond drops into a machined seat; edges touch edges; the surface reads as continuous diamond. The Laserset® is the invisible-set channel system behind pieces like the Millennium collar: row after row of Quadrillion-cut diamonds, edges aligned, the metal disappearing beneath them.',
+    body: 'Precision laser-cut channels allow diamonds to be set directly into metal — no prongs, no bezel wall, no visible metal between stone and stone. Each diamond drops into a machined seat; edges touch edges; the surface reads as continuous diamond. The Laserset® is the invisible-set channel system behind pieces like the Millennium collar: row after row of Quadrillion®-cut diamonds, edges aligned, the metal disappearing beneath them.',
     pullquote: 'Invisible set for diamonds.',
     video: {
       src: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Necklaces/vm2439-hd.mp4',
@@ -107,7 +107,7 @@ export const ABOUT_CHAPTERS: AboutChapter[] = [
     year: '2012',
     layout: 'split',
     headline: 'The Divine Cut®.',
-    body: 'A round brilliant rebuilt from first principles. The Divine Cut® adds proprietary facets engineered for maximum dispersion — fire visible from across a room, measurably beyond what a standard round can produce. Where a conventional round brilliant carries 57 facets, the Divine Cut geometry reconsiders every angle: a patented geometry that takes the round diamond further than any standardized cut. The third original cut from the 611 Wilshire atelier.',
+    body: 'A round brilliant rebuilt from first principles. The Divine Cut® adds proprietary facets engineered for maximum dispersion — fire visible from across a room, measurably beyond what a standard round can produce. Where a conventional round brilliant carries 57 facets, the Divine Cut® geometry reconsiders every angle: a patented geometry that takes the round diamond further than any standardized cut. The third original cut from the 611 Wilshire atelier.',
     video: {
       src: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1783797059/archive/videos/a3418-palsqnc.mp4',
       poster: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto,w_900,so_0/v1783797059/archive/videos/a3418-palsqnc.jpg',
