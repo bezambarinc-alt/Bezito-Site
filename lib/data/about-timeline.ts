@@ -37,7 +37,7 @@ export const ABOUT_CHAPTERS: AboutChapter[] = [
     },
   },
   {
-    year: '1982',
+    year: '1980',
     layout: 'split',
     reverse: true,
     headline: 'The Princess Cut.',

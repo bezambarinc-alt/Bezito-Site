@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const CUTS = [
   {
     id: 'quadrillion',
-    eyebrow: '1982 · Patented · DeBeers Award',
+    eyebrow: '1980 · Patented · DeBeers Award',
     name: 'Quadrillion® — The Princess Cut',
     body: 'A square brilliant with chevron facets that direct light inward and back up through the table. The trade adopted it immediately. The world eventually called it the Princess Cut — Bez\'s cut, under a different name. It became the most popular diamond shape on Earth. The man who invented it kept working.',
     imageUrl: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg',

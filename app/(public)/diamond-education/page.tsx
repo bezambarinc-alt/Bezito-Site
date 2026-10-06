@@ -171,7 +171,7 @@ export default function DiamondEducationPage() {
           <div className={styles.shapesGrid}>
             {[
               { name: 'Round Brilliant', desc: 'The most popular shape. 58 facets engineered to maximize light return. The standard against which all others are measured.' },
-              { name: 'Princess', desc: 'Square brilliant. Invented by Bez Ambar in 1982 under the name Quadrillion®. The second most popular shape in the world.' },
+              { name: 'Princess', desc: 'Square brilliant. Co-invented by Bez Ambar in 1980 under the name Quadrillion®. The second most popular shape in the world.' },
               { name: 'Oval', desc: 'Elongated brilliant. Appears larger per carat than round. Flattering on the finger — the elongation extends the hand.' },
               { name: 'Pear', desc: 'A teardrop. The pointed end is directional — it narrows the appearance of the finger when oriented down.' },
               { name: 'Marquise', desc: 'Two pointed ends. The most elongated of the standard shapes. Maximizes face-up size per carat.' },

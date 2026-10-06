@@ -11,7 +11,7 @@ const COLLECTION_ITEMS = [
     src: 'https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_3:4,w_600,g_center,f_auto,q_auto/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg',
     alt: 'The Princess Cut diamond — the original patented by Bez Ambar',
     title: 'The Princess Cut',
-    body: 'The original — created by Bez Ambar in 1979. Precision-cut for maximum brilliance in a square form.',
+    body: 'The original — co-invented by Bez Ambar in 1980. Precision-cut for maximum brilliance in a square form.',
   },
   {
     src: 'https://res.cloudinary.com/dlg2mou53/image/upload/c_fill,ar_3:4,w_600,g_center,f_auto,q_auto/v1775549202/Jewelry%20Images/Rings/C0625_Baguette_band_Master_e4azkj.jpg',
