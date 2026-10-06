@@ -16,7 +16,7 @@ export default function AtelierBanner() {
           <InquiryButton intent="In Person Appointment" className={styles.btn}>
             Arrange a Consultation
           </InquiryButton>
-          <InquiryButton intent="Authorized Retailers" className={styles.btn}>
+          <InquiryButton intent="Find a Retailer" className={styles.btn}>
             Authorized Retailers
           </InquiryButton>
         </div>
