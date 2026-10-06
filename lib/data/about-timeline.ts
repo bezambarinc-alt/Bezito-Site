@@ -108,9 +108,9 @@ export const ABOUT_CHAPTERS: AboutChapter[] = [
     layout: 'split',
     headline: 'The Divine Cut®.',
     body: 'A round brilliant rebuilt from first principles. The Divine Cut® adds proprietary facets engineered for maximum dispersion — fire visible from across a room, measurably beyond what a standard round can produce. Where a conventional round brilliant carries 57 facets, the Divine Cut geometry reconsiders every angle: a patented geometry that takes the round diamond further than any standardized cut. The third original cut from the 611 Wilshire atelier.',
-    img: {
-      src: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/BezAmbar-OldSite/2023/divine-cut-detail.jpg',
-      alt: 'The Divine Cut® — a patented round brilliant by Bez Ambar',
+    video: {
+      src: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1783797059/archive/videos/a3418-palsqnc.mp4',
+      poster: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto,w_900,so_0/v1783797059/archive/videos/a3418-palsqnc.jpg',
     },
   },
   {
