@@ -229,6 +229,7 @@ export async function createLead(input: LeadInput): Promise<LeadResult> {
             Mobile: input.phone || undefined,
             Lead_Source: ZOHO_LEAD_SOURCE,
             Website: pageUrl,
+            Inquiry_Intent: input.intent || undefined,
             Description: buildCrmDescription(input, pageUrl),
           }],
         }),
