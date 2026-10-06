@@ -137,6 +137,7 @@ export default async function ProductPage({
   const stoneParts = [s.gemStone, s.color, s.clarity, s.caratWeight].filter(Boolean)
   const specItems: SpecItem[] = [
     stoneParts.length ? { label: 'Gemstone Details', body: stoneParts.join(' · ') } : null,
+    s.stoneNotes      ? { label: 'Stone Weights',    body: s.stoneNotes }           : null,
     s.metal           ? { label: 'Metal',            body: s.metal }               : null,
     { label: 'Shipping',  body: 'Complimentary worldwide shipping · Fully insured' },
     { label: 'Warranty',  body: 'Lifetime warranty on craftsmanship and materials. Complimentary annual inspection.' },

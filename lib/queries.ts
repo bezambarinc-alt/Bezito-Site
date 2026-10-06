@@ -66,6 +66,7 @@ function rowToProduct(r: Record<string, unknown>): Product {
     heroVideoUrl:      heroVideo  ?? undefined,
     heroPosterUrl:     heroPoster ?? undefined,
     madeIn:            'Los Angeles',
+    stoneNotes:        (r.stone_notes as string) ?? undefined,
   }
 
   return {
