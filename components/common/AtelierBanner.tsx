@@ -13,7 +13,7 @@ export default function AtelierBanner() {
           collectors, and industry partners welcome.
         </p>
         <div className={styles.btnRow}>
-          <InquiryButton intent="In Person Appointment" className={styles.btn}>
+          <InquiryButton intent="Virtual Appointment" className={styles.btn}>
             Arrange a Consultation
           </InquiryButton>
           <InquiryButton intent="Authorized Retailers" className={styles.btn}>

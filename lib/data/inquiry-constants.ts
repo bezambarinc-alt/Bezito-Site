@@ -24,6 +24,18 @@ export const INQUIRY_INTENTS = [
 
 export type InquiryIntent = (typeof INQUIRY_INTENTS)[number]
 
+/** Human-readable drawer heading for each intent. */
+export const INTENT_HEADINGS: Record<string, string> = {
+  'In Person Appointment':       'Atelier Visit',
+  'Virtual Appointment':         'Virtual Consultation',
+  'Commission a Piece':          'Commission a Piece',
+  'A Piece from the Collection': 'A Piece from the Collection',
+  'Repair & Cleaning':           'Repair & Cleaning',
+  'Ring Resizing':               'Ring Resizing',
+  'Authorized Retailers':        'Authorized Retailers',
+  'Ring Sizing Appointment':     'Ring Sizing',
+}
+
 /** Intents that reveal a "Preferred Date" field. */
 export const APPOINTMENT_INTENTS = new Set<string>([
   'In Person Appointment',

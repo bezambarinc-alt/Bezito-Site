@@ -6,6 +6,7 @@ import { useDrawers } from './DrawerContext'
 import { submitInquiry, type InquiryState } from '@/app/actions/inquiry'
 import {
   INQUIRY_INTENTS,
+  INTENT_HEADINGS,
   APPOINTMENT_INTENTS,
   HIDE_MESSAGE_INTENTS,
 } from '@/lib/data/inquiry-constants'
@@ -85,9 +86,9 @@ export default function InquiryDrawer() {
         )}
 
         <div className={styles.body}>
-          <h2 id="inq-heading" className={styles.heading}>{prefillIntent || 'Connect with the Atelier'}</h2>
+          <h2 id="inq-heading" className={styles.heading}>{INTENT_HEADINGS[intent] || 'Connect with the Atelier'}</h2>
           <p className={styles.subhead}>
-            {prefillIntent === 'Authorized Retailers'
+            {intent === 'Authorized Retailers'
               ? 'Bez Ambar is available through a select network of authorized retail partners worldwide. Share your location and we\'ll connect you directly.'
               : 'We respond personally within one business day.'}
           </p>
