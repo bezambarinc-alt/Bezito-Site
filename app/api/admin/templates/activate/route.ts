@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { revalidatePath } from 'next/cache'
+import { revalidatePath, revalidateTag } from 'next/cache'
 import { getSession } from '@/lib/auth'
 import { isAuthorizedAgent } from '@/lib/agent-auth'
 import { sql } from '@/lib/db'
@@ -49,7 +49,20 @@ export async function POST(req: NextRequest) {
   )
 
   // Bust product pages on product scope change
-  if (scope === 'product') revalidatePath('/jewelry', 'layout')
+  if (scope === 'product') {
+    revalidatePath('/jewelry', 'layout')
+    revalidateTag('product-template', 'max')
+    const { CATEGORIES } = await import('@/lib/data/categories')
+    for (const cat of Object.keys(CATEGORIES)) {
+      revalidatePath(`/jewelry/${cat}`)
+    }
+    const rows = await sql<{ slug: string; category: string }>(
+      `SELECT slug, category FROM products WHERE active = true AND category IS NOT NULL`,
+    )
+    for (const row of rows) {
+      revalidatePath(`/jewelry/${row.category}/${row.slug}`)
+    }
+  }
   // Bust preview pages on showcase scope change
   if (scope === 'showcase') revalidatePath('/preview', 'layout')
 

@@ -160,6 +160,7 @@ export async function GET(req: NextRequest) {
 
     let upserted = 0
     const syncedSkus: string[] = []
+    const syncedCollections = new Set<string>()
     const syncedPages: { slug: string; category: string }[] = []
     const errors: { sku?: string; error: string }[] = []
     const seenSlugs = new Map<string, string>() // slug → sku, for collision detection
@@ -249,6 +250,8 @@ export async function GET(req: NextRequest) {
         )
 
         syncedSkus.push(sku)
+        const collectionSlug = str(p.Collection)?.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]+/g, '')
+        if (collectionSlug) syncedCollections.add(collectionSlug)
         if (category) syncedPages.push({ slug, category })
         upserted++
       } catch (e) {
@@ -260,15 +263,20 @@ export async function GET(req: NextRequest) {
     // Guard: preserve 'pending-*' zoho_id rows (manually inserted, no Zoho entry yet).
     let deleted = 0
     if (syncedSkus.length > 0) {
-      const stale = await sql<{ sku: string }>(
+      const stale = await sql<{ sku: string; slug: string | null; category: string | null }>(
         `DELETE FROM products
          WHERE sku <> ALL($1::text[])
            AND (zoho_id IS NULL OR zoho_id NOT LIKE 'pending-%')
-         RETURNING sku`,
+         RETURNING sku, slug, category`,
         [syncedSkus],
       )
       deleted = stale.length
       if (deleted) console.log(`Deleted stale: ${stale.map((r) => r.sku).join(', ')}`)
+      for (const row of stale) {
+        if (row.category && row.slug) {
+          revalidatePath(`/jewelry/${row.category}/${row.slug}`)
+        }
+      }
     }
 
     // Bust ISR cache for the top-level jewelry page, every category listing,
@@ -282,6 +290,9 @@ export async function GET(req: NextRequest) {
     }
     for (const { slug: pSlug, category: pCat } of syncedPages) {
       revalidatePath(`/jewelry/${pCat}/${pSlug}`)
+    }
+    for (const col of syncedCollections) {
+      revalidatePath(`/collection/${col}`)
     }
 
     return NextResponse.json({ ok: true, listed: products.length, upserted, deleted, errors: errors.slice(0, 5) })

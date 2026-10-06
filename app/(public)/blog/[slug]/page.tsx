@@ -9,7 +9,7 @@ import CommissionCta from '@/components/blog/CommissionCta'
 import FadeIn from '@/components/common/FadeIn'
 import styles from './page.module.css'
 
-export const revalidate = 86400
+export const revalidate = 3600
 
 function fmtDate(d: string) {
   try {
