@@ -160,6 +160,7 @@ export async function GET(req: NextRequest) {
 
     let upserted = 0
     const syncedSkus: string[] = []
+    const syncedPages: { slug: string; category: string }[] = []
     const errors: { sku?: string; error: string }[] = []
     const seenSlugs = new Map<string, string>() // slug → sku, for collision detection
 
@@ -248,6 +249,7 @@ export async function GET(req: NextRequest) {
         )
 
         syncedSkus.push(sku)
+        if (category) syncedPages.push({ slug, category })
         upserted++
       } catch (e) {
         errors.push({ sku, error: String((e as Error)?.message ?? e) })
@@ -269,13 +271,17 @@ export async function GET(req: NextRequest) {
       if (deleted) console.log(`Deleted stale: ${stale.map((r) => r.sku).join(', ')}`)
     }
 
-    // Bust ISR cache for the top-level jewelry page and every category listing.
+    // Bust ISR cache for the top-level jewelry page, every category listing,
+    // and every individual product detail page.
     // revalidatePath('/jewelry', 'layout') alone doesn't reliably bust /jewelry/[category]
-    // pages on Vercel's CDN edge — explicit per-category calls are required.
+    // pages on Vercel's CDN edge — explicit per-category and per-product calls are required.
     revalidatePath('/jewelry', 'layout')
     const { CATEGORIES } = await import('@/lib/data/categories')
     for (const cat of Object.keys(CATEGORIES)) {
       revalidatePath(`/jewelry/${cat}`)
+    }
+    for (const { slug: pSlug, category: pCat } of syncedPages) {
+      revalidatePath(`/jewelry/${pCat}/${pSlug}`)
     }
 
     return NextResponse.json({ ok: true, listed: products.length, upserted, deleted, errors: errors.slice(0, 5) })
