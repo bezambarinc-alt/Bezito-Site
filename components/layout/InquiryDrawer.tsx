@@ -85,7 +85,7 @@ export default function InquiryDrawer() {
         )}
 
         <div className={styles.body}>
-          <h2 id="inq-heading" className={styles.heading}>Connect with the Atelier</h2>
+          <h2 id="inq-heading" className={styles.heading}>{prefillIntent || 'Connect with the Atelier'}</h2>
           <p className={styles.subhead}>We respond personally within one business day.</p>
 
           {success ? (
