@@ -10,7 +10,7 @@ import { HERO_SLIDES, CINEMATIC_SLIDES } from '@/lib/data/home-slides'
 export const metadata: Metadata = {
   title: { absolute: 'Bez Ambar — Chiseling Light' },
   description:
-    'Inventor of the Princess Cut. Fine jewelry from the Los Angeles atelier, since 1979.',
+    'Co-Inventor of the Modern Princess Cut. Fine jewelry from the Los Angeles atelier.',
 }
 
 export default function HomePage() {
@@ -24,9 +24,9 @@ export default function HomePage() {
         id="foundation"
         reverse
         imageUrl="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1785629661/Diamond_Design_Hero_eoykbn.avif"
-        eyebrow="Designing Diamond Cuts Since 1979"
+        eyebrow="Designing Diamond Cuts"
         title="We Don't Just Cut the Stone. We Design the Cut."
-        body="Most jewelry houses source pre-cut diamonds and build around them. Some cut their own—using other people's geometries. Bez Ambar designs the facets themselves, executes every cut in-house, and shapes each stone to fit its exact position in the piece. That's not craftsmanship. It's a different discipline entirely."
+        body="Most jewelry houses source pre-cut diamonds and build around them. Some cut their own—using other people's geometries. Bez Ambar designs the facets themselves, executes every cut in-house, and shapes each stone to fit its exact position in the piece. Craftsmanship begins with making the piece. Ours begins earlier — with designing the diamond itself."
       />
 
       {/* The Cuts */}
@@ -35,7 +35,7 @@ export default function HomePage() {
         imageUrl="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg"
         eyebrow="The Cuts"
         title="From the Princess to the Elysian"
-        body="Bez Ambar is one of the original architects of the modern princess cut—a cut now part of the global language of fine jewelry. The same instinct continues through the Blaze®, the Elysian Cut™ and everything that follows."
+        body="Bez Ambar co-invented the modern Princess cut — now part of the global language of fine jewelry. The same instinct continues through the Blaze®, the Elysian Cut™, and everything that follows. A diamond designed from first principles changes the experience of wearing it."
         ctaLabel="Discover the Cuts"
         ctaHref="/elysian-cut"
       />
@@ -46,7 +46,7 @@ export default function HomePage() {
         height={600}
         eyebrow="The Secret"
         title="SHHH"
-        sub="Bez Ambar. Los Angeles. Est. 1979."
+        sub="The jewelry doesn't begin with the setting. It begins inside the diamond."
       />
 
       {/* Atelier — Ring CAD video */}
@@ -68,7 +68,7 @@ export default function HomePage() {
         imageUrl="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1100/v1782520989/Jewelry%20Images/Rings/plisse/plisse_macro.jpg"
         eyebrow="The Details"
         title="A Commitment to Perfection"
-        body="We don't source stones and build around them. We cut every stone to fit its exact position in the piece—using our own diamond cutting facility and deep faceting expertise. Each stone is shaped, calibrated, and set so nothing is ever off. Not by a degree. Not ever."
+        body="Every stone is cut to the geometry of its position — calibrated, shaped, and set so nothing is ever off. Not by a degree. Not ever."
       />
 
       {/* Hero image break — Chiseling Light / designer portrait */}
@@ -77,7 +77,7 @@ export default function HomePage() {
         height={700}
         eyebrow="Bez Ambar"
         title="Chiseling Light"
-        sub="Los Angeles · Since 1979"
+        sub="Los Angeles"
       />
 
       {/* Service — jewelry box image */}

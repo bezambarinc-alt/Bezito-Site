@@ -8,12 +8,12 @@ import { ABOUT_CHAPTERS, ABOUT_YEARS } from '@/lib/data/about-timeline'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
-  title: { absolute: 'About Bez Ambar — Artist, Designer & Inventor of the Princess Cut' },
+  title: { absolute: 'About Bez Ambar — Artist, Designer & Co-Inventor of the Princess Cut' },
   description:
-    'About Bez Ambar: Israeli-American diamond artist, designer, and inventor of the Princess cut. Three patented cuts. One atelier in Los Angeles, since 1979.',
+    'About Bez Ambar: Israeli-American diamond artist, designer, and co-inventor of the modern Princess cut. Three patented cuts. One atelier in Los Angeles.',
   openGraph: {
     title: 'About Bez Ambar',
-    description: 'Inventor of the Princess Cut. Four decades of chiseling light from a Los Angeles atelier.',
+    description: 'Co-Inventor of the Modern Princess Cut. Four decades of chiseling light from a Los Angeles atelier.',
   },
 }
 
@@ -34,12 +34,11 @@ export default function AboutPage() {
           />
         </div>
         <div className={styles.heroOverlay}>
-          <p className={styles.heroEyebrow}>The Inventor</p>
+          <p className={styles.heroEyebrow}>Co-Inventor</p>
           <h1 className={styles.heroTitle}>Bez Ambar</h1>
           <p className={styles.heroLede}>
-            He cuts the diamond. Then he designs the piece around it. For forty-five
-            years, those two acts have been inseparable — the artist and the craftsman
-            working from the same hands.
+            Diamond cutter. Designer. Co-inventor of the modern Princess cut. One atelier,
+            Los Angeles, forty-seven years.
           </p>
         </div>
       </section>

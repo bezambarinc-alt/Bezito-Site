@@ -71,7 +71,7 @@ export default async function ArchivePage({
         <section className="ba-portrait-hero">
           <div className="ba-portrait-hero__overlay">
             <p className="ba-portrait-hero__eyebrow">Every Piece in Motion</p>
-            <h1 className="ba-portrait-hero__title">Creating since 1979</h1>
+            <h1 className="ba-portrait-hero__title">The Archive</h1>
           </div>
         </section>
         <p style={{ textAlign: 'center', padding: '4rem 2rem', color: '#888' }}>
@@ -93,7 +93,7 @@ export default async function ArchivePage({
         )}
         <div className="ba-portrait-hero__overlay">
           <p className="ba-portrait-hero__eyebrow">Every Piece in Motion</p>
-          <h1 className="ba-portrait-hero__title">Creating since 1979</h1>
+          <h1 className="ba-portrait-hero__title">The Archive</h1>
           <p className="ba-portrait-hero__lede">
             Over five hundred Bez Ambar pieces, filmed at the atelier in Los Angeles.
             Use the filter below to navigate, or scroll the gallery.

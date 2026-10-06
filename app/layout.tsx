@@ -25,12 +25,12 @@ export const metadata: Metadata = {
     template: '%s · Bez Ambar',
   },
   description:
-    'Bez Ambar — inventor of the Princess Cut. Fine jewelry from the Los Angeles atelier, since 1979.',
+    'Bez Ambar — co-inventor of the modern Princess cut. Fine jewelry from the Los Angeles atelier.',
   openGraph: {
     type: 'website',
     siteName: 'Bez Ambar',
     title: 'Bez Ambar — Chiseling Light',
-    description: 'Inventor of the Princess Cut. Fine jewelry, Los Angeles, since 1979.',
+    description: 'Co-Inventor of the Modern Princess Cut. Fine jewelry, Los Angeles.',
     images: [
       {
         url: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1200/v1785615928/Hero-Model-Earrings-Yellow-Black-Shhhh_copy_uibife.avif',

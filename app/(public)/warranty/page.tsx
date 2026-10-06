@@ -4,7 +4,7 @@ import styles from '../legal.module.css'
 export const metadata: Metadata = {
   title: 'Warranty & Policies',
   description:
-    'Bez Ambar limited warranty on craftsmanship and materials. Quality jewelry backed by our commitment to excellence since 1979.',
+    'Bez Ambar limited warranty on craftsmanship and materials. Every piece backed by our commitment to excellence.',
 }
 
 const UPDATED = '2026-07-07'

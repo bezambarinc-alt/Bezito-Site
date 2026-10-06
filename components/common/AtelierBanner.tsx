@@ -24,7 +24,6 @@ export default function AtelierBanner() {
         <div className={styles.rule} />
 
         <p className={styles.wordmark}>Bez Ambar</p>
-        <p className={styles.estLine}>Los Angeles · Est. 1979</p>
       </div>
     </section>
   )

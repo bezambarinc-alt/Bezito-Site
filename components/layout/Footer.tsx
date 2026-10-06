@@ -112,7 +112,7 @@ export default function Footer() {
           {/* ── Brand column — always visible, no accordion ── */}
           <div className={styles.brand}>
             <p className={styles.wordmark}>Bez Ambar</p>
-            <p className={styles.tagline}>Inventor of the Princess Cut</p>
+            <p className={styles.tagline}>Co-Inventor of the Princess Cut</p>
             <p className={styles.estab}>Los Angeles · Est. 1979</p>
             <div className={styles.social}>
               <a
