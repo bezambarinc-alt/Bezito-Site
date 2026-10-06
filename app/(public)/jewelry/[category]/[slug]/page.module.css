@@ -63,7 +63,8 @@
 /* Media banner slot — left column (55%), above AtelierBanner */
 .mediaBanner {
   grid-column: 1;
-  min-height: calc(100vh - var(--ba-header-h));
+  height: calc(100vh - var(--ba-header-h));
+  min-height: 540px;
   overflow: hidden;
   background: #0d0d0d;
   position: relative;

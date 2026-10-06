@@ -11,6 +11,7 @@ export default function IJewelViewer({ src, title }: IJewelViewerProps) {
       src={src}
       title={title}
       frameBorder={0}
+      allowFullScreen
       allow="camera; autoplay; clipboard-write; fullscreen; xr-spatial-tracking; web-share"
       className={styles.viewer}
     />
