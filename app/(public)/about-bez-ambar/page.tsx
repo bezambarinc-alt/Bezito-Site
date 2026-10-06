@@ -26,7 +26,7 @@ export default function AboutPage() {
         <div className={styles.heroImg}>
           <Image
             src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1600/v1785629661/Diamond_Design_Hero_eoykbn.avif"
-            alt="Bez Ambar — inventor of the Princess Cut, Los Angeles atelier"
+            alt="Bez Ambar — co-inventor of the Princess Cut, Los Angeles atelier"
             fill
             priority
             sizes="100vw"

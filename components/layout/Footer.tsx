@@ -164,7 +164,7 @@ export default function Footer() {
           </div>
 
           {/* ── Shop ── */}
-          <FooterCol title="Shop">
+          <FooterCol title="The Collection">
             <Link href="/jewelry/rings">Rings</Link>
             <Link href="/jewelry/bands">Bands</Link>
             <Link href="/jewelry/bracelets">Bracelets</Link>
