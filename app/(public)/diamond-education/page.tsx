@@ -98,7 +98,7 @@ export default function DiamondEducationPage() {
             <p>GIA cut grades range from Excellent through Very Good, Good, Fair, and Poor. At the Bez Ambar atelier, we work exclusively with Excellent-grade cuts. Not because the certificate requires it, but because the light demands it.</p>
 
             <h3 className={styles.subheading}>The Bez Ambar Cuts</h3>
-            <p>Three of the cuts offered by this atelier — the Quadrillion™ (Princess), the Blaze®, and the Divine Cut® — are proprietary geometries patented by Bez Ambar. They exist outside the GIA cut grade system because they predate it. Their quality is assessed at the bench, by the same cutter who designed the facet arrangement.</p>
+            <p>Three of the cuts offered by this atelier — the Blaze®, the Divine Cut®, and the Elysian Cut™ — are proprietary geometries patented by Bez Ambar. They exist outside the GIA cut grade system because they predate it. Their quality is assessed at the bench, by the same cutter who designed the facet arrangement.</p>
           </div>
         </div>
       </section>
