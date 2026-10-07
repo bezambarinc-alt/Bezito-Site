@@ -121,15 +121,15 @@ const PRODUCTS: LegacyProduct[] = [
   },
   {
     slug: 'quadrillion-and-baguette-diamonds-wedding-band',
-    name: 'Quadrillion® & Baguette Band',
+    name: 'Quadrillion™ & Baguette Band',
     sku: 'SIGMA135',
     category: 'bands',
     categoryLabel: 'Bands',
     description:
-      'An 18k yellow gold band alternating Quadrillion® cut diamonds and precision baguettes in a continuous channel around the finger. 1.8 carats total weight, 4.41mm band width.',
+      'An 18k yellow gold band alternating Quadrillion™ cut diamonds and precision baguettes in a continuous channel around the finger. 1.8 carats total weight, 4.41mm band width.',
     imageUrl: `${CDN}/sigma135-01.jpg`,
     specs: [
-      { label: 'Stone', body: 'Quadrillion® cut diamonds · precision baguettes · 1.8ct TW' },
+      { label: 'Stone', body: 'Quadrillion™ cut diamonds · precision baguettes · 1.8ct TW' },
       { label: 'Metal', body: '18k Yellow Gold · White Gold available' },
       { label: 'Band Width', body: '4.41mm' },
       { label: 'Made In', body: 'Los Angeles' },

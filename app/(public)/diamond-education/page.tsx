@@ -98,7 +98,7 @@ export default function DiamondEducationPage() {
             <p>GIA cut grades range from Excellent through Very Good, Good, Fair, and Poor. At the Bez Ambar atelier, we work exclusively with Excellent-grade cuts. Not because the certificate requires it, but because the light demands it.</p>
 
             <h3 className={styles.subheading}>The Bez Ambar Cuts</h3>
-            <p>Three of the cuts offered by this atelier — the Quadrillion® (Princess), the Blaze®, and the Divine Cut® — are proprietary geometries patented by Bez Ambar. They exist outside the GIA cut grade system because they predate it. Their quality is assessed at the bench, by the same cutter who designed the facet arrangement.</p>
+            <p>Three of the cuts offered by this atelier — the Quadrillion™ (Princess), the Blaze®, and the Divine Cut® — are proprietary geometries patented by Bez Ambar. They exist outside the GIA cut grade system because they predate it. Their quality is assessed at the bench, by the same cutter who designed the facet arrangement.</p>
           </div>
         </div>
       </section>
@@ -171,7 +171,7 @@ export default function DiamondEducationPage() {
           <div className={styles.shapesGrid}>
             {[
               { name: 'Round Brilliant', desc: 'The most popular shape. 58 facets engineered to maximize light return. The standard against which all others are measured.' },
-              { name: 'Princess', desc: 'Square brilliant. Co-invented by Bez Ambar in 1980 under the name Quadrillion®. The second most popular shape in the world.' },
+              { name: 'Princess', desc: 'Square brilliant. Co-invented by Bez Ambar in 1980 under the name Quadrillion™. The second most popular shape in the world.' },
               { name: 'Oval', desc: 'Elongated brilliant. Appears larger per carat than round. Flattering on the finger — the elongation extends the hand.' },
               { name: 'Pear', desc: 'A teardrop. The pointed end is directional — it narrows the appearance of the finger when oriented down.' },
               { name: 'Marquise', desc: 'Two pointed ends. The most elongated of the standard shapes. Maximizes face-up size per carat.' },

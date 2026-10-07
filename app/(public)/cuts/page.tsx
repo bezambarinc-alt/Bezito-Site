@@ -6,17 +6,17 @@ import styles from './page.module.css'
 export const metadata: Metadata = {
   title: 'The Cuts',
   description:
-    'Three patented diamond cuts invented at the Bez Ambar atelier: the Quadrillion® (Princess), the Blaze®, and the Divine Cut®.',
+    'Three patented diamond cuts invented at the Bez Ambar atelier: the Quadrillion™ (Princess), the Blaze®, and the Divine Cut®.',
 }
 
 const CUTS = [
   {
     id: 'quadrillion',
     eyebrow: '1980 · Patented · DeBeers Award',
-    name: 'Quadrillion® — The Princess Cut',
+    name: 'Quadrillion™ — The Princess Cut',
     body: 'A square brilliant with chevron facets that direct light inward and back up through the table. The trade adopted it immediately. The world eventually called it the Princess Cut — Bez\'s cut, under a different name. It became the most popular diamond shape on Earth. Bez kept working.',
     imageUrl: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg',
-    imageAlt: 'Quadrillion® Princess Cut diamond by Bez Ambar',
+    imageAlt: 'Quadrillion™ Princess Cut diamond by Bez Ambar',
     reverse: false,
   },
   {

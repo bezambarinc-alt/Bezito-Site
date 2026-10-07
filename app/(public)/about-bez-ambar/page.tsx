@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     'About Bez Ambar: Israeli-American diamond artist, designer, and co-inventor of the modern Princess Cut. Three patented cuts. One atelier in Los Angeles.',
   openGraph: {
     title: 'About Bez Ambar',
-    description: 'Co-Inventor of the Modern Princess Cut. Four decades of chiseling light from a Los Angeles atelier.',
+    description: 'Co-Inventor of the Modern Princess Cut. Forty-seven years of chiseling light from a Los Angeles atelier.',
   },
 }
 
@@ -62,7 +62,7 @@ export default function AboutPage() {
           <div className={styles.introText}>
             <p>Most jewelry houses source pre-cut diamonds. Some cut their own — using other people&apos;s geometries. Bez Ambar designs the facets themselves, executes every cut in-house, and shapes each stone to fit its exact position in the piece.</p>
             <p>That discipline began in 1979, when Bez arrived in Los Angeles as a cutter. It hasn&apos;t changed. Every diamond that leaves this atelier has been evaluated, cut, and set by the same team that designed the geometry it was cut to.</p>
-            <p>The Princess Cut, the Blaze®, the Divine Cut® — three patented diamond geometries invented at 611 Wilshire. Each one a different answer to the same question: how does light move inside a stone, and how do you make it move better?</p>
+            <p>The Blaze® and the Divine Cut® — patented diamond geometries invented at 611 Wilshire. Each one a different answer to the same question: how does light move inside a stone, and how do you make it move better?</p>
           </div>
         </div>
       </div>
@@ -70,7 +70,7 @@ export default function AboutPage() {
       {/* ── Timeline ── */}
       <section className={styles.timeline}>
         <div className={styles.timelineHeader}>
-          <p className={styles.timelineEyebrow}>Four Decades</p>
+          <p className={styles.timelineEyebrow}>Forty-Seven Years</p>
           <h2 className={styles.timelineTitle}>The History</h2>
           <p className={styles.timelineIntro}>
             A line from Los Angeles, 1979, to the present. Not a legacy — an ongoing practice.

@@ -41,18 +41,18 @@ export const ABOUT_CHAPTERS: AboutChapter[] = [
     layout: 'split',
     reverse: true,
     headline: 'The Princess Cut.',
-    body: "The Quadrillion® cut is introduced: a square brilliant with chevron facets that direct light inward and back up through the table. It becomes the most commercially successful new diamond cut of the twentieth century. Jewelers across the world adopt it. It is later widely known as the Princess Cut — Bez's cut, under a different name.",
+    body: "The Quadrillion™ cut is introduced: a square brilliant with chevron facets that direct light inward and back up through the table. It becomes the most commercially successful new diamond cut of the twentieth century. Jewelers across the world adopt it. It is later widely known as the Princess Cut — Bez's cut, under a different name.",
     pullquote: '"The square was considered a compromise. I wanted to prove it was a statement."',
     img: {
       src: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg',
-      alt: 'The Quadrillion® — the original Princess Cut',
+      alt: 'The Quadrillion™ — the original Princess Cut',
     },
   },
   {
     year: '1985',
     layout: 'split',
     headline: 'The De Beers Award.',
-    body: "Bez receives the De Beers Diamond Award for Innovation — recognition from the most powerful institution in the diamond trade that a cutter working independently in Los Angeles has changed the industry. It is one of the most prestigious honors in the field, and he is among the youngest recipients in the award's history. The ring he created to present the Quadrillion® cut — the ATW — stood as evidence of what the cut could do.",
+    body: "Bez receives the De Beers Diamond Award for Innovation — recognition from the most powerful institution in the diamond trade that a cutter working independently in Los Angeles has changed the industry. It is one of the most prestigious honors in the field, and he is among the youngest recipients in the award's history. The ring he created to present the Quadrillion™ cut — the ATW — stood as evidence of what the cut could do.",
     video: {
       src: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1790124713/Jewelry%20Videos/Bracelets/B3978-about.mp4',
       poster: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto,w_900,so_0/v1790124713/Jewelry%20Videos/Bracelets/B3978-about.jpg',
@@ -63,7 +63,7 @@ export const ABOUT_CHAPTERS: AboutChapter[] = [
     layout: 'split',
     reverse: true,
     headline: 'The Laserset® Setting.',
-    body: 'Precision laser-cut channels allow diamonds to be set directly into metal — no prongs, no bezel wall, no visible metal between stone and stone. Each diamond drops into a machined seat; edges touch edges; the surface reads as continuous diamond. The Laserset® is the invisible-set channel system behind pieces like the Millennium collar: row after row of Quadrillion®-cut diamonds, edges aligned, the metal disappearing beneath them.',
+    body: 'Precision laser-cut channels allow diamonds to be set directly into metal — no prongs, no bezel wall, no visible metal between stone and stone. Each diamond drops into a machined seat; edges touch edges; the surface reads as continuous diamond. The Laserset® is the invisible-set channel system behind pieces like the Millennium collar: row after row of Quadrillion™-cut diamonds, edges aligned, the metal disappearing beneath them.',
     pullquote: 'Invisible set for diamonds.',
     video: {
       src: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Necklaces/vm2439-hd.mp4',
