@@ -20,7 +20,7 @@ export const ABOUT_CHAPTERS: AboutChapter[] = [
     year: '1972',
     layout: 'normal',
     headline: 'First Stones.',
-    body: 'At seventeen, Bez begins working with rough diamonds in Tel Aviv, apprenticing under senior cutters who still plan facets by hand. He learns that a diamond is not a fixed object — it is potential waiting to be released. The difference between a diamond that dies in the light and one that lives in it is entirely in how it is cut.',
+    body: 'At seventeen, Bez apprentices under senior cutters who still plan facets by hand. He learns that a diamond is not a fixed object — it is potential waiting to be released. The cut determines everything.',
     img: {
       src: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1785548956/Jewelry%20Images/Atelier/precision-dop-foundation.jpg',
       alt: 'A rough diamond held to the polishing wheel on a precision dop — the cut is planned by hand',
