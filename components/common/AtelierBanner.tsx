@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import InquiryButton from './InquiryButton'
 import styles from './AtelierBanner.module.css'
 
@@ -20,6 +21,10 @@ export default function AtelierBanner() {
             Authorized Retailers
           </InquiryButton>
         </div>
+
+        <Link href="/archive" className={styles.archiveLink}>
+          Every piece, catalogued. Visit the Archive →
+        </Link>
 
         <div className={styles.rule} />
 
