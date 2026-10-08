@@ -13,8 +13,8 @@ const CUTS = [
   {
     id: 'quadrillion',
     eyebrow: '1980 · Patented · DeBeers Award',
-    name: 'Quadrillion™ — The Princess Cut',
-    body: 'A square brilliant with chevron facets that direct light inward and back up through the table. The trade adopted it immediately. The world eventually called it the Princess Cut — Bez\'s cut, under a different name. It became the most popular diamond shape on Earth. Bez kept working.',
+    name: 'Quadrillion™: The Princess Cut',
+    body: 'A square brilliant with chevron facets that direct light inward and back up through the table. The trade adopted it immediately. The world eventually called it the Princess Cut, Bez\'s cut, under a different name. It became the most popular diamond shape on Earth. Bez kept working.',
     imageUrl: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg',
     imageAlt: 'Quadrillion™ Princess Cut diamond by Bez Ambar',
     reverse: false,
@@ -23,9 +23,9 @@ const CUTS = [
     id: 'blaze',
     eyebrow: 'Patented · Registered Trademark',
     name: 'Blaze®',
-    body: 'Thirteen precisely aligned facets produce a starburst of light visible to the naked eye under white light. This effect is specific to the Blaze® geometry — it cannot be replicated by any other arrangement of facets. No other house in the world produces it. The starburst is not a coincidence of polish. It is the result.',
+    body: 'Thirteen precisely aligned facets produce a starburst of light visible to the naked eye under white light. This effect is specific to the Blaze® geometry. It cannot be replicated by any other arrangement of facets. No other house in the world produces it. The starburst is not a coincidence of polish. It is the result.',
     imageUrl: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg',
-    imageAlt: 'Blaze® diamond cut by Bez Ambar — starburst facet pattern',
+    imageAlt: 'Blaze® diamond cut by Bez Ambar, starburst facet pattern',
     reverse: true,
   },
   {

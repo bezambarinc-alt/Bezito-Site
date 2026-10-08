@@ -9,7 +9,7 @@ export default function AtelierBanner() {
         <h2 className={styles.headline}>Meet the Concierge</h2>
         <p className={styles.body}>
           Every commission begins with a conversation. Our Concierge is available for private
-          consultations — in Los Angeles or virtually, wherever you are. Private clients,
+          consultations, in Los Angeles or virtually, wherever you are. Private clients,
           collectors, and industry partners welcome.
         </p>
         <div className={styles.btnRow}>

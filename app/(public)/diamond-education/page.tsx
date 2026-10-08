@@ -4,9 +4,9 @@ import ScrollSpyTabs from './ScrollSpyTabs'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
-  title: 'Diamond Education — The 4Cs, Shapes & Anatomy',
+  title: 'Diamond Education | The 4Cs, Shapes & Anatomy',
   description:
-    'Master the fundamentals of diamond quality. The 4Cs (cut, color, clarity, carat), diamond shapes, and how to select your stone — from the Bez Ambar atelier.',
+    'Master the fundamentals of diamond quality. The 4Cs (cut, color, clarity, carat), diamond shapes, and how to select your stone, from the Bez Ambar atelier.',
 }
 
 /**
@@ -51,7 +51,7 @@ export default function DiamondEducationPage() {
       {/* ── Editorial intro ── */}
       <div className={styles.introEditorial}>
         <div className={styles.introEditorialInner}>
-          <p>At the Bez Ambar atelier, every stone is evaluated against the same four criteria that have defined diamond quality since the mid-twentieth century. These are not abstract specifications — they are the language of light, translated into a grading system.</p>
+          <p>At the Bez Ambar atelier, every stone is evaluated against the same four criteria that have defined diamond quality since the mid-twentieth century. These are not abstract specifications; they are the language of light, translated into a grading system.</p>
         </div>
       </div>
 
@@ -65,10 +65,10 @@ export default function DiamondEducationPage() {
           </div>
           <div className={styles.fourCsGrid}>
             {[
-              { letter: 'C', name: 'Cut', desc: 'How precisely the diamond is faceted. Determines how light enters, reflects, and exits. The most important of the four — a poor cut will dull even the finest stone.' },
-              { letter: 'C', name: 'Color', desc: 'The absence of color in a white diamond. The GIA grades from D (colorless) to Z (light yellow). In the near-colorless range — G through J — color is invisible to the naked eye.' },
+              { letter: 'C', name: 'Cut', desc: 'How precisely the diamond is faceted. Determines how light enters, reflects, and exits. The most important of the four. A poor cut will dull even the finest stone.' },
+              { letter: 'C', name: 'Color', desc: 'The absence of color in a white diamond. The GIA grades from D (colorless) to Z (light yellow). In the near-colorless range (G through J) color is invisible to the naked eye.' },
               { letter: 'C', name: 'Clarity', desc: 'The absence of internal inclusions and surface blemishes. Most are microscopic and invisible without magnification. Eye-clean stones at VS2 or SI1 are excellent value.' },
-              { letter: 'C', name: 'Carat', desc: 'Weight, not size. One carat equals 200 milligrams. Larger stones are rarer, so price increases exponentially — a 2-carat stone of equal quality costs significantly more than twice a 1-carat.' },
+              { letter: 'C', name: 'Carat', desc: 'Weight, not size. One carat equals 200 milligrams. Larger stones are rarer, so price increases exponentially. A 2-carat stone of equal quality costs significantly more than twice a 1-carat.' },
             ].map((c) => (
               <div key={c.name} className={styles.cCard}>
                 <div className={styles.cLetter}>{c.letter}</div>
@@ -88,17 +88,17 @@ export default function DiamondEducationPage() {
           <div className={styles.sectionHeader}>
             <span className={`${styles.eyebrow} ${styles.eyebrowWarm}`}>The Most Important C</span>
             <h2 className={`${styles.heading} ${styles.headingLight}`}>Cut</h2>
-            <p className={`${styles.intro} ${styles.introLight}`}>Cut is not the shape of a diamond — it is the quality of its faceting. A diamond&rsquo;s ability to reflect light depends entirely on the precision of its proportions, symmetry, and polish.</p>
+            <p className={`${styles.intro} ${styles.introLight}`}>Cut is not the shape of a diamond. It is the quality of its faceting. A diamond&rsquo;s ability to reflect light depends entirely on the precision of its proportions, symmetry, and polish.</p>
           </div>
           <div className={styles.prose}>
             <h3 className={styles.subheading}>What Cut Measures</h3>
-            <p>The GIA evaluates cut on three dimensions: <strong>proportions</strong> — the relationship between table size, crown height, and pavilion depth; <strong>symmetry</strong> — how precisely the facets align; and <strong>polish</strong> — the condition of the surface at a microscopic level.</p>
+            <p>The GIA evaluates cut on three dimensions: <strong>proportions</strong> (the relationship between table size, crown height, and pavilion depth), <strong>symmetry</strong> (how precisely the facets align), and <strong>polish</strong> (the condition of the surface at a microscopic level).</p>
 
             <h3 className={styles.subheading}>The Grade Scale</h3>
             <p>GIA cut grades range from Excellent through Very Good, Good, Fair, and Poor. At the Bez Ambar atelier, we work exclusively with Excellent-grade cuts. Not because the certificate requires it, but because the light demands it.</p>
 
             <h3 className={styles.subheading}>The Bez Ambar Cuts</h3>
-            <p>Three of the cuts offered by this atelier — the Blaze®, the Divine Cut®, and the Elysian Cut™ — are proprietary geometries patented by Bez Ambar. They exist outside the GIA cut grade system because they predate it. Their quality is assessed at the bench, by the same cutter who designed the facet arrangement.</p>
+            <p>Three of the cuts offered by this atelier, the Blaze®, the Divine Cut®, and the Elysian Cut™, are proprietary geometries patented by Bez Ambar. They exist outside the GIA cut grade system because they predate it. Their quality is assessed at the bench, by the same cutter who designed the facet arrangement.</p>
           </div>
         </div>
       </section>
@@ -109,17 +109,17 @@ export default function DiamondEducationPage() {
           <div className={styles.sectionHeader}>
             <span className={styles.eyebrow}>Second C</span>
             <h2 className={styles.heading}>Color</h2>
-            <p className={styles.intro}>Color in a white diamond refers to the presence or absence of a yellow or brown tint. The less color, the higher the grade — and typically, the higher the price.</p>
+            <p className={styles.intro}>Color in a white diamond refers to the presence or absence of a yellow or brown tint. The less color, the higher the grade, and typically, the higher the price.</p>
           </div>
           <div className={styles.prose}>
             <h3 className={styles.subheading}>The GIA Color Scale</h3>
             <p>The GIA grades white diamonds from D (perfectly colorless) through Z (light yellow or brown). The grades fall into groups: D-F (colorless), G-J (near colorless), K-M (faint), N-R (very light), S-Z (light).</p>
 
             <h3 className={styles.subheading}>What to Choose</h3>
-            <p>In practice, color differences between adjacent grades are invisible to the naked eye, particularly in smaller stones or when set in yellow gold. At Bez Ambar, we recommend G-H for white gold or platinum settings, and I-J for yellow gold — where the metal masks any trace of warmth.</p>
+            <p>In practice, color differences between adjacent grades are invisible to the naked eye, particularly in smaller stones or when set in yellow gold. At Bez Ambar, we recommend G-H for white gold or platinum settings, and I-J for yellow gold, where the metal masks any trace of warmth.</p>
 
             <h3 className={styles.subheading}>Fancy Color</h3>
-            <p>Diamonds with strong, vivid color — yellows, pinks, blues, greens — are graded on a separate scale and priced by the intensity of their color rather than its absence. These are among the rarest and most valuable gems in the world.</p>
+            <p>Diamonds with strong, vivid color (yellows, pinks, blues, greens) are graded on a separate scale and priced by the intensity of their color rather than its absence. These are among the rarest and most valuable gems in the world.</p>
           </div>
         </div>
       </section>
@@ -134,7 +134,7 @@ export default function DiamondEducationPage() {
           </div>
           <div className={styles.prose}>
             <h3 className={styles.subheading}>The GIA Clarity Scale</h3>
-            <p>FL (Flawless) — IF (Internally Flawless) — VVS1/VVS2 (Very Very Slightly Included) — VS1/VS2 (Very Slightly Included) — SI1/SI2 (Slightly Included) — I1/I2/I3 (Included).</p>
+            <p>FL (Flawless), IF (Internally Flawless), VVS1/VVS2 (Very Very Slightly Included), VS1/VS2 (Very Slightly Included), SI1/SI2 (Slightly Included), I1/I2/I3 (Included).</p>
 
             <h3 className={styles.subheading}>What to Choose</h3>
             <p>For most buyers, VS2 or SI1 represents the ideal balance of quality and value. Inclusions at these grades are invisible to the naked eye but allow a meaningful price reduction over VS1 and above. At Bez Ambar, we inspect each stone under magnification to confirm eye-clarity before any piece is accepted for commission.</p>
@@ -152,10 +152,10 @@ export default function DiamondEducationPage() {
           </div>
           <div className={styles.prose}>
             <h3 className={styles.subheading}>Weight vs Size</h3>
-            <p>Two diamonds of the same carat weight can appear very different in size depending on their cut. A well-cut 1-carat round brilliant measures approximately 6.5mm across. A poorly cut stone of the same weight may measure significantly less — because the weight is buried in the pavilion, not distributed across the face.</p>
+            <p>Two diamonds of the same carat weight can appear very different in size depending on their cut. A well-cut 1-carat round brilliant measures approximately 6.5mm across. A poorly cut stone of the same weight may measure significantly less, because the weight is buried in the pavilion, not distributed across the face.</p>
 
             <h3 className={styles.subheading}>The Price Curve</h3>
-            <p>Diamond prices increase exponentially with carat weight. A 2-carat stone is significantly more than twice the price of a comparable 1-carat — because large stones are exponentially rarer. The threshold weights (0.50, 1.00, 1.50, 2.00 ct) carry price premiums. Stones just under these thresholds — 0.49, 0.98, 1.48 — offer meaningful value.</p>
+            <p>Diamond prices increase exponentially with carat weight. A 2-carat stone is significantly more than twice the price of a comparable 1-carat, because large stones are exponentially rarer. The threshold weights (0.50, 1.00, 1.50, 2.00 ct) carry price premiums. Stones just under these thresholds (0.49, 0.98, 1.48) offer meaningful value.</p>
           </div>
         </div>
       </section>
@@ -172,10 +172,10 @@ export default function DiamondEducationPage() {
             {[
               { name: 'Round Brilliant', desc: 'The most popular shape. 58 facets engineered to maximize light return. The standard against which all others are measured.' },
               { name: 'Princess', desc: 'Square brilliant. Co-invented by Bez Ambar in 1980 under the name Quadrillion™. The second most popular shape in the world.' },
-              { name: 'Oval', desc: 'Elongated brilliant. Appears larger per carat than round. Flattering on the finger — the elongation extends the hand.' },
-              { name: 'Pear', desc: 'A teardrop. The pointed end is directional — it narrows the appearance of the finger when oriented down.' },
+              { name: 'Oval', desc: 'Elongated brilliant. Appears larger per carat than round. Flattering on the finger; the elongation extends the hand.' },
+              { name: 'Pear', desc: 'A teardrop. The pointed end is directional; it narrows the appearance of the finger when oriented down.' },
               { name: 'Marquise', desc: 'Two pointed ends. The most elongated of the standard shapes. Maximizes face-up size per carat.' },
-              { name: 'Emerald', desc: 'Rectangular step cut. Emphasizes clarity over brilliance. Hall-of-mirrors effect — long, open flashes of light.' },
+              { name: 'Emerald', desc: 'Rectangular step cut. Emphasizes clarity over brilliance. Hall-of-mirrors effect: long, open flashes of light.' },
               { name: 'Cushion', desc: 'Square or rectangular with rounded corners. Classic. Was the dominant shape before the round brilliant was standardized.' },
               { name: 'Radiant', desc: 'Rectangular or square with cropped corners and brilliant-cut facets. Combines the shape of the emerald with the fire of the round.' },
             ].map((s) => (
@@ -203,7 +203,7 @@ export default function DiamondEducationPage() {
             </div>
             <div className={styles.anatomyPart}>
               <h3 className={styles.anatomyName}>Girdle</h3>
-              <p className={styles.anatomyDesc}>The thin band at the widest point. The girdle is the setting contact zone — where prongs, bezels, and channels grip the stone. Too thin and the stone can chip; too thick and it adds weight without adding size.</p>
+              <p className={styles.anatomyDesc}>The thin band at the widest point. The girdle is the setting contact zone, where prongs, bezels, and channels grip the stone. Too thin and the stone can chip; too thick and it adds weight without adding size.</p>
             </div>
             <div className={styles.anatomyPart}>
               <h3 className={styles.anatomyName}>Pavilion</h3>

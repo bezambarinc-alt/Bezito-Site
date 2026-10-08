@@ -76,12 +76,12 @@ const PRODUCTS: LegacyProduct[] = [
     category: 'bands',
     categoryLabel: 'Bands',
     description:
-      'The EasyFit baguette eternity band stretches over the knuckle without resizing — each piece engineered with a flex mechanism and set with precision cut baguette diamonds. From the Bez Ambar EasyFit Collection.',
+      'The EasyFit baguette eternity band stretches over the knuckle without resizing; each piece is engineered with a flex mechanism and set with precision cut baguette diamonds. From the Bez Ambar EasyFit Collection.',
     imageUrl: `${CDN}/2flx42bg-easyfit-01.jpg`,
     specs: [
       { label: 'Stone', body: 'Precision baguette diamonds' },
       { label: 'Metal', body: '18k White Gold' },
-      { label: 'Collection', body: 'EasyFit — stretch fit, no resizing required' },
+      { label: 'Collection', body: 'EasyFit: stretch fit, no resizing required' },
       { label: 'Made In', body: 'Los Angeles' },
       { label: 'Inquiry', body: 'Presented privately by appointment. Reference this piece when you inquire.' },
     ],
@@ -98,7 +98,7 @@ const PRODUCTS: LegacyProduct[] = [
     specs: [
       { label: 'Stone', body: 'Blaze® cut diamond halo' },
       { label: 'Metal', body: 'Platinum · 18k White Gold' },
-      { label: 'Wear', body: 'Earring enhancer — worn over existing studs' },
+      { label: 'Wear', body: 'Earring enhancer: worn over existing studs' },
       { label: 'Made In', body: 'Los Angeles' },
       { label: 'Inquiry', body: 'Presented privately by appointment. Reference this piece when you inquire.' },
     ],
@@ -289,7 +289,7 @@ const PRODUCTS: LegacyProduct[] = [
     category: 'rings',
     categoryLabel: 'Rings',
     description:
-      'The Ayla three stone ring sets an emerald cut center stone between two precision cut emerald baguettes — a study in parallel lines and step-cut proportion. Available in yellow, white, or rose gold; setting priced separately.',
+      'The Ayla three stone ring sets an emerald cut center stone between two precision cut emerald baguettes, a study in parallel lines and step-cut proportion. Available in yellow, white, or rose gold; setting priced separately.',
     imageUrl: `${CDN}/1c3sbg-em-ayla-01.jpg`,
     specs: [
       { label: 'Stone', body: 'Emerald cut center · emerald cut baguette sides' },

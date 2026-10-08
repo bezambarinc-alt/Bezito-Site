@@ -21,22 +21,22 @@ const lora = Lora({
 export const metadata: Metadata = {
   metadataBase: new URL('https://bezambar.com'),
   title: {
-    default: 'Bez Ambar — Chiseling Light',
+    default: 'Bez Ambar | Chiseling Light',
     template: '%s · Bez Ambar',
   },
   description:
-    'Bez Ambar — co-inventor of the modern Princess Cut. Fine jewelry from the Los Angeles atelier.',
+    'Bez Ambar, co-inventor of the modern Princess Cut. Fine jewelry from the Los Angeles atelier.',
   openGraph: {
     type: 'website',
     siteName: 'Bez Ambar',
-    title: 'Bez Ambar — Chiseling Light',
+    title: 'Bez Ambar | Chiseling Light',
     description: 'Co-Inventor of the Modern Princess Cut. Fine jewelry, Los Angeles.',
     images: [
       {
         url: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1200/v1785615928/Hero-Model-Earrings-Yellow-Black-Shhhh_copy_uibife.avif',
         width: 1200,
         height: 630,
-        alt: 'Bez Ambar — Fine Jewelry, Los Angeles',
+        alt: 'Bez Ambar, Fine Jewelry, Los Angeles',
       },
     ],
   },

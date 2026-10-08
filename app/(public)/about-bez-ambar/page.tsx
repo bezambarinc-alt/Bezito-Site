@@ -8,7 +8,7 @@ import { ABOUT_CHAPTERS, ABOUT_YEARS } from '@/lib/data/about-timeline'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
-  title: { absolute: 'About Bez Ambar — Artist, Designer & Co-Inventor of the Princess Cut' },
+  title: { absolute: 'About Bez Ambar | Artist, Designer & Co-Inventor of the Princess Cut' },
   description:
     'About Bez Ambar: Israeli-American diamond artist, designer, and co-inventor of the modern Princess Cut. Three patented cuts. One atelier in Los Angeles.',
   openGraph: {
@@ -26,7 +26,7 @@ export default function AboutPage() {
         <div className={styles.heroImg}>
           <Image
             src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1600/v1785629661/Diamond_Design_Hero_eoykbn.avif"
-            alt="Bez Ambar — co-inventor of the Princess Cut, Los Angeles atelier"
+            alt="Bez Ambar, co-inventor of the Princess Cut, Los Angeles atelier"
             fill
             priority
             sizes="100vw"
@@ -60,9 +60,9 @@ export default function AboutPage() {
         <div className={styles.introInner}>
           <h2 className={styles.introHeading}>One Atelier. One Discipline.</h2>
           <div className={styles.introText}>
-            <p>Most jewelry houses source pre-cut diamonds. Some cut their own — using other people&apos;s geometries. Bez Ambar designs the facets themselves, executes every cut in-house, and shapes each stone to fit its exact position in the piece.</p>
+            <p>Most jewelry houses source pre-cut diamonds. Some cut their own, using other people&apos;s geometries. Bez Ambar designs the facets themselves, executes every cut in-house, and shapes each stone to fit its exact position in the piece.</p>
             <p>That discipline began in 1979, when Bez arrived in Los Angeles as a cutter. It hasn&apos;t changed. Every diamond that leaves this atelier has been evaluated, cut, and set by the same team that designed the geometry it was cut to.</p>
-            <p>The Blaze®, the Divine Cut®, and the Elysian Cut™ — patented diamond geometries invented at 611 Wilshire. Each one a different answer to the same question: how does light move inside a stone, and how do you make it move better?</p>
+            <p>The Blaze®, the Divine Cut®, and the Elysian Cut™: patented diamond geometries invented at 611 Wilshire. Each one a different answer to the same question: how does light move inside a stone, and how do you make it move better?</p>
           </div>
         </div>
       </div>
@@ -73,7 +73,7 @@ export default function AboutPage() {
           <p className={styles.timelineEyebrow}>Forty-Seven Years</p>
           <h2 className={styles.timelineTitle}>The History</h2>
           <p className={styles.timelineIntro}>
-            A line from Los Angeles, 1979, to the present. Not a legacy — an ongoing practice.
+            A line from Los Angeles, 1979, to the present. Not a legacy. An ongoing practice.
           </p>
         </div>
 

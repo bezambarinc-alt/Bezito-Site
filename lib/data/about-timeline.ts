@@ -20,17 +20,17 @@ export const ABOUT_CHAPTERS: AboutChapter[] = [
     year: '1972',
     layout: 'normal',
     headline: 'First Stones.',
-    body: 'At seventeen, Bez apprentices under senior cutters who still plan facets by hand. He learns that a diamond is not a fixed object — it is potential waiting to be released. The cut determines everything.',
+    body: 'At seventeen, Bez apprentices under senior cutters who still plan facets by hand. He learns that a diamond is not a fixed object: it is potential waiting to be released. The cut determines everything.',
     img: {
       src: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1785548956/Jewelry%20Images/Atelier/precision-dop-foundation.jpg',
-      alt: 'A rough diamond held to the polishing wheel on a precision dop — the cut is planned by hand',
+      alt: 'A rough diamond held to the polishing wheel on a precision dop, the cut is planned by hand',
     },
   },
   {
     year: '1979',
     layout: 'split',
     headline: 'Los Angeles. The Beginning.',
-    body: 'Bez Ambar arrives in Los Angeles and founds Ambar Diamonds Inc. He comes as a cutter, not a retailer — his clients are the jewelers, not the public. Working out of a small studio on 611 Wilshire Blvd, he begins pushing the boundaries of what a square diamond can do. The industry knows him as the man who will not cut a stone the conventional way.',
+    body: 'Bez Ambar arrives in Los Angeles and founds Ambar Diamonds Inc. He comes as a cutter, not a retailer. His clients are the jewelers, not the public. Working out of a small studio on 611 Wilshire Blvd, he begins pushing the boundaries of what a square diamond can do. The industry knows him as the man who will not cut a stone the conventional way.',
     img: {
       src: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1785574079/Jewelry%20Images/Atelier/diamond-cutting-wheel-45deg.jpg',
       alt: 'A finished brilliant on a reflective surface, light breaking across its facets',
@@ -41,18 +41,18 @@ export const ABOUT_CHAPTERS: AboutChapter[] = [
     layout: 'split',
     reverse: true,
     headline: 'The Princess Cut.',
-    body: "The Quadrillion™ cut is introduced: a square brilliant with chevron facets that direct light inward and back up through the table. It becomes the most commercially successful new diamond cut of the twentieth century. Jewelers across the world adopt it. It is later widely known as the Princess Cut — Bez's cut, under a different name.",
+    body: "The Quadrillion™ cut is introduced: a square brilliant with chevron facets that direct light inward and back up through the table. It becomes the most commercially successful new diamond cut of the twentieth century. Jewelers across the world adopt it. It is later widely known as the Princess Cut, Bez's cut, under a different name.",
     pullquote: '"The square was considered a compromise. I wanted to prove it was a statement."',
     img: {
       src: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1775786208/Jewelry%20Images/Stones/Quadrillion_owciyv.jpg',
-      alt: 'The Quadrillion™ — the original Princess Cut',
+      alt: 'The Quadrillion™, the original Princess Cut',
     },
   },
   {
     year: '1985',
     layout: 'split',
     headline: 'The De Beers Award.',
-    body: "Bez receives the De Beers Diamond Award for Innovation — recognition from the most powerful institution in the diamond trade that a cutter working independently in Los Angeles has changed the industry. It is one of the most prestigious honors in the field, and he is among the youngest recipients in the award's history. The ring he created to present the Quadrillion™ cut — the ATW — stood as evidence of what the cut could do.",
+    body: "Bez receives the De Beers Diamond Award for Innovation: recognition from the most powerful institution in the diamond trade that a cutter working independently in Los Angeles has changed the industry. It is one of the most prestigious honors in the field, and he is among the youngest recipients in the award's history. The ring he created to present the Quadrillion™ cut, the ATW, stood as evidence of what the cut could do.",
     video: {
       src: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1790124713/Jewelry%20Videos/Bracelets/B3978-about.mp4',
       poster: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto,w_900,so_0/v1790124713/Jewelry%20Videos/Bracelets/B3978-about.jpg',
@@ -63,7 +63,7 @@ export const ABOUT_CHAPTERS: AboutChapter[] = [
     layout: 'split',
     reverse: true,
     headline: 'The Laserset® Setting.',
-    body: 'Precision laser-cut channels allow diamonds to be set directly into metal — no prongs, no bezel wall, no visible metal between stone and stone. Each diamond drops into a machined seat; edges touch edges; the surface reads as continuous diamond. The Laserset® is the invisible-set channel system behind pieces like the Millennium collar: row after row of Quadrillion™-cut diamonds, edges aligned, the metal disappearing beneath them.',
+    body: 'Precision laser-cut channels allow diamonds to be set directly into metal: no prongs, no bezel wall, no visible metal between stone and stone. Each diamond drops into a machined seat; edges touch edges; the surface reads as continuous diamond. The Laserset® is the invisible-set channel system behind pieces like the Millennium collar: row after row of Quadrillion™-cut diamonds, edges aligned, the metal disappearing beneath them.',
     pullquote: 'Invisible set for diamonds.',
     video: {
       src: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Necklaces/vm2439-hd.mp4',
@@ -74,17 +74,17 @@ export const ABOUT_CHAPTERS: AboutChapter[] = [
     year: '1992',
     layout: 'normal',
     headline: 'The Boundless Setting.',
-    body: "Continuous channel setting — stone after stone, edge to edge, with no visible interruption — becomes commercially viable through Bez's manufacturing breakthroughs. The result is what the trade calls \"seamless\" flex work: lines of diamonds that move like fabric. The Boundless setting defines the flex bracelet form that becomes a Bez Ambar signature across four decades.",
+    body: "Continuous channel setting, stone after stone, edge to edge with no visible interruption, becomes commercially viable through Bez's manufacturing breakthroughs. The result is what the trade calls \"seamless\" flex work: lines of diamonds that move like fabric. The Boundless setting defines the flex bracelet form that becomes a Bez Ambar signature across four decades.",
     img: {
       src: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1785482703/Jewelry%20Images/Atelier/casting-atelier-2026.jpg',
-      alt: 'Molten metal poured into a mold in the atelier — the manufacturing craft behind the flex settings',
+      alt: 'Molten metal poured into a mold in the atelier, the manufacturing craft behind the flex settings',
     },
   },
   {
     year: '1999',
     layout: 'split',
     headline: 'Micro-Pavé.',
-    body: 'Bez introduces micro-pavé setting to the Los Angeles market — a technique requiring stones smaller than 1mm, set under magnification with hand-cut prongs barely visible to the naked eye. The effect is a continuous field of light rather than individual stones. The technique redefines what delicate means in fine jewelry.',
+    body: 'Bez introduces micro-pavé setting to the Los Angeles market, a technique requiring stones smaller than 1mm, set under magnification with hand-cut prongs barely visible to the naked eye. The effect is a continuous field of light rather than individual stones. The technique redefines what delicate means in fine jewelry.',
     video: {
       src: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1783797335/archive/videos/b0323-lpb11.mp4',
       poster:
@@ -96,7 +96,7 @@ export const ABOUT_CHAPTERS: AboutChapter[] = [
     layout: 'split',
     reverse: true,
     headline: 'The Blaze®.',
-    body: 'The Blaze® accent stone is introduced — a patent-pending triangular brilliant cut designed to nestle against channel-set stones and amplify their collective light output. Where previous accent cuts sat passively between main stones, the Blaze® interacts with them, redirecting light across the setting. It becomes a registered trademark and a protected design innovation.',
+    body: 'The Blaze® accent stone is introduced, a patent-pending triangular brilliant cut designed to nestle against channel-set stones and amplify their collective light output. Where previous accent cuts sat passively between main stones, the Blaze® interacts with them, redirecting light across the setting. It becomes a registered trademark and a protected design innovation.',
     video: {
       src: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1789605622/Jewelry%20Videos/Rings/a1869-hd.mp4',
       poster:
@@ -107,7 +107,7 @@ export const ABOUT_CHAPTERS: AboutChapter[] = [
     year: '2012',
     layout: 'split',
     headline: 'The Divine Cut®.',
-    body: 'A round brilliant rebuilt from first principles. The Divine Cut® adds proprietary facets engineered for maximum dispersion — fire visible from across a room, measurably beyond what a standard round can produce. Where a conventional round brilliant carries 57 facets, the Divine Cut® geometry reconsiders every angle: a patented geometry that takes the round diamond further than any standardized cut. The third original cut from the 611 Wilshire atelier.',
+    body: 'A round brilliant rebuilt from first principles. The Divine Cut® adds proprietary facets engineered for maximum dispersion, fire visible from across a room, measurably beyond what a standard round can produce. Where a conventional round brilliant carries 57 facets, the Divine Cut® geometry reconsiders every angle: a patented geometry that takes the round diamond further than any standardized cut. The third original cut from the 611 Wilshire atelier.',
     video: {
       src: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1783797059/archive/videos/a3418-palsqnc.mp4',
       poster: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto,w_900,so_0/v1783797059/archive/videos/a3418-palsqnc.jpg',
@@ -118,17 +118,17 @@ export const ABOUT_CHAPTERS: AboutChapter[] = [
     layout: 'split',
     reverse: true,
     headline: 'The Elysian Cut™.',
-    body: 'Seven diamond geometries — pear, oval, marquise, emerald, octagon, hexagon, triangle — unified under one optical calibration system. Each Elysian Cut is designed to produce the same quality of light regardless of shape: the step-cut discipline of the emerald, the elongated brilliance of the oval, the architectural precision of the hexagon, all governed by the same proportional framework. A proprietary system applied across an entire family of shapes.',
+    body: 'Seven diamond geometries (pear, oval, marquise, emerald, octagon, hexagon, triangle) unified under one optical calibration system. Each Elysian Cut is designed to produce the same quality of light regardless of shape: the step-cut discipline of the emerald, the elongated brilliance of the oval, the architectural precision of the hexagon, all governed by the same proportional framework. A proprietary system applied across an entire family of shapes.',
     img: {
       src: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1779091383/Jewelry%20Images/Stones/Elysian_cut_pear_sng4kq.jpg',
-      alt: 'The Elysian Cut™ pear — one of seven calibrated geometries by Bez Ambar',
+      alt: 'The Elysian Cut™ pear, one of seven calibrated geometries by Bez Ambar',
     },
   },
   {
     year: '2026',
     layout: 'normal',
     headline: 'Still Cutting.',
-    body: 'Forty-seven years after arriving in Los Angeles with a set of cutting tools and an argument about square diamonds, Bez Ambar is still in the studio. The collection today spans single-row flex bracelets, channel-set rings, Asscher and emerald-cut pieces, and bespoke commissions for clients who understand that a piece of jewelry is not bought — it is acquired. The work continues.',
+    body: 'Forty-seven years after arriving in Los Angeles with a set of cutting tools and an argument about square diamonds, Bez Ambar is still in the studio. The collection today spans single-row flex bracelets, channel-set rings, Asscher and emerald-cut pieces, and bespoke commissions for clients who understand that a piece of jewelry is not bought. It is acquired. The work continues.',
     pullquote: '"The cut is not a style. It is a solution."',
     video: {
       src: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/v1783061546/Jewelry%20Videos/Rings/c0747-hd-2026.mp4',

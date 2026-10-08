@@ -19,16 +19,16 @@ export default function WarrantyPage() {
         <section className={styles.section}>
           <h2>1. Certificate and Limited Warranty</h2>
           <div className={styles.highlight}>
-            <p>You&rsquo;re getting a genuine, defect-free Bez Ambar original design, unless otherwise explicitly stated. If you find any material or workmanship defects in your Bez Ambar jewelry, we&rsquo;ve got you covered — we&rsquo;ll repair or replace it free of charge, as long as you adhere to the conditions of this warranty.</p>
+            <p>You&rsquo;re getting a genuine, defect-free Bez Ambar original design, unless otherwise explicitly stated. If you find any material or workmanship defects in your Bez Ambar jewelry, we&rsquo;ve got you covered: we&rsquo;ll repair or replace it free of charge, as long as you adhere to the conditions of this warranty.</p>
           </div>
 
           <h3>Conditions of Coverage</h3>
           <ul>
-            <li><strong>Warranty Registration</strong> — To activate this warranty, registration of your purchase on bezambar.com is mandatory. Unregistered jewelry will not be covered.</li>
-            <li><strong>Authenticity Stamp</strong> — Authentic Bez Ambar jewelry bears our unique stamp. Unstamped items aren&rsquo;t covered. Return any unstamped pieces to us for immediate stamping to ensure warranty eligibility.</li>
-            <li><strong>Warranty Period</strong> — This warranty is valid for a period of one year from the date of purchase.</li>
-            <li><strong>Annual Inspections</strong> — Keep your warranty active with an annual inspection by Bez Ambar. It is your responsibility to maintain inspection records. Lack of a signed, dated inspection certificate from the past year will void your warranty.</li>
-            <li><strong>Bez Ambar-Only Repairs</strong> — For warranty compliance, all repairs, resizing, or other modifications must be exclusively performed by Bez Ambar. Unauthorized work voids this warranty.</li>
+            <li><strong>Warranty Registration:</strong> To activate this warranty, registration of your purchase on bezambar.com is mandatory. Unregistered jewelry will not be covered.</li>
+            <li><strong>Authenticity Stamp:</strong> Authentic Bez Ambar jewelry bears our unique stamp. Unstamped items aren&rsquo;t covered. Return any unstamped pieces to us for immediate stamping to ensure warranty eligibility.</li>
+            <li><strong>Warranty Period:</strong> This warranty is valid for a period of one year from the date of purchase.</li>
+            <li><strong>Annual Inspections:</strong> Keep your warranty active with an annual inspection by Bez Ambar. It is your responsibility to maintain inspection records. Lack of a signed, dated inspection certificate from the past year will void your warranty.</li>
+            <li><strong>Bez Ambar-Only Repairs:</strong> For warranty compliance, all repairs, resizing, or other modifications must be exclusively performed by Bez Ambar. Unauthorized work voids this warranty.</li>
           </ul>
 
           <h3>Exclusions</h3>
@@ -43,7 +43,7 @@ export default function WarrantyPage() {
           <p>To make a warranty claim, <a href="/contact">contact us</a> with proof of purchase and any relevant documentation. Shipping fees and other potential costs may apply.</p>
 
           <h3>Certificate of Authenticity</h3>
-          <p>Register your Bez Ambar creation on our website and we will send you a Certificate of Authenticity that validates your warranty. Each certificate outlines the details of your piece, signed personally by the designer — your assurance of genuine craftsmanship and a timeless heirloom to pass down through generations.</p>
+          <p>Register your Bez Ambar creation on our website and we will send you a Certificate of Authenticity that validates your warranty. Each certificate outlines the details of your piece, signed personally by the designer, your assurance of genuine craftsmanship and a timeless heirloom to pass down through generations.</p>
         </section>
 
         <section className={styles.section}>
@@ -69,7 +69,7 @@ export default function WarrantyPage() {
 
         <section className={styles.section}>
           <h2>3. Intellectual Property</h2>
-          <p>All content on bezambar.com — including text, photography, video, jewelry designs, and proprietary cut names — is the exclusive property of Bez Ambar Inc. and is protected by copyright, trademark, and applicable intellectual property laws.</p>
+          <p>All content on bezambar.com, including text, photography, video, jewelry designs, and proprietary cut names, is the exclusive property of Bez Ambar Inc. and is protected by copyright, trademark, and applicable intellectual property laws.</p>
 
           <h3>Proprietary Designs</h3>
           <ul>
