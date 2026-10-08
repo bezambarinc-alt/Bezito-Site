@@ -57,7 +57,7 @@
   flex-wrap: wrap;
   gap: 16px;
   justify-content: center;
-  margin-bottom: clamp(3rem, 5vw, 4.5rem);
+  margin-bottom: clamp(1.5rem, 2.5vw, 2.25rem);
 }
 
 /* ── Ghost pill button — matches PageCta .btn ────────────── */
@@ -91,7 +91,7 @@
   font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.45);
   text-decoration: none;
-  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  margin-bottom: clamp(1rem, 2vw, 1.75rem);
   transition: color 0.3s ease;
 }
 
