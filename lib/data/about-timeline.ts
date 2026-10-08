@@ -119,9 +119,9 @@ export const ABOUT_CHAPTERS: AboutChapter[] = [
     reverse: true,
     headline: 'The Elysian Cut™.',
     body: 'Seven diamond geometries (pear, oval, marquise, emerald, octagon, hexagon, triangle) unified under one optical calibration system. Each Elysian Cut is designed to produce the same quality of light regardless of shape: the step-cut discipline of the emerald, the elongated brilliance of the oval, the architectural precision of the hexagon, all governed by the same proportional framework. A proprietary system applied across an entire family of shapes.',
-    img: {
-      src: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1779091383/Jewelry%20Images/Stones/Elysian_cut_pear_sng4kq.jpg',
-      alt: 'The Elysian Cut™ pear, one of seven calibrated geometries by Bez Ambar',
+    video: {
+      src: 'https://res.cloudinary.com/dlg2mou53/video/upload/f_auto,q_auto/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.mp4',
+      poster: 'https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_auto,q_auto,w_900/Jewelry%20Videos/Bracelets/the_elysian_4k_v1_1_ymddbz.jpg',
     },
   },
   {
