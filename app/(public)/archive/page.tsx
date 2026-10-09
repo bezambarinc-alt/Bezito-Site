@@ -83,20 +83,15 @@ export default async function ArchivePage({
 
   return (
     <main>
-      {/* 1. Portrait hero — random entry from first 10 */}
+      {/* 1. Portrait hero — text only */}
       <section className="ba-portrait-hero ba-portrait-hero--archive">
-        {heroEntry?.mp4Url && (
-          <video
-            src={heroEntry.mp4Url}
-            autoPlay muted loop playsInline preload="auto"
-          />
-        )}
         <div className="ba-portrait-hero__overlay">
           <p className="ba-portrait-hero__eyebrow">Every Piece in Motion</p>
           <h1 className="ba-portrait-hero__title">The Archive</h1>
           <p className="ba-portrait-hero__lede">
-            Over five hundred Bez Ambar pieces, filmed at the atelier in Los Angeles.
-            Use the filter below to navigate, or scroll the gallery.
+            Forty-five years of commitment to innovation — pushing the edge of what&apos;s possible,
+            sometimes further than was wise. But always with the same dedication to the craft:
+            sculpting gems in precious metal. An art it has been my honor to practice.
           </p>
         </div>
       </section>
