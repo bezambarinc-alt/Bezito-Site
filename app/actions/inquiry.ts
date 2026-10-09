@@ -2,7 +2,7 @@
 
 import { z } from 'zod'
 import { headers } from 'next/headers'
-import { INQUIRY_INTENTS } from '@/lib/data/inquiry-constants'
+import { INQUIRY_INTENTS, MESSAGE_REQUIRED_INTENTS, DATE_REQUIRED_INTENTS } from '@/lib/data/inquiry-constants'
 import { createLead } from '@/lib/leads'
 import { checkRateLimit, recordAttempt } from '@/lib/rate-limit'
 import { getClientIp } from '@/lib/client-ip'
@@ -21,6 +21,13 @@ const InquirySchema = z.object({
   sku: z.string().trim().max(60).optional().or(z.literal('')),
   pieceTitle: z.string().trim().max(200).optional().or(z.literal('')),
   pageSlug: z.string().trim().max(120).optional().or(z.literal('')),
+}).superRefine((data, ctx) => {
+  if (MESSAGE_REQUIRED_INTENTS.has(data.intent) && !data.message?.trim()) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['message'], message: 'Please describe what you have in mind' })
+  }
+  if (DATE_REQUIRED_INTENTS.has(data.intent) && !data.preferredDate?.trim()) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['preferredDate'], message: 'Please share a preferred date' })
+  }
 })
 
 export type InquiryState = {

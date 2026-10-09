@@ -46,3 +46,16 @@ export const APPOINTMENT_INTENTS = new Set<string>([
 export const HIDE_MESSAGE_INTENTS = new Set<string>([
   'Ring Resizing',
 ])
+
+/** Intents where Message is required (not optional). */
+export const MESSAGE_REQUIRED_INTENTS = new Set<string>([
+  'A Piece from the Collection',
+  'Commission a Piece',
+])
+
+/** Intents where Preferred Date is required (not optional). */
+export const DATE_REQUIRED_INTENTS = new Set<string>([
+  'In Person Appointment',
+  'Virtual Appointment',
+  'Ring Sizing Appointment',
+])
