@@ -13,6 +13,7 @@ import {
   MESSAGE_REQUIRED_INTENTS,
   DATE_REQUIRED_INTENTS,
 } from '@/lib/data/inquiry-constants'
+import { readProfile, saveProfile } from '@/lib/user-profile'
 import styles from './InquiryDrawer.module.css'
 
 const initialState: InquiryState = { status: 'idle' }
@@ -33,6 +34,17 @@ interface FormProps {
 function InquiryForm({ prefill, pathname, onClose }: FormProps) {
   const [state, formAction, pending] = useActionState(submitInquiry, initialState)
   const [intent, setIntent] = useState<string>(prefill.intent ?? '')
+
+  // Identity fields — pre-filled from sessionStorage, saved on successful submit
+  const [nameVal,  setNameVal]  = useState(() => readProfile().name)
+  const [emailVal, setEmailVal] = useState(() => readProfile().email)
+  const [phoneVal, setPhoneVal] = useState(() => readProfile().phone)
+
+  useEffect(() => {
+    if (state.status === 'success') {
+      saveProfile({ name: nameVal, email: emailVal, phone: phoneVal })
+    }
+  }, [state.status, nameVal, emailVal, phoneVal])
 
   const showDate    = APPOINTMENT_INTENTS.has(intent)
   const hideMessage = HIDE_MESSAGE_INTENTS.has(intent)
@@ -68,6 +80,8 @@ function InquiryForm({ prefill, pathname, onClose }: FormProps) {
                 className={styles.input}
                 name="name"
                 type="text"
+                value={nameVal}
+                onChange={e => setNameVal(e.target.value)}
                 placeholder="First and Last"
                 required
                 autoComplete="name"
@@ -80,6 +94,8 @@ function InquiryForm({ prefill, pathname, onClose }: FormProps) {
                 className={styles.input}
                 name="email"
                 type="email"
+                value={emailVal}
+                onChange={e => setEmailVal(e.target.value)}
                 placeholder="you@email.com"
                 required
                 autoComplete="email"
@@ -98,6 +114,8 @@ function InquiryForm({ prefill, pathname, onClose }: FormProps) {
                 className={styles.input}
                 name="phone"
                 type="tel"
+                value={phoneVal}
+                onChange={e => setPhoneVal(e.target.value)}
                 placeholder="(xxx) xxx-xxxx"
                 autoComplete="tel"
               />

@@ -40,6 +40,7 @@ export const INTENT_HEADINGS: Record<string, string> = {
 export const APPOINTMENT_INTENTS = new Set<string>([
   'In Person Appointment',
   'Virtual Appointment',
+  'Ring Sizing Appointment',
 ])
 
 /** Intents that hide the free-text "Message" field. */

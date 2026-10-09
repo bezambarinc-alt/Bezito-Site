@@ -12,6 +12,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import type { ArchiveEntry } from '@/lib/data/archive-constants'
+import { readProfile, saveProfile } from '@/lib/user-profile'
 import styles from './ArchiveModal.module.css'
 
 type FormStatus = 'idle' | 'sending' | 'success' | 'error'
@@ -33,8 +34,8 @@ function ArchiveModalPanel({ entry, onClose }: { entry: ArchiveEntry; onClose: (
   const videoRef = useRef<HTMLVideoElement>(null)
   const nameRef  = useRef<HTMLInputElement>(null)
 
-  const [name, setName]     = useState('')
-  const [email, setEmail]   = useState('')
+  const [name, setName]     = useState(() => readProfile().name)
+  const [email, setEmail]   = useState(() => readProfile().email)
   const [status, setStatus] = useState<FormStatus>('idle')
   const [errMsg, setErrMsg] = useState('')
 
@@ -89,6 +90,7 @@ function ArchiveModalPanel({ entry, onClose }: { entry: ArchiveEntry; onClose: (
         }),
       })
       if (!res.ok) throw new Error('Request failed')
+      saveProfile({ name, email })
       setStatus('success')
     } catch {
       setStatus('error')

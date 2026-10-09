@@ -1,8 +1,15 @@
 'use client'
 
-import { useActionState, useState } from 'react'
+import { useActionState, useEffect, useState } from 'react'
 import { submitInquiry, type InquiryState } from '@/app/actions/inquiry'
-import { INQUIRY_INTENTS, APPOINTMENT_INTENTS } from '@/lib/data/inquiry-constants'
+import {
+  INQUIRY_INTENTS,
+  APPOINTMENT_INTENTS,
+  HIDE_MESSAGE_INTENTS,
+  MESSAGE_REQUIRED_INTENTS,
+  DATE_REQUIRED_INTENTS,
+} from '@/lib/data/inquiry-constants'
+import { readProfile, saveProfile } from '@/lib/user-profile'
 import styles from './ContactForm.module.css'
 
 const initialState: InquiryState = { status: 'idle' }
@@ -10,7 +17,22 @@ const initialState: InquiryState = { status: 'idle' }
 export default function ContactForm() {
   const [state, formAction, pending] = useActionState(submitInquiry, initialState)
   const [intent, setIntent] = useState<string>(INQUIRY_INTENTS[0])
-  const showDate = APPOINTMENT_INTENTS.has(intent)
+
+  // Identity fields — pre-filled from sessionStorage, saved on successful submit
+  const [nameVal,  setNameVal]  = useState(() => readProfile().name)
+  const [emailVal, setEmailVal] = useState(() => readProfile().email)
+  const [phoneVal, setPhoneVal] = useState(() => readProfile().phone)
+
+  useEffect(() => {
+    if (state.status === 'success') {
+      saveProfile({ name: nameVal, email: emailVal, phone: phoneVal })
+    }
+  }, [state.status, nameVal, emailVal, phoneVal])
+
+  const showDate    = APPOINTMENT_INTENTS.has(intent)
+  const hideMessage = HIDE_MESSAGE_INTENTS.has(intent)
+  const msgRequired  = MESSAGE_REQUIRED_INTENTS.has(intent)
+  const dateRequired = DATE_REQUIRED_INTENTS.has(intent)
 
   if (state.status === 'success') {
     return (
@@ -28,12 +50,25 @@ export default function ContactForm() {
       <div className={styles.row}>
         <label className={styles.field}>
           <span>Name</span>
-          <input name="name" required autoComplete="name" />
+          <input
+            name="name"
+            value={nameVal}
+            onChange={e => setNameVal(e.target.value)}
+            required
+            autoComplete="name"
+          />
           {state.fieldErrors?.name && <em className={styles.err}>{state.fieldErrors.name}</em>}
         </label>
         <label className={styles.field}>
           <span>Email</span>
-          <input name="email" type="email" required autoComplete="email" />
+          <input
+            name="email"
+            type="email"
+            value={emailVal}
+            onChange={e => setEmailVal(e.target.value)}
+            required
+            autoComplete="email"
+          />
           {state.fieldErrors?.email && <em className={styles.err}>{state.fieldErrors.email}</em>}
         </label>
       </div>
@@ -41,7 +76,13 @@ export default function ContactForm() {
       <div className={styles.row}>
         <label className={styles.field}>
           <span>Phone <i>(optional)</i></span>
-          <input name="phone" type="tel" autoComplete="tel" />
+          <input
+            name="phone"
+            type="tel"
+            value={phoneVal}
+            onChange={e => setPhoneVal(e.target.value)}
+            autoComplete="tel"
+          />
         </label>
         <label className={styles.field}>
           <span>How may we help?</span>
@@ -55,15 +96,24 @@ export default function ContactForm() {
 
       {showDate && (
         <label className={styles.field}>
-          <span>Preferred date</span>
-          <input name="preferredDate" type="date" />
+          <span>Preferred date {!dateRequired && <i>(optional)</i>}</span>
+          <input
+            name="preferredDate"
+            type="text"
+            required={dateRequired}
+            placeholder="e.g. Mon or Tue afternoon"
+          />
+          {state.fieldErrors?.preferredDate && <em className={styles.err}>{state.fieldErrors.preferredDate}</em>}
         </label>
       )}
 
-      <label className={styles.field}>
-        <span>Message</span>
-        <textarea name="message" rows={5} />
-      </label>
+      {!hideMessage && (
+        <label className={styles.field}>
+          <span>Message {!msgRequired && <i>(optional)</i>}</span>
+          <textarea name="message" rows={5} required={msgRequired} />
+          {state.fieldErrors?.message && <em className={styles.err}>{state.fieldErrors.message}</em>}
+        </label>
+      )}
 
       {state.status === 'error' && state.message && <p className={styles.formErr}>{state.message}</p>}
 
