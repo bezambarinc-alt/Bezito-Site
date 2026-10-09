@@ -11,6 +11,9 @@ import SearchOverlay from '@/components/layout/SearchOverlay'
 // one call opts every route under this layout out of static rendering — see the
 // CSP note in proxy.ts. The public policy allows these by host instead.
 
+const GA4_ID = 'G-92GPTNTY00'
+const FB_PIXEL_ID = '295592213952476'
+
 export default async function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
@@ -22,6 +25,33 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
         strategy="lazyOnload"
         src="https://cdn.pagesense.io/js/bezambarinc657/b68a8dcb9f314cfd85f99b87f9cf95a8.js"
       />
+
+      {/* GA4 — respects Consent Mode v2 default set in root layout */}
+      <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`} />
+      <Script id="gtag-init" strategy="afterInteractive">{`
+        window.dataLayer=window.dataLayer||[];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js',new Date());
+        gtag('config','${GA4_ID}',{send_page_view:true});
+      `}</Script>
+
+      {/* Facebook Pixel — custom audiences only (not WooCommerce pixel) */}
+      <Script id="fb-pixel" strategy="afterInteractive">{`
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+        (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init','${FB_PIXEL_ID}');
+        fbq('track','PageView');
+      `}</Script>
+      <noscript>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img height="1" width="1" style={{display:'none'}}
+          src={`https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`}
+          alt=""
+        />
+      </noscript>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

@@ -4,9 +4,30 @@ import { useEffect } from 'react'
 import * as CookieConsent from 'vanilla-cookieconsent'
 import 'vanilla-cookieconsent/dist/cookieconsent.css'
 
+declare function gtag(...args: unknown[]): void
+
+function updateGtagConsent(analyticsAccepted: boolean) {
+  if (typeof gtag !== 'function') return
+  const state = analyticsAccepted ? 'granted' : 'denied'
+  gtag('consent', 'update', {
+    analytics_storage: state,
+    ad_storage: state,
+    ad_user_data: state,
+    ad_personalization: state,
+  })
+}
+
 export default function CookieConsentBanner() {
   useEffect(() => {
     CookieConsent.run({
+      onConsent: () => {
+        updateGtagConsent(CookieConsent.acceptedCategory('analytics'))
+      },
+      onChange: ({ changedCategories }: { changedCategories: string[] }) => {
+        if (changedCategories.includes('analytics')) {
+          updateGtagConsent(CookieConsent.acceptedCategory('analytics'))
+        }
+      },
       guiOptions: {
         consentModal: {
           layout: 'bar',

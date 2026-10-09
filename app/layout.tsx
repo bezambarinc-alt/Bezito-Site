@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Open_Sans, Lora } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import CookieConsentBanner from './components/CookieConsent'
 
@@ -41,6 +42,16 @@ export const metadata: Metadata = {
     ],
   },
   twitter: { card: 'summary_large_image' },
+  verification: {
+    google: [
+      '6B00ZEERW59xG2W7AUJ-m73zIGF3KmoDGVWcObCK9Lg',
+      'ofEgZRIXlvyvcbQRIrjgbZZbBJ9R6RJbRCMOE9_b2yU',
+      'U4_vdQbk7Ym-z5Oo3ody-_YIC9RcNCykEd8vyEDq6MA',
+    ],
+    other: {
+      'msvalidate.01': 'EA37A4F49A2AF9C2B2597B96B7B398F8',
+    },
+  },
 }
 
 // Bare root — just HTML/body + fonts + globals.
@@ -50,6 +61,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${openSans.variable} ${lora.variable}`}>
       <body>
+        {/* Consent Mode v2 defaults — must fire before gtag.js loads */}
+        <Script id="gtag-consent-default" strategy="beforeInteractive">{`
+          window.dataLayer=window.dataLayer||[];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});
+        `}</Script>
         {children}
         <CookieConsentBanner />
       </body>
