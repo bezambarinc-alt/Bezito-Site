@@ -9,7 +9,7 @@ function isAllowedOrigin(origin: string | null): boolean {
   return (
     origin === (process.env.APP_URL ?? 'https://bezambar-web2026.vercel.app') ||
     /^https:\/\/bezambar[a-z0-9-]*\.vercel\.app$/.test(origin) ||
-    /^https:\/\/bezambar\.com$/.test(origin) ||
+    /^https:\/\/(www\.)?bezambar\.com$/.test(origin) ||
     /^http:\/\/localhost:\d+$/.test(origin)
   )
 }
