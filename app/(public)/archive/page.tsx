@@ -83,20 +83,7 @@ export default async function ArchivePage({
 
   return (
     <main>
-      {/* 1. Portrait hero — text only */}
-      <section className="ba-portrait-hero ba-portrait-hero--archive">
-        <div className="ba-portrait-hero__overlay">
-          <p className="ba-portrait-hero__eyebrow">Every Piece in Motion</p>
-          <h1 className="ba-portrait-hero__title">The Archive</h1>
-          <p className="ba-portrait-hero__lede">
-            Forty-five years of commitment to innovation — pushing the edge of what&apos;s possible,
-            sometimes further than was wise. But always with the same dedication to the craft:
-            sculpting gems in precious metal. An art it has been my honor to practice.
-          </p>
-        </div>
-      </section>
-
-      {/* 2. Crawler-only link list — visually hidden, in server HTML so Googlebot discovers all archive piece pages */}
+      {/* 1. Crawler-only link list — visually hidden, in server HTML so Googlebot discovers all archive piece pages */}
       <ul style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap', border: 0 }} aria-hidden="true">
         {entries.map((e) => (
           <li key={e.slug}>
@@ -105,7 +92,7 @@ export default async function ArchivePage({
         ))}
       </ul>
 
-      {/* 3. Filter + Carousel (client) — initial search params passed from server to avoid Suspense CLS */}
+      {/* 2. Filter + Carousel (client) — sits at top, right under the nav */}
       <ArchiveClient
         entries={entries}
         initialCat={sp.cat   ?? 'all'}
@@ -113,7 +100,18 @@ export default async function ArchivePage({
         initialColor={sp.color ?? 'all'}
       />
 
-      {/* 5. Atelier banner */}
+      {/* 3. Archive statement — copy lives below the carousel */}
+      <section className="ba-archive-statement">
+        <p className="ba-archive-statement__eyebrow">Every Piece in Motion</p>
+        <h2 className="ba-archive-statement__title">The Archive</h2>
+        <p className="ba-archive-statement__body">
+          Forty-five years of commitment to innovation — pushing the edge of what&apos;s possible,
+          sometimes further than was wise. But always with the same dedication to the craft:
+          sculpting gems in precious metal. An art it has been my honor to practice.
+        </p>
+      </section>
+
+      {/* 4. Atelier banner */}
       <AtelierBanner />
     </main>
   )
