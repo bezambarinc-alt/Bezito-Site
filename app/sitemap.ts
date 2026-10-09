@@ -9,7 +9,7 @@ import { RETAILERS } from '@/lib/data/retailers'
  */
 export const revalidate = 86400 // 24 hours
 
-const BASE = 'https://bezambar.com'
+const BASE = 'https://www.bezambar.com'
 
 type Freq = MetadataRoute.Sitemap[number]['changeFrequency']
 

@@ -20,7 +20,7 @@ const lora = Lora({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://bezambar.com'),
+  metadataBase: new URL('https://www.bezambar.com'),
   title: {
     default: 'Bez Ambar | Chiseling Light',
     template: '%s · Bez Ambar',

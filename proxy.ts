@@ -128,6 +128,13 @@ function logView(req: NextRequest): void {
 export default async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname
 
+  // Apex → www canonical redirect (301 permanent)
+  if (req.nextUrl.hostname === 'bezambar.com') {
+    const url = req.nextUrl.clone()
+    url.hostname = 'www.bezambar.com'
+    return NextResponse.redirect(url, { status: 301 })
+  }
+
   // Per-request nonce — base64-encoded UUID — but only on the routes that run
   // the strict policy. Minting one for a public route would be worse than
   // useless: reading it back in a server component calls headers(), and that
