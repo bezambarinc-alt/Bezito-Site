@@ -8,6 +8,9 @@ import {
   HIDE_MESSAGE_INTENTS,
   MESSAGE_REQUIRED_INTENTS,
   DATE_REQUIRED_INTENTS,
+  LOCATION_INTENTS,
+  COUNTRIES,
+  US_STATES,
 } from '@/lib/data/inquiry-constants'
 import { readProfile, saveProfile } from '@/lib/user-profile'
 import styles from './ContactForm.module.css'
@@ -23,16 +26,23 @@ export default function ContactForm() {
   const [emailVal, setEmailVal] = useState(() => readProfile().email)
   const [phoneVal, setPhoneVal] = useState(() => readProfile().phone)
 
+  // Location fields — Authorized Retailers only
+  const [countryVal, setCountryVal] = useState('United States')
+  const [cityVal,    setCityVal]    = useState('')
+  const [stateVal,   setStateVal]   = useState('')
+
   useEffect(() => {
     if (state.status === 'success') {
       saveProfile({ name: nameVal, email: emailVal, phone: phoneVal })
     }
   }, [state.status, nameVal, emailVal, phoneVal])
 
-  const showDate    = APPOINTMENT_INTENTS.has(intent)
-  const hideMessage = HIDE_MESSAGE_INTENTS.has(intent)
+  const showDate     = APPOINTMENT_INTENTS.has(intent)
+  const hideMessage  = HIDE_MESSAGE_INTENTS.has(intent)
   const msgRequired  = MESSAGE_REQUIRED_INTENTS.has(intent)
   const dateRequired = DATE_REQUIRED_INTENTS.has(intent)
+  const showLocation = LOCATION_INTENTS.has(intent)
+  const isUS         = countryVal === 'United States'
 
   if (state.status === 'success') {
     return (
@@ -94,14 +104,53 @@ export default function ContactForm() {
         </label>
       </div>
 
+      {showLocation && (
+        <>
+          <label className={styles.field}>
+            <span>Country <i>(optional)</i></span>
+            <select
+              name="country"
+              value={countryVal}
+              onChange={e => setCountryVal(e.target.value)}
+            >
+              {COUNTRIES.map(c => <option key={c} value={c}>{c}</option>)}
+            </select>
+          </label>
+          {isUS && (
+            <div className={styles.row}>
+              <label className={styles.field}>
+                <span>City <i>(optional)</i></span>
+                <input
+                  name="city"
+                  type="text"
+                  value={cityVal}
+                  onChange={e => setCityVal(e.target.value)}
+                  placeholder="Your city"
+                />
+              </label>
+              <label className={styles.field}>
+                <span>State <i>(optional)</i></span>
+                <select
+                  name="state"
+                  value={stateVal}
+                  onChange={e => setStateVal(e.target.value)}
+                >
+                  <option value="">Select…</option>
+                  {US_STATES.map(s => <option key={s.abbr} value={s.abbr}>{s.name}</option>)}
+                </select>
+              </label>
+            </div>
+          )}
+        </>
+      )}
+
       {showDate && (
         <label className={styles.field}>
           <span>Preferred date {!dateRequired && <i>(optional)</i>}</span>
           <input
             name="preferredDate"
-            type="text"
+            type="date"
             required={dateRequired}
-            placeholder="e.g. Mon or Tue afternoon"
           />
           {state.fieldErrors?.preferredDate && <em className={styles.err}>{state.fieldErrors.preferredDate}</em>}
         </label>

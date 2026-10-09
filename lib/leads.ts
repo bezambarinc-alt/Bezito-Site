@@ -115,6 +115,10 @@ export interface LeadInput {
   sku?: string | null
   pieceTitle?: string | null
   preferredDate?: string | null
+  /** Retailer location fields — only submitted for Authorized Retailers intent. */
+  country?: string | null
+  city?: string | null
+  state?: string | null
   /** Raw site path the form was submitted from. Stored verbatim (no FK). */
   pageSlug?: string | null
 }
@@ -126,24 +130,28 @@ export interface LeadResult {
 
 /** Build the human-readable body stored in leads.message (intent lives in its own column). */
 function buildStoredMessage(d: LeadInput): string | null {
+  const locationParts = [d.city, d.state, d.country].filter(Boolean)
   return [
-    d.pieceTitle    ? `Piece: ${d.pieceTitle}`             : null,
-    d.preferredDate ? `Preferred date: ${d.preferredDate}` : null,
-    d.phone         ? `Phone: ${d.phone}`                  : null,
-    d.message       ? `${d.message}`                       : null,
+    d.pieceTitle           ? `Piece: ${d.pieceTitle}`                    : null,
+    d.preferredDate        ? `Preferred date: ${d.preferredDate}`        : null,
+    d.phone                ? `Phone: ${d.phone}`                         : null,
+    locationParts.length   ? `Location: ${locationParts.join(', ')}`     : null,
+    d.message              ? `${d.message}`                              : null,
   ].filter(Boolean).join('\n') || null
 }
 
 /** Build the description sent to Zoho CRM / Desk. SKU first for at-a-glance CRM preview. */
 function buildCrmDescription(d: LeadInput, pageUrl?: string): string {
+  const locationParts = [d.city, d.state, d.country].filter(Boolean)
   return [
-    d.sku           ? `SKU: ${d.sku}`                       : null,
-    d.intent        ? `How can we help: ${d.intent}`        : null,
-    d.pieceTitle    ? `Piece: ${d.pieceTitle}`              : null,
-    d.preferredDate ? `Preferred date: ${d.preferredDate}`  : null,
-    d.phone         ? `Phone: ${d.phone}`                   : null,
-    pageUrl         ? `Page: ${pageUrl}`                    : null,
-    d.message       || null,
+    d.sku                ? `SKU: ${d.sku}`                             : null,
+    d.intent             ? `How can we help: ${d.intent}`             : null,
+    d.pieceTitle         ? `Piece: ${d.pieceTitle}`                   : null,
+    d.preferredDate      ? `Preferred date: ${d.preferredDate}`       : null,
+    d.phone              ? `Phone: ${d.phone}`                        : null,
+    locationParts.length ? `Location: ${locationParts.join(', ')}`    : null,
+    pageUrl              ? `Page: ${pageUrl}`                         : null,
+    d.message            || null,
   ].filter(Boolean).join('\n') || 'Website inquiry'
 }
 
@@ -230,6 +238,9 @@ export async function createLead(input: LeadInput): Promise<LeadResult> {
             Lead_Source: ZOHO_LEAD_SOURCE,
             Website: pageUrl,
             Inquiry_Intent: input.intent || undefined,
+            City: input.city || undefined,
+            State: input.state || undefined,
+            Country: input.country || undefined,
             Description: buildCrmDescription(input, pageUrl),
           }],
         }),
