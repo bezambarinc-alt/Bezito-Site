@@ -24,7 +24,6 @@ interface SubCol { id: string; items: NavEntry[] }
 
 const ROOT: NavEntry[] = [
   { kind: 'expand', label: 'On the Bench', id: 'jewelry' },
-  { kind: 'expand', label: 'Presentations', id: 'presentations' },
   { kind: 'link',   label: 'Archive',      href: '/archive' },
   { kind: 'expand', label: 'Journal',      id: 'journal' },
   { kind: 'expand', label: 'Atelier',      id: 'atelier' },
@@ -55,12 +54,6 @@ export default function MenuOverlay({ categories = [], categoryProducts = {}, co
 
   const subCols: SubCol[] = [
     { id: 'jewelry', items: jewelryItems },
-    {
-      id: 'presentations',
-      items: [
-        { kind: 'link', label: 'The Elysian Band', href: '/presentations/elysian-band' },
-      ],
-    },
     {
       id: 'journal',
       items: [
