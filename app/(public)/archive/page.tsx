@@ -89,9 +89,8 @@ export default async function ArchivePage({
           <p className="ba-portrait-hero__eyebrow">Every Piece in Motion</p>
           <h1 className="ba-portrait-hero__title">The Archive</h1>
           <p className="ba-portrait-hero__lede">
-            Forty-five years of commitment to innovation — pushing the edge of what&apos;s possible,
-            sometimes further than was wise. But always with the same dedication to the craft:
-            sculpting gems in precious metal. An art it has been my honor to practice.
+            Forty-five years pushing the edge of what&apos;s possible — sometimes further than was wise.
+            Always the same dedication to the craft.
           </p>
         </div>
       </section>
