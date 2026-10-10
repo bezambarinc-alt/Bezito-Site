@@ -77,7 +77,6 @@ export default function MenuOverlay({ categories = [], categoryProducts = {}, co
       id: 'atelier',
       items: [
         { kind: 'link',  label: 'About Bez Ambar',   href: '/about-bez-ambar' },
-        { kind: 'link',  label: 'Elysian Cut™',      href: '/elysian-cut' },
         { kind: 'divider' },
         { kind: 'label', text: 'Resources' },
         { kind: 'link',  label: 'Diamond Education', href: '/diamond-education' },
