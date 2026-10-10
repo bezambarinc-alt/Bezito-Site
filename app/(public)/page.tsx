@@ -67,7 +67,7 @@ export default function HomePage() {
         id="work"
         imageUrl="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1100/v1782520989/Jewelry%20Images/Rings/plisse/plisse_macro.jpg"
         eyebrow="The Details"
-        title="A Commitment to Perfection"
+        title="Exact by Design."
         body="Every stone is cut to the geometry of its position — calibrated, shaped, and set so nothing is ever off. Not by a degree. Not ever."
       />
 
