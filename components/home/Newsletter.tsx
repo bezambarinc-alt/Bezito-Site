@@ -29,10 +29,10 @@ export default function Newsletter() {
   return (
     <section className={styles.section}>
       <div className={styles.inner}>
-        <h2 className={styles.title}>The Private List</h2>
+        <h2 className={styles.title}>Word from the Atelier.</h2>
         <p className={styles.lede}>
-          First access to new pieces, archive discoveries, and notes from the atelier.
-          Rarely sent. Always worth it.
+          Now and then I send word from the bench — a new cut, a stone that stopped me, a piece just finished.
+          If that speaks to you, come along.
         </p>
 
         {status === 'success' ? (

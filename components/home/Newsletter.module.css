@@ -17,7 +17,7 @@
 
 .title {
   font-family: var(--ba-font-sans);
-  font-size: var(--ba-type-heading);
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
   font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 0;
@@ -28,8 +28,8 @@
 /* Astro .newsletter p: 15px, ink-soft, max-width 520px */
 .lede {
   font-family: var(--ba-font-editorial);
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 400;
   letter-spacing: 0;
   line-height: 1.65;
   color: var(--ba-ink);
