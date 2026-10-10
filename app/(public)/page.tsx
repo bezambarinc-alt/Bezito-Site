@@ -77,6 +77,7 @@ export default function HomePage() {
         height={700}
         eyebrow="Bez Ambar"
         title="Chiseling Light"
+        body="At its sharpest edge, the purest material breaks white light into color. The art is in the angles — and when they're right, the stone shines like heaven."
         sub="Los Angeles"
       />
 

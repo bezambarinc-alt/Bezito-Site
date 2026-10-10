@@ -5,6 +5,7 @@ interface HomeHeroImageProps {
   height: number
   eyebrow?: string
   title: string
+  body?: string
   sub?: string
 }
 
@@ -13,6 +14,7 @@ export default function HomeHeroImage({
   height,
   eyebrow,
   title,
+  body,
   sub,
 }: HomeHeroImageProps) {
   return (
@@ -22,6 +24,7 @@ export default function HomeHeroImage({
       <div className={styles.overlay}>
         {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
         <h2 className={styles.title}>{title}</h2>
+        {body && <p className={styles.body}>{body}</p>}
         {sub && <p className={styles.sub}>{sub}</p>}
       </div>
     </section>
