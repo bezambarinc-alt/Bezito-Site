@@ -64,7 +64,7 @@ function InquiryForm({ prefill, pathname, onClose }: FormProps) {
 
   return (
     <div className={styles.body}>
-      <h2 id="inq-heading" className={styles.heading}>{INTENT_HEADINGS[intent] || 'Connect with the Atelier'}</h2>
+      <h2 id="inq-heading" className={styles.heading}>{INTENT_HEADINGS[intent] || 'Begin With Your Stone.'}</h2>
       <p className={styles.subhead}>
         {intent === 'Authorized Retailers'
           ? 'Bez Ambar is available through a select network of authorized retail partners worldwide. Share your location and we\'ll connect you directly.'
@@ -209,7 +209,7 @@ function InquiryForm({ prefill, pathname, onClose }: FormProps) {
                 name="message"
                 rows={3}
                 required={msgRequired}
-                placeholder="Tell us what you have in mind…"
+                placeholder="Tell us about your stone, or the one you're dreaming of…"
               />
               {state.fieldErrors?.message && <em className={styles.err}>{state.fieldErrors.message}</em>}
             </label>

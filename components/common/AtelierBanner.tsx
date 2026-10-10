@@ -13,8 +13,8 @@ export default function AtelierBanner() {
           releasing the fire already waiting inside it. It&apos;s sculpting with light.
         </p>
         <div className={styles.btnRow}>
-          <InquiryButton intent="Virtual Appointment" className={styles.btn}>
-            Begin with your stone.
+          <InquiryButton className={styles.btn}>
+            Begin with your stone
           </InquiryButton>
         </div>
 
