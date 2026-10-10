@@ -1,18 +1,4 @@
-/* Category page hero — 300px desktop, 75dvh mobile */
+/* Category page hero — 300px, all screen sizes */
 .hero {
   height: 300px;
-}
-
-@media (max-width: 768px) {
-  .hero {
-    height: 75vh;
-  }
-}
-
-@supports (height: 1dvh) {
-  @media (max-width: 768px) {
-    .hero {
-      height: 75dvh;
-    }
-  }
 }
