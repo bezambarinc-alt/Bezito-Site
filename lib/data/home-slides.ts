@@ -27,8 +27,8 @@ export const HERO_SLIDES: [CarouselSlide, CarouselSlide] = [
     posterUrl:
       'https://res.cloudinary.com/dlg2mou53/video/upload/so_0,f_auto,q_auto,w_1080/Jewelry%20Videos/Bands/4k_ovalcut_band_6_v1_rllzya.jpg',
     eyebrow: 'The Oval Band',
-    headline: 'A Line You Never Take Off',
-    sub: "Cut to fit its place, set to disappear. Every stone calibrated to the hand that wears it. It doesn't announce itself; it stays.",
+    headline: 'Cut to Belong.',
+    sub: "Cut to fit its place, set to disappear. Every stone shaped for its exact position in the band. It doesn't announce itself; it stays.",
   },
 ]
 
