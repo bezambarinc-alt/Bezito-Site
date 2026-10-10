@@ -12,5 +12,5 @@ export const STATS: StatItem[] = [
   { number: '1979', label: 'Founded in Los Angeles' },
   { number: '3',    label: 'Patented Diamond Cuts' },
   { number: '47+',  label: 'Years of Innovation' },
-  { number: '1980', label: 'Co-Inventor of the Princess Cut' },
+  { number: '1980', label: 'Designer of the Princess Cut' },
 ]

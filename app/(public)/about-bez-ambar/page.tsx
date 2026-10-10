@@ -8,12 +8,12 @@ import { ABOUT_CHAPTERS, ABOUT_YEARS } from '@/lib/data/about-timeline'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
-  title: { absolute: 'About Bez Ambar | Artist, Designer & Co-Inventor of the Princess Cut' },
+  title: { absolute: 'About Bez Ambar | Artist & Designer of the Princess Cut' },
   description:
-    'About Bez Ambar: Israeli-American diamond artist, designer, and co-inventor of the modern Princess Cut. Three patented cuts. One atelier in Los Angeles.',
+    'About Bez Ambar: Israeli-American diamond artist and designer of the Princess Cut. Three patented cuts. One atelier in Los Angeles.',
   openGraph: {
     title: 'About Bez Ambar',
-    description: 'Co-Inventor of the Modern Princess Cut. Forty-seven years of chiseling light from a Los Angeles atelier.',
+    description: 'Designer of the Princess Cut. Forty-seven years of chiseling light from a Los Angeles atelier.',
   },
 }
 
@@ -26,7 +26,7 @@ export default function AboutPage() {
         <div className={styles.heroImg}>
           <Image
             src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1600/v1785629661/Diamond_Design_Hero_eoykbn.avif"
-            alt="Bez Ambar, co-inventor of the Princess Cut, Los Angeles atelier"
+            alt="Bez Ambar, designer of the Princess Cut, Los Angeles atelier"
             fill
             priority
             sizes="100vw"
@@ -34,10 +34,10 @@ export default function AboutPage() {
           />
         </div>
         <div className={styles.heroOverlay}>
-          <p className={styles.heroEyebrow}>Co-Inventor</p>
+          <p className={styles.heroEyebrow}>Designer</p>
           <h1 className={styles.heroTitle}>Bez Ambar</h1>
           <p className={styles.heroLede}>
-            Diamond cutter. Designer. Co-inventor of the modern Princess Cut. One atelier,
+            Diamond cutter. Designer of the Princess Cut. One atelier,
             Los Angeles, forty-seven years.
           </p>
         </div>

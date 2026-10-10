@@ -9,7 +9,7 @@ import { HERO_SLIDES, CINEMATIC_SLIDES } from '@/lib/data/home-slides'
 export const metadata: Metadata = {
   title: { absolute: 'Bez Ambar — Chiseling Light' },
   description:
-    'Co-Inventor of the Modern Princess Cut. Fine jewelry from the Los Angeles atelier.',
+    'Designer of the Princess Cut. Fine jewelry from the Los Angeles atelier.',
 }
 
 export default function HomePage() {
