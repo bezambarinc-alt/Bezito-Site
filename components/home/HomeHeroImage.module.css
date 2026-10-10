@@ -61,6 +61,18 @@
   );
 }
 
+/* Left-middle variant — text block on the left, vertically centered */
+.overlayLeft {
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 24px 0 clamp(40px, 7vw, 90px);
+  background: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0) 45%,
+    rgba(0, 0, 0, 0.40) 100%
+  );
+}
+
 /* Inner wrapper — centers elements as a column within the positioned block */
 .textBlock { display: contents; }
 .overlayRight .textBlock {
@@ -68,6 +80,13 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  max-width: 320px;
+}
+.overlayLeft .textBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
   max-width: 320px;
 }
 
@@ -132,5 +151,20 @@
   .overlayRight .textBlock {
     max-width: none;
     align-items: center;
+  }
+  .overlayLeft {
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 24px 15vh;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      rgba(0, 0, 0, 0.55) 100%
+    );
+  }
+  .overlayLeft .textBlock {
+    max-width: none;
+    align-items: center;
+    text-align: center;
   }
 }

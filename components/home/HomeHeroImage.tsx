@@ -7,7 +7,7 @@ interface HomeHeroImageProps {
   title: string
   body?: string
   sub?: string
-  textPosition?: 'center' | 'right-upper'
+  textPosition?: 'center' | 'right-upper' | 'left-middle'
 }
 
 export default function HomeHeroImage({
@@ -22,6 +22,7 @@ export default function HomeHeroImage({
   const overlayClass = [
     styles.overlay,
     textPosition === 'right-upper' ? styles.overlayRight : '',
+    textPosition === 'left-middle' ? styles.overlayLeft : '',
   ].filter(Boolean).join(' ')
 
   return (

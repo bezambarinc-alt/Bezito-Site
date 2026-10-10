@@ -46,6 +46,7 @@ export default function HomePage() {
         eyebrow="The Secret"
         title="SHHH"
         sub="The jewelry doesn't begin with the setting. It begins inside the diamond."
+        textPosition="left-middle"
       />
 
       {/* Atelier — Ring CAD video */}
