@@ -24,7 +24,7 @@ interface SubCol { id: string; items: NavEntry[] }
 
 const ROOT: NavEntry[] = [
   { kind: 'expand', label: 'On the Bench', id: 'jewelry' },
-  { kind: 'link',   label: 'Archive',      href: '/archive' },
+  { kind: 'expand', label: 'Archive',      id: 'archive' },
   { kind: 'expand', label: 'Journal',      id: 'journal' },
   { kind: 'expand', label: 'Atelier',      id: 'atelier' },
   { kind: 'action', label: 'Service',      target: 'concierge' },
@@ -36,9 +36,10 @@ interface Props {
   categories?: string[]
   categoryProducts?: Record<string, { slug: string; name: string }[]>
   collections?: string[]
+  archiveCategories?: { value: string; label: string }[]
 }
 
-export default function MenuOverlay({ categories = [], categoryProducts = {}, collections = [] }: Props) {
+export default function MenuOverlay({ categories = [], categoryProducts = {}, collections = [], archiveCategories = [] }: Props) {
   const { active, close, openConcierge, openInquiryDrawer } = useDrawers()
   const open = active === 'menu'
   const [sub, setSub] = useState<string | null>(null)
@@ -52,8 +53,19 @@ export default function MenuOverlay({ categories = [], categoryProducts = {}, co
     cat,
   }))
 
+  // Archive sub-column: "All Pieces" first, then one link per live category.
+  const archiveItems: NavEntry[] = [
+    { kind: 'link', label: 'All Pieces', href: '/archive' },
+    ...archiveCategories.map(c => ({
+      kind: 'link' as const,
+      label: c.label,
+      href: `/archive/${c.value}`,
+    })),
+  ]
+
   const subCols: SubCol[] = [
     { id: 'jewelry', items: jewelryItems },
+    { id: 'archive', items: archiveItems },
     {
       id: 'journal',
       items: [

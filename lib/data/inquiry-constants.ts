@@ -16,6 +16,7 @@ export const INQUIRY_INTENTS = [
   'Virtual Appointment',
   'Commission a Piece',
   'A Piece from the Collection',
+  'A Piece from the Archive',
   'Repair & Cleaning',
   'Ring Resizing',
   'Authorized Retailers',
@@ -30,6 +31,7 @@ export const INTENT_HEADINGS: Record<string, string> = {
   'Virtual Appointment':         'Virtual Consultation',
   'Commission a Piece':          'Commission a Piece',
   'A Piece from the Collection': 'A Piece from the Collection',
+  'A Piece from the Archive':    'Inquire About an Archive Piece',
   'Repair & Cleaning':           'Repair & Cleaning',
   'Ring Resizing':               'Ring Resizing',
   'Authorized Retailers':        'Authorized Retailers',
@@ -51,6 +53,7 @@ export const HIDE_MESSAGE_INTENTS = new Set<string>([
 /** Intents where Message is required (not optional). */
 export const MESSAGE_REQUIRED_INTENTS = new Set<string>([
   'A Piece from the Collection',
+  'A Piece from the Archive',
   'Commission a Piece',
 ])
 

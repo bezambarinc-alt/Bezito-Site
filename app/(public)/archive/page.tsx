@@ -110,6 +110,7 @@ export default async function ArchivePage({
         initialCat={sp.cat   ?? 'all'}
         initialShape={sp.shape ?? 'all'}
         initialColor={sp.color ?? 'all'}
+        hideCategoryFilter
       />
 
       {/* 5. Atelier banner */}

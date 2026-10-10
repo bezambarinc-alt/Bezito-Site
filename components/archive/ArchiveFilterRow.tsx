@@ -18,6 +18,7 @@ interface Props {
   availableShapes: Set<string>
   availableColors: Set<string>
   dark?:           boolean
+  hideCategoryFilter?: boolean
 }
 
 /**
@@ -44,7 +45,7 @@ function availableOptions(
  */
 export default function ArchiveFilterRow({
   cat, shape, color, onFilterChange,
-  availableCats, availableShapes, availableColors, dark,
+  availableCats, availableShapes, availableColors, dark, hideCategoryFilter,
 }: Props) {
   const [open, setOpen] = useState<string | null>(null)
   const rootRef = useRef<HTMLDivElement>(null)
@@ -86,6 +87,7 @@ export default function ArchiveFilterRow({
     { id: 'shape', key: 'shape' as const, label: 'Shape',    options: shapeOptions, value: shape },
     { id: 'color', key: 'color' as const, label: 'Stone',    options: colorOptions, value: color },
   ].filter(s => s.options.length > 1)
+    .filter(s => !(hideCategoryFilter && s.id === 'cat'))
 
   return (
     <div

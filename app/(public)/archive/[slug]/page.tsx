@@ -1,14 +1,30 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { getArchiveEntries, getArchiveBySlug } from '@/lib/data/archive'
+import {
+  getArchiveEntries,
+  getArchiveBySlug,
+  getArchiveByCategory,
+} from '@/lib/data/archive'
+import { CATEGORY_FILTERS } from '@/lib/data/archive-constants'
+import ArchiveClient from '@/components/archive/ArchiveClient'
+import AtelierBanner from '@/components/common/AtelierBanner'
 import styles from './page.module.css'
 
 export const revalidate = 3600
 
+/** Non-"all" category filter whose value matches the slug, or undefined. */
+function categoryFor(slug: string) {
+  return CATEGORY_FILTERS.find(c => c.value !== 'all' && c.value === slug)
+}
+
 export async function generateStaticParams() {
   const entries = await getArchiveEntries()
-  return entries.map(e => ({ slug: e.slug }))
+  const pieces = entries.map(e => ({ slug: e.slug }))
+  const categories = CATEGORY_FILTERS
+    .filter(c => c.value !== 'all')
+    .map(c => ({ slug: c.value }))
+  return [...categories, ...pieces]
 }
 
 export async function generateMetadata({
@@ -17,6 +33,19 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }): Promise<Metadata> {
   const { slug } = await params
+
+  const category = categoryFor(slug)
+  if (category) {
+    return {
+      title: `${category.label} | The Archive | Bez Ambar`,
+      description: `Browse ${category.label.toLowerCase()} from the Bez Ambar archive — each piece filmed at the atelier in Los Angeles.`,
+      openGraph: {
+        title: `${category.label} · The Archive · Bez Ambar`,
+        description: `${category.label} from the Bez Ambar archive, every stone in motion.`,
+      },
+    }
+  }
+
   const entry = await getArchiveBySlug(slug)
   if (!entry) return {}
   return {
@@ -35,6 +64,45 @@ export default async function ArchiveSlugPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
+
+  // ── Category landing page ──────────────────────────────────────────────────
+  const category = categoryFor(slug)
+  if (category) {
+    const entries = await getArchiveByCategory(category.value)
+    if (entries.length === 0) notFound()
+
+    return (
+      <main>
+        <section className="ba-portrait-hero ba-portrait-hero--archive">
+          <div className="ba-portrait-hero__overlay">
+            <p className="ba-portrait-hero__eyebrow">The Archive</p>
+            <h1 className="ba-portrait-hero__title">{category.label}</h1>
+          </div>
+        </section>
+
+        {/* Crawler-only link list — surfaces every piece page to Googlebot. */}
+        <ul style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap', border: 0 }} aria-hidden="true">
+          {entries.map((e) => (
+            <li key={e.slug}>
+              <a href={`/archive/${e.slug}`}>{e.title}</a>
+            </li>
+          ))}
+        </ul>
+
+        <ArchiveClient
+          entries={entries}
+          initialCat="all"
+          initialShape="all"
+          initialColor="all"
+          hideCategoryFilter
+        />
+
+        <AtelierBanner />
+      </main>
+    )
+  }
+
+  // ── Single-piece page ──────────────────────────────────────────────────────
   const entry = await getArchiveBySlug(slug)
   if (!entry) notFound()
 

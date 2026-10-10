@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useCallback, useMemo } from 'react'
-import { useRouter } from 'next/navigation'
 import type { ArchiveEntry } from '@/lib/data/archive-constants'
+import { useDrawers } from '../layout/DrawerContext'
 import ArchiveCarousel from './ArchiveCarousel'
 
 interface Props {
@@ -10,12 +10,13 @@ interface Props {
   initialCat:   string
   initialShape: string
   initialColor: string
+  hideCategoryFilter?: boolean
 }
 
 export default function ArchiveClient({
-  entries, initialCat, initialShape, initialColor,
+  entries, initialCat, initialShape, initialColor, hideCategoryFilter,
 }: Props) {
-  const router = useRouter()
+  const { openInquiryDrawer } = useDrawers()
 
   const [cat,   setCat]   = useState(initialCat)
   const [shape, setShape] = useState(initialShape)
@@ -31,10 +32,14 @@ export default function ArchiveClient({
   )
 
   const openPiece = useCallback(
-    (slug: string) => {
-      router.push(`/archive/${slug}`, { scroll: false })
+    (entry: { slug: string; title: string; sku: string }) => {
+      openInquiryDrawer({
+        intent: 'A Piece from the Archive',
+        title: entry.title,
+        sku: entry.sku,
+      })
     },
-    [router],
+    [openInquiryDrawer],
   )
 
   const filtered = useMemo(
@@ -77,6 +82,7 @@ export default function ArchiveClient({
       availableCats={available.cats}
       availableShapes={available.shapes}
       availableColors={available.colors}
+      hideCategoryFilter={hideCategoryFilter}
     />
   )
 }

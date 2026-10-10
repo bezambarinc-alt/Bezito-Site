@@ -6,13 +6,15 @@
  * Errors are swallowed so a DB hiccup never breaks the page shell.
  */
 import { getActiveCategories, getActiveCollections, getNavProducts } from '@/lib/queries'
+import { getArchiveCategories } from '@/lib/data/archive'
 import MenuOverlay from './MenuOverlay'
 
 export default async function NavMenuData() {
-  const [categories, navProducts, collections] = await Promise.all([
+  const [categories, navProducts, collections, archiveCategories] = await Promise.all([
     getActiveCategories().catch(() => [] as string[]),
     getNavProducts().catch(() => [] as { slug: string; name: string; category: string }[]),
     getActiveCollections().catch(() => [] as string[]),
+    getArchiveCategories().catch(() => [] as { value: string; label: string }[]),
   ])
 
   // Group products by category slug for the third-level drill-down.
@@ -27,6 +29,7 @@ export default async function NavMenuData() {
       categories={categories}
       categoryProducts={categoryProducts}
       collections={collections}
+      archiveCategories={archiveCategories}
     />
   )
 }

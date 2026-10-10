@@ -7,7 +7,7 @@ import styles from './ArchiveCarousel.module.css'
 
 interface Props {
   entries:         ArchiveEntry[]
-  onOpen:          (slug: string) => void
+  onOpen:          (entry: { slug: string; title: string; sku: string }) => void
   cat:             string
   shape:           string
   color:           string
@@ -15,6 +15,7 @@ interface Props {
   availableCats:   Set<string>
   availableShapes: Set<string>
   availableColors: Set<string>
+  hideCategoryFilter?: boolean
 }
 
 // Virtual window sizes — only this many slide DOM nodes exist at a time
@@ -24,7 +25,7 @@ const MOBILE_WIN = 1  // ±1 around active → ≤3 nodes on mobile
 export default function ArchiveCarousel({
   entries, onOpen,
   cat, shape, color, onFilterChange,
-  availableCats, availableShapes, availableColors,
+  availableCats, availableShapes, availableColors, hideCategoryFilter,
 }: Props) {
   const total = entries.length
 
@@ -399,6 +400,7 @@ export default function ArchiveCarousel({
         <ArchiveFilterRow
           cat={cat} shape={shape} color={color} onFilterChange={handleFilterChange}
           availableCats={availableCats} availableShapes={availableShapes} availableColors={availableColors}
+          hideCategoryFilter={hideCategoryFilter}
         />
 
         <section className={styles.stage} aria-label="The Archive" aria-roledescription="carousel">
@@ -439,7 +441,7 @@ export default function ArchiveCarousel({
                   {isActive && (
                     <button
                       className={styles.slideBtn}
-                      onClick={() => onOpen(e.slug)}
+                      onClick={() => onOpen({ slug: e.slug, title: e.title, sku: e.sku })}
                       aria-label={`View ${e.title}`}
                     />
                   )}
@@ -452,7 +454,7 @@ export default function ArchiveCarousel({
             <div className={styles.captionGroup}>
               <p className={styles.ref}>ref. {current.sku}</p>
               <h2 className={styles.name}>{current.title}</h2>
-              <button className={styles.cta} onClick={() => onOpen(current.slug)}>
+              <button className={styles.cta} onClick={() => onOpen({ slug: current.slug, title: current.title, sku: current.sku })}>
                 View Piece →
               </button>
             </div>
@@ -494,7 +496,7 @@ export default function ArchiveCarousel({
                 key={e.slug}
                 ref={(el) => { mobileSlideRefs.current[slotIdx] = el }}
                 className={styles.mobileSlide}
-                onClick={() => { if (entryIdx === safeMobileIndex) onOpen(e.slug) }}
+                onClick={() => { if (entryIdx === safeMobileIndex) onOpen({ slug: e.slug, title: e.title, sku: e.sku }) }}
                 role={entryIdx === safeMobileIndex ? 'button' : undefined}
                 aria-label={entryIdx === safeMobileIndex ? `View ${e.title}` : undefined}
               >
@@ -519,6 +521,7 @@ export default function ArchiveCarousel({
               cat={cat} shape={shape} color={color} onFilterChange={handleFilterChange}
               availableCats={availableCats} availableShapes={availableShapes} availableColors={availableColors}
               dark
+              hideCategoryFilter={hideCategoryFilter}
             />
           </div>
 
@@ -528,7 +531,7 @@ export default function ArchiveCarousel({
             <p className={styles.mobileName}>{mobileCurrent.title}</p>
             <button
               className={styles.mobileCta}
-              onClick={() => onOpen(mobileCurrent.slug)}
+              onClick={() => onOpen({ slug: mobileCurrent.slug, title: mobileCurrent.title, sku: mobileCurrent.sku })}
             >
               View Piece →
             </button>
