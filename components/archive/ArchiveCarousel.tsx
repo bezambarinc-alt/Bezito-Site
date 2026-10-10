@@ -18,6 +18,13 @@ interface Props {
   hideCategoryFilter?: boolean
 }
 
+// Seek back to 0 when within 3 s of the end so the closing logo frame never shows.
+// loop attribute stays as a safety net but normally never fires (we jump first).
+function earlyLoop(e: React.SyntheticEvent<HTMLVideoElement>) {
+  const v = e.currentTarget
+  if (v.duration && v.currentTime >= v.duration - 3) v.currentTime = 0
+}
+
 // Virtual window sizes — only this many slide DOM nodes exist at a time
 const DESK_WIN   = 2  // ±2 around active → ≤5 nodes on desktop
 const MOBILE_WIN = 1  // ±1 around active → ≤3 nodes on mobile
@@ -432,6 +439,7 @@ export default function ArchiveCarousel({
                         autoPlay={isActive || isNeighbour}
                         preload={isActive || isNeighbour ? 'auto' : 'metadata'}
                         onError={() => markDead(e.mp4Url)}
+                        onTimeUpdate={earlyLoop}
                       />
                     ) : (
                       <div className={styles.placeholder} />
@@ -508,6 +516,7 @@ export default function ArchiveCarousel({
                     autoPlay={slotIdx === mobileActiveSlot}
                     preload={slotIdx === mobileActiveSlot ? 'auto' : 'metadata'}
                     onError={() => markDead(e.mp4Url)}
+                    onTimeUpdate={earlyLoop}
                   />
                 ) : (
                   <div className={styles.mobilePlaceholder} />
