@@ -73,7 +73,7 @@ export default async function ArchiveSlugPage({
 
     return (
       <main>
-        <section className="ba-portrait-hero ba-portrait-hero--archive" style={{ height: '180px' }}>
+        <section className="ba-portrait-hero ba-portrait-hero--archive">
           <div className="ba-portrait-hero__overlay">
             <p className="ba-portrait-hero__eyebrow">The Archive</p>
             <h1 className="ba-portrait-hero__title">{category.label}</h1>
