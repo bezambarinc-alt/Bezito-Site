@@ -79,6 +79,7 @@ export default function HomePage() {
         title="Chiseling Light"
         body="At its sharpest edge, the purest material breaks white light into color. The art is in the angles — and when they're right, the stone shines like heaven."
         sub="Los Angeles"
+        textPosition="right-upper"
       />
 
       {/* Service — jewelry box image */}

@@ -35,16 +35,40 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+  padding: 0 24px 40px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0) 25%,
+    rgba(0, 0, 0, 0) 50%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
+  pointer-events: none;
+}
+
+/* Right-upper variant — text block in the grey wall area, upper 25% */
+.overlayRight {
+  justify-content: flex-start;
   align-items: flex-end;
-  text-align: left;
-  padding: 0 clamp(40px, 7vw, 90px) 60px 24px;
+  padding: 175px clamp(40px, 7vw, 90px) 0 24px;
   background: linear-gradient(
     to right,
     rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0) 40%,
-    rgba(0, 0, 0, 0.18) 100%
+    rgba(0, 0, 0, 0) 38%,
+    rgba(0, 0, 0, 0.22) 100%
   );
-  pointer-events: none;
+}
+
+/* Inner wrapper — centers elements as a column within the positioned block */
+.textBlock { display: contents; }
+.overlayRight .textBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 320px;
 }
 
 /* ── Text elements — light defaults ────────────────────────── */
@@ -70,7 +94,7 @@
   letter-spacing: 0;
   line-height: 1.15;
   color: #ffffff;                          /* Astro: var(--white) = #ffffff (pure white) */
-  margin: 0 0 18px;
+  margin: 0 auto 18px;
   max-width: 24ch;
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
@@ -83,7 +107,7 @@
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.88);
   max-width: 38ch;
-  margin: 0 0 20px;
+  margin: 0 auto 20px;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
@@ -99,11 +123,14 @@
 /* ── Responsive ─────────────────────────────────────────────── */
 
 @media (max-width: 900px) {
-  .overlay {
+  .overlay { padding-bottom: 15vh; }
+  .overlayRight {
+    justify-content: flex-end;
     align-items: center;
-    text-align: center;
     padding: 0 24px 15vh;
   }
-  .title { margin: 0 auto 18px; }
-  .body  { margin: 0 auto 20px; }
+  .overlayRight .textBlock {
+    max-width: none;
+    align-items: center;
+  }
 }
