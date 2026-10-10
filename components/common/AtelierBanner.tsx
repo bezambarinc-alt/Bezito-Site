@@ -6,19 +6,15 @@ export default function AtelierBanner() {
   return (
     <section className={styles.banner}>
       <div className={styles.inner}>
-        <p className={styles.consultEyebrow}>Private Consultation</p>
-        <h2 className={styles.headline}>Meet the Concierge</h2>
+        <p className={styles.consultEyebrow}>The Bez Ambar Way</p>
+        <h2 className={styles.headline}>We begin in the stone.</h2>
         <p className={styles.body}>
-          Every commission begins with a conversation. Our Concierge is available for private
-          consultations, in Los Angeles or virtually, wherever you are. Private clients,
-          collectors, and industry partners welcome.
+          Every piece starts with the cut. We shape the diamond to belong to the ring —
+          releasing the fire already waiting inside it. It&apos;s sculpting with light.
         </p>
         <div className={styles.btnRow}>
           <InquiryButton intent="Virtual Appointment" className={styles.btn}>
-            Arrange a Consultation
-          </InquiryButton>
-          <InquiryButton intent="Authorized Retailers" className={styles.btn}>
-            Authorized Retailers
+            Begin with your stone.
           </InquiryButton>
         </div>
 
