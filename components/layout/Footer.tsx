@@ -217,7 +217,7 @@ export default function Footer() {
 
         {/* ── Bottom bar ── */}
         <div className={styles.bottom}>
-          <p className={styles.copy}>© 2003–2026 Bez Ambar Inc. All rights reserved.</p>
+          <p className={styles.copy}>© 1979–2026 Bez Ambar Inc. All rights reserved.</p>
           <nav className={styles.legal} aria-label="Legal">
             <Link href="/privacy-policy">Privacy Policy</Link>
             <Link href="/terms">Terms of Service</Link>
