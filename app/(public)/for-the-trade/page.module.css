@@ -1,0 +1,252 @@
+/* For the Trade — preview page
+   Matches the site's editorial, restrained design language.
+   All image slots are placeholders until assets are supplied. */
+
+/* ── Shared placeholder block ──────────────────────────────────── */
+
+.placeholder {
+  background: #1c1c1c;
+  border: 1px dashed rgba(255, 255, 255, 0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.35);
+  font-family: var(--ba-font-sans);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 24px;
+  position: relative;
+}
+
+.placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.placeholderLabel {
+  font-size: 0.6875rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+/* ── Hero ──────────────────────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  background: #111;
+}
+
+@media (min-width: 900px) {
+  .hero { height: 700px; }
+}
+
+.heroPlaceholder {
+  composes: placeholder;
+  position: absolute;
+  inset: 0;
+  border: none;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+  padding: 0 24px 72px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.10) 0%,
+    rgba(0, 0, 0, 0) 30%,
+    rgba(0, 0, 0, 0.60) 100%
+  );
+  pointer-events: none;
+}
+
+.heroEyebrow {
+  font-family: var(--ba-font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--ba-white);
+  margin-bottom: 16px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.heroTitle {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 200;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Split section — portrait image + body text ────────────────── */
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 560px;
+}
+
+@media (max-width: 800px) {
+  .split { grid-template-columns: 1fr; }
+}
+
+.splitMedia {
+  position: relative;
+  min-height: 420px;
+}
+
+.splitPlaceholder {
+  composes: placeholder;
+  position: absolute;
+  inset: 0;
+  border: none;
+  border-right: 1px dashed rgba(255, 255, 255, 0.12);
+}
+
+@media (max-width: 800px) {
+  .splitMedia { min-height: 360px; }
+  .splitPlaceholder { border-right: none; border-bottom: 1px dashed rgba(255, 255, 255, 0.12); }
+}
+
+.splitText {
+  background: var(--ba-bg, #fff);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(48px, 7vw, 96px) clamp(36px, 6vw, 80px);
+}
+
+.splitEyebrow {
+  font-family: var(--ba-font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ba-gold-warm, #c9b896);
+  margin-bottom: 20px;
+}
+
+.splitTitle {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(1.375rem, 2.2vw, 1.875rem);
+  font-weight: 300;
+  line-height: 1.25;
+  color: var(--ba-ink, #1a1a1a);
+  margin: 0 0 24px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.splitBody {
+  font-family: var(--ba-font-editorial);
+  font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+  font-style: italic;
+  line-height: 1.8;
+  color: var(--ba-muted, #555);
+  max-width: 40ch;
+}
+
+/* ── Full-width centered section ───────────────────────────────── */
+
+.centeredSection {
+  background: var(--ba-ink, #1a1a1a);
+  padding: clamp(64px, 9vw, 120px) clamp(24px, 6vw, 80px);
+  text-align: center;
+}
+
+.centeredEyebrow {
+  font-family: var(--ba-font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ba-gold-warm, #c9b896);
+  margin-bottom: 20px;
+}
+
+.centeredTitle {
+  font-family: var(--ba-font-sans);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 200;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0 0 28px;
+  letter-spacing: 0.04em;
+}
+
+.centeredBody {
+  font-family: var(--ba-font-editorial);
+  font-size: clamp(0.9375rem, 1.3vw, 1.125rem);
+  font-style: italic;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 52ch;
+  margin: 0 auto;
+}
+
+/* ── Closing CTA section ───────────────────────────────────────── */
+
+.closing {
+  background: var(--ba-bg, #fff);
+  padding: clamp(72px, 10vw, 128px) clamp(24px, 6vw, 80px);
+  text-align: center;
+}
+
+.closingEyebrow {
+  font-family: var(--ba-font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ba-gold-warm, #c9b896);
+  margin-bottom: 20px;
+}
+
+.closingBody {
+  font-family: var(--ba-font-editorial);
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-style: italic;
+  line-height: 1.85;
+  color: var(--ba-muted, #555);
+  max-width: 52ch;
+  margin: 0 auto 48px;
+}
+
+.closingBtn {
+  display: inline-block;
+  padding: 14px 40px;
+  border: 1px solid var(--ba-ink, #1a1a1a);
+  background: transparent;
+  font-family: var(--ba-font-sans);
+  font-size: 0.875rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ba-ink, #1a1a1a);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.closingBtn:hover {
+  background: var(--ba-ink, #1a1a1a);
+  color: #fff;
+}

@@ -21,6 +21,7 @@ export const INQUIRY_INTENTS = [
   'Ring Resizing',
   'Authorized Retailers',
   'Ring Sizing Appointment',
+  'Trade Partnership',
 ] as const
 
 export type InquiryIntent = (typeof INQUIRY_INTENTS)[number]
@@ -36,6 +37,7 @@ export const INTENT_HEADINGS: Record<string, string> = {
   'Ring Resizing':               'Ring Resizing',
   'Authorized Retailers':        'Authorized Retailers',
   'Ring Sizing Appointment':     'Ring Sizing',
+  'Trade Partnership':           'Trade Inquiry',
 }
 
 /** Intents that reveal a "Preferred Date" field. */
