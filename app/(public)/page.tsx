@@ -90,17 +90,6 @@ export default function HomePage() {
         body="We repair or restore any piece manufactured by Bez Ambar since 1979—regardless of its age. If we made it, we stand behind it. Bring it back. We'll make it right."
       />
 
-      {/* Private Viewing */}
-      <HomeSegment
-        id="private"
-        imageUrl="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto:good,w_1200/v1785654364/find_a_retailer_in1kpt.avif"
-        eyebrow="Private Viewing"
-        title="By Appointment, with the Concierge"
-        body="Some pieces ask to be seen alone. Arrange a private viewing at the Los Angeles atelier—an existing piece, a single stone, or a commission of your own. Our Concierge will guide you through the collection personally. No showroom, no crowd. Just the work, and the people who know it best."
-        ctaLabel="Arrange a Consultation"
-        openConcierge
-      />
-
       {/* Cinematic section — lazy-mounted to prevent double 720p load at page init */}
       <LazyScrollWipeCarousel slides={CINEMATIC_SLIDES} />
       <AtelierBanner />
