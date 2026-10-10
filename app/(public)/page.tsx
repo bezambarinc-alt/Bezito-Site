@@ -3,7 +3,6 @@ import ScrollWipeCarousel from '@/components/common/ScrollWipeCarousel'
 import LazyScrollWipeCarousel from '@/components/common/LazyScrollWipeCarousel'
 import HomeSegment from '@/components/home/HomeSegment'
 import HomeHeroImage from '@/components/home/HomeHeroImage'
-import Newsletter from '@/components/home/Newsletter'
 import AtelierBanner from '@/components/common/AtelierBanner'
 import { HERO_SLIDES, CINEMATIC_SLIDES } from '@/lib/data/home-slides'
 
@@ -95,7 +94,6 @@ export default function HomePage() {
       {/* Cinematic section — lazy-mounted to prevent double 720p load at page init */}
       <LazyScrollWipeCarousel slides={CINEMATIC_SLIDES} />
       <AtelierBanner />
-      <Newsletter />
     </main>
   )
 }

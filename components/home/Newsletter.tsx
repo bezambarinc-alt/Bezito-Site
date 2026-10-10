@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import styles from './Newsletter.module.css'
 
-export default function Newsletter() {
+export default function Newsletter({ slim = false }: { slim?: boolean }) {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
@@ -27,7 +27,7 @@ export default function Newsletter() {
   }
 
   return (
-    <section className={styles.section}>
+    <section className={`${styles.section}${slim ? ` ${styles.sectionSlim}` : ''}`}>
       <div className={styles.inner}>
         <h2 className={styles.title}>Word from the Atelier.</h2>
         <p className={styles.lede}>

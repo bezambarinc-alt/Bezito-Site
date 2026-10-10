@@ -10,6 +10,11 @@
   border-top: 1px solid rgba(149, 130, 107, 0.25);
 }
 
+.sectionSlim {
+  min-height: unset;
+  padding: 36px 20px;
+}
+
 .inner {
   max-width: 600px;
   margin: 0 auto;

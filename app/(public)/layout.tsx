@@ -6,6 +6,7 @@ import NavMenuData from '@/components/layout/NavMenuData'
 import InquiryDrawer from '@/components/layout/InquiryDrawer'
 import ConciergeDrawer from '@/components/layout/ConciergeDrawer'
 import SearchOverlay from '@/components/layout/SearchOverlay'
+import Newsletter from '@/components/home/Newsletter'
 
 // No getNonce() here, deliberately. Reading the nonce calls headers(), and that
 // one call opts every route under this layout out of static rendering — see the
@@ -88,6 +89,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
       <DrawerProvider>
         <Header />
         {children}
+        <Newsletter slim />
         <Footer />
         <NavMenuData />
         <InquiryDrawer />
