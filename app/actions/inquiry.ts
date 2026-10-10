@@ -9,7 +9,9 @@ import { getClientIp } from '@/lib/client-ip'
 
 // Built from the single shared source of truth so the schema can never drift
 // from the UI (this exact duplication caused a submission-breaking bug before).
-const IntentSchema = z.enum(INQUIRY_INTENTS)
+const IntentSchema = z.enum(INQUIRY_INTENTS, {
+  errorMap: () => ({ message: 'Please select how we can help' }),
+})
 
 const InquirySchema = z.object({
   name: z.string().trim().min(1, 'Name is required').max(120),

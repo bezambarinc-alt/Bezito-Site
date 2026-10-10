@@ -61,6 +61,7 @@ export default function ContactForm() {
         <label className={styles.field}>
           <span>Name</span>
           <input
+            className={state.fieldErrors?.name ? styles.inputErr : undefined}
             name="name"
             value={nameVal}
             onChange={e => setNameVal(e.target.value)}
@@ -72,6 +73,7 @@ export default function ContactForm() {
         <label className={styles.field}>
           <span>Email</span>
           <input
+            className={state.fieldErrors?.email ? styles.inputErr : undefined}
             name="email"
             type="email"
             value={emailVal}
@@ -148,6 +150,7 @@ export default function ContactForm() {
         <label className={styles.field}>
           <span>Preferred date {!dateRequired && <i>(optional)</i>}</span>
           <input
+            className={state.fieldErrors?.preferredDate ? styles.inputErr : undefined}
             name="preferredDate"
             type="date"
             required={dateRequired}
@@ -159,7 +162,12 @@ export default function ContactForm() {
       {!hideMessage && (
         <label className={styles.field}>
           <span>Message {!msgRequired && <i>(optional)</i>}</span>
-          <textarea name="message" rows={5} required={msgRequired} />
+          <textarea
+            className={state.fieldErrors?.message ? styles.inputErr : undefined}
+            name="message"
+            rows={5}
+            required={msgRequired}
+          />
           {state.fieldErrors?.message && <em className={styles.err}>{state.fieldErrors.message}</em>}
         </label>
       )}
