@@ -13,7 +13,7 @@ export default function ForTheTradePage() {
   return (
     <main>
 
-      {/* ── Hero ── */}
+      {/* ── Hero — image only, no overlay ── */}
       <section className={styles.hero}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -22,10 +22,12 @@ export default function ForTheTradePage() {
           className={styles.heroImg}
           loading="eager"
         />
-        <div className={styles.heroOverlay}>
-          <p className={styles.heroEyebrow}>For the Trade</p>
-          <h1 className={styles.heroTitle}>We bring stones to life.</h1>
-        </div>
+      </section>
+
+      {/* ── Page intro — below the image, no overlay ── */}
+      <section className={styles.heroText}>
+        <p className={styles.heroEyebrow}>For the Trade</p>
+        <h1 className={styles.heroTitle}>We bring stones to life.</h1>
       </section>
 
       {/* ── Split — workmanship image + dealer copy ── */}

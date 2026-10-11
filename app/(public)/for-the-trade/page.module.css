@@ -61,18 +61,10 @@
   mix-blend-mode: multiply;
 }
 
-.heroOverlay {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
+.heroText {
+  background: #1a1a1a;
   text-align: center;
-  padding: 0 24px 72px;
-  background: transparent;
-  pointer-events: none;
+  padding: 56px 24px;
 }
 
 .heroEyebrow {
