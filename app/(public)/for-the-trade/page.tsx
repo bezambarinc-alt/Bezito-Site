@@ -15,10 +15,13 @@ export default function ForTheTradePage() {
 
       {/* ── Hero ── */}
       <section className={styles.hero}>
-        <div className={styles.heroPlaceholder}>
-          <span>Trade hero image — to supply</span>
-          <span className={styles.placeholderLabel}>Recommended: 2400 × 1350 px · 16:9 · landscape</span>
-        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto:good/Jewelry%20Images/Rings/whk6omdywpnh7eucdr4y.jpg"
+          alt=""
+          className={styles.heroImg}
+          loading="eager"
+        />
         <div className={styles.heroOverlay}>
           <p className={styles.heroEyebrow}>For the Trade</p>
           <h1 className={styles.heroTitle}>We bring stones to life.</h1>
