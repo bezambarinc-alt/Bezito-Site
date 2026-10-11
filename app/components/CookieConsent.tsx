@@ -44,7 +44,7 @@ export default function CookieConsentBanner() {
           readOnly: true,
         },
         analytics: {
-          enabled: false,
+          enabled: true,
         },
       },
       language: {
