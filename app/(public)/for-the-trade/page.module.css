@@ -38,12 +38,17 @@
 
 /* ── Hero ──────────────────────────────────────────────────────── */
 
+/* Header defaults to dark (ink) text — override to white on this dark-hero page */
+:global(#baHeader:not([data-scrolled])) {
+  color: #ffffff;
+}
+
 .hero {
   position: relative;
   width: 100%;
   height: 600px;
   overflow: hidden;
-  background: #1a1a1a;
+  background: #1c1c1c;
 }
 
 @media (min-width: 900px) {
@@ -58,11 +63,10 @@
   max-width: none;
   object-fit: cover;
   object-position: center;
-  mix-blend-mode: multiply;
 }
 
 .heroText {
-  background: #1a1a1a;
+  background: #1c1c1c;
   text-align: center;
   padding: 56px 24px;
 }
