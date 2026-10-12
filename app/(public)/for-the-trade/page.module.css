@@ -133,8 +133,12 @@
   border-color: #ffffff;
 }
 
-/* On narrow screens — center the overlay text at bottom */
+/* On narrow screens — full-height hero, text at bottom */
 @media (max-width: 700px) {
+  .hero {
+    height: 85dvh;
+    max-height: none;
+  }
   .heroOverlay {
     align-items: flex-end;
     justify-content: center;
