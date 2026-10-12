@@ -139,6 +139,9 @@
     height: 85dvh;
     max-height: none;
   }
+  .heroImg {
+    object-position: 60% center;
+  }
   .heroOverlay {
     align-items: flex-end;
     justify-content: center;
