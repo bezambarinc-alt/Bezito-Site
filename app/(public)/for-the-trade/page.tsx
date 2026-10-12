@@ -13,21 +13,36 @@ export default function ForTheTradePage() {
   return (
     <main>
 
-      {/* ── Hero — image only, no overlay ── */}
+      {/* ── Hero — full-width 2560×980, text overlay right, AVIF + fallbacks ── */}
       <section className={styles.hero}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto:good/Jewelry%20Images/Rings/whk6omdywpnh7eucdr4y.jpg"
-          alt=""
-          className={styles.heroImg}
-          loading="eager"
-        />
-      </section>
+        <picture>
+          <source
+            type="image/avif"
+            srcSet="https://res.cloudinary.com/dlg2mou53/image/upload/f_avif,q_auto:good/v1791782989/Jewelry%20Images/Rings/lisas-ring/hero"
+          />
+          <source
+            type="image/webp"
+            srcSet="https://res.cloudinary.com/dlg2mou53/image/upload/f_webp,q_auto:good/v1791782989/Jewelry%20Images/Rings/lisas-ring/hero"
+          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://res.cloudinary.com/dlg2mou53/image/upload/f_jpg,q_auto:good/v1791782989/Jewelry%20Images/Rings/lisas-ring/hero"
+            alt=""
+            className={styles.heroImg}
+            loading="eager"
+          />
+        </picture>
 
-      {/* ── Page intro — below the image, no overlay ── */}
-      <section className={styles.heroText}>
-        <p className={styles.heroEyebrow}>For the Trade</p>
-        <h1 className={styles.heroTitle}>We bring stones to life.</h1>
+        {/* Text overlay — right side, vertically centered */}
+        <div className={styles.heroOverlay}>
+          <div className={styles.heroContent}>
+            <p className={styles.heroEyebrow}>For the Trade</p>
+            <h1 className={styles.heroTitle}>We bring stones to life.</h1>
+            <InquiryButton intent="Trade Partnership" className={styles.heroCta}>
+              Begin with your stone
+            </InquiryButton>
+          </div>
+        </div>
       </section>
 
       {/* ── Split — workmanship image + dealer copy ── */}

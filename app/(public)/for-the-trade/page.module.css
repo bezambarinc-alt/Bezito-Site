@@ -46,13 +46,11 @@
 .hero {
   position: relative;
   width: 100%;
-  height: 600px;
+  aspect-ratio: 2560 / 980;
+  min-height: 420px;
+  max-height: 980px;
   overflow: hidden;
   background: #1c1c1c;
-}
-
-@media (min-width: 900px) {
-  .hero { height: 700px; }
 }
 
 .heroImg {
@@ -65,10 +63,31 @@
   object-position: center;
 }
 
-.heroText {
-  background: #1c1c1c;
+/* Right-side overlay — dark gradient + text block, vertically centered */
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background: linear-gradient(
+    to right,
+    transparent 35%,
+    rgba(0, 0, 0, 0.18) 60%,
+    rgba(0, 0, 0, 0.54) 100%
+  );
+  pointer-events: none;
+}
+
+.heroContent {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  padding: 56px 24px;
+  padding: 0 clamp(40px, 7vw, 100px) 0 48px;
+  max-width: 440px;
+  gap: 28px;
 }
 
 .heroEyebrow {
@@ -76,18 +95,60 @@
   font-size: 0.9375rem;
   font-weight: 500;
   text-transform: uppercase;
-  color: var(--ba-white);
-  margin-bottom: 16px;
+  letter-spacing: 0.1em;
+  color: var(--ba-white, #faf7f2);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  margin: 0;
 }
 
 .heroTitle {
   font-family: var(--ba-font-sans);
-  font-size: clamp(32px, 5vw, 56px);
+  font-size: clamp(28px, 3.5vw, 48px);
   font-weight: 200;
   text-transform: uppercase;
   color: #ffffff;
-  margin: 0;
   letter-spacing: 0.02em;
+  line-height: 1.15;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
+.heroCta {
+  display: inline-block;
+  padding: 13px 36px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: transparent;
+  font-family: var(--ba-font-sans);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.heroCta:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #ffffff;
+}
+
+/* On narrow screens — center the overlay text at bottom */
+@media (max-width: 700px) {
+  .heroOverlay {
+    align-items: flex-end;
+    justify-content: center;
+    background: linear-gradient(
+      to bottom,
+      transparent 45%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
+    padding-bottom: clamp(28px, 6vw, 48px);
+  }
+  .heroContent {
+    padding: 0 24px;
+    max-width: none;
+  }
 }
 
 /* ── Split section — portrait image + body text ────────────────── */
