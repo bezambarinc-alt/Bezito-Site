@@ -70,7 +70,7 @@ function buildCsp(nonce: string | null): string {
   // embeds on /journal. Trust no longer propagates, so each one is explicit.
   const scriptSrc = nonce
     ? `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${unsafeEval} https://cdn.curator.io`
-    : `script-src 'self' 'unsafe-inline'${unsafeEval} https://cdn.curator.io https://cdn.pagesense.io https://connect.facebook.net`
+    : `script-src 'self' 'unsafe-inline'${unsafeEval} https://cdn.curator.io https://cdn.pagesense.io https://connect.facebook.net https://www.googletagmanager.com`
   return [
     `default-src 'self'`,
     scriptSrc,
@@ -87,7 +87,7 @@ function buildCsp(nonce: string | null): string {
     // this list, so every PageSense request has been blocked in production since
     // the CSP shipped — the script loads, collects, and can't report. Caught by a
     // Playwright run against a local production build, not by anything in CI.
-    `connect-src 'self' https://res.cloudinary.com https://*.curator.io https://*.zoho.com`,
+    `connect-src 'self' https://res.cloudinary.com https://*.curator.io https://*.zoho.com https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://www.facebook.com`,
     `frame-src 'self' https://www.google.com https://maps.google.com https://ijewel.design`,
     `object-src 'none'`,
     `base-uri 'self'`,
