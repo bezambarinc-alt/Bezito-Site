@@ -1253,4 +1253,19 @@ export const REDIRECTS: Redirect[] = [
     { source: '/bez-ambar-store-locator1/', destination: '/retailers', permanent: true },
     { source: '/jewelry/easyfit-stretchable-band-collection/bracelets-easyfit-stretchable-band-collection', destination: '/jewelry/bands', permanent: true },
     { source: '/jewelry/easyfit-stretchable-band-collection/bracelets-easyfit-stretchable-band-collection/', destination: '/jewelry/bands', permanent: true },
+
+    // ── /jewelry/jewelry/[SKU] double-path fix (2026-10-12) ──────────────────
+    // Root cause: old sitemap used `category ?? 'jewelry'` fallback for products
+    // with no category, producing /jewelry/jewelry/<slug>. Google crawled + indexed
+    // those URLs before the sitemap was fixed (IS NOT NULL guard). These redirects
+    // clean up Google's stale index. Active products go to their live page; inactive
+    // products (no category in DB) go to their best-match category.
+    { source: '/jewelry/jewelry/C0635', destination: '/jewelry/bracelets/triglyph-yellow-radiant-emerald-bracelet', permanent: true },
+    { source: '/jewelry/jewelry/C0945', destination: '/jewelry/bands/dentelle-emerald-band', permanent: true },
+    { source: '/jewelry/jewelry/3ROF24J', destination: '/jewelry/earrings', permanent: true },
+    { source: '/jewelry/jewelry/CUSTOMEM', destination: '/jewelry/rings', permanent: true },
+    { source: '/jewelry/jewelry/EQXLZB', destination: '/jewelry/rings', permanent: true },
+    { source: '/jewelry/jewelry/TRIOTRAP', destination: '/jewelry/rings', permanent: true },
+    { source: '/jewelry/jewelry/2ETE150', destination: '/jewelry/bands', permanent: true },
+    { source: '/jewelry/jewelry/1KRN-20Ct', destination: '/jewelry/rings', permanent: true },
 ]
