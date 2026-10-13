@@ -67,6 +67,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           function gtag(){dataLayer.push(arguments);}
           gtag('consent','default',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});
         `}</Script>
+        <Script id="clarity" strategy="afterInteractive">{`
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window,document,"clarity","script","yx99t20kqu");
+        `}</Script>
         {children}
         <CookieConsentBanner />
       </body>
