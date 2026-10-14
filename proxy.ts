@@ -70,7 +70,7 @@ function buildCsp(nonce: string | null): string {
   // embeds on /journal. Trust no longer propagates, so each one is explicit.
   const scriptSrc = nonce
     ? `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${unsafeEval} https://cdn.curator.io`
-    : `script-src 'self' 'unsafe-inline'${unsafeEval} https://cdn.curator.io https://cdn.pagesense.io https://connect.facebook.net https://www.googletagmanager.com https://www.clarity.ms https://static.cloudflareinsights.com`
+    : `script-src 'self' 'unsafe-inline'${unsafeEval} https://cdn.curator.io https://cdn.pagesense.io https://connect.facebook.net https://www.googletagmanager.com https://www.clarity.ms https://scripts.clarity.ms https://static.cloudflareinsights.com`
   return [
     `default-src 'self'`,
     scriptSrc,
