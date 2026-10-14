@@ -87,7 +87,7 @@ function buildCsp(nonce: string | null): string {
     // this list, so every PageSense request has been blocked in production since
     // the CSP shipped — the script loads, collects, and can't report. Caught by a
     // Playwright run against a local production build, not by anything in CI.
-    `connect-src 'self' https://res.cloudinary.com https://*.curator.io https://*.zoho.com https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://www.facebook.com https://www.clarity.ms https://c.clarity.ms https://r.clarity.ms https://cloudflareinsights.com`,
+    `connect-src 'self' https://res.cloudinary.com https://*.curator.io https://*.zoho.com https://www.google-analytics.com https://region1.google-analytics.com https://analytics.google.com https://www.google.com https://www.googletagmanager.com https://www.facebook.com https://www.clarity.ms https://c.clarity.ms https://r.clarity.ms https://cloudflareinsights.com`,
     `frame-src 'self' https://www.google.com https://maps.google.com https://ijewel.design`,
     `object-src 'none'`,
     `base-uri 'self'`,
