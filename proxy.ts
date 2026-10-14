@@ -70,13 +70,13 @@ function buildCsp(nonce: string | null): string {
   // embeds on /journal. Trust no longer propagates, so each one is explicit.
   const scriptSrc = nonce
     ? `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${unsafeEval} https://cdn.curator.io`
-    : `script-src 'self' 'unsafe-inline'${unsafeEval} https://cdn.curator.io https://cdn.pagesense.io https://connect.facebook.net https://www.googletagmanager.com https://www.clarity.ms`
+    : `script-src 'self' 'unsafe-inline'${unsafeEval} https://cdn.curator.io https://cdn.pagesense.io https://connect.facebook.net https://www.googletagmanager.com https://www.clarity.ms https://static.cloudflareinsights.com`
   return [
     `default-src 'self'`,
     scriptSrc,
     `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.curator.io`,
     `font-src 'self' https://fonts.gstatic.com data:`,
-    `img-src 'self' data: blob: https://res.cloudinary.com https://*.curator.io https://*.cdninstagram.com https://curator-assets.b-cdn.net https://c.clarity.ms`,
+    `img-src 'self' data: blob: https://res.cloudinary.com https://*.curator.io https://*.cdninstagram.com https://curator-assets.b-cdn.net https://c.clarity.ms https://www.facebook.com https://c.bing.com`,
     // The Curator feed serves Instagram video posts from its own CDN and from
     // cdninstagram; both were in img-src but not here, so every video tile on
     // /journal has been blocked since the CSP shipped. Unrelated to the policy
@@ -87,7 +87,7 @@ function buildCsp(nonce: string | null): string {
     // this list, so every PageSense request has been blocked in production since
     // the CSP shipped — the script loads, collects, and can't report. Caught by a
     // Playwright run against a local production build, not by anything in CI.
-    `connect-src 'self' https://res.cloudinary.com https://*.curator.io https://*.zoho.com https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://www.facebook.com https://www.clarity.ms https://c.clarity.ms https://r.clarity.ms`,
+    `connect-src 'self' https://res.cloudinary.com https://*.curator.io https://*.zoho.com https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://www.facebook.com https://www.clarity.ms https://c.clarity.ms https://r.clarity.ms https://cloudflareinsights.com`,
     `frame-src 'self' https://www.google.com https://maps.google.com https://ijewel.design`,
     `object-src 'none'`,
     `base-uri 'self'`,
