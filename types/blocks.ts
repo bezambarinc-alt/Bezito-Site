@@ -107,6 +107,13 @@ export type RichtextBlock = {
   html: string
 }
 
+export type ProductBlock = {
+  type: 'product'
+  sku: string
+  /** Optional template override — defaults to active showcase template. */
+  template?: string
+}
+
 export type Block =
   | HeroVideoBlock
   | HeroSplitBlock
@@ -119,5 +126,6 @@ export type Block =
   | InquireFooterBlock
   | PullQuoteBlock
   | RichtextBlock
+  | ProductBlock
 
 export type BlockType = Block['type']

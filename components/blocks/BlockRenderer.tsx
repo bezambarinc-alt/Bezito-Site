@@ -1,4 +1,5 @@
 import type { Block } from '@/types/blocks'
+import ProductBlock from './ProductBlock'
 import HeroVideo from './HeroVideo'
 import HeroSplit from './HeroSplit'
 import ContentSplit from './ContentSplit'
@@ -46,6 +47,8 @@ function RenderBlock({ block }: { block: Block }) {
       return <PullQuote block={block} />
     case 'richtext':
       return <Richtext block={block} />
+    case 'product':
+      return <ProductBlock block={block} />
     default:
       return null
   }
