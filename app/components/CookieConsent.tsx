@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import * as CookieConsent from 'vanilla-cookieconsent'
 import 'vanilla-cookieconsent/dist/cookieconsent.css'
 
@@ -25,7 +26,10 @@ function updateClarityConsent(analyticsAccepted: boolean) {
 }
 
 export default function CookieConsentBanner() {
+  const pathname = usePathname()
+
   useEffect(() => {
+    if (pathname?.startsWith('/client')) return
     CookieConsent.run({
       onConsent: () => {
         const analyticsAccepted = CookieConsent.acceptedCategory('analytics')
@@ -95,7 +99,7 @@ export default function CookieConsentBanner() {
         },
       },
     })
-  }, [])
+  }, [pathname])
 
   return null
 }
