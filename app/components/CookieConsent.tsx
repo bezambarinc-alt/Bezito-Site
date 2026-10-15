@@ -29,7 +29,7 @@ export default function CookieConsentBanner() {
   const pathname = usePathname()
 
   useEffect(() => {
-    if (pathname?.startsWith('/client')) return
+    if (pathname?.startsWith('/client') || pathname?.startsWith('/admin')) return
     CookieConsent.run({
       onConsent: () => {
         const analyticsAccepted = CookieConsent.acceptedCategory('analytics')
