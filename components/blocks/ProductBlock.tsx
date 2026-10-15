@@ -4,13 +4,10 @@ import { getCategoryLabel } from '@/lib/data/categories'
 import type { SpecItem } from '@/types/blocks'
 import type { ProductBlock as ProductBlockType } from '@/types/blocks'
 
-const SHOWCASE_FALLBACK = 'dark'
+const BLOCK_DEFAULT_TEMPLATE = 'default'
 
-function isValidForShowcase(id: string) {
-  return (
-    isValidTemplateId(id) &&
-    (TEMPLATES[id].scope.includes('showcase') || TEMPLATES[id].scope.includes('proposal'))
-  )
+function isValidForBlock(id: string) {
+  return isValidTemplateId(id)
 }
 
 export default async function ProductBlock({ block }: { block: ProductBlockType }) {
@@ -42,9 +39,9 @@ export default async function ProductBlock({ block }: { block: ProductBlockType 
   if (product.metal)               specItems.push({ label: 'Metal',        body: product.metal })
   if (product.center_stone_weight) specItems.push({ label: 'Center Stone', body: `${product.center_stone_weight} ct` })
 
-  const templateId = (block.template && isValidForShowcase(block.template))
+  const templateId = (block.template && isValidForBlock(block.template))
     ? block.template
-    : SHOWCASE_FALLBACK
+    : BLOCK_DEFAULT_TEMPLATE
   const Layout = TEMPLATES[templateId].component
 
   return (
