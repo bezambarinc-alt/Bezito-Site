@@ -12,6 +12,10 @@ const DEFAULT_FROM_NAME = process.env.ZOHO_FROM_NAME ?? 'Bez Ambar'
 // Zoho v2 requires topicId for accounts with topic management enabled.
 // ID sourced from GET /api/admin/newsletter/topics — "Marketing" topic.
 const TOPIC_ID = process.env.ZOHO_TOPIC_ID ?? '1694590000000049009'
+// Zoho One portal URL — org alias + org ID extracted from account URL.
+// Override via ZOHO_CAMPAIGNS_ORG_ALIAS / ZOHO_CAMPAIGNS_ORG_ID if org moves.
+const ZOHO_ORG_ALIAS = process.env.ZOHO_CAMPAIGNS_ORG_ALIAS ?? 'bezambarinc657'
+const ZOHO_ORG_ID = process.env.ZOHO_CAMPAIGNS_ORG_ID ?? '936728184'
 
 /** Remove any HTML tags/angle brackets and collapse whitespace. These fields
  *  are plain-text campaign metadata, never markup — strip it so nothing is
@@ -79,7 +83,7 @@ export async function POST(req: NextRequest) {
     topicId: TOPIC_ID,
   })
 
-  let data: { status?: string; message?: string; campaign_key?: string; code?: number | string }
+  let data: { status?: string; message?: string; campaign_key?: string; campaign_id?: string; code?: number | string }
   try {
     // Zoho Campaigns POST expects params in the request body (application/x-www-form-urlencoded)
     const res = await fetch('https://campaigns.zoho.com/api/v1.1/createCampaign', {
@@ -113,10 +117,13 @@ export async function POST(req: NextRequest) {
   }
 
   const campaignKey = data.campaign_key
-  const zohoUrl = `https://campaigns.zoho.com/home#campaigns-detail/${campaignKey}/overview`
+  const campaignId = data.campaign_id
+  // Zoho One URL format (new portal) — uses campaign_id, not campaignKey
+  const zohoUrl = `https://one.zoho.com/zohoone/${ZOHO_ORG_ALIAS}/home/cxapp/campaigns/newui/org${ZOHO_ORG_ID}#/portal/ws/0/channels/email-campaigns/show/${campaignId}/tabs/config`
 
   return NextResponse.json({
     campaignKey,
+    campaignId,
     name,
     subject,
     listKey,
