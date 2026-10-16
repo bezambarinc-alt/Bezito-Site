@@ -1,8 +1,7 @@
 import { notFound } from 'next/navigation'
 import { sql } from '@/lib/db'
 import type { PageRow } from '@/types/pages'
-import BlockRenderer, { hasInquireCta } from '@/components/blocks/BlockRenderer'
-import ProdPill from '@/components/layout/ProdPill'
+import BlockRenderer from '@/components/blocks/BlockRenderer'
 import { checkPageGate } from '@/lib/auth'
 import styles from './page.module.css'
 
@@ -26,7 +25,9 @@ export default async function ClientPage({
   )
   if (!page) notFound()
 
-  const blocks = Array.isArray(page.blocks) ? page.blocks : []
+  const NO_INQUIRY_TYPES = new Set(['inquire-cta', 'inquire-footer'])
+  const blocks = (Array.isArray(page.blocks) ? page.blocks : [])
+    .filter((b: { type?: string }) => !NO_INQUIRY_TYPES.has(b.type ?? ''))
 
   // Password gate for private client pages.
   const { granted } = await checkPageGate(page.slug, page.password, pw)
@@ -49,7 +50,6 @@ export default async function ClientPage({
   return (
     <main>
       <BlockRenderer blocks={blocks} />
-      {hasInquireCta(blocks) && <ProdPill title={page.title} />}
     </main>
   )
 }
