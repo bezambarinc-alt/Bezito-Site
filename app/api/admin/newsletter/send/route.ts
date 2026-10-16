@@ -22,16 +22,20 @@ export async function POST(req: NextRequest) {
 
   const params = new URLSearchParams({
     campaignKey,
-    resfmt: 'JSON',
+    resfmt: 'json',
     schedule_type: 'immediate',
   })
 
   let data: { code?: number; message?: string; status?: string }
   try {
-    const res = await fetch(`https://campaigns.zoho.com/api/v1.1/sendcampaign?${params}`, {
+    const res = await fetch('https://campaigns.zoho.com/api/v1.1/sendcampaign', {
       method: 'POST',
       signal: AbortSignal.timeout(10000),
-      headers: { Authorization: `Zoho-oauthtoken ${token}` },
+      headers: {
+        Authorization: `Zoho-oauthtoken ${token}`,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: params.toString(),
     })
     data = await res.json()
   } catch (err) {

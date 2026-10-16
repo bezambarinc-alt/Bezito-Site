@@ -77,14 +77,18 @@ export async function POST(req: NextRequest) {
 
   let data: { status?: string; message?: string; campaign_key?: string; code?: number | string }
   try {
-    const res = await fetch(`https://campaigns.zoho.com/api/v1.1/createCampaign?${params}`, {
+    // Zoho Campaigns POST expects params in the request body (application/x-www-form-urlencoded)
+    const res = await fetch('https://campaigns.zoho.com/api/v1.1/createCampaign', {
       method: 'POST',
-      signal: AbortSignal.timeout(10000),
-      headers: { Authorization: `Zoho-oauthtoken ${token}` },
+      signal: AbortSignal.timeout(15000),
+      headers: {
+        Authorization: `Zoho-oauthtoken ${token}`,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: params.toString(),
     })
     data = await res.json()
   } catch (err) {
-    // Network failure / timeout / non-JSON body — never surfaces the token.
     const reason = err instanceof Error && err.name === 'TimeoutError' ? 'timed out' : 'unreachable'
     return NextResponse.json({ error: `Zoho Campaigns ${reason} — please retry` }, { status: 502 })
   }
