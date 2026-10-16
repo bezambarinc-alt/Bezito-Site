@@ -58,8 +58,8 @@ export async function POST(req: NextRequest) {
     })
     data = await res.json()
   } catch (err) {
-    const reason = err instanceof Error && err.name === 'TimeoutError' ? 'timed out' : 'unreachable'
-    return NextResponse.json({ error: `Zoho Campaigns ${reason}` }, { status: 502 })
+    const msg = err instanceof Error ? `${err.name}: ${err.message}` : String(err)
+    return NextResponse.json({ error: `Zoho fetch failed: ${msg}` }, { status: 502 })
   }
 
   const code = Number(data.code)
