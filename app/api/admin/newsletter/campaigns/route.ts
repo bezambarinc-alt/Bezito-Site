@@ -99,11 +99,15 @@ export async function POST(req: NextRequest) {
     )
   }
 
+  const campaignKey = data.campaign_key
+  const zohoUrl = `https://campaigns.zoho.com/home#campaigns-detail/${campaignKey}/overview`
+
   return NextResponse.json({
-    campaignKey: data.campaign_key,
+    campaignKey,
     name,
     subject,
     listKey,
     contentUrl,
+    zohoUrl,
   })
 }
