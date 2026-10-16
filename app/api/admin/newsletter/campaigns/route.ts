@@ -7,8 +7,11 @@ import { getZohoToken, invalidateZohoToken } from '@/lib/zoho-auth'
 export const dynamic = 'force-dynamic'
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://bezambar.com'
-const DEFAULT_FROM_EMAIL = process.env.ZOHO_FROM_EMAIL ?? 'bez@bezambar.com'
+const DEFAULT_FROM_EMAIL = process.env.ZOHO_FROM_EMAIL ?? 'service@bezambar.com'
 const DEFAULT_FROM_NAME = process.env.ZOHO_FROM_NAME ?? 'Bez Ambar'
+// Zoho v2 requires topicId for accounts with topic management enabled.
+// ID sourced from GET /api/admin/newsletter/topics — "Marketing" topic.
+const TOPIC_ID = process.env.ZOHO_TOPIC_ID ?? '1694590000000049009'
 
 /** Remove any HTML tags/angle brackets and collapse whitespace. These fields
  *  are plain-text campaign metadata, never markup — strip it so nothing is
@@ -73,6 +76,7 @@ export async function POST(req: NextRequest) {
     reply_to: replyTo ?? fromEmail,
     list_details: listDetails,
     content_url: contentUrl,
+    topicId: TOPIC_ID,
   })
 
   let data: { status?: string; message?: string; campaign_key?: string; code?: number | string }
@@ -103,7 +107,7 @@ export async function POST(req: NextRequest) {
 
   if (data.status !== 'success' || !data.campaign_key) {
     return NextResponse.json(
-      { error: data.message ?? `Zoho error ${data.code ?? 'unknown'}`, _zoho: data },
+      { error: data.message ?? `Zoho error ${data.code ?? 'unknown'}` },
       { status: 502 },
     )
   }
