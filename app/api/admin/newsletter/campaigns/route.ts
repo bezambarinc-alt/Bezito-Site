@@ -59,20 +59,22 @@ export async function POST(req: NextRequest) {
 
   const token = await getZohoToken()
 
+  // list_details: JSON-encoded object, listkey → empty array means all contacts
+  const listDetails = JSON.stringify({ [listKey]: [] })
+
   const params = new URLSearchParams({
     resfmt: 'JSON',
-    campaignName: name,
-    campaignSubject: subject,
+    campaignname: name,
+    subject,
     from_email: fromEmail,
     reply_to: replyTo ?? fromEmail,
-    listkey: listKey,
+    list_details: listDetails,
     content_url: contentUrl,
-    campaign_type: 'Regular',
   })
 
   let data: { status?: string; message?: string; campaign_key?: string; code?: number | string }
   try {
-    const res = await fetch(`https://campaigns.zoho.com/api/v1.1/createcampaign?${params}`, {
+    const res = await fetch(`https://campaigns.zoho.com/api/v1.1/createCampaign?${params}`, {
       method: 'POST',
       signal: AbortSignal.timeout(10000),
       headers: { Authorization: `Zoho-oauthtoken ${token}` },
