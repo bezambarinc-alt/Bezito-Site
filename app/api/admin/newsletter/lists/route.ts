@@ -19,13 +19,16 @@ export async function GET(req: NextRequest) {
 
   const data = await res.json() as { list_of_details?: unknown[]; code?: number; message?: string; status?: string }
 
-  if (data.code === 401) {
+  // Zoho Campaigns returns code as a string ("0") unlike CRM which uses numbers
+  const code = Number(data.code)
+
+  if (code === 401) {
     invalidateZohoToken()
     return NextResponse.json({ error: 'Auth expired — retry' }, { status: 502 })
   }
 
-  if (data.code && data.code !== 0) {
-    return NextResponse.json({ error: data.message ?? `Zoho error ${data.code}` }, { status: 502 })
+  if (data.status === 'error' || (code !== 0 && data.code !== undefined)) {
+    return NextResponse.json({ error: data.message ?? `Zoho error ${data.code}`, raw: data }, { status: 502 })
   }
 
   return NextResponse.json({ lists: data.list_of_details ?? [] })
