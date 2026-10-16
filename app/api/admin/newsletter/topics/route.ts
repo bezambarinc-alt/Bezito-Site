@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
   const topicName = body.topic_name.trim().replace(/[{},:"']/g, '')
   const topicDesc = body.topic_desc.trim().replace(/[{},:"']/g, '')
   const details = `{topic_name:${topicName},topic_desc:${topicDesc}}`
-  const zohoUrl = `https://campaigns.zoho.com/api/v1.1/topics?resfmt=json&details=${encodeURIComponent(details)}`
+  const zohoUrl = `https://campaigns.zoho.com/api/v1.1/topics?details=${encodeURIComponent(details)}`
 
   let data: { status?: string; message?: string; code?: number | string; topic_id?: string }
   try {
