@@ -14,7 +14,10 @@ import InquiryDrawer from '@/components/layout/InquiryDrawer'
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   return (
     <DrawerProvider>
-      {children}
+      {/* No site header — zero out the header-height offset used by product layouts */}
+      <div style={{ '--ba-header-h': '0px' } as React.CSSProperties}>
+        {children}
+      </div>
       <InquiryDrawer />
     </DrawerProvider>
   )
