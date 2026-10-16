@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
   const schema = z.object({
     slug:        z.string().regex(/^[a-z0-9-]+$/, 'Slug must be lowercase letters, numbers, hyphens').min(1).max(64),
     title:       z.string().min(1).max(200),
-    doc_type:    z.enum(['showcase', 'proposal']).default('showcase'),
+    doc_type:    z.enum(['showcase', 'proposal', 'client', 'landing']).default('showcase'),
     client_id:   z.number().nullable().optional(),
     template_id: z.string().optional(),
     blocks:      z.array(z.record(z.unknown())).optional().default([]),
@@ -99,7 +99,7 @@ export async function GET(req: NextRequest) {
             c.name AS client_name, c.slug AS client_slug
      FROM pages p
      LEFT JOIN clients c ON c.id = p.client_id
-     WHERE p.doc_type IN ('showcase','proposal')
+     WHERE p.doc_type IN ('showcase','proposal','client','landing')
      ORDER BY p.updated_at DESC`,
   )
 

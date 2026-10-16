@@ -15,6 +15,8 @@ export default async function AdminPagesPage({
   const sp = searchParams ? await searchParams : {}
   const initialType = sp.type === 'proposal' ? 'proposal'
     : sp.type === 'showcase' ? 'showcase'
+    : sp.type === 'client' ? 'client'
+    : sp.type === 'landing' ? 'landing'
     : 'all'
   const session = await getSession()
   if (!session) redirect('/admin/login')
@@ -44,7 +46,7 @@ export default async function AdminPagesPage({
               c.name AS client_name, c.slug AS client_slug
        FROM pages p
        LEFT JOIN clients c ON c.id = p.client_id
-       WHERE p.doc_type IN ('showcase','proposal')
+       WHERE p.doc_type IN ('showcase','proposal','client','landing')
        ORDER BY p.updated_at DESC`,
     ),
     sql<{ id: number; slug: string; name: string }>(
@@ -57,7 +59,7 @@ export default async function AdminPagesPage({
       pages={pages as Parameters<typeof PagesClient>[0]['pages']}
       clients={clients}
       templatesByScope={templatesByScope}
-      initialType={initialType as 'all' | 'showcase' | 'proposal'}
+      initialType={initialType as 'all' | 'showcase' | 'proposal' | 'client' | 'landing'}
     />
   )
 }

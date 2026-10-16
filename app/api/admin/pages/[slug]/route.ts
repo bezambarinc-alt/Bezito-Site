@@ -10,7 +10,7 @@ type Ctx = { params: Promise<{ slug: string }> }
 
 const patchSchema = z.object({
   client_id:   z.number().nullable().optional(),
-  doc_type:    z.enum(['showcase', 'proposal']).optional(),
+  doc_type:    z.enum(['showcase', 'proposal', 'client', 'landing']).optional(),
   status:      z.enum(['draft', 'live', 'archived']).optional(),
   // null clears the per-page override and falls back to the scope's global default
   template_id: z.string().refine(v => v in TEMPLATES, 'Invalid template ID').nullable().optional(),

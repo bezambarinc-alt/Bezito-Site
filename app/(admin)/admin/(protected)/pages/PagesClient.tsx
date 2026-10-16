@@ -6,7 +6,7 @@ import styles from './pages.module.css'
 interface ClientPage {
   slug: string
   title: string
-  doc_type: 'showcase' | 'proposal'
+  doc_type: 'showcase' | 'proposal' | 'client' | 'landing'
   status: string
   shared: boolean
   client_id: number | null
@@ -40,13 +40,13 @@ interface Props {
   pages: ClientPage[]
   clients: Client[]
   templatesByScope: TemplatesByScope
-  initialType?: 'all' | 'showcase' | 'proposal'
+  initialType?: 'all' | 'showcase' | 'proposal' | 'client' | 'landing'
 }
 
 export default function PagesClient({ pages: initial, clients, templatesByScope, initialType = 'all' }: Props) {
   const [pages, setPages]     = useState(initial)
   const [search, setSearch]   = useState('')
-  const [typeFilter, setType] = useState<'all' | 'showcase' | 'proposal'>(initialType)
+  const [typeFilter, setType] = useState<'all' | 'showcase' | 'proposal' | 'client' | 'landing'>(initialType)
   const [clientFilter, setClient] = useState<string>('all')
   const [saving, setSaving]   = useState<Record<string, boolean>>({})
   const [deleted, setDeleted] = useState<Set<string>>(new Set())
@@ -135,6 +135,8 @@ export default function PagesClient({ pages: initial, clients, templatesByScope,
           <option value="all">All types</option>
           <option value="showcase">Showcase</option>
           <option value="proposal">Proposal</option>
+          <option value="client">Client</option>
+          <option value="landing">Landing</option>
         </select>
         <select className="admin-select" value={clientFilter} onChange={e => setClient(e.target.value)}>
           {clientOptions.map(c => (
@@ -186,13 +188,17 @@ export default function PagesClient({ pages: initial, clients, templatesByScope,
                   >
                     <option value="showcase">Showcase</option>
                     <option value="proposal">Proposal</option>
+                    <option value="client">Client</option>
+                    <option value="landing">Landing</option>
                   </select>
                 </td>
 
-                {/* Template — filtered to only show layouts valid for this page's doc_type */}
+                {/* Template — only for showcase/proposal; client/landing use blocks only */}
                 <td className="admin-td">
-                  {(() => {
-                    const scopedTpls = templatesByScope[p.doc_type as 'proposal' | 'showcase'] ?? []
+                  {p.doc_type === 'client' || p.doc_type === 'landing' ? (
+                    <span style={{ color: 'var(--ink-muted)' }}>—</span>
+                  ) : (() => {
+                    const scopedTpls = templatesByScope[p.doc_type] ?? []
                     return (
                       <select
                         className={styles.typeSelect}
@@ -265,12 +271,34 @@ export default function PagesClient({ pages: initial, clients, templatesByScope,
                 {/* Actions */}
                 <td className="admin-td">
                   <div className={styles.actions}>
-                    <a
-                      href={`/preview/${p.slug}`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="admin-link"
-                    >View ↗</a>
+                    {p.doc_type === 'client' ? (
+                      <>
+                        <button
+                          className="admin-link"
+                          onClick={() => navigator.clipboard.writeText(`https://bezito.co/c/${p.slug}`)}
+                        >Copy URL</button>
+                        <a
+                          href={`/client/${p.slug}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="admin-link"
+                        >Preview ↗</a>
+                      </>
+                    ) : p.doc_type === 'landing' ? (
+                      <a
+                        href={`/l/${p.slug}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="admin-link"
+                      >View ↗</a>
+                    ) : (
+                      <a
+                        href={`/preview/${p.slug}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="admin-link"
+                      >View ↗</a>
+                    )}
                     <button
                       className="admin-danger-btn"
                       onClick={() => deletePage(p.slug)}

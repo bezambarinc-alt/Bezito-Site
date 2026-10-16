@@ -21,7 +21,7 @@ export default async function ClientPage({
   const { pw } = await searchParams
 
   const [page] = await sql<ClientRow>(
-    `SELECT slug, title, blocks, status, password FROM pages WHERE slug=$1 AND status='live'`,
+    `SELECT slug, title, blocks, status, password FROM pages WHERE slug=$1 AND status='live' AND doc_type='client'`,
     [slug],
   )
   if (!page) notFound()
@@ -56,6 +56,9 @@ export default async function ClientPage({
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const [page] = await sql<{ title: string }>(`SELECT title FROM pages WHERE slug=$1`, [slug])
-  return { title: page?.title ?? 'Client Page' }
+  const [page] = await sql<{ title: string }>(`SELECT title FROM pages WHERE slug=$1 AND doc_type='client'`, [slug])
+  return {
+    title: page?.title ?? 'Client Page',
+    robots: { index: false, follow: false },
+  }
 }
