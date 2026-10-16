@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
 
   let data: { status?: string; message?: string; code?: number | string; list_of_details?: unknown[] }
   try {
-    const res = await fetch('https://campaigns.zoho.com/api/v1.1/getTopics?resfmt=json', {
+    const res = await fetch('https://campaigns.zoho.com/api/v1.1/topics?resfmt=json&from_index=1&range=50', {
       signal: AbortSignal.timeout(8000),
       headers: { Authorization: `Zoho-oauthtoken ${token}` },
     })
