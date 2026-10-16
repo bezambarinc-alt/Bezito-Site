@@ -7,7 +7,8 @@ import { getZohoToken, invalidateZohoToken } from '@/lib/zoho-auth'
 export const dynamic = 'force-dynamic'
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://bezambar.com'
-const DEFAULT_FROM = process.env.ZOHO_FROM_EMAIL ?? 'Bez Ambar <bez@bezambar.com>'
+const DEFAULT_FROM_EMAIL = process.env.ZOHO_FROM_EMAIL ?? 'bez@bezambar.com'
+const DEFAULT_FROM_NAME = process.env.ZOHO_FROM_NAME ?? 'Bez Ambar'
 
 /** Remove any HTML tags/angle brackets and collapse whitespace. These fields
  *  are plain-text campaign metadata, never markup — strip it so nothing is
@@ -28,8 +29,8 @@ const BodySchema = z.object({
   subject: stripped(500),
   // Zoho list keys are long alphanumeric identifiers — reject anything else.
   listKey: z.string().trim().min(1).max(128).regex(/^[a-zA-Z0-9]+$/, 'invalid listKey'),
-  // "Name <email>" display form; strip markup, bound length, require an address.
-  fromEmail: z.string().transform(stripHtml).pipe(z.string().min(3).max(200)).optional(),
+  fromEmail: z.string().trim().email().max(200).optional(),
+  fromName: z.string().transform(stripHtml).pipe(z.string().min(1).max(100)).optional(),
   // Used verbatim in content_url path — restrict to a safe slug (no traversal/scheme).
   templateSlug: z.string().trim().min(1).max(64).regex(/^[a-z0-9-]+$/, 'invalid templateSlug').default('newsletter-welcome'),
   replyTo: z.string().trim().email().max(200).optional(),
@@ -54,7 +55,8 @@ export async function POST(req: NextRequest) {
   }
 
   const { name, subject, listKey, templateSlug, replyTo } = parsed.data
-  const fromEmail = parsed.data.fromEmail ?? DEFAULT_FROM
+  const fromEmail = parsed.data.fromEmail ?? DEFAULT_FROM_EMAIL
+  const fromName = parsed.data.fromName ?? DEFAULT_FROM_NAME
   const contentUrl = `${BASE_URL}/api/email-template/${templateSlug}`
 
   const token = await getZohoToken()
@@ -63,10 +65,11 @@ export async function POST(req: NextRequest) {
   const listDetails = JSON.stringify({ [listKey]: [] })
 
   const params = new URLSearchParams({
-    resfmt: 'JSON',
+    resfmt: 'json',
     campaignname: name,
     subject,
     from_email: fromEmail,
+    from_name: fromName,
     reply_to: replyTo ?? fromEmail,
     list_details: listDetails,
     content_url: contentUrl,
