@@ -43,20 +43,18 @@ export async function POST(req: NextRequest) {
 
   const token = await getZohoToken()
 
-  // Zoho expects details as a pseudo-JSON object with unquoted keys in the POST body
-  const details = `{topic_name:${encodeURIComponent(body.topic_name.trim())},topic_desc:${encodeURIComponent(body.topic_desc.trim())}}`
-  const params = new URLSearchParams({ resfmt: 'json', details })
+  // Zoho expects details as pseudo-JSON in the URL query string (unquoted keys, raw values)
+  const topicName = body.topic_name.trim().replace(/[{},:"']/g, '')
+  const topicDesc = body.topic_desc.trim().replace(/[{},:"']/g, '')
+  const details = `{topic_name:${topicName},topic_desc:${topicDesc}}`
+  const zohoUrl = `https://campaigns.zoho.com/api/v1.1/topics?resfmt=json&details=${encodeURIComponent(details)}`
 
   let data: { status?: string; message?: string; code?: number | string; topic_id?: string }
   try {
-    const res = await fetch('https://campaigns.zoho.com/api/v1.1/topics', {
+    const res = await fetch(zohoUrl, {
       method: 'POST',
       signal: AbortSignal.timeout(10000),
-      headers: {
-        Authorization: `Zoho-oauthtoken ${token}`,
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: params.toString(),
+      headers: { Authorization: `Zoho-oauthtoken ${token}` },
     })
     data = await res.json()
   } catch (err) {
