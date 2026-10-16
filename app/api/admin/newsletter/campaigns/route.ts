@@ -103,7 +103,7 @@ export async function POST(req: NextRequest) {
 
   if (data.status !== 'success' || !data.campaign_key) {
     return NextResponse.json(
-      { error: data.message ?? `Zoho error ${data.code ?? 'unknown'}` },
+      { error: data.message ?? `Zoho error ${data.code ?? 'unknown'}`, _zoho: data },
       { status: 502 },
     )
   }
