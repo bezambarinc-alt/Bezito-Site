@@ -1,14 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { z } from 'zod'
 import { getSession } from '@/lib/auth'
 import { getZohoToken, invalidateZohoToken } from '@/lib/zoho-auth'
+
+// Sending is the destructive/costly action — intentionally session-only
+// (human in the loop). Agent/Bezito can create campaigns but not fire them.
+const BodySchema = z.object({
+  // Zoho campaign keys are long alphanumeric identifiers — reject anything else.
+  campaignKey: z.string().trim().min(1).max(128).regex(/^[a-zA-Z0-9]+$/, 'invalid campaignKey'),
+})
 
 export async function POST(req: NextRequest) {
   const session = await getSession()
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const body = await req.json() as { campaignKey?: string }
-  const { campaignKey } = body
-  if (!campaignKey) return NextResponse.json({ error: 'campaignKey required' }, { status: 400 })
+  const parsed = BodySchema.safeParse(await req.json().catch(() => null))
+  if (!parsed.success) return NextResponse.json({ error: 'campaignKey required' }, { status: 400 })
+  const { campaignKey } = parsed.data
 
   const token = await getZohoToken()
 
@@ -18,13 +26,18 @@ export async function POST(req: NextRequest) {
     schedule_type: 'immediate',
   })
 
-  const res = await fetch(`https://campaigns.zoho.com/api/v1.1/sendcampaign?${params}`, {
-    method: 'POST',
-    signal: AbortSignal.timeout(10000),
-    headers: { Authorization: `Zoho-oauthtoken ${token}` },
-  })
-
-  const data = await res.json() as { code?: number; message?: string; status?: string }
+  let data: { code?: number; message?: string; status?: string }
+  try {
+    const res = await fetch(`https://campaigns.zoho.com/api/v1.1/sendcampaign?${params}`, {
+      method: 'POST',
+      signal: AbortSignal.timeout(10000),
+      headers: { Authorization: `Zoho-oauthtoken ${token}` },
+    })
+    data = await res.json()
+  } catch (err) {
+    const reason = err instanceof Error && err.name === 'TimeoutError' ? 'timed out' : 'unreachable'
+    return NextResponse.json({ error: `Zoho Campaigns ${reason} — please retry` }, { status: 502 })
+  }
 
   if (data.code === 401) {
     invalidateZohoToken()
