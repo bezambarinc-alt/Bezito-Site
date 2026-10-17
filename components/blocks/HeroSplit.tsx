@@ -1,20 +1,15 @@
 import type { HeroSplitBlock } from '@/types/blocks'
 import SpecAccordion from './SpecAccordion'
+import IJewelViewer from '@/components/pdp/IJewelViewer'
 import styles from './HeroSplit.module.css'
 
-/** 55/45 split: media left (video or iJewel iframe), editorial + specs + CTA right. */
+/** 55/45 split: media left (video or iJewel viewer), editorial + specs + CTA right. */
 export default function HeroSplit({ block }: { block: HeroSplitBlock }) {
-  const isLight = block.theme === 'light'
   return (
-    <section className={`${styles.split} ${isLight ? styles.light : ''}`}>
+    <section className={styles.split}>
       <div className={styles.media}>
         {block.ijewelUrl ? (
-          <iframe
-            src={block.ijewelUrl}
-            className={styles.iframe}
-            allow="autoplay"
-            title={block.titleHtml}
-          />
+          <IJewelViewer src={block.ijewelUrl} title={block.titleHtml} />
         ) : (
           <video
             className={styles.video}

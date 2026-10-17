@@ -28,7 +28,6 @@ export type HeroSplitBlock = {
   videoUrl?: string
   ijewelUrl?: string
   posterUrl?: string
-  theme?: 'dark' | 'light'
   refId?: string
   codeName?: string
   category?: string
