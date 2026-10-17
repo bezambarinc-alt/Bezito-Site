@@ -1,4 +1,6 @@
 import Script from 'next/script'
+import { Suspense } from 'react'
+import GAListener from './GAListener'
 import { DrawerProvider } from '@/components/layout/DrawerContext'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
@@ -86,6 +88,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
           }),
         }}
       />
+      <Suspense fallback={null}><GAListener /></Suspense>
       <DrawerProvider>
         <Header />
         {children}

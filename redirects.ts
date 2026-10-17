@@ -1268,4 +1268,7 @@ export const REDIRECTS: Redirect[] = [
     { source: '/jewelry/jewelry/TRIOTRAP', destination: '/jewelry/rings', permanent: true },
     { source: '/jewelry/jewelry/2ETE150', destination: '/jewelry/bands', permanent: true },
     { source: '/jewelry/jewelry/1KRN-20Ct', destination: '/jewelry/rings', permanent: true },
+    // WordPress RSS feeds — redirect to blog
+    { source: '/feed', destination: '/blog', permanent: true },
+    { source: '/comments/feed', destination: '/blog', permanent: true },
 ]

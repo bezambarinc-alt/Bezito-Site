@@ -29,6 +29,15 @@ const nextConfig: NextConfig = {
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
         ],
       },
+      {
+        // Tell Cloudflare to cache public HTML for 1 hour (stale-while-revalidate 24h).
+        // Browsers still get no-store via the standard Cache-Control Vercel sets.
+        // Cloudflare reads CDN-Cache-Control first and strips it before the browser sees it.
+        source: '/((?!api|admin|portal|_next|favicon).*)',
+        headers: [
+          { key: 'CDN-Cache-Control', value: 'public, s-maxage=3600, stale-while-revalidate=86400' },
+        ],
+      },
     ]
   },
 }
