@@ -1,6 +1,7 @@
 import type { HeroSplitBlock } from '@/types/blocks'
 import SpecAccordion from './SpecAccordion'
 import IJewelViewer from '@/components/pdp/IJewelViewer'
+import pdpStyles from '@/app/(public)/jewelry/[category]/[slug]/page.module.css'
 import styles from './HeroSplit.module.css'
 
 /** 55/45 split: media left (video or iJewel viewer), editorial + specs + CTA right. */
@@ -33,8 +34,8 @@ export default function HeroSplit({ block }: { block: HeroSplitBlock }) {
           titleHtml intentionally rendered as text — raw HTML injection is
           restricted to Richtext.tsx per the project security rules.
         */}
-        <h2 className={styles.title}>{block.titleHtml}</h2>
-        <p className={styles.copy}>{block.copy}</p>
+        <h2 className={pdpStyles.heroTitle}>{block.titleHtml}</h2>
+        <p className={`${pdpStyles.heroCopy} ${styles.copy}`}>{block.copy}</p>
 
         {block.specs && block.specs.length > 0 && <SpecAccordion block={{ type: 'spec-accordion', items: block.specs }} />}
 
