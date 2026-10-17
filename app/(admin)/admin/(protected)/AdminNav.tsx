@@ -29,11 +29,12 @@ const NAV: NavEntry[] = [
   {
     section: true, key: 'clients', label: 'Clients', defaultOpen: true,
     children: [
-      { href: '/admin/clients',                label: 'Users',     exact: true },
-      { href: '/admin/pages?type=proposal',    label: 'Proposals'  },
-      { href: '/admin/pages?type=showcase',    label: 'Pages'      },
-      { href: '/admin/templates?scope=client', label: 'Templates'  },
-      { href: '/admin/clients/requests',       label: 'Requests'   },
+      { href: '/admin/clients',                label: 'Users',        exact: true },
+      { href: '/admin/pages?type=client',      label: 'Client Pages'              },
+      { href: '/admin/pages?type=proposal',    label: 'Proposals'                 },
+      { href: '/admin/pages?type=showcase',    label: 'Pages'                     },
+      { href: '/admin/templates?scope=client', label: 'Templates'                 },
+      { href: '/admin/clients/requests',       label: 'Requests'                  },
     ],
   },
 
