@@ -2,22 +2,32 @@ import type { HeroSplitBlock } from '@/types/blocks'
 import SpecAccordion from './SpecAccordion'
 import styles from './HeroSplit.module.css'
 
-/** 55/45 split: full-bleed video left with ref overlay, editorial + specs + CTA right. */
+/** 55/45 split: media left (video or iJewel iframe), editorial + specs + CTA right. */
 export default function HeroSplit({ block }: { block: HeroSplitBlock }) {
+  const isLight = block.theme === 'light'
   return (
-    <section className={styles.split}>
+    <section className={`${styles.split} ${isLight ? styles.light : ''}`}>
       <div className={styles.media}>
-        <video
-          className={styles.video}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="none"
-          poster={block.posterUrl}
-        >
-          <source src={block.videoUrl} type="video/mp4" />
-        </video>
+        {block.ijewelUrl ? (
+          <iframe
+            src={block.ijewelUrl}
+            className={styles.iframe}
+            allow="autoplay"
+            title={block.titleHtml}
+          />
+        ) : (
+          <video
+            className={styles.video}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="none"
+            poster={block.posterUrl}
+          >
+            <source src={block.videoUrl} type="video/mp4" />
+          </video>
+        )}
         {block.refId && <p className={styles.ref}>Ref. {block.refId}</p>}
       </div>
 

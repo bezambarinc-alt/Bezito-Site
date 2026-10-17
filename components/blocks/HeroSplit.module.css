@@ -5,13 +5,29 @@
   background: var(--ba-black);
 }
 
+.light {
+  background: var(--ba-white);
+  color: var(--ba-ink);
+}
+.light .copy { color: var(--ba-ink-soft); }
+.light .code { color: var(--ba-ink-muted); }
+
 .media { position: relative; overflow: hidden; background: var(--ba-dark); }
+.light .media { background: var(--ba-cream); }
+
 .video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
 }
 .ref {
   position: absolute;
