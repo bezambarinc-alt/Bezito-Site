@@ -38,7 +38,11 @@
   letter-spacing: 0.16em;
   color: var(--ba-split-copy, var(--ba-ink-muted));
 }
-.title { margin: 0.25rem 0 0.5rem; }
+.title {
+  font-family: var(--ba-font-sans);
+  color: var(--ba-gold);
+  margin: 0.25rem 0 0.5rem;
+}
 .copy {
   font-family: var(--ba-font-editorial);
   font-size: clamp(1rem, 1.4vw, 1.2rem);
