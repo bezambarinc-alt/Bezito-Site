@@ -63,7 +63,7 @@ export default async function ClientPage({
 
   // If the first block is product-layout, render using the real product page template
   // so the client page matches the live product page with no CSS reinvention.
-  const firstBlock = blocks[0] as ProductLayoutData | undefined
+  const firstBlock = blocks[0] as unknown as ProductLayoutData | undefined
   if (firstBlock?.type === 'product-layout') {
     const d = firstBlock
     const category = d.category ?? 'jewelry'
