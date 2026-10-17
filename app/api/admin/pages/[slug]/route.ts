@@ -16,6 +16,7 @@ const patchSchema = z.object({
   template_id: z.string().refine(v => v in TEMPLATES, 'Invalid template ID').nullable().optional(),
   // shared=true → anyone with the link can view (Google-Drive-style). Proposal-only; no effect on showcases.
   shared: z.boolean().optional(),
+  blocks: z.array(z.record(z.unknown())).optional(),
 })
 
 export async function PATCH(req: NextRequest, { params }: Ctx) {
@@ -34,7 +35,7 @@ export async function PATCH(req: NextRequest, { params }: Ctx) {
   const values: unknown[] = []
   let i = 1
 
-  const { client_id, doc_type, status, template_id, shared } = parsed.data
+  const { client_id, doc_type, status, template_id, shared, blocks } = parsed.data
 
   // Scope validation — reject templates that don't belong to this page's doc_type.
   // Uses the incoming doc_type when changing both at once; otherwise reads from DB.
@@ -63,6 +64,7 @@ export async function PATCH(req: NextRequest, { params }: Ctx) {
   if (status      !== undefined) { updates.push(`status      = $${i++}`); values.push(status) }
   if (template_id !== undefined) { updates.push(`template_id = $${i++}`); values.push(template_id) }
   if (shared      !== undefined) { updates.push(`shared      = $${i++}`); values.push(shared) }
+  if (blocks      !== undefined) { updates.push(`blocks      = $${i++}`); values.push(JSON.stringify(blocks)) }
 
   if (updates.length === 1) {
     return NextResponse.json({ error: 'No fields to update' }, { status: 400 })
