@@ -176,6 +176,13 @@ export default async function middleware(req: NextRequest) {
     logView(req)
     const res = NextResponse.next({ request: { headers: requestHeaders } })
     res.headers.set('Content-Security-Policy', csp)
+    // Client pages are force-dynamic (bespoke per-slug, live DB). Tell CDNs not
+    // to cache them — without this, Cloudflare's edge serves stale HTML for up
+    // to 3600s even after a new deploy.
+    if (path.startsWith('/client/')) {
+      res.headers.set('Cache-Control', 'no-store')
+      res.headers.set('CDN-Cache-Control', 'no-store')
+    }
     if (!req.cookies.get('ba_sid')) {
       res.cookies.set('ba_sid', crypto.randomUUID(), {
         httpOnly: true, secure: true, sameSite: 'lax',
