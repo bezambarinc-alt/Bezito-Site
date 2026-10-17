@@ -70,12 +70,12 @@ function buildCsp(nonce: string | null): string {
   // embeds on /journal. Trust no longer propagates, so each one is explicit.
   const scriptSrc = nonce
     ? `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${unsafeEval} https://cdn.curator.io`
-    : `script-src 'self' 'unsafe-inline'${unsafeEval} https://www.bezambar.com https://cdn.curator.io https://cdn.pagesense.io https://connect.facebook.net https://www.googletagmanager.com https://www.clarity.ms https://scripts.clarity.ms https://static.cloudflareinsights.com`
+    : `script-src 'self' 'unsafe-inline'${unsafeEval} https://cdn.curator.io https://cdn.pagesense.io https://connect.facebook.net https://www.googletagmanager.com https://www.clarity.ms https://scripts.clarity.ms https://static.cloudflareinsights.com`
   return [
     `default-src 'self'`,
     scriptSrc,
     `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.curator.io`,
-    `font-src 'self' https://fonts.gstatic.com data: https://www.bezambar.com`,
+    `font-src 'self' https://fonts.gstatic.com data:`,
     `img-src 'self' data: blob: https://res.cloudinary.com https://*.curator.io https://*.cdninstagram.com https://curator-assets.b-cdn.net https://c.clarity.ms https://www.facebook.com https://c.bing.com`,
     // The Curator feed serves Instagram video posts from its own CDN and from
     // cdninstagram; both were in img-src but not here, so every video tile on
