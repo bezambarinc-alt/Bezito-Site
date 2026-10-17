@@ -37,7 +37,7 @@ export default function HeroSplit({ block }: { block: HeroSplitBlock }) {
         <h2 className={pdpStyles.heroTitle}>{block.titleHtml}</h2>
         <p className={`${pdpStyles.heroCopy} ${styles.copy}`}>{block.copy}</p>
 
-        {block.specs && block.specs.length > 0 && <SpecAccordion block={{ type: 'spec-accordion', items: block.specs }} />}
+        {block.specs && block.specs.length > 0 && <SpecAccordion block={{ type: 'spec-accordion', items: block.specs }} variant="light" />}
 
         {block.ctaLabel && block.ctaPhone && (
           <a className={styles.cta} href={`tel:${block.ctaPhone}`}>
