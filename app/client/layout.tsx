@@ -15,7 +15,15 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   return (
     <DrawerProvider>
       {/* No site header — zero out header offset; transparent split bg so blocks inherit the white body */}
-      <div style={{ '--ba-header-h': '0px', '--ba-split-bg': 'transparent', '--ba-split-copy': 'var(--ba-ink)' } as React.CSSProperties}>
+      <div style={{
+        '--ba-header-h': '0px',
+        '--ba-split-bg': 'transparent',
+        '--ba-split-copy': 'var(--ba-ink)',
+        '--ba-accordion-font': 'var(--ba-font-sans)',
+        '--ba-accordion-text': 'var(--ba-ink)',
+        '--ba-accordion-body': 'var(--ba-ink)',
+        '--ba-accordion-border': 'rgba(0, 0, 0, 0.08)',
+      } as React.CSSProperties}>
         {children}
       </div>
       <InquiryDrawer />

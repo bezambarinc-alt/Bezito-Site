@@ -1,8 +1,8 @@
 .accordion { width: 100%; }
 .accordion > .ba-eyebrow { margin-bottom: 0.75rem; }
 
-.item { border-top: 1px solid rgba(255, 255, 255, 0.12); }
-.item:last-child { border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+.item { border-top: 1px solid var(--ba-accordion-border, rgba(255, 255, 255, 0.12)); }
+.item:last-child { border-bottom: 1px solid var(--ba-accordion-border, rgba(255, 255, 255, 0.12)); }
 
 .summary {
   list-style: none;
@@ -11,9 +11,9 @@
   align-items: center;
   justify-content: space-between;
   padding: 1.1rem 0;
-  font-family: var(--ba-font-serif);
+  font-family: var(--ba-accordion-font, var(--ba-font-serif));
   font-size: 1.15rem;
-  color: var(--ba-white);
+  color: var(--ba-accordion-text, var(--ba-white));
 }
 .summary::-webkit-details-marker { display: none; }
 .summary:hover { color: var(--ba-gold); }
@@ -40,7 +40,7 @@
   font-family: var(--ba-font-editorial);
   font-size: 0.98rem;
   line-height: 1.7;
-  color: var(--ba-cream);         /* dark variant default */
+  color: var(--ba-accordion-body, var(--ba-cream));
   animation: ba-fade 0.35s ease both;
 }
 

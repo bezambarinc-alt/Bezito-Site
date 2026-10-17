@@ -28,7 +28,7 @@ export default function HeroSplit({ block }: { block: HeroSplitBlock }) {
       </div>
 
       <div className={styles.panel}>
-        {block.category && <p className="ba-eyebrow">{block.category}</p>}
+        {block.category && <p className={pdpStyles.heroEyebrow}>{block.category}</p>}
         {block.codeName && <p className={styles.code}>{block.codeName}</p>}
         {/*
           titleHtml intentionally rendered as text — raw HTML injection is
