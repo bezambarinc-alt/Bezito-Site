@@ -40,15 +40,20 @@
 }
 .title {
   font-family: var(--ba-font-sans);
+  font-size: clamp(28px, 3.6vw, 50px);
+  font-weight: 200;
+  letter-spacing: 0.03em;
+  line-height: 1.08;
+  text-transform: uppercase;
   color: var(--ba-gold);
-  margin: 0.25rem 0 0.5rem;
+  margin: 0 0 0.6rem;
 }
 .copy {
   font-family: var(--ba-font-editorial);
-  font-size: clamp(1rem, 1.4vw, 1.2rem);
-  line-height: 1.75;
+  font-size: 15px;
+  line-height: 1.78;
   color: var(--ba-split-copy, var(--ba-cream));
-  margin-bottom: 0.75rem;
+  margin: 0;
 }
 
 .cta {
