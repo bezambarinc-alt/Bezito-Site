@@ -32,12 +32,6 @@
   padding: clamp(2.5rem, 6vw, 5rem);
 }
 
-.code {
-  font-family: var(--ba-font-sans);
-  font-size: 0.78rem;
-  letter-spacing: 0.16em;
-  color: var(--ba-split-copy, var(--ba-ink-muted));
-}
 .copy {
   color: var(--ba-split-copy, var(--ba-cream));
 }
