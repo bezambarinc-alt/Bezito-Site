@@ -406,6 +406,20 @@ COMMENT ON TABLE zoho_tokens IS
   'Zoho OAuth refresh tokens written by /api/auth/zoho/callback. One row per app (default: bezambar_site).';
 
 
+-- email_drafts: per-campaign email HTML storage.
+-- content_url in Zoho Campaigns points to /api/email-template/[id].
+-- Zoho fetches once at campaign creation; campaign_key back-references the campaign.
+-- Added: migration 020_email_drafts.sql.
+CREATE TABLE IF NOT EXISTS email_drafts (
+  id            UUID        PRIMARY KEY DEFAULT gen_random_uuid(),
+  html          TEXT        NOT NULL,
+  campaign_key  TEXT,
+  is_template   BOOLEAN     NOT NULL DEFAULT FALSE,
+  template_name TEXT,
+  created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+CREATE INDEX IF NOT EXISTS email_drafts_templates_idx ON email_drafts (is_template) WHERE is_template = TRUE;
+
 -- ── Seed rows ───────────────────────────────────────────────────────────────
 -- Minimum config a fresh database needs to boot the admin dashboard.
 -- The admin user + PIN are seeded by db/migrations/002_admin_auth.sql; run the

@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { getSession } from '@/lib/auth'
 import { isAuthorizedAgent } from '@/lib/agent-auth'
 import { getZohoToken, invalidateZohoToken } from '@/lib/zoho-auth'
+import { sql } from '@/lib/db'
 
 export const dynamic = 'force-dynamic'
 
@@ -38,8 +39,22 @@ const BodySchema = z.object({
   listKey: z.string().trim().min(1).max(128).regex(/^[a-zA-Z0-9]+$/, 'invalid listKey'),
   fromEmail: z.string().trim().email().max(200).optional(),
   fromName: z.string().transform(stripHtml).pipe(z.string().min(1).max(100)).optional(),
-  // Used verbatim in content_url path — restrict to a safe slug (no traversal/scheme).
-  templateSlug: z.string().trim().min(1).max(64).regex(/^[a-z0-9-]+$/, 'invalid templateSlug').default('newsletter-welcome'),
+  // Full email HTML for this specific campaign. Stored in email_drafts table,
+  // served from /api/email-template/[id] as content_url for Zoho to fetch.
+  // Must include $[LI:UNSUBSCRIBE]$ in an href (Zoho requirement + CAN-SPAM).
+  // Personalization: $[FNAME|Friend]$, $[LNAME]$, $[HF:ORGADDRESS]$
+  // Web version: $[LI:VIEWINBROWSER]$
+  htmlContent: z.string()
+    .min(100, 'htmlContent too short — must be a complete email HTML document')
+    .max(512_000, 'htmlContent exceeds 500KB limit')
+    .refine(v => v.includes('$[LI:UNSUBSCRIBE]$'), {
+      message: 'htmlContent must include $[LI:UNSUBSCRIBE]$ in an href (CAN-SPAM / Zoho requirement)',
+    })
+    .optional(),
+  // Optional: UUID of an approved template in email_drafts to use as the base.
+  // When provided, its HTML is loaded first and the campaign is created from that.
+  // Pass htmlContent to override — useful for one-off modifications.
+  templateId: z.string().uuid('invalid templateId').optional(),
   replyTo: z.string().trim().email().max(200).optional(),
 })
 
@@ -47,6 +62,9 @@ const BodySchema = z.object({
  * POST /api/admin/newsletter/campaigns
  * Creates a Zoho Campaigns email campaign. Called conversationally by Bezito
  * (agent JWT) or from the admin dashboard (session cookie).
+ *
+ * htmlContent is stored in the email_drafts table and served from
+ * /api/email-template/[id] — Zoho fetches the URL once at creation time.
  */
 export async function POST(req: NextRequest) {
   const session = await getSession()
@@ -61,10 +79,32 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  const { name, subject, listKey, templateSlug, replyTo } = parsed.data
+  const { name, subject, listKey, htmlContent, templateId, replyTo } = parsed.data
   const fromEmail = parsed.data.fromEmail ?? DEFAULT_FROM_EMAIL
   const fromName = parsed.data.fromName ?? DEFAULT_FROM_NAME
-  const contentUrl = `${BASE_URL}/api/email-template/${templateSlug}`
+
+  // Resolve HTML: explicit htmlContent wins; otherwise load from approved template
+  let resolvedHtml = htmlContent
+  if (!resolvedHtml && templateId) {
+    const rows = await sql<{ html: string }>(
+      'SELECT html FROM email_drafts WHERE id = $1 AND is_template = TRUE',
+      [templateId],
+    )
+    if (!rows.length) {
+      return NextResponse.json({ error: `Template ${templateId} not found or not approved` }, { status: 400 })
+    }
+    resolvedHtml = rows[0].html
+  }
+  if (!resolvedHtml) {
+    return NextResponse.json({ error: 'Provide htmlContent or a valid templateId' }, { status: 400 })
+  }
+
+  // Store HTML first — if Zoho fails we can retry without re-storing
+  const [draft] = await sql<{ id: string }>(
+    'INSERT INTO email_drafts (html) VALUES ($1) RETURNING id',
+    [resolvedHtml],
+  )
+  const contentUrl = `${BASE_URL}/api/email-template/${draft.id}`
 
   const token = await getZohoToken()
 
@@ -118,12 +158,17 @@ export async function POST(req: NextRequest) {
 
   const campaignKey = data.campaign_key
   const campaignId = data.campaign_id
+
+  // Back-reference the draft to the campaign for admin traceability
+  await sql('UPDATE email_drafts SET campaign_key = $1 WHERE id = $2', [campaignKey, draft.id])
+
   // Zoho One URL format (new portal) — uses campaign_id, not campaignKey
   const zohoUrl = `https://one.zoho.com/zohoone/${ZOHO_ORG_ALIAS}/home/cxapp/campaigns/newui/org${ZOHO_ORG_ID}#/portal/ws/0/channels/email-campaigns/show/${campaignId}/tabs/config`
 
   return NextResponse.json({
     campaignKey,
     campaignId,
+    draftId: draft.id,
     name,
     subject,
     listKey,

@@ -47,7 +47,7 @@ export async function GET() {
       <div class="tagline">Bespoke Fine Jewelry · Los Angeles</div>
     </div>
     <div class="hero">
-      <h1>Welcome, %%First Name%%</h1>
+      <h1>Welcome, $[FNAME|Friend]$</h1>
       <p>You are now part of a small, curated circle of collectors<br>who appreciate jewelry made to last generations.</p>
     </div>
     <div class="divider"></div>
@@ -75,8 +75,9 @@ export async function GET() {
     <div class="footer">
       <p>
         You received this because you subscribed at bezambar.com.<br>
-        <a href="%%unsubscribe%%">Unsubscribe</a> &nbsp;·&nbsp;
-        <a href="%%webversion%%">View in browser</a>
+        Bez Ambar · Los Angeles, CA · <a href="$[HF:ORGADDRESS]$">$[HF:ORGADDRESS]$</a><br>
+        <a href="$[LI:UNSUBSCRIBE]$">Unsubscribe</a> &nbsp;·&nbsp;
+        <a href="$[LI:VIEWINBROWSER]$">View in browser</a>
       </p>
     </div>
   </div>
