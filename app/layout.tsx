@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Open_Sans, Lora } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
-import CookieConsentBanner from './components/CookieConsent'
 
 const openSans = Open_Sans({
   subsets: ['latin'],
@@ -76,7 +75,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           src="https://www.clarity.ms/tag/yx99t20kqu"
         />
         {children}
-        <CookieConsentBanner />
       </body>
     </html>
   )

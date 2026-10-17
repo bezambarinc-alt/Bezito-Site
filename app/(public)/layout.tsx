@@ -1,4 +1,5 @@
 import Script from 'next/script'
+import CookieConsentBanner from '@/app/components/CookieConsent'
 import { Suspense } from 'react'
 import GAListener from './GAListener'
 import { DrawerProvider } from '@/components/layout/DrawerContext'
@@ -98,6 +99,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
         <InquiryDrawer />
         <ConciergeDrawer />
         <SearchOverlay />
+        <CookieConsentBanner />
       </DrawerProvider>
     </>
   )
