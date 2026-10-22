@@ -1271,4 +1271,11 @@ export const REDIRECTS: Redirect[] = [
     // WordPress RSS feeds — redirect to blog
     { source: '/feed', destination: '/blog', permanent: true },
     { source: '/comments/feed', destination: '/blog', permanent: true },
+
+    // ── Missing from prior redirect build (confirmed via 2026-09-28 GSC audit) ─
+    { source: '/nene-leakes-engagement-ring', destination: '/blog', permanent: true },
+
+    // C1036 renamed Baguettes → Cadence (2026-10-21)
+    { source: '/jewelry/rings/baguettes-emerald-cut-ring', destination: '/jewelry/rings/cadence-emerald-cut-ring', permanent: true },
+    { source: '/jewelry/rings/baguettes-emerald-cut-ring/', destination: '/jewelry/rings/cadence-emerald-cut-ring', permanent: true },
 ]
