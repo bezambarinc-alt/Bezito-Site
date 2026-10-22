@@ -17,6 +17,13 @@ import styles from './ContactForm.module.css'
 
 const initialState: InquiryState = { status: 'idle' }
 
+type GtagFn = (...args: unknown[]) => void
+
+function fireEvent(name: string, params?: Record<string, unknown>) {
+  const w = window as Window & { gtag?: GtagFn }
+  w.gtag?.('event', name, params)
+}
+
 export default function ContactForm() {
   const [state, formAction, pending] = useActionState(submitInquiry, initialState)
   const [intent, setIntent] = useState<string>(INQUIRY_INTENTS[0])
@@ -32,10 +39,15 @@ export default function ContactForm() {
   const [stateVal,   setStateVal]   = useState('')
 
   useEffect(() => {
+    fireEvent('contact_form_view', { page: 'contact' })
+  }, [])
+
+  useEffect(() => {
     if (state.status === 'success') {
       saveProfile({ name: nameVal, email: emailVal, phone: phoneVal })
+      fireEvent('contact_form_submit', { inquiry_type: intent, page: 'contact' })
     }
-  }, [state.status, nameVal, emailVal, phoneVal])
+  }, [state.status, nameVal, emailVal, phoneVal, intent])
 
   const showDate     = APPOINTMENT_INTENTS.has(intent)
   const hideMessage  = HIDE_MESSAGE_INTENTS.has(intent)
