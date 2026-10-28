@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { BRAND_OG_IMAGE } from '@/lib/og'
 import { unstable_cache } from 'next/cache'
 import { getArchiveEntries } from '@/lib/data/archive'
 import type { ArchiveEntry } from '@/lib/data/archive-constants'
@@ -45,6 +46,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'The Archive · Bez Ambar',
     description: 'Five hundred pieces. Every stone. In motion.',
+    images: [BRAND_OG_IMAGE],
   },
 }
 

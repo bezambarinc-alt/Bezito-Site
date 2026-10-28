@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { BRAND_OG_IMAGE } from '@/lib/og'
 import Image from 'next/image'
 import AtelierBanner from '@/components/common/AtelierBanner'
 import TimelineNav from './TimelineNav'
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'About Bez Ambar',
     description: 'Designer of the Princess Cut. Forty-seven years of chiseling light from a Los Angeles atelier.',
+    images: [BRAND_OG_IMAGE],
   },
 }
 

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { BRAND_OG_IMAGE } from '@/lib/og'
 import CuratorFeed from './CuratorFeed'
 import styles from './page.module.css'
 
@@ -11,6 +12,11 @@ export const metadata: Metadata = {
   title: 'From the Bench',
   description:
     'Behind the craft. Inside the atelier. The latest from the Bez Ambar workbench — shared as it happens on Instagram.',
+  openGraph: {
+    title: 'From the Bench · Bez Ambar',
+    description: 'Behind the craft. Inside the atelier.',
+    images: [BRAND_OG_IMAGE],
+  },
 }
 
 export default function JournalPage() {

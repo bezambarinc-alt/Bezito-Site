@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { BRAND_OG_IMAGE } from '@/lib/og'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -27,6 +28,11 @@ export async function generateMetadata({
   return {
     title: `${name} Collection`,
     description: `The ${name} Collection — fine jewelry from the Bez Ambar atelier.`,
+    openGraph: {
+      title: `${name} Collection · Bez Ambar`,
+      description: `The ${name} Collection — fine jewelry from the Bez Ambar atelier.`,
+      images: [BRAND_OG_IMAGE],
+    },
   }
 }
 

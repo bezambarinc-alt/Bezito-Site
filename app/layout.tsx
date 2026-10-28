@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Open_Sans, Lora } from 'next/font/google'
 import Script from 'next/script'
+import { BRAND_OG_IMAGE } from '@/lib/og'
 import './globals.css'
 
 const openSans = Open_Sans({
@@ -33,10 +34,7 @@ export const metadata: Metadata = {
     description: 'Designer of the Princess Cut. Fine jewelry, Los Angeles.',
     images: [
       {
-        url: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_1200/v1785615928/Hero-Model-Earrings-Yellow-Black-Shhhh_copy_uibife.avif',
-        width: 1200,
-        height: 630,
-        alt: 'Bez Ambar, Fine Jewelry, Los Angeles',
+        ...BRAND_OG_IMAGE,
       },
     ],
   },
