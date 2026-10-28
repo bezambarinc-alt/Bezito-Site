@@ -1,15 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { jwtVerify } from 'jose'
 import { isAdminRole } from '@/lib/roles'
-import { getClientIp } from '@/lib/client-ip'
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET!)
-
-// Paths we never log (assets, api, admin, internal)
-const SKIP = /^\/(_next|api|admin|favicon|robots|sitemap|llms|.*\.[a-z0-9]+$)/i
-
-// Common bot UA patterns — skip Neon writes for known crawlers
-const BOT_UA = /bot|crawl|spider|slurp|mediapartners|googlebot|bingbot|yandexbot|duckduckbot|baiduspider|sogou|exabot|facebot|ia_archiver|semrush|ahrefs|mj12bot/i
 
 /**
  * Routes that keep the strict, nonce-based CSP. Everything else gets the public
@@ -96,35 +89,6 @@ function buildCsp(nonce: string | null): string {
   ].join('; ')
 }
 
-// Fire-and-forget page-view log → /api/track (Node runtime does the Neon insert).
-// Edge can't use pg, so middleware just relays the request context.
-function logView(req: NextRequest): void {
-  const path = req.nextUrl.pathname
-  if (SKIP.test(path)) return
-  const ua = req.headers.get('user-agent') || ''
-  if (BOT_UA.test(ua)) return // skip crawlers — don't write bot noise to Neon
-  const p = req.nextUrl.searchParams
-  const body = JSON.stringify({
-    path,
-    referer: req.headers.get('referer') || '',
-    ua,
-    ip: getClientIp(req.headers),
-    city:    req.headers.get('x-vercel-ip-city') || '',
-    region:  req.headers.get('x-vercel-ip-country-region') || '',
-    country: req.headers.get('x-vercel-ip-country') || '',
-    utm_source:   p.get('utm_source') || undefined,
-    utm_medium:   p.get('utm_medium') || undefined,
-    utm_campaign: p.get('utm_campaign') || undefined,
-    session_id: req.cookies.get('ba_sid')?.value || undefined,
-  })
-  // No await — must never delay the response
-  fetch(new URL('/api/track', req.url), {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'x-track-secret': process.env.TRACK_SECRET || '' },
-    body,
-  }).catch(() => {})
-}
-
 export default async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname
 
@@ -171,17 +135,10 @@ export default async function middleware(req: NextRequest) {
     }
   }
 
-  // ── Public traffic: log the view, assign a session cookie, pass through ──────
+  // ── Public traffic: pass through ─────────────────────────────────────────────
   if (!path.startsWith('/admin')) {
-    logView(req)
     const res = NextResponse.next({ request: { headers: requestHeaders } })
     res.headers.set('Content-Security-Policy', csp)
-    if (!req.cookies.get('ba_sid')) {
-      res.cookies.set('ba_sid', crypto.randomUUID(), {
-        httpOnly: true, secure: true, sameSite: 'lax',
-        path: '/', maxAge: 60 * 30, // 30-min session window
-      })
-    }
     return res
   }
 

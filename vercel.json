@@ -1,6 +1,5 @@
 {
   "crons": [
-    { "path": "/api/cron/pim-sync", "schedule": "0 */4 * * *" },
-    { "path": "/api/cron/analytics-rollup", "schedule": "10 9 * * *" }
+    { "path": "/api/cron/pim-sync", "schedule": "0 */4 * * *" }
   ]
 }
