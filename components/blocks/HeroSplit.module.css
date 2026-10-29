@@ -53,5 +53,5 @@
 
 @media (max-width: 860px) {
   .split { grid-template-columns: 1fr; }
-  .media { min-height: 60svh; }
+  .media { min-height: 80svh; }
 }
