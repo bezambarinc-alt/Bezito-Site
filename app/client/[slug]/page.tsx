@@ -33,9 +33,16 @@ export default async function ClientPage({
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const [page] = await sql<{ title: string }>(`SELECT title FROM pages WHERE slug=$1 AND doc_type='client'`, [slug])
+  const [page] = await sql<{ title: string; blocks: unknown[] }>(`SELECT title, blocks FROM pages WHERE slug=$1 AND doc_type='client'`, [slug])
+  const blocks = Array.isArray(page?.blocks) ? (page.blocks as Array<Record<string, unknown>>) : []
+  const heroBlock = blocks.find((b) => b.type === 'hero-split')
+  const ogImage = heroBlock?.posterUrl as string | undefined
   return {
     title: page?.title ?? 'Client Page',
     robots: { index: false, follow: false },
+    ...(ogImage && {
+      openGraph: { images: [{ url: ogImage, width: 1200, height: 630 }] },
+      twitter: { card: 'summary_large_image', images: [ogImage] },
+    }),
   }
 }
