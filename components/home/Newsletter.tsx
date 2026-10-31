@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { track } from '@/lib/analytics'
 import styles from './Newsletter.module.css'
 
 export default function Newsletter({ slim = false }: { slim?: boolean }) {
@@ -20,6 +21,8 @@ export default function Newsletter({ slim = false }: { slim?: boolean }) {
       })
       if (!res.ok) throw new Error('Request failed')
       setStatus('success')
+      track('sign_up', { method: 'newsletter', page_slug: 'home' },
+        { fb: ['CompleteRegistration'], clarity: 'newsletter_signup' })
     } catch {
       setStatus('error')
       setErrorMsg("Something went wrong. Try again or email us directly.")

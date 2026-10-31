@@ -5,6 +5,7 @@ import { useActionState } from 'react'
 import { usePathname } from 'next/navigation'
 import { useDrawers } from './DrawerContext'
 import { submitInquiry, type InquiryState } from '@/app/actions/inquiry'
+import { track, trackLead } from '@/lib/analytics'
 import {
   INQUIRY_INTENTS,
   INTENT_HEADINGS,
@@ -37,6 +38,7 @@ interface FormProps {
 function InquiryForm({ prefill, pathname, onClose }: FormProps) {
   const [state, formAction, pending] = useActionState(submitInquiry, initialState)
   const [intent, setIntent] = useState<string>(prefill.intent ?? '')
+  const firedRef = useRef(false)
 
   // Identity fields — pre-filled from sessionStorage, saved on successful submit
   const [nameVal,  setNameVal]  = useState(() => readProfile().name)
@@ -49,10 +51,17 @@ function InquiryForm({ prefill, pathname, onClose }: FormProps) {
   const [stateVal,   setStateVal]   = useState('')
 
   useEffect(() => {
-    if (state.status === 'success') {
+    if (state.status === 'success' && !firedRef.current) {
+      firedRef.current = true
       saveProfile({ name: nameVal, email: emailVal, phone: phoneVal })
+      trackLead({
+        method: 'inquiry_drawer',
+        intent,
+        sku: prefill.sku,
+        page_slug: pathname.slice(1),
+      })
     }
-  }, [state.status, nameVal, emailVal, phoneVal])
+  }, [state.status, nameVal, emailVal, phoneVal, intent, prefill.sku, pathname])
 
   const showDate     = APPOINTMENT_INTENTS.has(intent)
   const hideMessage  = HIDE_MESSAGE_INTENTS.has(intent)
@@ -272,8 +281,15 @@ export default function InquiryDrawer() {
   // Bump key each time the drawer opens → InquiryForm remounts with fresh state,
   // so a second product inquiry never shows the previous submission's success screen.
   useEffect(() => {
-    if (open) setOpenKey((k) => k + 1)
-  }, [open])
+    if (open) {
+      setOpenKey((k) => k + 1)
+      track(
+        'inquiry_open',
+        { intent: inquiryPrefill.intent ?? '', sku: inquiryPrefill.sku ?? '' },
+        { fb: ['Contact'], clarity: 'inquiry_open' },
+      )
+    }
+  }, [open, inquiryPrefill.intent, inquiryPrefill.sku])
 
   const showBack = !!inquiryPrefill.fromConcierge
 

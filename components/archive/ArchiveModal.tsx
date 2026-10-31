@@ -13,6 +13,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { ArchiveEntry } from '@/lib/data/archive-constants'
 import { readProfile, saveProfile } from '@/lib/user-profile'
+import { trackLead } from '@/lib/analytics'
 import styles from './ArchiveModal.module.css'
 
 type FormStatus = 'idle' | 'sending' | 'success' | 'error'
@@ -38,6 +39,7 @@ function ArchiveModalPanel({ entry, onClose }: { entry: ArchiveEntry; onClose: (
   const [email, setEmail]   = useState(() => readProfile().email)
   const [status, setStatus] = useState<FormStatus>('idle')
   const [errMsg, setErrMsg] = useState('')
+  const firedRef = useRef(false)
 
   // Autoplay video on mount; pause + clear on unmount
   useEffect(() => {
@@ -91,6 +93,10 @@ function ArchiveModalPanel({ entry, onClose }: { entry: ArchiveEntry; onClose: (
       })
       if (!res.ok) throw new Error('Request failed')
       saveProfile({ name, email })
+      if (!firedRef.current) {
+        firedRef.current = true
+        trackLead({ method: 'archive_modal', intent: 'Archive Inquiry', sku: entry.sku ?? undefined, page_slug: entry.slug })
+      }
       setStatus('success')
     } catch {
       setStatus('error')

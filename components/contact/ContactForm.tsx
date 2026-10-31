@@ -1,6 +1,6 @@
 'use client'
 
-import { useActionState, useEffect, useState } from 'react'
+import { useActionState, useEffect, useRef, useState } from 'react'
 import { submitInquiry, type InquiryState } from '@/app/actions/inquiry'
 import {
   INQUIRY_INTENTS,
@@ -13,20 +13,15 @@ import {
   US_STATES,
 } from '@/lib/data/inquiry-constants'
 import { readProfile, saveProfile } from '@/lib/user-profile'
+import { trackLead } from '@/lib/analytics'
 import styles from './ContactForm.module.css'
 
 const initialState: InquiryState = { status: 'idle' }
 
-type GtagFn = (...args: unknown[]) => void
-
-function fireEvent(name: string, params?: Record<string, unknown>) {
-  const w = window as Window & { gtag?: GtagFn }
-  w.gtag?.('event', name, params)
-}
-
 export default function ContactForm() {
   const [state, formAction, pending] = useActionState(submitInquiry, initialState)
   const [intent, setIntent] = useState<string>(INQUIRY_INTENTS[0])
+  const firedRef = useRef(false)
 
   // Identity fields — pre-filled from sessionStorage, saved on successful submit
   const [nameVal,  setNameVal]  = useState(() => readProfile().name)
@@ -39,13 +34,10 @@ export default function ContactForm() {
   const [stateVal,   setStateVal]   = useState('')
 
   useEffect(() => {
-    fireEvent('contact_form_view', { page: 'contact' })
-  }, [])
-
-  useEffect(() => {
-    if (state.status === 'success') {
+    if (state.status === 'success' && !firedRef.current) {
+      firedRef.current = true
       saveProfile({ name: nameVal, email: emailVal, phone: phoneVal })
-      fireEvent('contact_form_submit', { inquiry_type: intent, page: 'contact' })
+      trackLead({ method: 'contact_page', intent, page_slug: 'contact' })
     }
   }, [state.status, nameVal, emailVal, phoneVal, intent])
 

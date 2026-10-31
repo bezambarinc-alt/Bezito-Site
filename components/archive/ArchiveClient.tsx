@@ -3,6 +3,7 @@
 import { useState, useCallback, useMemo } from 'react'
 import type { ArchiveEntry } from '@/lib/data/archive-constants'
 import { useDrawers } from '../layout/DrawerContext'
+import { track } from '@/lib/analytics'
 import ArchiveCarousel from './ArchiveCarousel'
 
 interface Props {
@@ -33,6 +34,18 @@ export default function ArchiveClient({
 
   const openPiece = useCallback(
     (entry: { slug: string; title: string; sku: string }) => {
+      track(
+        'select_item',
+        {
+          item_list_id: 'archive',
+          item_list_name: 'archive',
+          items: [{ item_id: entry.sku, item_name: entry.title }],
+        },
+        {
+          fb: ['ViewContent', { content_ids: [entry.sku], content_type: 'product', content_name: entry.title }],
+          clarity: 'view_piece',
+        },
+      )
       openInquiryDrawer({
         intent: 'A Piece from the Archive',
         title: entry.title,

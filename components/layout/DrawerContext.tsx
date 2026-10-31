@@ -1,6 +1,7 @@
 'use client'
 
 import { createContext, useCallback, useContext, useMemo, useState } from 'react'
+import { track } from '@/lib/analytics'
 
 /**
  * Global drawer/overlay state. Any component can open panels without prop drilling.
@@ -45,7 +46,10 @@ export function DrawerProvider({ children }: { children: React.ReactNode }) {
     setActive('inquiry')
   }, [])
 
-  const openConcierge = useCallback(() => setActive('concierge'), [])
+  const openConcierge = useCallback(() => {
+    track('select_content', { content_type: 'concierge', content_id: 'open' }, { clarity: 'concierge_open' })
+    setActive('concierge')
+  }, [])
   const openSearch    = useCallback(() => setActive('search'),    [])
   const openMenu      = useCallback(() => setActive('menu'),      [])
   const close         = useCallback(() => setActive(null),        [])
