@@ -6,18 +6,18 @@ interface IJewelViewerProps {
 }
 
 export default function IJewelViewer({ src, title }: IJewelViewerProps) {
+  const url = new URL(src)
+  url.searchParams.set('isRemoveLogo', 'true')
+  url.searchParams.set('isRemoveLogoLink', 'true')
+
   return (
-    <div className={styles.wrapper}>
-      <iframe
-        src={src}
-        title={title}
-        frameBorder={0}
-        allowFullScreen
-        allow="camera; autoplay; clipboard-write; fullscreen; xr-spatial-tracking; web-share"
-        className={styles.viewer}
-      />
-      {/* Covers the iJewel watermark logo until whitelabel domain is activated in iJewel account */}
-      <div className={styles.logoCover} aria-hidden="true" />
-    </div>
+    <iframe
+      src={url.toString()}
+      title={title}
+      frameBorder={0}
+      allowFullScreen
+      allow="camera; autoplay; clipboard-write; fullscreen; xr-spatial-tracking; web-share"
+      className={styles.viewer}
+    />
   )
 }
