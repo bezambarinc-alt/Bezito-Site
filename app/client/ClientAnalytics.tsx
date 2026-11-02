@@ -57,6 +57,7 @@ export default function ClientAnalytics() {
     pushEvent('event', 'page_view', {
       page_path: pathname,
       page_location: typeof window !== 'undefined' ? window.location.href : undefined,
+      page_title: typeof document !== 'undefined' ? document.title : undefined,
       client_slug: slug,
       page_group: 'client',
     })
