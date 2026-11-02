@@ -1,5 +1,7 @@
+import { Suspense } from 'react'
 import { DrawerProvider } from '@/components/layout/DrawerContext'
 import InquiryDrawer from '@/components/layout/InquiryDrawer'
+import ClientAnalytics from './ClientAnalytics'
 
 /**
  * Client pages are unbranded presentations served to Bez's clients (and proxied
@@ -14,6 +16,9 @@ import InquiryDrawer from '@/components/layout/InquiryDrawer'
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   return (
     <DrawerProvider>
+      {/* GA4 for client pages — not inherited from (public) layout. No visible
+          branding; routes to the main property tagged with client_slug. */}
+      <Suspense fallback={null}><ClientAnalytics /></Suspense>
       {/* No site header — zero out header offset; transparent split bg so blocks inherit the white body */}
       <div style={{
         '--ba-header-h': '0px',
