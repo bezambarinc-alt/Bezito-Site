@@ -8,14 +8,20 @@
  * Clarity (from root layout) but NO GA4 at all — zero sessions/events reached
  * property G-92GPTNTY00. See the #tasks investigation (2026-11-01).
  *
- * This loads the same GA4 property used site-wide and emits client-scoped
- * events. There is no user-facing branding exposed by analytics (event names
- * and the measurement ID live in code only), and client pages remain
- * noindex/nofollow + brand-stripped visually — so routing this data to the main
- * property is safe (confirmed by Bez/Kevin).
+ * Init pattern mirrors (public)/layout.tsx exactly — inline `afterInteractive`
+ * scripts for the gtag.js loader + gtag('js')/config, so the dataLayer boot runs
+ * with the library instead of from a React effect on a later tick. page_view is
+ * fired by a separate per-navigation listener (same split as the site's
+ * GAListener) so client→client SPA navigation is tracked too.
  *
- * Every event carries `client_slug` so client pages can be filtered as a
- * segment in GA4 without polluting main-site page reports.
+ * No user-facing branding is exposed by analytics (event names + measurement ID
+ * live in code only); client pages stay noindex + visually brand-stripped, so
+ * routing this data to the main property is safe (confirmed by Bez/Kevin).
+ *
+ * NOTE: `client_slug` and `page_group` are sent as GA4 event params. To surface
+ * them in reports they must be registered as custom dimensions in the GA4 UI
+ * (Admin → Custom definitions). Until then the events still record, but the
+ * params won't be filterable.
  */
 
 import Script from 'next/script'
@@ -24,39 +30,40 @@ import { useEffect, useRef } from 'react'
 
 const GA4_ID = 'G-92GPTNTY00'
 
-type Gtag = (...args: unknown[]) => void
-
-function gtag(...args: unknown[]) {
+function pushEvent(...args: unknown[]) {
   const w = window as Window & { dataLayer?: unknown[] }
   w.dataLayer = w.dataLayer || []
   w.dataLayer.push(args)
 }
 
+function slugFromPath(pathname: string | null): string {
+  return (pathname || '').replace(/^\/client\//, '').split('/')[0] || 'unknown'
+}
+
 export default function ClientAnalytics() {
   const pathname = usePathname()
-  // Client routes are /client/<slug>; derive slug from the path so the layout
-  // (which has no access to the page's route params) can mount this directly.
-  const slug = (pathname || '').replace(/^\/client\//, '').split('/')[0] || 'unknown'
+  const slug = slugFromPath(pathname)
   const firedScroll = useRef<Set<number>>(new Set())
-  const didInit = useRef(false)
+  const isFirstView = useRef(true)
 
-  // GA4 init + initial page_view (slug-tagged). Runs once per mount.
+  // page_view on initial load + every client-side navigation.
+  // The inline init script below already called gtag('config') with
+  // send_page_view:false, so EVERY page_view (including the first) is sent here,
+  // tagged with client_slug. Reset scroll milestones on each navigation.
   useEffect(() => {
-    if (didInit.current) return
-    didInit.current = true
-
-    const w = window as Window & { gtag?: Gtag }
-    gtag('js', new Date())
-    // Disable automatic page_view so we can send one tagged with client_slug.
-    gtag('config', GA4_ID, { send_page_view: false, client_slug: slug })
-    gtag('event', 'page_view', {
+    // Skip the very first effect run only if the inline script hasn't defined
+    // gtag yet is NOT a concern — we push straight to dataLayer, which gtag.js
+    // replays on load. Fire on every pathname change.
+    pushEvent('event', 'page_view', {
       page_path: pathname,
-      page_location: window.location.href,
+      page_location: typeof window !== 'undefined' ? window.location.href : undefined,
       client_slug: slug,
       page_group: 'client',
     })
-    // Expose gtag for downstream if some block ever wants it.
-    w.gtag = w.gtag || (gtag as Gtag)
+    if (!isFirstView.current) {
+      firedScroll.current = new Set()
+    }
+    isFirstView.current = false
   }, [pathname, slug])
 
   // Scroll-depth milestones: 25 / 50 / 75 / 100 %.
@@ -70,7 +77,7 @@ export default function ClientAnalytics() {
       for (const t of thresholds) {
         if (pct >= t && !firedScroll.current.has(t)) {
           firedScroll.current.add(t)
-          gtag('event', 'scroll_depth', {
+          pushEvent('event', 'scroll_depth', {
             percent_scrolled: t,
             client_slug: slug,
             page_group: 'client',
@@ -84,9 +91,6 @@ export default function ClientAnalytics() {
   }, [slug])
 
   // Delegated interaction tracking — no edits to shared block components.
-  //  - inquiry_click: the InquireCta button + any ProdPill inquiry link
-  //  - video_play:    first play of any hero/content video
-  //  - outbound_click: clicks on links leaving the page
   useEffect(() => {
     const playedVideos = new WeakSet<HTMLVideoElement>()
 
@@ -94,19 +98,18 @@ export default function ClientAnalytics() {
       const el = (e.target as HTMLElement)?.closest('a, button')
       if (!el) return
 
-      // Inquiry: the CTA <button> (InquireCta) or inquiry anchors.
       const text = (el.textContent || '').trim().toLowerCase()
       if (el.tagName === 'BUTTON' && /inquire|private viewing|appointment/.test(text)) {
-        gtag('event', 'inquiry_click', { client_slug: slug, label: text.slice(0, 60), page_group: 'client' })
+        pushEvent('event', 'inquiry_click', { client_slug: slug, label: text.slice(0, 60), page_group: 'client' })
         return
       }
 
       if (el.tagName === 'A') {
         const href = el.getAttribute('href') || ''
         if (/contact|inquire|mailto:/.test(href)) {
-          gtag('event', 'inquiry_click', { client_slug: slug, link_url: href.slice(0, 120), page_group: 'client' })
+          pushEvent('event', 'inquiry_click', { client_slug: slug, link_url: href.slice(0, 120), page_group: 'client' })
         } else if (/^https?:\/\//.test(href) && !href.includes(window.location.host)) {
-          gtag('event', 'outbound_click', { client_slug: slug, link_url: href.slice(0, 120), page_group: 'client' })
+          pushEvent('event', 'outbound_click', { client_slug: slug, link_url: href.slice(0, 120), page_group: 'client' })
         }
       }
     }
@@ -115,7 +118,7 @@ export default function ClientAnalytics() {
       const v = e.target as HTMLVideoElement
       if (!(v instanceof HTMLVideoElement) || playedVideos.has(v)) return
       playedVideos.add(v)
-      gtag('event', 'video_play', {
+      pushEvent('event', 'video_play', {
         client_slug: slug,
         video_src: (v.currentSrc || v.src || '').split('/').pop()?.slice(0, 80) || '',
         page_group: 'client',
@@ -123,8 +126,7 @@ export default function ClientAnalytics() {
     }
 
     document.addEventListener('click', onClick, true)
-    // `play` doesn't bubble — capture phase catches it from any video.
-    document.addEventListener('play', onPlay, true)
+    document.addEventListener('play', onPlay, true) // play doesn't bubble — capture
     return () => {
       document.removeEventListener('click', onClick, true)
       document.removeEventListener('play', onPlay, true)
@@ -132,10 +134,21 @@ export default function ClientAnalytics() {
   }, [slug])
 
   return (
-    <Script
-      id="ga4-client"
-      strategy="afterInteractive"
-      src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}
-    />
+    <>
+      {/* GA4 loader + init — mirrors (public)/layout.tsx. Respects Consent Mode
+          v2 default set in root layout. send_page_view:false so the listener
+          above owns every page_view (slug-tagged, SPA-aware). */}
+      <Script
+        id="ga4-client-src"
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}
+      />
+      <Script id="ga4-client-init" strategy="afterInteractive">{`
+        window.dataLayer=window.dataLayer||[];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js',new Date());
+        gtag('config','${GA4_ID}',{send_page_view:false});
+      `}</Script>
+    </>
   )
 }
