@@ -290,6 +290,8 @@
   object-fit: cover;
 }
 
+.media img { mix-blend-mode: multiply; }
+
 .worn {
   position: absolute;
   inset: 0;
@@ -335,7 +337,7 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #4a4a4a;
-  background: rgba(250, 247, 242, 0.8);
+  background: rgba(247, 247, 247, 0.85);
   padding: 4px 8px;
 }
 
