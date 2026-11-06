@@ -43,7 +43,7 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
     }}>
       <div style={{ maxWidth: 360, width: '100%', padding: '2rem', textAlign: 'center' }}>
         <div style={{
-          fontFamily: 'var(--ba-font-serif)',
+          fontFamily: 'var(--ba-font-sans)',
           fontSize: 22,
           letterSpacing: '0.3em',
           textTransform: 'uppercase',

@@ -78,8 +78,7 @@ function ProductCard({ piece, onAsk }: { piece: Piece; onAsk: (id: string) => vo
 
   useEffect(() => {
     const v = videoRef.current
-    if (!v) return
-    if (!('IntersectionObserver' in window)) return
+    if (!v || !('IntersectionObserver' in window)) return
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && view === 'motion') v.play().catch(() => {})
@@ -97,10 +96,7 @@ function ProductCard({ piece, onAsk }: { piece: Piece; onAsk: (id: string) => vo
       <div className={s.media}>
         <video
           ref={videoRef}
-          muted
-          loop
-          playsInline
-          preload="none"
+          muted loop playsInline preload="none"
           poster={posterUrl(piece.v)}
           aria-label={`${piece.name} turning`}
           style={{ opacity: view === 'motion' ? 1 : 0, transition: 'opacity 0.45s ease' }}
@@ -122,7 +118,7 @@ function ProductCard({ piece, onAsk }: { piece: Piece; onAsk: (id: string) => vo
         </div>
       </div>
       <div>
-        <div className={`${s.label} ${s.eyebrow}`}>{CUT_LABELS[piece.cut]}</div>
+        <p className="ba-eyebrow">{CUT_LABELS[piece.cut]}</p>
         <h3 className={s.cardTitle}>{piece.name}</h3>
       </div>
       <p className={s.spec}><b>{piece.ct.toFixed(2)} ct</b> total · {piece.spec}</p>
@@ -145,7 +141,7 @@ function EditorialTile() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={imgUrl('v1787210681/Jewelry%20Images/Bracelets/c0834-model.avif')} alt="" loading="lazy" />
         <div className={s.tileIn}>
-          <div className={s.label}>How it closes</div>
+          <p className="ba-eyebrow" style={{ color: 'var(--ba-gold-warm, #c9b896)' }}>How it closes</p>
           <p className={s.tileBig}>It opens over the hand and returns to the wrist.</p>
           <p className={s.tileText}>A spring spine runs under the stones, so the line stays unbroken all the way around.</p>
         </div>
@@ -216,8 +212,7 @@ function TradeForm({ defaultChecked }: { defaultChecked: Set<string> }) {
           {PIECES.map(p => (
             <label key={p.id} htmlFor={`pick-${p.id}`}>
               <input
-                type="checkbox"
-                id={`pick-${p.id}`}
+                type="checkbox" id={`pick-${p.id}`}
                 checked={selections.has(p.id)}
                 onChange={() => toggle(p.id)}
               />
@@ -225,12 +220,7 @@ function TradeForm({ defaultChecked }: { defaultChecked: Set<string> }) {
             </label>
           ))}
           <label htmlFor="pick-all">
-            <input
-              type="checkbox"
-              id="pick-all"
-              checked={allRange}
-              onChange={e => setAllRange(e.target.checked)}
-            />
+            <input type="checkbox" id="pick-all" checked={allRange} onChange={e => setAllRange(e.target.checked)} />
             The full range
           </label>
         </div>
@@ -272,27 +262,13 @@ export default function TradePage() {
 
   return (
     <>
-      {/* Promo bar */}
+      {/* Trade promo bar — above hero */}
       <div className={s.promo}>
         For the trade · The Flex collection{' '}
         <a href="#trade">Request the line sheet →</a>
       </div>
 
-      {/* Minimal trade header */}
-      <header className={s.siteHeader}>
-        <div className={s.wrap}>
-          <div className={s.hdrLeft}>Los Angeles · Est. 1979</div>
-          <a className={s.wordmark} href="https://www.bezambar.com" rel="noopener">
-            Bez Ambar
-            <small>Designer of the Princess Cut</small>
-          </a>
-          <div className={s.hdrRight}>
-            <a className={s.btn} href="#trade">Trade inquiry</a>
-          </div>
-        </div>
-      </header>
-
-      {/* Hero */}
+      {/* Hero video */}
       <section className={s.hero} aria-label="Flex bracelet in motion">
         <video
           autoPlay muted loop playsInline preload="metadata"
@@ -306,10 +282,10 @@ export default function TradePage() {
         <div className={s.heroCap}>
           <div className={s.wrap}>
             <div>
-              <div className={s.label}>The Flex collection</div>
-              <h2>One line of diamonds.<br /><em>No clasp.</em></h2>
+              <span className={s.heroEyebrow}>The Flex collection</span>
+              <h2 className={s.heroTitle}>One line of diamonds.<br />No clasp.</h2>
             </div>
-            <a className={`${s.btn} ${s.btnLight}`} href="#collection">View the collection</a>
+            <a className={s.heroBtn} href="#collection">View the collection</a>
           </div>
         </div>
       </section>
@@ -322,7 +298,7 @@ export default function TradePage() {
           </nav>
           <div className={s.intro}>
             <div>
-              <h1>The Flex Bracelet</h1>
+              <h1 className={`ba-title ${s.introTitle}`}>The Flex Bracelet</h1>
               <div className={s.facts}>
                 <div><b>3 cuts</b>Round, emerald, Asscher</div>
                 <div><b>4 to 56 ct</b>Total diamond weight</div>
@@ -383,8 +359,8 @@ export default function TradePage() {
       <section className={s.band} aria-labelledby="range-h">
         <div className={`${s.wrap} ${s.two}`}>
           <div>
-            <div className={`${s.label} ${s.goldText}`}>The full range</div>
-            <h2 id="range-h">Every size, made to order</h2>
+            <p className="ba-eyebrow">The full range</p>
+            <h2 id="range-h" className="ba-title">Every size, made to order</h2>
             <p>
               The five pieces above are filmed. The full Flex range runs from a fine 2&nbsp;mm line
               to a one-carat-per-stone statement, in rounds and in emerald cuts set either across the
@@ -400,36 +376,25 @@ export default function TradePage() {
               <table>
                 <thead>
                   <tr>
-                    <th>Cut</th>
-                    <th>Per stone</th>
-                    <th>Stones</th>
-                    <th>Total weight</th>
+                    <th>Cut</th><th>Per stone</th><th>Stones</th><th>Total weight</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>Round<small>Prong set, single row</small></td>
-                    <td>0.03 – 1.00 ct</td>
-                    <td>80 – 29</td>
-                    <td>≈ 2.6 – 29.1 ct</td>
+                    <td>0.03 – 1.00 ct</td><td>80 – 29</td><td>≈ 2.6 – 29.1 ct</td>
                   </tr>
                   <tr>
                     <td>Emerald, east-west<small>Long axis across the band</small></td>
-                    <td>0.10 – 1.00 ct</td>
-                    <td>56 – 26</td>
-                    <td>≈ 5.6 – 26.4 ct</td>
+                    <td>0.10 – 1.00 ct</td><td>56 – 26</td><td>≈ 5.6 – 26.4 ct</td>
                   </tr>
                   <tr>
                     <td>Emerald, north-south<small>Long axis along the band</small></td>
-                    <td>from 0.10 ct</td>
-                    <td>from 76</td>
-                    <td>from ≈ 7.6 ct</td>
+                    <td>from 0.10 ct</td><td>from 76</td><td>from ≈ 7.6 ct</td>
                   </tr>
                   <tr>
                     <td>Asscher<small>Two rows, edge to edge</small></td>
-                    <td>0.25 ct</td>
-                    <td>Two rows</td>
-                    <td>≈ 55.9 ct</td>
+                    <td>0.25 ct</td><td>Two rows</td><td>≈ 55.9 ct</td>
                   </tr>
                 </tbody>
               </table>
@@ -449,8 +414,8 @@ export default function TradePage() {
       <section className={s.tradeSection} id="trade" aria-labelledby="trade-h">
         <div className={`${s.wrap} ${s.two}`}>
           <div>
-            <div className={`${s.label} ${s.goldText}`}>For retailers</div>
-            <h2 id="trade-h">Carry Flex in your store</h2>
+            <p className="ba-eyebrow">For retailers</p>
+            <h2 id="trade-h" className="ba-title">Carry Flex in your store</h2>
             <p>
               Bez Ambar has made fine jewelry in Los Angeles since 1979, cutting and setting our own
               stones and supplying some of the best-known houses in the trade. Flex is now open to a
@@ -463,10 +428,10 @@ export default function TradePage() {
               <li>Lifetime warranty on craftsmanship and materials</li>
             </ul>
             <div className={s.contact}>
-              <span className={s.label}>Or write to Bez directly</span>
+              <p className="ba-eyebrow" style={{ marginBottom: 8 }}>Or write to Bez directly</p>
               <a href="mailto:bez@bezambar-atelier.com">bez@bezambar-atelier.com</a>
               <a href="tel:+12136299191">(213) 629-9191</a>
-              <span style={{ color: 'var(--tf-muted, #7d776f)' }}>
+              <span style={{ color: 'var(--ba-ink-muted, #7d776f)' }}>
                 611 Wilshire Blvd, Los Angeles, CA 90017 · by appointment
               </span>
             </div>
@@ -474,21 +439,6 @@ export default function TradePage() {
           <TradeForm defaultChecked={checkedPieces} />
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className={s.footer}>
-        <div className={s.wrap}>
-          <div>
-            <div className={s.footerWm}>Bez Ambar</div>
-            <div style={{ marginTop: 8 }}>Designer of the Princess Cut · Los Angeles · Est. 1979</div>
-          </div>
-          <div style={{ display: 'grid', gap: 4 }}>
-            <a href="https://www.bezambar.com" rel="noopener">bezambar.com</a>
-            <span>611 Wilshire Blvd, Los Angeles, CA 90017</span>
-            <span>© 1979–2026 Bez Ambar, Inc.</span>
-          </div>
-        </div>
-      </footer>
     </>
   )
 }
