@@ -1,12 +1,10 @@
 'use client'
 
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import s from './page.module.css'
 
-const CL = 'https://res.cloudinary.com/dlg2mou53/'
-const vidUrl = (p: string) => `${CL}video/upload/w_900,c_limit,q_auto/${p}.mp4`
-const posterUrl = (p: string) => `${CL}video/upload/so_1,f_jpg,w_900,c_fit/${p}.jpg`
-const imgUrl = (p: string) => `${CL}image/upload/f_auto,q_auto,w_900/${p}`
+const PLACEHOLDER = 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/Jewelry%20Images/Bracelets/FLEXEC25N.webp'
+const imgUrl = (p: string) => `https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/${p}`
 
 interface Piece {
   id: string
@@ -66,56 +64,17 @@ const CUTS = [
 ]
 
 function ProductCard({ piece, onAsk }: { piece: Piece; onAsk: (id: string) => void }) {
-  const [view, setView] = useState<'motion' | 'worn'>('motion')
-  const videoRef = useRef<HTMLVideoElement>(null)
-
-  useEffect(() => {
-    const v = videoRef.current
-    if (!v) return
-    if (view === 'motion') v.play().catch(() => {})
-    else v.pause()
-  }, [view])
-
-  useEffect(() => {
-    const v = videoRef.current
-    if (!v || !('IntersectionObserver' in window)) return
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && view === 'motion') v.play().catch(() => {})
-        else v.pause()
-      },
-      { threshold: 0.45 }
-    )
-    obs.observe(v)
-    return () => obs.disconnect()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   return (
     <article className={s.card}>
       <div className={s.media}>
-        <video
-          ref={videoRef}
-          muted loop playsInline preload="none"
-          poster={posterUrl(piece.v)}
-          aria-label={`${piece.name} turning`}
-          style={{ opacity: view === 'motion' ? 1 : 0, transition: 'opacity 0.45s ease' }}
-        >
-          <source src={vidUrl(piece.v)} type="video/mp4" />
-        </video>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          className={s.worn}
-          src={imgUrl(piece.w)}
-          alt={`${piece.name} on the wrist`}
+          src={PLACEHOLDER}
+          alt={piece.name}
           loading="lazy"
-          style={{ opacity: view === 'worn' ? 1 : 0, transition: 'opacity 0.45s ease' }}
+          style={{ width: '100%', display: 'block', objectFit: 'cover' }}
         />
         <span className={s.ref}>{piece.ref}</span>
-        <div className={s.views} role="group" aria-label="View">
-          <button type="button" aria-pressed={view === 'motion'} onClick={() => setView('motion')}>In motion</button>
-          <button type="button" aria-pressed={view === 'worn'}   onClick={() => setView('worn')}>On the wrist</button>
-        </div>
       </div>
       <div>
         <p className="ba-eyebrow">{CUT_LABELS[piece.cut]}</p>
@@ -268,17 +227,14 @@ export default function TradePage() {
         <a href="#trade">Request the line sheet →</a>
       </div>
 
-      {/* Hero video */}
-      <section className={s.hero} aria-label="Flex bracelet in motion">
-        <video
-          autoPlay muted loop playsInline preload="metadata"
-          poster="https://res.cloudinary.com/dlg2mou53/video/upload/so_1,f_jpg,w_1600,c_fit/v1782855871/Jewelry%20Videos/Bracelets/emerald-cut-flex-bracelet-c0834-2026.jpg"
-        >
-          <source
-            src="https://res.cloudinary.com/dlg2mou53/video/upload/w_1920,c_limit,q_auto/v1782855871/Jewelry%20Videos/Bracelets/emerald-cut-flex-bracelet-c0834-2026.mp4"
-            type="video/mp4"
-          />
-        </video>
+      {/* Hero image */}
+      <section className={s.hero} aria-label="Flex bracelet">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={PLACEHOLDER}
+          alt="Flex emerald-cut diamond bracelet"
+          className={s.heroImg}
+        />
         <div className={s.heroCap}>
           <div className={s.wrap}>
             <div>
