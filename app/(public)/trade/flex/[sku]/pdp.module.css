@@ -13,37 +13,21 @@
   align-items: start;
 }
 
-/* ── Left: 2-column image grid ── */
+/* ── Left: 2-column image grid, all slots 4:5 ── */
 
-/* Outer gallery container — always viewport-tall so sticky spec panel has room to travel */
+/* Outer gallery container — min-height ensures sticky spec panel has full travel room */
 .galleryCol {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
   gap: 8px;
+  align-content: start;
   min-height: calc(100dvh - var(--ba-header-h));
-  align-items: stretch;
 }
 
-/* Left cell: hero or iJewel — stretches to full gallery height */
-.galleryLeft {
-  position: relative;
-  overflow: hidden;
-  background: var(--ba-paper);
-  min-height: 400px;
-}
-
-/* Right cell: flex column of 2 stacked secondary slots */
-.galleryRight {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-/* Each secondary slot — always rendered (placeholder when empty) */
+/* Every image slot — 4:5 portrait, paper background as placeholder */
 .galleryItem {
   position: relative;
-  flex: 1;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
   background: var(--ba-paper);
 }

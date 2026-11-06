@@ -32,14 +32,9 @@ export default function TradePDP({ product }: Props) {
   const { title: displayName, variant } = parseProductName(product.name)
   const gallery = buildGallery(product)
 
-  // Left column: interactive viewer (iJewel) if set, otherwise hero photo
-  const leftImage = heroIsIJewel ? null : (gallery[0] ?? null)
-
-  // Right column: always 2 slots — secondary images when available, placeholder otherwise
-  // If iJewel is hero, right col gets the hero photo + first view
-  const rightSrcs: (string | null)[] = heroIsIJewel
-    ? [gallery[0] ?? null, gallery[1] ?? null]
-    : [gallery[1] ?? null, gallery[2] ?? null]
+  // Flat gallery slots — always padded to 4 (fills a 2×2 grid), placeholders for missing images
+  const slots: (string | null)[] = [...gallery]
+  while (slots.length < 4) slots.push(null)
 
   const orientation = parseOrientation(sku)
   const collectionName = specs.collection ?? 'Flex'
@@ -50,39 +45,27 @@ export default function TradePDP({ product }: Props) {
     <div className={styles.root}>
       <div className={styles.grid}>
 
-        {/* ── Left col: 2-column image composition ── */}
+        {/* ── Left col: 2×2 gallery, all slots 4:5 ── */}
         <div className={styles.galleryCol}>
-          {/* Left: hero or iJewel — stretches to full gallery height */}
-          <div className={styles.galleryLeft}>
-            {heroIsIJewel ? (
+          {heroIsIJewel && (
+            <div className={styles.galleryItem}>
               <IJewelViewer src={ijewelUrl!} title={displayName} />
-            ) : leftImage ? (
-              <Image
-                src={leftImage}
-                alt={displayName}
-                fill
-                priority
-                sizes="(max-width: 860px) 100vw, 27.5vw"
-                style={{ objectFit: 'cover', objectPosition: 'center' }}
-              />
-            ) : null}
-          </div>
-          {/* Right: 2 stacked slots (empty placeholders until photography is added) */}
-          <div className={styles.galleryRight}>
-            {rightSrcs.map((src, i) => (
-              <div key={i} className={styles.galleryItem}>
-                {src && (
-                  <Image
-                    src={src}
-                    alt={`${displayName} · view ${i + 2}`}
-                    fill
-                    sizes="(max-width: 860px) 50vw, 27.5vw"
-                    style={{ objectFit: 'cover', objectPosition: 'center' }}
-                  />
-                )}
-              </div>
-            ))}
-          </div>
+            </div>
+          )}
+          {slots.map((src, i) => (
+            <div key={i} className={styles.galleryItem}>
+              {src && (
+                <Image
+                  src={src}
+                  alt={`${displayName} · view ${i + 1}`}
+                  fill
+                  priority={i === 0 && !heroIsIJewel}
+                  sizes="(max-width: 860px) 50vw, 27.5vw"
+                  style={{ objectFit: 'cover', objectPosition: 'center top' }}
+                />
+              )}
+            </div>
+          ))}
         </div>
 
         {/* ── Right col: specs (sticky) ── */}
