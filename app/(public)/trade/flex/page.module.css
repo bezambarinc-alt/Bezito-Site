@@ -3,7 +3,7 @@
 
 /* ── layout helpers ─────────────────────────────────────────────────── */
 .wrap {
-  max-width: 1320px;
+  max-width: 1300px;
   margin-inline: auto;
   padding-inline: max(16px, 4vw);
 }
@@ -255,13 +255,13 @@
 /* ── product grid ───────────────────────────────────────────────────── */
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(18px, 2.4vw, 36px) clamp(14px, 2vw, 28px);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px 8px;
   padding-block: 36px 64px;
 }
 
-@media (max-width: 980px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+@media (max-width: 980px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* ── product card ───────────────────────────────────────────────────── */
 .card {
