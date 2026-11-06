@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import Link from 'next/link'
 import s from './page.module.css'
 
 const PLACEHOLDER = 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/Jewelry%20Images/Bracelets/5FLX40ECN.png'
@@ -13,6 +14,7 @@ interface Piece {
   ref: string
   ct: number
   spec: string
+  slug?: string
 }
 
 const PIECES: Piece[] = [
@@ -36,6 +38,25 @@ const PIECES: Piece[] = [
     id: 'r25', cut: 'round', name: 'Flex Round 25', ref: '5FLX25', ct: 4.06,
     spec: 'Fine round brilliants, each held separately · H, VS2',
   },
+  // EC products (trade-only, link to PDP)
+  { id: 'em100ew', cut: 'emerald', name: 'EXTENT · Emerald 100 EW', ref: '5FLXEM100E', ct: 1.00, spec: 'Emerald cut, east-west · 1.00 ct per stone', slug: 'extent-emerald-100-ew' },
+  { id: 'em75ew',  cut: 'emerald', name: 'EXTENT · Emerald 75 EW',  ref: '5FLXEM70E',  ct: 0.75, spec: 'Emerald cut, east-west · 0.75 ct per stone', slug: 'extent-emerald-70-ew' },
+  { id: 'em50ew',  cut: 'emerald', name: 'EXTENT · Emerald 50 EW',  ref: '5FLXEM50E',  ct: 0.50, spec: 'Emerald cut, east-west · 0.50 ct per stone', slug: 'extent-emerald-50-ew' },
+  { id: 'em40ew',  cut: 'emerald', name: 'EXTENT · Emerald 40 EW',  ref: '5FLXEM40E',  ct: 0.40, spec: 'Emerald cut, east-west · 0.40 ct per stone', slug: 'extent-emerald-40-ew' },
+  { id: 'em30ew',  cut: 'emerald', name: 'EXTENT · Emerald 30 EW',  ref: '5FLXEM30E',  ct: 0.30, spec: 'Emerald cut, east-west · 0.30 ct per stone', slug: 'extent-emerald-30-ew' },
+  { id: 'em25ew',  cut: 'emerald', name: 'EXTENT · Emerald 25 EW',  ref: '5FLXEM25E',  ct: 0.25, spec: 'Emerald cut, east-west · 0.25 ct per stone', slug: 'extent-emerald-25-ew' },
+  { id: 'em20ew',  cut: 'emerald', name: 'EXTENT · Emerald 20 EW',  ref: '5FLXEM20E',  ct: 0.20, spec: 'Emerald cut, east-west · 0.20 ct per stone', slug: 'extent-emerald-20-ew' },
+  { id: 'em15ew',  cut: 'emerald', name: 'EXTENT · Emerald 15 EW',  ref: '5FLXEM15E',  ct: 0.15, spec: 'Emerald cut, east-west · 0.15 ct per stone', slug: 'extent-emerald-15-ew' },
+  { id: 'em10ew',  cut: 'emerald', name: 'EXTENT · Emerald 10 EW',  ref: '5FLXEM10E',  ct: 0.10, spec: 'Emerald cut, east-west · 0.10 ct per stone', slug: 'extent-emerald-10-ew' },
+  { id: 'em100ns', cut: 'emerald', name: 'EXTENT · Emerald 100 NS', ref: '5FLXEM100N', ct: 1.00, spec: 'Emerald cut, north-south · 1.00 ct per stone', slug: 'extent-emerald-100-ns' },
+  { id: 'em75ns',  cut: 'emerald', name: 'EXTENT · Emerald 75 NS',  ref: '5FLXEM70N',  ct: 0.75, spec: 'Emerald cut, north-south · 0.75 ct per stone', slug: 'extent-emerald-70-ns' },
+  { id: 'em50ns',  cut: 'emerald', name: 'EXTENT · Emerald 50 NS',  ref: '5FLXEM50N',  ct: 0.50, spec: 'Emerald cut, north-south · 0.50 ct per stone', slug: 'extent-emerald-50-ns' },
+  { id: 'em40ns',  cut: 'emerald', name: 'EXTENT · Emerald 40 NS',  ref: '5FLXEM40N',  ct: 0.40, spec: 'Emerald cut, north-south · 0.40 ct per stone', slug: 'extent-emerald-40-ns' },
+  { id: 'em30ns',  cut: 'emerald', name: 'EXTENT · Emerald 30 NS',  ref: '5FLXEM30N',  ct: 0.30, spec: 'Emerald cut, north-south · 0.30 ct per stone', slug: 'extent-emerald-30-ns' },
+  { id: 'em25ns',  cut: 'emerald', name: 'EXTENT · Emerald 25 NS',  ref: '5FLXEM25N',  ct: 0.25, spec: 'Emerald cut, north-south · 0.25 ct per stone', slug: 'extent-emerald-25-ns' },
+  { id: 'em20ns',  cut: 'emerald', name: 'EXTENT · Emerald 20 NS',  ref: '5FLXEM20N',  ct: 0.20, spec: 'Emerald cut, north-south · 0.20 ct per stone', slug: 'extent-emerald-20-ns' },
+  { id: 'em15ns',  cut: 'emerald', name: 'EXTENT · Emerald 15 NS',  ref: '5FLXEM15N',  ct: 0.15, spec: 'Emerald cut, north-south · 0.15 ct per stone', slug: 'extent-emerald-15-ns' },
+  { id: 'em10ns',  cut: 'emerald', name: 'EXTENT · Emerald 10 NS',  ref: '5FLXEM10N',  ct: 0.10, spec: 'Emerald cut, north-south · 0.10 ct per stone', slug: 'extent-emerald-10-ns' },
 ]
 
 const CUT_LABELS = {
@@ -52,8 +73,8 @@ const CUTS = [
 ]
 
 function ProductCard({ piece, onAsk }: { piece: Piece; onAsk: (id: string) => void }) {
-  return (
-    <article className={s.card}>
+  const cardInner = (
+    <>
       <div className={s.media}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -73,10 +94,17 @@ function ProductCard({ piece, onAsk }: { piece: Piece; onAsk: (id: string) => vo
       </div>
       <div className={s.row}>
         <span className={s.metals}>18K white gold · Platinum</span>
-        <button className={s.ask} type="button" onClick={() => onAsk(piece.id)}>Trade price</button>
+        {piece.slug
+          ? <Link href={`/trade/flex/${piece.slug}`} className={s.ask}>View details</Link>
+          : <button className={s.ask} type="button" onClick={() => onAsk(piece.id)}>Trade price</button>
+        }
       </div>
-    </article>
+    </>
   )
+
+  return piece.slug
+    ? <Link href={`/trade/flex/${piece.slug}`} className={s.card} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>{cardInner}</Link>
+    : <article className={s.card}>{cardInner}</article>
 }
 
 function EditorialTile() {
