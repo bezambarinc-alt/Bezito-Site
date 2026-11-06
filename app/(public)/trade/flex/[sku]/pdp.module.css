@@ -13,14 +13,24 @@
   align-items: start;
 }
 
-/* ── Left: gallery stack ── */
+/* ── Left: 2-column image grid ── */
 
 .galleryCol {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
 }
 
+/* Hero image spans both columns (landscape) */
+.galleryItemHero {
+  grid-column: 1 / -1;
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: #f2efea;
+}
+
+/* Secondary images fill the 2-col grid */
 .galleryItem {
   position: relative;
   aspect-ratio: 4 / 5;
@@ -71,15 +81,27 @@
 .ref {
   font: 400 12px/1 var(--ba-font-sans, sans-serif);
   letter-spacing: 0.06em;
-  color: #aaa;
-  margin: 0 0 40px;
+  color: #888;
+  margin: 0 0 20px;
+}
+
+.collectionDesc {
+  font: 300 14px/1.6 var(--ba-font-sans, sans-serif);
+  color: #666;
+  margin: 0 0 12px;
+}
+
+.lede {
+  font: 300 14px/1.6 var(--ba-font-sans, sans-serif);
+  color: #555;
+  margin: 0 0 32px;
 }
 
 .specList {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 12px 28px;
-  margin: 0 0 48px;
+  margin: 0 0 32px;
 }
 .specList dt {
   font: 400 11px/1.4 var(--ba-font-sans, sans-serif);
@@ -93,21 +115,26 @@
   color: #333;
 }
 
+.divider {
+  border: none;
+  border-top: 1px solid #e8e4de;
+  margin: 0 0 32px;
+}
+
 .cta {
-  display: inline-block;
+  display: block;
   padding: 15px 36px;
-  border: 1px solid #1a1a1a;
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
   font: 400 11px/1 var(--ba-font-sans, sans-serif);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #1a1a1a;
+  text-align: center;
   text-decoration: none;
-  transition: background 0.2s, color 0.2s;
+  transition: opacity 0.2s;
 }
-.cta:hover {
-  background: #1a1a1a;
-  color: #fff;
-}
+.cta:hover { opacity: 0.8; }
 
 @media (max-width: 860px) {
   .grid {
