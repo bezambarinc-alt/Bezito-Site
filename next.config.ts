@@ -33,9 +33,17 @@ const nextConfig: NextConfig = {
         // Tell Cloudflare to cache public HTML for 1 hour (stale-while-revalidate 24h).
         // Browsers still get no-store via the standard Cache-Control Vercel sets.
         // Cloudflare reads CDN-Cache-Control first and strips it before the browser sees it.
-        source: '/((?!api|admin|portal|_next|favicon).*)',
+        // Excludes /trade/* (password-gated, force-dynamic — must not be cached at CDN).
+        source: '/((?!api|admin|portal|trade|_next|favicon).*)',
         headers: [
           { key: 'CDN-Cache-Control', value: 'public, s-maxage=3600, stale-while-revalidate=86400' },
+        ],
+      },
+      {
+        // Explicitly tell CDN not to cache trade pages (password-gated, DB-driven).
+        source: '/trade/:path*',
+        headers: [
+          { key: 'CDN-Cache-Control', value: 'private, no-store' },
         ],
       },
     ]
