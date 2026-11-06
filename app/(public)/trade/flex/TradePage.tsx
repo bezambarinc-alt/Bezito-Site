@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import s from './page.module.css'
 
-const PLACEHOLDER = 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/Jewelry%20Images/Bracelets/FLEXEC25N.webp'
+const PLACEHOLDER = 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,e_brightness:8/Jewelry%20Images/Bracelets/FLEXEC25N.webp'
 const LIFESTYLE_IMG = 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1787210681/Jewelry%20Images/Bracelets/c0834-model.avif'
 
 interface Piece {
