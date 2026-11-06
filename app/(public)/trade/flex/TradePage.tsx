@@ -211,11 +211,14 @@ export default function TradePage() {
     <>
       {/* Hero image */}
       <section className={s.hero} aria-label="Flex bracelet">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={PLACEHOLDER}
-          alt="Flex emerald-cut diamond bracelet"
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+        <video
+          src="https://res.cloudinary.com/dlg2mou53/video/upload/w_1920,c_limit,q_auto/v1782855871/Jewelry%20Videos/Bracelets/emerald-cut-flex-bracelet-c0834-2026.mp4"
           className={s.heroImg}
+          autoPlay
+          muted
+          loop
+          playsInline
         />
         <div className={s.heroCap}>
           <div className={s.wrap}>
