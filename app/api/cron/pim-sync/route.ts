@@ -49,6 +49,7 @@ const FIELDS = [
   'Visual_Top', 'Visual_Concept', 'Visual_Stone_Sketch',
   'Related_Products',
   'iJewel_URL', 'Interactive_Is_Hero',
+  'Product_Channel',
 ].join(',')
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
@@ -99,6 +100,7 @@ interface ZohoProduct {
   Related_Products?: string
   iJewel_URL?: string
   Interactive_Is_Hero?: boolean
+  Product_Channel?: string
 }
 
 const parseRelatedSkus = (v: unknown): string[] | null => {
@@ -192,8 +194,9 @@ export async function GET(req: NextRequest) {
             total_carat_weight, center_stone_weight, collection,
             view_1_url, view_2_url, view_3_url, related_skus,
             ijewel_url, interactive_is_hero,
+            product_channel,
             synced_at
-          ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22::text[],$23,$24,now())
+          ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22::text[],$23,$24,$25,now())
           ON CONFLICT (sku) DO UPDATE SET
             slug             = EXCLUDED.slug,
             zoho_id          = EXCLUDED.zoho_id,
@@ -218,6 +221,7 @@ export async function GET(req: NextRequest) {
             related_skus     = EXCLUDED.related_skus,
             ijewel_url       = EXCLUDED.ijewel_url,
             interactive_is_hero = EXCLUDED.interactive_is_hero,
+            product_channel  = EXCLUDED.product_channel,
             synced_at        = now()
             -- active + featured intentionally excluded: Neon-only, managed via admin PATCH
           `,
@@ -246,6 +250,7 @@ export async function GET(req: NextRequest) {
             parseRelatedSkus(p.Related_Products), // $22 related_skus
             str(p.iJewel_URL) ?? null,    // $23 ijewel_url
             p.Interactive_Is_Hero === true, // $24 interactive_is_hero
+            str(p.Product_Channel) ?? null, // $25 product_channel
           ],
         )
 

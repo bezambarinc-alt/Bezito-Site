@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 
 export const dynamic = 'force-dynamic'
-import PasswordGate from './PasswordGate'
 import TradePage from './TradePage'
 
 export const metadata: Metadata = {
@@ -11,9 +10,5 @@ export const metadata: Metadata = {
 }
 
 export default function TradeFlexPage() {
-  return (
-    <PasswordGate>
-      <TradePage />
-    </PasswordGate>
-  )
+  return <TradePage />
 }

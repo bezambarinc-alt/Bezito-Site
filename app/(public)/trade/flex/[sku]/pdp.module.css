@@ -1,0 +1,119 @@
+.root {
+  min-height: 100dvh;
+  padding-block: 80px;
+  padding-inline: clamp(24px, 5vw, 80px);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  gap: clamp(32px, 4vw, 80px);
+  max-width: 1440px;
+  margin-inline: auto;
+  align-items: start;
+}
+
+/* ── Left: media ── */
+
+.mediaCol {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #f2efea;
+}
+
+.noImage {
+  width: 100%;
+  height: 100%;
+  background: #f2efea;
+}
+
+/* ── Right: sticky spec panel ── */
+
+.specCol {
+  position: sticky;
+  top: 80px;
+  padding-block: 20px;
+}
+
+.back {
+  display: inline-block;
+  font: 400 11px/1 var(--ba-font-sans, sans-serif);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #888;
+  text-decoration: none;
+  margin-bottom: 36px;
+}
+.back:hover { color: #333; }
+
+.eyebrow {
+  font: 400 11px/1 var(--ba-font-sans, sans-serif);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ba-gold, #95826b);
+  margin: 0 0 14px;
+}
+
+.title {
+  font: 300 clamp(28px, 3vw, 44px) / 1.1 var(--ba-font-editorial, serif);
+  letter-spacing: -0.01em;
+  color: #1a1a1a;
+  margin: 0 0 8px;
+}
+
+.variant {
+  font: 300 clamp(18px, 2vw, 26px) / 1.2 var(--ba-font-editorial, serif);
+  color: #555;
+  margin: 0 0 10px;
+}
+
+.ref {
+  font: 400 12px/1 var(--ba-font-sans, sans-serif);
+  letter-spacing: 0.06em;
+  color: #aaa;
+  margin: 0 0 40px;
+}
+
+.specList {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px 28px;
+  margin: 0 0 48px;
+}
+.specList dt {
+  font: 400 11px/1.4 var(--ba-font-sans, sans-serif);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #aaa;
+}
+.specList dd {
+  margin: 0;
+  font: 400 13px/1.4 var(--ba-font-sans, sans-serif);
+  color: #333;
+}
+
+.cta {
+  display: inline-block;
+  padding: 15px 36px;
+  border: 1px solid #1a1a1a;
+  font: 400 11px/1 var(--ba-font-sans, sans-serif);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.cta:hover {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .specCol {
+    position: static;
+  }
+}
