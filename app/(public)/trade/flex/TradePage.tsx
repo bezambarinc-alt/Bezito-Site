@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import s from './page.module.css'
 
 const PLACEHOLDER = 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/Jewelry%20Images/Bracelets/FLEXEC25N.webp'
+const LIFESTYLE_IMG = 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1787210681/Jewelry%20Images/Bracelets/c0834-model.avif'
 
 interface Piece {
   id: string
@@ -80,14 +81,28 @@ function ProductCard({ piece, onAsk }: { piece: Piece; onAsk: (id: string) => vo
 
 function EditorialTile() {
   return (
-    <div className={`${s.card} ${s.tilewrap}`}>
+    <div className={`${s.card} ${s.tilewrap} ${s.tileSpan2}`}>
       <div className={s.tile}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={PLACEHOLDER} alt="" loading="lazy" />
+        <img src={LIFESTYLE_IMG} alt="" loading="lazy" />
         <div className={s.tileIn}>
-          <p className="ba-eyebrow" style={{ color: 'var(--ba-gold-warm, #c9b896)' }}>How it closes</p>
+          <p className={s.tileEyebrow}>How it closes</p>
           <p className={s.tileBig}>It opens over the hand and returns to the wrist.</p>
           <p className={s.tileText}>A spring spine runs under the stones, so the line stays unbroken all the way around.</p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function FullRangeTile() {
+  return (
+    <div className={`${s.card} ${s.tilewrap}`}>
+      <div className={s.tile}>
+        <div className={s.tileIn} style={{ paddingTop: 56 }}>
+          <p className={s.tileEyebrow}>The full range</p>
+          <p className={s.tileBig}>Every size,<br />made to order</p>
+          <a href="#range-h" className={s.tileLink}>See all sizes →</a>
         </div>
       </div>
     </div>
@@ -283,13 +298,11 @@ export default function TradePage() {
         {/* Product grid */}
         <div className={s.wrap}>
           <div className={s.grid}>
-            {filtered.map((piece, i) => (
-              <React.Fragment key={piece.id}>
-                <ProductCard piece={piece} onAsk={handleAsk} />
-                {i === 1 && <EditorialTile />}
-              </React.Fragment>
+            {filtered.map((piece) => (
+              <ProductCard key={piece.id} piece={piece} onAsk={handleAsk} />
             ))}
-            {filtered.length < 2 && <EditorialTile />}
+            <EditorialTile />
+            <FullRangeTile />
           </div>
         </div>
       </main>
