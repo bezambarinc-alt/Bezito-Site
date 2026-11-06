@@ -336,26 +336,47 @@
   padding: 4px 8px;
 }
 
-/* Card title: Open Sans 300 uppercase gold — matches ba-title scale but smaller */
+/* Cut eyebrow: Open Sans 600, 12px, uppercase, no letter-spacing, gold */
+.cardEyebrow {
+  font-family: var(--ba-font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: var(--ba-gold, #95826b);
+  margin: 0 0 4px;
+}
+
+/* Card title: Open Sans 300 uppercase gold, no letter-spacing */
 .cardTitle {
   font-family: var(--ba-font-sans);
   font-weight: 300;
-  font-size: clamp(16px, 1.4vw, 20px);
+  font-size: clamp(15px, 1.3vw, 18px);
   text-transform: uppercase;
-  letter-spacing: 0.045rem;
+  letter-spacing: 0;
   color: var(--ba-gold, #95826b);
-  line-height: 1.2;
-  margin: 2px 0 0;
+  line-height: 1.25;
+  margin: 0 0 6px;
 }
 
-.spec {
+/* Carat weight inline — same line as title, gray, no uppercase */
+.cardCt {
   font-family: var(--ba-font-sans);
+  font-weight: 300;
   font-size: 13px;
+  color: #888888;
+  text-transform: none;
+  margin-left: 8px;
+}
+
+/* Spec: Lora editorial, 14px */
+.spec {
+  font-family: var(--ba-font-editorial);
+  font-size: 14px;
   color: #4a4a4a;
   margin: 0;
+  line-height: 1.4;
 }
-
-.spec b { font-weight: 600; color: #1a1a1a; font-variant-numeric: tabular-nums; }
 
 .row {
   margin-top: auto;
@@ -363,8 +384,6 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  border-top: 1px solid #e2ddd4;
-  padding-top: 12px;
 }
 
 .metals {

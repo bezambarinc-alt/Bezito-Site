@@ -64,16 +64,14 @@ function ProductCard({ piece, onAsk }: { piece: Piece; onAsk: (id: string) => vo
         <span className={s.ref}>{piece.ref}</span>
       </div>
       <div>
-        <p className="ba-eyebrow">{CUT_LABELS[piece.cut]}</p>
-        <h3 className={s.cardTitle}>{piece.name}</h3>
+        <p className={s.cardEyebrow}>{CUT_LABELS[piece.cut]}</p>
+        <p className={s.cardTitle}>
+          {piece.name}<span className={s.cardCt}>{piece.ct.toFixed(2)} ct</span>
+        </p>
+        <p className={s.spec}>{piece.spec}</p>
       </div>
-      <p className={s.spec}><b>{piece.ct.toFixed(2)} ct</b> total · {piece.spec}</p>
       <div className={s.row}>
-        <span className={s.metals}>
-          <span className={`${s.sw} ${s.wg}`} title="18K white gold" />
-          <span className={`${s.sw} ${s.pt}`} title="Platinum" />
-          18K white gold · Platinum
-        </span>
+        <span className={s.metals}>18K white gold · Platinum</span>
         <button className={s.ask} type="button" onClick={() => onAsk(piece.id)}>Trade price</button>
       </div>
     </article>
