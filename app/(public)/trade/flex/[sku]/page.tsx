@@ -13,9 +13,10 @@ export const metadata: Metadata = {
 export default async function TradeFlexPDPPage({
   params,
 }: {
-  params: { sku: string }
+  params: Promise<{ sku: string }>
 }) {
-  const product = await getProductBySlug(params.sku)
+  const { sku } = await params
+  const product = await getProductBySlug(sku)
   if (!product) notFound()
 
   return <TradePDP product={product} />
