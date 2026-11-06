@@ -15,25 +15,35 @@
 
 /* ── Left: 2-column image grid ── */
 
+/* Outer gallery container — always viewport-tall so sticky spec panel has room to travel */
 .galleryCol {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 8px;
+  min-height: calc(100dvh - var(--ba-header-h));
+  align-items: stretch;
+}
+
+/* Left cell: hero or iJewel — stretches to full gallery height */
+.galleryLeft {
+  position: relative;
+  overflow: hidden;
+  background: var(--ba-paper);
+  min-height: 400px;
+}
+
+/* Right cell: flex column of 2 stacked secondary slots */
+.galleryRight {
+  display: flex;
+  flex-direction: column;
   gap: 8px;
 }
 
-/* Hero image spans both columns (landscape) */
-.galleryItemHero {
-  grid-column: 1 / -1;
-  position: relative;
-  aspect-ratio: 3 / 2;
-  overflow: hidden;
-  background: var(--ba-paper);
-}
-
-/* Secondary images fill the 2-col grid */
+/* Each secondary slot — always rendered (placeholder when empty) */
 .galleryItem {
   position: relative;
-  aspect-ratio: 4 / 5;
+  flex: 1;
   overflow: hidden;
   background: var(--ba-paper);
 }
