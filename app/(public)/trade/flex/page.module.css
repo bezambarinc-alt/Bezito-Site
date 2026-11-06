@@ -16,24 +16,6 @@
 
 @media (max-width: 860px) { .two { grid-template-columns: 1fr; } }
 
-/* ── promo bar ──────────────────────────────────────────────────────── */
-.promo {
-  background: #141414;
-  color: #e9e4da;
-  text-align: center;
-  padding: 9px 16px;
-  font-family: var(--ba-font-sans);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.promo a {
-  color: var(--ba-gold-warm, #c9b896);
-  text-decoration: none;
-  margin-left: 0.6em;
-}
-
 /* ── hero ───────────────────────────────────────────────────────────── */
 .hero {
   position: relative;
@@ -56,7 +38,6 @@
   position: absolute;
   inset: auto 0 0 0;
   padding-block: 48px 40px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0));
   color: #f3efe7;
 }
 
@@ -68,26 +49,26 @@
   flex-wrap: wrap;
 }
 
-/* Hero heading — Open Sans 300 uppercase, warm gold on dark */
+/* Hero heading — Open Sans 300 uppercase, white on dark */
 .heroTitle {
   font-family: var(--ba-font-sans);
   font-weight: 300;
   font-size: clamp(28px, 4.6vw, 58px);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--ba-gold-warm, #c9b896);
+  letter-spacing: 0;
+  color: #ffffff;
   line-height: 1.08;
   margin: 8px 0 0;
 }
 
-/* Eyebrow inside dark hero — lighter gold */
+/* Eyebrow inside dark hero — white */
 .heroEyebrow {
   font-family: var(--ba-font-sans);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ba-gold-warm, #c9b896);
+  color: #ffffff;
   display: block;
   margin-bottom: 4px;
 }
@@ -97,7 +78,7 @@
   .heroCap { padding-block: 80px 28px; }
 }
 
-/* ── hero CTA button ────────────────────────────────────────────────── */
+/* ── hero CTA button — pill, transparent white outline on dark ──────── */
 .heroBtn {
   display: inline-block;
   font-family: var(--ba-font-sans);
@@ -106,16 +87,17 @@
   letter-spacing: 0.18em;
   text-transform: uppercase;
   text-decoration: none;
-  padding: 13px 22px;
-  background: #f3efe7;
-  color: #141414;
-  border: 1px solid #f3efe7;
+  padding: 13px 28px;
+  background: transparent;
+  color: #f3efe7;
+  border: 1px solid rgba(243, 239, 231, 0.6);
+  border-radius: 999px;
   cursor: pointer;
-  transition: background 0.25s, color 0.25s;
+  transition: background 0.25s, border-color 0.25s;
   flex-shrink: 0;
 }
 
-.heroBtn:hover { background: transparent; color: #f3efe7; }
+.heroBtn:hover { background: rgba(243, 239, 231, 0.12); border-color: #f3efe7; }
 
 .ctaBtn {
   display: inline-block;
@@ -125,15 +107,16 @@
   letter-spacing: 0.18em;
   text-transform: uppercase;
   text-decoration: none;
-  padding: 13px 22px;
+  padding: 13px 28px;
   border: 1px solid #1a1a1a;
-  background: #1a1a1a;
-  color: var(--ba-paper, #faf7f2);
+  background: transparent;
+  color: #1a1a1a;
+  border-radius: 999px;
   cursor: pointer;
   transition: background 0.25s, color 0.25s;
 }
 
-.ctaBtn:hover { background: transparent; color: #1a1a1a; }
+.ctaBtn:hover { background: #1a1a1a; color: var(--ba-paper, #faf7f2); }
 
 /* ── intro block ────────────────────────────────────────────────────── */
 .crumbs {
@@ -155,11 +138,18 @@
   align-items: end;
 }
 
-/* Size override for intro h1 (ba-title handles font/color/weight/case) */
+/* Size + letter-spacing override for intro h2 */
 .introTitle {
-  font-size: clamp(34px, 4.4vw, 56px) !important;
+  font-size: clamp(28px, 3.2vw, 40px) !important;
+  letter-spacing: 0 !important;
   line-height: 1.08 !important;
   margin-bottom: 16px;
+}
+
+/* Zero letter-spacing for section headings using ba-title */
+.sectionTitle {
+  letter-spacing: 0 !important;
+  font-size: clamp(28px, 3.2vw, 40px) !important;
 }
 
 .intro p {
@@ -474,7 +464,7 @@
 @media (max-width: 560px) { .tile { aspect-ratio: 4 / 5; min-height: unset; } }
 
 /* ── range table section ────────────────────────────────────────────── */
-.band { background: var(--ba-cream, #ede9e0); }
+.band { background: #fff; }
 
 .band .wrap { padding-block: clamp(48px, 7vw, 96px); }
 
@@ -542,7 +532,7 @@
 }
 
 .sizes div {
-  background: var(--ba-cream, #ede9e0);
+  background: #fff;
   padding: 14px 12px;
   font-family: var(--ba-font-sans);
   font-size: 12px;
@@ -697,15 +687,16 @@
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  padding: 13px 22px;
+  padding: 13px 28px;
   border: 1px solid #1a1a1a;
-  background: #1a1a1a;
-  color: var(--ba-paper, #faf7f2);
+  background: transparent;
+  color: #1a1a1a;
+  border-radius: 999px;
   cursor: pointer;
   transition: background 0.25s, color 0.25s;
 }
 
-.btnSubmit:hover { background: transparent; color: #1a1a1a; }
+.btnSubmit:hover { background: #1a1a1a; color: var(--ba-paper, #faf7f2); }
 
 .formnote {
   font-family: var(--ba-font-sans);

@@ -209,12 +209,6 @@ export default function TradePage() {
 
   return (
     <>
-      {/* Trade promo bar — above hero */}
-      <div className={s.promo}>
-        For the trade · The Flex collection{' '}
-        <a href="#trade">Request the line sheet →</a>
-      </div>
-
       {/* Hero image */}
       <section className={s.hero} aria-label="Flex bracelet">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -235,7 +229,7 @@ export default function TradePage() {
       </section>
 
       {/* Collection */}
-      <main id="collection" style={{ background: 'var(--ba-paper, #faf7f2)' }}>
+      <main id="collection" style={{ background: '#fff' }}>
         <div className={s.wrap}>
           <nav className={s.crumbs} aria-label="Breadcrumb">
             For the trade<span>/</span>Bracelets<span>/</span>Flex
@@ -304,11 +298,10 @@ export default function TradePage() {
         <div className={`${s.wrap} ${s.two}`}>
           <div>
             <p className="ba-eyebrow">The full range</p>
-            <h2 id="range-h" className="ba-title">Every size, made to order</h2>
+            <h2 id="range-h" className={`ba-title ${s.sectionTitle}`}>Every size, made to order</h2>
             <p>
-              The five pieces above are filmed. The full Flex range runs from a fine 2&nbsp;mm line
-              to a one-carat-per-stone statement, in rounds and in emerald cuts set either across the
-              band or along it.
+              The full Flex range runs from a fine 2&nbsp;mm line to a one-carat-per-stone statement,
+              in rounds and in emerald cuts set either across the band or along it.
             </p>
             <p>
               Stone counts and total weights depend on wrist size. The figures here are calculated
@@ -359,7 +352,7 @@ export default function TradePage() {
         <div className={`${s.wrap} ${s.two}`}>
           <div>
             <p className="ba-eyebrow">For retailers</p>
-            <h2 id="trade-h" className="ba-title">Carry Flex in your store</h2>
+            <h2 id="trade-h" className={`ba-title ${s.sectionTitle}`}>Carry Flex in your store</h2>
             <p>
               Bez Ambar has made fine jewelry in Los Angeles since 1979, cutting and setting our own
               stones and supplying some of the best-known houses in the trade. Flex is now open to a
