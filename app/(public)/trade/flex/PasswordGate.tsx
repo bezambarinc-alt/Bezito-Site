@@ -9,16 +9,13 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
   const [unlocked, setUnlocked] = useState(false)
   const [input, setInput] = useState('')
   const [error, setError] = useState(false)
-  const [ready, setReady] = useState(false)
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && localStorage.getItem(KEY) === '1') {
+    if (localStorage.getItem(KEY) === '1') {
       setUnlocked(true)
     }
-    setReady(true)
   }, [])
 
-  if (!ready) return null
   if (unlocked) return <>{children}</>
 
   function submit(e: React.FormEvent) {
