@@ -844,4 +844,4 @@
   color: #efe9de;
 }
 
-@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+@media (prefers-reduced-motion: reduce) { :global(*) { transition: none !important; } }
