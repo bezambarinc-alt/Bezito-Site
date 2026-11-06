@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+
+export const dynamic = 'force-dynamic'
 import PasswordGate from './PasswordGate'
 import TradePage from './TradePage'
 
