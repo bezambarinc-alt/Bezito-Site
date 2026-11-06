@@ -1,10 +1,9 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import s from './page.module.css'
 
 const PLACEHOLDER = 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/Jewelry%20Images/Bracelets/FLEXEC25N.webp'
-const imgUrl = (p: string) => `https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/${p}`
 
 interface Piece {
   id: string
@@ -13,40 +12,28 @@ interface Piece {
   ref: string
   ct: number
   spec: string
-  v: string
-  w: string
 }
 
 const PIECES: Piece[] = [
   {
     id: 'em40', cut: 'emerald', name: 'Flex Emerald 40', ref: 'C0834 · 5FLX40ECNS', ct: 31.29,
     spec: '80 emerald-cut diamonds, 0.375 ct each · G–H, VS',
-    v: 'v1782855871/Jewelry%20Videos/Bracelets/emerald-cut-flex-bracelet-c0834-2026',
-    w: 'v1787210681/Jewelry%20Images/Bracelets/c0834-model.avif',
   },
   {
     id: 'as33', cut: 'asscher', name: 'Flex Asscher 33', ref: 'C0754 · 5FLX33ASC2', ct: 55.89,
     spec: 'Quarter-carat Asscher cuts in two rows · G, VS',
-    v: 'v1787618091/Jewelry%20Videos/Bracelets/C0754',
-    w: 'v1787618096/Jewelry%20Images/Bracelets/c0754-model.avif',
   },
   {
     id: 'r65', cut: 'round', name: 'Flex Round 65', ref: '5FLX65R', ct: 27.20,
     spec: 'One-carat round brilliants, single row',
-    v: 'v1788225453/Jewelry%20Videos/Bracelets/5FLX65R',
-    w: 'v1788225458/Jewelry%20Images/Bracelets/5FLX65R-model.avif',
   },
   {
     id: 'r30', cut: 'round', name: 'Flex Round 30', ref: '5FLX30', ct: 5.48,
     spec: 'Round brilliants in a close prong setting · H, VS2',
-    v: 'v1788208658/Jewelry%20Videos/Bracelets/5FLX30',
-    w: 'v1788212027/Jewelry%20Images/Bracelets/5FLX30-model.avif',
   },
   {
     id: 'r25', cut: 'round', name: 'Flex Round 25', ref: '5FLX25', ct: 4.06,
     spec: 'Fine round brilliants, each held separately · H, VS2',
-    v: 'v1788299317/Jewelry%20Videos/Bracelets/5FLX25',
-    w: 'v1787967418/Jewelry%20Images/Bracelets/C0722-model.avif',
   },
 ]
 
@@ -98,7 +85,7 @@ function EditorialTile() {
     <div className={`${s.card} ${s.tilewrap}`}>
       <div className={s.tile}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={imgUrl('v1787210681/Jewelry%20Images/Bracelets/c0834-model.avif')} alt="" loading="lazy" />
+        <img src={PLACEHOLDER} alt="" loading="lazy" />
         <div className={s.tileIn}>
           <p className="ba-eyebrow" style={{ color: 'var(--ba-gold-warm, #c9b896)' }}>How it closes</p>
           <p className={s.tileBig}>It opens over the hand and returns to the wrist.</p>
@@ -109,23 +96,16 @@ function EditorialTile() {
   )
 }
 
-function TradeForm({ defaultChecked }: { defaultChecked: Set<string> }) {
-  const [selections, setSelections] = useState<Set<string>>(new Set(defaultChecked))
+function TradeForm({
+  selections,
+  onToggle,
+}: {
+  selections: Set<string>
+  onToggle: (id: string) => void
+}) {
   const [allRange, setAllRange] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [err, setErr] = useState('')
-
-  useEffect(() => {
-    setSelections(prev => new Set([...prev, ...defaultChecked]))
-  }, [defaultChecked])
-
-  function toggle(id: string) {
-    setSelections(prev => {
-      const next = new Set(prev)
-      next.has(id) ? next.delete(id) : next.add(id)
-      return next
-    })
-  }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -143,7 +123,7 @@ function TradeForm({ defaultChecked }: { defaultChecked: Set<string> }) {
     const chosen  = PIECES.filter(p => selections.has(p.id)).map(p => p.name)
     if (allRange) chosen.push('The full Flex range')
     const body = `Name: ${name}\nStore: ${store}\nCity: ${city}\nEmail: ${email}\nInterested in: ${chosen.join(', ') || 'The Flex collection'}\n\n${message}`
-    window.location.href = `mailto:bez@bezambar-atelier.com?subject=${encodeURIComponent('Flex line sheet request · ' + store)}&body=${encodeURIComponent(body)}`
+    window.location.href = `mailto:bez@bezambar.com?subject=${encodeURIComponent('Flex line sheet request · ' + store)}&body=${encodeURIComponent(body)}`
     setSubmitted(true)
   }
 
@@ -173,7 +153,7 @@ function TradeForm({ defaultChecked }: { defaultChecked: Set<string> }) {
               <input
                 type="checkbox" id={`pick-${p.id}`}
                 checked={selections.has(p.id)}
-                onChange={() => toggle(p.id)}
+                onChange={() => onToggle(p.id)}
               />
               {p.name}
             </label>
@@ -193,7 +173,7 @@ function TradeForm({ defaultChecked }: { defaultChecked: Set<string> }) {
         <p className={s.formnote}>Opens your email with your request filled in.</p>
       </div>
       {err      && <div className={`${s.done} ${s.full}`}>{err}</div>}
-      {submitted && <div className={`${s.done} ${s.full}`}>Your email app should open with the request filled in. If it doesn&rsquo;t, write to bez@bezambar-atelier.com.</div>}
+      {submitted && <div className={`${s.done} ${s.full}`}>Your email app should open with the request filled in. If it doesn&rsquo;t, write to bez@bezambar.com.</div>}
     </form>
   )
 }
@@ -219,6 +199,14 @@ export default function TradePage() {
     setTimeout(() => document.getElementById('f-name')?.focus({ preventScroll: true }), 500)
   }
 
+  function handleToggle(id: string) {
+    setCheckedPieces(prev => {
+      const next = new Set(prev)
+      next.has(id) ? next.delete(id) : next.add(id)
+      return next
+    })
+  }
+
   return (
     <>
       {/* Trade promo bar — above hero */}
@@ -239,7 +227,7 @@ export default function TradePage() {
           <div className={s.wrap}>
             <div>
               <span className={s.heroEyebrow}>The Flex collection</span>
-              <h2 className={s.heroTitle}>One line of diamonds.<br />No clasp.</h2>
+              <h1 className={s.heroTitle}>One line of diamonds.<br />No clasp.</h1>
             </div>
             <a className={s.heroBtn} href="#collection">View the collection</a>
           </div>
@@ -254,7 +242,7 @@ export default function TradePage() {
           </nav>
           <div className={s.intro}>
             <div>
-              <h1 className={`ba-title ${s.introTitle}`}>The Flex Bracelet</h1>
+              <h2 className={`ba-title ${s.introTitle}`}>The Flex Bracelet</h2>
               <div className={s.facts}>
                 <div><b>3 cuts</b>Round, emerald, Asscher</div>
                 <div><b>4 to 56 ct</b>Total diamond weight</div>
@@ -385,14 +373,14 @@ export default function TradePage() {
             </ul>
             <div className={s.contact}>
               <p className="ba-eyebrow" style={{ marginBottom: 8 }}>Or write to Bez directly</p>
-              <a href="mailto:bez@bezambar-atelier.com">bez@bezambar-atelier.com</a>
+              <a href="mailto:bez@bezambar.com">bez@bezambar.com</a>
               <a href="tel:+12136299191">(213) 629-9191</a>
               <span style={{ color: 'var(--ba-ink-muted, #7d776f)' }}>
                 611 Wilshire Blvd, Los Angeles, CA 90017 · by appointment
               </span>
             </div>
           </div>
-          <TradeForm defaultChecked={checkedPieces} />
+          <TradeForm selections={checkedPieces} onToggle={handleToggle} />
         </div>
       </section>
     </>

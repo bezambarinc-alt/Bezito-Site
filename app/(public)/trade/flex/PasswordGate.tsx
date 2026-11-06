@@ -38,7 +38,7 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      background: '#faf7f2',
+      background: 'var(--ba-paper, #faf7f2)',
       fontFamily: 'var(--ba-font-sans)',
     }}>
       <div style={{ maxWidth: 360, width: '100%', padding: '2rem', textAlign: 'center' }}>
@@ -96,7 +96,7 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
               textTransform: 'uppercase',
               padding: '14px 24px',
               background: '#1a1a1a',
-              color: '#faf7f2',
+              color: 'var(--ba-paper, #faf7f2)',
               border: 0,
               cursor: 'pointer',
             }}
@@ -111,8 +111,8 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
           marginTop: 24,
         }}>
           For trade access, contact{' '}
-          <a href="mailto:bez@bezambar-atelier.com" style={{ color: '#95826b' }}>
-            bez@bezambar-atelier.com
+          <a href="mailto:bez@bezambar.com" style={{ color: 'var(--ba-gold, #95826b)' }}>
+            bez@bezambar.com
           </a>
         </p>
       </div>
