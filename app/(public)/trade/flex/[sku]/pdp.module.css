@@ -32,6 +32,73 @@
   background: var(--ba-paper);
 }
 
+.galleryItemClickable {
+  cursor: zoom-in;
+}
+
+/* ── Lightbox overlay ── */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightboxImgWrap {
+  position: relative;
+  height: 85vh;
+  aspect-ratio: 4 / 5;
+  max-width: 92vw;
+}
+
+.lightboxClose {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: none;
+  border: none;
+  color: var(--ba-white);
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.7;
+  z-index: 1;
+}
+.lightboxClose:hover { opacity: 1; }
+
+.lightboxPrev,
+.lightboxNext {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--ba-white);
+  font-size: 52px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.5;
+  padding: 20px;
+  z-index: 1;
+}
+.lightboxPrev:hover, .lightboxNext:hover { opacity: 1; }
+.lightboxPrev { left: 12px; }
+.lightboxNext { right: 12px; }
+
+.lightboxCounter {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.5);
+  font: 400 12px/1 var(--ba-font-sans);
+  letter-spacing: 0.08em;
+}
+
 /* ── Right: sticky spec panel ── */
 
 .specCol {

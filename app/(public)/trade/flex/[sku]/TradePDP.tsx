@@ -1,8 +1,7 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import type { Product } from '@/types/products'
-import IJewelViewer from '@/components/pdp/IJewelViewer'
 import { parseProductName } from '@/lib/product-name'
+import TradeGallery from './TradeGallery'
 import styles from './pdp.module.css'
 
 interface Props { product: Product }
@@ -12,12 +11,15 @@ const COLLECTION_DESC: Record<string, string> = {
 }
 
 function buildGallery(product: Product): string[] {
-  return [
+  const fallback = product.specs.heroPosterUrl ?? ''
+  const imgs = [
     product.specs.heroPosterUrl,
     product.view1Url,
     product.view2Url,
     product.view3Url,
   ].filter((u): u is string => Boolean(u))
+  while (imgs.length < 6) imgs.push(fallback)
+  return imgs.slice(0, 6)
 }
 
 function parseOrientation(sku: string): string | null {
@@ -32,10 +34,6 @@ export default function TradePDP({ product }: Props) {
   const { title: displayName, variant } = parseProductName(product.name)
   const gallery = buildGallery(product)
 
-  // Flat gallery slots — always padded to 4 (fills a 2×2 grid), placeholders for missing images
-  const slots: (string | null)[] = [...gallery]
-  while (slots.length < 4) slots.push(null)
-
   const orientation = parseOrientation(sku)
   const collectionName = specs.collection ?? 'Flex'
   const collectionDesc = COLLECTION_DESC[collectionName] ?? null
@@ -45,28 +43,13 @@ export default function TradePDP({ product }: Props) {
     <div className={styles.root}>
       <div className={styles.grid}>
 
-        {/* ── Left col: 2×2 gallery, all slots 4:5 ── */}
-        <div className={styles.galleryCol}>
-          {heroIsIJewel && (
-            <div className={styles.galleryItem}>
-              <IJewelViewer src={ijewelUrl!} title={displayName} />
-            </div>
-          )}
-          {slots.map((src, i) => (
-            <div key={i} className={styles.galleryItem}>
-              {src && (
-                <Image
-                  src={src}
-                  alt={`${displayName} · view ${i + 1}`}
-                  fill
-                  priority={i === 0 && !heroIsIJewel}
-                  sizes="(max-width: 860px) 50vw, 27.5vw"
-                  style={{ objectFit: 'cover', objectPosition: 'center top' }}
-                />
-              )}
-            </div>
-          ))}
-        </div>
+        {/* ── Left col: interactive 2-col gallery + lightbox ── */}
+        <TradeGallery
+          slots={gallery}
+          displayName={displayName}
+          ijewelUrl={ijewelUrl}
+          heroIsIJewel={heroIsIJewel}
+        />
 
         {/* ── Right col: specs (sticky) ── */}
         <div className={styles.specCol}>
