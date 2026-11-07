@@ -4,7 +4,7 @@ import { getSession } from '@/lib/auth'
 /**
  * GET /api/auth/zoho/start — initiates Zoho OAuth re-authorization.
  *
- * Opens the Zoho consent page with CRM + Campaigns scopes. After Bez approves,
+ * Opens the Zoho consent page with CRM + Campaigns + Desk + Mail scopes. After Bez approves,
  * Zoho redirects to /api/auth/zoho/callback which saves the new refresh token.
  *
  * Pre-requisite (one-time in Zoho API Console):
@@ -31,6 +31,10 @@ export async function GET(request: NextRequest) {
     'ZohoCRM.send_mail.leads.CREATE',
     'ZohoCampaigns.campaign.ALL',
     'ZohoCampaigns.contact.ALL',
+    'ZohoDesk.tickets.CREATE',
+    'ZohoDesk.contacts.ALL',
+    'ZohoMail.messages.CREATE',
+    'ZohoMail.accounts.READ',
   ].join(',')
 
   const authUrl = new URL(`${accountsUrl}/oauth/v2/auth`)
