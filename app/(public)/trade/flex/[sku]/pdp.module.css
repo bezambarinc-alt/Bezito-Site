@@ -197,6 +197,26 @@
 }
 .cta:hover { opacity: 0.8; }
 
+.ctaPill {
+  display: block;
+  width: 100%;
+  padding: 13px 28px;
+  background: transparent;
+  color: var(--ba-ink);
+  border: 1px solid var(--ba-ink);
+  border-radius: 999px;
+  font: 400 11px/1 var(--ba-font-sans);
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  transition: background var(--ba-transition), color var(--ba-transition);
+}
+.ctaPill:hover {
+  background: var(--ba-ink);
+  color: var(--ba-white);
+}
+
 @media (max-width: 860px) {
   .grid {
     grid-template-columns: 1fr;

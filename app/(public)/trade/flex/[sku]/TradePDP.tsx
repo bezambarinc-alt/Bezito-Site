@@ -2,6 +2,7 @@ import Link from 'next/link'
 import type { Product } from '@/types/products'
 import { parseProductName } from '@/lib/product-name'
 import TradeGallery from './TradeGallery'
+import TradeCTA from './TradeCTA'
 import styles from './pdp.module.css'
 
 interface Props { product: Product }
@@ -112,12 +113,7 @@ export default function TradePDP({ product }: Props) {
 
           <hr className={styles.divider} />
 
-          <a
-            href={`mailto:bez@bezambar.com?subject=Trade Pricing: ${sku}`}
-            className={styles.cta}
-          >
-            Request Trade Pricing
-          </a>
+          <TradeCTA sku={sku} title={displayName} />
         </div>
 
       </div>

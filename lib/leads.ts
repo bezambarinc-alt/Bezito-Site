@@ -155,6 +155,75 @@ function buildCrmDescription(d: LeadInput, pageUrl?: string): string {
   ].filter(Boolean).join('\n') || 'Website inquiry'
 }
 
+// ── Notification email (Zoho Mail) ───────────────────────────────────────────
+
+let _zohoMailAccountId: string | null = null
+
+async function getZohoMailAccountId(token: string): Promise<string | null> {
+  if (_zohoMailAccountId) return _zohoMailAccountId
+  try {
+    const r = await fetch('https://mail.zoho.com/api/accounts', {
+      signal: AbortSignal.timeout(5000),
+      headers: { Authorization: `Zoho-oauthtoken ${token}` },
+    })
+    if (!r.ok) return null
+    const j = (await r.json()) as { data?: Array<{ accountId: string }> }
+    _zohoMailAccountId = j.data?.[0]?.accountId ?? null
+  } catch { /* non-fatal */ }
+  return _zohoMailAccountId
+}
+
+async function sendNotificationEmail(
+  input: LeadInput,
+  crmStatus: 'synced' | 'failed' | 'pending',
+  pageUrl: string | undefined,
+): Promise<void> {
+  let token: string
+  try { token = await getZohoToken() } catch { return }
+
+  const accountId = await getZohoMailAccountId(token)
+  if (!accountId) return
+
+  const zohoFailed = crmStatus === 'failed'
+  const label = input.sku ?? input.pieceTitle ?? input.intent ?? 'bezambar.com'
+  const subject = zohoFailed
+    ? `[Not in Zoho yet] New inquiry — ${label}`
+    : `New inquiry — ${label}`
+
+  const bodyLines = [
+    zohoFailed ? '⚠️ Zoho CRM sync failed — this lead is NOT in Zoho yet.\n' : '',
+    `From: ${input.name ?? '(no name)'} <${input.email}>`,
+    input.phone        ? `Phone: ${input.phone}`          : null,
+    `Intent: ${input.intent ?? '(none)'}`,
+    input.sku          ? `SKU: ${input.sku}`               : null,
+    input.pieceTitle   ? `Piece: ${input.pieceTitle}`      : null,
+    pageUrl            ? `Page: ${pageUrl}`                : null,
+    input.message      ? `\nMessage:\n${input.message}`    : null,
+  ].filter(Boolean).join('\n')
+
+  for (const to of ['bezambarinc@gmail.com', 'service@bezambar.com']) {
+    try {
+      await fetch(`https://mail.zoho.com/api/accounts/${accountId}/messages`, {
+        method: 'POST',
+        signal: AbortSignal.timeout(8000),
+        headers: {
+          Authorization: `Zoho-oauthtoken ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fromAddress: 'service@bezambar.com',
+          toAddress: to,
+          subject,
+          content: bodyLines,
+          mailFormat: 'plaintext',
+        }),
+      })
+    } catch { /* non-fatal */ }
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 /**
  * Create a lead: durable Neon audit row + best-effort Zoho sync.
  * Throws only if the Neon INSERT fails (the lead would otherwise be lost).
@@ -163,6 +232,8 @@ function buildCrmDescription(d: LeadInput, pageUrl?: string): string {
 export async function createLead(input: LeadInput): Promise<LeadResult> {
   const intent = input.intent ?? null
   const storedMessage = buildStoredMessage(input)
+  const appUrl = process.env.APP_URL ?? 'https://bezambar.com'
+  const pageUrl = input.pageSlug ? `${appUrl}/${input.pageSlug}` : undefined
 
   // 1. Durable audit copy FIRST. page_slug is now plain TEXT (no FK) — store the
   //    raw submission path verbatim, including hardcoded routes and piece slugs.
@@ -177,8 +248,6 @@ export async function createLead(input: LeadInput): Promise<LeadResult> {
   let crmStatus: LeadResult['crmStatus'] = 'pending'
   try {
     const token = await getZohoToken()
-    const appUrl = process.env.APP_URL ?? 'https://bezambar-web2026.vercel.app'
-    const pageUrl = input.pageSlug ? `${appUrl}/${input.pageSlug}` : undefined
 
     // Newsletter: subscribe to Campaigns (non-fatal), then fall through to CRM Lead.
     if (intent === 'newsletter') {
@@ -271,6 +340,9 @@ export async function createLead(input: LeadInput): Promise<LeadResult> {
   if (crmStatus === 'failed') {
     await sql(`UPDATE leads SET crm_status='failed' WHERE id=$1`, [leadId])
   }
+
+  // 3. Fire-and-forget notification email — never blocks the response.
+  sendNotificationEmail(input, crmStatus, pageUrl).catch(() => {/* non-fatal */})
 
   return { leadId, crmStatus }
 }
