@@ -59,10 +59,15 @@ const PIECES: Piece[] = [
   { id: 'em10ns',  cut: 'emerald', name: 'EXTENT · Emerald 10 NS',  ref: '5FLXEM10N',  ct: 0.10, spec: 'Emerald cut, north-south · 0.10 ct per stone', slug: 'extent-emerald-10-ns' },
 ]
 
-const CUT_LABELS = {
-  round: 'Round brilliant',
-  emerald: 'Emerald cut',
-  asscher: 'Asscher cut',
+const CUT_NAMES = {
+  round: 'Flex Round Brilliant Diamond Bracelet',
+  emerald: 'Flex Emerald Cut Diamond Bracelet',
+  asscher: 'Flex Asscher Cut Diamond Bracelet',
+}
+
+function getSKU(ref: string) {
+  const idx = ref.indexOf(' · ')
+  return idx >= 0 ? ref.slice(idx + 3) : ref
 }
 
 const CUTS = [
@@ -83,14 +88,13 @@ function ProductCard({ piece }: { piece: Piece }) {
           loading="lazy"
           style={{ width: '100%', display: 'block', objectFit: 'cover' }}
         />
-        <span className={s.ref}>{piece.ref}</span>
       </div>
       <div>
-        <p className={s.cardEyebrow}>{CUT_LABELS[piece.cut]}</p>
+        <p className={s.cardEyebrow}>{getSKU(piece.ref)}</p>
         <p className={s.cardTitle}>
-          {piece.name}<span className={s.cardCt}>{piece.ct.toFixed(2)} ct</span>
+          {CUT_NAMES[piece.cut]}<span className={s.cardCt}>{piece.ct.toFixed(2)} ct tw</span>
         </p>
-        <p className={s.spec}>{piece.spec}</p>
+        <p className={s.cardEyebrow}>18K White Gold or Platinum</p>
       </div>
     </>
   )
