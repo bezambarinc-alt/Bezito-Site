@@ -256,7 +256,6 @@ export default function TradePage() {
               <span className={s.heroEyebrow}>The Flex collection</span>
               <h1 className={s.heroTitle}>One line of diamonds.<br />No clasp.</h1>
             </div>
-            <a className={s.heroBtn} href="#collection">View the collection</a>
           </div>
         </div>
       </section>
