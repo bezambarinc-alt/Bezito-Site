@@ -18,7 +18,7 @@ interface Props {
 export default function MetalSwitcher({ metals, slug }: Props) {
   const searchParams = useSearchParams()
   const router = useRouter()
-  const selectedKey = searchParams.get('metal') ?? metals[0]?.key
+  const selectedKey = searchParams?.get('metal') ?? metals[0]?.key
 
   if (metals.length <= 1) return null
 

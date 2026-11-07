@@ -20,7 +20,7 @@ function buildMetalSlots(images: MetalOption['images'], fallback: string): strin
 
 export default function TradePDPClient({ metals, defaultSlots, displayName, ijewelUrl, heroIsIJewel }: Props) {
   const searchParams = useSearchParams()
-  const selectedKey = searchParams.get('metal') ?? metals[0]?.key
+  const selectedKey = searchParams?.get('metal') ?? metals[0]?.key
 
   const activeMetal = metals.find(m => m.key === selectedKey) ?? metals[0]
   const slots = activeMetal
