@@ -374,6 +374,15 @@
   margin-left: 8px;
 }
 
+/* Metal label under piece title */
+.cardMetal {
+  font: 400 11px/1 var(--ba-font-sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ba-ink-muted, #888);
+  margin: 6px 0 0;
+}
+
 /* Spec: Lora editorial, 14px */
 .spec {
   font-family: var(--ba-font-editorial);

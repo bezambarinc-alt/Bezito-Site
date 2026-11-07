@@ -7,6 +7,12 @@ import s from './page.module.css'
 const PLACEHOLDER = 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/Jewelry%20Images/Bracelets/5FLX40ECN.png'
 const LIFESTYLE_IMG = 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1787210681/Jewelry%20Images/Bracelets/c0834-model.avif'
 
+interface MetalVariant {
+  key: string
+  label: string
+  image: string
+}
+
 interface Piece {
   id: string
   cut: 'round' | 'emerald' | 'asscher'
@@ -15,6 +21,7 @@ interface Piece {
   ct: number
   spec: string
   slug?: string
+  metals?: MetalVariant[]
 }
 
 const PIECES: Piece[] = [
@@ -50,7 +57,13 @@ const PIECES: Piece[] = [
   { id: 'em10ew',  cut: 'emerald', name: 'EXTENT · Emerald 10 EW',  ref: '5FLXEM10E',  ct: 0.10, spec: 'Emerald cut, east-west · 0.10 ct per stone', slug: 'extent-emerald-10-ew' },
   { id: 'em100ns', cut: 'emerald', name: 'EXTENT · Emerald 100 NS', ref: '5FLXEM100N', ct: 1.00, spec: 'Emerald cut, north-south · 1.00 ct per stone', slug: 'extent-emerald-100-ns' },
   { id: 'em75ns',  cut: 'emerald', name: 'EXTENT · Emerald 75 NS',  ref: '5FLXEM70N',  ct: 0.75, spec: 'Emerald cut, north-south · 0.75 ct per stone', slug: 'extent-emerald-70-ns' },
-  { id: 'em50ns',  cut: 'emerald', name: 'EXTENT · Emerald 50 NS',  ref: '5FLXEM50N',  ct: 0.50, spec: 'Emerald cut, north-south · 0.50 ct per stone', slug: 'extent-emerald-50-ns' },
+  { id: 'em50ns',  cut: 'emerald', name: 'EXTENT · Emerald 50 NS',  ref: '5FLXEM50N',  ct: 0.50, spec: 'Emerald cut, north-south · 0.50 ct per stone', slug: 'extent-emerald-50-ns',
+    metals: [
+      { key: 'platinum',    label: 'Platinum',    image: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1794024385/Jewelry%20Images/Bracelets/5FLXEM50N/5FLXEM50N_Platinum_Front.png' },
+      { key: 'rose_gold',   label: 'Rose Gold',   image: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1794024392/Jewelry%20Images/Bracelets/5FLXEM50N/5FLXEM50N_RoseGold_Front.png' },
+      { key: 'yellow_gold', label: 'Yellow Gold', image: 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/v1794024398/Jewelry%20Images/Bracelets/5FLXEM50N/5FLXEM50N_YellowGold_Front.png' },
+    ],
+  },
   { id: 'em40ns',  cut: 'emerald', name: 'EXTENT · Emerald 40 NS',  ref: '5FLXEM40N',  ct: 0.40, spec: 'Emerald cut, north-south · 0.40 ct per stone', slug: 'extent-emerald-40-ns' },
   { id: 'em30ns',  cut: 'emerald', name: 'EXTENT · Emerald 30 NS',  ref: '5FLXEM30N',  ct: 0.30, spec: 'Emerald cut, north-south · 0.30 ct per stone', slug: 'extent-emerald-30-ns' },
   { id: 'em25ns',  cut: 'emerald', name: 'EXTENT · Emerald 25 NS',  ref: '5FLXEM25N',  ct: 0.25, spec: 'Emerald cut, north-south · 0.25 ct per stone', slug: 'extent-emerald-25-ns' },
@@ -77,14 +90,21 @@ const CUTS = [
   { key: 'asscher', label: 'Asscher', count: PIECES.filter(p => p.cut === 'asscher').length },
 ]
 
-function ProductCard({ piece }: { piece: Piece }) {
+function ProductCard({ piece, metal }: { piece: Piece; metal?: MetalVariant }) {
+  const image = metal?.image ?? PLACEHOLDER
+  const href = piece.slug
+    ? metal
+      ? `/trade/flex/${piece.slug}?metal=${metal.key}`
+      : `/trade/flex/${piece.slug}`
+    : null
+
   const cardInner = (
     <>
       <div className={s.media}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={PLACEHOLDER}
-          alt={piece.name}
+          src={image}
+          alt={metal ? `${piece.name} · ${metal.label}` : piece.name}
           loading="lazy"
           style={{ width: '100%', display: 'block', objectFit: 'cover' }}
         />
@@ -94,13 +114,21 @@ function ProductCard({ piece }: { piece: Piece }) {
         <p className={s.cardTitle}>
           {CUT_NAMES[piece.cut]}<span className={s.cardCt}>{piece.ct.toFixed(2)} ct tw</span>
         </p>
+        {metal && <p className={s.cardMetal}>{metal.label}</p>}
       </div>
     </>
   )
 
-  return piece.slug
-    ? <Link href={`/trade/flex/${piece.slug}`} className={s.card} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>{cardInner}</Link>
+  return href
+    ? <Link href={href} className={s.card} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>{cardInner}</Link>
     : <article className={s.card}>{cardInner}</article>
+}
+
+function expandPiece(piece: Piece): Array<{ piece: Piece; metal?: MetalVariant }> {
+  if (piece.metals && piece.metals.length > 1) {
+    return piece.metals.map(metal => ({ piece, metal }))
+  }
+  return [{ piece }]
 }
 
 function EditorialTile() {
@@ -314,8 +342,8 @@ export default function TradePage() {
         {/* Product grid */}
         <div className={s.wrap}>
           <div className={s.grid}>
-            {filtered.map((piece) => (
-              <ProductCard key={piece.id} piece={piece} />
+            {filtered.flatMap(expandPiece).map(({ piece, metal }) => (
+              <ProductCard key={metal ? `${piece.id}-${metal.key}` : piece.id} piece={piece} metal={metal} />
             ))}
             <EditorialTile />
             <FullRangeTile />

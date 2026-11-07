@@ -50,6 +50,10 @@ const FIELDS = [
   'Related_Products',
   'iJewel_URL', 'Interactive_Is_Hero',
   'Product_Channel',
+  'Platinum_Front_URL', 'Platinum_Top_URL', 'Platinum_Angled_URL',
+  'Rose_Gold_Front_URL', 'Rose_Gold_Top_URL', 'Rose_Gold_Angled_URL',
+  'Yellow_Gold_Front_URL', 'Yellow_Gold_Top_URL', 'Yellow_Gold_Angled_URL',
+  'Available_Metals',
 ].join(',')
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
@@ -101,6 +105,38 @@ interface ZohoProduct {
   iJewel_URL?: string
   Interactive_Is_Hero?: boolean
   Product_Channel?: string
+  Platinum_Front_URL?: string
+  Platinum_Top_URL?: string
+  Platinum_Angled_URL?: string
+  Rose_Gold_Front_URL?: string
+  Rose_Gold_Top_URL?: string
+  Rose_Gold_Angled_URL?: string
+  Yellow_Gold_Front_URL?: string
+  Yellow_Gold_Top_URL?: string
+  Yellow_Gold_Angled_URL?: string
+  Available_Metals?: string[] | string | null
+}
+
+function buildMetalImages(p: ZohoProduct): object | null {
+  const pt = { front: str(p.Platinum_Front_URL), top: str(p.Platinum_Top_URL), angled: str(p.Platinum_Angled_URL) }
+  const rg = { front: str(p.Rose_Gold_Front_URL), top: str(p.Rose_Gold_Top_URL), angled: str(p.Rose_Gold_Angled_URL) }
+  const yg = { front: str(p.Yellow_Gold_Front_URL), top: str(p.Yellow_Gold_Top_URL), angled: str(p.Yellow_Gold_Angled_URL) }
+  const hasAny = [pt, rg, yg].some(m => Object.values(m).some(Boolean))
+  if (!hasAny) return null
+  const result: Record<string, object> = {}
+  if (Object.values(pt).some(Boolean)) result.platinum = pt
+  if (Object.values(rg).some(Boolean)) result.rose_gold = rg
+  if (Object.values(yg).some(Boolean)) result.yellow_gold = yg
+  return result
+}
+
+function parseAvailableMetals(v: unknown): string[] | null {
+  if (Array.isArray(v) && v.length > 0) return v.map(String).filter(Boolean)
+  if (typeof v === 'string' && v.trim()) {
+    const parts = v.split(';').map(s => s.trim()).filter(Boolean)
+    return parts.length ? parts : null
+  }
+  return null
 }
 
 const parseRelatedSkus = (v: unknown): string[] | null => {
@@ -185,6 +221,9 @@ export async function GET(req: NextRequest) {
         const centerStoneWeight =
           p.Center_Stone_Weight != null ? parseFloat(String(p.Center_Stone_Weight)) : null
 
+        const metalImages = buildMetalImages(p)
+        const availableMetals = parseAvailableMetals(p.Available_Metals)
+
         await sql(
           `INSERT INTO products(
             sku, slug, zoho_id, name,
@@ -195,8 +234,9 @@ export async function GET(req: NextRequest) {
             view_1_url, view_2_url, view_3_url, related_skus,
             ijewel_url, interactive_is_hero,
             product_channel,
+            metal_images, available_metals,
             synced_at
-          ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22::text[],$23,$24,$25,now())
+          ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22::text[],$23,$24,$25,$26,$27::text[],now())
           ON CONFLICT (sku) DO UPDATE SET
             slug             = EXCLUDED.slug,
             zoho_id          = EXCLUDED.zoho_id,
@@ -222,6 +262,8 @@ export async function GET(req: NextRequest) {
             ijewel_url       = EXCLUDED.ijewel_url,
             interactive_is_hero = EXCLUDED.interactive_is_hero,
             product_channel  = EXCLUDED.product_channel,
+            metal_images     = EXCLUDED.metal_images,
+            available_metals = EXCLUDED.available_metals,
             synced_at        = now()
             -- active + featured intentionally excluded: Neon-only, managed via admin PATCH
           `,
@@ -251,6 +293,8 @@ export async function GET(req: NextRequest) {
             str(p.iJewel_URL) ?? null,    // $23 ijewel_url
             p.Interactive_Is_Hero === true, // $24 interactive_is_hero
             str(p.Product_Channel) ?? null, // $25 product_channel
+            metalImages ? JSON.stringify(metalImages) : null, // $26 metal_images
+            availableMetals,              // $27 available_metals
           ],
         )
 

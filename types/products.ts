@@ -40,6 +40,13 @@ export interface ProductSpecs {
   [key: string]: string | undefined
 }
 
+/** Per-metal image set (front, top, angled views). */
+export interface MetalImages {
+  platinum?: { front?: string; top?: string; angled?: string }
+  rose_gold?: { front?: string; top?: string; angled?: string }
+  yellow_gold?: { front?: string; top?: string; angled?: string }
+}
+
 /** Normalized product for the view layer. */
 export interface Product {
   sku: string
@@ -60,6 +67,10 @@ export interface Product {
   ijewelUrl: string | null
   /** When true, the iJewel viewer occupies the hero slot; the video goes to the media banner. */
   interactiveIsHero: boolean
+  /** Metal-specific image sets, keyed by metal slug (platinum, rose_gold, yellow_gold). */
+  metalImages?: MetalImages
+  /** Available metals for this product (e.g. ["Platinum", "Rose Gold", "Yellow Gold"]). */
+  availableMetals?: string[]
 }
 
 // toProduct() removed — JSONB-era mapper, superseded by rowToProduct() in lib/queries.ts

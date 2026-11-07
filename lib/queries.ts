@@ -1,5 +1,5 @@
 import { sql } from '@/lib/db'
-import type { Product, ProductMedia, ProductSpecs } from '@/types/products'
+import type { Product, ProductMedia, ProductSpecs, MetalImages } from '@/types/products'
 import { CATEGORY_ORDER } from '@/lib/data/categories'
 
 /**
@@ -85,6 +85,8 @@ function rowToProduct(r: Record<string, unknown>): Product {
     relatedSkus:        (r.related_skus as string[] | null) ?? [],
     ijewelUrl:          (r.ijewel_url as string | null) ?? null,
     interactiveIsHero:  Boolean(r.interactive_is_hero),
+    metalImages:        (r.metal_images as MetalImages | null) ?? undefined,
+    availableMetals:    (r.available_metals as string[] | null) ?? undefined,
   }
 }
 
@@ -94,7 +96,8 @@ const COLS = `
   stone_color, stone_clarity, stone_notes, total_carat_weight,
   center_stone_weight, collection, active, featured, sort_order, synced_at,
   view_1_url, view_2_url, view_3_url, related_skus,
-  ijewel_url, interactive_is_hero`
+  ijewel_url, interactive_is_hero,
+  metal_images, available_metals`
 
 /**
  * URL-safe normalisation of the sku column, mirroring deriveSlug()'s SKU

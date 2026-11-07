@@ -1,17 +1,23 @@
+import { Suspense } from 'react'
 import Link from 'next/link'
 import type { Product } from '@/types/products'
 import { parseProductName } from '@/lib/product-name'
-import TradeGallery from './TradeGallery'
+import TradePDPClient from './TradePDPClient'
+import MetalSwitcher from './MetalSwitcher'
+import type { MetalOption } from './MetalSwitcher'
 import TradeCTA from './TradeCTA'
 import styles from './pdp.module.css'
 
-interface Props { product: Product }
+interface Props {
+  product: Product
+  selectedMetal?: string
+}
 
 const COLLECTION_DESC: Record<string, string> = {
   'Flex': 'The EXTENT bracelet sets each link with a single emerald-cut diamond — east-west or north-south — allowing the piece to drape the wrist as a continuous plane of light. Available from 10 to 100 points per link.',
 }
 
-function buildGallery(product: Product): string[] {
+function buildDefaultGallery(product: Product): string[] {
   const fallback = product.specs.heroPosterUrl ?? ''
   const imgs = [
     product.specs.heroPosterUrl,
@@ -23,17 +29,31 @@ function buildGallery(product: Product): string[] {
   return imgs.slice(0, 6)
 }
 
+function buildMetals(product: Product): MetalOption[] {
+  const { metalImages, availableMetals } = product
+  if (!availableMetals?.length || !metalImages) return []
+
+  return availableMetals
+    .map(label => {
+      const key = label.toLowerCase().replace(/\s+/g, '_')
+      const images = (metalImages as Record<string, { front?: string; top?: string; angled?: string }>)[key] ?? {}
+      return { key, label, images }
+    })
+    .filter(m => m.images.front || m.images.top || m.images.angled)
+}
+
 function parseOrientation(sku: string): string | null {
   if (sku.endsWith('E')) return 'East–West'
   if (sku.endsWith('N')) return 'North–South'
   return null
 }
 
-export default function TradePDP({ product }: Props) {
+export default function TradePDP({ product, selectedMetal }: Props) {
   const { specs, sku, ijewelUrl, interactiveIsHero } = product
   const heroIsIJewel = Boolean(ijewelUrl && interactiveIsHero)
   const { title: displayName, variant } = parseProductName(product.name)
-  const gallery = buildGallery(product)
+  const defaultSlots = buildDefaultGallery(product)
+  const metals = buildMetals(product)
 
   const orientation = parseOrientation(sku)
   const collectionName = specs.collection ?? 'Flex'
@@ -45,12 +65,21 @@ export default function TradePDP({ product }: Props) {
       <div className={styles.grid}>
 
         {/* ── Left col: interactive 2-col gallery + lightbox ── */}
-        <TradeGallery
-          slots={gallery}
-          displayName={displayName}
-          ijewelUrl={ijewelUrl}
-          heroIsIJewel={heroIsIJewel}
-        />
+        <Suspense fallback={
+          <div className={styles.galleryCol}>
+            {defaultSlots.slice(0, 6).map((_, i) => (
+              <div key={i} className={styles.galleryItem} />
+            ))}
+          </div>
+        }>
+          <TradePDPClient
+            metals={metals}
+            defaultSlots={defaultSlots}
+            displayName={displayName}
+            ijewelUrl={ijewelUrl}
+            heroIsIJewel={heroIsIJewel}
+          />
+        </Suspense>
 
         {/* ── Right col: specs (sticky) ── */}
         <div className={styles.specCol}>
@@ -66,6 +95,13 @@ export default function TradePDP({ product }: Props) {
           )}
           {specs.lede && (
             <p className={styles.lede}>{specs.lede}</p>
+          )}
+
+          {/* Metal switcher — only shown when product has multiple metals */}
+          {metals.length > 1 && (
+            <Suspense fallback={null}>
+              <MetalSwitcher metals={metals} slug={product.slug} />
+            </Suspense>
           )}
 
           {hasSpecs && (
@@ -100,7 +136,7 @@ export default function TradePDP({ product }: Props) {
                   <dd>{specs.clarity}</dd>
                 </>
               )}
-              {specs.metal && (
+              {specs.metal && metals.length === 0 && (
                 <>
                   <dt>Metal</dt>
                   <dd>{specs.metal}</dd>

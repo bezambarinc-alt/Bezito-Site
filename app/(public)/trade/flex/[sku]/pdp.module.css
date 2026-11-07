@@ -182,6 +182,51 @@
   margin: 0 0 32px;
 }
 
+/* ── Metal switcher ── */
+
+.metalSection {
+  margin-bottom: 24px;
+}
+
+.metalLabel {
+  font: 400 11px/1 var(--ba-font-sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ba-ink-muted);
+  margin: 0 0 10px;
+}
+
+.metalLabel span {
+  color: var(--ba-ink);
+}
+
+.metalRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.metalTile {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border: 1px solid var(--ba-border-warm);
+  background: var(--ba-paper);
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0;
+  transition: border-color var(--ba-transition);
+}
+
+.metalTile:hover {
+  border-color: var(--ba-ink-soft, #888);
+}
+
+.metalTileActive {
+  border-color: var(--ba-ink) !important;
+  border-width: 1.5px;
+}
+
 .cta {
   display: block;
   padding: 15px 36px;
