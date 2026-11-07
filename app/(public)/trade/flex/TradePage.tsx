@@ -94,7 +94,6 @@ function ProductCard({ piece }: { piece: Piece }) {
         <p className={s.cardTitle}>
           {CUT_NAMES[piece.cut]}<span className={s.cardCt}>{piece.ct.toFixed(2)} ct tw</span>
         </p>
-        <p className={s.cardEyebrow}>18K White Gold or Platinum</p>
       </div>
     </>
   )
