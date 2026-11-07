@@ -72,7 +72,7 @@ const CUTS = [
   { key: 'asscher', label: 'Asscher', count: PIECES.filter(p => p.cut === 'asscher').length },
 ]
 
-function ProductCard({ piece, onAsk }: { piece: Piece; onAsk: (id: string) => void }) {
+function ProductCard({ piece }: { piece: Piece }) {
   const cardInner = (
     <>
       <div className={s.media}>
@@ -91,13 +91,6 @@ function ProductCard({ piece, onAsk }: { piece: Piece; onAsk: (id: string) => vo
           {piece.name}<span className={s.cardCt}>{piece.ct.toFixed(2)} ct</span>
         </p>
         <p className={s.spec}>{piece.spec}</p>
-      </div>
-      <div className={s.row}>
-        <span className={s.metals}>18K white gold · Platinum</span>
-        {piece.slug
-          ? <Link href={`/trade/flex/${piece.slug}`} className={s.ask}>View details</Link>
-          : <button className={s.ask} type="button" onClick={() => onAsk(piece.id)}>Trade price</button>
-        }
       </div>
     </>
   )
@@ -233,13 +226,6 @@ export default function TradePage() {
       return 0
     })
 
-  function handleAsk(id: string) {
-    setCheckedPieces(prev => new Set([...prev, id]))
-    const el = document.getElementById('trade')
-    el?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
-    setTimeout(() => document.getElementById('f-name')?.focus({ preventScroll: true }), 500)
-  }
-
   function handleToggle(id: string) {
     setCheckedPieces(prev => {
       const next = new Set(prev)
@@ -327,7 +313,7 @@ export default function TradePage() {
         <div className={s.wrap}>
           <div className={s.grid}>
             {filtered.map((piece) => (
-              <ProductCard key={piece.id} piece={piece} onAsk={handleAsk} />
+              <ProductCard key={piece.id} piece={piece} />
             ))}
             <EditorialTile />
             <FullRangeTile />
