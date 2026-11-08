@@ -13,13 +13,13 @@ interface Props {
 }
 
 function buildMetalSlots(images: MetalOption['images'], hasMedia: boolean, fallback: string): string[] {
-  // Order: Front, Angled, Top
-  const slots = [images.front, images.angled, images.top].filter((u): u is string => Boolean(u))
+  // Order: Front, Model, Angled, Top, Turntable, Close-up
+  const slots = [images.front, images.model, images.angled, images.top].filter((u): u is string => Boolean(u))
   if (!hasMedia) {
     while (slots.length < 6) slots.push(fallback)
     return slots.slice(0, 6)
   }
-  return slots.slice(0, 3)
+  return slots
 }
 
 export default function TradePDPClient({ metals, defaultSlots, displayName, ijewelUrl, heroIsIJewel }: Props) {
