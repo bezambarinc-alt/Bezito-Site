@@ -14,29 +14,19 @@ interface Props {
   videoUrl?: string
 }
 
+type MediaItem = { type: 'image'; src: string } | { type: 'video'; src: string }
+
 export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJewel, videoUrl }: Props) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
-  const realIndices = slots.map((s, i) => (s ? i : -1)).filter(i => i >= 0)
+  const media: MediaItem[] = [
+    ...slots.filter(Boolean).map(src => ({ type: 'image' as const, src })),
+    ...(videoUrl ? [{ type: 'video' as const, src: videoUrl }] : []),
+  ]
 
   const close = useCallback(() => setLightboxIndex(null), [])
-
-  const prev = useCallback(() => {
-    setLightboxIndex(cur => {
-      if (cur === null) return null
-      const idx = realIndices.lastIndexOf(realIndices.filter(i => i < cur).at(-1) ?? -1)
-      const prevI = realIndices.filter(i => i < cur).at(-1)
-      return prevI !== undefined ? prevI : cur
-    })
-  }, [realIndices])
-
-  const next = useCallback(() => {
-    setLightboxIndex(cur => {
-      if (cur === null) return null
-      const nextI = realIndices.find(i => i > cur)
-      return nextI !== undefined ? nextI : cur
-    })
-  }, [realIndices])
+  const prev = useCallback(() => setLightboxIndex(cur => cur !== null && cur > 0 ? cur - 1 : cur), [])
+  const next = useCallback(() => setLightboxIndex(cur => cur !== null && cur < media.length - 1 ? cur + 1 : cur), [media.length])
 
   useEffect(() => {
     if (lightboxIndex === null) return
@@ -53,12 +43,10 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
     }
   }, [lightboxIndex, close, prev, next])
 
-  const hasPrev = lightboxIndex !== null && realIndices.some(i => i < lightboxIndex)
-  const hasNext = lightboxIndex !== null && realIndices.some(i => i > lightboxIndex)
-  const lightboxSrc = lightboxIndex !== null ? slots[lightboxIndex] : null
-  const lightboxPos = lightboxIndex !== null
-    ? `${realIndices.indexOf(lightboxIndex) + 1} / ${realIndices.length}`
-    : null
+  const activeItem = lightboxIndex !== null ? media[lightboxIndex] : null
+  const hasPrev = lightboxIndex !== null && lightboxIndex > 0
+  const hasNext = lightboxIndex !== null && lightboxIndex < media.length - 1
+  const lightboxPos = lightboxIndex !== null ? `${lightboxIndex + 1} / ${media.length}` : null
 
   return (
     <>
@@ -88,7 +76,10 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
           </div>
         ))}
         {videoUrl && (
-          <div className={styles.galleryItem}>
+          <div
+            className={`${styles.galleryItem} ${styles.galleryItemClickable}`}
+            onClick={() => setLightboxIndex(slots.filter(Boolean).length)}
+          >
             <video
               autoPlay
               muted
@@ -101,7 +92,7 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
         )}
       </div>
 
-      {lightboxIndex !== null && lightboxSrc && (
+      {activeItem && (
         <div className={styles.lightbox} onClick={close} role="dialog" aria-modal="true">
           <button className={styles.lightboxClose} onClick={close} aria-label="Close">✕</button>
           {hasPrev && (
@@ -111,14 +102,25 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
             <button className={styles.lightboxNext} onClick={e => { e.stopPropagation(); next() }} aria-label="Next">›</button>
           )}
           <div className={styles.lightboxImgWrap} onClick={e => e.stopPropagation()}>
-            <Image
-              src={cldUrl(lightboxSrc, 'f_auto,q_auto:best,w_3000')}
-              alt={`${displayName} · view ${lightboxIndex + 1}`}
-              fill
-              unoptimized
-              sizes="100vw"
-              style={{ objectFit: 'contain' }}
-            />
+            {activeItem.type === 'video' ? (
+              <video
+                autoPlay
+                loop
+                playsInline
+                controls
+                src={activeItem.src}
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+              />
+            ) : (
+              <Image
+                src={cldUrl(activeItem.src, 'f_auto,q_auto:best,w_3000')}
+                alt={`${displayName} · view ${lightboxIndex! + 1}`}
+                fill
+                unoptimized
+                sizes="100vw"
+                style={{ objectFit: 'contain' }}
+              />
+            )}
           </div>
           {lightboxPos && (
             <p className={styles.lightboxCounter}>{lightboxPos}</p>
