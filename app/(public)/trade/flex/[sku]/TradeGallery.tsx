@@ -12,16 +12,18 @@ interface Props {
   ijewelUrl: string | null
   heroIsIJewel: boolean
   videoUrl?: string
+  closeupUrl?: string
 }
 
 type MediaItem = { type: 'image'; src: string } | { type: 'video'; src: string }
 
-export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJewel, videoUrl }: Props) {
+export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJewel, videoUrl, closeupUrl }: Props) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
   const media: MediaItem[] = [
     ...slots.filter(Boolean).map(src => ({ type: 'image' as const, src })),
     ...(videoUrl ? [{ type: 'video' as const, src: videoUrl }] : []),
+    ...(closeupUrl ? [{ type: 'video' as const, src: closeupUrl }] : []),
   ]
 
   const close = useCallback(() => setLightboxIndex(null), [])
@@ -86,6 +88,21 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
               loop
               playsInline
               src={videoUrl}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+            />
+          </div>
+        )}
+        {closeupUrl && (
+          <div
+            className={`${styles.galleryItem} ${styles.galleryItemClickable}`}
+            onClick={() => setLightboxIndex(slots.filter(Boolean).length + (videoUrl ? 1 : 0))}
+          >
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              src={closeupUrl}
               style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
             />
           </div>

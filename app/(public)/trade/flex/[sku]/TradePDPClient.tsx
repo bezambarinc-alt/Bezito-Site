@@ -12,9 +12,10 @@ interface Props {
   heroIsIJewel: boolean
 }
 
-function buildMetalSlots(images: MetalOption['images'], hasVideo: boolean, fallback: string): string[] {
-  const slots = [images.front, images.top, images.angled].filter((u): u is string => Boolean(u))
-  if (!hasVideo) {
+function buildMetalSlots(images: MetalOption['images'], hasMedia: boolean, fallback: string): string[] {
+  // Order: Front, Angled, Top
+  const slots = [images.front, images.angled, images.top].filter((u): u is string => Boolean(u))
+  if (!hasMedia) {
     while (slots.length < 6) slots.push(fallback)
     return slots.slice(0, 6)
   }
@@ -27,8 +28,10 @@ export default function TradePDPClient({ metals, defaultSlots, displayName, ijew
 
   const activeMetal = metals.find(m => m.key === selectedKey) ?? metals[0]
   const videoUrl = activeMetal?.images.video ?? undefined
+  const closeupUrl = activeMetal?.images.closeup ?? undefined
+  const hasMedia = Boolean(videoUrl || closeupUrl)
   const slots = activeMetal
-    ? buildMetalSlots(activeMetal.images, Boolean(videoUrl), defaultSlots[0] ?? '')
+    ? buildMetalSlots(activeMetal.images, hasMedia, defaultSlots[0] ?? '')
     : defaultSlots
 
   return (
@@ -38,6 +41,7 @@ export default function TradePDPClient({ metals, defaultSlots, displayName, ijew
       ijewelUrl={ijewelUrl}
       heroIsIJewel={heroIsIJewel}
       videoUrl={videoUrl}
+      closeupUrl={closeupUrl}
     />
   )
 }

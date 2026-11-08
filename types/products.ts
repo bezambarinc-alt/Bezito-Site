@@ -40,11 +40,11 @@ export interface ProductSpecs {
   [key: string]: string | undefined
 }
 
-/** Per-metal image set (front, top, angled views) + optional turntable video. */
+/** Per-metal image set (front, top, angled views) + optional turntable video + closeup video. */
 export interface MetalImages {
-  platinum?: { front?: string; top?: string; angled?: string; video?: string }
-  rose_gold?: { front?: string; top?: string; angled?: string; video?: string }
-  yellow_gold?: { front?: string; top?: string; angled?: string; video?: string }
+  platinum?: { front?: string; top?: string; angled?: string; video?: string; closeup?: string }
+  rose_gold?: { front?: string; top?: string; angled?: string; video?: string; closeup?: string }
+  yellow_gold?: { front?: string; top?: string; angled?: string; video?: string; closeup?: string }
 }
 
 /** Normalized product for the view layer. */
