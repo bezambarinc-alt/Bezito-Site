@@ -50,9 +50,9 @@ const FIELDS = [
   'Related_Products',
   'iJewel_URL', 'Interactive_Is_Hero',
   'Product_Channel',
-  'Platinum_Front_URL', 'Platinum_Top_URL', 'Platinum_Angled_URL',
-  'Rose_Gold_Front_URL', 'Rose_Gold_Top_URL', 'Rose_Gold_Angled_URL',
-  'Yellow_Gold_Front_URL', 'Yellow_Gold_Top_URL', 'Yellow_Gold_Angled_URL',
+  'Platinum_Front_URL', 'Platinum_Top_URL', 'Platinum_Angled_URL', 'Platinum_Video_URL',
+  'Rose_Gold_Front_URL', 'Rose_Gold_Top_URL', 'Rose_Gold_Angled_URL', 'Rose_Gold_Video_URL',
+  'Yellow_Gold_Front_URL', 'Yellow_Gold_Top_URL', 'Yellow_Gold_Angled_URL', 'Yellow_Gold_Video_URL',
   'Available_Metals',
 ].join(',')
 
@@ -108,19 +108,22 @@ interface ZohoProduct {
   Platinum_Front_URL?: string
   Platinum_Top_URL?: string
   Platinum_Angled_URL?: string
+  Platinum_Video_URL?: string
   Rose_Gold_Front_URL?: string
   Rose_Gold_Top_URL?: string
   Rose_Gold_Angled_URL?: string
+  Rose_Gold_Video_URL?: string
   Yellow_Gold_Front_URL?: string
   Yellow_Gold_Top_URL?: string
   Yellow_Gold_Angled_URL?: string
+  Yellow_Gold_Video_URL?: string
   Available_Metals?: string[] | string | null
 }
 
 function buildMetalImages(p: ZohoProduct): object | null {
-  const pt = { front: str(p.Platinum_Front_URL), top: str(p.Platinum_Top_URL), angled: str(p.Platinum_Angled_URL) }
-  const rg = { front: str(p.Rose_Gold_Front_URL), top: str(p.Rose_Gold_Top_URL), angled: str(p.Rose_Gold_Angled_URL) }
-  const yg = { front: str(p.Yellow_Gold_Front_URL), top: str(p.Yellow_Gold_Top_URL), angled: str(p.Yellow_Gold_Angled_URL) }
+  const pt = { front: str(p.Platinum_Front_URL), top: str(p.Platinum_Top_URL), angled: str(p.Platinum_Angled_URL), video: str(p.Platinum_Video_URL) }
+  const rg = { front: str(p.Rose_Gold_Front_URL), top: str(p.Rose_Gold_Top_URL), angled: str(p.Rose_Gold_Angled_URL), video: str(p.Rose_Gold_Video_URL) }
+  const yg = { front: str(p.Yellow_Gold_Front_URL), top: str(p.Yellow_Gold_Top_URL), angled: str(p.Yellow_Gold_Angled_URL), video: str(p.Yellow_Gold_Video_URL) }
   const hasAny = [pt, rg, yg].some(m => Object.values(m).some(Boolean))
   if (!hasAny) return null
   const result: Record<string, object> = {}

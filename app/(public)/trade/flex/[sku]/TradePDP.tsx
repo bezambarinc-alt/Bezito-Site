@@ -36,7 +36,7 @@ function buildMetals(product: Product): MetalOption[] {
   return availableMetals
     .map(label => {
       const key = label.toLowerCase().replace(/\s+/g, '_')
-      const images = (metalImages as Record<string, { front?: string; top?: string; angled?: string }>)[key] ?? {}
+      const images = (metalImages as Record<string, { front?: string; top?: string; angled?: string; video?: string }>)[key] ?? {}
       return { key, label, images }
     })
     .filter(m => m.images.front || m.images.top || m.images.angled)

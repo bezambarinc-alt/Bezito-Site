@@ -11,9 +11,10 @@ interface Props {
   displayName: string
   ijewelUrl: string | null
   heroIsIJewel: boolean
+  videoUrl?: string
 }
 
-export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJewel }: Props) {
+export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJewel, videoUrl }: Props) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
   const realIndices = slots.map((s, i) => (s ? i : -1)).filter(i => i >= 0)
@@ -86,6 +87,18 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
             )}
           </div>
         ))}
+        {videoUrl && (
+          <div className={styles.galleryItem}>
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              src={videoUrl}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+            />
+          </div>
+        )}
       </div>
 
       {lightboxIndex !== null && lightboxSrc && (

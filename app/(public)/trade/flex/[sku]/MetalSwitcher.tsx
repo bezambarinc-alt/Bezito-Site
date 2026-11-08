@@ -8,7 +8,7 @@ import styles from './pdp.module.css'
 export interface MetalOption {
   key: string    // 'platinum' | 'rose_gold' | 'yellow_gold'
   label: string  // 'Platinum' | 'Rose Gold' | 'Yellow Gold'
-  images: { front?: string; top?: string; angled?: string }
+  images: { front?: string; top?: string; angled?: string; video?: string }
 }
 
 interface Props {
