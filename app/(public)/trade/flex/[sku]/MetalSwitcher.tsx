@@ -2,6 +2,7 @@
 
 import { useSearchParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
+import { cldUrl } from '@/lib/cloudinary'
 import styles from './pdp.module.css'
 
 export interface MetalOption {
@@ -43,9 +44,10 @@ export default function MetalSwitcher({ metals, slug }: Props) {
           >
             {m.images.front && (
               <Image
-                src={m.images.front}
+                src={cldUrl(m.images.front, 'f_auto,q_auto:best,w_200')}
                 alt={m.label}
                 fill
+                unoptimized
                 sizes="60px"
                 style={{ objectFit: 'cover', objectPosition: 'center top' }}
               />

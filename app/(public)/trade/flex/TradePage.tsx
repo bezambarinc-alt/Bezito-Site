@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
+import { cldUrl } from '@/lib/cloudinary'
 import s from './page.module.css'
 
 const PLACEHOLDER = 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/Jewelry%20Images/Bracelets/5FLX40ECN.png'
@@ -103,7 +104,7 @@ function ProductCard({ piece, metal }: { piece: Piece; metal?: MetalVariant }) {
       <div className={s.media}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={image}
+          src={cldUrl(image, 'f_auto,q_auto:best,w_1500')}
           alt={metal ? `${piece.name} · ${metal.label}` : piece.name}
           loading="lazy"
           style={{ width: '100%', display: 'block', objectFit: 'cover' }}

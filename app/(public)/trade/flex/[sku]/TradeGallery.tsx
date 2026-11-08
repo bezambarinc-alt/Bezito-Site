@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import IJewelViewer from '@/components/pdp/IJewelViewer'
+import { cldUrl } from '@/lib/cloudinary'
 import styles from './pdp.module.css'
 
 interface Props {
@@ -74,9 +75,10 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
           >
             {src && (
               <Image
-                src={src}
+                src={cldUrl(src, 'f_auto,q_auto:best,w_1500')}
                 alt={`${displayName} · view ${i + 1}`}
                 fill
+                unoptimized
                 priority={i === 0 && !heroIsIJewel}
                 sizes="(max-width: 860px) 50vw, 27.5vw"
                 style={{ objectFit: 'cover', objectPosition: 'center top' }}
@@ -97,9 +99,10 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
           )}
           <div className={styles.lightboxImgWrap} onClick={e => e.stopPropagation()}>
             <Image
-              src={lightboxSrc}
+              src={cldUrl(lightboxSrc, 'f_auto,q_auto:best,w_3000')}
               alt={`${displayName} · view ${lightboxIndex + 1}`}
               fill
+              unoptimized
               sizes="100vw"
               style={{ objectFit: 'contain' }}
             />
