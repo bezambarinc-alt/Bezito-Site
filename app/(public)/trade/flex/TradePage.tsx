@@ -74,9 +74,9 @@ const PIECES: Piece[] = [
 ]
 
 const CUT_NAMES = {
-  round: 'Flex Round Brilliant Diamond Bracelet',
-  emerald: 'Flex Emerald Cut Diamond Bracelet',
-  asscher: 'Flex Asscher Cut Diamond Bracelet',
+  round: 'Extent Flex Bracelet, Round Brilliant',
+  emerald: 'Extent Flex Bracelet, Emerald Cut',
+  asscher: 'Extent Flex Bracelet, Asscher Cut',
 }
 
 function getSKU(ref: string) {
@@ -282,7 +282,7 @@ export default function TradePage() {
         <div className={s.heroCap}>
           <div className={s.wrap}>
             <div>
-              <span className={s.heroEyebrow}>The Flex collection</span>
+              <span className={s.heroEyebrow}>Extent</span>
               <h1 className={s.heroTitle}>One line of diamonds.<br />No clasp.</h1>
             </div>
           </div>
@@ -293,11 +293,11 @@ export default function TradePage() {
       <main id="collection" style={{ background: '#fff' }}>
         <div className={s.wrap}>
           <nav className={s.crumbs} aria-label="Breadcrumb">
-            For the trade<span>/</span>Bracelets<span>/</span>Flex
+            For the Trade<span>/</span>Bracelets<span>/</span>Extent
           </nav>
           <div className={s.intro}>
             <div>
-              <h2 className={`ba-title ${s.introTitle}`}>The Flex Bracelet</h2>
+              <h2 className={`ba-title ${s.introTitle}`}>Extent™ Flex Bracelet</h2>
               <div className={s.facts}>
                 <div><b>3 cuts</b>Round, emerald, Asscher</div>
                 <div><b>4 to 56 ct</b>Total diamond weight</div>
