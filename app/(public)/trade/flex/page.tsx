@@ -58,10 +58,10 @@ export default async function TradeFlexPage() {
       }
       if (metals.length === 0) continue
 
-      const ct = row.stone_weight_each
-        ? parseFloat(row.stone_weight_each)
-        : row.total_carat_weight
-          ? parseFloat(row.total_carat_weight)
+      const ct = row.total_carat_weight
+        ? parseFloat(row.total_carat_weight)
+        : row.stone_weight_each
+          ? parseFloat(row.stone_weight_each)
           : 0
 
       dbCards.push({

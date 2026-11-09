@@ -117,7 +117,7 @@ function ProductCard({ piece, metal }: { piece: Piece; metal?: MetalVariant }) {
       <div>
         <p className={s.cardEyebrow}>{getSKU(piece.ref)}</p>
         <p className={s.cardTitle}>
-          {CUT_NAMES[piece.cut]}<span className={s.cardCt}>{piece.ct.toFixed(2)} ct tw</span>
+          {CUT_NAMES[piece.cut]}<span className={s.cardCt}>{(+piece.ct.toFixed(2)).toString()} ct tw</span>
         </p>
         {metal && <p className={s.cardMetal}>{metal.label}</p>}
       </div>
@@ -155,8 +155,8 @@ function EditorialTile() {
 function FullRangeTile() {
   return (
     <div className={`${s.card} ${s.tilewrap}`}>
-      <div className={s.tile}>
-        <div className={s.tileIn} style={{ paddingTop: 56 }}>
+      <div className={s.tile} style={{ justifyContent: 'center' }}>
+        <div className={s.tileIn}>
           <p className={s.tileEyebrow}>The full range</p>
           <p className={s.tileBig}>Every size,<br />made to order</p>
           <a href="#range-h" className={s.tileLink}>See all sizes →</a>
