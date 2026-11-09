@@ -229,11 +229,6 @@ export default function TradePage({ dbCards }: { dbCards: FlexCardData[] }) {
           <div className={s.intro}>
             <div>
               <h2 className={`ba-title ${s.introTitle}`}>One line of diamonds. No clasp.</h2>
-              <div className={s.facts}>
-                <div><b>3 cuts</b>Round, emerald, Asscher</div>
-                <div><b>4 to 56 ct</b>Total diamond weight</div>
-                <div><b>3 metals</b>Platinum, rose gold, yellow gold</div>
-              </div>
             </div>
             <p>
               A continuous line of natural diamonds on a flexible gold spine. The bracelet stretches
