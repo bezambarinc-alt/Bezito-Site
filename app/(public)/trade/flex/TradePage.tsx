@@ -282,8 +282,8 @@ export default function TradePage() {
         <div className={s.heroCap}>
           <div className={s.wrap}>
             <div>
-              <span className={s.heroEyebrow}>Extent</span>
-              <h1 className={s.heroTitle}>One line of diamonds.<br />No clasp.</h1>
+              <span className={s.heroEyebrow}>Bez Ambar · Los Angeles</span>
+              <h1 className={s.heroTitle}>Extent™ Flex Bracelet</h1>
             </div>
           </div>
         </div>
@@ -297,18 +297,17 @@ export default function TradePage() {
           </nav>
           <div className={s.intro}>
             <div>
-              <h2 className={`ba-title ${s.introTitle}`}>Extent™ Flex Bracelet</h2>
+              <h2 className={`ba-title ${s.introTitle}`}>One line of diamonds. No clasp.</h2>
               <div className={s.facts}>
                 <div><b>3 cuts</b>Round, emerald, Asscher</div>
                 <div><b>4 to 56 ct</b>Total diamond weight</div>
-                <div><b>No clasp</b>Opens over the hand</div>
+                <div><b>3 metals</b>Platinum, rose gold, yellow gold</div>
               </div>
             </div>
             <p>
               A continuous line of natural diamonds on a flexible gold spine. The bracelet stretches
               open over the hand and closes back to the wrist, so there is no clasp to break the line.
-              Every stone is cut and matched in our Los Angeles atelier, and each size is made in 18K
-              white gold or platinum.
+              Every stone is cut and matched in our Los Angeles atelier, and each size is made in platinum, 18K rose gold or 18K yellow gold.
             </p>
           </div>
         </div>
