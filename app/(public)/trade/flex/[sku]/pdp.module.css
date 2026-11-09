@@ -6,7 +6,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 55fr 45fr;
+  grid-template-columns: 52fr 48fr;
   gap: clamp(32px, 4vw, 80px);
   max-width: var(--ba-maxw-xl);
   margin-inline: auto;
@@ -19,7 +19,7 @@
 .galleryCol {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: 4px;
   align-content: start;
   min-height: calc(100dvh - var(--ba-header-h));
 }
