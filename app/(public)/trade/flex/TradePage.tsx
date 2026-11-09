@@ -153,92 +153,10 @@ function EditorialTile() {
 }
 
 
-function TradeForm({
-  selections,
-  onToggle,
-}: {
-  selections: Set<string>
-  onToggle: (id: string) => void
-}) {
-  const [allRange, setAllRange] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
-  const [err, setErr] = useState('')
-
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    const f = e.currentTarget
-    const name  = (f.elements.namedItem('name')  as HTMLInputElement).value.trim()
-    const store = (f.elements.namedItem('store') as HTMLInputElement).value.trim()
-    const email = (f.elements.namedItem('email') as HTMLInputElement).value.trim()
-    if (!name || !store || !/^\S+@\S+\.\S+$/.test(email)) {
-      setErr('Please add your name, store, and a valid email so we can send the line sheet.')
-      return
-    }
-    setErr('')
-    const city    = (f.elements.namedItem('city')    as HTMLInputElement).value.trim()
-    const message = (f.elements.namedItem('message') as HTMLTextAreaElement).value.trim()
-    const chosen  = PIECES.filter(p => selections.has(p.id)).map(p => p.name)
-    if (allRange) chosen.push('The full Flex range')
-    const body = `Name: ${name}\nStore: ${store}\nCity: ${city}\nEmail: ${email}\nInterested in: ${chosen.join(', ') || 'The Flex collection'}\n\n${message}`
-    window.location.href = `mailto:bez@bezambar.com?subject=${encodeURIComponent('Flex line sheet request · ' + store)}&body=${encodeURIComponent(body)}`
-    setSubmitted(true)
-  }
-
-  return (
-    <form className={s.form} onSubmit={handleSubmit} noValidate>
-      <label className={`${s.fieldLabel} ${s.f}`} htmlFor="f-name">
-        Your name
-        <input id="f-name" name="name" autoComplete="name" required />
-      </label>
-      <label className={`${s.fieldLabel} ${s.f}`} htmlFor="f-store">
-        Store
-        <input id="f-store" name="store" autoComplete="organization" required />
-      </label>
-      <label className={`${s.fieldLabel} ${s.f}`} htmlFor="f-email">
-        Email
-        <input id="f-email" name="email" type="email" autoComplete="email" required />
-      </label>
-      <label className={`${s.fieldLabel} ${s.f}`} htmlFor="f-city">
-        City and state
-        <input id="f-city" name="city" autoComplete="address-level2" />
-      </label>
-      <fieldset className={s.full}>
-        <legend>Interested in</legend>
-        <div className={s.picks}>
-          {PIECES.map(p => (
-            <label key={p.id} htmlFor={`pick-${p.id}`}>
-              <input
-                type="checkbox" id={`pick-${p.id}`}
-                checked={selections.has(p.id)}
-                onChange={() => onToggle(p.id)}
-              />
-              {p.name}
-            </label>
-          ))}
-          <label htmlFor="pick-all">
-            <input type="checkbox" id="pick-all" checked={allRange} onChange={e => setAllRange(e.target.checked)} />
-            The full range
-          </label>
-        </div>
-      </fieldset>
-      <label className={`${s.fieldLabel} ${s.f} ${s.full}`} htmlFor="f-msg">
-        Message
-        <textarea id="f-msg" name="message" placeholder="Sizes, metals, or a time to talk" />
-      </label>
-      <div className={`${s.full} ${s.submitRow}`}>
-        <button className={s.btnSubmit} type="submit">Request the line sheet</button>
-        <p className={s.formnote}>Opens your email with your request filled in.</p>
-      </div>
-      {err      && <div className={`${s.done} ${s.full}`}>{err}</div>}
-      {submitted && <div className={`${s.done} ${s.full}`}>Your email app should open with the request filled in. If it doesn&rsquo;t, write to bez@bezambar.com.</div>}
-    </form>
-  )
-}
 
 export default function TradePage({ dbCards }: { dbCards: FlexCardData[] }) {
   const [activeCut, setActiveCut] = useState('all')
   const [sortOrder, setSortOrder] = useState('feat')
-  const [checkedPieces, setCheckedPieces] = useState<Set<string>>(new Set())
 
   // Convert server-fetched card data to Piece objects for the grid
   const gridPieces = useMemo(() => dbCards.map(c => ({
@@ -278,14 +196,6 @@ export default function TradePage({ dbCards }: { dbCards: FlexCardData[] }) {
       if (sortOrder === 'desc') return b.ct - a.ct
       return 0
     })
-
-  function handleToggle(id: string) {
-    setCheckedPieces(prev => {
-      const next = new Set(prev)
-      next.has(id) ? next.delete(id) : next.add(id)
-      return next
-    })
-  }
 
   return (
     <>
@@ -371,35 +281,6 @@ export default function TradePage({ dbCards }: { dbCards: FlexCardData[] }) {
         </div>
       </main>
 
-      {/* Trade inquiry */}
-      <section className={s.tradeSection} id="trade" aria-labelledby="trade-h">
-        <div className={`${s.wrap} ${s.two}`}>
-          <div>
-            <p className="ba-eyebrow">For retailers</p>
-            <h2 id="trade-h" className={`ba-title ${s.sectionTitle}`}>Carry Flex in your store</h2>
-            <p>
-              Bez Ambar has made fine jewelry in Los Angeles since 1979, cutting and setting our own
-              stones and supplying some of the best-known houses in the trade. Flex is now open to a
-              small number of retailers.
-            </p>
-            <ul className={s.points}>
-              <li>Line sheet with trade pricing for every size</li>
-              <li>Pieces available from atelier inventory, with any size made to order</li>
-              <li>Natural diamonds, matched by hand, in 18K white gold or platinum</li>
-              <li>Lifetime warranty on craftsmanship and materials</li>
-            </ul>
-            <div className={s.contact}>
-              <p className="ba-eyebrow" style={{ marginBottom: 8 }}>Or write to Bez directly</p>
-              <a href="mailto:bez@bezambar.com">bez@bezambar.com</a>
-              <a href="tel:+12136299191">(213) 629-9191</a>
-              <span style={{ color: 'var(--ba-ink-muted, #7d776f)' }}>
-                611 Wilshire Blvd, Los Angeles, CA 90017 · by appointment
-              </span>
-            </div>
-          </div>
-          <TradeForm selections={checkedPieces} onToggle={handleToggle} />
-        </div>
-      </section>
     </>
   )
 }
