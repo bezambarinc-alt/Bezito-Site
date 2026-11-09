@@ -58,9 +58,9 @@ function rowToProduct(r: Record<string, unknown>): Product {
     metal:             (r.metal           as string) ?? undefined,
     gemStone:          (r.stone_shape     as string) ?? undefined,
     caratWeight:       r.total_carat_weight != null
-                         ? String(r.total_carat_weight)
+                         ? parseFloat(String(r.total_carat_weight)).toString()
                          : (r.stone_carats as string) ?? undefined,
-    centerStoneWeight: r.center_stone_weight != null ? String(r.center_stone_weight) : undefined,
+    centerStoneWeight: r.center_stone_weight != null ? parseFloat(String(r.center_stone_weight)).toString() : undefined,
     color:             (r.stone_color     as string) ?? undefined,
     clarity:           (r.stone_clarity   as string) ?? undefined,
     heroVideoUrl:      heroVideo  ?? undefined,
