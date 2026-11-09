@@ -1,9 +1,18 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { cldUrl } from '@/lib/cloudinary'
 import s from './page.module.css'
+
+export interface FlexCardData {
+  id: string
+  sku: string
+  slug?: string
+  cut: 'round' | 'emerald' | 'asscher'
+  ct: number
+  metals: Array<{ key: string; label: string; image: string }>
+}
 
 const PLACEHOLDER = 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/Jewelry%20Images/Bracelets/5FLX40ECN.png'
 const LIFESTYLE_IMG = 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1787210681/Jewelry%20Images/Bracelets/c0834-model.avif'
@@ -84,12 +93,7 @@ function getSKU(ref: string) {
   return idx >= 0 ? ref.slice(idx + 3) : ref
 }
 
-const CUTS = [
-  { key: 'all',     label: 'All',     count: PIECES.length },
-  { key: 'round',   label: 'Round',   count: PIECES.filter(p => p.cut === 'round').length },
-  { key: 'emerald', label: 'Emerald', count: PIECES.filter(p => p.cut === 'emerald').length },
-  { key: 'asscher', label: 'Asscher', count: PIECES.filter(p => p.cut === 'asscher').length },
-]
+// CUTS is computed dynamically from dbCards in TradePage — see useMemo below
 
 function ProductCard({ piece, metal }: { piece: Piece; metal?: MetalVariant }) {
   const image = metal?.image ?? PLACEHOLDER
@@ -126,7 +130,7 @@ function ProductCard({ piece, metal }: { piece: Piece; metal?: MetalVariant }) {
 }
 
 function expandPiece(piece: Piece): Array<{ piece: Piece; metal?: MetalVariant }> {
-  if (piece.metals && piece.metals.length > 1) {
+  if (piece.metals && piece.metals.length > 0) {
     return piece.metals.map(metal => ({ piece, metal }))
   }
   return [{ piece }]
@@ -244,12 +248,42 @@ function TradeForm({
   )
 }
 
-export default function TradePage() {
+export default function TradePage({ dbCards }: { dbCards: FlexCardData[] }) {
   const [activeCut, setActiveCut] = useState('all')
   const [sortOrder, setSortOrder] = useState('feat')
   const [checkedPieces, setCheckedPieces] = useState<Set<string>>(new Set())
 
-  const filtered = PIECES
+  // Convert server-fetched card data to Piece objects for the grid
+  const gridPieces = useMemo(() => dbCards.map(c => ({
+    id: c.id,
+    cut: c.cut,
+    name: CUT_NAMES[c.cut],
+    ref: c.sku,
+    ct: c.ct,
+    spec: '',
+    slug: c.slug,
+    metals: c.metals,
+  } as Piece)), [dbCards])
+
+  // Compute filter pill counts from actual grid cards (each metal = 1 visible card)
+  const cuts = useMemo(() => {
+    let round = 0, emerald = 0, asscher = 0
+    for (const c of dbCards) {
+      const n = c.metals.length
+      if (c.cut === 'round')   round += n
+      if (c.cut === 'emerald') emerald += n
+      if (c.cut === 'asscher') asscher += n
+    }
+    const total = round + emerald + asscher
+    return [
+      { key: 'all',     label: 'All',     count: total,   visible: true },
+      { key: 'round',   label: 'Round',   count: round,   visible: round > 0 },
+      { key: 'emerald', label: 'Emerald', count: emerald, visible: emerald > 0 },
+      { key: 'asscher', label: 'Asscher', count: asscher, visible: asscher > 0 },
+    ]
+  }, [dbCards])
+
+  const filtered = gridPieces
     .filter(p => activeCut === 'all' || p.cut === activeCut)
     .slice()
     .sort((a, b) => {
@@ -316,7 +350,7 @@ export default function TradePage() {
         <div className={s.rail}>
           <div className={s.wrap}>
             <div className={s.chips} role="group" aria-label="Filter by cut">
-              {CUTS.map(c => (
+              {cuts.filter(c => c.visible).map(c => (
                 <button
                   key={c.key}
                   className={s.chip}
