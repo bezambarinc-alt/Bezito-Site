@@ -60,7 +60,7 @@ export default function TradePDP({ product }: Props) {
   const sublineParts: string[] = []
   if (gemStone) sublineParts.push(`${gemStone} Diamonds`)
   if (orientation) sublineParts.push(orientation)
-  if (stoneWeightEach) sublineParts.push(`${fmt(stoneWeightEach)} ct each`)
+  if (stoneWeightEach) sublineParts.push(`${stoneWeightEach.toFixed(2)} ct each`)
   const subline = sublineParts.join(' · ')
 
   // Specs line segments

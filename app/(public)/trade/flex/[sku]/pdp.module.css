@@ -109,71 +109,35 @@
 
 .back {
   display: inline-block;
-  font: 400 11px/1 var(--ba-font-sans);
-  letter-spacing: 0.08em;
+  font-family: var(--ba-font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.30em;
   text-transform: uppercase;
-  color: var(--ba-ink-muted);
+  color: var(--ba-gold);
   text-decoration: none;
   margin-bottom: 36px;
 }
-.back:hover { color: var(--ba-ink); }
-
-.eyebrow {
-  font: 400 11px/1 var(--ba-font-sans);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ba-gold);
-  margin: 0 0 14px;
-}
+.back:hover { opacity: 0.75; }
 
 .title {
-  font: 300 clamp(28px, 3vw, 44px) / 1.1 var(--ba-font-editorial);
-  letter-spacing: -0.01em;
-  color: var(--ba-ink);
-  margin: 0 0 8px;
-}
-
-.variant {
-  font: 300 clamp(18px, 2vw, 26px) / 1.2 var(--ba-font-editorial);
-  color: var(--ba-ink-soft);
-  margin: 0 0 10px;
+  font-family: var(--ba-font-sans);
+  font-size: clamp(20px, 2.4vw, 36px);
+  font-weight: 200;
+  letter-spacing: 0.03em;
+  line-height: 1.08;
+  text-transform: uppercase;
+  color: var(--ba-gold);
+  margin: 0 0 0.5rem;
 }
 
 .ref {
-  font: 400 12px/1 var(--ba-font-sans);
-  letter-spacing: 0.06em;
-  color: var(--ba-ink-muted);
+  font-family: var(--ba-font-sans);
+  font-size: clamp(11px, 1.2vw, 17px);
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  color: rgba(149, 130, 107, 0.6);
   margin: 0 0 20px;
-}
-
-.collectionDesc {
-  font: 300 14px/1.6 var(--ba-font-editorial);
-  color: var(--ba-ink-muted);
-  margin: 0 0 12px;
-}
-
-.lede {
-  font: 300 14px/1.6 var(--ba-font-editorial);
-  color: var(--ba-ink-soft);
-  margin: 0 0 32px;
-}
-
-.specList {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 12px 28px;
-  margin: 0 0 32px;
-}
-.specList dt {
-  font: 400 11px/1.4 var(--ba-font-sans);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ba-ink-muted);
-}
-.specList dd {
-  margin: 0;
-  font: 400 13px/1.4 var(--ba-font-editorial);
-  color: var(--ba-ink);
 }
 
 .divider {
@@ -185,8 +149,11 @@
 /* ── Unified template additions ── */
 
 .subline {
-  font: 300 14px/1.5 var(--ba-font-editorial);
-  color: var(--ba-ink-soft);
+  font-family: var(--ba-font-sans);
+  font-size: clamp(13px, 1.3vw, 17px);
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  color: rgba(149, 130, 107, 0.85);
   margin: 0 0 14px;
 }
 
@@ -195,15 +162,22 @@
 }
 
 .detailsDesc {
-  font: 300 14px/1.6 var(--ba-font-editorial);
-  color: var(--ba-ink-soft);
-  margin: 0 0 20px;
+  font-family: var(--ba-font-sans);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.65;
+  letter-spacing: 0.03em;
+  color: rgba(149, 130, 107, 0.85);
+  margin: 0 0 16px;
 }
 
 .specLine {
-  font: 400 11px/1.6 var(--ba-font-sans);
-  letter-spacing: 0.06em;
-  color: var(--ba-ink-muted);
+  font-family: var(--ba-font-sans);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  color: rgba(149, 130, 107, 0.6);
   margin: 0;
 }
 
@@ -214,15 +188,17 @@
 }
 
 .metalLabel {
-  font: 400 11px/1 var(--ba-font-sans);
-  letter-spacing: 0.08em;
+  font-family: var(--ba-font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.30em;
   text-transform: uppercase;
-  color: var(--ba-ink-muted);
+  color: rgba(149, 130, 107, 0.85);
   margin: 0 0 10px;
 }
 
 .metalLabel span {
-  color: var(--ba-ink);
+  color: var(--ba-gold);
 }
 
 .metalRow {
