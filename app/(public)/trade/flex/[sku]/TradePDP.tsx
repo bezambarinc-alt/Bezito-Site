@@ -46,7 +46,7 @@ function fmt(n: number): string {
   return n % 1 === 0 ? n.toFixed(0) : n.toFixed(2).replace(/\.?0+$/, '')
 }
 
-export default function TradePDP({ product }: Props) {
+export default function TradePDP({ product, selectedMetal }: Props) {
   const { sku, specs, productType, stoneCount, stoneWeightEach } = product
   const { gemStone, collection, lede } = specs
 
@@ -56,19 +56,38 @@ export default function TradePDP({ product }: Props) {
   const defaultSlots = buildDefaultGallery(product)
   const metals = buildMetals(product)
 
-  // Subline segments — only include non-empty parts
+  // Subline segments
   const sublineParts: string[] = []
   if (gemStone) sublineParts.push(`${gemStone} Diamonds`)
   if (orientation) sublineParts.push(orientation)
   if (stoneWeightEach) sublineParts.push(`${stoneWeightEach.toFixed(2)} ct each`)
   const subline = sublineParts.join(' · ')
 
-  // Specs line segments
-  const specParts: string[] = []
-  if (specs.caratWeight) specParts.push(`Total carat weight ${specs.caratWeight} ct tw`)
-  if (stoneCount) specParts.push(`Stones ${stoneCount}`)
-  specParts.push('Made in Los Angeles')
-  const specLine = specParts.join(' · ')
+  // Resolve selected metal label (URL param → available metals → first)
+  const selectedMetalLabel = (() => {
+    if (!product.availableMetals?.length) return specs.metal ?? null
+    if (selectedMetal) {
+      const found = product.availableMetals.find(
+        m => m.toLowerCase().replace(/\s+/g, '_') === selectedMetal
+      )
+      if (found) return found
+    }
+    return product.availableMetals[0] ?? null
+  })()
+
+  // Spec rows for details section
+  const specRows: { label: string; value: string }[] = []
+  if (selectedMetalLabel) specRows.push({ label: 'Metal', value: selectedMetalLabel })
+  if (stoneCount || gemStone) {
+    const parts: string[] = []
+    if (stoneCount) parts.push(String(stoneCount))
+    if (gemStone) parts.push(`${gemStone} Diamonds`)
+    if (stoneWeightEach) parts.push(`${stoneWeightEach.toFixed(2)} ct each`)
+    if (parts.length) specRows.push({ label: 'Stones', value: parts.join(' · ') })
+  }
+  if (specs.caratWeight) specRows.push({ label: 'Carat weight', value: `${specs.caratWeight} ct tw` })
+  specRows.push({ label: 'Origin', value: 'Made in Los Angeles' })
+  specRows.push({ label: 'Reference', value: sku })
 
   const displayTitle = [collectionName && `${collectionName}™`, productType]
     .filter(Boolean)
@@ -130,12 +149,22 @@ export default function TradePDP({ product }: Props) {
           {/* 6. CTA */}
           <TradeCTA sku={sku} title={displayTitle || product.name} />
 
-          <hr className={styles.divider} />
-
-          {/* 7. Details */}
-          <div className={styles.details}>
+          {/* 7. Details section */}
+          <div className={styles.detailsSection}>
+            <div className={styles.detailsSectionTop}>
+              <span className={styles.detailsLabel}>Details</span>
+            </div>
             {lede && <p className={styles.detailsDesc}>{lede}</p>}
-            <p className={styles.specLine}>{specLine}</p>
+            {specRows.length > 0 && (
+              <dl className={styles.specList}>
+                {specRows.map(({ label, value }) => (
+                  <div key={label} className={styles.specRow}>
+                    <dt className={styles.specRowLabel}>{label}</dt>
+                    <dd className={styles.specRowValue}>{value}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
           </div>
 
         </div>

@@ -137,13 +137,7 @@
   margin: 0 0 20px;
 }
 
-.divider {
-  border: none;
-  border-top: 1px solid var(--ba-border-warm);
-  margin: 0 0 32px;
-}
-
-/* ── Unified template additions ── */
+/* ── Subline ── */
 
 .subline {
   font-family: var(--ba-font-sans);
@@ -154,28 +148,71 @@
   margin: 0 0 14px;
 }
 
-.details {
-  margin-top: 4px;
+/* ── Details section ── */
+
+.detailsSection {
+  margin-top: 32px;
+}
+
+.detailsSectionTop {
+  border-top: 1px solid var(--ba-border-warm);
+  padding-top: 18px;
+  margin-bottom: 20px;
+}
+
+.detailsLabel {
+  font-family: var(--ba-font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.30em;
+  text-transform: uppercase;
+  color: var(--ba-gold);
 }
 
 .detailsDesc {
   font-family: var(--ba-font-sans);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 300;
-  line-height: 1.65;
-  letter-spacing: 0.03em;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
   color: rgba(149, 130, 107, 0.85);
-  margin: 0 0 16px;
+  margin: 0 0 20px;
 }
 
-.specLine {
-  font-family: var(--ba-font-sans);
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  line-height: 1.6;
-  color: rgba(149, 130, 107, 0.6);
+.specList {
+  border-top: 1px solid var(--ba-border-warm);
+  padding-top: 16px;
   margin: 0;
+  padding-left: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px 20px;
+}
+
+.specRow {
+  display: contents;
+}
+
+.specRowLabel {
+  font-family: var(--ba-font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(149, 130, 107, 0.45);
+  margin: 0;
+  align-self: baseline;
+  white-space: nowrap;
+}
+
+.specRowValue {
+  font-family: var(--ba-font-sans);
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: rgba(149, 130, 107, 0.85);
+  margin: 0;
+  align-self: baseline;
 }
 
 /* ── Metal switcher ── */
@@ -206,8 +243,8 @@
 
 .metalTile {
   position: relative;
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   border: 1px solid var(--ba-border-warm);
   background: var(--ba-paper);
   cursor: pointer;
