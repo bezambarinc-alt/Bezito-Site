@@ -1,15 +1,11 @@
 .root {
   min-height: 100dvh;
-  padding-block: 80px;
-  padding-inline: clamp(24px, 5vw, 80px);
 }
 
 .grid {
   display: grid;
-  grid-template-columns: 52fr 48fr;
-  gap: clamp(32px, 4vw, 80px);
-  max-width: var(--ba-maxw-xl);
-  margin-inline: auto;
+  grid-template-columns: 52vw 1fr;
+  gap: 0;
   align-items: start;
 }
 
@@ -104,7 +100,8 @@
 .specCol {
   position: sticky;
   top: calc(var(--ba-header-h) + 16px);
-  padding-block: 20px;
+  padding: 80px clamp(32px, 4vw, 60px) 80px clamp(40px, 4vw, 72px);
+  max-width: 520px;
 }
 
 .back {
@@ -269,5 +266,7 @@
   }
   .specCol {
     position: static;
+    padding: 40px clamp(24px, 5vw, 48px);
+    max-width: 100%;
   }
 }
