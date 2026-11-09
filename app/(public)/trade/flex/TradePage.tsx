@@ -152,19 +152,6 @@ function EditorialTile() {
   )
 }
 
-function FullRangeTile() {
-  return (
-    <div className={`${s.card} ${s.tilewrap}`}>
-      <div className={s.tile} style={{ justifyContent: 'center' }}>
-        <div className={s.tileIn}>
-          <p className={s.tileEyebrow}>The full range</p>
-          <p className={s.tileBig}>Every size,<br />made to order</p>
-          <a href="#range-h" className={s.tileLink}>See all sizes →</a>
-        </div>
-      </div>
-    </div>
-  )
-}
 
 function TradeForm({
   selections,
@@ -380,64 +367,9 @@ export default function TradePage({ dbCards }: { dbCards: FlexCardData[] }) {
               <ProductCard key={metal ? `${piece.id}-${metal.key}` : piece.id} piece={piece} metal={metal} />
             ))}
             <EditorialTile />
-            <FullRangeTile />
           </div>
         </div>
       </main>
-
-      {/* Range table */}
-      <section className={s.band} aria-labelledby="range-h">
-        <div className={`${s.wrap} ${s.two}`}>
-          <div>
-            <p className="ba-eyebrow">The full range</p>
-            <h2 id="range-h" className={`ba-title ${s.sectionTitle}`}>Every size, made to order</h2>
-            <p>
-              The full Flex range runs from a fine 2&nbsp;mm line to a one-carat-per-stone statement,
-              in rounds and in emerald cuts set either across the band or along it.
-            </p>
-            <p>
-              Stone counts and total weights depend on wrist size. The figures here are calculated
-              for a 52&nbsp;mm inner diameter.
-            </p>
-          </div>
-          <div>
-            <div className={s.tbl}>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Cut</th><th>Per stone</th><th>Stones</th><th>Total weight</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Round<small>Prong set, single row</small></td>
-                    <td>0.03 – 1.00 ct</td><td>80 – 29</td><td>≈ 2.6 – 29.1 ct</td>
-                  </tr>
-                  <tr>
-                    <td>Emerald, east-west<small>Long axis across the band</small></td>
-                    <td>0.10 – 1.00 ct</td><td>56 – 26</td><td>≈ 5.6 – 26.4 ct</td>
-                  </tr>
-                  <tr>
-                    <td>Emerald, north-south<small>Long axis along the band</small></td>
-                    <td>from 0.10 ct</td><td>from 76</td><td>from ≈ 7.6 ct</td>
-                  </tr>
-                  <tr>
-                    <td>Asscher<small>Two rows, edge to edge</small></td>
-                    <td>0.25 ct</td><td>Two rows</td><td>≈ 55.9 ct</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div className={s.sizes} aria-label="Wrist sizes">
-              <div><b>XS</b>6.0 in · 152 mm</div>
-              <div><b>S</b>6.5 in · 165 mm</div>
-              <div><b>M</b>7.0 in · 178 mm</div>
-              <div><b>L</b>7.5 in · 191 mm</div>
-            </div>
-            <p className={s.note}>Circumference by wrist size. Larger sizes on request.</p>
-          </div>
-        </div>
-      </section>
 
       {/* Trade inquiry */}
       <section className={s.tradeSection} id="trade" aria-labelledby="trade-h">
