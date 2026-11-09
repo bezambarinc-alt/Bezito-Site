@@ -87,6 +87,9 @@ function rowToProduct(r: Record<string, unknown>): Product {
     interactiveIsHero:  Boolean(r.interactive_is_hero),
     metalImages:        (r.metal_images as MetalImages | null) ?? undefined,
     availableMetals:    (r.available_metals as string[] | null) ?? undefined,
+    productType:        (r.product_type as string | null) ?? undefined,
+    stoneCount:         r.stone_count != null ? Number(r.stone_count) : null,
+    stoneWeightEach:    r.stone_weight_each != null ? Number(r.stone_weight_each) : null,
   }
 }
 
@@ -97,7 +100,8 @@ const COLS = `
   center_stone_weight, collection, active, featured, sort_order, synced_at,
   view_1_url, view_2_url, view_3_url, related_skus,
   ijewel_url, interactive_is_hero,
-  metal_images, available_metals`
+  metal_images, available_metals,
+  product_type, stone_count, stone_weight_each`
 
 /**
  * URL-safe normalisation of the sku column, mirroring deriveSlug()'s SKU

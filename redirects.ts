@@ -1278,4 +1278,7 @@ export const REDIRECTS: Redirect[] = [
     // C1036 renamed Baguettes → Cadence (2026-10-21)
     { source: '/jewelry/rings/baguettes-emerald-cut-ring', destination: '/jewelry/rings/cadence-emerald-cut-ring', permanent: true },
     { source: '/jewelry/rings/baguettes-emerald-cut-ring/', destination: '/jewelry/rings/cadence-emerald-cut-ring', permanent: true },
+
+    // Legacy WooCommerce product page URL format (_p/sku.htm)
+    { source: '/Cleo_Ring_p/cleo2.htm', destination: '/archive/rings', permanent: true },
 ]

@@ -54,6 +54,7 @@ const FIELDS = [
   'Rose_Gold_Front_URL', 'Rose_Gold_Top_URL', 'Rose_Gold_Angled_URL', 'Rose_Gold_Video_URL', 'Rose_Gold_Closeup_URL', 'Rose_Gold_Model_URL',
   'Yellow_Gold_Front_URL', 'Yellow_Gold_Top_URL', 'Yellow_Gold_Angled_URL', 'Yellow_Gold_Video_URL', 'Yellow_Gold_Closeup_URL', 'Yellow_Gold_Model_URL',
   'Available_Metals',
+  'Product_Type', 'Stone_Count', 'Stone_Weight_Each',
 ].join(',')
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
@@ -124,6 +125,9 @@ interface ZohoProduct {
   Yellow_Gold_Closeup_URL?: string
   Yellow_Gold_Model_URL?: string
   Available_Metals?: string[] | string | null
+  Product_Type?: string
+  Stone_Count?: number | string | null
+  Stone_Weight_Each?: number | string | null
 }
 
 function buildMetalImages(p: ZohoProduct): object | null {
@@ -244,8 +248,9 @@ export async function GET(req: NextRequest) {
             ijewel_url, interactive_is_hero,
             product_channel,
             metal_images, available_metals,
+            product_type, stone_count, stone_weight_each,
             synced_at
-          ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22::text[],$23,$24,$25,$26,$27::text[],now())
+          ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22::text[],$23,$24,$25,$26,$27::text[],$28,$29,$30,now())
           ON CONFLICT (sku) DO UPDATE SET
             slug             = EXCLUDED.slug,
             zoho_id          = EXCLUDED.zoho_id,
@@ -273,6 +278,9 @@ export async function GET(req: NextRequest) {
             product_channel  = EXCLUDED.product_channel,
             metal_images     = EXCLUDED.metal_images,
             available_metals = EXCLUDED.available_metals,
+            product_type        = EXCLUDED.product_type,
+            stone_count         = EXCLUDED.stone_count,
+            stone_weight_each   = EXCLUDED.stone_weight_each,
             synced_at        = now()
             -- active + featured intentionally excluded: Neon-only, managed via admin PATCH
           `,
@@ -304,6 +312,9 @@ export async function GET(req: NextRequest) {
             str(p.Product_Channel) ?? null, // $25 product_channel
             metalImages ? JSON.stringify(metalImages) : null, // $26 metal_images
             availableMetals,              // $27 available_metals
+            str(p.Product_Type) ?? null,              // $28 product_type
+            p.Stone_Count != null ? parseFloat(String(p.Stone_Count)) : null,     // $29 stone_count
+            p.Stone_Weight_Each != null ? parseFloat(String(p.Stone_Weight_Each)) : null, // $30 stone_weight_each
           ],
         )
 

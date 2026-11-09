@@ -177,6 +177,9 @@ CREATE TABLE IF NOT EXISTS products (
   view_3_url          TEXT,          -- Zoho CRM: Visual_Stone_Sketch
   metal_images        JSONB,         -- {platinum:{front,top,angled}, rose_gold:…, yellow_gold:…}
   available_metals    TEXT[],        -- e.g. ['Platinum','Rose Gold','Yellow Gold']
+  product_type        TEXT,          -- Zoho: Product_Type (e.g. "Flex Bracelet")
+  stone_count         INTEGER,       -- Zoho: Stone_Count (total stones in piece)
+  stone_weight_each   NUMERIC(8,3),  -- Zoho: Stone_Weight_Each (per-stone ct weight)
   -- Constraint name is deliberately the legacy one. The column was renamed
   -- plytix_id → zoho_id by migration 014, but Postgres does NOT rename the
   -- constraint that rides along, so production still calls it

@@ -1,0 +1,21 @@
+const { Client } = require('pg')
+;(async () => {
+  const c = new Client({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } })
+  await c.connect()
+  for (const term of ['black','mens','men’s','stretch']) {
+    const r = await c.query(`SELECT slug,title,category FROM archive WHERE slug ILIKE $1 OR coalesce(title,'') ILIKE $1 LIMIT 20`, [`%${term}%`])
+    console.log(`--- archive "${term}" (${r.rowCount}) ---`)
+    r.rows.forEach(x => console.log(`  ${x.slug} | ${x.title} | ${x.category}`))
+  }
+  const b = await c.query(`SELECT slug,title,excerpt FROM blog_posts WHERE slug IN ('black-diamond-jewelry','baguette-diamond-guide','titanium-rings-men-pros-and-cons','secret-behind-ring-sizing','ring-size-guide-choosing-ring-size','anniversary-rings-wedding-rings-eternity-rings','rose-gold-wedding-band')`)
+  console.log('\n=== EXISTING NEIGHBORS ===')
+  b.rows.forEach(x => console.log(`${x.slug}\n  ${x.title}\n  ${x.excerpt}\n`))
+  const h = await c.query(`SELECT slug, regexp_replace(body,'(?s).*?(<h2[^>]*>)','\\1') AS x FROM blog_posts WHERE slug='black-diamond-jewelry'`)
+  const full = await c.query(`SELECT body FROM blog_posts WHERE slug='black-diamond-jewelry'`)
+  console.log('=== black-diamond-jewelry HEADINGS ===')
+  ;(full.rows[0].body.match(/<h[23][^>]*>[^<]*<\/h[23]>/g)||[]).forEach(s=>console.log(' ',s))
+  const full2 = await c.query(`SELECT body FROM blog_posts WHERE slug='baguette-diamond-guide'`)
+  console.log('=== baguette-diamond-guide HEADINGS ===')
+  ;(full2.rows[0].body.match(/<h[23][^>]*>[^<]*<\/h[23]>/g)||[]).forEach(s=>console.log(' ',s))
+  await c.end()
+})().catch(e => { console.error('ERR', e.message); process.exit(1) })

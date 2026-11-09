@@ -1,0 +1,411 @@
+[
+  {
+    "slug": "bangle-vs-bracelet-fine-jewelry",
+    "insertions": [
+      {
+        "find": "A plain gold bangle is appropriate from a work environment to a formal dinner to a beach house breakfast",
+        "replace": "A <a href=\"/blog/gold-bracelet-buying-guide\">plain gold bangle</a> is appropriate from a work environment to a formal dinner to a beach house breakfast"
+      },
+      {
+        "find": "A tennis bracelet, a flex bracelet, a gold link bracelet, and a charm bracelet are all bracelet forms in this category",
+        "replace": "A <a href=\"/blog/diamond-tennis-bracelet-guide\">tennis bracelet</a>, a flex bracelet, a gold link bracelet, and a charm bracelet are all bracelet forms in this category"
+      },
+      {
+        "find": "A flex bracelet — using a series of linked elements that articulate independently — can carry multiple rows of diamonds",
+        "replace": "A <a href=\"/blog/diamond-flex-bracelet-guide\">flex bracelet</a> — using a series of linked elements that articulate independently — can carry multiple rows of diamonds"
+      }
+    ]
+  },
+  {
+    "slug": "gold-bracelet-buying-guide",
+    "insertions": [
+      {
+        "find": "Solid gold link bracelets are the most durable. Every link is machined or cast from solid gold stock",
+        "replace": "<a href=\"/archive/quadrillion-bracelet\">Solid gold link bracelets</a> are the most durable. Every link is machined or cast from solid gold stock"
+      },
+      {
+        "find": "A hand-fabricated curb chain bracelet with high-polish beveled links takes substantially more bench time",
+        "replace": "A hand-fabricated <a href=\"/archive/b4904-bpa-sovcus\">curb chain bracelet</a> with high-polish beveled links takes substantially more bench time"
+      },
+      {
+        "find": "For a bracelet worn daily in an active environment, 14k's higher hardness wears better over time.",
+        "replace": "For a <a href=\"/blog/diamond-tennis-bracelet-guide\">bracelet worn daily</a> in an active environment, 14k's higher hardness wears better over time."
+      }
+    ]
+  },
+  {
+    "slug": "authentic-bez-ambar-buyer-beware",
+    "insertions": [
+      {
+        "find": "manufacturing fine diamond jewelry in Los Angeles since the early 1980s",
+        "replace": "manufacturing <a href=\"/jewelry/rings\">fine diamond jewelry</a> in Los Angeles since the early 1980s"
+      },
+      {
+        "find": "contact the studio directly. Bring or send photographs of the piece",
+        "replace": "<a href=\"/contact\">contact the studio directly</a>. Bring or send photographs of the piece"
+      }
+    ]
+  },
+  {
+    "slug": "nene-leakes-engagement-ring",
+    "insertions": [
+      {
+        "find": "His Beverly Hills atelier draws collectors, entertainers, and private buyers",
+        "replace": "His <a href=\"/about-bez-ambar\">Beverly Hills atelier</a> draws collectors, entertainers, and private buyers"
+      },
+      {
+        "find": "The radiant cut is one of the most versatile shapes in fine jewelry",
+        "replace": "The radiant cut is one of the <a href=\"/jewelry/rings\">most versatile shapes in fine jewelry</a>"
+      }
+    ]
+  },
+  {
+    "slug": "diamond-eternity-bracelet-guide",
+    "insertions": [
+      {
+        "find": "A regular bracelet adjusts at the clasp — links are added or removed, and the fit is precise",
+        "replace": "A <a href=\"/blog/diamond-tennis-bracelet-guide\">regular bracelet</a> adjusts at the clasp — links are added or removed, and the fit is precise"
+      },
+      {
+        "find": "For a bracelet worn daily, this maintenance commitment is real and should factor into the decision.",
+        "replace": "For a <a href=\"/blog/diamond-flex-bracelet-guide\">bracelet worn daily</a>, this maintenance commitment is real and should factor into the decision."
+      },
+      {
+        "find": "Oval, cushion, and princess cuts also work in channel configurations when calibrated to consistent dimensions.",
+        "replace": "Oval, cushion, and <a href=\"/archive/quadrillion-bracelet\">princess cuts</a> also work in channel configurations when calibrated to consistent dimensions."
+      }
+    ]
+  },
+  {
+    "slug": "diamond-tennis-bracelet-guide",
+    "insertions": [
+      {
+        "find": "the whole assembly must flex in multiple directions without any link stressing the setting beside it",
+        "replace": "the whole assembly must <a href=\"/blog/diamond-flex-bracelet-guide\">flex in multiple directions</a> without any link stressing the setting beside it"
+      },
+      {
+        "find": "Platinum is heavier and more durable than white gold and will not change color over time.",
+        "replace": "Platinum is heavier and more durable than <a href=\"/blog/gold-bracelet-buying-guide\">white gold</a> and will not change color over time."
+      },
+      {
+        "find": "Total carat weight is the number most often advertised for tennis bracelets, but it is the least useful single metric",
+        "replace": "Total carat weight is the number most often advertised for tennis bracelets, but it is the <a href=\"/archive/b3427-wallisvs-1\">least useful single metric</a>"
+      }
+    ]
+  },
+  {
+    "slug": "alexandrite-color-change-gemstone-guide",
+    "insertions": [
+      {
+        "find": "Sri Lankan alexandrite shows a color change that can be very attractive",
+        "replace": "<a href=\"/blog/ceylon-sapphire-origin-guide\">Sri Lankan alexandrite</a> shows a color change that can be very attractive"
+      },
+      {
+        "find": "Color-change sapphire typically shifts from blue to purple or violet",
+        "replace": "<a href=\"/blog/blue-diamond-ring-vs-blue-sapphire-diamond-ring\">Color-change sapphire</a> typically shifts from blue to purple or violet"
+      },
+      {
+        "find": "is a reasonable choice for rings that will be worn regularly",
+        "replace": "is a reasonable choice for <a href=\"/blog/choosing-semi-precious-stones\">rings that will be worn regularly</a>"
+      }
+    ]
+  },
+  {
+    "slug": "diamond-flex-bracelet-guide",
+    "insertions": [
+      {
+        "find": "A double-row or triple-row flex bracelet multiplies the diamond coverage across the wrist width",
+        "replace": "A double-row or <a href=\"/archive/b8258-customflex\">triple-row flex bracelet</a> multiplies the diamond coverage across the wrist width"
+      },
+      {
+        "find": "Princess cut diamonds occupy a middle position: more brilliance than baguettes",
+        "replace": "<a href=\"/archive/quadrillion-bracelet\">Princess cut diamonds</a> occupy a middle position: more brilliance than baguettes"
+      },
+      {
+        "find": "A tennis bracelet uses a fixed-link chain construction where each link is a",
+        "replace": "A <a href=\"/blog/diamond-tennis-bracelet-guide\">tennis bracelet</a> uses a fixed-link chain construction where each link is a"
+      }
+    ]
+  },
+  {
+    "slug": "amethyst-jewelry-buying-guide",
+    "insertions": [
+      {
+        "find": "holds its character under different light sources, and does not wash out",
+        "replace": "holds its character under <a href=\"/blog/alexandrite-color-change-gemstone-guide\">different light sources</a>, and does not wash out"
+      },
+      {
+        "find": "For a daily-wear engagement ring, quartz accumulates surface scratches",
+        "replace": "For a <a href=\"/blog/blue-sapphire-engagement-ring\">daily-wear engagement ring</a>, quartz accumulates surface scratches"
+      },
+      {
+        "find": "with any client choosing amethyst for daily wear is about maintenance",
+        "replace": "with any client <a href=\"/blog/choosing-semi-precious-stones\">choosing amethyst for daily wear</a> is about maintenance"
+      }
+    ]
+  },
+  {
+    "slug": "aquamarine-jewelry-buying-guide",
+    "insertions": [
+      {
+        "find": "approaches the saturation of a fine blue sapphire.",
+        "replace": "approaches the saturation of a <a href=\"/blog/blue-sapphire-engagement-ring\">fine blue sapphire</a>."
+      },
+      {
+        "find": "price penalty applied to heat treatment in sapphire or ruby",
+        "replace": "price penalty applied to heat treatment in <a href=\"/blog/ceylon-sapphire-origin-guide\">sapphire</a> or ruby"
+      },
+      {
+        "find": "which places it in a similar durability range to spinel and morganite",
+        "replace": "which places it in a similar durability range to <a href=\"/blog/choosing-semi-precious-stones\">spinel and morganite</a>"
+      }
+    ]
+  },
+  {
+    "slug": "blue-diamond-ring-vs-blue-sapphire-diamond-ring",
+    "insertions": [
+      {
+        "find": "fine Ceylon or Kashmir material, produce a rich, warm blue",
+        "replace": "fine <a href=\"/blog/ceylon-sapphire-origin-guide\">Ceylon or Kashmir</a> material, produce a rich, warm blue"
+      },
+      {
+        "find": "A sapphire engagement ring worn daily for forty years",
+        "replace": "A <a href=\"/blog/blue-sapphire-engagement-ring\">sapphire engagement ring</a> worn daily for forty years"
+      },
+      {
+        "find": "Natural blue diamonds at fine color grades have historically outperformed sapphires",
+        "replace": "<a href=\"/blog/blue-diamond-rings\">Natural blue diamonds</a> at fine color grades have historically outperformed sapphires"
+      }
+    ]
+  },
+  {
+    "slug": "blue-diamond-rings",
+    "insertions": [
+      {
+        "find": "blue diamond and a blue sapphire are completely different minerals with completely different",
+        "replace": "<a href=\"/blog/blue-diamond-ring-vs-blue-sapphire-diamond-ring\">blue diamond and a blue sapphire</a> are completely different minerals with completely different"
+      },
+      {
+        "find": "A GIA report with a photograph is essential for evaluating a natural blue diamond purchase.",
+        "replace": "A <a href=\"/diamond-education\">GIA report</a> with a photograph is essential for evaluating a natural blue diamond purchase."
+      },
+      {
+        "find": "Natural blue diamonds are significantly rarer and more expensive than blue sapphires.",
+        "replace": "Natural blue diamonds are significantly rarer and more expensive than <a href=\"/blog/blue-sapphire-engagement-ring\">blue sapphires</a>."
+      }
+    ]
+  },
+  {
+    "slug": "chocolate-brown-diamond-rings",
+    "insertions": [
+      {
+        "find": "GIA grades brown diamonds using the same colored diamond intensity scale",
+        "replace": "GIA grades brown diamonds using the same <a href=\"/diamond-education\">colored diamond intensity scale</a>"
+      },
+      {
+        "find": "the nitrogen impurities that cause yellow color or the boron that causes blue",
+        "replace": "the nitrogen impurities that cause yellow color or <a href=\"/blog/blue-diamond-rings\">the boron that causes blue</a>"
+      },
+      {
+        "find": "pairings in contemporary colored diamond jewelry: the copper warmth",
+        "replace": "pairings in <a href=\"/jewelry/rings\">contemporary colored diamond jewelry</a>: the copper warmth"
+      }
+    ]
+  },
+  {
+    "slug": "choosing-semi-precious-stones",
+    "insertions": [
+      {
+        "find": "the shifting color of an alexandrite under different light",
+        "replace": "the shifting color of an <a href=\"/blog/alexandrite-color-change-gemstone-guide\">alexandrite under different light</a>"
+      },
+      {
+        "find": "For an engagement ring, amethyst requires care: it can scratch more easily than sapphire",
+        "replace": "For an engagement ring, <a href=\"/blog/amethyst-jewelry-buying-guide\">amethyst requires care</a>: it can scratch more easily than sapphire"
+      },
+      {
+        "find": "Large, clean aquamarines are relatively available compared to similarly sized diamonds",
+        "replace": "Large, clean <a href=\"/blog/aquamarine-jewelry-buying-guide\">aquamarines are relatively available</a> compared to similarly sized diamonds"
+      }
+    ]
+  },
+  {
+    "slug": "ceylon-sapphire-origin-guide",
+    "insertions": [
+      {
+        "find": "compared to Thai or Australian sapphire — a medium to medium-dark blue rather than the near-black",
+        "replace": "compared to <a href=\"/blog/blue-diamond-ring-vs-blue-sapphire-diamond-ring\">Thai or Australian sapphire</a> — a medium to medium-dark blue rather than the near-black"
+      },
+      {
+        "find": "Origin determination for sapphire requires sophisticated testing — trace element analysis",
+        "replace": "Origin determination for sapphire requires <a href=\"/diamond-education\">sophisticated testing</a> — trace element analysis"
+      },
+      {
+        "find": "A well-proportioned oval or cushion cut with proper depth percentages will show dramatically",
+        "replace": "A well-proportioned <a href=\"/blog/blue-sapphire-engagement-ring\">oval or cushion cut</a> with proper depth percentages will show dramatically"
+      }
+    ]
+  },
+  {
+    "slug": "blue-sapphire-engagement-ring",
+    "insertions": [
+      {
+        "find": "Ceylon sapphires (from Sri Lanka) produce a brighter, more electric blue.",
+        "replace": "<a href=\"/blog/ceylon-sapphire-origin-guide\">Ceylon sapphires</a> (from Sri Lanka) produce a brighter, more electric blue."
+      },
+      {
+        "find": "particularly in our Ring of Fire halo designs where the colored center stone",
+        "replace": "particularly in our <a href=\"/archive/b3157-1rof24m-22-sph\">Ring of Fire halo designs</a> where the colored center stone"
+      },
+      {
+        "find": "the reasons to consider a sapphire go beyond royal association, and the reasons",
+        "replace": "the <a href=\"/blog/choosing-semi-precious-stones\">reasons to consider a sapphire</a> go beyond royal association, and the reasons"
+      }
+    ]
+  },
+  {
+    "slug": "fancy-colored-diamond-jewelry",
+    "insertions": [
+      {
+        "find": "GIA grades colored diamonds for hue, tone, and saturation, and the specific combination",
+        "replace": "<a href=\"/diamond-education\">GIA grades colored diamonds</a> for hue, tone, and saturation, and the specific combination"
+      },
+      {
+        "find": "colored diamond jewelry can look dramatically different in different environments",
+        "replace": "<a href=\"/blog/alexandrite-color-change-gemstone-guide\">colored diamond jewelry</a> can look dramatically different in different environments"
+      },
+      {
+        "find": "A Fancy Vivid blue in 1.00 carat is a multi-million-dollar stone",
+        "replace": "A <a href=\"/blog/blue-diamond-rings\">Fancy Vivid blue</a> in 1.00 carat is a multi-million-dollar stone"
+      }
+    ]
+  },
+  {
+    "slug": "fancy-intense-blue-diamond-ring",
+    "insertions": [
+      {
+        "find": "GIA's colored diamond grading system uses nine intensity levels",
+        "replace": "GIA's <a href=\"/diamond-education\">colored diamond grading system</a> uses nine intensity levels"
+      },
+      {
+        "find": "the more saturated, velvety blue of fine sapphires",
+        "replace": "the more saturated, velvety blue of <a href=\"/blog/blue-sapphire-engagement-ring\">fine sapphires</a>"
+      },
+      {
+        "find": "a metallic undertone that distinguishes it from other blue gemstones",
+        "replace": "a metallic undertone that distinguishes it from <a href=\"/blog/blue-diamond-ring-vs-blue-sapphire-diamond-ring\">other blue gemstones</a>"
+      }
+    ]
+  },
+  {
+    "slug": "emerald-gemstone-buying-guide",
+    "insertions": [
+      {
+        "find": "Buyers accustomed to diamond grading standards will find themselves either perpetually disappointed",
+        "replace": "Buyers accustomed to <a href=\"/diamond-education\">diamond grading standards</a> will find themselves either perpetually disappointed"
+      },
+      {
+        "find": "command prices that rival comparable rubies and sapphires",
+        "replace": "command prices that rival comparable rubies and <a href=\"/blog/blue-sapphire-engagement-ring\">sapphires</a>"
+      }
+    ]
+  },
+  {
+    "slug": "garnet-engagement-ring-guide",
+    "insertions": [
+      {
+        "find": "color-change varieties that the gem trade prizes as seriously as the finest sapphires",
+        "replace": "color-change varieties that the gem trade prizes as seriously as the <a href=\"/blog/ceylon-sapphire-origin-guide\">finest sapphires</a>"
+      },
+      {
+        "find": "top-quality stones in significant sizes trading at prices comparable to fine sapphire and emerald",
+        "replace": "top-quality stones in significant sizes trading at prices comparable to <a href=\"/blog/blue-sapphire-engagement-ring\">fine sapphire</a> and emerald"
+      },
+      {
+        "find": "a color-change garnet that shifts from green to red-purple under different light sources is known in the trade",
+        "replace": "a <a href=\"/blog/alexandrite-color-change-gemstone-guide\">color-change garnet</a> that shifts from green to red-purple under different light sources is known in the trade"
+      }
+    ]
+  },
+  {
+    "slug": "morganite-gemstone-guide",
+    "insertions": [
+      {
+        "find": "As with aquamarine, morganite grows under conditions that favor good clarity",
+        "replace": "As with <a href=\"/blog/aquamarine-jewelry-buying-guide\">aquamarine</a>, morganite grows under conditions that favor good clarity"
+      },
+      {
+        "find": "Pink sapphire with comparable saturation is worth substantially more per carat than morganite",
+        "replace": "<a href=\"/blog/ceylon-sapphire-origin-guide\">Pink sapphire</a> with comparable saturation is worth substantially more per carat than morganite"
+      },
+      {
+        "find": "morganite in a protective setting is a workable engagement ring choice",
+        "replace": "morganite in a protective setting is a workable <a href=\"/jewelry/rings\">engagement ring</a> choice"
+      }
+    ]
+  },
+  {
+    "slug": "ruby-gemstone-buying-guide",
+    "insertions": [
+      {
+        "find": "Stones that read as clearly pink belong to the sapphire family for trade and pricing purposes.",
+        "replace": "Stones that read as clearly pink belong to the <a href=\"/blog/blue-sapphire-engagement-ring\">sapphire family</a> for trade and pricing purposes."
+      },
+      {
+        "find": "Sri Lankan rubies tend toward lighter, more pastel tones but occasionally produce vivid material.",
+        "replace": "<a href=\"/blog/ceylon-sapphire-origin-guide\">Sri Lankan rubies</a> tend toward lighter, more pastel tones but occasionally produce vivid material."
+      },
+      {
+        "find": "Most clients who come to me for ruby engagement rings are looking at stones between 0.75 and 2.5 carats.",
+        "replace": "Most clients who come to me for <a href=\"/jewelry/rings\">ruby engagement rings</a> are looking at stones between 0.75 and 2.5 carats."
+      }
+    ]
+  },
+  {
+    "slug": "sapphire-engagement-rings-yes-no",
+    "insertions": [
+      {
+        "find": "an orange-pink color specific to certain Sri Lankan stones, is among the rarest",
+        "replace": "an orange-pink color specific to certain <a href=\"/blog/ceylon-sapphire-origin-guide\">Sri Lankan stones</a>, is among the rarest"
+      },
+      {
+        "find": "the look of a blue (or pink, or yellow) sapphire to a white diamond",
+        "replace": "the look of a <a href=\"/blog/blue-sapphire-engagement-ring\">blue (or pink, or yellow) sapphire</a> to a white diamond"
+      },
+      {
+        "find": "our Ring of Fire halo settings where the interplay between sapphire center and diamond halo",
+        "replace": "our <a href=\"/archive/r06356-b3157-1rof24m\">Ring of Fire halo settings</a> where the interplay between sapphire center and diamond halo"
+      }
+    ]
+  },
+  {
+    "slug": "lab-created-sapphire-vs-natural-sapphire",
+    "insertions": [
+      {
+        "find": "origin documentation — Kashmir, Burma, Ceylon — are genuinely rare, and that rarity supports a collector market",
+        "replace": "origin documentation — <a href=\"/blog/ceylon-sapphire-origin-guide\">Kashmir, Burma, Ceylon</a> — are genuinely rare, and that rarity supports a collector market"
+      },
+      {
+        "find": "who cares about wearing a beautiful blue stone rather than owning a rare natural object",
+        "replace": "who cares about wearing a <a href=\"/blog/blue-sapphire-engagement-ring\">beautiful blue stone</a> rather than owning a rare natural object"
+      }
+    ]
+  },
+  {
+    "slug": "is-a-pink-diamond-engagement-ring-right-for-you",
+    "insertions": [
+      {
+        "find": "GIA grades pink diamonds on the same colored diamond intensity scale used for all fancy color stones",
+        "replace": "GIA grades pink diamonds on the same <a href=\"/diamond-education\">colored diamond intensity scale</a> used for all fancy color stones"
+      },
+      {
+        "find": "Purplish-pink, sometimes called lilac or lavender, is more valuable than brownish-pink",
+        "replace": "Purplish-pink, sometimes called lilac or lavender, is more valuable than <a href=\"/blog/chocolate-brown-diamond-rings\">brownish-pink</a>"
+      },
+      {
+        "find": "Diamond is 10 on the Mohs scale, and that hardness applies regardless of color",
+        "replace": "Diamond is 10 on the <a href=\"/diamond-education\">Mohs scale</a>, and that hardness applies regardless of color"
+      }
+    ]
+  }
+]

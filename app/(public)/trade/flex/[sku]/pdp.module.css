@@ -182,6 +182,31 @@
   margin: 0 0 32px;
 }
 
+/* ── Unified template additions ── */
+
+.subline {
+  font: 300 14px/1.5 var(--ba-font-editorial);
+  color: var(--ba-ink-soft);
+  margin: 0 0 14px;
+}
+
+.details {
+  margin-top: 4px;
+}
+
+.detailsDesc {
+  font: 300 14px/1.6 var(--ba-font-editorial);
+  color: var(--ba-ink-soft);
+  margin: 0 0 20px;
+}
+
+.specLine {
+  font: 400 11px/1.6 var(--ba-font-sans);
+  letter-spacing: 0.06em;
+  color: var(--ba-ink-muted);
+  margin: 0;
+}
+
 /* ── Metal switcher ── */
 
 .metalSection {

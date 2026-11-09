@@ -1,7 +1,6 @@
 import { Suspense } from 'react'
 import Link from 'next/link'
 import type { Product } from '@/types/products'
-import { parseProductName } from '@/lib/product-name'
 import TradePDPClient from './TradePDPClient'
 import MetalSwitcher from './MetalSwitcher'
 import type { MetalOption } from './MetalSwitcher'
@@ -11,10 +10,6 @@ import styles from './pdp.module.css'
 interface Props {
   product: Product
   selectedMetal?: string
-}
-
-const COLLECTION_DESC: Record<string, string> = {
-  'Flex': 'The EXTENT bracelet sets each link with a single emerald-cut diamond — east-west or north-south — allowing the piece to drape the wrist as a continuous plane of light. Available from 10 to 100 points per link.',
 }
 
 function buildDefaultGallery(product: Product): string[] {
@@ -32,11 +27,10 @@ function buildDefaultGallery(product: Product): string[] {
 function buildMetals(product: Product): MetalOption[] {
   const { metalImages, availableMetals } = product
   if (!availableMetals?.length || !metalImages) return []
-
   return availableMetals
     .map(label => {
       const key = label.toLowerCase().replace(/\s+/g, '_')
-      const images = (metalImages as Record<string, { front?: string; model?: string; top?: string; angled?: string; video?: string; closeup?: string }>)[key] ?? {}
+      const images = (metalImages as Record<string, MetalOption['images']>)[key] ?? {}
       return { key, label, images }
     })
     .filter(m => m.images.front || m.images.top || m.images.angled)
@@ -48,23 +42,43 @@ function parseOrientation(sku: string): string | null {
   return null
 }
 
-export default function TradePDP({ product, selectedMetal }: Props) {
-  const { specs, sku, ijewelUrl, interactiveIsHero } = product
-  const heroIsIJewel = Boolean(ijewelUrl && interactiveIsHero)
-  const { title: displayName, variant } = parseProductName(product.name)
+function fmt(n: number): string {
+  return n % 1 === 0 ? n.toFixed(0) : n.toFixed(2).replace(/\.?0+$/, '')
+}
+
+export default function TradePDP({ product }: Props) {
+  const { sku, specs, productType, stoneCount, stoneWeightEach } = product
+  const { gemStone, collection, lede } = specs
+
+  const collectionName = collection ?? ''
+  const orientation = parseOrientation(sku)
+
   const defaultSlots = buildDefaultGallery(product)
   const metals = buildMetals(product)
 
-  const orientation = parseOrientation(sku)
-  const collectionName = specs.collection ?? 'Flex'
-  const collectionDesc = COLLECTION_DESC[collectionName] ?? null
-  const hasSpecs = !!(specs.gemStone || specs.caratWeight || specs.metal || orientation || specs.color || specs.clarity)
+  // Subline segments — only include non-empty parts
+  const sublineParts: string[] = []
+  if (gemStone) sublineParts.push(`${gemStone} Diamonds`)
+  if (orientation) sublineParts.push(orientation)
+  if (stoneWeightEach) sublineParts.push(`${fmt(stoneWeightEach)} ct each`)
+  const subline = sublineParts.join(' · ')
+
+  // Specs line segments
+  const specParts: string[] = []
+  if (specs.caratWeight) specParts.push(`Total carat weight ${specs.caratWeight} ct tw`)
+  if (stoneCount) specParts.push(`Stones ${stoneCount}`)
+  specParts.push('Made in Los Angeles')
+  const specLine = specParts.join(' · ')
+
+  const displayTitle = [collectionName && `${collectionName}™`, productType]
+    .filter(Boolean)
+    .join(' ')
 
   return (
     <div className={styles.root}>
       <div className={styles.grid}>
 
-        {/* ── Left col: interactive 2-col gallery + lightbox ── */}
+        {/* ── Left: gallery ── */}
         <Suspense fallback={
           <div className={styles.galleryCol}>
             {defaultSlots.slice(0, 6).map((_, i) => (
@@ -75,83 +89,56 @@ export default function TradePDP({ product, selectedMetal }: Props) {
           <TradePDPClient
             metals={metals}
             defaultSlots={defaultSlots}
-            displayName={displayName}
-            ijewelUrl={ijewelUrl}
-            heroIsIJewel={heroIsIJewel}
+            displayName={displayTitle || product.name}
+            ijewelUrl={product.ijewelUrl}
+            heroIsIJewel={Boolean(product.ijewelUrl && product.interactiveIsHero)}
           />
         </Suspense>
 
-        {/* ── Right col: specs (sticky) ── */}
+        {/* ── Right: spec panel ── */}
         <div className={styles.specCol}>
-          <Link href="/trade/flex" className={styles.back}>← Flex Collection</Link>
 
-          <p className={styles.eyebrow}>{collectionName}</p>
-          <h1 className={styles.title}>{displayName}</h1>
-          {variant && <p className={styles.variant}>{variant}</p>}
+          {/* 1. Back link */}
+          {collectionName ? (
+            <Link href="/trade/flex" className={styles.back}>
+              ← {collectionName} Collection
+            </Link>
+          ) : (
+            <Link href="/trade/flex" className={styles.back}>← Collection</Link>
+          )}
+
+          {/* 2. Title */}
+          {displayTitle && (
+            <h1 className={styles.title}>{displayTitle}</h1>
+          )}
+
+          {/* 3. Subline */}
+          {subline && (
+            <p className={styles.subline}>{subline}</p>
+          )}
+
+          {/* 4. Ref */}
           <p className={styles.ref}>Ref. {sku}</p>
 
-          {collectionDesc && (
-            <p className={styles.collectionDesc}>{collectionDesc}</p>
-          )}
-          {specs.lede && (
-            <p className={styles.lede}>{specs.lede}</p>
-          )}
-
-          {/* Metal switcher — only shown when product has multiple metals */}
+          {/* 5. Metal switcher */}
           {metals.length > 1 && (
             <Suspense fallback={null}>
               <MetalSwitcher metals={metals} slug={product.slug} />
             </Suspense>
           )}
 
-          {hasSpecs && (
-            <dl className={styles.specList}>
-              {specs.gemStone && (
-                <>
-                  <dt>Stone</dt>
-                  <dd>{specs.gemStone}</dd>
-                </>
-              )}
-              {orientation && (
-                <>
-                  <dt>Orientation</dt>
-                  <dd>{orientation}</dd>
-                </>
-              )}
-              {specs.caratWeight && (
-                <>
-                  <dt>Total Carat Weight</dt>
-                  <dd>{specs.caratWeight}ct</dd>
-                </>
-              )}
-              {specs.color && (
-                <>
-                  <dt>Color</dt>
-                  <dd>{specs.color}</dd>
-                </>
-              )}
-              {specs.clarity && (
-                <>
-                  <dt>Clarity</dt>
-                  <dd>{specs.clarity}</dd>
-                </>
-              )}
-              {specs.metal && metals.length === 0 && (
-                <>
-                  <dt>Metal</dt>
-                  <dd>{specs.metal}</dd>
-                </>
-              )}
-              <dt>Made in</dt>
-              <dd>Los Angeles</dd>
-            </dl>
-          )}
+          {/* 6. CTA */}
+          <TradeCTA sku={sku} title={displayTitle || product.name} />
 
           <hr className={styles.divider} />
 
-          <TradeCTA sku={sku} title={displayName} />
-        </div>
+          {/* 7. Details */}
+          <div className={styles.details}>
+            {lede && <p className={styles.detailsDesc}>{lede}</p>}
+            <p className={styles.specLine}>{specLine}</p>
+          </div>
 
+        </div>
       </div>
     </div>
   )

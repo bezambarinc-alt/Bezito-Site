@@ -123,21 +123,8 @@ footer.site .footer-logo { display: block; font-family: var(--font-body); font-s
   <a href="/page/mission-control" class="ba-header__nav">Mission Control &rarr;</a>
 </header>
 
-<!-- Password gate -->
-<div class="gate" id="gate">
-  <div class="gate__inner">
-    <h1>Control Board</h1>
-    <p>Private workspace. Enter password to continue.</p>
-    <form id="gateForm" autocomplete="off">
-      <input type="password" id="pwd" class="gate__input" placeholder="Password" autofocus>
-      <button type="submit" class="gate__btn">Enter</button>
-      <div class="gate__err" id="err"></div>
-    </form>
-  </div>
-</div>
-
 <!-- Board -->
-<main class="board" id="board">
+<main class="board active" id="board">
   <div class="board__header">
     <h1 class="board__title">Control Board</h1>
     <div class="board__meta">Updated 2026-06-06 &middot; 9 bleeding &middot; 5 active jobs</div>
@@ -525,31 +512,6 @@ footer.site .footer-logo { display: block; font-family: var(--font-body); font-s
 </footer>
 
 <script>
-(function () {
-  const PWD = 'jobs';
-  const gate = document.getElementById('gate');
-  const board = document.getElementById('board');
-  const form = document.getElementById('gateForm');
-  const input = document.getElementById('pwd');
-  const err = document.getElementById('err');
-
-  if (sessionStorage.getItem('ba_cb_ok') === '1') {
-    gate.style.display = 'none';
-    board.classList.add('active');
-  }
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (input.value.trim().toLowerCase() === PWD) {
-      sessionStorage.setItem('ba_cb_ok', '1');
-      gate.style.display = 'none';
-      board.classList.add('active');
-    } else {
-      err.textContent = 'Wrong password.';
-      input.value = '';
-      input.focus();
-    }
-  });
-})();
 
 // Category filter for pages library
 (function() {

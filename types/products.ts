@@ -42,9 +42,9 @@ export interface ProductSpecs {
 
 /** Per-metal image set (front, top, angled views) + optional turntable video + closeup video. */
 export interface MetalImages {
-  platinum?: { front?: string; top?: string; angled?: string; video?: string; closeup?: string }
-  rose_gold?: { front?: string; top?: string; angled?: string; video?: string; closeup?: string }
-  yellow_gold?: { front?: string; top?: string; angled?: string; video?: string; closeup?: string }
+  platinum?:    { front?: string; model?: string; top?: string; angled?: string; video?: string; closeup?: string }
+  rose_gold?:   { front?: string; model?: string; top?: string; angled?: string; video?: string; closeup?: string }
+  yellow_gold?: { front?: string; model?: string; top?: string; angled?: string; video?: string; closeup?: string }
 }
 
 /** Normalized product for the view layer. */
@@ -71,6 +71,12 @@ export interface Product {
   metalImages?: MetalImages
   /** Available metals for this product (e.g. ["Platinum", "Rose Gold", "Yellow Gold"]). */
   availableMetals?: string[]
+  /** Product type from Zoho (e.g. "Flex Bracelet"). */
+  productType?: string
+  /** Total number of stones in the piece. */
+  stoneCount?: number | null
+  /** Per-stone carat weight (e.g. 0.50). */
+  stoneWeightEach?: number | null
 }
 
 // toProduct() removed — JSONB-era mapper, superseded by rowToProduct() in lib/queries.ts
