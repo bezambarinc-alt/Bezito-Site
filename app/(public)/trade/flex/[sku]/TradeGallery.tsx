@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import Image from 'next/image'
 import IJewelViewer from '@/components/pdp/IJewelViewer'
 import { cldUrl } from '@/lib/cloudinary'
@@ -19,6 +19,10 @@ type MediaItem = { type: 'image'; src: string } | { type: 'video'; src: string }
 
 export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJewel, videoUrl, closeupUrl }: Props) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+  const [zoomed, setZoomed] = useState(false)
+  const zoomedContainerRef = useRef<HTMLDivElement | null>(null)
+  const dragRef = useRef({ active: false, moved: false, startX: 0, startY: 0, scrollLeft: 0, scrollTop: 0 })
+  const lastTapRef = useRef(0)
 
   const media: MediaItem[] = [
     ...slots.filter(Boolean).map(src => ({ type: 'image' as const, src })),
@@ -26,29 +30,94 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
     ...(closeupUrl ? [{ type: 'video' as const, src: closeupUrl }] : []),
   ]
 
-  const close = useCallback(() => setLightboxIndex(null), [])
-  const prev = useCallback(() => setLightboxIndex(cur => cur !== null && cur > 0 ? cur - 1 : cur), [])
-  const next = useCallback(() => setLightboxIndex(cur => cur !== null && cur < media.length - 1 ? cur + 1 : cur), [media.length])
+  const close = useCallback(() => {
+    setZoomed(false)
+    setLightboxIndex(null)
+  }, [])
+
+  const prev = useCallback(() => {
+    setZoomed(false)
+    setLightboxIndex(cur => cur !== null && cur > 0 ? cur - 1 : cur)
+  }, [])
+
+  const next = useCallback(() => {
+    setZoomed(false)
+    setLightboxIndex(cur => cur !== null && cur < media.length - 1 ? cur + 1 : cur)
+  }, [media.length])
 
   useEffect(() => {
     if (lightboxIndex === null) return
     document.body.style.overflow = 'hidden'
     const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') close()
-      if (e.key === 'ArrowLeft') prev()
-      if (e.key === 'ArrowRight') next()
+      if (e.key === 'Escape') {
+        if (zoomed) setZoomed(false)
+        else close()
+      }
+      if (!zoomed && e.key === 'ArrowLeft') prev()
+      if (!zoomed && e.key === 'ArrowRight') next()
     }
     window.addEventListener('keydown', handler)
     return () => {
       window.removeEventListener('keydown', handler)
       document.body.style.overflow = ''
     }
-  }, [lightboxIndex, close, prev, next])
+  }, [lightboxIndex, zoomed, close, prev, next])
+
+  // Center the scroll when entering zoom mode
+  useEffect(() => {
+    if (!zoomed || !zoomedContainerRef.current) return
+    const el = zoomedContainerRef.current
+    requestAnimationFrame(() => {
+      el.scrollLeft = (el.scrollWidth - el.clientWidth) / 2
+      el.scrollTop = (el.scrollHeight - el.clientHeight) / 2
+    })
+  }, [zoomed])
 
   const activeItem = lightboxIndex !== null ? media[lightboxIndex] : null
   const hasPrev = lightboxIndex !== null && lightboxIndex > 0
   const hasNext = lightboxIndex !== null && lightboxIndex < media.length - 1
   const lightboxPos = lightboxIndex !== null ? `${lightboxIndex + 1} / ${media.length}` : null
+
+  // Desktop drag-to-pan
+  const onMouseDown = useCallback((e: React.MouseEvent) => {
+    if (!zoomedContainerRef.current) return
+    dragRef.current = {
+      active: true,
+      moved: false,
+      startX: e.clientX,
+      startY: e.clientY,
+      scrollLeft: zoomedContainerRef.current.scrollLeft,
+      scrollTop: zoomedContainerRef.current.scrollTop,
+    }
+  }, [])
+
+  const onMouseMove = useCallback((e: React.MouseEvent) => {
+    const d = dragRef.current
+    if (!d.active || !zoomedContainerRef.current) return
+    const dx = e.clientX - d.startX
+    const dy = e.clientY - d.startY
+    if (Math.abs(dx) > 4 || Math.abs(dy) > 4) d.moved = true
+    zoomedContainerRef.current.scrollLeft = d.scrollLeft - dx
+    zoomedContainerRef.current.scrollTop = d.scrollTop - dy
+  }, [])
+
+  const onMouseUp = useCallback(() => {
+    if (!dragRef.current.active) return
+    const wasMoved = dragRef.current.moved
+    dragRef.current.active = false
+    dragRef.current.moved = false
+    if (!wasMoved) setZoomed(false)
+  }, [])
+
+  // Mobile double-tap to toggle
+  const onTouchEnd = useCallback((e: React.TouchEvent) => {
+    const now = Date.now()
+    if (now - lastTapRef.current < 280) {
+      e.preventDefault()
+      setZoomed(z => !z)
+    }
+    lastTapRef.current = now
+  }, [])
 
   return (
     <>
@@ -83,11 +152,7 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
             onClick={() => setLightboxIndex(slots.filter(Boolean).length)}
           >
             <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              src={videoUrl}
+              autoPlay muted loop playsInline src={videoUrl}
               style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
             />
           </div>
@@ -98,11 +163,7 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
             onClick={() => setLightboxIndex(slots.filter(Boolean).length + (videoUrl ? 1 : 0))}
           >
             <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              src={closeupUrl}
+              autoPlay muted loop playsInline src={closeupUrl}
               style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
             />
           </div>
@@ -110,7 +171,34 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
       </div>
 
       {activeItem && (
-        <div className={styles.lightbox} onClick={close} role="dialog" aria-modal="true">
+        <div
+          className={styles.lightbox}
+          onClick={zoomed ? undefined : close}
+          role="dialog"
+          aria-modal="true"
+        >
+          {/* Zoomed pan container — rendered first so buttons sit above it in paint order */}
+          {activeItem.type === 'image' && zoomed && (
+            <div
+              ref={zoomedContainerRef}
+              className={styles.lightboxZoomed}
+              onMouseDown={onMouseDown}
+              onMouseMove={onMouseMove}
+              onMouseUp={onMouseUp}
+              onMouseLeave={onMouseUp}
+              onTouchEnd={onTouchEnd}
+              onClick={e => e.stopPropagation()}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={cldUrl(activeItem.src, 'f_auto,q_auto:best,w_3000')}
+                alt={`${displayName} · view ${lightboxIndex! + 1}`}
+                className={styles.lightboxZoomedImg}
+                draggable={false}
+              />
+            </div>
+          )}
+
           <button className={styles.lightboxClose} onClick={close} aria-label="Close">✕</button>
           {hasPrev && (
             <button className={styles.lightboxPrev} onClick={e => { e.stopPropagation(); prev() }} aria-label="Previous">‹</button>
@@ -118,17 +206,20 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
           {hasNext && (
             <button className={styles.lightboxNext} onClick={e => { e.stopPropagation(); next() }} aria-label="Next">›</button>
           )}
-          <div className={styles.lightboxImgWrap} onClick={e => e.stopPropagation()}>
-            {activeItem.type === 'video' ? (
+
+          {/* Fit view (image) or video */}
+          {activeItem.type === 'video' ? (
+            <div className={styles.lightboxImgWrap} onClick={e => e.stopPropagation()}>
               <video
-                autoPlay
-                loop
-                playsInline
-                controls
-                src={activeItem.src}
+                autoPlay loop playsInline controls src={activeItem.src}
                 style={{ width: '100%', height: '100%', objectFit: 'contain' }}
               />
-            ) : (
+            </div>
+          ) : !zoomed ? (
+            <div
+              className={`${styles.lightboxImgWrap} ${styles.lightboxImgFit}`}
+              onClick={e => { e.stopPropagation(); setZoomed(true) }}
+            >
               <Image
                 src={cldUrl(activeItem.src, 'f_auto,q_auto:best,w_3000')}
                 alt={`${displayName} · view ${lightboxIndex! + 1}`}
@@ -137,9 +228,10 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
                 sizes="100vw"
                 style={{ objectFit: 'contain' }}
               />
-            )}
-          </div>
-          {lightboxPos && (
+            </div>
+          ) : null}
+
+          {lightboxPos && !zoomed && (
             <p className={styles.lightboxCounter}>{lightboxPos}</p>
           )}
         </div>

@@ -95,6 +95,34 @@
   letter-spacing: 0.08em;
 }
 
+/* Fit view: zoom-in cursor */
+.lightboxImgFit {
+  cursor: zoom-in;
+}
+
+/* Zoomed pan container: fills lightbox, scrollable, grab cursor */
+.lightboxZoomed {
+  position: absolute;
+  inset: 0;
+  overflow: auto;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-x pan-y;
+}
+
+.lightboxZoomed:active {
+  cursor: grabbing;
+}
+
+/* Full-res image inside zoomed container */
+.lightboxZoomedImg {
+  width: 3000px;
+  height: auto;
+  display: block;
+  pointer-events: none;
+}
+
 /* ── Right: sticky spec panel ── */
 
 .specCol {
