@@ -111,6 +111,7 @@ export default function TradePDP({ product, selectedMetal }: Props) {
             displayName={displayTitle || product.name}
             ijewelUrl={product.ijewelUrl}
             heroIsIJewel={Boolean(product.ijewelUrl && product.interactiveIsHero)}
+            selectedMetalKey={selectedMetal ?? null}
           />
         </Suspense>
 

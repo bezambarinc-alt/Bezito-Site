@@ -1,6 +1,5 @@
 'use client'
 
-import { useSearchParams } from 'next/navigation'
 import TradeGallery from './TradeGallery'
 import type { MetalOption } from './MetalSwitcher'
 
@@ -10,6 +9,7 @@ interface Props {
   displayName: string
   ijewelUrl: string | null
   heroIsIJewel: boolean
+  selectedMetalKey: string | null
 }
 
 function buildMetalSlots(images: MetalOption['images'], hasMedia: boolean, fallback: string): string[] {
@@ -22,9 +22,8 @@ function buildMetalSlots(images: MetalOption['images'], hasMedia: boolean, fallb
   return slots
 }
 
-export default function TradePDPClient({ metals, defaultSlots, displayName, ijewelUrl, heroIsIJewel }: Props) {
-  const searchParams = useSearchParams()
-  const selectedKey = searchParams?.get('metal') ?? metals[0]?.key
+export default function TradePDPClient({ metals, defaultSlots, displayName, ijewelUrl, heroIsIJewel, selectedMetalKey }: Props) {
+  const selectedKey = selectedMetalKey ?? metals[0]?.key
 
   const activeMetal = metals.find(m => m.key === selectedKey) ?? metals[0]
   const videoUrl = activeMetal?.images.video ?? undefined
