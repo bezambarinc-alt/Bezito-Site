@@ -4,6 +4,8 @@ import React, { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { cldUrl } from '@/lib/cloudinary'
 import s from './page.module.css'
+import { TILES } from './editorial-tiles'
+import type { EditorialTileConfig } from './editorial-tiles'
 
 export interface FlexCardData {
   id: string
@@ -15,7 +17,6 @@ export interface FlexCardData {
 }
 
 const PLACEHOLDER = 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/Jewelry%20Images/Bracelets/5FLX40ECN.png'
-const LIFESTYLE_IMG = 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto,w_900/v1787210681/Jewelry%20Images/Bracelets/c0834-model.avif'
 
 interface MetalVariant {
   key: string
@@ -136,16 +137,39 @@ function expandPiece(piece: Piece): Array<{ piece: Piece; metal?: MetalVariant }
   return [{ piece }]
 }
 
-function EditorialTile() {
+function VideoTile({ config }: { config: EditorialTileConfig }) {
   return (
-    <div className={`${s.card} ${s.tilewrap} ${s.tileSpan2}`}>
+    <div className={`${s.tilewrap} ${s.tileSpan2}`}>
+      <div className={s.videoTile}>
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+        <video src={config.url} autoPlay muted loop playsInline />
+      </div>
+    </div>
+  )
+}
+
+function ImageTile({ config }: { config: EditorialTileConfig }) {
+  return (
+    <div className={`${s.tilewrap} ${s.tileSpan2}`}>
+      <div className={s.imageTile}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={config.url} alt={config.alt ?? ''} loading="lazy" />
+      </div>
+    </div>
+  )
+}
+
+function EditorialTile() {
+  const { url, alt, eyebrow, headline, bodyText } = TILES.tileC
+  return (
+    <div className={`${s.tilewrap} ${s.tileSpan2}`}>
       <div className={s.tile}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={LIFESTYLE_IMG} alt="" loading="lazy" />
+        <img src={url} alt={alt ?? ''} loading="lazy" />
         <div className={s.tileIn}>
-          <p className={s.tileEyebrow}>How it closes</p>
-          <p className={s.tileBig}>It opens over the hand and returns to the wrist.</p>
-          <p className={s.tileText}>A spring spine runs under the stones, so the line stays unbroken all the way around.</p>
+          {eyebrow && <p className={s.tileEyebrow}>{eyebrow}</p>}
+          {headline && <p className={s.tileBig}>{headline}</p>}
+          {bodyText && <p className={s.tileText}>{bodyText}</p>}
         </div>
       </div>
     </div>
@@ -268,10 +292,28 @@ export default function TradePage({ dbCards }: { dbCards: FlexCardData[] }) {
         {/* Product grid */}
         <div className={s.wrap}>
           <div className={s.grid}>
-            {filtered.flatMap(expandPiece).map(({ piece, metal }) => (
-              <ProductCard key={metal ? `${piece.id}-${metal.key}` : piece.id} piece={piece} metal={metal} />
-            ))}
-            <EditorialTile />
+            {(() => {
+              const cards = filtered.flatMap(expandPiece)
+              const renderCard = ({ piece, metal }: { piece: Piece; metal?: MetalVariant }) => (
+                <ProductCard key={metal ? `${piece.id}-${metal.key}` : piece.id} piece={piece} metal={metal} />
+              )
+              return (
+                <>
+                  {/* Row 1: 2 product cards + Tile A */}
+                  {cards.slice(0, 2).map(renderCard)}
+                  <VideoTile config={TILES.tileA} />
+                  {/* Rows 2–3: 8 product cards (4 each) */}
+                  {cards.slice(2, 10).map(renderCard)}
+                  {/* Row 4: Tile B + 2 product cards */}
+                  <ImageTile config={TILES.tileB} />
+                  {cards.slice(10, 12).map(renderCard)}
+                  {/* Remaining rows */}
+                  {cards.slice(12).map(renderCard)}
+                  {/* End: Tile C */}
+                  <EditorialTile />
+                </>
+              )
+            })()}
           </div>
         </div>
       </main>
