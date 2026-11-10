@@ -1,6 +1,6 @@
 'use client'
 
-import { useActionState, useEffect, useRef, useState } from 'react'
+import { useRef, useState, useTransition } from 'react'
 import { submitInquiry, type InquiryState } from '@/app/actions/inquiry'
 import {
   INQUIRY_INTENTS,
@@ -19,7 +19,8 @@ import styles from './ContactForm.module.css'
 const initialState: InquiryState = { status: 'idle' }
 
 export default function ContactForm() {
-  const [state, formAction, pending] = useActionState(submitInquiry, initialState)
+  const [pending, startTransition] = useTransition()
+  const [state, setState] = useState<InquiryState>(initialState)
   const [intent, setIntent] = useState<string>(INQUIRY_INTENTS[0])
   const firedRef = useRef(false)
 
@@ -33,13 +34,17 @@ export default function ContactForm() {
   const [cityVal,    setCityVal]    = useState('')
   const [stateVal,   setStateVal]   = useState('')
 
-  useEffect(() => {
-    if (state.status === 'success' && !firedRef.current) {
-      firedRef.current = true
-      saveProfile({ name: nameVal, email: emailVal, phone: phoneVal })
-      trackLead({ method: 'contact_page', intent, page_slug: 'contact' })
-    }
-  }, [state.status, nameVal, emailVal, phoneVal, intent])
+  function formAction(formData: FormData) {
+    startTransition(async () => {
+      const result = await submitInquiry(state, formData)
+      if (result.status === 'success' && !firedRef.current) {
+        firedRef.current = true
+        saveProfile({ name: nameVal, email: emailVal, phone: phoneVal })
+        trackLead({ method: 'contact_page', intent, page_slug: 'contact' })
+      }
+      setState(result)
+    })
+  }
 
   const showDate     = APPOINTMENT_INTENTS.has(intent)
   const hideMessage  = HIDE_MESSAGE_INTENTS.has(intent)

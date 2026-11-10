@@ -1,7 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { useActionState } from 'react'
+import { useEffect, useRef, useState, useTransition } from 'react'
 import { usePathname } from 'next/navigation'
 import { useDrawers } from './DrawerContext'
 import { submitInquiry, type InquiryState } from '@/app/actions/inquiry'
@@ -36,7 +35,8 @@ interface FormProps {
 }
 
 function InquiryForm({ prefill, pathname, onClose }: FormProps) {
-  const [state, formAction, pending] = useActionState(submitInquiry, initialState)
+  const [pending, startTransition] = useTransition()
+  const [state, setState] = useState<InquiryState>(initialState)
   const [intent, setIntent] = useState<string>(prefill.intent ?? '')
   const firedRef = useRef(false)
 
@@ -50,18 +50,22 @@ function InquiryForm({ prefill, pathname, onClose }: FormProps) {
   const [cityVal,    setCityVal]    = useState('')
   const [stateVal,   setStateVal]   = useState('')
 
-  useEffect(() => {
-    if (state.status === 'success' && !firedRef.current) {
-      firedRef.current = true
-      saveProfile({ name: nameVal, email: emailVal, phone: phoneVal })
-      trackLead({
-        method: 'inquiry_drawer',
-        intent,
-        sku: prefill.sku,
-        page_slug: pathname.slice(1),
-      })
-    }
-  }, [state.status, nameVal, emailVal, phoneVal, intent, prefill.sku, pathname])
+  function formAction(formData: FormData) {
+    startTransition(async () => {
+      const result = await submitInquiry(state, formData)
+      if (result.status === 'success' && !firedRef.current) {
+        firedRef.current = true
+        saveProfile({ name: nameVal, email: emailVal, phone: phoneVal })
+        trackLead({
+          method: 'inquiry_drawer',
+          intent,
+          sku: prefill.sku,
+          page_slug: pathname.slice(1),
+        })
+      }
+      setState(result)
+    })
+  }
 
   const showDate     = APPOINTMENT_INTENTS.has(intent)
   const hideMessage  = HIDE_MESSAGE_INTENTS.has(intent)
