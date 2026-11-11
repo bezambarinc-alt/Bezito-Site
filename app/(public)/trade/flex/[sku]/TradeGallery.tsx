@@ -13,11 +13,12 @@ interface Props {
   heroIsIJewel: boolean
   videoUrl?: string
   closeupUrl?: string
+  modelSrc?: string
 }
 
 type MediaItem = { type: 'image'; src: string } | { type: 'video'; src: string }
 
-export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJewel, videoUrl, closeupUrl }: Props) {
+export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJewel, videoUrl, closeupUrl, modelSrc }: Props) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
   const [zoomed, setZoomed] = useState(false)
   const zoomedContainerRef = useRef<HTMLDivElement | null>(null)
@@ -178,7 +179,7 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
           aria-modal="true"
         >
           {/* Zoomed pan container — rendered first so buttons sit above it in paint order */}
-          {activeItem.type === 'image' && zoomed && (
+          {activeItem.type === 'image' && zoomed && activeItem.src !== modelSrc && (
             <div
               ref={zoomedContainerRef}
               className={styles.lightboxZoomed}
@@ -213,6 +214,18 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
               <video
                 autoPlay loop playsInline controls src={activeItem.src}
                 style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+              />
+            </div>
+          ) : activeItem.src === modelSrc ? (
+            // Model image: fit only, no zoom, default cursor, no touch zoom
+            <div className={styles.lightboxImgWrap} onClick={e => e.stopPropagation()}>
+              <Image
+                src={cldUrl(activeItem.src, 'f_auto,q_auto:best,w_3000')}
+                alt={`${displayName} · view ${lightboxIndex! + 1}`}
+                fill
+                unoptimized
+                sizes="100vw"
+                style={{ objectFit: 'contain' }}
               />
             </div>
           ) : !zoomed ? (

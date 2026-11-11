@@ -33,6 +33,8 @@ export default function TradePDPClient({ metals, defaultSlots, displayName, ijew
     ? buildMetalSlots(activeMetal.images, hasMedia, defaultSlots[0] ?? '')
     : defaultSlots
 
+  const modelSrc = activeMetal?.images.model ?? undefined
+
   return (
     <TradeGallery
       slots={slots}
@@ -41,6 +43,7 @@ export default function TradePDPClient({ metals, defaultSlots, displayName, ijew
       heroIsIJewel={heroIsIJewel}
       videoUrl={videoUrl}
       closeupUrl={closeupUrl}
+      modelSrc={modelSrc}
     />
   )
 }
