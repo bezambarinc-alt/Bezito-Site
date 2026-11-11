@@ -44,12 +44,12 @@ export default function MetalSwitcher({ metals, slug }: Props) {
           >
             {m.images.front && (
               <Image
-                src={cldUrl(m.images.front, 'f_auto,q_auto:best,w_200')}
+                src={cldUrl(m.images.front, 'c_crop,w_0.35,h_0.35,g_center/c_fill,w_160,h_160,f_auto,q_auto:best')}
                 alt={m.label}
                 fill
                 unoptimized
-                sizes="60px"
-                style={{ objectFit: 'cover', objectPosition: 'center top' }}
+                sizes="80px"
+                style={{ objectFit: 'cover' }}
               />
             )}
           </button>
