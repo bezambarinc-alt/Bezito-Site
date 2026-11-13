@@ -7,14 +7,34 @@ import type { MetalImages } from '@/types/products'
 import { cldUrl } from '@/lib/cloudinary'
 import styles from './pdp.module.css'
 
-function firstFrontImage(metalImages: MetalImages | null, availableMetals: string[] | null): string | null {
-  if (!metalImages || !availableMetals) return null
-  for (const label of availableMetals) {
-    const key = label.toLowerCase().replace(/\s+/g, '_') as keyof MetalImages
-    const front = metalImages[key]?.front
-    if (front) return front
-  }
-  return null
+interface CarouselCard {
+  key: string
+  slug: string
+  sku: string
+  stoneWeightEach: number | null
+  metalKey: string
+  metalLabel: string
+  imageUrl: string
+}
+
+function expandToCards(products: TradeRelatedCard[]): CarouselCard[] {
+  return products.flatMap(p => {
+    if (!p.metalImages || !p.availableMetals) return []
+    return p.availableMetals.flatMap(label => {
+      const metalKey = label.toLowerCase().replace(/\s+/g, '_')
+      const front = (p.metalImages as Record<string, { front?: string }>)[metalKey]?.front
+      if (!front) return []
+      return [{
+        key: `${p.slug}-${metalKey}`,
+        slug: p.slug,
+        sku: p.sku,
+        stoneWeightEach: p.stoneWeightEach,
+        metalKey,
+        metalLabel: label,
+        imageUrl: front,
+      }]
+    })
+  })
 }
 
 function orientation(sku: string): string {
@@ -48,7 +68,7 @@ export default function TradeRelatedCarousel({ products }: { products: TradeRela
   // Measured from the DOM; 4 is only the pre-measure SSR default.
   const [perView, setPerView] = useState(4)
 
-  const cards = products.filter(p => firstFrontImage(p.metalImages, p.availableMetals))
+  const cards = expandToCards(products)
   const totalPages = Math.max(1, Math.ceil(cards.length / perView))
 
   /** Card pitch (width + gap) and how many cards fit in the container. */
@@ -106,29 +126,22 @@ export default function TradeRelatedCarousel({ products }: { products: TradeRela
         )}
 
         <div className={styles.relatedScroll} ref={scrollRef} onScroll={handleScroll}>
-          {cards.map(p => {
-            const img = firstFrontImage(p.metalImages, p.availableMetals)!
-            const orient = orientation(p.sku)
+          {cards.map(card => {
+            const orient = orientation(card.sku)
             return (
-              <Link key={p.slug} href={`/trade/flex/${p.slug}`} className={styles.relatedCard}>
+              <Link key={card.key} href={`/trade/flex/${card.slug}?metal=${card.metalKey}`} className={styles.relatedCard}>
                 <div className={styles.relatedImgWrap}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={cldUrl(img, 'f_auto,q_auto:best,w_600,ar_4:5,c_fill')}
-                    alt={p.sku}
+                    src={cldUrl(card.imageUrl, 'f_auto,q_auto:best,w_600,ar_4:5,c_fill')}
+                    alt={`${card.sku} ${card.metalLabel}`}
                     loading="lazy"
                     style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                   />
                 </div>
                 <div className={styles.relatedMeta}>
-                  <p className={styles.relatedRef}>{p.sku}</p>
-                  {(p.stoneWeightEach || orient) && (
-                    <p className={styles.relatedWeight}>
-                      {p.stoneWeightEach ? `${p.stoneWeightEach.toFixed(2)} ct each` : ''}
-                      {p.stoneWeightEach && orient ? ' · ' : ''}
-                      {orient}
-                    </p>
-                  )}
+                  <p className={styles.relatedRef}>{card.sku}</p>
+                  <p className={styles.relatedWeight}>{card.metalLabel}{card.stoneWeightEach ? ` · ${card.stoneWeightEach.toFixed(2)} ct` : ''}{orient ? ` · ${orient}` : ''}</p>
                 </div>
               </Link>
             )
