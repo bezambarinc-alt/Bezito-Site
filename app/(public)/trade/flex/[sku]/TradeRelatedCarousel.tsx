@@ -54,7 +54,7 @@ export default function TradeRelatedCarousel({ products }: { products: TradeRela
   const [perView, setPerView] = useState(4)
 
   const params = useSearchParams()
-  const currentMetalKey = params.get('metal') ?? undefined
+  const currentMetalKey = params?.get('metal') ?? undefined
 
   const cards = products.filter(p => firstFrontImage(p.metalImages, p.availableMetals, currentMetalKey))
   const totalPages = Math.max(1, Math.ceil(cards.length / perView))
