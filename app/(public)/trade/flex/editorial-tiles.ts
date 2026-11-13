@@ -14,7 +14,7 @@ export const TILES: Record<'tileA' | 'tileB' | 'tileC', EditorialTileConfig> = {
   // Tile A — Row 1, right side (after first 2 product cards). Autoplay video.
   tileA: {
     type: 'video',
-    url: 'https://res.cloudinary.com/dlg2mou53/video/upload/w_1920,c_limit,q_auto/v1782855871/Jewelry%20Videos/Bracelets/emerald-cut-flex-bracelet-c0834-2026.mp4',
+    url: 'https://res.cloudinary.com/dlg2mou53/video/upload/w_1920,c_limit,q_auto/Jewelry%20Videos/Bracelets/5FLXEM-stretch.mp4',
   },
 
   // Tile B — Row 4, left side (before 2 product cards). Model shot.
