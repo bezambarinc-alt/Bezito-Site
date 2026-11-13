@@ -246,6 +246,7 @@ export interface TradeRelatedCard {
   sku: string
   slug: string
   stoneWeightEach: number | null
+  totalCaratWeight: number | null
   metalImages: MetalImages | null
   availableMetals: string[] | null
 }
@@ -256,10 +257,11 @@ export async function getTradeRelatedByCut(skuPattern: string, excludeSlug: stri
     sku: string
     slug: string
     stone_weight_each: string | null
+    total_carat_weight: string | null
     metal_images: MetalImages | null
     available_metals: string[] | null
   }>(
-    `SELECT sku, slug, stone_weight_each, metal_images, available_metals
+    `SELECT sku, slug, stone_weight_each, total_carat_weight, metal_images, available_metals
      FROM products
      WHERE product_channel = 'Trade' AND sku LIKE $1 AND active = true AND slug != $2
      ORDER BY sort_order ASC, sku ASC`,
@@ -269,6 +271,7 @@ export async function getTradeRelatedByCut(skuPattern: string, excludeSlug: stri
     sku: r.sku,
     slug: r.slug,
     stoneWeightEach: r.stone_weight_each != null ? parseFloat(r.stone_weight_each) : null,
+    totalCaratWeight: r.total_carat_weight != null ? parseFloat(r.total_carat_weight) : null,
     metalImages: r.metal_images,
     availableMetals: r.available_metals,
   }))

@@ -11,7 +11,7 @@ interface CarouselCard {
   key: string
   slug: string
   sku: string
-  stoneWeightEach: number | null
+  totalCaratWeight: number | null
   metalKey: string
   metalLabel: string
   imageUrl: string
@@ -28,19 +28,13 @@ function expandToCards(products: TradeRelatedCard[]): CarouselCard[] {
         key: `${p.slug}-${metalKey}`,
         slug: p.slug,
         sku: p.sku,
-        stoneWeightEach: p.stoneWeightEach,
+        totalCaratWeight: p.totalCaratWeight,
         metalKey,
         metalLabel: label,
         imageUrl: front,
       }]
     })
   })
-}
-
-function orientation(sku: string): string {
-  if (sku.endsWith('N')) return 'N–S'
-  if (sku.endsWith('E')) return 'E–W'
-  return ''
 }
 
 const GAP = 4
@@ -127,7 +121,6 @@ export default function TradeRelatedCarousel({ products }: { products: TradeRela
 
         <div className={styles.relatedScroll} ref={scrollRef} onScroll={handleScroll}>
           {cards.map(card => {
-            const orient = orientation(card.sku)
             return (
               <Link key={card.key} href={`/trade/flex/${card.slug}?metal=${card.metalKey}`} className={styles.relatedCard}>
                 <div className={styles.relatedImgWrap}>
@@ -141,7 +134,9 @@ export default function TradeRelatedCarousel({ products }: { products: TradeRela
                 </div>
                 <div className={styles.relatedMeta}>
                   <p className={styles.relatedRef}>{card.sku}</p>
-                  <p className={styles.relatedWeight}>{card.metalLabel}{card.stoneWeightEach ? ` · ${card.stoneWeightEach.toFixed(2)} ct` : ''}{orient ? ` · ${orient}` : ''}</p>
+                  <p className={styles.relatedWeight}>
+                    {card.metalLabel}{card.totalCaratWeight ? ` · ${card.totalCaratWeight.toFixed(2)} ct tw` : ''}
+                  </p>
                 </div>
               </Link>
             )
