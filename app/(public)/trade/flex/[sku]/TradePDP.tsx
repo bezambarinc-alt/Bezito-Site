@@ -181,11 +181,7 @@ export default function TradePDP({ product, related }: Props) {
 
         </div>
       </div>
-      {related && related.length > 0 && (
-        <Suspense fallback={null}>
-          <TradeRelatedCarousel products={related} />
-        </Suspense>
-      )}
+      {related && related.length > 0 && <TradeRelatedCarousel products={related} />}
     </div>
   )
 }

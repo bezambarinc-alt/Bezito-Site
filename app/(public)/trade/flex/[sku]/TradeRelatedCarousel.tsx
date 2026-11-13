@@ -1,19 +1,14 @@
 'use client'
 
 import { useRef, useState, useCallback, useEffect } from 'react'
-import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import type { TradeRelatedCard } from '@/lib/queries'
 import type { MetalImages } from '@/types/products'
 import { cldUrl } from '@/lib/cloudinary'
 import styles from './pdp.module.css'
 
-function firstFrontImage(metalImages: MetalImages | null, availableMetals: string[] | null, preferredKey?: string): string | null {
+function firstFrontImage(metalImages: MetalImages | null, availableMetals: string[] | null): string | null {
   if (!metalImages || !availableMetals) return null
-  if (preferredKey) {
-    const front = (metalImages as Record<string, { front?: string }>)[preferredKey]?.front
-    if (front) return front
-  }
   for (const label of availableMetals) {
     const key = label.toLowerCase().replace(/\s+/g, '_') as keyof MetalImages
     const front = metalImages[key]?.front
@@ -53,10 +48,7 @@ export default function TradeRelatedCarousel({ products }: { products: TradeRela
   // Measured from the DOM; 4 is only the pre-measure SSR default.
   const [perView, setPerView] = useState(4)
 
-  const params = useSearchParams()
-  const currentMetalKey = params?.get('metal') ?? undefined
-
-  const cards = products.filter(p => firstFrontImage(p.metalImages, p.availableMetals, currentMetalKey))
+  const cards = products.filter(p => firstFrontImage(p.metalImages, p.availableMetals))
   const totalPages = Math.max(1, Math.ceil(cards.length / perView))
 
   /** Card pitch (width + gap) and how many cards fit in the container. */
@@ -115,7 +107,7 @@ export default function TradeRelatedCarousel({ products }: { products: TradeRela
 
         <div className={styles.relatedScroll} ref={scrollRef} onScroll={handleScroll}>
           {cards.map(p => {
-            const img = firstFrontImage(p.metalImages, p.availableMetals, currentMetalKey)!
+            const img = firstFrontImage(p.metalImages, p.availableMetals)!
             const orient = orientation(p.sku)
             return (
               <Link key={p.slug} href={`/trade/flex/${p.slug}`} className={styles.relatedCard}>
