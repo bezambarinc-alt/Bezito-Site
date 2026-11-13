@@ -23,7 +23,23 @@ function orientation(sku: string): string {
   return ''
 }
 
-const GAP = 4 // px — must match CSS gap
+const GAP = 4
+
+function ChevronLeft() {
+  return (
+    <svg width="10" height="18" viewBox="0 0 10 18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="8 1 2 9 8 17" />
+    </svg>
+  )
+}
+
+function ChevronRight() {
+  return (
+    <svg width="10" height="18" viewBox="0 0 10 18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="2 1 8 9 2 17" />
+    </svg>
+  )
+}
 
 export default function TradeRelatedCarousel({ products }: { products: TradeRelatedCard[] }) {
   const scrollRef = useRef<HTMLDivElement>(null)
@@ -56,66 +72,66 @@ export default function TradeRelatedCarousel({ products }: { products: TradeRela
 
   return (
     <section className={styles.relatedSection}>
-      <div className={styles.relatedScroll} ref={scrollRef} onScroll={handleScroll}>
-        {cards.map(p => {
-          const img = firstFrontImage(p.metalImages, p.availableMetals)!
-          const orient = orientation(p.sku)
-          return (
-            <Link key={p.slug} href={`/trade/flex/${p.slug}`} className={styles.relatedCard}>
-              <div className={styles.relatedImgWrap}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={cldUrl(img, 'f_auto,q_auto:best,w_600,ar_4:5,c_fill')}
-                  alt={p.sku}
-                  loading="lazy"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                />
-              </div>
-              <div className={styles.relatedMeta}>
-                <p className={styles.relatedRef}>{p.sku}</p>
-                {(p.stoneWeightEach || orient) && (
-                  <p className={styles.relatedWeight}>
-                    {p.stoneWeightEach ? `${p.stoneWeightEach.toFixed(2)} ct each` : ''}
-                    {p.stoneWeightEach && orient ? ' · ' : ''}
-                    {orient}
-                  </p>
-                )}
-              </div>
-            </Link>
-          )
-        })}
+      <div className={styles.relatedScrollWrap}>
+        <button
+          className={`${styles.relatedArrow} ${styles.relatedArrowLeft}`}
+          onClick={() => scrollToPage(Math.max(0, page - 1))}
+          disabled={page === 0}
+          aria-label="Previous"
+        >
+          <ChevronLeft />
+        </button>
+
+        <div className={styles.relatedScroll} ref={scrollRef} onScroll={handleScroll}>
+          {cards.map(p => {
+            const img = firstFrontImage(p.metalImages, p.availableMetals)!
+            const orient = orientation(p.sku)
+            return (
+              <Link key={p.slug} href={`/trade/flex/${p.slug}`} className={styles.relatedCard}>
+                <div className={styles.relatedImgWrap}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={cldUrl(img, 'f_auto,q_auto:best,w_600,ar_4:5,c_fill')}
+                    alt={p.sku}
+                    loading="lazy"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
+                </div>
+                <div className={styles.relatedMeta}>
+                  <p className={styles.relatedRef}>{p.sku}</p>
+                  {(p.stoneWeightEach || orient) && (
+                    <p className={styles.relatedWeight}>
+                      {p.stoneWeightEach ? `${p.stoneWeightEach.toFixed(2)} ct each` : ''}
+                      {p.stoneWeightEach && orient ? ' · ' : ''}
+                      {orient}
+                    </p>
+                  )}
+                </div>
+              </Link>
+            )
+          })}
+        </div>
+
+        <button
+          className={`${styles.relatedArrow} ${styles.relatedArrowRight}`}
+          onClick={() => scrollToPage(Math.min(totalPages - 1, page + 1))}
+          disabled={page === totalPages - 1}
+          aria-label="Next"
+        >
+          <ChevronRight />
+        </button>
       </div>
 
       {totalPages > 1 && (
         <div className={styles.relatedNav}>
-          <button
-            className={styles.relatedArrow}
-            onClick={() => scrollToPage(Math.max(0, page - 1))}
-            disabled={page === 0}
-            aria-label="Previous"
-          >
-            ←
-          </button>
-          <div className={styles.relatedDots} role="tablist" aria-label="Carousel pages">
-            {Array.from({ length: totalPages }, (_, i) => (
-              <button
-                key={i}
-                role="tab"
-                aria-selected={i === page}
-                className={`${styles.relatedDot}${i === page ? ` ${styles.relatedDotActive}` : ''}`}
-                onClick={() => scrollToPage(i)}
-                aria-label={`Page ${i + 1}`}
-              />
-            ))}
-          </div>
-          <button
-            className={styles.relatedArrow}
-            onClick={() => scrollToPage(Math.min(totalPages - 1, page + 1))}
-            disabled={page === totalPages - 1}
-            aria-label="Next"
-          >
-            →
-          </button>
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button
+              key={i}
+              className={`${styles.relatedDot}${i === page ? ` ${styles.relatedDotActive}` : ''}`}
+              onClick={() => scrollToPage(i)}
+              aria-label={`Page ${i + 1}`}
+            />
+          ))}
         </div>
       )}
     </section>
