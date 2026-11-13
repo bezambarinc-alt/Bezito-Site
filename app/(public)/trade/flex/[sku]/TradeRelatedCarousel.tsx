@@ -1,3 +1,6 @@
+'use client'
+
+import { useRef, useState, useCallback } from 'react'
 import Link from 'next/link'
 import type { TradeRelatedCard } from '@/lib/queries'
 import type { MetalImages } from '@/types/products'
@@ -20,13 +23,40 @@ function orientation(sku: string): string {
   return ''
 }
 
+const GAP = 4 // px — must match CSS gap
+
 export default function TradeRelatedCarousel({ products }: { products: TradeRelatedCard[] }) {
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [page, setPage] = useState(0)
+
   const cards = products.filter(p => firstFrontImage(p.metalImages, p.availableMetals))
+  const totalPages = Math.ceil(cards.length / 4)
+
+  const scrollToPage = useCallback((p: number) => {
+    const el = scrollRef.current
+    if (!el) return
+    const firstCard = el.children[0] as HTMLElement | undefined
+    if (!firstCard) return
+    const cardWidth = firstCard.offsetWidth + GAP
+    el.scrollTo({ left: p * 4 * cardWidth, behavior: 'smooth' })
+    setPage(p)
+  }, [])
+
+  const handleScroll = useCallback(() => {
+    const el = scrollRef.current
+    if (!el) return
+    const firstCard = el.children[0] as HTMLElement | undefined
+    if (!firstCard) return
+    const cardWidth = firstCard.offsetWidth + GAP
+    const p = Math.round(el.scrollLeft / (cardWidth * 4))
+    setPage(Math.min(Math.max(p, 0), totalPages - 1))
+  }, [totalPages])
+
   if (cards.length === 0) return null
 
   return (
     <section className={styles.relatedSection}>
-      <div className={styles.relatedScroll}>
+      <div className={styles.relatedScroll} ref={scrollRef} onScroll={handleScroll}>
         {cards.map(p => {
           const img = firstFrontImage(p.metalImages, p.availableMetals)!
           const orient = orientation(p.sku)
@@ -55,6 +85,39 @@ export default function TradeRelatedCarousel({ products }: { products: TradeRela
           )
         })}
       </div>
+
+      {totalPages > 1 && (
+        <div className={styles.relatedNav}>
+          <button
+            className={styles.relatedArrow}
+            onClick={() => scrollToPage(Math.max(0, page - 1))}
+            disabled={page === 0}
+            aria-label="Previous"
+          >
+            ←
+          </button>
+          <div className={styles.relatedDots} role="tablist" aria-label="Carousel pages">
+            {Array.from({ length: totalPages }, (_, i) => (
+              <button
+                key={i}
+                role="tab"
+                aria-selected={i === page}
+                className={`${styles.relatedDot}${i === page ? ` ${styles.relatedDotActive}` : ''}`}
+                onClick={() => scrollToPage(i)}
+                aria-label={`Page ${i + 1}`}
+              />
+            ))}
+          </div>
+          <button
+            className={styles.relatedArrow}
+            onClick={() => scrollToPage(Math.min(totalPages - 1, page + 1))}
+            disabled={page === totalPages - 1}
+            aria-label="Next"
+          >
+            →
+          </button>
+        </div>
+      )}
     </section>
   )
 }
