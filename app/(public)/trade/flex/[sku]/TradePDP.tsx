@@ -86,6 +86,8 @@ export default function TradePDP({ product, selectedMetal }: Props) {
     if (parts.length) specRows.push({ label: 'Stones', value: parts.join(' · ') })
   }
   if (specs.caratWeight) specRows.push({ label: 'Carat weight', value: `${specs.caratWeight} ct tw` })
+  if (specs.color)   specRows.push({ label: 'Color',   value: specs.color })
+  if (specs.clarity) specRows.push({ label: 'Clarity', value: specs.clarity })
   specRows.push({ label: 'Origin', value: 'Made in Los Angeles' })
   specRows.push({ label: 'Reference', value: sku })
 
@@ -128,9 +130,7 @@ export default function TradePDP({ product, selectedMetal }: Props) {
           )}
 
           {/* 2. Title */}
-          {displayTitle && (
-            <h1 className={styles.title}>{displayTitle}</h1>
-          )}
+          <h1 className={styles.title}>{displayTitle || product.name}</h1>
 
           {/* 3. Subline */}
           {subline && (

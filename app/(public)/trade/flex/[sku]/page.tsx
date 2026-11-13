@@ -20,6 +20,7 @@ export default async function TradeFlexPDPPage({
   const [{ sku }, { metal }] = await Promise.all([params, searchParams])
   const product = await getProductBySlug(sku)
   if (!product) notFound()
+  if (product.productChannel !== 'Trade') notFound()
 
   return <TradePDP product={product} selectedMetal={metal} />
 }

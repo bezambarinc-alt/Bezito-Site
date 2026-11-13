@@ -77,6 +77,8 @@ export interface Product {
   stoneCount?: number | null
   /** Per-stone carat weight (e.g. 0.50). */
   stoneWeightEach?: number | null
+  /** Sales channel from Zoho Product_Channel field (e.g. "Trade"). */
+  productChannel?: string | null
 }
 
 // toProduct() removed — JSONB-era mapper, superseded by rowToProduct() in lib/queries.ts

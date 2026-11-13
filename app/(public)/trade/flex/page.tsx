@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-export const dynamic = 'force-dynamic'
+export const revalidate = 3600
 import TradePage from './TradePage'
 import { sql } from '@/lib/db'
 import type { MetalImages } from '@/types/products'
@@ -39,14 +39,17 @@ export default async function TradeFlexPage() {
       `SELECT sku, slug, stone_weight_each, total_carat_weight,
               metal_images, available_metals
        FROM products
-       WHERE sku LIKE '5FLX%' AND active = true
+       WHERE sku LIKE '5FLX%' AND product_channel = 'Trade' AND active = true
        ORDER BY sort_order ASC, sku ASC`,
     )
 
     for (const row of rows) {
       const mi = row.metal_images
       const am = row.available_metals
-      if (!mi || !am) continue
+      if (!mi || !am) {
+        console.warn(`TradeFlexPage: skipping ${row.sku} — missing metal_images or available_metals`)
+        continue
+      }
 
       const metals: FlexCardData['metals'] = []
       for (const metalLabel of am) {
@@ -56,8 +59,12 @@ export default async function TradeFlexPage() {
         if (!front) continue
         metals.push({ key: metalKey, label: metalLabel, image: front })
       }
-      if (metals.length === 0) continue
+      if (metals.length === 0) {
+        console.warn(`TradeFlexPage: skipping ${row.sku} — no valid metals resolved`)
+        continue
+      }
 
+      const ctLabel = row.total_carat_weight ? 'ct tw' : 'ct each'
       const ct = row.total_carat_weight
         ? parseFloat(row.total_carat_weight)
         : row.stone_weight_each
@@ -70,6 +77,7 @@ export default async function TradeFlexPage() {
         slug: row.slug ?? undefined,
         cut: deriveCut(row.sku),
         ct,
+        ctLabel,
         metals,
       })
     }

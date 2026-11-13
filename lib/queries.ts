@@ -90,6 +90,7 @@ function rowToProduct(r: Record<string, unknown>): Product {
     productType:        (r.product_type as string | null) ?? undefined,
     stoneCount:         r.stone_count != null ? Number(r.stone_count) : null,
     stoneWeightEach:    r.stone_weight_each != null ? Number(r.stone_weight_each) : null,
+    productChannel:     (r.product_channel as string | null) ?? null,
   }
 }
 
@@ -101,7 +102,7 @@ const COLS = `
   view_1_url, view_2_url, view_3_url, related_skus,
   ijewel_url, interactive_is_hero,
   metal_images, available_metals,
-  product_type, stone_count, stone_weight_each`
+  product_type, stone_count, stone_weight_each, product_channel`
 
 /**
  * URL-safe normalisation of the sku column, mirroring deriveSlug()'s SKU
