@@ -26,9 +26,6 @@ export default function TradeRelatedCarousel({ products }: { products: TradeRela
 
   return (
     <section className={styles.relatedSection}>
-      <div className={styles.relatedHeaderRow}>
-        <span className={styles.relatedLabel}>Also in Emerald Cut</span>
-      </div>
       <div className={styles.relatedScroll}>
         {cards.map(p => {
           const img = firstFrontImage(p.metalImages, p.availableMetals)!

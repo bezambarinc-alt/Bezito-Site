@@ -328,22 +328,8 @@
 /* ── Related products carousel ── */
 
 .relatedSection {
-  padding: 60px 0 80px;
-  border-top: 1px solid var(--ba-border-warm);
+  padding: 40px 0 0;
   overflow: hidden;
-}
-
-.relatedHeaderRow {
-  padding: 0 clamp(24px, 5vw, 60px) 28px;
-}
-
-.relatedLabel {
-  font-family: var(--ba-font-sans);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.30em;
-  text-transform: uppercase;
-  color: var(--ba-gold);
 }
 
 .relatedScroll {
@@ -352,7 +338,6 @@
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  padding: 0 clamp(24px, 5vw, 60px);
   scrollbar-width: none;
 }
 
@@ -360,8 +345,9 @@
   display: none;
 }
 
+/* Exactly 4 cards fill the viewport: 4×(25vw − 3px) + 3×4px gap = 100vw */
 .relatedCard {
-  flex: 0 0 220px;
+  flex: 0 0 calc(25vw - 3px);
   scroll-snap-align: start;
   text-decoration: none;
   color: inherit;
@@ -381,7 +367,7 @@
 }
 
 .relatedMeta {
-  padding: 10px 4px 0;
+  padding: 10px 4px 16px;
 }
 
 .relatedRef {
@@ -412,7 +398,8 @@
     padding: 40px clamp(24px, 5vw, 48px);
     max-width: 100%;
   }
+  /* 2 cards on mobile */
   .relatedCard {
-    flex: 0 0 160px;
+    flex: 0 0 calc(50vw - 2px);
   }
 }
