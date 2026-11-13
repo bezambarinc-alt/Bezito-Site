@@ -325,6 +325,84 @@
   color: var(--ba-white);
 }
 
+/* ── Related products carousel ── */
+
+.relatedSection {
+  padding: 60px 0 80px;
+  border-top: 1px solid var(--ba-border-warm);
+  overflow: hidden;
+}
+
+.relatedHeaderRow {
+  padding: 0 clamp(24px, 5vw, 60px) 28px;
+}
+
+.relatedLabel {
+  font-family: var(--ba-font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.30em;
+  text-transform: uppercase;
+  color: var(--ba-gold);
+}
+
+.relatedScroll {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 clamp(24px, 5vw, 60px);
+  scrollbar-width: none;
+}
+
+.relatedScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.relatedCard {
+  flex: 0 0 220px;
+  scroll-snap-align: start;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.relatedCard:hover .relatedImgWrap {
+  opacity: 0.85;
+}
+
+.relatedImgWrap {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--ba-paper);
+  transition: opacity var(--ba-transition);
+}
+
+.relatedMeta {
+  padding: 10px 4px 0;
+}
+
+.relatedRef {
+  font-family: var(--ba-font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(149, 130, 107, 0.6);
+  margin: 0 0 4px;
+}
+
+.relatedWeight {
+  font-family: var(--ba-font-sans);
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: rgba(149, 130, 107, 0.85);
+  margin: 0;
+}
+
 @media (max-width: 860px) {
   .grid {
     grid-template-columns: 1fr;
@@ -333,5 +411,8 @@
     position: static;
     padding: 40px clamp(24px, 5vw, 48px);
     max-width: 100%;
+  }
+  .relatedCard {
+    flex: 0 0 160px;
   }
 }

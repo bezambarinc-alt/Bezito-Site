@@ -2,8 +2,15 @@ import type { Metadata } from 'next'
 export const dynamic = 'force-dynamic'
 
 import { notFound } from 'next/navigation'
-import { getProductBySlug } from '@/lib/queries'
+import { getProductBySlug, getTradeRelatedByCut } from '@/lib/queries'
 import TradePDP from './TradePDP'
+
+function cutSkuPattern(sku: string): string {
+  const u = sku.toUpperCase()
+  if (/5FLXEM/.test(u)) return '5FLXEM%'
+  if (/ASC/.test(u)) return '%ASC%'
+  return '5FLX%'
+}
 
 export const metadata: Metadata = {
   title: 'Flex · Bez Ambar Trade',
@@ -22,5 +29,7 @@ export default async function TradeFlexPDPPage({
   if (!product) notFound()
   if (product.productChannel !== 'Trade') notFound()
 
-  return <TradePDP product={product} selectedMetal={metal} />
+  const related = await getTradeRelatedByCut(cutSkuPattern(product.sku), product.slug)
+
+  return <TradePDP product={product} selectedMetal={metal} related={related} />
 }

@@ -242,6 +242,38 @@ export async function getAdjacentProducts(
   }
 }
 
+export interface TradeRelatedCard {
+  sku: string
+  slug: string
+  stoneWeightEach: number | null
+  metalImages: MetalImages | null
+  availableMetals: string[] | null
+}
+
+/** Related trade products of the same cut — drives the PDP carousel. */
+export async function getTradeRelatedByCut(skuPattern: string, excludeSlug: string): Promise<TradeRelatedCard[]> {
+  const rows = await sql<{
+    sku: string
+    slug: string
+    stone_weight_each: string | null
+    metal_images: MetalImages | null
+    available_metals: string[] | null
+  }>(
+    `SELECT sku, slug, stone_weight_each, metal_images, available_metals
+     FROM products
+     WHERE product_channel = 'Trade' AND sku LIKE $1 AND active = true AND slug != $2
+     ORDER BY sort_order ASC, sku ASC`,
+    [skuPattern, excludeSlug],
+  )
+  return rows.map(r => ({
+    sku: r.sku,
+    slug: r.slug,
+    stoneWeightEach: r.stone_weight_each != null ? parseFloat(r.stone_weight_each) : null,
+    metalImages: r.metal_images,
+    availableMetals: r.available_metals,
+  }))
+}
+
 /** For generateStaticParams — { category, slug } pairs for all active products. */
 export async function getAllProductParams(): Promise<{ category: string; slug: string }[]> {
   const rows = await sql<{ slug: string; category: string | null }>(

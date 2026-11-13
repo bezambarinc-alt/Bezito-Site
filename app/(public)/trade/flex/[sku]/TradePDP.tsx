@@ -1,15 +1,18 @@
 import { Suspense } from 'react'
 import Link from 'next/link'
 import type { Product } from '@/types/products'
+import type { TradeRelatedCard } from '@/lib/queries'
 import TradePDPClient from './TradePDPClient'
 import MetalSwitcher from './MetalSwitcher'
 import type { MetalOption } from './MetalSwitcher'
 import TradeCTA from './TradeCTA'
+import TradeRelatedCarousel from './TradeRelatedCarousel'
 import styles from './pdp.module.css'
 
 interface Props {
   product: Product
   selectedMetal?: string
+  related?: TradeRelatedCard[]
 }
 
 function buildDefaultGallery(product: Product): string[] {
@@ -46,7 +49,7 @@ function fmt(n: number): string {
   return n % 1 === 0 ? n.toFixed(0) : n.toFixed(2).replace(/\.?0+$/, '')
 }
 
-export default function TradePDP({ product, selectedMetal }: Props) {
+export default function TradePDP({ product, selectedMetal, related }: Props) {
   const { sku, specs, productType, stoneCount, stoneWeightEach } = product
   const { gemStone, collection, lede } = specs
 
@@ -98,6 +101,7 @@ export default function TradePDP({ product, selectedMetal }: Props) {
   return (
     <div className={styles.root}>
       <div className={styles.grid}>
+
 
         {/* ── Left: gallery ── */}
         <Suspense fallback={
@@ -170,6 +174,7 @@ export default function TradePDP({ product, selectedMetal }: Props) {
 
         </div>
       </div>
+      {related && related.length > 0 && <TradeRelatedCarousel products={related} />}
     </div>
   )
 }
