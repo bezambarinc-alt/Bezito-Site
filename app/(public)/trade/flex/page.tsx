@@ -83,6 +83,9 @@ export default async function TradeFlexPage() {
     }
   } catch (e) {
     console.error('TradeFlexPage: DB query failed', e)
+    // Rethrow so the error boundary renders and ISR does NOT cache an empty grid
+    // for the revalidate window.
+    throw e
   }
 
   return <TradePage dbCards={dbCards} />

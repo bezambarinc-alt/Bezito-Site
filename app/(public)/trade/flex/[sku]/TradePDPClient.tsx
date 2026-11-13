@@ -1,6 +1,7 @@
 'use client'
 
 import TradeGallery from './TradeGallery'
+import { useSelectedMetal } from './MetalSwitcher'
 import type { MetalOption } from './MetalSwitcher'
 
 interface Props {
@@ -9,29 +10,23 @@ interface Props {
   displayName: string
   ijewelUrl: string | null
   heroIsIJewel: boolean
-  selectedMetalKey: string | null
 }
 
-function buildMetalSlots(images: MetalOption['images'], hasMedia: boolean, fallback: string): string[] {
-  // Order: Front, Model, Angled, Top, Turntable, Close-up
-  const slots = [images.front, images.model, images.angled, images.top].filter((u): u is string => Boolean(u))
-  if (!hasMedia) {
-    while (slots.length < 6) slots.push(fallback)
-    return slots.slice(0, 6)
-  }
-  return slots
+function buildMetalSlots(images: MetalOption['images']): string[] {
+  // Order: Front, Model, Angled, Top (Turntable / Close-up videos are appended by TradeGallery).
+  // Only real images — no padding with repeats.
+  return [images.front, images.model, images.angled, images.top]
+    .filter((u): u is string => Boolean(u))
+    .slice(0, 6)
 }
 
-export default function TradePDPClient({ metals, defaultSlots, displayName, ijewelUrl, heroIsIJewel, selectedMetalKey }: Props) {
-  const selectedKey = selectedMetalKey ?? metals[0]?.key
-
-  const activeMetal = metals.find(m => m.key === selectedKey) ?? metals[0]
+export default function TradePDPClient({ metals, defaultSlots, displayName, ijewelUrl, heroIsIJewel }: Props) {
+  // Reads ?metal= on the client; the parent <Suspense> in TradePDP covers the
+  // useSearchParams CSR bailout on the statically rendered (ISR) page.
+  const activeMetal = useSelectedMetal(metals)
   const videoUrl = activeMetal?.images.video ?? undefined
   const closeupUrl = activeMetal?.images.closeup ?? undefined
-  const hasMedia = Boolean(videoUrl || closeupUrl)
-  const slots = activeMetal
-    ? buildMetalSlots(activeMetal.images, hasMedia, defaultSlots[0] ?? '')
-    : defaultSlots
+  const slots = activeMetal ? buildMetalSlots(activeMetal.images) : defaultSlots
 
   const modelSrc = activeMetal?.images.model ?? undefined
 

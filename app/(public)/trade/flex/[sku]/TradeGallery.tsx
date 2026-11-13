@@ -24,6 +24,33 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
   const zoomedContainerRef = useRef<HTMLDivElement | null>(null)
   const dragRef = useRef({ active: false, moved: false, startX: 0, startY: 0, scrollLeft: 0, scrollTop: 0 })
   const lastTapRef = useRef(0)
+  const closeBtnRef = useRef<HTMLButtonElement | null>(null)
+  const triggerRef = useRef<HTMLElement | null>(null)
+  const isOpen = lightboxIndex !== null
+
+  // Open the lightbox from a tile, remembering the tile so focus can return to it.
+  const openAt = useCallback((index: number, trigger: HTMLElement) => {
+    triggerRef.current = trigger
+    setLightboxIndex(index)
+  }, [])
+
+  // Keyboard activation for role="button" tiles (Enter / Space)
+  const tileKeyDown = useCallback((index: number) => (e: React.KeyboardEvent<HTMLElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      openAt(index, e.currentTarget)
+    }
+  }, [openAt])
+
+  // Focus management: focus Close on open, restore focus to the trigger on close
+  useEffect(() => {
+    if (!isOpen) return
+    closeBtnRef.current?.focus()
+    return () => {
+      triggerRef.current?.focus()
+      triggerRef.current = null
+    }
+  }, [isOpen])
 
   const media: MediaItem[] = [
     ...slots.filter(Boolean).map(src => ({ type: 'image' as const, src })),
@@ -132,7 +159,11 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
           <div
             key={i}
             className={src ? `${styles.galleryItem} ${styles.galleryItemClickable}` : styles.galleryItem}
-            onClick={src ? () => setLightboxIndex(i) : undefined}
+            onClick={src ? e => openAt(i, e.currentTarget) : undefined}
+            onKeyDown={src ? tileKeyDown(i) : undefined}
+            role={src ? 'button' : undefined}
+            tabIndex={src ? 0 : undefined}
+            aria-label={src ? `View ${displayName} · view ${i + 1}` : undefined}
           >
             {src && (
               <Image
@@ -150,7 +181,11 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
         {videoUrl && (
           <div
             className={`${styles.galleryItem} ${styles.galleryItemClickable}`}
-            onClick={() => setLightboxIndex(slots.filter(Boolean).length)}
+            onClick={e => openAt(slots.filter(Boolean).length, e.currentTarget)}
+            onKeyDown={tileKeyDown(slots.filter(Boolean).length)}
+            role="button"
+            tabIndex={0}
+            aria-label={`Play ${displayName} turntable video`}
           >
             <video
               autoPlay muted loop playsInline src={videoUrl}
@@ -161,7 +196,11 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
         {closeupUrl && (
           <div
             className={`${styles.galleryItem} ${styles.galleryItemClickable}`}
-            onClick={() => setLightboxIndex(slots.filter(Boolean).length + (videoUrl ? 1 : 0))}
+            onClick={e => openAt(slots.filter(Boolean).length + (videoUrl ? 1 : 0), e.currentTarget)}
+            onKeyDown={tileKeyDown(slots.filter(Boolean).length + (videoUrl ? 1 : 0))}
+            role="button"
+            tabIndex={0}
+            aria-label={`Play ${displayName} close-up video`}
           >
             <video
               autoPlay muted loop playsInline src={closeupUrl}
@@ -177,6 +216,7 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
           onClick={zoomed ? undefined : close}
           role="dialog"
           aria-modal="true"
+          aria-label="Image viewer"
         >
           {/* Zoomed pan container — rendered first so buttons sit above it in paint order */}
           {activeItem.type === 'image' && zoomed && activeItem.src !== modelSrc && (
@@ -200,7 +240,7 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
             </div>
           )}
 
-          <button className={styles.lightboxClose} onClick={close} aria-label="Close">✕</button>
+          <button ref={closeBtnRef} className={styles.lightboxClose} onClick={close} aria-label="Close">✕</button>
           {hasPrev && (
             <button className={styles.lightboxPrev} onClick={e => { e.stopPropagation(); prev() }} aria-label="Previous">‹</button>
           )}

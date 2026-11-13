@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
-export const dynamic = 'force-dynamic'
+export const revalidate = 3600
 
+import { cache } from 'react'
 import { notFound } from 'next/navigation'
 import { getProductBySlug, getTradeRelatedByCut } from '@/lib/queries'
-import TradePDP from './TradePDP'
+import TradePDP, { tradeDisplayTitle } from './TradePDP'
 
 function cutSkuPattern(sku: string): string {
   const u = sku.toUpperCase()
@@ -12,24 +13,40 @@ function cutSkuPattern(sku: string): string {
   return '5FLX%'
 }
 
-export const metadata: Metadata = {
-  title: 'Flex · Bez Ambar Trade',
-  robots: { index: false, follow: false },
+// Dedupe the product lookup between generateMetadata and the page render.
+const getTradeProduct = cache(async (slug: string) => {
+  const product = await getProductBySlug(slug)
+  if (!product || product.productChannel !== 'Trade') return null
+  return product
+})
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ sku: string }>
+}): Promise<Metadata> {
+  const { sku } = await params
+  const product = await getTradeProduct(sku)
+  if (!product) {
+    return { title: { absolute: 'Piece Not Found · Bez Ambar Trade' }, robots: { index: false, follow: false } }
+  }
+  return {
+    // absolute: bypass the root '%s · Bez Ambar' template so the title isn't doubled
+    title: { absolute: `${tradeDisplayTitle(product)} · ${product.sku} · Bez Ambar Trade` },
+    robots: { index: false, follow: false },
+  }
 }
 
 export default async function TradeFlexPDPPage({
   params,
-  searchParams,
 }: {
   params: Promise<{ sku: string }>
-  searchParams: Promise<{ metal?: string }>
 }) {
-  const [{ sku }, { metal }] = await Promise.all([params, searchParams])
-  const product = await getProductBySlug(sku)
+  const { sku } = await params
+  const product = await getTradeProduct(sku)
   if (!product) notFound()
-  if (product.productChannel !== 'Trade') notFound()
 
   const related = await getTradeRelatedByCut(cutSkuPattern(product.sku), product.slug)
 
-  return <TradePDP product={product} selectedMetal={metal} related={related} />
+  return <TradePDP product={product} related={related} />
 }

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import type { Product } from '@/types/products'
 import type { TradeRelatedCard } from '@/lib/queries'
 import TradePDPClient from './TradePDPClient'
-import MetalSwitcher from './MetalSwitcher'
+import MetalSwitcher, { SelectedMetalValue } from './MetalSwitcher'
 import type { MetalOption } from './MetalSwitcher'
 import TradeCTA from './TradeCTA'
 import TradeRelatedCarousel from './TradeRelatedCarousel'
@@ -11,20 +11,28 @@ import styles from './pdp.module.css'
 
 interface Props {
   product: Product
-  selectedMetal?: string
   related?: TradeRelatedCard[]
 }
 
+/** Title shown in the H1 and used by generateMetadata. */
+export function tradeDisplayTitle(product: Product): string {
+  const collectionName = product.specs.collection ?? ''
+  const title = [collectionName && `${collectionName}™`, product.productType]
+    .filter(Boolean)
+    .join(' ')
+  return title || product.name
+}
+
 function buildDefaultGallery(product: Product): string[] {
-  const fallback = product.specs.heroPosterUrl ?? ''
-  const imgs = [
+  // Only images that actually exist (max 6) — no padding with repeats.
+  return [
     product.specs.heroPosterUrl,
     product.view1Url,
     product.view2Url,
     product.view3Url,
-  ].filter((u): u is string => Boolean(u))
-  while (imgs.length < 6) imgs.push(fallback)
-  return imgs.slice(0, 6)
+  ]
+    .filter((u): u is string => Boolean(u))
+    .slice(0, 6)
 }
 
 function buildMetals(product: Product): MetalOption[] {
@@ -49,8 +57,8 @@ function fmt(n: number): string {
   return n % 1 === 0 ? n.toFixed(0) : n.toFixed(2).replace(/\.?0+$/, '')
 }
 
-export default function TradePDP({ product, selectedMetal, related }: Props) {
-  const { sku, specs, productType, stoneCount, stoneWeightEach } = product
+export default function TradePDP({ product, related }: Props) {
+  const { sku, specs, stoneCount, stoneWeightEach } = product
   const { gemStone, collection, lede } = specs
 
   const collectionName = collection ?? ''
@@ -66,21 +74,21 @@ export default function TradePDP({ product, selectedMetal, related }: Props) {
   if (stoneWeightEach) sublineParts.push(`${stoneWeightEach.toFixed(2)} ct each`)
   const subline = sublineParts.join(' · ')
 
-  // Resolve selected metal label (URL param → available metals → first)
-  const selectedMetalLabel = (() => {
-    if (!product.availableMetals?.length) return specs.metal ?? null
-    if (selectedMetal) {
-      const found = product.availableMetals.find(
-        m => m.toLowerCase().replace(/\s+/g, '_') === selectedMetal
-      )
-      if (found) return found
-    }
-    return product.availableMetals[0] ?? null
-  })()
+  // Metal spec value. The selected metal comes from ?metal= which is read on the
+  // client (this page is ISR-cached), so when there are switchable metals the
+  // value is a client island; the server only renders the default as fallback.
+  const defaultMetalLabel = metals[0]?.label ?? product.availableMetals?.[0] ?? specs.metal ?? null
+  const metalValue: React.ReactNode = metals.length > 1
+    ? (
+      <Suspense fallback={defaultMetalLabel}>
+        <SelectedMetalValue metals={metals} />
+      </Suspense>
+    )
+    : defaultMetalLabel
 
   // Spec rows for details section
-  const specRows: { label: string; value: string }[] = []
-  if (selectedMetalLabel) specRows.push({ label: 'Metal', value: selectedMetalLabel })
+  const specRows: { label: string; value: React.ReactNode }[] = []
+  if (defaultMetalLabel) specRows.push({ label: 'Metal', value: metalValue })
   if (stoneCount || gemStone) {
     const parts: string[] = []
     if (stoneCount) parts.push(String(stoneCount))
@@ -94,9 +102,7 @@ export default function TradePDP({ product, selectedMetal, related }: Props) {
   specRows.push({ label: 'Origin', value: 'Made in Los Angeles' })
   specRows.push({ label: 'Reference', value: sku })
 
-  const displayTitle = [collectionName && `${collectionName}™`, productType]
-    .filter(Boolean)
-    .join(' ')
+  const displayTitle = tradeDisplayTitle(product)
 
   return (
     <div className={styles.root}>
@@ -106,18 +112,19 @@ export default function TradePDP({ product, selectedMetal, related }: Props) {
         {/* ── Left: gallery ── */}
         <Suspense fallback={
           <div className={styles.galleryCol}>
-            {defaultSlots.slice(0, 6).map((_, i) => (
+            {/* Placeholder tiles: one per real image (no padding), at least one */}
+            {Array.from({ length: Math.max(1, defaultSlots.length) }, (_, i) => (
               <div key={i} className={styles.galleryItem} />
             ))}
           </div>
         }>
+          {/* Suspense boundary required: TradePDPClient calls useSearchParams on an ISR page */}
           <TradePDPClient
             metals={metals}
             defaultSlots={defaultSlots}
-            displayName={displayTitle || product.name}
+            displayName={displayTitle}
             ijewelUrl={product.ijewelUrl}
             heroIsIJewel={Boolean(product.ijewelUrl && product.interactiveIsHero)}
-            selectedMetalKey={selectedMetal ?? null}
           />
         </Suspense>
 
