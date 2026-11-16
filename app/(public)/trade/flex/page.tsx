@@ -15,6 +15,9 @@ const METAL_LABEL_TO_KEY: Record<string, string> = {
   'Platinum':    'platinum',
   'Rose Gold':   'rose_gold',
   'Yellow Gold': 'yellow_gold',
+  'PLATINUM':    'platinum',
+  'ROSE GOLD':   'rose_gold',
+  'YELLOW GOLD': 'yellow_gold',
 }
 
 function deriveCut(sku: string): 'round' | 'emerald' | 'asscher' {

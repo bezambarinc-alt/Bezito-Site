@@ -109,6 +109,11 @@ export default async function ProductPage({
     }
   }
 
+  // Trade-only products must not appear on the public site
+  if (!isDraft && product.productChannel === 'Trade') {
+    redirect(`/trade/flex/${product.slug}`)
+  }
+
   // ── Template resolution ──────────────────────────────────────────────────
   let templateId: TemplateId = await getActiveTemplateId()
 
