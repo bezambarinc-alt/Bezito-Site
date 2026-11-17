@@ -166,6 +166,7 @@
 }
 
 .err     { color: var(--ba-error); font-size: 0.78rem; font-style: normal; }
+.req     { color: var(--ba-error); font-style: normal; }
 .formErr { color: var(--ba-error); font-family: var(--ba-font-sans); font-size: 0.85rem; }
 .inputErr { border-color: var(--ba-error) !important; }
 

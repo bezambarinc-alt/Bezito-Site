@@ -30,7 +30,7 @@ export default function FloatingCollectionCTA({ collectionName, eyebrow = 'Colle
         <span className={styles.name}>{collectionName}</span>
       </div>
       <InquiryButton
-        intent={intent ?? `${collectionName} Collection Inquiry`}
+        intent={intent ?? 'A Piece from the Collection'}
         className={styles.btn}
       >
         Inquire

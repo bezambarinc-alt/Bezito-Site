@@ -28,6 +28,7 @@
 .field textarea { resize: vertical; }
 
 .err { color: #e0a3a3; font-size: 0.8rem; font-style: normal; }
+.req { color: #e0a3a3; font-style: normal; }
 .formErr { color: #e0a3a3; font-family: var(--ba-font-sans); font-size: 0.85rem; }
 .field input.inputErr,
 .field select.inputErr,

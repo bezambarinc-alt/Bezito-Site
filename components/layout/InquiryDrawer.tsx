@@ -144,7 +144,7 @@ function InquiryForm({ prefill, pathname, onClose }: FormProps) {
               />
             </label>
             <label className={styles.field}>
-              <span className={styles.label}>How Can We Help</span>
+              <span className={styles.label}>How Can We Help <span className={styles.req}>*</span></span>
               <select
                 className={`${styles.input} ${styles.select}${state.fieldErrors?.intent ? ` ${styles.inputErr}` : ''}`}
                 name="intent"
@@ -215,7 +215,7 @@ function InquiryForm({ prefill, pathname, onClose }: FormProps) {
           {!hideMessage && (
             <label className={styles.field}>
               <span className={styles.label}>
-                Message {!msgRequired && <span className={styles.optional}>(optional)</span>}
+                Message {msgRequired ? <span className={styles.req}>*</span> : <span className={styles.optional}>(optional)</span>}
               </span>
               <textarea
                 className={`${styles.input} ${styles.textarea}${state.fieldErrors?.message ? ` ${styles.inputErr}` : ''}`}
@@ -232,7 +232,7 @@ function InquiryForm({ prefill, pathname, onClose }: FormProps) {
           {showDate && (
             <label className={styles.field}>
               <span className={styles.label}>
-                Preferred Date {!dateRequired && <span className={styles.optional}>(optional)</span>}
+                Preferred Date {dateRequired ? <span className={styles.req}>*</span> : <span className={styles.optional}>(optional)</span>}
               </span>
               <input
                 className={`${styles.input}${state.fieldErrors?.preferredDate ? ` ${styles.inputErr}` : ''}`}

@@ -50,7 +50,6 @@ export async function submitInquiry(
   if (!allowed) {
     return { status: 'error', message: 'Too many requests. Please try again later.' }
   }
-  await recordAttempt(ip, true)
 
   const raw = {
     name: formData.get('name'),
@@ -76,6 +75,8 @@ export async function submitInquiry(
     }
     return { status: 'error', message: 'Please check the highlighted fields.', fieldErrors }
   }
+
+  await recordAttempt(ip, true)
 
   // Durable save + best-effort Zoho sync all live in lib/leads.ts so the server
   // action and the /api/lead route can never diverge. A Zoho failure is recorded

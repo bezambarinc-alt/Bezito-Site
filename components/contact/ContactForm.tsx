@@ -21,7 +21,7 @@ const initialState: InquiryState = { status: 'idle' }
 export default function ContactForm() {
   const [pending, startTransition] = useTransition()
   const [state, setState] = useState<InquiryState>(initialState)
-  const [intent, setIntent] = useState<string>(INQUIRY_INTENTS[0])
+  const [intent, setIntent] = useState<string>('')
   const firedRef = useRef(false)
 
   // Identity fields — pre-filled from sessionStorage, saved on successful submit
@@ -106,8 +106,9 @@ export default function ContactForm() {
           />
         </label>
         <label className={styles.field}>
-          <span>How may we help?</span>
-          <select name="intent" value={intent} onChange={(e) => setIntent(e.target.value)}>
+          <span>How may we help? <span className={styles.req}>*</span></span>
+          <select name="intent" value={intent} onChange={(e) => setIntent(e.target.value)} required>
+            <option value="">Select…</option>
             {INQUIRY_INTENTS.map((i) => (
               <option key={i} value={i}>{i}</option>
             ))}
@@ -157,7 +158,7 @@ export default function ContactForm() {
 
       {showDate && (
         <label className={styles.field}>
-          <span>Preferred date {!dateRequired && <i>(optional)</i>}</span>
+          <span>Preferred date {dateRequired ? <span className={styles.req}>*</span> : <i>(optional)</i>}</span>
           <input
             className={state.fieldErrors?.preferredDate ? styles.inputErr : undefined}
             name="preferredDate"
@@ -170,7 +171,7 @@ export default function ContactForm() {
 
       {!hideMessage && (
         <label className={styles.field}>
-          <span>Message {!msgRequired && <i>(optional)</i>}</span>
+          <span>Message {msgRequired ? <span className={styles.req}>*</span> : <i>(optional)</i>}</span>
           <textarea
             className={state.fieldErrors?.message ? styles.inputErr : undefined}
             name="message"

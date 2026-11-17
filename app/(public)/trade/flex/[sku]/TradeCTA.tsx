@@ -14,7 +14,7 @@ export default function TradeCTA({ sku, title }: Props) {
     <button
       type="button"
       className={styles.ctaPill}
-      onClick={() => openInquiryDrawer({ sku, title })}
+      onClick={() => openInquiryDrawer({ sku, title, intent: 'A Piece from the Collection' })}
     >
       Inquire About This Piece
     </button>

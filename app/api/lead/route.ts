@@ -49,11 +49,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'invalid email' }, { status: 400 })
   }
 
+  // Normalize legacy intent value sent by ArchiveModal
+  const normalizedIntent = body?.intent === 'Archive Inquiry' ? 'A Piece from the Archive' : (body?.intent ?? null)
+
   try {
     await createLead({
       name: body?.name ?? null,
       email,
-      intent: body?.intent ?? null,
+      intent: normalizedIntent,
       sku: body?.sku ?? null,
       message: body?.message ?? null,
       // pageSlug is the site path (e.g. "jewelry/rings/c-0754"); sku is the piece reference.
