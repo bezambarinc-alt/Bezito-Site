@@ -90,7 +90,7 @@ function InquiryForm({ prefill, pathname, onClose }: FormProps) {
           <button className={styles.submit} onClick={onClose}>Close</button>
         </div>
       ) : (
-        <form action={formAction} className={styles.form}>
+        <form action={formAction} className={styles.form} noValidate>
           <input type="hidden" name="sku"        value={prefill.sku   ?? ''} />
           <input type="hidden" name="pieceTitle"  value={prefill.title ?? ''} />
           <input type="hidden" name="pageSlug"    value={pathname.slice(1)} />
