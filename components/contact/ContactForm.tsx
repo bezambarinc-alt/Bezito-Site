@@ -74,7 +74,7 @@ export default function ContactForm() {
     <form ref={formRef} action={formAction} className={styles.form}>
       <input type="hidden" name="pageSlug" value="contact" />
 
-      {state.status === 'error' && state.message && <p className={styles.formErr}>{state.message}</p>}
+      {state.status === 'error' && state.message && <p className={styles.formErr} role="alert">{state.message}</p>}
 
       <div className={styles.row}>
         <label className={styles.field}>
@@ -128,6 +128,7 @@ export default function ContactForm() {
               <option key={i} value={i}>{i}</option>
             ))}
           </select>
+          {state.fieldErrors?.intent && <em className={styles.err}>{state.fieldErrors.intent}</em>}
         </label>
       </div>
 
