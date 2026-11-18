@@ -51,19 +51,24 @@ export async function submitInquiry(
     return { status: 'error', message: 'Too many requests. Please try again later.' }
   }
 
+  // formData.get() returns null for fields not present in the DOM (conditionally
+  // rendered). Zod's z.string().optional() accepts undefined but rejects null —
+  // coerce null → undefined so optional fields that aren't rendered pass cleanly.
+  const g = (k: string) => formData.get(k) ?? undefined
+
   const raw = {
-    name: formData.get('name'),
-    email: formData.get('email'),
-    phone: formData.get('phone'),
-    intent: formData.get('intent'),
-    message: formData.get('message'),
-    preferredDate: formData.get('preferredDate'),
-    country: formData.get('country'),
-    city: formData.get('city'),
-    state: formData.get('state'),
-    sku: formData.get('sku'),
-    pieceTitle: formData.get('pieceTitle'),
-    pageSlug: formData.get('pageSlug'),
+    name:          g('name'),
+    email:         g('email'),
+    phone:         g('phone'),
+    intent:        g('intent'),
+    message:       g('message'),
+    preferredDate: g('preferredDate'),
+    country:       g('country'),
+    city:          g('city'),
+    state:         g('state'),
+    sku:           g('sku'),
+    pieceTitle:    g('pieceTitle'),
+    pageSlug:      g('pageSlug'),
   }
 
   const parsed = InquirySchema.safeParse(raw)
