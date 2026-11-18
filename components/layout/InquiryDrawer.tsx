@@ -50,6 +50,8 @@ function InquiryForm({ prefill, pathname, onClose }: FormProps) {
   const [cityVal,    setCityVal]    = useState('')
   const [stateVal,   setStateVal]   = useState('')
 
+  const formRef = useRef<HTMLFormElement>(null)
+
   function formAction(formData: FormData) {
     startTransition(async () => {
       const result = await submitInquiry(state, formData)
@@ -64,6 +66,12 @@ function InquiryForm({ prefill, pathname, onClose }: FormProps) {
         })
       }
       setState(result)
+      if (result.status === 'error') {
+        requestAnimationFrame(() => {
+          const el = formRef.current?.querySelector<HTMLElement>('[aria-invalid="true"]')
+          el?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        })
+      }
     })
   }
 
@@ -90,10 +98,14 @@ function InquiryForm({ prefill, pathname, onClose }: FormProps) {
           <button className={styles.submit} onClick={onClose}>Close</button>
         </div>
       ) : (
-        <form action={formAction} className={styles.form} noValidate>
+        <form ref={formRef} action={formAction} className={styles.form} noValidate>
           <input type="hidden" name="sku"        value={prefill.sku   ?? ''} />
           <input type="hidden" name="pieceTitle"  value={prefill.title ?? ''} />
           <input type="hidden" name="pageSlug"    value={pathname.slice(1)} />
+
+          {state.status === 'error' && state.message && (
+            <p className={styles.formErr} role="alert">{state.message}</p>
+          )}
 
           {/* Row 1: Name + Email */}
           <div className={styles.formRow}>
@@ -101,6 +113,7 @@ function InquiryForm({ prefill, pathname, onClose }: FormProps) {
               <span className={styles.label}>Your Name</span>
               <input
                 className={`${styles.input}${state.fieldErrors?.name ? ` ${styles.inputErr}` : ''}`}
+                aria-invalid={!!state.fieldErrors?.name}
                 name="name"
                 type="text"
                 value={nameVal}
@@ -115,6 +128,7 @@ function InquiryForm({ prefill, pathname, onClose }: FormProps) {
               <span className={styles.label}>Email Address</span>
               <input
                 className={`${styles.input}${state.fieldErrors?.email ? ` ${styles.inputErr}` : ''}`}
+                aria-invalid={!!state.fieldErrors?.email}
                 name="email"
                 type="email"
                 value={emailVal}
@@ -134,7 +148,8 @@ function InquiryForm({ prefill, pathname, onClose }: FormProps) {
                 Phone <span className={styles.optional}>(optional)</span>
               </span>
               <input
-                className={styles.input}
+                className={`${styles.input}${state.fieldErrors?.phone ? ` ${styles.inputErr}` : ''}`}
+                aria-invalid={!!state.fieldErrors?.phone}
                 name="phone"
                 type="tel"
                 value={phoneVal}
@@ -142,14 +157,16 @@ function InquiryForm({ prefill, pathname, onClose }: FormProps) {
                 placeholder="(xxx) xxx-xxxx"
                 autoComplete="tel"
               />
+              {state.fieldErrors?.phone && <em className={styles.err}>{state.fieldErrors.phone}</em>}
             </label>
             <label className={styles.field}>
               <span className={styles.label}>How Can We Help <span className={styles.req}>*</span></span>
               <select
                 className={`${styles.input} ${styles.select}${state.fieldErrors?.intent ? ` ${styles.inputErr}` : ''}`}
+                aria-invalid={!!state.fieldErrors?.intent}
                 name="intent"
                 value={intent}
-                onChange={(e) => setIntent(e.target.value)}
+                onChange={(e) => { setIntent(e.target.value); if (state.status !== 'idle') setState(initialState) }}
                 required
               >
                 <option value="">Select…</option>
@@ -219,6 +236,7 @@ function InquiryForm({ prefill, pathname, onClose }: FormProps) {
               </span>
               <textarea
                 className={`${styles.input} ${styles.textarea}${state.fieldErrors?.message ? ` ${styles.inputErr}` : ''}`}
+                aria-invalid={!!state.fieldErrors?.message}
                 name="message"
                 rows={3}
                 required={msgRequired}
@@ -236,6 +254,7 @@ function InquiryForm({ prefill, pathname, onClose }: FormProps) {
               </span>
               <input
                 className={`${styles.input}${state.fieldErrors?.preferredDate ? ` ${styles.inputErr}` : ''}`}
+                aria-invalid={!!state.fieldErrors?.preferredDate}
                 name="preferredDate"
                 type="date"
                 required={dateRequired}
@@ -245,10 +264,6 @@ function InquiryForm({ prefill, pathname, onClose }: FormProps) {
           )}
 
           <p className={styles.privacy}>Your enquiry is private and handled directly by Bez&rsquo;s team.</p>
-
-          {state.status === 'error' && state.message && (
-            <p className={styles.formErr} role="alert">{state.message}</p>
-          )}
 
           <button className={styles.submit} type="submit" disabled={pending}>
             {pending ? 'Sending…' : 'Send Inquiry'}

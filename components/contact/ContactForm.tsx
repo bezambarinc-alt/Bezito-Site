@@ -34,6 +34,8 @@ export default function ContactForm() {
   const [cityVal,    setCityVal]    = useState('')
   const [stateVal,   setStateVal]   = useState('')
 
+  const formRef = useRef<HTMLFormElement>(null)
+
   function formAction(formData: FormData) {
     startTransition(async () => {
       const result = await submitInquiry(state, formData)
@@ -43,6 +45,12 @@ export default function ContactForm() {
         trackLead({ method: 'contact_page', intent, page_slug: 'contact' })
       }
       setState(result)
+      if (result.status === 'error') {
+        requestAnimationFrame(() => {
+          const el = formRef.current?.querySelector<HTMLElement>('[aria-invalid="true"]')
+          el?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        })
+      }
     })
   }
 
@@ -63,14 +71,17 @@ export default function ContactForm() {
   }
 
   return (
-    <form action={formAction} className={styles.form}>
+    <form ref={formRef} action={formAction} className={styles.form}>
       <input type="hidden" name="pageSlug" value="contact" />
+
+      {state.status === 'error' && state.message && <p className={styles.formErr}>{state.message}</p>}
 
       <div className={styles.row}>
         <label className={styles.field}>
           <span>Name</span>
           <input
             className={state.fieldErrors?.name ? styles.inputErr : undefined}
+            aria-invalid={!!state.fieldErrors?.name}
             name="name"
             value={nameVal}
             onChange={e => setNameVal(e.target.value)}
@@ -83,6 +94,7 @@ export default function ContactForm() {
           <span>Email</span>
           <input
             className={state.fieldErrors?.email ? styles.inputErr : undefined}
+            aria-invalid={!!state.fieldErrors?.email}
             name="email"
             type="email"
             value={emailVal}
@@ -98,16 +110,19 @@ export default function ContactForm() {
         <label className={styles.field}>
           <span>Phone <i>(optional)</i></span>
           <input
+            className={state.fieldErrors?.phone ? styles.inputErr : undefined}
+            aria-invalid={!!state.fieldErrors?.phone}
             name="phone"
             type="tel"
             value={phoneVal}
             onChange={e => setPhoneVal(e.target.value)}
             autoComplete="tel"
           />
+          {state.fieldErrors?.phone && <em className={styles.err}>{state.fieldErrors.phone}</em>}
         </label>
         <label className={styles.field}>
           <span>How may we help? <span className={styles.req}>*</span></span>
-          <select name="intent" value={intent} onChange={(e) => setIntent(e.target.value)} required>
+          <select name="intent" value={intent} onChange={(e) => { setIntent(e.target.value); if (state.status !== 'idle') setState(initialState) }} required aria-invalid={!!state.fieldErrors?.intent}>
             <option value="">Select…</option>
             {INQUIRY_INTENTS.map((i) => (
               <option key={i} value={i}>{i}</option>
@@ -161,6 +176,7 @@ export default function ContactForm() {
           <span>Preferred date {dateRequired ? <span className={styles.req}>*</span> : <i>(optional)</i>}</span>
           <input
             className={state.fieldErrors?.preferredDate ? styles.inputErr : undefined}
+            aria-invalid={!!state.fieldErrors?.preferredDate}
             name="preferredDate"
             type="date"
             required={dateRequired}
@@ -174,6 +190,7 @@ export default function ContactForm() {
           <span>Message {msgRequired ? <span className={styles.req}>*</span> : <i>(optional)</i>}</span>
           <textarea
             className={state.fieldErrors?.message ? styles.inputErr : undefined}
+            aria-invalid={!!state.fieldErrors?.message}
             name="message"
             rows={5}
             required={msgRequired}
@@ -181,8 +198,6 @@ export default function ContactForm() {
           {state.fieldErrors?.message && <em className={styles.err}>{state.fieldErrors.message}</em>}
         </label>
       )}
-
-      {state.status === 'error' && state.message && <p className={styles.formErr}>{state.message}</p>}
 
       <button className={styles.submit} type="submit" disabled={pending}>
         {pending ? 'Sending…' : 'Send Inquiry'}
