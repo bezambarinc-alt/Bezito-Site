@@ -500,6 +500,7 @@
   .galleryModelItemMobile {
     display: block;
     order: 3;
+    width: 100%;
   }
 
   /* 4. Mobile carousel */
