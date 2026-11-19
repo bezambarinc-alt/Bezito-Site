@@ -32,6 +32,24 @@
   cursor: zoom-in;
 }
 
+/* Desktop: use --gallery-order to restore the original slot order in the 2-col grid */
+.galleryHero,
+.galleryModelItem,
+.galleryCarouselItem {
+  order: var(--gallery-order, 0);
+}
+
+/* Desktop: carousel wrapper + track dissolve so items flow directly into galleryCol grid */
+.galleryCarousel {
+  display: contents;
+}
+.galleryCarouselTrack {
+  display: contents;
+}
+.galleryDots {
+  display: none;
+}
+
 /* ── Lightbox overlay ── */
 
 .lightbox {
@@ -447,17 +465,79 @@
 }
 
 @media (max-width: 860px) {
+  /* Flatten grid to flex column so flex `order` controls stacking */
   .grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
   }
+
+  /* Dissolve galleryCol — its children become direct flex children of .grid */
   .galleryCol {
-    grid-template-columns: 1fr;
+    display: contents;
   }
+
+  /* 1. Hero — full width at top */
+  .galleryHero {
+    order: 1;
+  }
+
+  /* 2. Spec panel — between hero and model */
   .specCol {
+    order: 2;
     position: static;
     padding: 40px clamp(24px, 5vw, 48px);
     max-width: 100%;
   }
+
+  /* 3. Model image — below spec panel */
+  .galleryModelItem {
+    order: 3;
+  }
+
+  /* 4. Carousel — remaining images + closeup, with dot nav */
+  .galleryCarousel {
+    order: 4;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .galleryCarouselTrack {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .galleryCarouselTrack::-webkit-scrollbar { display: none; }
+
+  /* Each slide: full width, snap to start, natural DOM order */
+  .galleryCarouselItem {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    order: 0;
+  }
+
+  /* Dot navigation */
+  .galleryDots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 0 4px;
+  }
+  .galleryDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ba-border-warm);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s;
+  }
+  .galleryDotActive {
+    background: var(--ba-gold);
+  }
+
   /* 2 cards on mobile */
   .relatedCard {
     flex: 0 0 calc(50vw - 2px);
