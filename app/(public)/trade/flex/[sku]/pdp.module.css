@@ -450,6 +450,9 @@
   .grid {
     grid-template-columns: 1fr;
   }
+  .galleryCol {
+    grid-template-columns: 1fr;
+  }
   .specCol {
     position: static;
     padding: 40px clamp(24px, 5vw, 48px);

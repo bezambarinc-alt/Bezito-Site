@@ -172,7 +172,7 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
                 fill
                 unoptimized
                 priority={i === 0 && !heroIsIJewel}
-                sizes="(max-width: 860px) 50vw, 27.5vw"
+                sizes="(max-width: 860px) 100vw, 27.5vw"
                 style={{ objectFit: 'cover', objectPosition: 'center top' }}
               />
             )}
