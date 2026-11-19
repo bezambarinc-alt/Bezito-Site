@@ -28,9 +28,11 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
   const triggerRef = useRef<HTMLElement | null>(null)
   const isOpen = lightboxIndex !== null
 
-  // Carousel dots
+  // Carousel dots — desktop (inside galleryCol) and mobile (outside, below specCol)
   const carouselTrackRef = useRef<HTMLDivElement | null>(null)
   const [activeDot, setActiveDot] = useState(0)
+  const mobileCarouselTrackRef = useRef<HTMLDivElement | null>(null)
+  const [mobileActiveDot, setMobileActiveDot] = useState(0)
 
   const openAt = useCallback((index: number, trigger: HTMLElement) => {
     triggerRef.current = trigger
@@ -135,6 +137,20 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
 
   const scrollToCarouselItem = useCallback((idx: number) => {
     const track = carouselTrackRef.current
+    if (!track || !track.children.length) return
+    const itemWidth = track.scrollWidth / track.children.length
+    track.scrollTo({ left: idx * itemWidth, behavior: 'smooth' })
+  }, [])
+
+  const mobileHandleCarouselScroll = useCallback(() => {
+    const track = mobileCarouselTrackRef.current
+    if (!track || !track.children.length) return
+    const itemWidth = track.scrollWidth / track.children.length
+    setMobileActiveDot(Math.min(track.children.length - 1, Math.round(track.scrollLeft / itemWidth)))
+  }, [])
+
+  const mobileScrollToCarouselItem = useCallback((idx: number) => {
+    const track = mobileCarouselTrackRef.current
     if (!track || !track.children.length) return
     const itemWidth = track.scrollWidth / track.children.length
     track.scrollTo({ left: idx * itemWidth, behavior: 'smooth' })
@@ -267,6 +283,78 @@ export default function TradeGallery({ slots, displayName, ijewelUrl, heroIsIJew
         )}
 
       </div>
+
+      {/* ── MOBILE-ONLY: model image — rendered outside galleryCol as sibling of specCol ── */}
+      {modelSlotIndex >= 0 && slots[modelSlotIndex] && (
+        <div
+          className={`${styles.galleryItem} ${styles.galleryModelItemMobile} ${styles.galleryItemClickable}`}
+          onClick={e => openAt(modelSlotIndex, e.currentTarget)}
+          onKeyDown={tileKeyDown(modelSlotIndex)}
+          role="button"
+          tabIndex={0}
+          aria-label={`View ${displayName} on model`}
+        >
+          <Image
+            src={cldUrl(slots[modelSlotIndex], 'f_auto,q_auto:best,w_1500')}
+            alt={`${displayName} · model`}
+            fill unoptimized
+            sizes="100vw"
+            style={{ objectFit: 'cover', objectPosition: 'center top' }}
+          />
+        </div>
+      )}
+
+      {/* ── MOBILE-ONLY: carousel with dots ── */}
+      {carouselCount > 0 && (
+        <div className={styles.galleryCarouselMobile}>
+          <div className={styles.galleryCarouselTrack} ref={mobileCarouselTrackRef} onScroll={mobileHandleCarouselScroll}>
+            {carouselSlots.map(({ src, i }) => (
+              <div
+                key={i}
+                className={`${styles.galleryItem} ${styles.galleryCarouselItem} ${styles.galleryItemClickable}`}
+                onClick={e => openAt(i, e.currentTarget)}
+                onKeyDown={tileKeyDown(i)}
+                role="button"
+                tabIndex={0}
+                aria-label={`View ${displayName} · view ${i + 1}`}
+              >
+                <Image
+                  src={cldUrl(src, 'f_auto,q_auto:best,w_1500')}
+                  alt={`${displayName} · view ${i + 1}`}
+                  fill unoptimized
+                  sizes="100vw"
+                  style={{ objectFit: 'cover', objectPosition: 'center top' }}
+                />
+              </div>
+            ))}
+            {closeupUrl && (
+              <div
+                className={`${styles.galleryItem} ${styles.galleryCarouselItem} ${styles.galleryItemClickable}`}
+                onClick={e => openAt(closeupLightboxIdx, e.currentTarget)}
+                onKeyDown={tileKeyDown(closeupLightboxIdx)}
+                role="button"
+                tabIndex={0}
+                aria-label={`Play ${displayName} close-up video`}
+              >
+                <video autoPlay muted loop playsInline src={closeupUrl}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
+              </div>
+            )}
+          </div>
+          {carouselCount > 1 && (
+            <div className={styles.galleryDots}>
+              {Array.from({ length: carouselCount }, (_, i) => (
+                <button
+                  key={i}
+                  className={`${styles.galleryDot}${mobileActiveDot === i ? ` ${styles.galleryDotActive}` : ''}`}
+                  onClick={() => mobileScrollToCarouselItem(i)}
+                  aria-label={`Go to image ${i + 1}`}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* ── LIGHTBOX ─────────────────────────────────────────────────────────── */}
       {activeItem && (

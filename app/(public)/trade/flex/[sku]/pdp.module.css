@@ -50,6 +50,14 @@
   display: none;
 }
 
+/* Mobile-only duplicates: hidden on desktop, shown below specCol on mobile */
+.galleryModelItemMobile {
+  display: none;
+}
+.galleryCarouselMobile {
+  display: none;
+}
+
 /* ── Lightbox overlay ── */
 
 .lightbox {
@@ -465,23 +473,22 @@
 }
 
 @media (max-width: 860px) {
-  /* Flatten grid to flex column so flex `order` controls stacking */
+  /* Flatten grid to flex column */
   .grid {
     display: flex;
     flex-direction: column;
   }
 
-  /* Dissolve galleryCol — its children become direct flex children of .grid */
+  /* 1. galleryCol: flex column, only hero visible inside */
   .galleryCol {
-    display: contents;
-  }
-
-  /* 1. Hero — full width at top */
-  .galleryHero {
     order: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    gap: 0;
   }
 
-  /* 2. Spec panel — between hero and model */
+  /* 2. Spec panel */
   .specCol {
     order: 2;
     position: static;
@@ -489,18 +496,28 @@
     max-width: 100%;
   }
 
-  /* 3. Model image — below spec panel */
-  .galleryModelItem {
+  /* 3. Mobile model image — sibling of specCol in .grid */
+  .galleryModelItemMobile {
+    display: block;
     order: 3;
   }
 
-  /* 4. Carousel — remaining images + closeup, with dot nav */
-  .galleryCarousel {
+  /* 4. Mobile carousel */
+  .galleryCarouselMobile {
     order: 4;
     display: flex;
     flex-direction: column;
   }
 
+  /* Hide desktop-only versions inside galleryCol */
+  .galleryModelItem {
+    display: none;
+  }
+  .galleryCarousel {
+    display: none;
+  }
+
+  /* Carousel track + items (applies to mobile carousel) */
   .galleryCarouselTrack {
     display: flex;
     overflow-x: auto;
@@ -510,7 +527,6 @@
   }
   .galleryCarouselTrack::-webkit-scrollbar { display: none; }
 
-  /* Each slide: full width, snap to start, natural DOM order */
   .galleryCarouselItem {
     flex: 0 0 100%;
     scroll-snap-align: start;
