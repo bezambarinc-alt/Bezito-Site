@@ -23,8 +23,9 @@ interface SubCol { id: string; items: NavEntry[] }
 // ── Root items ─────────────────────────────────────────────────────────────────
 
 const ROOT: NavEntry[] = [
-  { kind: 'expand', label: 'On the Bench', id: 'jewelry' },
-  { kind: 'expand', label: 'Archive',      id: 'archive' },
+  { kind: 'expand', label: 'On the Bench',           id: 'jewelry' },
+  { kind: 'link',   label: 'Extent™ Flex Bracelets', href: '/trade/flex' },
+  { kind: 'expand', label: 'Archive',                id: 'archive' },
   { kind: 'expand', label: 'Journal',      id: 'journal' },
   { kind: 'expand', label: 'Atelier',      id: 'atelier' },
   { kind: 'action', label: 'Service',      target: 'concierge' },
