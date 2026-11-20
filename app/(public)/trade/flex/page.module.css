@@ -292,6 +292,15 @@
 
 .media img { mix-blend-mode: multiply; }
 
+.mediaImgModel {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mediaImgModelVisible {
+  opacity: 1;
+}
+
 .worn {
   position: absolute;
   inset: 0;

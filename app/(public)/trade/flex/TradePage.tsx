@@ -54,7 +54,6 @@ function getSKU(ref: string) {
 function ProductCard({ piece, metal }: { piece: Piece; metal?: MetalVariant }) {
   const [hovered, setHovered] = useState(false)
   const baseImage = metal?.image ?? PLACEHOLDER
-  const image = hovered && metal?.modelImage ? metal.modelImage : baseImage
   const href = piece.slug
     ? metal
       ? `/trade/flex/${piece.slug}?metal=${metal.key}`
@@ -71,11 +70,20 @@ function ProductCard({ piece, metal }: { piece: Piece; metal?: MetalVariant }) {
       <div className={s.media}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={cldUrl(image, 'f_auto,q_auto:best,w_1500')}
+          src={cldUrl(baseImage, 'f_auto,q_auto:best,w_1500')}
           alt={metal ? `${piece.name} · ${metal.label}` : piece.name}
           loading="lazy"
           style={{ width: '100%', display: 'block', objectFit: 'cover' }}
         />
+        {metal?.modelImage && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={cldUrl(metal.modelImage, 'f_auto,q_auto:best,w_1500')}
+            alt={`${piece.name} · ${metal.label} worn`}
+            loading="lazy"
+            className={`${s.mediaImgModel}${hovered ? ` ${s.mediaImgModelVisible}` : ''}`}
+          />
+        )}
       </div>
       <div>
         <p className={s.cardEyebrow}>{getSKU(piece.ref)}</p>
