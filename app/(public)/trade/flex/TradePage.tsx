@@ -14,7 +14,7 @@ export interface FlexCardData {
   cut: 'round' | 'emerald' | 'asscher'
   ct: number
   ctLabel: string
-  metals: Array<{ key: string; label: string; image: string }>
+  metals: Array<{ key: string; label: string; image: string; modelImage?: string }>
 }
 
 const PLACEHOLDER = 'https://res.cloudinary.com/dlg2mou53/image/upload/f_auto,q_auto/Jewelry%20Images/Bracelets/5FLX40ECN.png'
@@ -23,6 +23,7 @@ interface MetalVariant {
   key: string
   label: string
   image: string
+  modelImage?: string
 }
 
 interface Piece {
@@ -51,12 +52,19 @@ function getSKU(ref: string) {
 // CUTS is computed dynamically from dbCards in TradePage — see useMemo below
 
 function ProductCard({ piece, metal }: { piece: Piece; metal?: MetalVariant }) {
-  const image = metal?.image ?? PLACEHOLDER
+  const [hovered, setHovered] = useState(false)
+  const baseImage = metal?.image ?? PLACEHOLDER
+  const image = hovered && metal?.modelImage ? metal.modelImage : baseImage
   const href = piece.slug
     ? metal
       ? `/trade/flex/${piece.slug}?metal=${metal.key}`
       : `/trade/flex/${piece.slug}`
     : null
+
+  const handlers = {
+    onMouseEnter: () => setHovered(true),
+    onMouseLeave: () => setHovered(false),
+  }
 
   const cardInner = (
     <>
@@ -80,8 +88,8 @@ function ProductCard({ piece, metal }: { piece: Piece; metal?: MetalVariant }) {
   )
 
   return href
-    ? <Link href={href} className={s.card} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>{cardInner}</Link>
-    : <article className={s.card}>{cardInner}</article>
+    ? <Link href={href} className={s.card} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }} {...handlers}>{cardInner}</Link>
+    : <article className={s.card} {...handlers}>{cardInner}</article>
 }
 
 function expandPiece(piece: Piece): Array<{ piece: Piece; metal?: MetalVariant }> {
@@ -149,14 +157,13 @@ export default function TradePage({ dbCards }: { dbCards: FlexCardData[] }) {
     metals: c.metals,
   } as Piece)), [dbCards])
 
-  // Compute filter pill counts from actual grid cards (each metal = 1 visible card)
+  // Compute filter pill counts — one card per piece (alternating metal display)
   const cuts = useMemo(() => {
     let round = 0, emerald = 0, asscher = 0
     for (const c of dbCards) {
-      const n = c.metals.length
-      if (c.cut === 'round')   round += n
-      if (c.cut === 'emerald') emerald += n
-      if (c.cut === 'asscher') asscher += n
+      if (c.cut === 'round')   round++
+      if (c.cut === 'emerald') emerald++
+      if (c.cut === 'asscher') asscher++
     }
     const total = round + emerald + asscher
     return [
@@ -248,7 +255,12 @@ export default function TradePage({ dbCards }: { dbCards: FlexCardData[] }) {
         <div className={s.wrap}>
           <div className={s.grid}>
             {(() => {
-              const cards = filtered.flatMap(expandPiece)
+              // One card per piece — alternate metals[0] (platinum) and metals[1] (rose gold)
+              const cards = filtered.map((piece, idx) => {
+                const metalIdx = idx % 2
+                const metal = piece.metals?.[metalIdx] ?? piece.metals?.[0]
+                return { piece, metal }
+              })
               const renderCard = ({ piece, metal }: { piece: Piece; metal?: MetalVariant }) => (
                 <ProductCard key={metal ? `${piece.id}-${metal.key}` : piece.id} piece={piece} metal={metal} />
               )

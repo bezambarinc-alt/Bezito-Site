@@ -58,9 +58,10 @@ export default async function TradeFlexPage() {
       for (const metalLabel of am) {
         const metalKey = METAL_LABEL_TO_KEY[metalLabel]
         if (!metalKey) continue
-        const front = mi[metalKey as keyof MetalImages]?.front
+        const imgs = mi[metalKey as keyof MetalImages]
+        const front = imgs?.front
         if (!front) continue
-        metals.push({ key: metalKey, label: metalLabel, image: front })
+        metals.push({ key: metalKey, label: metalLabel, image: front, modelImage: imgs?.model })
       }
       if (metals.length === 0) {
         console.warn(`TradeFlexPage: skipping ${row.sku} — no valid metals resolved`)
