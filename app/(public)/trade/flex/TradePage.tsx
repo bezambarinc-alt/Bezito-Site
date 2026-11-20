@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useRef } from 'react'
 import Link from 'next/link'
 import { cldUrl } from '@/lib/cloudinary'
 import s from './page.module.css'
@@ -52,38 +52,43 @@ function getSKU(ref: string) {
 // CUTS is computed dynamically from dbCards in TradePage — see useMemo below
 
 function ProductCard({ piece, metal }: { piece: Piece; metal?: MetalVariant }) {
-  const [hovered, setHovered] = useState(false)
   const baseImage = metal?.image ?? PLACEHOLDER
+  const [imgSrc, setImgSrc] = useState(baseImage)
+  const [opacity, setOpacity] = useState(1)
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const switchTo = (src: string) => {
+    if (timerRef.current) clearTimeout(timerRef.current)
+    setOpacity(0)
+    timerRef.current = setTimeout(() => {
+      setImgSrc(src)
+      setOpacity(1)
+    }, 250)
+  }
+
   const href = piece.slug
     ? metal
       ? `/trade/flex/${piece.slug}?metal=${metal.key}`
       : `/trade/flex/${piece.slug}`
     : null
 
-  const handlers = {
-    onMouseEnter: () => setHovered(true),
-    onMouseLeave: () => setHovered(false),
-  }
+  const handlers = metal?.modelImage
+    ? {
+        onMouseEnter: () => switchTo(metal.modelImage!),
+        onMouseLeave: () => switchTo(baseImage),
+      }
+    : {}
 
   const cardInner = (
     <>
       <div className={s.media}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={cldUrl(baseImage, 'f_auto,q_auto:best,w_1500')}
+          src={cldUrl(imgSrc, 'f_auto,q_auto:best,w_1500')}
           alt={metal ? `${piece.name} · ${metal.label}` : piece.name}
           loading="lazy"
-          style={{ width: '100%', display: 'block', objectFit: 'cover' }}
+          style={{ width: '100%', display: 'block', objectFit: 'cover', opacity, transition: 'opacity 0.25s ease' }}
         />
-        {metal?.modelImage && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={cldUrl(metal.modelImage, 'f_auto,q_auto:best,w_1500')}
-            alt={`${piece.name} · ${metal.label} worn`}
-            loading="lazy"
-            className={`${s.mediaImgModel}${hovered ? ` ${s.mediaImgModelVisible}` : ''}`}
-          />
-        )}
       </div>
       <div>
         <p className={s.cardEyebrow}>{getSKU(piece.ref)}</p>
