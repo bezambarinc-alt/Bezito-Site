@@ -4,7 +4,7 @@ import React, { useState, useMemo, useRef } from 'react'
 import Link from 'next/link'
 import { cldUrl } from '@/lib/cloudinary'
 import s from './page.module.css'
-import { TILES } from './editorial-tiles'
+import { TILES_BY_CUT } from './editorial-tiles'
 import type { EditorialTileConfig } from './editorial-tiles'
 
 export interface FlexCardData {
@@ -134,8 +134,8 @@ function ImageTile({ config }: { config: EditorialTileConfig }) {
   )
 }
 
-function EditorialTile() {
-  const { url, alt, eyebrow, headline, bodyText } = TILES.tileC
+function EditorialTile({ config }: { config: EditorialTileConfig }) {
+  const { url, alt, eyebrow, headline, bodyText } = config
   return (
     <div className={`${s.tilewrap} ${s.tileSpan2}`}>
       <div className={s.tile}>
@@ -268,6 +268,9 @@ export default function TradePage({ dbCards }: { dbCards: FlexCardData[] }) {
         <div className={s.wrap}>
           <div className={s.grid}>
             {(() => {
+              // Pick tile set based on active cut filter
+              const tiles = TILES_BY_CUT[activeCut as keyof typeof TILES_BY_CUT] ?? TILES_BY_CUT.all
+
               // One card per piece — alternate metals[0] (platinum) and metals[1] (rose gold)
               const cards = filtered.map((piece, idx) => {
                 const metalIdx = idx % 2
@@ -279,18 +282,18 @@ export default function TradePage({ dbCards }: { dbCards: FlexCardData[] }) {
               )
               return (
                 <>
-                  {/* Row 1: 2 product cards + Tile A */}
+                  {/* 2 cards → Tile A (cut-specific video) */}
                   {cards.slice(0, 2).map(renderCard)}
-                  <VideoTile config={TILES.tileA} />
-                  {/* Rows 2–3: 8 product cards (4 each) */}
+                  <VideoTile config={tiles.tileA} />
+                  {/* Next 8 cards → Tile B (model shot) */}
                   {cards.slice(2, 10).map(renderCard)}
-                  {/* Row 4: Tile B + 2 product cards */}
-                  <ImageTile config={TILES.tileB} />
-                  {cards.slice(10, 12).map(renderCard)}
-                  {/* Remaining rows */}
-                  {cards.slice(12).map(renderCard)}
-                  {/* End: Tile C */}
-                  <EditorialTile />
+                  <ImageTile config={tiles.tileB} />
+                  {/* Next 8 cards */}
+                  {cards.slice(10, 18).map(renderCard)}
+                  {/* Remaining cards */}
+                  {cards.slice(18).map(renderCard)}
+                  {/* End: Tile C (how it closes — always last) */}
+                  <EditorialTile config={tiles.tileC} />
                 </>
               )
             })()}
