@@ -154,7 +154,7 @@ function EditorialTile({ config }: { config: EditorialTileConfig }) {
 
 
 export default function TradePage({ dbCards }: { dbCards: FlexCardData[] }) {
-  const [activeCut, setActiveCut] = useState('all')
+  const [activeCut, setActiveCut] = useState<keyof typeof TILES_BY_CUT>('all')
   const [sortOrder, setSortOrder] = useState('feat')
 
   // Convert server-fetched card data to Piece objects for the grid
@@ -247,7 +247,7 @@ export default function TradePage({ dbCards }: { dbCards: FlexCardData[] }) {
                   className={s.chip}
                   type="button"
                   aria-pressed={activeCut === c.key}
-                  onClick={() => setActiveCut(c.key)}
+                  onClick={() => setActiveCut(c.key as keyof typeof TILES_BY_CUT)}
                 >
                   {c.label}<span className={s.chipN}>{c.count}</span>
                 </button>
@@ -284,7 +284,7 @@ export default function TradePage({ dbCards }: { dbCards: FlexCardData[] }) {
                 <>
                   {/* 2 cards → Tile A (cut-specific video) */}
                   {cards.slice(0, 2).map(renderCard)}
-                  <VideoTile config={tiles.tileA} />
+                  <VideoTile key={tiles.tileA.url} config={tiles.tileA} />
                   {/* Next 8 cards → Tile B (model shot) */}
                   {cards.slice(2, 10).map(renderCard)}
                   <ImageTile config={tiles.tileB} />
