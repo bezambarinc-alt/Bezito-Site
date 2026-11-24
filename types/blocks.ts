@@ -72,6 +72,14 @@ export type ImageGridBlock = {
   background?: 'black' | 'white'
 }
 
+export type ImageBannerBlock = {
+  type: 'image-banner'
+  leftUrl: string
+  rightUrl: string
+  leftAlt?: string
+  rightAlt?: string
+}
+
 export type SpecAccordionBlock = {
   type: 'spec-accordion'
   title?: string
@@ -122,6 +130,7 @@ export type Block =
   | EditorialBlock
   | SegmentBlock
   | ImageGridBlock
+  | ImageBannerBlock
   | SpecAccordionBlock
   | InquireCtaBlock
   | InquireFooterBlock

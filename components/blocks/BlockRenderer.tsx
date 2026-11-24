@@ -6,6 +6,7 @@ import ContentSplit from './ContentSplit'
 import Editorial from './Editorial'
 import Segment from './Segment'
 import ImageGrid from './ImageGrid'
+import ImageBanner from './ImageBanner'
 import SpecAccordion from './SpecAccordion'
 import InquireCta from './InquireCta'
 import InquireFooter from './InquireFooter'
@@ -37,6 +38,8 @@ function RenderBlock({ block }: { block: Block }) {
       return <Segment block={block} />
     case 'image-grid':
       return <ImageGrid block={block} />
+    case 'image-banner':
+      return <ImageBanner block={block} />
     case 'spec-accordion':
       return <SpecAccordion block={block} />
     case 'inquire-cta':
