@@ -114,6 +114,7 @@ Content blocks used by page templates. Each block handles one content type.
 | `Segment` | Generic section wrapper |
 | `InquireCta` | Inline inquiry CTA button |
 | `InquireFooter` | Page footer inquiry block |
+| `ImageBanner` | PDP-style two-image banner — 55% left / 45% right, 60vh, plain `<img>` (bezito.co proxy safe) |
 
 ---
 

@@ -1,6 +1,6 @@
 # CLAUDE.md — Bez Ambar Next.js Site
 
-> Read this before touching anything. Updated 2026-08-14.
+> Read this before touching anything. Updated 2026-11-25.
 
 ---
 
@@ -200,7 +200,9 @@ All form submissions (InquiryDrawer, ContactForm, ArchiveModal) → Neon Postgre
 
 **Rule: all `<Image>` components use `className={styles.xxx}` for styling. Zero inline `style={{ objectFit }}` anywhere.**
 
-The `img → next/image` migration (commit `b19ac94`, Aug 23) replaced all raw `<img>` JSX tags with `<Image>` from `next/image`. The only permitted raw `<img>` tags are in lightbox components (LayoutDark.tsx, LayoutMulti.tsx) — full-res zoom, unconstrained dimensions.
+The `img → next/image` migration (commit `b19ac94`, Aug 23) replaced all raw `<img>` JSX tags with `<Image>` from `next/image`. Permitted raw `<img>` tags:
+- Lightbox components (LayoutDark.tsx, LayoutMulti.tsx) — full-res zoom, unconstrained dimensions
+- `ImageBanner.tsx` — bypasses next/image optimizer because bezito.co Cloudflare Worker proxy does not forward the `x-ba-proxy` header to `_next/image`, causing WAF blocks; plain `<img>` loads directly from Cloudinary CDN
 
 **How `fill` works:**
 - `fill` injects inline on the rendered `<img>`: `position:absolute; inset:0; width:100%; height:100%; color:transparent`

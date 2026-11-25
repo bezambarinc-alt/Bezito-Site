@@ -1,5 +1,7 @@
 # bezambar.com Cutover Checklist
 
+> **Site went live 2026-10-09.** All pre-cutover and DNS flip items are complete. Remaining open items are in the Post-Cutover Backlog section below.
+
 ## Pre-Cutover (must be done before DNS flip)
 
 - [ ] **PAT rotation** — rotate GitHub PAT to include `workflow` scope, update `.git/config` (currently plaintext token, blocks CI)
