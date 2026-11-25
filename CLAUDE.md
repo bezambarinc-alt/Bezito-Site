@@ -21,7 +21,7 @@ Retired branches — never reference, never check out:
 
 | Project | ID | Live URL |
 |---|---|---|
-| `bezambar-nextjs` | `prj_YIYwbBNqU7GFLwpuzWNlwGiZx475` | `bezambar-web2026.vercel.app` |
+| `bezambar-nextjs` | `prj_YIYwbBNqU7GFLwpuzWNlwGiZx475` | `www.bezambar.com` |
 
 Auto-deploys on every push to `main`. Vercel token: `~/.openclaw/credentials/vercel.json`.
 
@@ -333,7 +333,7 @@ npm run lint     # ESLint
 
 | What | URL |
 |---|---|
-| Live site | `bezambar-web2026.vercel.app` (→ `bezambar.com` after DNS cutover) |
+| Live site | https://www.bezambar.com |
 | Admin dashboard | `/admin` |
 | Client portal | `/portal` |
 | Bez × Kevin working page | https://bezito.co/page/bez-kevin (PW: 1465) |

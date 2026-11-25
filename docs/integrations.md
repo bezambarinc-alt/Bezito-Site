@@ -155,13 +155,15 @@ This handles the case where a still image lives under `/video/upload/` in Cloudi
 - **Account:** `bezambarinc-alt`
 - **Project:** `bezambar-nextjs` (`prj_YIYwbBNqU7GFLwpuzWNlwGiZx475`)
 - **Token:** `~/.openclaw/credentials/vercel.json`
-- **Live URL:** `bezambar-web2026.vercel.app`
+- **Live URL:** `www.bezambar.com`
 - **Auto-deploys:** every push to `main`
 - **Fluid compute:** enabled (supports long-running functions up to 300s)
 - **Neon:** provisioned via Vercel Marketplace
 
 `vercel.json` controls:
 - Cron schedule (`/api/cron/pim-sync` every 4h)
+- Redirect: `bezambar-nextjs.vercel.app` → `www.bezambar.com` (301)
+- `X-Robots-Tag: noindex, nofollow` on all `*.vercel.app` traffic
 
 Security headers + CSP are set in `proxy.ts` (not `vercel.json`).
 
