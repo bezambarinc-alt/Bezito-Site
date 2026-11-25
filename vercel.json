@@ -1,5 +1,20 @@
 {
   "crons": [
     { "path": "/api/cron/pim-sync", "schedule": "0 */4 * * *" }
+  ],
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "bezambar-nextjs.vercel.app" }],
+      "destination": "https://www.bezambar.com/$1",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "(?<h>.*\\.vercel\\.app)" }],
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    }
   ]
 }
